@@ -1,0 +1,63 @@
+{
+  "job": "hourly-health",
+  "written_utc": "2026-10-27T23:27:44Z",
+  "today": "2026-10-27",
+  "panel_end": "2026-10-26",
+  "panel_prev": "2026-10-25",
+  "panel_rows": 2491,
+  "heat": -0.11615373882470834,
+  "heat_prev_bar": -0.3473586721242,
+  "zone": "mid",
+  "prev_bar_zone": "mid",
+  "crossed_plus_0_4_vs_prev_bar": false,
+  "crossed_minus_0_4_vs_prev_bar": false,
+  "legs": {
+    "btc_ret_30": {
+      "now": -0.28967885398589066,
+      "prev": -0.27510268433467455
+    },
+    "btc_vol_z90": {
+      "now": -0.32634741750191953,
+      "prev": -0.31282244994381503
+    },
+    "btc_trend_stretch": {
+      "now": -0.2024880768095413,
+      "prev": -0.15945935213948667
+    },
+    "eth_funding_z30": {
+      "now": 0.35389939299851814,
+      "prev": -0.6420502020788238
+    }
+  },
+  "ta": {
+    "btc": {
+      "date": "2026-10-26",
+      "slope_ma20": -1.045043044371294,
+      "atr_regime": -0.3999990105048639
+    },
+    "eth": {
+      "date": "2026-10-26",
+      "slope_ma20": -1.7647490499255072,
+      "atr_regime": -0.3477146991126728
+    },
+    "alt": {
+      "date": "2026-10-26",
+      "slope_ma20": -1.4729878086903858,
+      "atr_regime": 0.4023345957403751
+    },
+    "alt_price_cols": [
+      "alt_price"
+    ]
+  },
+  "prior_run_written": "2026-10-27T22:27:04Z",
+  "prior_run_heat": -0.11615373882470834,
+  "prior_run_zone": "mid",
+  "prior_run_qualifying": 0,
+  "heat_delta_vs_prior_run": 0.0,
+  "crossed_plus_0_4_vs_prior_run": false,
+  "crossed_minus_0_4_vs_prior_run": false,
+  "oos_zone": false,
+  "qualifying_setups": 0,
+  "qualifying": [],
+  "setups_file": false
+}

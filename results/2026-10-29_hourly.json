@@ -1,0 +1,67 @@
+{
+  "job": "hourly-health",
+  "written_utc": "2026-10-29T10:54:42Z",
+  "today": "2026-10-29",
+  "panel_end": "2026-10-28",
+  "panel_prev": "2026-10-27",
+  "panel_rows": 2473,
+  "age_days": 1,
+  "heat": -0.08323557558998887,
+  "heat_prev_bar": -0.112594402977063,
+  "zone": "mid",
+  "prev_bar_zone": "mid",
+  "crossed_plus_0_4_vs_prev_bar": false,
+  "crossed_minus_0_4_vs_prev_bar": false,
+  "legs": {
+    "btc_ret_30": {
+      "now": -0.2779519726013123,
+      "prev": -0.3000585663755966
+    },
+    "btc_vol_z90": {
+      "now": -0.4474612449190297,
+      "prev": -0.401457760382891
+    },
+    "btc_trend_stretch": {
+      "now": -0.17050493411326464,
+      "prev": -0.20013855163989713
+    },
+    "eth_funding_z30": {
+      "now": 0.5629758492736512,
+      "prev": 0.4512772664901328
+    }
+  },
+  "ta": {
+    "btc": {
+      "date": "2026-10-28",
+      "slope_ma20": -1.0947848479081688,
+      "atr_regime": -1.0944274531038714
+    },
+    "eth": {
+      "date": "2026-10-28",
+      "slope_ma20": -1.7688972412608899,
+      "atr_regime": -1.0297364112913463
+    },
+    "alt": {
+      "date": "2026-10-28",
+      "slope_ma20": -1.4967739025285942,
+      "atr_regime": -0.7612385754132989
+    },
+    "alt_price_cols": [
+      "alt_price"
+    ]
+  },
+  "prior_run_written": "2026-10-29T09:54:08Z",
+  "prior_run_heat": -0.08323557558998887,
+  "prior_run_zone": "mid",
+  "prior_run_qualifying": 0,
+  "prior_run_file": "2026-10-29_hourly.json",
+  "heat_delta_vs_prior_run": 0.0,
+  "crossed_plus_0_4_vs_prior_run": false,
+  "crossed_minus_0_4_vs_prior_run": false,
+  "oos_zone": false,
+  "qualifying_setups": 0,
+  "qualifying": [],
+  "setups_file": false,
+  "verify_panel": "PASS panel_end=2026-10-28 today=2026-10-29 age=1d rows=2473 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "verify_note": "scripts/verify_panel.py missing; checks run inside scripts/hourly_health.py"
+}

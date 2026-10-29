@@ -1,0 +1,25 @@
+# Hourly readings. One line per run: date, heat, zone, panel_end.
+# Research decisions do not go here. They go in research/log.md.
+2026-10-28T12:36:14Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0
+2026-10-28T13:36:55Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0
+2026-10-28T14:37:27Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T15:38:15Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T16:39:12Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T17:39:42Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T18:40:20Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T19:41:27Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T20:43:09Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T21:44:41Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T22:45:18Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-28T23:46:20Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=1d qualifying=0 delta=0.0
+2026-10-29T00:47:44Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=2d qualifying=0 delta=0.0
+2026-10-29T01:48:41Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=2d qualifying=0 delta=0.0
+2026-10-29T02:49:27Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=2d qualifying=0 delta=0.0
+2026-10-29T03:50:07Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=2d qualifying=0 delta=0.0
+2026-10-29T04:50:44Z heat=-0.112594 zone=mid panel_end=2026-10-27 age=2d qualifying=0 delta=0.0
+2026-10-29T05:51:14Z heat=-0.083236 zone=mid panel_end=2026-10-28 age=1d qualifying=0 delta=0.029358827387074127
+2026-10-29T06:52:09Z heat=-0.083236 zone=mid panel_end=2026-10-28 age=1d qualifying=0 delta=0.0
+2026-10-29T07:52:48Z heat=-0.083236 zone=mid panel_end=2026-10-28 age=1d qualifying=0 delta=0.0
+2026-10-29T08:53:34Z heat=-0.083236 zone=mid panel_end=2026-10-28 age=1d qualifying=0 delta=0.0
+2026-10-29T09:54:08Z heat=-0.083236 zone=mid panel_end=2026-10-28 age=1d qualifying=0 delta=0.0
+2026-10-29T10:54:42Z heat=-0.083236 zone=mid panel_end=2026-10-28 age=1d qualifying=0 delta=0.0

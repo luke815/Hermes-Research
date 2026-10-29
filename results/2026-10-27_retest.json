@@ -1,0 +1,319 @@
+{
+  "date": "2026-10-27",
+  "panel_end": "2026-10-27",
+  "rows": 2492,
+  "horizon_days": 10,
+  "note": "top minus bottom quintile of tanh(z/2) against the forward return",
+  "factors": {
+    "btc_ret_30": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0282,
+          "n": 237
+        },
+        "test": {
+          "gap": 0.0368,
+          "n": 236
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0793,
+          "n": 237
+        },
+        "test": {
+          "gap": 0.0839,
+          "n": 236
+        }
+      }
+    },
+    "btc_vol_z90": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0289,
+          "n": 243
+        },
+        "test": {
+          "gap": 0.0104,
+          "n": 242
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.025,
+          "n": 243
+        },
+        "test": {
+          "gap": 0.0357,
+          "n": 242
+        }
+      }
+    },
+    "btc_trend_stretch": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0354,
+          "n": 235
+        },
+        "test": {
+          "gap": 0.0172,
+          "n": 234
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0634,
+          "n": 235
+        },
+        "test": {
+          "gap": 0.0501,
+          "n": 234
+        }
+      }
+    },
+    "basis_btc_z30": {
+      "btc_price": {
+        "train": {
+          "gap": -0.0038,
+          "n": 200
+        },
+        "test": {
+          "gap": 0.0188,
+          "n": 200
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0388,
+          "n": 200
+        },
+        "test": {
+          "gap": 0.0346,
+          "n": 200
+        }
+      }
+    },
+    "eth_funding_z30": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0053,
+          "n": 245
+        },
+        "test": {
+          "gap": 0.0138,
+          "n": 245
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0269,
+          "n": 245
+        },
+        "test": {
+          "gap": 0.0187,
+          "n": 245
+        }
+      }
+    },
+    "basis_gap_btc_eth": {
+      "btc_price": {
+        "train": {
+          "gap": -0.0555,
+          "n": 197
+        },
+        "test": {
+          "gap": -0.0051,
+          "n": 197
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": -0.082,
+          "n": 197
+        },
+        "test": {
+          "gap": 0.0007,
+          "n": 197
+        }
+      }
+    },
+    "dispersion_14": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0003,
+          "n": 242
+        },
+        "test": {
+          "gap": -0.0059,
+          "n": 242
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0919,
+          "n": 242
+        },
+        "test": {
+          "gap": 0.0297,
+          "n": 242
+        }
+      }
+    }
+  },
+  "ta": {
+    "dist_ma20": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0069,
+          "n": 242
+        },
+        "test": {
+          "gap": 0.0101,
+          "n": 241
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.022,
+          "n": 242
+        },
+        "test": {
+          "gap": 0.0302,
+          "n": 241
+        }
+      }
+    },
+    "slope_ma20": {
+      "btc_price": {
+        "train": {
+          "gap": 0.021,
+          "n": 241
+        },
+        "test": {
+          "gap": 0.0218,
+          "n": 240
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0426,
+          "n": 241
+        },
+        "test": {
+          "gap": 0.0657,
+          "n": 240
+        }
+      }
+    },
+    "dist_ma50": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0333,
+          "n": 240
+        },
+        "test": {
+          "gap": 0.0004,
+          "n": 240
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0647,
+          "n": 240
+        },
+        "test": {
+          "gap": 0.0277,
+          "n": 240
+        }
+      }
+    },
+    "slope_ma50": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0458,
+          "n": 239
+        },
+        "test": {
+          "gap": 0.0181,
+          "n": 239
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0792,
+          "n": 239
+        },
+        "test": {
+          "gap": 0.0655,
+          "n": 239
+        }
+      }
+    },
+    "dist_ma200": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0388,
+          "n": 233
+        },
+        "test": {
+          "gap": 0.0245,
+          "n": 232
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0809,
+          "n": 233
+        },
+        "test": {
+          "gap": 0.0808,
+          "n": 232
+        }
+      }
+    },
+    "donchian_20": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0197,
+          "n": 183
+        },
+        "test": {
+          "gap": 0.0082,
+          "n": 172
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.0453,
+          "n": 183
+        },
+        "test": {
+          "gap": 0.0164,
+          "n": 172
+        }
+      }
+    },
+    "donchian_55": {
+      "btc_price": {
+        "train": {
+          "gap": 0.0415,
+          "n": 108
+        },
+        "test": {
+          "gap": 0.0037,
+          "n": 118
+        }
+      },
+      "alt_price": {
+        "train": {
+          "gap": 0.1093,
+          "n": 108
+        },
+        "test": {
+          "gap": 0.0446,
+          "n": 118
+        }
+      }
+    }
+  }
+}

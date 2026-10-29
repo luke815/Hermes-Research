@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market heat</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<style>
+  :root { --bg:#0e1420; --panel:#151d2e; --line:#243049; --text:#d5dbe6; --muted:#8b95a7; --hot:#e06c60; --cold:#5dae7b; --price:#6fa8dc; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 -apple-system, sans-serif; }
+  header { padding: 18px 28px 6px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  h1 { font-size: 15px; font-weight: 600; margin: 0; letter-spacing: .02em; }
+  .readout b { font-size: 28px; font-variant-numeric: tabular-nums; font-weight: 650; }
+  .readout span { color: var(--muted); margin-left: 10px; }
+  .hot { color: var(--hot); } .cold { color: var(--cold); }
+  .controls { padding: 8px 28px 4px; display: flex; gap: 8px; align-items: center; }
+  button { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; cursor: pointer; font: inherit; }
+  button.on { border-color: var(--price); color: var(--price); }
+  .hint { color: var(--muted); font-size: 12px; margin-left: 8px; }
+  .chart { position: relative; margin: 4px 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  #priceWrap { height: 36vh; } #heatWrap { height: 20vh; } #predWrap { height: 20vh; }
+  table { margin: 14px 28px 28px; border-collapse: collapse; width: calc(100% - 56px); font-variant-numeric: tabular-nums; }
+  th { text-align: left; color: var(--muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; padding: 6px 10px; border-bottom: 1px solid var(--line); }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  td.num, th.num { text-align: right; }
+  .bar { height: 8px; border-radius: 4px; background: var(--line); position: relative; }
+  .bar i { position: absolute; top: 0; height: 8px; border-radius: 4px; }
+  .forecast { margin: 8px 28px 4px; padding: 10px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .forecast b { font-size: 18px; font-variant-numeric: tabular-nums; }
+  .forecast .note { color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>MARKET HEAT <span style="color:var(--muted);font-weight:400">· momentum and volatility, four factors</span></h1>
+  <div class="readout" id="readout"></div>
+</header>
+<div class="forecast" id="forecast"></div>
+<div class="controls">
+  <button data-range="90">3M</button>
+  <button data-range="180">6M</button>
+  <button data-range="365" class="on">1Y</button>
+  <button data-range="all">All</button>
+  <span class="hint">drag either chart to pan · scroll to zoom · double-click to reset</span>
+</div>
+<div class="chart" id="priceWrap"><canvas id="price"></canvas></div>
+<div class="chart" id="heatWrap"><canvas id="heat"></canvas></div>
+<div class="chart" id="predWrap"><canvas id="pred"></canvas></div>
+<table id="legs"><thead><tr>
+  <th>Component</th><th>What it measures</th><th class="num">Equal weight</th><th class="num">Learned</th><th class="num">Now</th><th>Contribution</th>
+</tr></thead><tbody></tbody></table>
+<script>
+const BAND = 0.4;
+const LABELS = {
+  btc_ret_30: ["BTC 30-day momentum", "How hard price has already been running"],
+  btc_vol_z90: ["BTC volatility regime", "Realized vol versus its own 90-day history"],
+  btc_trend_stretch: ["Trend stretch", "Distance of price above its 50-day average"],
+  basis_btc_z30: ["Basis momentum", "90-day annualized basis, 30-day z-score"],
+  eth_funding_z30: ["ETH funding momentum", "ETH perp funding, 30-day z-score"],
+  basis_gap_btc_eth: ["BTC vs ETH basis gap", "BTC basis running hot against ETH. High means caution"],
+  dispersion_14: ["Alt dispersion", "How far apart alts are moving. High has preceded stronger alt returns"],
+};
+const COLORS = ["#e0a15a", "#c58ce0", "#6fc2c2", "#d98aa6", "#a8c46a", "#e07a5f", "#7aa2e0"];
+
+const grid = "#243049", tick = "#8b95a7";
+const scaleX = { type: "time", ticks: { color: tick, maxRotation: 0 }, grid: { color: grid } };
+
+function tone(v) { return v > BAND ? "hot" : v < -BAND ? "cold" : ""; }
+
+fetch("heat_data.json").then(r => r.json()).then(data => {
+  const n = data.dates.length;
+  const last = data.heat[n - 1];
+  document.getElementById("readout").innerHTML =
+    `<b class="${tone(last)}">${last.toFixed(2)}</b><span>${data.dates[n - 1]}</span>`;
+
+  if (data.forecast) {
+    const exp = data.forecast.intercept + data.forecast.slope * last;
+    const reliable = last > 0.2;
+    document.getElementById("forecast").innerHTML =
+      `<div>Next 10 days, BTC: <b class="${exp > 0.02 ? "hot" : ""}">${(exp * 100).toFixed(1)}%</b> expected</div>` +
+      `<div class="note">${reliable ? "Heat is elevated, where the forecast has held up out of sample." : "Heat is not elevated. The forecast is weakest here and has not held up out of sample."}</div>`;
+  }
+
+  const pts = (arr) => data.dates.map((d, i) => ({x: d, y: arr[i]}));
+
+  const priceChart = new Chart(document.getElementById("price"), {
+    type: "line",
+    data: { datasets: [
+      { label: "BTC", data: pts(data.price), borderColor: "#6fa8dc", borderWidth: 1.4, pointRadius: 0, tension: 0.05 },
+      { label: "heat crossed +0.4", data: data.hot.map(p => ({x: p.t, y: p.p})), showLine: false, pointRadius: 6, pointStyle: "triangle", backgroundColor: "#e06c60", borderColor: "#e06c60" },
+      { label: "heat crossed -0.4", data: data.cold.map(p => ({x: p.t, y: p.p})), showLine: false, pointRadius: 6, pointStyle: "triangle", pointRotation: 180, backgroundColor: "#5dae7b", borderColor: "#5dae7b" },
+    ]},
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: { legend: { labels: { color: "#d5dbe6", boxWidth: 10 } } },
+      scales: {
+        x: scaleX,
+        y: { type: "logarithmic", ticks: { color: "#6fa8dc" }, grid: { color: grid } }
+      }
+    }
+  });
+
+  const heatChart = new Chart(document.getElementById("heat"), {
+    type: "line",
+    data: { datasets: [
+      { label: "heat", data: pts(data.heat), borderColor: "#d5dbe6", borderWidth: 1.6, pointRadius: 0, fill: { target: "origin", above: "rgba(224,108,96,.18)", below: "rgba(93,174,123,.18)" } },
+      ...data.components.map((c, i) => ({
+        label: LABELS[c.name][0], data: pts(data.legs[c.name]),
+        borderColor: COLORS[i], borderWidth: 1, pointRadius: 0, hidden: true,
+      })),
+    ]},
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: { legend: { labels: { color: "#d5dbe6", boxWidth: 10 } } },
+      scales: {
+        x: scaleX,
+        y: { min: -1, max: 1, ticks: { color: tick }, grid: { color: grid } }
+      }
+    }
+  });
+
+  const charts = [priceChart, heatChart];
+
+  function setRange(days) {
+    const end = new Date(data.dates[n - 1]);
+    const start = days === "all" ? new Date(data.dates[0]) : new Date(end - days * 864e5);
+    charts.forEach(c => { c.options.scales.x.min = start; c.options.scales.x.max = end; c.update("none"); });
+  }
+  document.querySelectorAll("button[data-range]").forEach(b => b.onclick = () => {
+    document.querySelectorAll("button").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    setRange(b.dataset.range === "all" ? "all" : +b.dataset.range);
+  });
+  setRange(365);
+
+  // drag to pan, kept in sync across both charts
+  charts.forEach(chart => {
+    const canvas = chart.canvas;
+    let drag = null;
+    canvas.onmousedown = e => { drag = { x: e.clientX, min: chart.scales.x.min, max: chart.scales.x.max }; };
+    window.addEventListener("mouseup", () => drag = null);
+    canvas.onmousemove = e => {
+      if (!drag) return;
+      const span = drag.max - drag.min;
+      const shift = (drag.x - e.clientX) / canvas.clientWidth * span;
+      charts.forEach(c => { c.options.scales.x.min = drag.min + shift; c.options.scales.x.max = drag.max + shift; c.update("none"); });
+    };
+    canvas.onwheel = e => {
+      e.preventDefault();
+      const min = chart.scales.x.min, max = chart.scales.x.max, span = max - min;
+      const frac = (e.offsetX) / canvas.clientWidth;
+      const at = min + span * frac;
+      const factor = e.deltaY > 0 ? 1.15 : 0.87;
+      const lo = at - (at - min) * factor, hi = at + (max - at) * factor;
+      charts.forEach(c => { c.options.scales.x.min = lo; c.options.scales.x.max = hi; c.update("none"); });
+    };
+    canvas.ondblclick = () => setRange(365);
+  });
+
+  // the learned forecast, on its own chart
+  if (data.predicted) {
+    const predChart = new Chart(document.getElementById("pred"), {
+      type: "line",
+      data: { datasets: [
+        { label: "expected BTC return, next 10 days", data: pts(data.predicted).map(p => ({x: p.x, y: p.y === null ? null : +(p.y * 100).toFixed(2)})), borderColor: "#e0a15a", borderWidth: 1.4, pointRadius: 0 },
+      ]},
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: false,
+        plugins: { legend: { labels: { color: "#d5dbe6", boxWidth: 10 } } },
+        scales: {
+          x: scaleX,
+          y: { ticks: { color: "#e0a15a", callback: v => v + "%" }, grid: { color: grid } }
+        }
+      }
+    });
+    charts.push(predChart);
+  }
+
+  // component table
+  const total = data.components.reduce((s, c) => s + c.weight, 0);
+  const learned = Object.fromEntries((data.learned_weights || []).map(w => [w.name, w.weight]));
+  const maxAbs = Math.max(...Object.values(learned).map(Math.abs), 0.001);
+  const body = document.querySelector("#legs tbody");
+  data.components.forEach((c, i) => {
+    const now = data.legs[c.name][n - 1];
+    const share = c.weight / total;
+    const lw = learned[c.name];
+    const contrib = now * share;
+    const w = Math.abs(contrib) * 50;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${LABELS[c.name][0]}</td><td style="color:var(--muted)">${LABELS[c.name][1]}</td>
+      <td class="num">${(share * 100).toFixed(0)}%</td>
+      <td class="num ${lw < 0 ? "cold" : ""}">${lw === undefined ? "—" : (lw >= 0 ? "+" : "") + lw.toFixed(3)}</td>
+      <td class="num ${tone(now)}">${now.toFixed(2)}</td>
+      <td><div class="bar"><i style="width:${w}%;left:${contrib < 0 ? 50 - w : 50}%;background:${COLORS[i]}"></i></div></td>`;
+    body.appendChild(tr);
+  });
+});
+</script>
+</body>
+</html>

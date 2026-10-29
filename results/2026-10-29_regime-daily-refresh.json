@@ -1,0 +1,104 @@
+{
+  "job": "regime-daily-refresh",
+  "run_date": "2026-10-29",
+  "written_utc": "2026-10-29T05:35:05Z",
+  "panel_end": "2026-10-28",
+  "panel_age_days": 1,
+  "panel_rows_before": 2472,
+  "panel_rows_after": 2473,
+  "rows_added": [
+    "2026-10-28"
+  ],
+  "rows_removed": [],
+  "verify_panel": "PASS panel_end=2026-10-28 today=2026-10-29 age=1d rows=2473 trailing_blank_cols=0",
+  "coinalyze": {
+    "from": "2026-10-28",
+    "through": "2026-10-28",
+    "series": [
+      "ohlcv-history",
+      "funding-rate-history",
+      "open-interest-history",
+      "liquidation-history",
+      "long-short-ratio-history"
+    ],
+    "bars_added_per_series": 20,
+    "failed": []
+  },
+  "laevitas": {
+    "through": "2026-10-28",
+    "saved": [
+      "basis_btc_g.json",
+      "basis_eth_g.json",
+      "oiw_funding_btc_5.json",
+      "oiw_funding_eth_5.json",
+      "rv_btc_5.json",
+      "rv_eth_5.json",
+      "dvol_btc_7.json",
+      "dvol_eth_5.json",
+      "skew_btc_7.json",
+      "skew_eth_5.json",
+      "atmiv_btc_5.json",
+      "atmiv_eth_5.json",
+      "rr_btc_5.json",
+      "rr_eth_5.json"
+    ],
+    "failed": [],
+    "retries": 0
+  },
+  "heat": -0.0832,
+  "heat_prior_bar": -0.1126,
+  "btc_price": 81308.8,
+  "forecast_10d": -0.00355,
+  "forecast_10d_percent": -0.355,
+  "forecast_reliable": false,
+  "forecast_line": {
+    "intercept": 0.00523,
+    "slope": 0.02666,
+    "note": "Expected BTC return over the next 10 days. Reliable only when heat is elevated; the cold end has not held up out of sample."
+  },
+  "learned_weights": [
+    {
+      "name": "btc_ret_30",
+      "weight": 0.0236
+    },
+    {
+      "name": "btc_vol_z90",
+      "weight": -0.0024
+    },
+    {
+      "name": "btc_trend_stretch",
+      "weight": -0.014
+    },
+    {
+      "name": "eth_funding_z30",
+      "weight": -0.0011
+    }
+  ],
+  "legs": {
+    "btc_ret_30": -0.278,
+    "btc_vol_z90": -0.4475,
+    "btc_trend_stretch": -0.1705,
+    "eth_funding_z30": 0.563
+  },
+  "prior_forecast_date": "2026-10-18",
+  "prior_forecast": 0.01263,
+  "realized_10d": -0.00937,
+  "realized_10d_percent": -0.937,
+  "direction_right": "no",
+  "dashboard": {
+    "url": "http://127.0.0.1:8891/heat_data.json",
+    "status": 200,
+    "bytes": 185898,
+    "last": "2026-10-28",
+    "match": true
+  },
+  "dashboard_data": {
+    "url": "http://127.0.0.1:8891/data.json",
+    "status": 200,
+    "bytes": 3154763,
+    "panel_end": "2026-10-28",
+    "generated_at": "2026-10-29T05:34:36Z",
+    "match": true
+  },
+  "note": "Forecast is the rolling 2-year model level, -0.355 percent over 10 days. Reliable only when heat is elevated; the cold end has not held out of sample. Heat -0.08 is not elevated. Heat moved from -0.1126 to -0.0832 because the 2026-10-28 bar was added and the score refit."
+}

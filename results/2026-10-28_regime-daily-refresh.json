@@ -1,0 +1,86 @@
+{
+  "job": "regime-daily-refresh",
+  "run_date": "2026-10-28",
+  "panel_end": "2026-10-27",
+  "panel_age_days": 1,
+  "panel_rows": 2472,
+  "verify_panel": "PASS panel_end=2026-10-27 today=2026-10-28 age=1d rows=2472 trailing_blank_cols=0",
+  "coinalyze": {
+    "from": "2026-10-26",
+    "through": "2026-10-27",
+    "series": [
+      "ohlcv-history",
+      "funding-rate-history",
+      "open-interest-history",
+      "liquidation-history",
+      "long-short-ratio-history"
+    ],
+    "bars_added_per_series": 20,
+    "failed": []
+  },
+  "laevitas": {
+    "through": "2026-10-27",
+    "saved": [
+      "basis_btc_f.json",
+      "basis_eth_f.json",
+      "oiw_funding_btc_4.json",
+      "oiw_funding_eth_4.json",
+      "rv_btc_4.json",
+      "rv_eth_4.json",
+      "dvol_btc_6.json",
+      "dvol_eth_4.json",
+      "skew_btc_6.json",
+      "skew_eth_4.json",
+      "atmiv_btc_4.json",
+      "atmiv_eth_4.json",
+      "rr_btc_4.json",
+      "rr_eth_4.json"
+    ],
+    "failed": [],
+    "retries": 0
+  },
+  "heat": -0.1126,
+  "btc_price": 80595.2,
+  "forecast_10d": -0.00328,
+  "forecast_line": {
+    "intercept": 0.00526,
+    "slope": 0.02672,
+    "note": "Expected BTC return over the next 10 days. Reliable only when heat is elevated; the cold end has not held up out of sample."
+  },
+  "learned_weights": [
+    {
+      "name": "btc_ret_30",
+      "weight": 0.0228
+    },
+    {
+      "name": "btc_vol_z90",
+      "weight": -0.0025
+    },
+    {
+      "name": "btc_trend_stretch",
+      "weight": -0.0133
+    },
+    {
+      "name": "eth_funding_z30",
+      "weight": -0.001
+    }
+  ],
+  "legs": {
+    "btc_ret_30": -0.3001,
+    "btc_vol_z90": -0.4015,
+    "btc_trend_stretch": -0.2001,
+    "eth_funding_z30": 0.4513
+  },
+  "prior_forecast_date": "2026-10-17",
+  "prior_forecast": 0.01409,
+  "realized_10d": -0.01057,
+  "direction_right": "no",
+  "dashboard": {
+    "url": "http://127.0.0.1:8891/heat_data.json",
+    "status": 200,
+    "bytes": 185828,
+    "last": "2026-10-27",
+    "match": true
+  },
+  "note": "Forecast is the rolling 2-year model level. Reliable only when heat is elevated; the cold end has not held out of sample. Heat -0.1126 is not elevated."
+}
