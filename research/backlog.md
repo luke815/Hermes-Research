@@ -6,7 +6,7 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 Revised by research/RESEARCH_LOOP.md section 8. D1 comes before everything else because every cross-sectional item depends on it.
 
-1. D1, continued. The name list for today's listings is done (2,092 names, data/universe.json, verdict 2026-11-02: insufficient). What remains is the delisted-name list, which no Coinalyze endpoint returns, and then the six-series history. Do not rerun the inventory pull; it resumes from data/universe.json.
+1. D1, continued. Binance delisted names are now listed: 923 USDT perps ever traded, 31 stopped before 2026-10-19, in data/binance_span.csv (verdict 2026-11-02: recorded, not admitted). What remains is the Bybit archive, the OKX list, and the six-series history. Do not rerun the Binance span pull; it resumes from data/span_parts/.
 2. C1 rerun on the amended targets. Top candidates are days within 5 percent of the 60-day high; a top is a 20 percent drop within 30 days. Bottom candidates are days within 5 percent of the 60-day low; a bottom is a 20 percent rise within 30 days without a 7 percent dip. Base rates among candidate days, not all days.
 3. C2 rerun on the amended labels. The ETH funding cell is a live candidate under the amended bar.
 4. C3 to C7 as parallel subagents: TD Sequential, trend exhaustion, options, breadth, on-chain and flows.

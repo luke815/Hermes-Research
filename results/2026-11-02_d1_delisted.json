@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-02",
+  "candidate": "d1_delisted",
+  "item": "D1 slice 2 of the full perp universe: the delisted-name list for Binance",
+  "pre_registered": "research/log.md, 2026-11-02, before any count was computed",
+  "verdict": "recorded, not admitted",
+  "reason": "The missing list exists, but only for Binance and only as prices. The public archive lists 923 USDT perps that ever traded, of which 31 stopped before 2026-10-19. All 31 still answer on Coinalyze when requested by symbol and 30 of them are absent from future-markets, which is why the earlier slice found zero inactive names. Bybit and OKX have no such archive, so the three-venue list is not done, and no funding, open interest, liquidation or long/short series was pulled.",
+  "horizon": null,
+  "gate": null,
+  "tests_since_last_admission": 3,
+  "score_changed": false,
+  "what_was_measured": {
+    "source": "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision, prefix data/futures/um/daily/klines/, paginated to the end",
+    "script": "scripts/binance_span.py",
+    "symbol_list": "data/binance_symbols.txt",
+    "span_file": "data/binance_span.csv",
+    "symbol_folders_in_bucket": 1080,
+    "usdt_perps_ever_listed": 923,
+    "still_publishing": 892,
+    "stopped_before_2026-10-19": 31,
+    "earliest_first_file": "2019-12-31",
+    "newest_file_in_archive": "2026-11-01",
+    "stopped_by_last_file_year": {"2020": 1, "2021": 2, "2022": 9, "2024": 14, "2025": 1, "2026": 4},
+    "first_file_year": {"2019": 3, "2020": 78, "2021": 59, "2022": 26, "2023": 99, "2024": 131, "2025": 242, "2026": 285}
+  },
+  "coinalyze_cross_check": {
+    "queried": "the 31 stopped names as Binance, Bybit and OKX perps, 93 symbols, daily ohlcv-history from 2020-01-01",
+    "series_returned": 41,
+    "names_that_answered_on_at_least_one_venue": 31,
+    "of_31_still_in_future_markets": 1,
+    "note": "LUNAUSDT is the one still listed. The other 30 are absent from future-markets and only reachable by symbol, which confirms the 2026-11-02 finding that no Coinalyze endpoint enumerates delisted names.",
+    "last_date_disagreements": 20,
+    "coinalyze_ends_more_than_30_days_before_archive": ["ANTUSDT", "BDXNUSDT", "BLUEBIRDUSDT", "BTCSTUSDT", "BTSUSDT", "COCOSUSDT", "FOOTBALLUSDT", "HNTUSDT", "LENDUSDT", "SRMUSDT", "SXPUSDT", "TOMOUSDT"],
+    "worst": "BTCSTUSDT: Coinalyze returns 9 bars ending 2021-03-12, the archive has 1,974 daily files ending 2026-07-29"
+  },
+  "not_done": [
+    "Bybit and OKX have no public archive of this kind, so their delisted names are still missing.",
+    "No funding, open interest, liquidation or long/short history was pulled for the 31.",
+    "The archive's newest daily file is 2026-11-01. BTCUSDT-1d-2026-11-02.zip returns 404, so the one-day lag is the source, not a failed pull."
+  ],
+  "resume_from": "data/binance_span.csv holds all 923 names with first file, last file and file count. data/span_parts/ holds one row per symbol. The next slice is the Bybit archive at public.bybit.com, then the six-series pull for the 31 by symbol."
+}
