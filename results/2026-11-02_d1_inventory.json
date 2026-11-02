@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-02",
+  "candidate": "d1_inventory",
+  "item": "D1 slice 1 of the full perp universe: name list and first-date inventory",
+  "pre_registered": "research/log.md, 2026-11-02, before any count was computed",
+  "verdict": "insufficient",
+  "reason": "The inventory covers today's listings only. Every one of the 2,092 names has its last bar on 2026-11-02, so none is a delisted name. The history endpoint does serve delisted names by symbol: FTTUSDT_PERP.A returned 214 bars ending 2022-11-14 and SRMUSDT_PERP.A returned 802 bars ending 2022-11-15, and neither symbol is in future-markets. No endpoint lists them. include_delisted=true returned the same list and /delisted-future-markets returned 404.",
+  "horizon": null,
+  "gate": null,
+  "tests_since_last_admission": 2,
+  "score_changed": false,
+  "what_was_measured": {
+    "source": "https://api.coinalyze.net/v1/future-markets and ohlcv-history, daily, from 1577836800",
+    "script": "scripts/build_universe.py",
+    "inventory_file": "data/universe.json",
+    "usdt_perps_in_future_markets": 2092,
+    "names_with_history": 2092,
+    "unique_symbols": 2092,
+    "venues": {"binance": 755, "bybit": 815, "okx": 522},
+    "base_assets": 946,
+    "base_assets_listed_on_all_three_venues": 426,
+    "earliest_first_bar": "2020-01-01",
+    "latest_last_bar": "2026-11-02",
+    "names_whose_last_bar_is_2026-11-02": 2092,
+    "names_inactive_before_2026-10-19": 0,
+    "first_bar_year": {"2020": 109, "2021": 126, "2022": 75, "2023": 154, "2024": 237, "2025": 460, "2026": 931},
+    "bars_min": 1,
+    "bars_max": 2498,
+    "names_under_30_bars": 101
+  },
+  "delisted_probe": {
+    "queried_by_symbol": ["LUNAUSDT_PERP.A", "LUNA2USDT_PERP.A", "FTTUSDT_PERP.A", "SRMUSDT_PERP.A", "BTCUSDT_PERP.A"],
+    "returned": {
+      "BTCUSDT_PERP.A": {"bars": 2498, "first": "2020-01-01", "last": "2026-11-02"},
+      "FTTUSDT_PERP.A": {"bars": 214, "first": "2022-04-15", "last": "2022-11-14"},
+      "LUNA2USDT_PERP.A": {"bars": 1515, "first": "2022-09-10", "last": "2026-11-02"},
+      "SRMUSDT_PERP.A": {"bars": 802, "first": "2020-09-05", "last": "2022-11-15"}
+    },
+    "LUNAUSDT_PERP.A": "no series returned",
+    "in_future_markets": {"LUNAUSDT_PERP.A": false, "FTTUSDT_PERP.A": false, "SRMUSDT_PERP.A": false, "LUNA2USDT_PERP.A": true},
+    "future_markets_total": 5625,
+    "markets_with_expire_at": 83,
+    "expired_that_are_perpetual": 0,
+    "include_delisted_true": "HTTP 200, same payload size as the plain list, no extra names",
+    "delisted_future_markets": "HTTP 404"
+  },
+  "not_done": [
+    "The six-series panel (price, volume, funding, open interest, liquidations, long/short) was not pulled. This slice is the name list only.",
+    "Delisted names are reachable by symbol but no endpoint enumerates them, so the point-in-time universe still cannot be built.",
+    "Open interest history starts 2022-09-19, so the inventory's first bar is a price bar, not an open-interest bar."
+  ],
+  "resume_from": "data/universe.json holds 2,092 symbols and scripts/build_universe.py skips symbols already saved. The next slice needs a list of delisted symbols from outside Coinalyze, then the same history request by symbol."
+}
