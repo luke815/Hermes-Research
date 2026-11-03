@@ -1,0 +1,22 @@
+{
+  "candidate": "d1_binance_prices",
+  "date": "2026-11-03",
+  "verdict": "recorded, not admitted",
+  "source": "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision data/futures/um/monthly/klines and data/futures/um/daily/klines",
+  "rule": "daily close, high, low, open, volume and trade count for every USDT perp in data/binance_span.csv whose last file is before 2026-10-19; monthly archives first, daily files only for days the monthly file lacks; row count and last date checked against the daily listing",
+  "symbols": 31,
+  "matched": 31,
+  "checksum_failures": 0,
+  "rows_total": 22653,
+  "rows_min": 31,
+  "rows_max": 2141,
+  "first_min": "2020-01-08",
+  "last_max": "2026-07-29",
+  "files": "data/binance_prices/<SYMBOL>.csv",
+  "gaps_filled_from_daily": {"LUNAUSDT": 5, "SXPUSDT": 1, "BTCSTUSDT": 29},
+  "days_in_monthly_absent_from_daily_listing": {"YFIIUSDT": 4, "SXPUSDT": 1},
+  "days_dropped_note": "dropped, not stored; the daily listing is the reference the span file was built from",
+  "scope": "prices only, Binance stopped names only; funding, open interest, liquidations, long/short ratio, Bybit and OKX are later slices",
+  "score_changed": false,
+  "tests_since_last_admission": 6
+}
