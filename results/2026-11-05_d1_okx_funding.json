@@ -1,0 +1,301 @@
+{
+  "candidate": "d1_okx_funding",
+  "date": "2026-11-05",
+  "verdict": "recorded, not admitted",
+  "source": "https://www.okx.com/api/v5/public/market-data-history module=3 instType=SWAP instFamilyList=ANY dateAggrType=daily",
+  "columns": "instrument_name,funding_rate,funding_time",
+  "row_rule": "last numeric settlement of the UTC day, with the count of settlements and the day mean; a day whose every settlement is the literal string None is kept with a blank rate",
+  "index_start": "2021-09-01",
+  "index_end": "2026-11-03",
+  "days_listed": 1782,
+  "days_written": 1782,
+  "bad_parts": [],
+  "rows_saved": 77779,
+  "rows_read": 77779,
+  "symbols_with_funding": 148,
+  "symbols_stopped": 154,
+  "symbols_absent": [
+    "BTTOLD",
+    "LEND",
+    "MNBTC",
+    "SUN",
+    "TESTD",
+    "TESTE"
+  ],
+  "files_mismatching_parts": [],
+  "blank_rate_days": 11,
+  "blank_rate_names": 11,
+  "settlements_per_day": {
+    "1": 61,
+    "2": 73,
+    "3": 64371,
+    "4": 4,
+    "5": 54,
+    "6": 12770,
+    "7": 2,
+    "8": 5,
+    "9": 8,
+    "10": 3,
+    "11": 1,
+    "12": 301,
+    "17": 4,
+    "18": 4,
+    "21": 4,
+    "24": 114
+  },
+  "price_days_without_funding": 259,
+  "funding_shorter_than_price": 44,
+  "funding_shorter_sample": [
+    {
+      "symbol": "AGIX",
+      "price_first": "2023-11-27",
+      "price_last": "2024-06-28",
+      "funding_first": "2023-11-28",
+      "funding_last": "2024-06-28",
+      "price_days": 215,
+      "funding_days": 214,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "BLOCK",
+      "price_first": "2024-04-11",
+      "price_last": "2024-08-22",
+      "funding_first": "2024-04-12",
+      "funding_last": "2024-08-22",
+      "price_days": 134,
+      "funding_days": 133,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "BONE",
+      "price_first": "2024-03-15",
+      "price_last": "2025-03-11",
+      "funding_first": "2024-03-16",
+      "funding_last": "2025-03-11",
+      "price_days": 362,
+      "funding_days": 361,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "CATI",
+      "price_first": "2024-09-20",
+      "price_last": "2026-01-25",
+      "funding_first": "2024-09-21",
+      "funding_last": "2026-01-25",
+      "price_days": 493,
+      "funding_days": 492,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "CETUS",
+      "price_first": "2023-05-10",
+      "price_last": "2025-12-26",
+      "funding_first": "2023-05-11",
+      "funding_last": "2025-12-26",
+      "price_days": 962,
+      "funding_days": 961,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "DEGEN",
+      "price_first": "2024-11-21",
+      "price_last": "2025-12-26",
+      "funding_first": "2024-11-22",
+      "funding_last": "2025-12-26",
+      "price_days": 401,
+      "funding_days": 400,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "DGB",
+      "price_first": "2024-03-01",
+      "price_last": "2025-09-12",
+      "funding_first": "2024-03-02",
+      "funding_last": "2025-09-12",
+      "price_days": 561,
+      "funding_days": 560,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "DMAIL",
+      "price_first": "2024-01-30",
+      "price_last": "2024-08-29",
+      "funding_first": "2024-01-31",
+      "funding_last": "2024-08-29",
+      "price_days": 213,
+      "funding_days": 212,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "DOGS",
+      "price_first": "2024-08-26",
+      "price_last": "2025-10-24",
+      "funding_first": "2024-08-27",
+      "funding_last": "2025-10-24",
+      "price_days": 425,
+      "funding_days": 424,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "FLR",
+      "price_first": "2024-02-06",
+      "price_last": "2024-10-15",
+      "funding_first": "2024-02-07",
+      "funding_last": "2024-10-15",
+      "price_days": 253,
+      "funding_days": 252,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "FOXY",
+      "price_first": "2024-04-12",
+      "price_last": "2025-05-21",
+      "funding_first": "2024-04-13",
+      "funding_last": "2025-05-21",
+      "price_days": 405,
+      "funding_days": 404,
+      "gap": "funding shorter than price span"
+    },
+    {
+      "symbol": "GAL",
+      "price_first": "2024-01-09",
+      "price_last": "2024-07-15",
+      "funding_first": "2024-01-10",
+      "funding_last": "2024-07-15",
+      "price_days": 189,
+      "funding_days": 188,
+      "gap": "funding shorter than price span"
+    }
+  ],
+  "no_funding_file": [
+    {
+      "symbol": "BTTOLD",
+      "price_first": "2021-09-01",
+      "price_last": "2022-02-14",
+      "price_days": 167
+    },
+    {
+      "symbol": "LEND",
+      "price_first": "2021-09-01",
+      "price_last": "2022-09-14",
+      "price_days": 379
+    },
+    {
+      "symbol": "MNBTC",
+      "price_first": "2021-09-01",
+      "price_last": "2022-09-14",
+      "price_days": 379
+    },
+    {
+      "symbol": "SUN",
+      "price_first": "2021-09-01",
+      "price_last": "2022-02-14",
+      "price_days": 167
+    },
+    {
+      "symbol": "TESTD",
+      "price_first": "2021-09-01",
+      "price_last": "2022-09-14",
+      "price_days": 379
+    },
+    {
+      "symbol": "TESTE",
+      "price_first": "2021-09-01",
+      "price_last": "2022-09-14",
+      "price_days": 379
+    }
+  ],
+  "funding_beyond_price_span": 37,
+  "funding_beyond_sample": [
+    {
+      "symbol": "AIDOGE",
+      "price_first": "2023-08-21",
+      "price_last": "2025-08-01",
+      "funding_first": "2023-05-03",
+      "funding_last": "2025-08-01"
+    },
+    {
+      "symbol": "ALPHA",
+      "price_first": "2023-08-21",
+      "price_last": "2025-07-04",
+      "funding_first": "2021-09-01",
+      "funding_last": "2025-07-04"
+    },
+    {
+      "symbol": "ANT",
+      "price_first": "2023-08-21",
+      "price_last": "2024-05-23",
+      "funding_first": "2021-09-01",
+      "funding_last": "2024-05-23"
+    },
+    {
+      "symbol": "BADGER",
+      "price_first": "2023-08-21",
+      "price_last": "2025-07-25",
+      "funding_first": "2021-09-01",
+      "funding_last": "2025-07-25"
+    },
+    {
+      "symbol": "BAL",
+      "price_first": "2023-08-21",
+      "price_last": "2025-07-25",
+      "funding_first": "2021-09-01",
+      "funding_last": "2025-07-25"
+    },
+    {
+      "symbol": "BSV",
+      "price_first": "2023-08-21",
+      "price_last": "2025-06-12",
+      "funding_first": "2021-09-01",
+      "funding_last": "2025-06-12"
+    },
+    {
+      "symbol": "CEL",
+      "price_first": "2023-08-21",
+      "price_last": "2024-07-15",
+      "funding_first": "2022-06-17",
+      "funding_last": "2024-07-15"
+    },
+    {
+      "symbol": "CSPR",
+      "price_first": "2023-08-21",
+      "price_last": "2025-08-01",
+      "funding_first": "2021-09-01",
+      "funding_last": "2025-08-01"
+    },
+    {
+      "symbol": "DORA",
+      "price_first": "2023-08-21",
+      "price_last": "2023-08-24",
+      "funding_first": "2021-09-01",
+      "funding_last": "2023-08-24"
+    },
+    {
+      "symbol": "EOS",
+      "price_first": "2023-08-21",
+      "price_last": "2025-05-23",
+      "funding_first": "2021-09-01",
+      "funding_last": "2025-05-23"
+    },
+    {
+      "symbol": "FITFI",
+      "price_first": "2023-08-21",
+      "price_last": "2024-08-22",
+      "funding_first": "2022-05-11",
+      "funding_last": "2024-08-22"
+    },
+    {
+      "symbol": "FLM",
+      "price_first": "2023-08-21",
+      "price_last": "2025-10-24",
+      "funding_first": "2021-09-01",
+      "funding_last": "2025-10-24"
+    }
+  ],
+  "largest_gap": {"symbol": "TONCOIN", "price_days": 307, "funding_days": 92, "funding_first": "2022-01-17", "funding_last": "2022-04-20", "price_first": "2021-11-12", "price_last": "2022-09-14"},
+  "open_interest": "not pulled; no module of market-data-history serves it",
+  "liquidations": "not pulled; the archive publishes none",
+  "bybit": "not touched",
+  "score_changed": false,
+  "tests_since_last_admission": 13
+}
