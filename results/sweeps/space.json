@@ -1,0 +1,148 @@
+{
+  "as_of": "2026-11-05T13:01:53Z",
+  "library_version": "1.0.0",
+  "train_end": "2024-06-30",
+  "panel": {
+    "panel_rows": 2480,
+    "panel_end": "2026-11-04",
+    "train_rows": 1623,
+    "train_start": "2020-01-21",
+    "columns": [
+      "Unnamed: 0",
+      "alt_funding",
+      "alt_price",
+      "basis_btc",
+      "basis_eth",
+      "btc_funding",
+      "btc_oi_share",
+      "btc_price",
+      "dispersion_14",
+      "eth_funding",
+      "eth_price",
+      "oi_spread"
+    ]
+  },
+  "grids": {
+    "transforms": [
+      "raw",
+      "pct_252",
+      "z_30",
+      "z_90",
+      "chg_3",
+      "chg_7",
+      "chg_30",
+      "persistence",
+      "acceleration",
+      "divergence_20",
+      "xs_rank",
+      "ratio_btc"
+    ],
+    "crossovers": [
+      "close_x_sma_20",
+      "close_x_sma_50",
+      "close_x_sma_200",
+      "sma_50_x_sma_200"
+    ],
+    "thresholds": [
+      80,
+      90,
+      95,
+      20,
+      10,
+      5
+    ],
+    "targets_daily": [
+      "ret_1",
+      "ret_3",
+      "ret_10",
+      "rel_1",
+      "rel_3",
+      "rel_10",
+      "top_T30_20",
+      "bottom_B30_20_7"
+    ],
+    "targets_intraday": [
+      "ret_4",
+      "ret_12",
+      "ret_24",
+      "rel_4",
+      "rel_12",
+      "rel_24"
+    ],
+    "universes": [
+      "btc",
+      "eth",
+      "pooled_majors",
+      "pit_cross_section"
+    ],
+    "conditioning": [
+      "none",
+      "heat_tercile",
+      "rvol_tercile",
+      "trend_state",
+      "admitted_extreme"
+    ],
+    "timeframes": [
+      "daily",
+      "4h",
+      "1h"
+    ]
+  },
+  "cells": 1355200,
+  "testable": 304920,
+  "skipped": 1050280,
+  "by_family": {
+    "breadth": {
+      "cells": 28800,
+      "testable": 6480,
+      "skipped": 22320
+    },
+    "cross_venue": {
+      "cells": 28800,
+      "testable": 6480,
+      "skipped": 22320
+    },
+    "cycle": {
+      "cells": 144000,
+      "testable": 32400,
+      "skipped": 111600
+    },
+    "momentum": {
+      "cells": 201600,
+      "testable": 45360,
+      "skipped": 156240
+    },
+    "positioning": {
+      "cells": 115200,
+      "testable": 25920,
+      "skipped": 89280
+    },
+    "trend": {
+      "cells": 520000,
+      "testable": 117000,
+      "skipped": 403000
+    },
+    "volatility": {
+      "cells": 144000,
+      "testable": 32400,
+      "skipped": 111600
+    },
+    "volume": {
+      "cells": 172800,
+      "testable": 38880,
+      "skipped": 133920
+    }
+  },
+  "skip_reasons": {
+    "min_episodes": 135520,
+    "min_history": 813120,
+    "no_pit_universe": 338800,
+    "no_store": 813120
+  },
+  "duplicate_ids": 0,
+  "cell_ids_sample": [
+    "rsi_14|raw|above|80|ret_1|btc|none|daily",
+    "rsi_14|raw|above|80|ret_1|btc|heat_tercile|daily",
+    "rsi_14|raw|above|80|ret_1|btc|rvol_tercile|daily"
+  ]
+}

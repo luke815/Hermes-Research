@@ -7,6 +7,23 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 Revised by research/RESEARCH_LOOP.md section 8. D1 comes before everything else because every cross-sectional item depends on it.
 
 1. D1, continued. Binance, Bybit and OKX symbol lists are recorded, not admitted. Binance: 923 USDT perps, 31 stopped before 2026-10-19, in data/binance_span.csv. Those 31 now have daily prices in data/binance_prices/ (22,653 rows) and daily funding in data/binance_funding/ (25,045 days, verdict 2026-11-03, every file matching the archive listing). Bybit: 1,136 USDT folders, 309 stopped, in data/bybit_span.csv. OKX: 672 USDT swaps, 154 stopped, in data/okx_span.csv. Open interest and the long/short ratio are saved for all 29 stopped names that have metrics files: the 13 at or under 250 daily files (1,875 days, verdict 2026-11-04) and the 16 above 250 files (12,150 days, verdict 2026-11-04, results/2026-11-04_d1_binance_metrics_long.json). DOTECOUSDT and LENDUSDT have no metrics files. OKX stopped-name prices are complete: 154 names, 61,727 days, verdict 2026-11-05, results/2026-11-05_d1_okx_prices_2025.json. OKX stopped-name funding is saved: 148 of 154 names, 77,779 days, verdict 2026-11-05, results/2026-11-05_d1_okx_funding.json. Six names have no funding file (BTTOLD, LEND, MNBTC, SUN, TESTD, TESTE) and TONCOIN's funding ends 2022-04-20 inside a price span that runs to 2022-09-14. Open interest is not in the OKX archive: modules 1 to 3 are trades, candlesticks and funding, and no other module lists files. What remains is liquidations, which neither archive publishes, and the six-series history for the live names and for Bybit. The Bybit archive publishes raw trades, 174,547 files for the 309 stopped names, so a daily-bar slice has to be bounded by file count, not by symbol. Do not rerun any span pull, the Binance price pull, the Binance funding pull, the Binance metrics pulls, any of the three OKX price pulls, or the OKX funding pull; each resumes from its saved files.
+
+Sweep build, from research/RESEARCH_SWEEP.md. One item per run, in order. The indicator library is done (commit 150a2c5, regime_tester/indicators.py, 9 tests passing).
+
+- S2. Cell enumerator. Verdict 2026-11-05: recorded, not admitted. 1,355,200 cells, 304,920 testable, 1,050,280 skipped, no duplicate ids. results/2026-11-05_s2_cell_enumerator.json and results/sweeps/space.json.
+- S3. Train-only scorer, one row per cell in results/sweeps/.
+- S4. Leaderboard, results/sweeps/leaderboard.json.
+- S5. scripts/sweep_daemon.py as a tracked background process with a heartbeat, restarted by the hourly health job.
+- S6. Confirmation procedure with the deflated bar, and the research schedule moved to every two hours with the lock.
+
+Book, from research/LONG_SHORT_BOOK.md section 11. These sit immediately after the sweep-build items and ahead of the remaining cycle items, because the book is the output the rest exists to feed.
+
+- B1. Sector tags from CoinGecko, the beta table, the universe extended to the top 150 by open interest, and the liquidity and exclusion filters. One run.
+- B2. Composite score and the two legs, provisional, written to the book key and signals/book.csv; first paper rebalance. One run.
+- B3. Pairing, hedge ratios, sizing, carry accounting. One run.
+- B4. strategy.py book backtest, six variants, three periods, per year. Two runs.
+- B5. The 4-hour entry timing recorded alongside the simple entry. One run.
+
 2. C1 rerun on the amended targets. Top candidates are days within 5 percent of the 60-day high; a top is a 20 percent drop within 30 days. Bottom candidates are days within 5 percent of the 60-day low; a bottom is a 20 percent rise within 30 days without a 7 percent dip. Base rates among candidate days, not all days.
 3. C2 rerun on the amended labels. The ETH funding cell is a live candidate under the amended bar.
 4. C3 to C7 as parallel subagents: TD Sequential, trend exhaustion, options, breadth, on-chain and flows.

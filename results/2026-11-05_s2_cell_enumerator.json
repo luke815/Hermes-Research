@@ -1,0 +1,65 @@
+{
+  "candidate": "s2_cell_enumerator",
+  "date": "2026-11-05",
+  "verdict": "recorded, not admitted",
+  "reason": "The cell space is counted and the counts add up. This item scores no return and admits no factor.",
+  "cells": 1355200,
+  "testable": 304920,
+  "skipped": 1050280,
+  "duplicate_ids": 0,
+  "by_family": {
+    "breadth": {
+      "cells": 28800,
+      "testable": 6480,
+      "skipped": 22320
+    },
+    "cross_venue": {
+      "cells": 28800,
+      "testable": 6480,
+      "skipped": 22320
+    },
+    "cycle": {
+      "cells": 144000,
+      "testable": 32400,
+      "skipped": 111600
+    },
+    "momentum": {
+      "cells": 201600,
+      "testable": 45360,
+      "skipped": 156240
+    },
+    "positioning": {
+      "cells": 115200,
+      "testable": 25920,
+      "skipped": 89280
+    },
+    "trend": {
+      "cells": 520000,
+      "testable": 117000,
+      "skipped": 403000
+    },
+    "volatility": {
+      "cells": 144000,
+      "testable": 32400,
+      "skipped": 111600
+    },
+    "volume": {
+      "cells": 172800,
+      "testable": 38880,
+      "skipped": 133920
+    }
+  },
+  "skip_reasons": {
+    "min_episodes": 135520,
+    "min_history": 813120,
+    "no_pit_universe": 338800,
+    "no_store": 813120
+  },
+  "library_version": "1.0.0",
+  "panel_end": "2026-11-04",
+  "train_rows": 1623,
+  "train_start": "2020-01-21",
+  "as_of": "2026-11-05T13:01:53Z",
+  "tests_since_last_admission": 13,
+  "space_file": "results/sweeps/space.json"
+}
