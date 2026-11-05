@@ -13,7 +13,7 @@ Sweep build, from research/RESEARCH_SWEEP.md. One item per run, in order. The in
 - S2. Cell enumerator. Verdict 2026-11-05: recorded, not admitted. 1,355,200 cells, 304,920 testable, 1,050,280 skipped, no duplicate ids. results/2026-11-05_s2_cell_enumerator.json and results/sweeps/space.json.
 - S3. Train-only scorer. Verdict 2026-11-05: recorded, not admitted. 38,652 rows, no duplicate ids, train period only. 21,582 usable, 907 with a t-stat above 2, 94 above 3. Nothing confirmed: validation and test were not read. results/2026-11-05_s3_train_scorer.json and results/sweeps/2026-11-05.csv.
 - S4. Leaderboard. Verdict 2026-11-05: recorded, not admitted. 12,110 eligible of 38,652 scored, top 50 of each of six families, 300 cells, all unconfirmed. results/2026-11-05_s4_leaderboard.json and results/sweeps/leaderboard.json.
-- S5. scripts/sweep_daemon.py as a tracked background process with a heartbeat, restarted by the hourly health job.
+- S5. Verdict 2026-11-05: recorded, not admitted. scripts/sweep_daemon.py runs as a tracked background process, pid 16269, heartbeat at ops/sweep_heartbeat, restarted by the hourly health job when the heartbeat is over 90 minutes old. results/2026-11-05_s5_sweep_daemon.json.
 - S6. Confirmation procedure with the deflated bar, and the research schedule moved to every two hours with the lock.
 
 Book, from research/LONG_SHORT_BOOK.md section 11. These sit immediately after the sweep-build items and ahead of the remaining cycle items, because the book is the output the rest exists to feed.

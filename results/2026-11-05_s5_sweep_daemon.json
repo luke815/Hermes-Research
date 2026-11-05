@@ -1,0 +1,21 @@
+{
+  "as_of": "2026-11-05T19:09:51Z",
+  "today": "2026-11-05",
+  "candidate": "s5_sweep_daemon",
+  "pid": 16269,
+  "heartbeat": "2026-11-05T19:06:52Z idle measures=43 rows=38652 listed=300",
+  "self_check": {
+    "measure": "adi",
+    "rows": 972,
+    "matched": true
+  },
+  "rows_on_disk": 38652,
+  "eligible": 12110,
+  "leaderboard_listed": 300,
+  "library_version": "1.0.0",
+  "train_period_hash": "7b7612c0056e3f8d",
+  "validation_read": false,
+  "test_read": false,
+  "admitted": false,
+  "verdict": "recorded, not admitted"
+}
