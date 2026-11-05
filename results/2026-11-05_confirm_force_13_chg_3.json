@@ -1,0 +1,39 @@
+{
+  "candidate": "confirm_force_13_chg_3_above_90_rel_3_eth",
+  "cell_id": "force_13|chg_3|above|90|rel_3|eth|none|daily",
+  "leaderboard_as_of": "2026-11-05T22:52:53Z",
+  "family": "volume",
+  "family_tested": 5616,
+  "family_threshold_now": 3.8747,
+  "train_score": -4.0355,
+  "train_spread_pct": -2.1548,
+  "train_n": 59,
+  "train_sign": -1,
+  "attempted_at": "2026-11-05T23:01:24Z",
+  "deflated_bar": 3.8747,
+  "panel_end": "2026-11-04",
+  "library_version": "1.0.0",
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign",
+  "validation": {
+    "spread": 0.0005261525902325611,
+    "spread_independent": -0.008163031976963329,
+    "t_newey_west": 0.07817048600823091,
+    "n_independent": 17,
+    "n_overlap": 549,
+    "year_signs": {
+      "2024": -1.0,
+      "2025": -1.0
+    }
+  },
+  "test": {
+    "spread": -0.004240680860345387,
+    "spread_independent": -0.011367986208871939,
+    "t_newey_west": -1.050749617265569,
+    "n_independent": 10,
+    "n_overlap": 305,
+    "year_signs": {
+      "2026": -1.0
+    }
+  }
+}
