@@ -1,0 +1,180 @@
+{
+  "as_of": "2026-11-05T17:01:39Z",
+  "today": "2026-11-05",
+  "candidate": "s4_leaderboard",
+  "source": "results/sweeps/2026-11-05.csv",
+  "rows_read": 38652,
+  "duplicate_ids": 0,
+  "cells_enumerated": 1355200,
+  "cells_tested": 38652,
+  "cells_skipped": 1050280,
+  "fragile": 13322,
+  "duplicates": 84,
+  "degenerate": 3162,
+  "below_minimum": 10956,
+  "eligible": 12110,
+  "listed": 300,
+  "by_family": [
+    {
+      "family": "cycle",
+      "tested": 3582,
+      "survivors": 50,
+      "threshold_now": 3.7771
+    },
+    {
+      "family": "momentum",
+      "tested": 6498,
+      "survivors": 50,
+      "threshold_now": 3.9064
+    },
+    {
+      "family": "positioning",
+      "tested": 1518,
+      "survivors": 50,
+      "threshold_now": 3.5906
+    },
+    {
+      "family": "trend",
+      "tested": 16848,
+      "survivors": 50,
+      "threshold_now": 4.1133
+    },
+    {
+      "family": "volatility",
+      "tested": 4590,
+      "survivors": 50,
+      "threshold_now": 3.8309
+    },
+    {
+      "family": "volume",
+      "tested": 5616,
+      "survivors": 50,
+      "threshold_now": 3.8747
+    }
+  ],
+  "top": [
+    {
+      "cell_id": "sma_200|chg_7|above|80|ret_3|btc|none|daily",
+      "family": "trend",
+      "target_family": "ret_3",
+      "rule": "sma_200 chg_7 above 80",
+      "target": "ret_3",
+      "universe": "btc",
+      "train_score": 4.2463,
+      "train_spread_pct": 1.6297,
+      "train_n": 161,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "sma_200|chg_30|above|80|ret_3|btc|none|daily",
+      "family": "trend",
+      "target_family": "ret_3",
+      "rule": "sma_200 chg_30 above 80",
+      "target": "ret_3",
+      "universe": "btc",
+      "train_score": 4.1693,
+      "train_spread_pct": 1.743,
+      "train_n": 166,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "sma_200|chg_7|above|80|ret_10|btc|none|daily",
+      "family": "trend",
+      "target_family": "ret_10",
+      "rule": "sma_200 chg_7 above 80",
+      "target": "ret_10",
+      "universe": "btc",
+      "train_score": 4.1406,
+      "train_spread_pct": 5.8449,
+      "train_n": 51,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "force_13|chg_3|above|90|rel_3|eth|none|daily",
+      "family": "volume",
+      "target_family": "rel_3",
+      "rule": "force_13 chg_3 above 90",
+      "target": "rel_3",
+      "universe": "eth",
+      "train_score": -4.0355,
+      "train_spread_pct": -2.1548,
+      "train_n": 59,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "sma_200|chg_3|above|80|ret_10|btc|none|daily",
+      "family": "trend",
+      "target_family": "ret_10",
+      "rule": "sma_200 chg_3 above 80",
+      "target": "ret_10",
+      "universe": "btc",
+      "train_score": 3.9828,
+      "train_spread_pct": 5.3602,
+      "train_n": 46,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "stc|chg_7|above|80|rel_3|eth|none|daily",
+      "family": "trend",
+      "target_family": "rel_3",
+      "rule": "stc chg_7 above 80",
+      "target": "rel_3",
+      "universe": "eth",
+      "train_score": -3.9719,
+      "train_spread_pct": -1.6243,
+      "train_n": 104,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "sma_200|chg_7|above|80|ret_1|btc|none|daily",
+      "family": "trend",
+      "target_family": "ret_1",
+      "rule": "sma_200 chg_7 above 80",
+      "target": "ret_1",
+      "universe": "btc",
+      "train_score": 3.89,
+      "train_spread_pct": 0.5809,
+      "train_n": 478,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "sma_200|chg_3|above|80|ret_3|btc|none|daily",
+      "family": "trend",
+      "target_family": "ret_3",
+      "rule": "sma_200 chg_3 above 80",
+      "target": "ret_3",
+      "universe": "btc",
+      "train_score": 3.8709,
+      "train_spread_pct": 1.751,
+      "train_n": 158,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "obv|raw|above|80|ret_3|btc|none|daily",
+      "family": "volume",
+      "target_family": "ret_3",
+      "rule": "obv raw above 80",
+      "target": "ret_3",
+      "universe": "btc",
+      "train_score": 3.858,
+      "train_spread_pct": 1.4107,
+      "train_n": 198,
+      "status": "unconfirmed"
+    },
+    {
+      "cell_id": "sma_200|chg_30|above|80|ret_1|btc|none|daily",
+      "family": "trend",
+      "target_family": "ret_1",
+      "rule": "sma_200 chg_30 above 80",
+      "target": "ret_1",
+      "universe": "btc",
+      "train_score": 3.8455,
+      "train_spread_pct": 0.566,
+      "train_n": 499,
+      "status": "unconfirmed"
+    }
+  ],
+  "validation_read": false,
+  "test_read": false,
+  "admitted": false
+}

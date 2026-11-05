@@ -11,8 +11,8 @@ Revised by research/RESEARCH_LOOP.md section 8. D1 comes before everything else 
 Sweep build, from research/RESEARCH_SWEEP.md. One item per run, in order. The indicator library is done (commit 150a2c5, regime_tester/indicators.py, 9 tests passing).
 
 - S2. Cell enumerator. Verdict 2026-11-05: recorded, not admitted. 1,355,200 cells, 304,920 testable, 1,050,280 skipped, no duplicate ids. results/2026-11-05_s2_cell_enumerator.json and results/sweeps/space.json.
-- S3. Train-only scorer, one row per cell in results/sweeps/.
-- S4. Leaderboard, results/sweeps/leaderboard.json.
+- S3. Train-only scorer. Verdict 2026-11-05: recorded, not admitted. 38,652 rows, no duplicate ids, train period only. 21,582 usable, 907 with a t-stat above 2, 94 above 3. Nothing confirmed: validation and test were not read. results/2026-11-05_s3_train_scorer.json and results/sweeps/2026-11-05.csv.
+- S4. Leaderboard. Verdict 2026-11-05: recorded, not admitted. 12,110 eligible of 38,652 scored, top 50 of each of six families, 300 cells, all unconfirmed. results/2026-11-05_s4_leaderboard.json and results/sweeps/leaderboard.json.
 - S5. scripts/sweep_daemon.py as a tracked background process with a heartbeat, restarted by the hourly health job.
 - S6. Confirmation procedure with the deflated bar, and the research schedule moved to every two hours with the lock.
 
