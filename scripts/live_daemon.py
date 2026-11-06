@@ -57,29 +57,32 @@ def token():
 
 
 def pull_5m(names, now):
-    """Latest 5-minute bars, into the 5-minute store. Returns calls made and the newest bar seen."""
-    calls, newest = 0, None
-    for i in range(0, len(names), 20):
-        try:
-            rows = rate_budget.coinalyze(
-                "ohlcv-history",
-                {"symbols": ",".join(names[i:i + 20]), "interval": "5min",
-                 "from": now - 6 * FIVEMIN, "to": now},
-                key(), allowance="live",
-            )
-        except BudgetStop as exc:
-            print(f"5m pull stopped after {calls} calls: {exc}", flush=True)
-            return calls, newest
-        calls += 1
-        time.sleep(15)
-        for row in rows:
-            bars = [{"t": b["t"], "o": b["o"], "h": b["h"], "l": b["l"],
-                     "c": b["c"], "v": b["v"]} for b in row.get("history", [])]
-            if bars:
-                intraday_store.append(row["symbol"], bars, STORE_5M)
-                newest = max(newest or 0, max(b["t"] for b in bars))
-        print(f"5m batch {i // 20 + 1}: {len(rows)}, newest bar {newest}", flush=True)
-    return calls, newest
+    """Marks from Binance's public premium index, one call for every symbol.
+
+    The per-symbol kline endpoint takes about five seconds a call, so a
+    hundred names cannot finish inside the five-minute interval. The premium
+    index returns every symbol's mark in one call, which is what the live
+    layer needs for marks and stops. No key, and nothing drawn from the
+    Coinalyze budget.
+    """
+    url = "https://fapi.binance.com/fapi/v1/premiumIndex"
+    try:
+        rows = json.loads(rate_budget.get(url, allowance="live"))
+    except BudgetStop as exc:
+        print(f"5m pull stopped: {exc}", flush=True)
+        return 0, None
+    wanted = {n.split("USDT")[0] + "USDT" for n in names if n.split("USDT")[0].isascii()}
+    marks = {r["symbol"]: float(r["markPrice"]) for r in rows if r["symbol"] in wanted}
+    newest = now - (now % FIVEMIN)
+    for symbol in names:
+        base = symbol.split("USDT")[0]
+        if base + "USDT" not in marks:
+            continue
+        intraday_store.append(symbol, [{"t": newest, "o": marks[base + "USDT"],
+                                        "h": marks[base + "USDT"], "l": marks[base + "USDT"],
+                                        "c": marks[base + "USDT"], "v": 0}], STORE_5M)
+    print(f"5m binance: {len(marks)} marks, one call", flush=True)
+    return 1, newest
 
 
 def board(names):

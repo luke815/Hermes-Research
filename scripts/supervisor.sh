@@ -13,7 +13,7 @@ HEARTBEAT=$ROOT/ops/supervisor_heartbeat
 
 ensure() {
     name=$1
-    if pgrep -f "python3 scripts/${name}.py" >/dev/null; then
+    if pgrep -f "/python3 scripts/${name}.py" >/dev/null; then
         return
     fi
     cd "$ROOT" && PYTHONPATH=/opt/data/.local/lib/python3.14/site-packages \

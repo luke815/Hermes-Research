@@ -92,10 +92,16 @@ def deflated(n):
 
 
 def rewrite_leaderboard():
-    """S4's ranking, recomputed from the rows on disk. No return is recomputed."""
-    path = out_path()
-    if not path.exists():
+    """S4's ranking, recomputed from the newest sweep file on disk.
+
+    A cell whose train firing rate, scaled by the validation window, expects
+    fewer than 30 independent observations is marked insufficient here, before
+    it is ever queued for a confirmation run.
+    """
+    files = sorted(OUT_DIR.glob("*.csv"))
+    if not files:
         return 0
+    path = files[-1]
     frame = pd.read_csv(path)
     space = json.loads(SPACE.read_text()) if SPACE.exists() else {}
     frame["family"] = frame["measure"].map(family_of)
@@ -112,6 +118,13 @@ def rewrite_leaderboard():
     for family, group in grouped:
         keep = group[eligible.loc[group.index]].copy()
         keep["abs_t"] = keep["t_newey_west"].abs()
+        # Validation runs 549 days. A cell that fired n times over the train
+        # window is expected to fire n * 549 / train_days times there, and one
+        # below 30 is insufficient before it is queued.
+        train_days = 1643
+        keep["expected_validation_n"] = (keep["n_independent"] * 549 / train_days).round(1)
+        keep["status"] = keep["expected_validation_n"].map(
+            lambda n: "insufficient" if n < 30 else "unconfirmed")
         keep = keep.sort_values(["abs_t", "id"], ascending=[False, True]).head(TOP_PER_FAMILY)
         rows = []
         for _, row in keep.iterrows():
@@ -124,7 +137,8 @@ def rewrite_leaderboard():
                 "train_score": round(float(row["t_newey_west"]), 4),
                 "train_spread_pct": round(float(row["spread_independent"]) * 100, 4),
                 "train_n": int(row["n_independent"]),
-                "status": "unconfirmed",
+                "expected_validation_n": float(row["expected_validation_n"]),
+                "status": row["status"],
             })
         by_family.append({"family": family, "tested": int(len(group)),
                           "survivors": len(rows), "threshold_now": deflated(len(group))})
