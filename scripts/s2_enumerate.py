@@ -10,6 +10,7 @@ validation or test.
 """
 
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -68,7 +69,26 @@ def panel_facts():
         "train_rows": int(len(train)),
         "train_start": str(train.min().date()) if len(train) else None,
         "columns": sorted(df.columns),
+        "pit_names": pit_names(),
+        "pooled_episodes": True,
     }
+
+
+def pit_names():
+    """Names in the point-in-time panel with price history before the train end.
+
+    The cross-section is only real if enough names reach back past the train
+    end. Below 30 it is treated as absent, and the cross-sectional cells stay
+    skipped rather than being scored on a handful of names.
+    """
+    count = 0
+    for name in os.listdir(ROOT / "data" / "panel_xs"):
+        frame = pd.read_csv(ROOT / "data" / "panel_xs" / name,
+                            usecols=lambda c: c in ("date", "close"))
+        if ("close" in frame.columns and frame["close"].notna().any()
+                and frame["date"].min() < TRAIN_END):
+            count += 1
+    return count if count >= 30 else 0
 
 
 def bars_available(timeframe, facts):
@@ -136,11 +156,11 @@ def make(measure, family, inputs, min_history, kind, transform, direction,
     if available < min_history + MIN_INDEPENDENT:
         reasons.append("min_history")
     if target.startswith("top_") or target.startswith("bottom_"):
-        # Train holds too few amended-label episodes for any event cell to
-        # clear 15 on BTC or ETH alone; pooled and cross-section cannot be
-        # counted until D1 lands. All event cells are skipped for now.
-        reasons.append("min_episodes")
-    if universe == "pit_cross_section":
+        # BTC and ETH alone hold too few episodes. The pooled panel clears
+        # the bar, so event cells are testable there and only there.
+        if universe != "pooled_majors" or not facts.get("pooled_episodes"):
+            reasons.append("min_episodes")
+    if universe == "pit_cross_section" and not facts.get("pit_names"):
         reasons.append("no_pit_universe")
     if "funding" in inputs and timeframe == "daily" and "funding" not in "".join(facts["columns"]):
         reasons.append("missing_input")

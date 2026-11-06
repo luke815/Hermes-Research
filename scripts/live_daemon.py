@@ -65,13 +65,13 @@ def pull_5m(names, now):
                 "ohlcv-history",
                 {"symbols": ",".join(names[i:i + 20]), "interval": "5min",
                  "from": now - 6 * FIVEMIN, "to": now},
-                key(),
+                key(), allowance="live",
             )
         except BudgetStop as exc:
             print(f"5m pull stopped after {calls} calls: {exc}", flush=True)
             return calls, newest
         calls += 1
-        time.sleep(12)
+        time.sleep(15)
         for row in rows:
             bars = [{"t": b["t"], "o": b["o"], "h": b["h"], "l": b["l"],
                      "c": b["c"], "v": b["v"]} for b in row.get("history", [])]
