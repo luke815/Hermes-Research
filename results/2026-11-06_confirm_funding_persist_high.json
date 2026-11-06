@@ -1,0 +1,32 @@
+{
+  "cell_id": "funding_persist_high|pct_252|above|80|ret_10|eth|none|daily",
+  "attempted_at": "2026-11-06T03:01:43Z",
+  "family_n": 1518,
+  "deflated_bar": 3.5906,
+  "train_sign": -1,
+  "panel_end": "2026-11-04",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": 0.03598130996210985,
+    "spread_independent": 0.04240045743926883,
+    "t_newey_west": 1.9627553539973315,
+    "n_independent": 19,
+    "n_overlap": 549,
+    "year_signs": {
+      "2024": 1.0,
+      "2025": 1.0
+    }
+  },
+  "test": {
+    "spread": 0.021963693996296337,
+    "spread_independent": 0.04111606650070118,
+    "t_newey_west": 0.4577820370307219,
+    "n_independent": 3,
+    "n_overlap": 298,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign"
+}
