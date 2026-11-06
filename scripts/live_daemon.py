@@ -66,11 +66,7 @@ def pull_5m(names, now):
     Coinalyze budget.
     """
     url = "https://fapi.binance.com/fapi/v1/premiumIndex"
-    try:
-        rows = json.loads(rate_budget.get(url, allowance="live"))
-    except BudgetStop as exc:
-        print(f"5m pull stopped: {exc}", flush=True)
-        return 0, None
+    rows = json.loads(rate_budget.get(url, timeout=30, allowance="live"))
     wanted = {n.split("USDT")[0] + "USDT" for n in names if n.split("USDT")[0].isascii()}
     marks = {r["symbol"]: float(r["markPrice"]) for r in rows if r["symbol"] in wanted}
     newest = now - (now % FIVEMIN)
@@ -148,14 +144,15 @@ def push(payload):
     return push_run.returncode == 0
 
 
-def loop(calls_this_hour):
+def cycle(ctx):
+    """One pass: marks, board, push. The loop owns the interval and the heartbeat."""
     now = int(time.time())
     names = [r["symbol"] for r in json.load(open(TOP))["rows"]]
     calls, newest = pull_5m(names, now)
-    calls_this_hour.append((now, calls))
-    calls_this_hour[:] = [(t, c) for t, c in calls_this_hour if now - t < 3600]
+    hour = ctx.setdefault("calls_this_hour", [])
+    hour.append((now, calls))
+    ctx["calls_this_hour"] = [(t, c) for t, c in hour if now - t < 3600]
     built = board(names)
-    # as_of is the last completed bar the source actually returned, not the clock.
     completed = (newest - FIVEMIN) if newest else None
     as_of = (datetime.fromtimestamp(completed, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
              if completed else None)
@@ -166,28 +163,14 @@ def loop(calls_this_hour):
     payload = {
         "as_of": as_of or built["as_of"], "interval_sec": INTERVAL,
         "health": {"daemon_heartbeat": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-                   "api_calls_last_hour": sum(c for _, c in calls_this_hour),
+                   "api_calls_last_hour": sum(c for _, c in ctx["calls_this_hour"]),
                    "stale": as_of is None, "note": note},
         "relative_strength": built, "book_live": {}, "watchlist": [], "ideas": [], "triggers": [],
     }
     pushed = push(payload)
-    stamp = f"{as_of} calls={calls} pushed={pushed}"
-    tmp = HEARTBEAT + ".tmp"
-    open(tmp, "w").write(stamp + "\n")
-    os.replace(tmp, HEARTBEAT)
-    print(f"heartbeat {stamp}", flush=True)
-
-
-def main():
-    calls_this_hour = []
-    while True:
-        began = time.time()
-        try:
-            loop(calls_this_hour)
-        except Exception as exc:  # noqa: BLE001
-            print(f"loop error: {exc}", flush=True)
-        time.sleep(max(0, INTERVAL - (time.time() - began)))
+    return {"calls": calls, "pushed": pushed, "as_of": as_of, "names": len(names)}
 
 
 if __name__ == "__main__":
-    main()
+    from daemon_base import run_loop
+    run_loop("live", interval_sec=INTERVAL, cycle=cycle, align=True, offset_sec=20)

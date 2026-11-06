@@ -229,29 +229,20 @@ def self_check(state):
     return {"measure": measure, "rows": len(got), "matched": True}
 
 
-def main():
-    state = prepare()
-    checked = False
-    while True:
-        began = time.time()
-        try:
-            if not checked:
-                result = self_check(state)
-                checked = True
-                now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-                PROGRESS.parent.mkdir(parents=True, exist_ok=True)
-                PROGRESS.write_text(json.dumps({"as_of": now, "self_check": result}, indent=2) + "\n")
-                print(json.dumps({"self_check": result}), flush=True)
-            record = pass_once(state)
-        except Exception as exc:  # noqa: BLE001
-            now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-            stamp(f"{now} error={exc}")
-            print(f"pass error: {exc}", flush=True)
-            record = {"measure": "error"}
-        # Idle once every measure is scored. The heartbeat still moves, so the
-        # health job does not restart a finished sweep.
-        time.sleep(3600 if record.get("measure") is None else max(0, PAUSE - (time.time() - began)))
+def cycle(ctx):
+    """One measure, or idle. The loop owns the wait, so a cycle never sleeps."""
+    state = ctx.setdefault("state", prepare())
+    if not ctx.get("checked"):
+        ctx["checked"] = True
+        result = self_check(state)
+        PROGRESS.parent.mkdir(parents=True, exist_ok=True)
+        PROGRESS.write_text(json.dumps({"as_of": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                        "self_check": result}, indent=2) + "\n")
+        return {"self_check": result.get("matched"), "measure": result.get("measure")}
+    record = pass_once(state)
+    return {"measure": record.get("measure"), "rows_appended": record.get("rows_appended", 0)}
 
 
 if __name__ == "__main__":
-    main()
+    from daemon_base import run_loop
+    run_loop("sweep", interval_sec=60, cycle=cycle, align=False)

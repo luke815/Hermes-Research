@@ -42,16 +42,20 @@ def mark(symbol):
 
 
 def binance_klines(symbol):
-    url = f"https://fapi.binance.com/fapi/v1/klines?symbol={symbol}&interval=1d&limit=1500"
-    rows = json.loads(rate_budget.get(url))
+    from urllib.parse import quote
+    url = ("https://fapi.binance.com/fapi/v1/klines?symbol="
+           + quote(symbol, safe="") + "&interval=1d&limit=1500")
+    rows = json.loads(rate_budget.get(url, timeout=30))
     return [{"date": datetime.fromtimestamp(r[0] / 1000, timezone.utc).strftime("%Y-%m-%d"),
              "close": float(r[4]), "volume_base": float(r[5]), "volume_usd": float(r[7])}
             for r in rows]
 
 
 def binance_funding(symbol):
-    url = f"https://fapi.binance.com/fapi/v1/fundingRate?symbol={symbol}&limit=1000"
-    rows = json.loads(rate_budget.get(url))
+    from urllib.parse import quote
+    url = ("https://fapi.binance.com/fapi/v1/fundingRate?symbol="
+           + quote(symbol, safe="") + "&limit=1000")
+    rows = json.loads(rate_budget.get(url, timeout=30))
     by_day = {}
     for r in rows:
         day = datetime.fromtimestamp(r["fundingTime"] / 1000, timezone.utc).strftime("%Y-%m-%d")
@@ -68,29 +72,28 @@ def write_name(symbol, price, funding):
     os.replace(tmp, path)
 
 
-def main():
+def cycle(ctx):
+    """One chunk of listed names, then return. The loop resumes the rest."""
     universe = pd.read_csv(os.path.join(ROOT, "data", "universe.csv"))
     listed = universe[(universe.exchange == "binance") & (universe.delisted == 0)]
     have = done()
     todo = [s for s in listed.symbol if s not in have]
-    print(f"binance listed {len(listed)} already {len(have)} todo {len(todo)}", flush=True)
-    for i, symbol in enumerate(todo):
+    saved, skipped = 0, 0
+    for symbol in todo[:25]:
         try:
-            price = binance_klines(symbol)
-            funding = binance_funding(symbol)
-        except BudgetStop as exc:
-            print(f"stopped at {symbol}: {exc}; {len(done())} saved", flush=True)
-            return
-        except Exception as exc:  # noqa: BLE001
-            print(f"skip {symbol}: {exc}", flush=True)
+            write_name(symbol, binance_klines(symbol), binance_funding(symbol))
             mark(symbol)
-            continue
-        write_name(symbol, price, funding)
-        mark(symbol)
-        if (i + 1) % 25 == 0:
-            print(f"saved {len(done())}", flush=True)
-    print(f"DONE {len(done())}", flush=True)
+            saved += 1
+        except BudgetStop as exc:
+            return {"saved": saved, "skipped": skipped, "remaining": len(todo) - saved,
+                    "stopped": str(exc)[:120]}
+        except Exception as exc:  # noqa: BLE001
+            mark(symbol)
+            skipped += 1
+            print(f"skip {symbol}: {exc}", flush=True)
+    return {"saved": saved, "skipped": skipped, "remaining": max(0, len(todo) - saved - skipped)}
 
 
 if __name__ == "__main__":
-    main()
+    from daemon_base import run_loop
+    run_loop("listed_pull", interval_sec=30, cycle=cycle, align=False)
