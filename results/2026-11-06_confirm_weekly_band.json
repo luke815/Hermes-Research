@@ -1,0 +1,32 @@
+{
+  "cell_id": "weekly_band|z_90|below|20|ret_1|btc|none|daily",
+  "attempted_at": "2026-11-06T05:01:31Z",
+  "family_n": 3582,
+  "deflated_bar": 3.7771,
+  "train_sign": 1,
+  "panel_end": "2026-11-04",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": -0.003923765622478814,
+    "spread_independent": -0.003923765622478814,
+    "t_newey_west": -1.615522652291632,
+    "n_independent": 111,
+    "n_overlap": 427,
+    "year_signs": {
+      "2024": -1.0,
+      "2025": -1.0
+    }
+  },
+  "test": {
+    "spread": -0.008031289733091166,
+    "spread_independent": -0.008031289733091166,
+    "t_newey_west": -1.7885176386773778,
+    "n_independent": 31,
+    "n_overlap": 212,
+    "year_signs": {
+      "2026": -1.0
+    }
+  },
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign"
+}
