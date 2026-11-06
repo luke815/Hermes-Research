@@ -51,19 +51,24 @@ def out_path():
 
 
 def saved_ids():
-    path = out_path()
-    if not path.exists():
-        return set()
-    return set(pd.read_csv(path, usecols=["id"])["id"])
+    """Every cell id scored so far, across every day's file."""
+    ids = set()
+    for path in sorted(OUT_DIR.glob("*.csv")):
+        ids.update(pd.read_csv(path, usecols=["id"])["id"])
+    return ids
 
 
 def append_rows(rows):
-    """Append, then read back and refuse the write if it created a duplicate."""
+    """Append, then read back and refuse the write if it created a duplicate.
+
+    A new day's file is created with the header before the first row lands, so a
+    date rollover never reads a file that does not exist.
+    """
     path = out_path()
     path.parent.mkdir(parents=True, exist_ok=True)
-    batch = pd.DataFrame(rows)
-    if path.exists():
-        batch = pd.concat([pd.read_csv(path), batch], ignore_index=True)
+    if not path.exists():
+        pd.DataFrame(columns=list(rows[0].keys())).to_csv(path, index=False)
+    batch = pd.concat([pd.read_csv(path), pd.DataFrame(rows)], ignore_index=True)
     if batch["id"].duplicated().any():
         raise RuntimeError("append would write a duplicate cell id")
     tmp = path.with_suffix(".csv.tmp")
@@ -184,13 +189,14 @@ def pass_once(state):
 def self_check(state):
     """Score one already-scored measure with its rows hidden, and check the result.
 
-    The rows are written to a scratch file, compared with the saved rows, and
-    discarded. This proves the append path without touching the scored file,
-    and it runs once, on the first pass.
+    Reads the newest sweep file that exists, so a date rollover does not make the
+    check fail on a file that has not been created yet.
     """
     frames, computed, admitted, years, period_hash = state
-    path = out_path()
-    saved = pd.read_csv(path)
+    files = sorted(OUT_DIR.glob("*.csv"))
+    if not files:
+        return {"measure": None, "rows": 0, "matched": False, "note": "no sweep file yet"}
+    saved = pd.read_csv(files[-1])
     measure = sorted(saved["measure"].unique())[0]
     fresh = score_measure(measure, frames, computed, admitted, years, period_hash, set())
     got = pd.DataFrame(fresh).sort_values("id").reset_index(drop=True)
