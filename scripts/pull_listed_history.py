@@ -96,4 +96,4 @@ def cycle(ctx):
 
 if __name__ == "__main__":
     from daemon_base import run_loop
-    run_loop("listed_pull", interval_sec=30, cycle=cycle, align=False)
+    run_loop("listed_pull", interval_sec=150, cycle=cycle, align=False, max_cycle_sec=150)
