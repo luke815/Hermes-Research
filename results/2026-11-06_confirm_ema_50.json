@@ -1,0 +1,35 @@
+{
+  "today": "2026-11-06",
+  "candidate": "confirm_ema_50_pct_252_above_80_ret_3_btc",
+  "cell_id": "ema_50|pct_252|above|80|ret_3|btc|none|daily",
+  "family": "trend",
+  "family_n": 16848,
+  "deflated_bar": 4.1133,
+  "train_sign": 1,
+  "panel_end": "2026-11-05",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": -0.0030372659312574183,
+    "spread_independent": 0.00022002218916336146,
+    "t_newey_west": -0.8397162617097791,
+    "n_independent": 55,
+    "n_overlap": 549,
+    "year_signs": {
+      "2024": 1.0,
+      "2025": -1.0
+    }
+  },
+  "test": {
+    "spread": 0.001167551177907249,
+    "spread_independent": 0.000942539125978973,
+    "t_newey_west": 0.2562283391508427,
+    "n_independent": 24,
+    "n_overlap": 306,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign",
+  "attempted_at": "2026-11-06T07:01:04Z"
+}
