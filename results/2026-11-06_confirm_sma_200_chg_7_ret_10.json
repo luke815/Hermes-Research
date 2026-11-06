@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-06",
+  "cell_id": "sma_200|chg_7|above|80|ret_10|btc|none|daily",
+  "family": "trend",
+  "family_n": 16848,
+  "family_combinations": 324,
+  "rule": "sma_200 chg_7 above 80",
+  "target": "ret_10",
+  "universe": "btc",
+  "train_score": 4.1406,
+  "train_spread_pct": 5.8449,
+  "train_n": 51,
+  "train_sign": 1,
+  "deflated_bar": 3.2553,
+  "panel_end": "2026-11-05",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": -0.051320419439825286,
+    "spread_independent": -0.06386873374965103,
+    "t_newey_west": -7.1808755018049295,
+    "n_independent": 1,
+    "n_overlap": 549,
+    "year_signs": {
+      "2025": -1.0
+    }
+  },
+  "test": {
+    "spread": 0.003848355102414231,
+    "spread_independent": 0.009266188221905893,
+    "t_newey_west": 0.2940613742626225,
+    "n_independent": 6,
+    "n_overlap": 299,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "insufficient",
+  "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+  "attempted_at": "2026-11-06T13:02:07Z"
+}
