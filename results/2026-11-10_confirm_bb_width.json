@@ -1,0 +1,38 @@
+{
+  "cell_id": "bb_width|z_90|above|80|ret_3|btc|none|daily",
+  "family": "volatility",
+  "family_n": 4590,
+  "family_combinations": 90,
+  "deflated_bar": 2.9771,
+  "train_sign": 1,
+  "train_score": 3.4791,
+  "train_spread_pct": 1.3435,
+  "train_n": 118,
+  "panel_end": "2026-11-09",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": -0.004488717078154205,
+    "spread_independent": -0.004368882532890526,
+    "t_newey_west": -0.9683696542693979,
+    "n_independent": 43,
+    "n_overlap": 549,
+    "year_signs": {
+      "2024": -1.0,
+      "2025": -1.0
+    }
+  },
+  "test": {
+    "spread": -0.0038375767208512334,
+    "spread_independent": -0.004853119952123052,
+    "t_newey_west": -0.4808361936235913,
+    "n_independent": 14,
+    "n_overlap": 310,
+    "year_signs": {
+      "2026": -1.0
+    }
+  },
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign",
+  "attempted_at": "2026-11-10T21:01:59Z",
+  "source_record": "results/sweeps/confirmations.json"
+}
