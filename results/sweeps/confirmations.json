@@ -741,5 +741,38 @@
     },
     "verdict": "rejected",
     "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "macd_signal|raw|below|20|rel_3|eth|none|daily",
+    "attempted_at": "2026-11-10T23:02:36Z",
+    "family_n": 16848,
+    "family_combinations": 324,
+    "deflated_bar": 3.2553,
+    "train_sign": -1,
+    "panel_end": "2026-11-09",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": -0.00483134298783662,
+      "spread_independent": -0.0054766322492786415,
+      "t_newey_west": -1.5012484692491115,
+      "n_independent": 49,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": -1.0,
+        "2025": -1.0
+      }
+    },
+    "test": {
+      "spread": -0.0004374450457326868,
+      "spread_independent": 0.0010705062034952137,
+      "t_newey_west": -0.1097996749558273,
+      "n_independent": 11,
+      "n_overlap": 310,
+      "year_signs": {
+        "2026": 1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
   }
 ]
