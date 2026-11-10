@@ -479,5 +479,201 @@
     },
     "verdict": "insufficient",
     "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+  },
+  {
+    "cell_id": "sma_200|chg_3|above|80|ret_3|btc|none|daily",
+    "attempted_at": "2026-11-06T17:02:03Z",
+    "family_n": 16848,
+    "family_combinations": 324,
+    "deflated_bar": 3.2553,
+    "train_sign": 1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": -0.027768068409917846,
+      "spread_independent": -0.0362979103937853,
+      "t_newey_west": -2.4932716785250792,
+      "n_independent": 8,
+      "n_overlap": 549,
+      "year_signs": {
+        "2025": -1.0
+      }
+    },
+    "test": {
+      "spread": 0.004553574724967909,
+      "spread_independent": 0.007250288394778183,
+      "t_newey_west": 0.9361994925821705,
+      "n_independent": 23,
+      "n_overlap": 306,
+      "year_signs": {
+        "2026": 1.0
+      }
+    },
+    "verdict": "insufficient",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+  },
+  {
+    "cell_id": "kama_10|pct_252|below|10|rel_3|eth|none|daily",
+    "attempted_at": "2026-11-06T19:02:25Z",
+    "family_n": 4688,
+    "family_combinations": 126,
+    "deflated_bar": 3.0502,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": -0.010004219275394736,
+      "spread_independent": -0.008904734500506632,
+      "t_newey_west": -2.7658361925515567,
+      "n_independent": 45,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": -1.0,
+        "2025": -1.0
+      }
+    },
+    "test": {
+      "spread": -0.009833285353615155,
+      "spread_independent": -0.010937862832007702,
+      "t_newey_west": -1.3466324791325468,
+      "n_independent": 12,
+      "n_overlap": 306,
+      "year_signs": {
+        "2026": -1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "sma_200|chg_30|above|80|ret_1|btc|none|daily",
+    "attempted_at": "2026-11-10T11:56:14Z",
+    "family_n": 16848,
+    "family_combinations": 324,
+    "deflated_bar": 3.2553,
+    "train_sign": 1,
+    "panel_end": "2026-11-09",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": -0.004173018937538887,
+      "spread_independent": -0.004173018937538887,
+      "t_newey_west": -1.5413938875138966,
+      "n_independent": 25,
+      "n_overlap": 549,
+      "year_signs": {
+        "2025": -1.0
+      }
+    },
+    "test": {
+      "spread": -4.216710349840957e-05,
+      "spread_independent": -4.216710349840957e-05,
+      "t_newey_west": -0.021170122062311725,
+      "n_independent": 73,
+      "n_overlap": 312,
+      "year_signs": {
+        "2026": -1.0
+      }
+    },
+    "verdict": "insufficient",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+  },
+  {
+    "cell_id": "eom|chg_30|below|20|rel_3|eth|none|daily",
+    "attempted_at": "2026-11-10T13:02:26Z",
+    "family_n": 5616,
+    "family_combinations": 108,
+    "deflated_bar": 3.0167,
+    "train_sign": -1,
+    "panel_end": "2026-11-09",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": -0.00035181098743705566,
+      "spread_independent": -0.007859759495370313,
+      "t_newey_west": -0.07714091071638766,
+      "n_independent": 41,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": -1.0,
+        "2025": -1.0
+      }
+    },
+    "test": {
+      "spread": 0.0019265617529115814,
+      "spread_independent": -0.0074474778195079555,
+      "t_newey_west": 0.726880195985821,
+      "n_independent": 16,
+      "n_overlap": 310,
+      "year_signs": {
+        "2026": -1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "funding_persist_high|pct_252|above|80|ret_3|eth|none|daily",
+    "attempted_at": "2026-11-10T15:09:12Z",
+    "family_n": 1518,
+    "family_combinations": 36,
+    "deflated_bar": 2.7782,
+    "train_sign": -1,
+    "panel_end": "2026-11-09",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": 0.01037988735585246,
+      "spread_independent": 0.010039426172222195,
+      "t_newey_west": 1.8351106614923707,
+      "n_independent": 61,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": 1.0,
+        "2025": 1.0
+      }
+    },
+    "test": {
+      "spread": -0.00047991031284459404,
+      "spread_independent": -0.01610121434041,
+      "t_newey_west": -0.03478930253754621,
+      "n_independent": 17,
+      "n_overlap": 310,
+      "year_signs": {
+        "2026": -1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "rsi_14|pct_252|above|90|ret_1|eth|none|daily",
+    "attempted_at": "2026-11-10T17:02:14Z",
+    "family_n": 6498,
+    "family_combinations": 126,
+    "deflated_bar": 3.0502,
+    "train_sign": 1,
+    "panel_end": "2026-11-09",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": 0.009727598743236076,
+      "spread_independent": 0.009727598743236076,
+      "t_newey_west": 2.212995840414489,
+      "n_independent": 59,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": 1.0,
+        "2025": 1.0
+      }
+    },
+    "test": {
+      "spread": 0.0031103369657867206,
+      "spread_independent": 0.0031103369657867206,
+      "t_newey_west": 1.082393035222686,
+      "n_independent": 64,
+      "n_overlap": 312,
+      "year_signs": {
+        "2026": 1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
   }
 ]
