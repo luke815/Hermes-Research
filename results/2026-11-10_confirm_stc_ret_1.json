@@ -1,0 +1,37 @@
+{
+  "cell_id": "stc|chg_7|above|80|ret_1|eth|none|daily",
+  "family": "trend",
+  "family_n": 16848,
+  "family_combinations": 324,
+  "deflated_bar": 3.2553,
+  "train_sign": -1,
+  "train_score": -3.4899,
+  "train_spread_pct": -0.7374,
+  "train_n": 316,
+  "panel_end": "2026-11-09",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": -0.004250221214658555,
+    "spread_independent": -0.004250221214658555,
+    "t_newey_west": -1.4392104706152833,
+    "n_independent": 111,
+    "n_overlap": 549,
+    "year_signs": {
+      "2024": -1.0,
+      "2025": -1.0
+    }
+  },
+  "test": {
+    "spread": 0.0005051738902741619,
+    "spread_independent": 0.0005051738902741619,
+    "t_newey_west": 0.20701019726998973,
+    "n_independent": 58,
+    "n_overlap": 312,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign",
+  "attempted_at": "2026-11-10T19:02:48Z"
+}
