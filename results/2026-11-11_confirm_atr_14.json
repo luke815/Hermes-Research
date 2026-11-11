@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-11",
+  "cell_id": "atr_14|chg_7|below|5|rel_1|eth|none|daily",
+  "family": "volatility",
+  "family_n": 4590,
+  "family_combinations": 90,
+  "rule": "14-day ATR, 7-day change below its trailing 5th percentile",
+  "train_score": -3.3496,
+  "train_spread_pct": -0.8429,
+  "train_n": 92,
+  "train_sign": -1,
+  "deflated_bar": 2.9771,
+  "panel_end": "2026-11-09",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": 0.0006286186372537403,
+    "spread_independent": 0.0006286186372537403,
+    "t_newey_west": 0.2203476328390186,
+    "n_independent": 36,
+    "n_overlap": 549,
+    "year_signs": {
+      "2024": -1.0,
+      "2025": 1.0
+    }
+  },
+  "test": {
+    "spread": 0.009018033781599948,
+    "spread_independent": 0.009018033781599948,
+    "t_newey_west": 1.308211442563613,
+    "n_independent": 7,
+    "n_overlap": 312,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign",
+  "attempted_at": "2026-11-11T03:03:08Z"
+}

@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-11",
+  "cell_id": "sma_200|chg_3|above|80|ret_1|btc|none|daily",
+  "family": "trend",
+  "family_n": 16848,
+  "family_combinations": 324,
+  "rule": "3-day change in the 200-day simple average, above its trailing 80th percentile",
+  "train_score": 3.2677,
+  "train_spread_pct": 0.4895,
+  "train_n": 472,
+  "train_sign": 1,
+  "deflated_bar": 3.2553,
+  "panel_end": "2026-11-09",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": -0.007925419349383598,
+    "spread_independent": -0.007925419349383598,
+    "t_newey_west": -1.554231234162501,
+    "n_independent": 23,
+    "n_overlap": 549,
+    "year_signs": {
+      "2025": -1.0
+    }
+  },
+  "test": {
+    "spread": 0.0023107341932021167,
+    "spread_independent": 0.0023107341932021167,
+    "t_newey_west": 1.070791290815446,
+    "n_independent": 67,
+    "n_overlap": 312,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "insufficient",
+  "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+  "attempted_at": "2026-11-11T05:01:48Z",
+  "tests_since_last_admission": 39
+}

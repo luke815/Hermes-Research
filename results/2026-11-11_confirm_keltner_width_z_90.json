@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-11",
+  "cell_id": "keltner_width|z_90|below|10|ret_1|btc|none|daily",
+  "family": "volatility",
+  "family_n": 4590,
+  "family_combinations": 90,
+  "rule": "Keltner width, trailing 90-bar z-score below its 10th percentile",
+  "train_score": -3.3559,
+  "train_spread_pct": -0.543,
+  "train_n": 207,
+  "train_sign": -1,
+  "deflated_bar": 2.9771,
+  "panel_end": "2026-11-09",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": -0.0013188523239819668,
+    "spread_independent": -0.0013188523239819668,
+    "t_newey_west": -0.401941034338984,
+    "n_independent": 50,
+    "n_overlap": 549,
+    "year_signs": {
+      "2024": -1.0,
+      "2025": 1.0
+    }
+  },
+  "test": {
+    "spread": 0.009029832052631036,
+    "spread_independent": 0.009029832052631036,
+    "t_newey_west": 1.4214347514432977,
+    "n_independent": 19,
+    "n_overlap": 312,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign",
+  "attempted_at": "2026-11-11T02:03:31Z"
+}
