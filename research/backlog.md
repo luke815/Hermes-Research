@@ -25,6 +25,15 @@ Book, from research/LONG_SHORT_BOOK.md section 11. These sit immediately after t
 - B4. strategy.py book backtest, six variants, three periods, per year. Two runs.
 - B5. The 4-hour entry timing recorded alongside the simple entry. One run.
 
+Risk regime, from research/RISK_REGIME.md section 6. These follow the bottom scorecard because they share the episode counter and the inputs.
+
+- R1. Inputs module: every input in section 1 computed daily from the panels, with percentiles and flags, written to the panel and to the risk key's inputs array. One run.
+- R2. State machine and dial with hysteresis and the vol scalar; daily job; first live reading posted with the rules that set it. One run.
+- R3. Backtest harness for exposure strategies in strategy.py. One run.
+- R4. The variants and the per-year tables; event view against the episode counter; admission verdict. Two runs.
+- R5. Analogs, paper track, transitions and alerts. One run.
+- R6. Weekly review added to the weekly note.
+
 2. C1 rerun on the amended targets. Top candidates are days within 5 percent of the 60-day high; a top is a 20 percent drop within 30 days. Bottom candidates are days within 5 percent of the 60-day low; a bottom is a 20 percent rise within 30 days without a 7 percent dip. Base rates among candidate days, not all days.
 3. C2 rerun on the amended labels. The ETH funding cell is a live candidate under the amended bar.
 4. C3 to C7 as parallel subagents: TD Sequential, trend exhaustion, options, breadth, on-chain and flows. Verdict 2026-11-10: insufficient, all five. Episode counts sit below 30 even after pooling BTC, ETH and SOL into overlapping windows. results/2026-11-10_c3_td_sequential.json, results/2026-11-10_c4_trend_exhaustion.json, results/2026-11-10_c5_options.json, results/2026-11-10_c6_breadth.json, results/2026-11-10_c7_onchain_flows.json.
