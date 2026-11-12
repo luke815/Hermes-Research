@@ -1,0 +1,34 @@
+{
+  "candidate": "s7_vectorized_scorer",
+  "date": "2026-11-12",
+  "verdict": "recorded, not admitted",
+  "reason": "The correctness gate passes and the throughput target is met, but the sweep daemon still scores with the per-cell scorer. Retiring it is the second of the two runs S7 was given.",
+  "gate": {
+    "cells_compared": 50,
+    "names": 40,
+    "days": 400,
+    "max_abs_difference": 9.99e-16,
+    "tolerance": 1e-6,
+    "lookahead": "pass",
+    "early_bars_empty": "pass",
+    "parallel_matches_single_process": "pass",
+    "rows_per_measure": 198
+  },
+  "throughput": {
+    "names": 40,
+    "days": 2003,
+    "cells": 108,
+    "seconds": 5.74,
+    "cells_per_hour": 67728,
+    "target_cells_per_hour": 5000
+  },
+  "parallel": {
+    "workers": 2,
+    "measures": 2,
+    "solo_seconds": 5.87,
+    "parallel_seconds": 2.8
+  },
+  "tests_since_last_admission": 53,
+  "panel_end": "2026-11-11",
+  "panel_age_days": 1
+}
