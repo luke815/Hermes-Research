@@ -78,7 +78,8 @@ def pull_5m(names, now):
                                         "h": marks[base + "USDT"], "l": marks[base + "USDT"],
                                         "c": marks[base + "USDT"], "v": 0}], STORE_5M)
     print(f"5m binance: {len(marks)} marks, one call", flush=True)
-    return 1, newest
+    by_base = {sym.split("USDT")[0]: price for sym, price in marks.items()}
+    return 1, newest, by_base
 
 
 def board(names):
@@ -144,11 +145,36 @@ def push(payload):
     return push_run.returncode == 0
 
 
+def book_live(marks):
+    """Mark each open leg against the latest price and return the book's paper state.
+
+    The book is read from signals/book.csv. A leg with no mark is left out rather
+    than priced at zero. Returns are percent.
+    """
+    ledger = os.path.join(ROOT, "signals", "book.csv")
+    if not os.path.exists(ledger):
+        return {}
+    rows = __import__("pandas").read_csv(ledger)
+    legs = []
+    for _, row in rows.iterrows():
+        mark = marks.get(row["symbol"])
+        if mark is None or not row["price"]:
+            continue
+        pnl = (mark / row["price"] - 1) * (1 if row["side"] == "long" else -1) * 100
+        legs.append({"symbol": row["symbol"], "side": row["side"], "mark": mark,
+                     "pnl": round(pnl, 2)})
+    if not legs:
+        return {}
+    paper = sum(l["pnl"] for l in legs) / len(legs)
+    return {"as_of": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "paper_return": round(paper, 2), "legs": legs}
+
+
 def cycle(ctx):
     """One pass: marks, board, push. The loop owns the interval and the heartbeat."""
     now = int(time.time())
     names = [r["symbol"] for r in json.load(open(TOP))["rows"]]
-    calls, newest = pull_5m(names, now)
+    calls, newest, marks = pull_5m(names, now)
     hour = ctx.setdefault("calls_this_hour", [])
     hour.append((now, calls))
     ctx["calls_this_hour"] = [(t, c) for t, c in hour if now - t < 3600]
@@ -165,7 +191,7 @@ def cycle(ctx):
         "health": {"daemon_heartbeat": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                    "api_calls_last_hour": sum(c for _, c in ctx["calls_this_hour"]),
                    "stale": as_of is None, "note": note},
-        "relative_strength": built, "book_live": {}, "watchlist": [], "ideas": [], "triggers": [],
+        "relative_strength": built, "book_live": book_live(marks), "watchlist": [], "ideas": [], "triggers": [],
     }
     pushed = push(payload)
     return {"calls": calls, "pushed": pushed, "as_of": as_of, "names": len(names)}
