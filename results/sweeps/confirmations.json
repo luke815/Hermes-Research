@@ -1445,5 +1445,71 @@
     },
     "verdict": "insufficient",
     "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+  },
+  {
+    "cell_id": "tsi|z_30|below|20|ret_3|eth|none|daily",
+    "attempted_at": "2026-11-12T06:01:48Z",
+    "family_n": 6498,
+    "family_combinations": 126,
+    "deflated_bar": 3.0502,
+    "train_sign": 1,
+    "panel_end": "2026-11-11",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": 0.004359320538623888,
+      "spread_independent": 0.004757331590478439,
+      "t_newey_west": 0.618751593638734,
+      "n_independent": 40,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": 1.0,
+        "2025": 1.0
+      }
+    },
+    "test": {
+      "spread": -0.010737740442773416,
+      "spread_independent": -0.009952181992274423,
+      "t_newey_west": -0.8288995890945241,
+      "n_independent": 20,
+      "n_overlap": 312,
+      "year_signs": {
+        "2026": -1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "tsi|z_90|below|5|ret_1|eth|none|daily",
+    "attempted_at": "2026-11-12T07:02:03Z",
+    "family_n": 6498,
+    "family_combinations": 126,
+    "deflated_bar": 3.0502,
+    "train_sign": 1,
+    "panel_end": "2026-11-11",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": 0.004329541690324027,
+      "spread_independent": 0.004329541690324027,
+      "t_newey_west": 0.9047183209248117,
+      "n_independent": 41,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": -1.0,
+        "2025": 1.0
+      }
+    },
+    "test": {
+      "spread": 0.0005345108453183181,
+      "spread_independent": 0.0005345108453183181,
+      "t_newey_west": 0.05265659305867411,
+      "n_independent": 22,
+      "n_overlap": 314,
+      "year_signs": {
+        "2026": 1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
   }
 ]
