@@ -47,8 +47,9 @@ def cycle(ctx):
     panel = ctx.setdefault("panel", load_panel())
     done_path = os.path.join(OUT, datetime.now(timezone.utc).strftime("%Y-%m-%d") + "_xs.csv")
     done = set()
-    if os.path.exists(done_path):
-        done = set(pd.read_csv(done_path)["measure"].unique())
+    for name in os.listdir(OUT):
+        if name.endswith("_xs.csv"):
+            done |= set(pd.read_csv(os.path.join(OUT, name))["measure"].unique())
     pending = [m for m in measures() if m not in done]
     if not pending:
         return {"measure": None, "names": len(panel), "remaining": 0}
