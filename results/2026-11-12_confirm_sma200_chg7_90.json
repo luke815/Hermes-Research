@@ -1,0 +1,32 @@
+{
+  "cell_id": "sma_200|chg_7|above|90|ret_3|btc|none|daily",
+  "attempted_at": "2026-11-12T05:02:00Z",
+  "family_n": 16848,
+  "family_combinations": 324,
+  "deflated_bar": 3.2553,
+  "train_sign": 1,
+  "panel_end": "2026-11-10",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": -0.01781669774324805,
+    "spread_independent": -0.025725926573073172,
+    "t_newey_west": -2.19338102603691,
+    "n_independent": 3,
+    "n_overlap": 549,
+    "year_signs": {
+      "2025": -1.0
+    }
+  },
+  "test": {
+    "spread": 0.0033795899490561667,
+    "spread_independent": 0.0040178727708138455,
+    "t_newey_west": 0.6867020174495225,
+    "n_independent": 22,
+    "n_overlap": 311,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "insufficient",
+  "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+}

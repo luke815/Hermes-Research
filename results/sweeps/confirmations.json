@@ -1281,5 +1281,169 @@
     },
     "verdict": "rejected",
     "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "psar|chg_30|above|80|ret_3|btc|none|daily",
+    "attempted_at": "2026-11-12T01:02:40Z",
+    "family_n": 16848,
+    "family_combinations": 324,
+    "deflated_bar": 3.2553,
+    "train_sign": 1,
+    "panel_end": "2026-11-10",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": 0.0038236975184726195,
+      "spread_independent": 0.005833029375467606,
+      "t_newey_west": 0.6451122147566183,
+      "n_independent": 24,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": 1.0,
+        "2025": -1.0
+      }
+    },
+    "test": {
+      "spread": 0.006001386823091693,
+      "spread_independent": 0.007486035963659257,
+      "t_newey_west": 1.260785584780294,
+      "n_independent": 29,
+      "n_overlap": 311,
+      "year_signs": {
+        "2026": 1.0
+      }
+    },
+    "verdict": "insufficient",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+  },
+  {
+    "cell_id": "rsi_14|chg_30|above|80|ret_3|eth|none|daily",
+    "attempted_at": "2026-11-12T02:02:03Z",
+    "family_n": 6498,
+    "family_combinations": 126,
+    "deflated_bar": 3.0502,
+    "train_sign": 1,
+    "panel_end": "2026-11-10",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": 0.01345455178078057,
+      "spread_independent": 0.020312082805569825,
+      "t_newey_west": 1.0957997067578722,
+      "n_independent": 31,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": 1.0,
+        "2025": 1.0
+      }
+    },
+    "test": {
+      "spread": -0.0011504473951805174,
+      "spread_independent": 0.004925621373496971,
+      "t_newey_west": -0.140772094982606,
+      "n_independent": 19,
+      "n_overlap": 311,
+      "year_signs": {
+        "2026": 1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "awesome|z_30|below|20|ret_3|eth|none|daily",
+    "attempted_at": "2026-11-12T03:01:25Z",
+    "family_n": 6498,
+    "family_combinations": 126,
+    "deflated_bar": 3.0502,
+    "train_sign": 1,
+    "panel_end": "2026-11-10",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": 0.00949880640614138,
+      "spread_independent": 0.011140449504893509,
+      "t_newey_west": 1.421097580624798,
+      "n_independent": 34,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": -1.0,
+        "2025": 1.0
+      }
+    },
+    "test": {
+      "spread": -0.015011805075769779,
+      "spread_independent": -0.009762830669332664,
+      "t_newey_west": -1.179551649615319,
+      "n_independent": 23,
+      "n_overlap": 311,
+      "year_signs": {
+        "2026": -1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "mfi_14|raw|above|95|ret_1|eth|none|daily",
+    "attempted_at": "2026-11-12T04:01:14Z",
+    "family_n": 5616,
+    "family_combinations": 108,
+    "deflated_bar": 3.0167,
+    "train_sign": 1,
+    "panel_end": "2026-11-10",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": 0.004090374015507632,
+      "spread_independent": 0.004090374015507632,
+      "t_newey_west": 0.6566572952594866,
+      "n_independent": 34,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": -1.0,
+        "2025": 1.0
+      }
+    },
+    "test": {
+      "spread": -0.0019623849460621125,
+      "spread_independent": -0.0019623849460621125,
+      "t_newey_west": -0.2542872023640351,
+      "n_independent": 12,
+      "n_overlap": 313,
+      "year_signs": {
+        "2026": -1.0
+      }
+    },
+    "verdict": "rejected",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+  },
+  {
+    "cell_id": "sma_200|chg_7|above|90|ret_3|btc|none|daily",
+    "attempted_at": "2026-11-12T05:02:00Z",
+    "family_n": 16848,
+    "family_combinations": 324,
+    "deflated_bar": 3.2553,
+    "train_sign": 1,
+    "panel_end": "2026-11-10",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": -0.01781669774324805,
+      "spread_independent": -0.025725926573073172,
+      "t_newey_west": -2.19338102603691,
+      "n_independent": 3,
+      "n_overlap": 549,
+      "year_signs": {
+        "2025": -1.0
+      }
+    },
+    "test": {
+      "spread": 0.0033795899490561667,
+      "spread_independent": 0.0040178727708138455,
+      "t_newey_west": 0.6867020174495225,
+      "n_independent": 22,
+      "n_overlap": 311,
+      "year_signs": {
+        "2026": 1.0
+      }
+    },
+    "verdict": "insufficient",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
   }
 ]
