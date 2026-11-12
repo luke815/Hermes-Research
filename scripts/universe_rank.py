@@ -45,9 +45,25 @@ def score_name(frame):
 
 
 def main():
+    universe = {r["base"]: r for r in json.load(open(os.path.join(ROOT, "data", "book_universe.json")))["rows"]}
     rows = []
+    seen, skipped_floor, skipped_history, skipped_delisted = 0, 0, 0, 0
     for name in sorted(os.listdir(PANEL)):
+        if "binance_" not in name:
+            skipped_delisted += 1
+            continue
         frame = pd.read_csv(os.path.join(PANEL, name))
+        if "close" not in frame.columns or frame["close"].notna().sum() < 90:
+            skipped_history += 1
+            continue
+        base = name.replace(".csv", "").split("_", 1)[-1].replace("USDT", "")
+        info = universe.get(base, {})
+        oi = info.get("oi_usd") or 0
+        vol = info.get("volume_24h") or 0
+        if not info or oi < 20_000_000 or vol < 15_000_000:
+            skipped_floor += 1
+            continue
+        seen += 1
         scored = score_name(frame)
         if not scored or scored["score"] is None:
             continue
@@ -73,8 +89,9 @@ def main():
     tmp = DATA + ".tmp"
     json.dump(data, open(tmp, "w"))
     os.replace(tmp, DATA)
-    print(f"ranked {n} names, top {rows[0]['symbol']} {rows[0]['score']}, "
-          f"bottom {rows[-1]['symbol']} {rows[-1]['score']}")
+    print(f"ranked {len(rows)} of {seen + skipped_floor + skipped_history} live names, "
+          f"skipped {skipped_floor} below the liquidity floor, {skipped_history} under 90 days, "
+          f"{skipped_delisted} not on binance")
 
 
 if __name__ == "__main__":

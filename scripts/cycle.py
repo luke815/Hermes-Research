@@ -40,20 +40,29 @@ def main():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     names = closes()
     btc = names.get("binance_BTCUSDT")
-    if btc is None:
-        print("no btc")
+    if btc is None or len(btc) < 60:
+        print("no btc history")
         return
-    btc_top = top_event(btc, 20, 0.30)
-    btc_bottom = bottom_event(btc, 20, 0.30, 0.07)
     high_60 = btc.rolling(60, min_periods=60).max()
     low_60 = btc.rolling(60, min_periods=60).min()
+    dist_high = btc.iloc[-1] / high_60.iloc[-1] - 1
+    dist_low = btc.iloc[-1] / low_60.iloc[-1] - 1
+    # A candidate day is within 5 percent of the 60-day extreme, and only a
+    # name with 60 days of history can be one. The event that follows is a 20
+    # percent move within 30 days, which is what the episode count measures.
+    btc_top = top_event(btc, 30, 0.20)
+    btc_bottom = bottom_event(btc, 30, 0.20, 0.07)
     frames = []
     for series in names.values():
+        if len(series) < 60:
+            continue
+        high = series.rolling(60, min_periods=60).max()
+        low = series.rolling(60, min_periods=60).min()
         frames.append(pd.DataFrame({
-            "top": top_event(series, 20, 0.30),
-            "bottom": bottom_event(series, 20, 0.30, 0.07),
-            "at_high": series >= series.rolling(60, min_periods=60).max(),
-            "at_low": series <= series.rolling(60, min_periods=60).min(),
+            "top": top_event(series, 30, 0.20),
+            "bottom": bottom_event(series, 30, 0.20, 0.07),
+            "at_high": series >= high * 0.95,
+            "at_low": series <= low * 1.05,
         }))
     stacked = pd.concat(frames)
     by_date_top = stacked.groupby(stacked.index)["top"].any()
@@ -65,10 +74,10 @@ def main():
     cycle = {
         "as_of": str(last.date()),
         "btc": {
-            "candidate_top": bool(btc_top.iloc[-1]) if pd.notna(btc_top.iloc[-1]) else False,
-            "candidate_bottom": bool(btc_bottom.iloc[-1]) if pd.notna(btc_bottom.iloc[-1]) else False,
-            "dist_60d_high": round(float(btc.iloc[-1] / high_60.iloc[-1] - 1) * 100, 1),
-            "dist_60d_low": round(float(btc.iloc[-1] / low_60.iloc[-1] - 1) * 100, 1),
+            "candidate_top": bool(dist_high >= -0.05),
+            "candidate_bottom": bool(dist_low <= 0.05),
+            "dist_60d_high": round(float(dist_high) * 100, 1),
+            "dist_60d_low": round(float(dist_low) * 100, 1),
         },
         "universe": {
             "share_at_60d_high": round(float(today_rows["at_high"].mean()), 4),
