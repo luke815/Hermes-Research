@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-12",
+  "cell_id": "donchian_width|raw|below|20|ret_1|btc|none|daily",
+  "family": "volatility",
+  "family_n": 4590,
+  "family_combinations": 90,
+  "rule": "Donchian channel width, raw level below its trailing 20th percentile",
+  "train_score": -3.0703,
+  "train_spread_pct": -0.4541,
+  "train_n": 407,
+  "train_sign": -1,
+  "deflated_bar": 2.9771,
+  "panel_end": "2026-11-11",
+  "library_version": "1.0.0",
+  "validation": {
+    "spread": 0.001930855108437578,
+    "spread_independent": 0.001930855108437578,
+    "t_newey_west": 1.2405577533032006,
+    "n_independent": 167,
+    "n_overlap": 549,
+    "year_signs": {
+      "2024": 1.0,
+      "2025": 1.0
+    }
+  },
+  "test": {
+    "spread": 0.0035947428196691318,
+    "spread_independent": 0.0035947428196691318,
+    "t_newey_west": 1.7315643564311936,
+    "n_independent": 93,
+    "n_overlap": 314,
+    "year_signs": {
+      "2026": 1.0
+    }
+  },
+  "verdict": "rejected",
+  "reason": "validation t-stat does not clear the deflated bar with the train sign",
+  "attempted_at": "2026-11-12T13:02:19Z"
+}
