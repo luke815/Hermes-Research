@@ -54,15 +54,11 @@ def pending_cells():
 
 def cycle(ctx):
     panel = ctx.setdefault("panel", load_panel())
-    done_path = os.path.join(OUT, datetime.now(timezone.utc).strftime("%Y-%m-%d") + "_xs.csv")
-    done = set()
-    for name in os.listdir(OUT):
-        if name.endswith("_xs.csv"):
-            done |= set(pd.read_csv(os.path.join(OUT, name))["measure"].unique())
-    pending = [m for m in measures() if m not in done]
+    pending = [c for c in pending_cells() if c not in ctx.setdefault("scored", set())]
     if not pending:
         return {"measure": None, "names": len(panel), "remaining": 0}
-    measure = pending[0]
+    cell = pending[0]
+    measure = cell.split("|")[0]
 
     def signal(close):
         return close.pct_change(14)
