@@ -124,6 +124,8 @@ def score_periods(cell_id):
     token = "BTC" if cell["universe"] == "btc" else "ETH"
     if cell["universe"] == "pooled_majors":
         raise ValueError("pooled confirmation is not in this procedure yet")
+    if cell["universe"] == "pit_cross_section":
+        return _score_cross_section(cell)
     frame = frames[token]
     computed = indicators(frame)
     if cell["measure"] not in computed.columns:
@@ -151,6 +153,32 @@ def score_periods(cell_id):
         "library_version": LIBRARY_VERSION,
         "validation": validation, "test": test,
     }
+
+
+def _score_cross_section(cell):
+    """Validation and test for one cross-sectional cell, from the point-in-time panel."""
+    from regime_tester.cross_section import score_cross_section
+    panel = {}
+    for name in sorted(os.listdir(ROOT / "data" / "panel_xs")):
+        frame = pd.read_csv(ROOT / "data" / "panel_xs" / name)
+        if "close" not in frame.columns or frame["close"].notna().sum() < 60:
+            continue
+        panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])[["date", "close"]]
+    scored = score_cross_section(panel, lambda close: close.pct_change(14), horizon=1)
+    scored["date"] = pd.to_datetime(scored["date"], utc=True)
+
+    def block(start, end):
+        part = scored[(scored["date"] >= start) & (scored["date"] <= end)]["decile_spread"].dropna()
+        if part.empty:
+            return None
+        return {"spread_independent": float(part.mean()),
+                "t_newey_west": float(part.mean() / (part.std() / len(part) ** 0.5)) if len(part) > 2 else float("nan"),
+                "n_independent": int(len(part))}
+
+    return {"cell": cell, "token": "cross_section", "horizon": 1,
+            "panel_end": str(scored["date"].max().date()), "library_version": LIBRARY_VERSION,
+            "validation": block(VALIDATION_START, VALIDATION_END),
+            "test": block(TEST_START, scored["date"].max())}
 
 
 def _read_record():
