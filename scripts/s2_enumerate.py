@@ -236,8 +236,11 @@ def main():
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))
+    cross = [c["id"] for c in cells if c["universe"] == "pit_cross_section" and c["status"] == "testable"]
+    (OUT.parent / "cross_section_cells.json").write_text(json.dumps(cross))
     print(json.dumps({k: payload[k] for k in
                       ("cells", "testable", "skipped", "duplicate_ids", "by_family", "skip_reasons")}))
+    print(f"cross_section_cells {len(cross)}")
 
 
 if __name__ == "__main__":

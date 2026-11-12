@@ -38,9 +38,18 @@ def load_panel():
     return panel
 
 
-def measures():
-    from regime_tester.indicators import META
-    return sorted(META)
+def pending_cells():
+    """Every cross-sectional cell the enumerator marked testable, not yet scored.
+
+    One measure with one transform is a slice, not the space. The sweep walks
+    the cells the enumerator listed.
+    """
+    cells = json.load(open(os.path.join(ROOT, "results", "sweeps", "cross_section_cells.json")))
+    done = set()
+    for name in os.listdir(OUT):
+        if name.endswith("_xs.csv"):
+            done |= set(pd.read_csv(os.path.join(OUT, name))["id"])
+    return [c for c in cells if c not in done]
 
 
 def cycle(ctx):
