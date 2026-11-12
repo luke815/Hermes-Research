@@ -71,11 +71,13 @@ def cycle(ctx):
                   train["decile_spread"] if not train.empty else pd.Series(dtype=float),
                   TRAIN_END)
     frame = pd.DataFrame([row])
-    if os.path.exists(done_path):
-        frame = pd.concat([pd.read_csv(done_path), frame], ignore_index=True)
-    tmp = done_path + ".tmp"
+    path = os.path.join(OUT, datetime.now(timezone.utc).strftime("%Y-%m-%d") + "_xs.csv")
+    if os.path.exists(path):
+        frame = pd.concat([pd.read_csv(path), frame], ignore_index=True)
+    tmp = path + ".tmp"
     frame.to_csv(tmp, index=False)
-    os.replace(tmp, done_path)
+    os.replace(tmp, path)
+    ctx["scored"].add(cell)
     return {"measure": measure, "names": len(panel), "rows": len(train),
             "remaining": len(pending) - 1}
 
