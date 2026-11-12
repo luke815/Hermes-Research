@@ -1,0 +1,129 @@
+{
+  "candidate": "d1_bybit_prices_short",
+  "date": "2026-11-12",
+  "source": "https://public.bybit.com/trading/",
+  "bound": "stopped == 1 and listed days <= 60",
+  "names_in_bound": 9,
+  "rows_saved": 321,
+  "trades_reduced": 53022586,
+  "part_files": 321,
+  "empty_archive_days": [
+    {
+      "symbol": "USTUSDT",
+      "date": "2022-12-12"
+    },
+    {
+      "symbol": "BTTUSDT",
+      "date": "2022-12-12"
+    }
+  ],
+  "header_note": "files from 2025 carry a trailing RPI column; the ten base columns are unchanged and were used",
+  "mismatches": [],
+  "names": [
+    {
+      "symbol": "USTUSDT",
+      "span_first": "2022-05-10",
+      "span_last": "2022-12-12",
+      "span_days": 5,
+      "saved_days": 5,
+      "parts": 5,
+      "file_first": "2022-05-10",
+      "file_last": "2022-12-12",
+      "match": true
+    },
+    {
+      "symbol": "BTTUSDT",
+      "span_first": "2021-12-08",
+      "span_last": "2022-12-12",
+      "span_days": 22,
+      "saved_days": 22,
+      "parts": 22,
+      "file_first": "2021-12-08",
+      "file_last": "2022-12-12",
+      "match": true
+    },
+    {
+      "symbol": "ZBCUSDT",
+      "span_first": "2023-08-22",
+      "span_last": "2023-09-14",
+      "span_days": 24,
+      "saved_days": 24,
+      "parts": 24,
+      "file_first": "2023-08-22",
+      "file_last": "2023-09-14",
+      "match": true
+    },
+    {
+      "symbol": "IGUUSDT",
+      "span_first": "2023-12-06",
+      "span_last": "2023-12-31",
+      "span_days": 26,
+      "saved_days": 26,
+      "parts": 26,
+      "file_first": "2023-12-06",
+      "file_last": "2023-12-31",
+      "match": true
+    },
+    {
+      "symbol": "PIGGYUSDT",
+      "span_first": "2025-10-29",
+      "span_last": "2025-12-07",
+      "span_days": 40,
+      "saved_days": 40,
+      "parts": 40,
+      "file_first": "2025-10-29",
+      "file_last": "2025-12-07",
+      "match": true
+    },
+    {
+      "symbol": "NODEUSDT",
+      "span_first": "2025-09-04",
+      "span_last": "2025-10-21",
+      "span_days": 48,
+      "saved_days": 48,
+      "parts": 48,
+      "file_first": "2025-09-04",
+      "file_last": "2025-10-21",
+      "match": true
+    },
+    {
+      "symbol": "PRAIUSDT",
+      "span_first": "2025-05-19",
+      "span_last": "2025-07-05",
+      "span_days": 48,
+      "saved_days": 48,
+      "parts": 48,
+      "file_first": "2025-05-19",
+      "file_last": "2025-07-05",
+      "match": true
+    },
+    {
+      "symbol": "LFTUSDT",
+      "span_first": "2024-05-16",
+      "span_last": "2024-07-08",
+      "span_days": 54,
+      "saved_days": 54,
+      "parts": 54,
+      "file_first": "2024-05-16",
+      "file_last": "2024-07-08",
+      "match": true
+    },
+    {
+      "symbol": "PUMPUSDT",
+      "span_first": "2025-04-11",
+      "span_last": "2025-06-03",
+      "span_days": 54,
+      "saved_days": 54,
+      "parts": 54,
+      "file_first": "2025-04-11",
+      "file_last": "2025-06-03",
+      "match": true
+    }
+  ],
+  "files": [
+    "data/bybit_prices/",
+    "data/bybit_price_parts/"
+  ],
+  "verdict": "recorded, not admitted",
+  "reason": "Nine shortest stopped Bybit names now have daily bars. 300 stopped names, funding, open interest and liquidations are later slices."
+}
