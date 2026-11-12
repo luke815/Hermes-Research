@@ -80,6 +80,19 @@ META = {
     "liq_cascade": ("positioning", ["liq", "oi"], 30, "flag"),
     "breadth": ("breadth", ["breadth"], 1, "level"),
     "funding_dispersion": ("cross_venue", ["funding_dispersion"], 1, "level"),
+    "dvol_level": ("options", ["dvol"], 1, "level"),
+    "dvol_chg_7": ("options", ["dvol"], 8, "change"),
+    "dvol_minus_rv30": ("options", ["dvol", "realized_vol"], 30, "spread"),
+    "atm_iv_30": ("options", ["atm_iv"], 1, "level"),
+    "atm_term_slope": ("options", ["atm_iv"], 1, "slope"),
+    "skew_25d_30": ("options", ["skew"], 1, "level"),
+    "skew_chg_5": ("options", ["skew"], 6, "change"),
+    "risk_reversal_30": ("options", ["risk_reversal"], 1, "level"),
+    "basis_1m": ("derivatives", ["basis"], 1, "level"),
+    "basis_slope": ("derivatives", ["basis"], 1, "slope"),
+    "funding_oiw": ("derivatives", ["funding"], 1, "level"),
+    "funding_oiw_avg_7": ("derivatives", ["funding"], 7, "average"),
+    "rv_ratio_7_30": ("derivatives", ["close"], 30, "ratio"),
 }
 
 
@@ -304,6 +317,9 @@ def indicators(frame):
         out["breadth"] = frame["breadth"]
     if _col(frame, "funding_dispersion") is not None:
         out["funding_dispersion"] = frame["funding_dispersion"]
+    for name in ("dvol", "atm_iv", "skew", "risk_reversal", "basis"):
+        if _col(frame, name) is not None:
+            out[name] = frame[name]
     return pd.DataFrame(out, index=frame.index)
 
 

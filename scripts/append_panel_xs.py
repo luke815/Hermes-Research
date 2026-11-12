@@ -39,6 +39,7 @@ def append_batch(symbols, day):
             continue
         if got:
             rows[symbol] = {"date": day, "close": float(got[0][4]),
+                            "high": float(got[0][2]), "low": float(got[0][3]),
                             "volume_base": float(got[0][5]), "volume_usd": float(got[0][7])}
     return rows
 

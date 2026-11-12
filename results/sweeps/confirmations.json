@@ -29,8 +29,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_200|chg_7|above|80|ret_3|btc|none|daily",
@@ -61,8 +62,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "force_13|chg_3|above|90|rel_3|eth|none|daily",
@@ -94,8 +96,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "stc|chg_7|above|80|rel_3|eth|none|daily",
@@ -127,8 +130,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "obv|raw|above|80|ret_3|btc|none|daily",
@@ -150,8 +154,9 @@
       }
     },
     "test": null,
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "psar|pct_252|below|20|rel_3|eth|none|daily",
@@ -183,8 +188,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "test flips the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "test flips the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "funding_persist_high|pct_252|above|80|ret_10|eth|none|daily",
@@ -216,8 +222,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "td_countdown|z_90|above|90|rel_3|eth|none|daily",
@@ -249,8 +256,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "weekly_band|z_90|below|20|ret_1|btc|none|daily",
@@ -282,8 +290,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "donchian_width|z_30|below|10|ret_1|btc|none|daily",
@@ -315,8 +324,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "ema_50|pct_252|above|80|ret_3|btc|none|daily",
@@ -348,8 +358,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "keltner_width|z_90|below|10|ret_3|btc|none|daily",
@@ -381,8 +392,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_200|chg_30|above|80|ret_3|btc|none|daily",
@@ -413,8 +425,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_200|chg_7|above|80|ret_10|btc|none|daily",
@@ -445,8 +458,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_200|chg_7|above|80|ret_1|btc|none|daily",
@@ -477,8 +491,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_200|chg_3|above|80|ret_3|btc|none|daily",
@@ -509,8 +524,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "kama_10|pct_252|below|10|rel_3|eth|none|daily",
@@ -542,8 +558,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_200|chg_30|above|80|ret_1|btc|none|daily",
@@ -574,8 +591,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "eom|chg_30|below|20|rel_3|eth|none|daily",
@@ -607,8 +625,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "funding_persist_high|pct_252|above|80|ret_3|eth|none|daily",
@@ -640,8 +659,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "rsi_14|pct_252|above|90|ret_1|eth|none|daily",
@@ -673,8 +693,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "stc|chg_7|above|80|ret_1|eth|none|daily",
@@ -706,8 +727,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "bb_width|z_90|above|80|ret_3|btc|none|daily",
@@ -739,8 +761,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "macd_signal|raw|below|20|rel_3|eth|none|daily",
@@ -772,8 +795,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "wma_20|pct_252|below|10|rel_1|eth|none|daily",
@@ -805,8 +829,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "keltner_width|raw|below|20|ret_1|btc|none|daily",
@@ -838,8 +863,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "keltner_width|z_90|below|10|ret_1|btc|none|daily",
@@ -871,8 +897,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "atr_14|chg_7|below|5|rel_1|eth|none|daily",
@@ -904,8 +931,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "atr_14|chg_7|below|10|ret_1|eth|none|daily",
@@ -937,8 +965,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_200|chg_3|above|80|ret_1|btc|none|daily",
@@ -969,8 +998,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "weekly_band|z_90|below|10|ret_1|btc|none|daily",
@@ -1002,8 +1032,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "mfi_14|pct_252|above|80|ret_3|btc|none|daily",
@@ -1035,8 +1066,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "funding_persist_high|pct_252|above|95|ret_3|eth|none|daily",
@@ -1068,8 +1100,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "funding_persist_high|pct_252|below|20|ret_3|eth|none|daily",
@@ -1091,8 +1124,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "mayer_multiple|pct_252|below|20|ret_3|btc|none|daily",
@@ -1124,8 +1158,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_20|pct_252|below|20|rel_3|eth|none|daily",
@@ -1157,8 +1192,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "test flips the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "test flips the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "psar|z_30|below|20|rel_3|eth|none|daily",
@@ -1190,8 +1226,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "stc|chg_7|above|95|ret_1|eth|none|daily",
@@ -1223,8 +1260,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "obv|raw|above|90|ret_3|eth|none|daily",
@@ -1246,8 +1284,9 @@
       }
     },
     "test": null,
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "td_setup|chg_3|below|10|ret_1|eth|none|daily",
@@ -1279,8 +1318,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "psar|chg_30|above|80|ret_3|btc|none|daily",
@@ -1312,8 +1352,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "rsi_14|chg_30|above|80|ret_3|eth|none|daily",
@@ -1345,8 +1386,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "awesome|z_30|below|20|ret_3|eth|none|daily",
@@ -1378,8 +1420,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "mfi_14|raw|above|95|ret_1|eth|none|daily",
@@ -1411,8 +1454,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "sma_200|chg_7|above|90|ret_3|btc|none|daily",
@@ -1443,8 +1487,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "insufficient",
-    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation holds fewer than 30 independent observations; re-queued, not closed",
+    "void_before": "a768397"
   },
   {
     "cell_id": "tsi|z_30|below|20|ret_3|eth|none|daily",
@@ -1476,8 +1521,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "tsi|z_90|below|5|ret_1|eth|none|daily",
@@ -1509,8 +1555,9 @@
         "2026": 1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "breadth|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1531,8 +1578,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "funding_dispersion|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1553,8 +1601,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "mayer_multiple|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1575,8 +1624,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "pi_cycle|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1597,8 +1647,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "td_countdown|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1619,8 +1670,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "kst|chg_3|above|80|ret_3|eth|none|daily",
@@ -1652,8 +1704,9 @@
         "2026": -1.0
       }
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "td_setup|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1674,8 +1727,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "weekly_band|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1696,8 +1750,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "awesome|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1718,8 +1773,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "kama_10|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1740,8 +1796,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "roc_12|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1762,8 +1819,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "rsi_14|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1784,8 +1842,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "stoch_k|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1806,8 +1865,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "tsi|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1828,8 +1888,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "williams_r|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1850,8 +1911,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "funding_persist_high|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1872,8 +1934,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "funding_persist_low|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1894,8 +1957,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "liq_cascade|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1916,8 +1980,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "oi_on_down_days|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1938,8 +2003,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "adx_14|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1960,8 +2026,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "aroon_down|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -1982,8 +2049,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "aroon_up|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2004,8 +2072,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "cci_20|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2026,8 +2095,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "dpo_20|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2048,8 +2118,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "ema_21|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2070,8 +2141,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "ema_50|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2092,8 +2164,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "kst|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2114,8 +2187,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "macd_signal|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2136,8 +2210,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "macd|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2158,8 +2233,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "psar|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
@@ -2180,8 +2256,9 @@
       "t_newey_west": 0.11076960281930234,
       "n_independent": 309
     },
-    "verdict": "rejected",
-    "reason": "validation t-stat does not clear the deflated bar with the train sign"
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
   },
   {
     "cell_id": "donchian_width|raw|below|20|ret_1|btc|none|daily",
@@ -2212,6 +2289,730 @@
       "year_signs": {
         "2026": 1.0
       }
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "sma_200|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:05:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "sma_20|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:10:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "sma_50|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:15:19Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "stc|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:20:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "trix|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:25:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "vortex_pos|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:30:19Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "wma_20|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:35:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "atr_14|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:40:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "bb_pct|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:45:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "bb_width|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:50:19Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "donchian_width|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T13:55:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "keltner_width|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T14:00:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "adi|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T14:05:19Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "cmf_20|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T14:10:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "eom|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T14:15:19Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "force_13|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T14:20:18Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "mfi_14|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T14:25:19Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "obv|xs_rank|above|90|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T14:30:19Z",
+    "family_n": 1234,
+    "family_combinations": 1234,
+    "deflated_bar": 3.5457,
+    "train_sign": -1,
+    "panel_end": "2026-11-05",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.016806602870911506,
+      "t_newey_west": 0.11076960281930234,
+      "n_independent": 309
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "ema_50|pct_252|above|95|ret_3|btc|none|daily",
+    "attempted_at": "2026-11-12T17:02:58Z",
+    "family_n": 16848,
+    "family_combinations": 324,
+    "deflated_bar": 3.2553,
+    "train_sign": 1,
+    "panel_end": "2026-11-11",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread": -0.0030372659312574183,
+      "spread_independent": 0.00022002218916336146,
+      "t_newey_west": -0.8397162617097791,
+      "n_independent": 55,
+      "n_overlap": 549,
+      "year_signs": {
+        "2024": 1.0,
+        "2025": -1.0
+      }
+    },
+    "test": {
+      "spread": -0.00026449000813226747,
+      "spread_independent": -0.00024598966960881225,
+      "t_newey_west": -0.047240213656259196,
+      "n_independent": 19,
+      "n_overlap": 312,
+      "year_signs": {
+        "2026": -1.0
+      }
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "rsi_14|raw|below|20|rel_3|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T22:57:34Z",
+    "family_n": 411,
+    "family_combinations": 411,
+    "deflated_bar": 3.3069,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "roc_12|z_30|below|5|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:03:31Z",
+    "family_n": 515,
+    "family_combinations": 515,
+    "deflated_bar": 3.3559,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "roc_12|z_30|below|5|ret_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:07:48Z",
+    "family_n": 515,
+    "family_combinations": 515,
+    "deflated_bar": 3.3559,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "kama_10|z_30|below|20|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:12:58Z",
+    "family_n": 1091,
+    "family_combinations": 1091,
+    "deflated_bar": 3.5189,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "kama_10|z_30|below|20|ret_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:17:59Z",
+    "family_n": 1091,
+    "family_combinations": 1091,
+    "deflated_bar": 3.5189,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "roc_12|chg_30|below|5|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:22:58Z",
+    "family_n": 597,
+    "family_combinations": 597,
+    "deflated_bar": 3.388,
+    "train_sign": 1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "roc_12|chg_30|below|5|ret_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:28:45Z",
+    "family_n": 597,
+    "family_combinations": 597,
+    "deflated_bar": 3.388,
+    "train_sign": 1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "rsi_14|raw|below|20|ret_3|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:33:04Z",
+    "family_n": 411,
+    "family_combinations": 411,
+    "deflated_bar": 3.3069,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "rsi_14|xs_rank|below|20|rel_3|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:37:57Z",
+    "family_n": 411,
+    "family_combinations": 411,
+    "deflated_bar": 3.3069,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "rsi_14|xs_rank|below|20|ret_3|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:40:18Z",
+    "family_n": 411,
+    "family_combinations": 411,
+    "deflated_bar": 3.3069,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "rsi_14|z_30|below|10|rel_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:45:18Z",
+    "family_n": 751,
+    "family_combinations": 751,
+    "deflated_bar": 3.4378,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
+    },
+    "verdict": "void: scored on the pre-S7 scorer",
+    "reason": "validation t-stat does not clear the deflated bar with the train sign",
+    "void_before": "a768397"
+  },
+  {
+    "cell_id": "rsi_14|z_30|below|10|ret_1|pit_cross_section|none|daily",
+    "attempted_at": "2026-11-12T23:50:18Z",
+    "family_n": 751,
+    "family_combinations": 751,
+    "deflated_bar": 3.4378,
+    "train_sign": -1,
+    "panel_end": "2026-11-06",
+    "library_version": "1.0.0",
+    "validation": {
+      "spread_independent": -0.0349002513388857,
+      "t_newey_west": -0.26491765650322513,
+      "n_independent": 549
+    },
+    "test": {
+      "spread_independent": 0.014158279885259088,
+      "t_newey_west": 0.09360306412939899,
+      "n_independent": 310
     },
     "verdict": "rejected",
     "reason": "validation t-stat does not clear the deflated bar with the train sign"
