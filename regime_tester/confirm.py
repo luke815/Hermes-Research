@@ -117,15 +117,17 @@ def _period_score(signal, forward, horizon, years, index, start, end):
 
 def score_periods(cell_id):
     """Validation and test for one cell. Does not read the leaderboard."""
+    if "pit_cross_section" in cell_id:
+        return _score_cross_section({"id": cell_id, "universe": "pit_cross_section"})
     cell = parse_cell_id(cell_id)
     frames = load_full_frames()
     if frames["BTC"].index.max() <= TRAIN_END:
         raise RuntimeError("the series ends at or before the train end")
-    token = "BTC" if cell["universe"] == "btc" else "ETH"
     if cell["universe"] == "pooled_majors":
         raise ValueError("pooled confirmation is not in this procedure yet")
     if cell["universe"] == "pit_cross_section":
         return _score_cross_section(cell)
+    token = "BTC" if cell["universe"] == "btc" else "ETH"
     frame = frames[token]
     computed = indicators(frame)
     if cell["measure"] not in computed.columns:
