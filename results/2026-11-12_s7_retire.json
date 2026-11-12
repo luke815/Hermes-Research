@@ -1,0 +1,35 @@
+{
+  "candidate": "s7_vectorized_scorer_retire",
+  "date": "2026-11-12",
+  "verdict": "recorded, not admitted",
+  "reason": "The per-cell cross-section scorer is retired. The sweep daemon now scores one measure per cycle as matrix operations and writes a distinct row per cell. No cell is confirmed and nothing is admitted.",
+  "retired": {
+    "script": "scripts/sweep_xs.py",
+    "old_behavior": "one cell per minute, and every measure recorded the same 14-day return signal",
+    "old_rows": "results/sweeps/2026-11-12_xs.csv holds 47 measures with one identical spread, 0.25456, under 47 names",
+    "new_output": "results/sweeps/2026-11-12_xs_vec.csv"
+  },
+  "measured": {
+    "names": 380,
+    "train_end": "2024-06-30",
+    "train_days": 1636,
+    "measures_scorable": 27,
+    "measures_skipped_no_high_low": 20,
+    "cells_per_measure": 396,
+    "seconds_per_measure": 71.4,
+    "cells_per_hour": 19966,
+    "target_cells_per_hour": 5000,
+    "first_daemon_cycle_seconds": 224.0,
+    "zscore_cut_check": "match to 1e-9 on 2023-02-03, 148 names"
+  },
+  "daemon": {
+    "pid": 12353,
+    "started": "2026-11-12T22:54:46Z",
+    "first_measure": "roc_12",
+    "rows_written": 792,
+    "remaining_measures": 25
+  },
+  "tests_since_last_admission": 53,
+  "panel_end": "2026-11-11",
+  "panel_age_days": 1
+}

@@ -4,9 +4,9 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 ## Queue
 
-S7 is first. At 69 cells an hour the cross-sectional pass takes two months, so nothing in the research queue runs until the vectorized scorer replaces the per-cell one.
+S8 is first. S7 is done: the per-cell cross-section scorer is retired.
 
-- S7. Vectorized scorer with the correctness gate and multiprocessing. Two runs, one done. Verdict 2026-11-12: recorded, not admitted. The gate passes: on 50 cells the vectorized rank IC and decile spread match the per-cell scorer to machine precision (largest gap 9.99e-16 on 40 names over 400 days), the lookahead test passes, and early bars stay empty. One measure across three horizons takes 5.74 seconds on 40 names and 2,003 dates, which is 67,728 cells an hour against a target of 5,000. The parallel scorer returns the same rows as the single-process one. The sweep daemon still runs the old scorer, and retiring it is the second run. results/2026-11-12_s7_vectorized_scorer.json.
+- S7. Vectorized scorer with the correctness gate and multiprocessing. Both runs done. Verdict 2026-11-12: recorded, not admitted. Run one passed the correctness gate at 67,728 cells an hour. Run two retired the per-cell scorer, which wrote one identical spread under 47 measure names. The daemon now scores one measure per cycle as matrix operations, 396 distinct cells in 71.4 seconds, which is 19,966 cells an hour on 380 names. results/2026-11-12_s7_retire.json.
 - S8. The derivatives and options family in the library, market level, with tests; cells re-enumerated. One run.
 
 Revised by research/RESEARCH_LOOP.md section 8. D1 comes before everything else because every cross-sectional item depends on it.
