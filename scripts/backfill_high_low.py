@@ -30,7 +30,11 @@ def backfill(name):
     symbol = name.replace("binance_", "").replace(".csv", "")
     url = ("https://fapi.binance.com/fapi/v1/klines?symbol=" + quote(symbol, safe="")
            + "&interval=1d&limit=1500")
-    got = json.loads(rate_budget.get(url, timeout=30))
+    try:
+        got = json.loads(rate_budget.get(url, timeout=30))
+    except Exception as exc:  # noqa: BLE001
+        print(f"skip {symbol}: {exc}", flush=True)
+        return 0
     bars = {datetime.fromtimestamp(row[0] / 1000, timezone.utc).strftime("%Y-%m-%d"):
             (float(row[2]), float(row[3])) for row in got}
     path = os.path.join(PANEL, name)
