@@ -1,0 +1,145 @@
+{
+  "date": "2026-11-13",
+  "candidate": "d1_bybit_prices_451_500",
+  "verdict": "recorded, not admitted",
+  "bound": "450 < days <= 500",
+  "names_count": 13,
+  "listed_days": 6223,
+  "saved_days": 6223,
+  "all_match": true,
+  "failures": [],
+  "empty_archive_days": [],
+  "archive_gaps": {},
+  "checks": {
+    "dates_sorted_unique": true,
+    "span_ends_match": true,
+    "ohlc_bounds_ok": true,
+    "rows_equal_listed": true,
+    "calendar_gaps_inside_span": 0
+  },
+  "names": [
+    {
+      "symbol": "SUNDOGUSDT",
+      "span_first": "2024-08-26",
+      "span_last": "2025-11-26",
+      "span_days": 458,
+      "listed_days": 458,
+      "saved_days": 458,
+      "match": true
+    },
+    {
+      "symbol": "GUSDT",
+      "span_first": "2024-07-25",
+      "span_last": "2025-10-26",
+      "span_days": 459,
+      "listed_days": 459,
+      "saved_days": 459,
+      "match": true
+    },
+    {
+      "symbol": "AVAILUSDT",
+      "span_first": "2024-07-23",
+      "span_last": "2025-10-26",
+      "span_days": 461,
+      "listed_days": 461,
+      "saved_days": 461,
+      "match": true
+    },
+    {
+      "symbol": "1000000PEIPEIUSDT",
+      "span_first": "2024-07-04",
+      "span_last": "2025-10-17",
+      "span_days": 471,
+      "listed_days": 471,
+      "saved_days": 471,
+      "match": true
+    },
+    {
+      "symbol": "1000XUSDT",
+      "span_first": "2024-10-25",
+      "span_last": "2026-02-11",
+      "span_days": 475,
+      "listed_days": 475,
+      "saved_days": 475,
+      "match": true
+    },
+    {
+      "symbol": "SDUSDT",
+      "span_first": "2024-11-14",
+      "span_last": "2026-03-06",
+      "span_days": 478,
+      "listed_days": 478,
+      "saved_days": 478,
+      "match": true
+    },
+    {
+      "symbol": "COOKUSDT",
+      "span_first": "2024-12-02",
+      "span_last": "2026-03-27",
+      "span_days": 481,
+      "listed_days": 481,
+      "saved_days": 481,
+      "match": true
+    },
+    {
+      "symbol": "AGIXUSDT",
+      "span_first": "2023-02-09",
+      "span_last": "2024-06-07",
+      "span_days": 485,
+      "listed_days": 485,
+      "saved_days": 485,
+      "match": true
+    },
+    {
+      "symbol": "FETUSDT",
+      "span_first": "2023-02-09",
+      "span_last": "2024-06-07",
+      "span_days": 485,
+      "listed_days": 485,
+      "saved_days": 485,
+      "match": true
+    },
+    {
+      "symbol": "A8USDT",
+      "span_first": "2024-07-22",
+      "span_last": "2025-11-21",
+      "span_days": 488,
+      "listed_days": 488,
+      "saved_days": 488,
+      "match": true
+    },
+    {
+      "symbol": "TAIUSDT",
+      "span_first": "2024-11-14",
+      "span_last": "2026-03-19",
+      "span_days": 491,
+      "listed_days": 491,
+      "saved_days": 491,
+      "match": true
+    },
+    {
+      "symbol": "ALEOUSDT",
+      "span_first": "2024-09-19",
+      "span_last": "2026-01-24",
+      "span_days": 493,
+      "listed_days": 493,
+      "saved_days": 493,
+      "match": true
+    },
+    {
+      "symbol": "SPECUSDT",
+      "span_first": "2024-05-27",
+      "span_last": "2025-10-06",
+      "span_days": 498,
+      "listed_days": 498,
+      "saved_days": 498,
+      "match": true
+    }
+  ],
+  "stopped_remaining": 142,
+  "stopped_remaining_days": 131851,
+  "not_touched": "the other 142 stopped names (501 or more listed days), funding, open interest, liquidations",
+  "tests_since_last_admission": 53,
+  "score_unchanged": true,
+  "source_run": "results/2026-11-13_d1_bybit_prices_451_500_all.json"
+}
