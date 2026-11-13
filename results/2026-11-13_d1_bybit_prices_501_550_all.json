@@ -1,0 +1,144 @@
+{
+  "date": "2026-11-13",
+  "bound": "500 < days <= 550",
+  "names": [
+    {
+      "symbol": "IPUSDT",
+      "span_first": "2025-02-07",
+      "span_last": "2026-06-26",
+      "span_days": 505,
+      "listed_days": 505,
+      "saved_days": 505,
+      "match": true
+    },
+    {
+      "symbol": "10000QUBICUSDT",
+      "span_first": "2024-12-24",
+      "span_last": "2026-05-14",
+      "span_days": 507,
+      "listed_days": 507,
+      "saved_days": 507,
+      "match": true
+    },
+    {
+      "symbol": "ROAMUSDT",
+      "span_first": "2025-03-07",
+      "span_last": "2026-07-27",
+      "span_days": 508,
+      "listed_days": 508,
+      "saved_days": 508,
+      "match": true
+    },
+    {
+      "symbol": "OSMOUSDT",
+      "span_first": "2024-05-30",
+      "span_last": "2025-10-21",
+      "span_days": 510,
+      "listed_days": 510,
+      "saved_days": 510,
+      "match": true
+    },
+    {
+      "symbol": "MASAUSDT",
+      "span_first": "2024-05-21",
+      "span_last": "2025-10-18",
+      "span_days": 516,
+      "listed_days": 516,
+      "saved_days": 516,
+      "match": true
+    },
+    {
+      "symbol": "HIPPOUSDT",
+      "span_first": "2024-11-14",
+      "span_last": "2026-04-16",
+      "span_days": 519,
+      "listed_days": 519,
+      "saved_days": 519,
+      "match": true
+    },
+    {
+      "symbol": "OMNIUSDT",
+      "span_first": "2024-04-17",
+      "span_last": "2025-09-24",
+      "span_days": 526,
+      "listed_days": 526,
+      "saved_days": 526,
+      "match": true
+    },
+    {
+      "symbol": "SOLVUSDT",
+      "span_first": "2025-01-17",
+      "span_last": "2026-06-26",
+      "span_days": 526,
+      "listed_days": 526,
+      "saved_days": 526,
+      "match": true
+    },
+    {
+      "symbol": "DATAOLD01USDT",
+      "span_first": "2023-12-20",
+      "span_last": "2025-05-29",
+      "span_days": 527,
+      "listed_days": 527,
+      "saved_days": 527,
+      "match": true
+    },
+    {
+      "symbol": "MOBILEUSDT",
+      "span_first": "2024-02-22",
+      "span_last": "2025-08-01",
+      "span_days": 527,
+      "listed_days": 527,
+      "saved_days": 527,
+      "match": true
+    },
+    {
+      "symbol": "PRCLUSDT",
+      "span_first": "2024-07-17",
+      "span_last": "2025-12-26",
+      "span_days": 528,
+      "listed_days": 528,
+      "saved_days": 528,
+      "match": true
+    },
+    {
+      "symbol": "CREAMUSDT",
+      "span_first": "2022-01-17",
+      "span_last": "2023-06-30",
+      "span_days": 530,
+      "listed_days": 530,
+      "saved_days": 530,
+      "match": true
+    },
+    {
+      "symbol": "TSTBSCUSDT",
+      "span_first": "2025-02-09",
+      "span_last": "2026-07-27",
+      "span_days": 534,
+      "listed_days": 534,
+      "saved_days": 534,
+      "match": true
+    },
+    {
+      "symbol": "COSUSDT",
+      "span_first": "2024-05-09",
+      "span_last": "2025-10-26",
+      "span_days": 536,
+      "listed_days": 536,
+      "saved_days": 536,
+      "match": true
+    },
+    {
+      "symbol": "1000000CHEEMSUSDT",
+      "span_first": "2024-11-25",
+      "span_last": "2026-05-28",
+      "span_days": 550,
+      "listed_days": 550,
+      "saved_days": 550,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": [],
+  "note": "DATAOLD01USDT archive redirects to DATAUSDT; files named DATAUSDT<date>.csv.gz, saved under the span symbol."
+}
