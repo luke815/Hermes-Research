@@ -28,8 +28,9 @@ from ta.volume import (
     AccDistIndexIndicator, ChaikinMoneyFlowIndicator, EaseOfMovementIndicator,
     ForceIndexIndicator, MFIIndicator, OnBalanceVolumeIndicator,
 )
+from regime_tester.derivatives import DERIVATIVES_META, market_measures
 
-LIBRARY_VERSION = "1.0.0"
+LIBRARY_VERSION = "1.1.0"
 
 # name -> (family, inputs, minimum history, kind)
 META = {
@@ -81,19 +82,35 @@ META = {
     "breadth": ("breadth", ["breadth"], 1, "level"),
     "funding_dispersion": ("cross_venue", ["funding_dispersion"], 1, "level"),
     "dvol_level": ("options", ["dvol"], 1, "level"),
-    "dvol_chg_7": ("options", ["dvol"], 8, "change"),
-    "dvol_minus_rv30": ("options", ["dvol", "realized_vol"], 30, "spread"),
+    "dvol_chg_7": ("options", ["dvol"], 8, "oscillator"),
+    "dvol_pct_252": ("options", ["dvol"], 30, "oscillator"),
+    "dvol_minus_rv30": ("options", ["dvol", "realized_vol"], 30, "level"),
+    "atm_iv_7": ("options", ["atm_iv"], 1, "level"),
     "atm_iv_30": ("options", ["atm_iv"], 1, "level"),
-    "atm_term_slope": ("options", ["atm_iv"], 1, "slope"),
+    "atm_iv_90": ("options", ["atm_iv"], 1, "level"),
+    "atm_term_slope": ("options", ["atm_iv"], 1, "level"),
+    "atm_inversion": ("options", ["atm_iv"], 1, "flag"),
+    "skew_25d_7": ("options", ["skew"], 1, "level"),
     "skew_25d_30": ("options", ["skew"], 1, "level"),
-    "skew_chg_5": ("options", ["skew"], 6, "change"),
+    "skew_25d_90": ("options", ["skew"], 1, "level"),
+    "skew_chg_5": ("options", ["skew"], 6, "oscillator"),
+    "skew_term_slope": ("options", ["skew"], 1, "level"),
     "risk_reversal_30": ("options", ["risk_reversal"], 1, "level"),
-    "basis_1m": ("derivatives", ["basis"], 1, "level"),
-    "basis_slope": ("derivatives", ["basis"], 1, "slope"),
+    "basis_venue": ("derivatives", ["basis"], 1, "level"),
+    "basis_pct_252": ("derivatives", ["basis"], 30, "oscillator"),
+    "perp_premium": ("derivatives", ["basis"], 1, "level"),
     "funding_oiw": ("derivatives", ["funding"], 1, "level"),
-    "funding_oiw_avg_7": ("derivatives", ["funding"], 7, "average"),
-    "rv_ratio_7_30": ("derivatives", ["close"], 30, "ratio"),
+    "funding_oiw_avg_7": ("derivatives", ["funding"], 7, "level"),
+    "funding_persist_high_oiw": ("derivatives", ["funding"], 30, "count"),
+    "funding_persist_low_oiw": ("derivatives", ["funding"], 30, "count"),
+    "funding_dispersion_oiw": ("derivatives", ["funding"], 1, "level"),
+    "rv_7": ("derivatives", ["close"], 7, "level"),
+    "rv_30": ("derivatives", ["close"], 30, "level"),
+    "rv_ratio_7_30": ("derivatives", ["close"], 30, "level"),
+    "vol_of_vol_30": ("derivatives", ["close"], 60, "level"),
 }
+META.update({f"{name}_{asset}": meta for name, meta in DERIVATIVES_META.items()
+             for asset in ("btc", "eth")})
 
 
 def _col(frame, name):
@@ -317,10 +334,23 @@ def indicators(frame):
         out["breadth"] = frame["breadth"]
     if _col(frame, "funding_dispersion") is not None:
         out["funding_dispersion"] = frame["funding_dispersion"]
-    for name in ("dvol", "atm_iv", "skew", "risk_reversal", "basis"):
-        if _col(frame, name) is not None:
-            out[name] = frame[name]
+    for name in DERIVATIVES_META:
+        for asset in ("btc", "eth"):
+            column = f"{name}_{asset}"
+            if _col(frame, column) is not None:
+                out[column] = frame[column]
     return pd.DataFrame(out, index=frame.index)
+
+
+def market_indicators():
+    """The derivatives and options measures, one column per asset.
+
+    Reads the raw store, so it is separate from indicators(frame), which only
+    passes through columns the caller already has. A series the store does not
+    hold is absent.
+    """
+    frame = market_measures()
+    return indicators(frame) if len(frame.columns) else frame
 
 
 def metadata():

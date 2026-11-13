@@ -1,0 +1,47 @@
+{
+ "item": "S8",
+ "verdict": "recorded, not admitted",
+ "ran_at": "2026-11-13T00:08:19Z",
+ "library_version": "1.1.0",
+ "tests": "tests/test_derivatives.py tests/test_indicators.py: 21 passed",
+ "measures": {
+  "options": 15,
+  "derivatives": 12,
+  "per_asset": [
+   "btc",
+   "eth"
+  ],
+  "total_columns": 54
+ },
+ "absent": {
+  "basis_tenor_curve": "7 days in the store, below the 40-day minimum history",
+  "butterfly": "no series served",
+  "put_call_ratio": "get_market_positioning_history returns a server error",
+  "sol": "not in the raw store",
+  "hyperliquid_aggregate": "no aggregate series on disk",
+  "oi_change_on_down_days": "no total futures open interest history on disk"
+ },
+ "cells_before": {
+  "cells": 1355200,
+  "testable": 440440,
+  "library_version": "1.0.0"
+ },
+ "cells_after": {
+  "cells": 3688000,
+  "testable": 788200,
+  "skipped": 2899800,
+  "duplicate_ids": 0,
+  "options": {
+   "cells": 1296000,
+   "testable": 192240,
+   "skipped": 1103760
+  },
+  "derivatives": {
+   "cells": 1036800,
+   "testable": 155520,
+   "skipped": 881280
+  }
+ },
+ "cross_section_cells": 159960,
+ "note": "Market-level cells are testable on btc and eth only. Pooled and cross-section cells for these measures are skipped as market_level_only, because the series does not exist for the other names."
+}

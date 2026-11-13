@@ -4,10 +4,11 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 ## Queue
 
-S8 is first. S7 is done: the per-cell cross-section scorer is retired.
+S8 is done. Next is D2, the per-name derivatives measures, which needs the per-exchange pull first.
+
+- S8. The derivatives and options family in the library, market level, with tests; cells re-enumerated. Verdict 2026-11-13: recorded, not admitted. 27 measures for BTC and ETH, 54 columns, library 1.1.0. Cells went from 1,355,200 to 3,688,000, of which 788,200 are testable and none are duplicates. The tenor basis curve, the butterfly, the put-call ratio, SOL and the Hyperliquid aggregate are absent because the store does not hold them. results/2026-11-13_s8_derivatives.json.
 
 - S7. Vectorized scorer with the correctness gate and multiprocessing. Both runs done. Verdict 2026-11-12: recorded, not admitted. Run one passed the correctness gate at 67,728 cells an hour. Run two retired the per-cell scorer, which wrote one identical spread under 47 measure names. The daemon now scores one measure per cycle as matrix operations, 396 distinct cells in 71.4 seconds, which is 19,966 cells an hour on 380 names. results/2026-11-12_s7_retire.json.
-- S8. The derivatives and options family in the library, market level, with tests; cells re-enumerated. One run.
 
 Revised by research/RESEARCH_LOOP.md section 8. D1 comes before everything else because every cross-sectional item depends on it.
 

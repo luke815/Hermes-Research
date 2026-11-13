@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-11-05T13:01:53Z",
-  "library_version": "1.0.0",
+  "as_of": "2026-11-13T00:07:58Z",
+  "library_version": "1.1.0",
   "train_end": "2024-06-30",
   "panel": {
-    "panel_rows": 2480,
-    "panel_end": "2026-11-04",
+    "panel_rows": 2487,
+    "panel_end": "2026-11-11",
     "train_rows": 1623,
     "train_start": "2020-01-21",
     "columns": [
@@ -20,6 +20,64 @@
       "eth_funding",
       "eth_price",
       "oi_spread"
+    ],
+    "pit_names": 395,
+    "pooled_episodes": true,
+    "derivatives_measures": [
+      "atm_inversion_btc",
+      "atm_inversion_eth",
+      "atm_iv_30_btc",
+      "atm_iv_30_eth",
+      "atm_iv_7_btc",
+      "atm_iv_7_eth",
+      "atm_iv_90_btc",
+      "atm_iv_90_eth",
+      "atm_term_slope_btc",
+      "atm_term_slope_eth",
+      "basis_pct_252_btc",
+      "basis_pct_252_eth",
+      "basis_venue_btc",
+      "basis_venue_eth",
+      "dvol_chg_7_btc",
+      "dvol_chg_7_eth",
+      "dvol_level_btc",
+      "dvol_level_eth",
+      "dvol_minus_rv30_btc",
+      "dvol_minus_rv30_eth",
+      "dvol_pct_252_btc",
+      "dvol_pct_252_eth",
+      "funding_dispersion_oiw_btc",
+      "funding_dispersion_oiw_eth",
+      "funding_oiw_avg_7_btc",
+      "funding_oiw_avg_7_eth",
+      "funding_oiw_btc",
+      "funding_oiw_eth",
+      "funding_persist_high_oiw_btc",
+      "funding_persist_high_oiw_eth",
+      "funding_persist_low_oiw_btc",
+      "funding_persist_low_oiw_eth",
+      "perp_premium_btc",
+      "perp_premium_eth",
+      "risk_reversal_30_btc",
+      "risk_reversal_30_eth",
+      "rv_30_btc",
+      "rv_30_eth",
+      "rv_7_btc",
+      "rv_7_eth",
+      "rv_ratio_7_30_btc",
+      "rv_ratio_7_30_eth",
+      "skew_25d_30_btc",
+      "skew_25d_30_eth",
+      "skew_25d_7_btc",
+      "skew_25d_7_eth",
+      "skew_25d_90_btc",
+      "skew_25d_90_eth",
+      "skew_chg_5_btc",
+      "skew_chg_5_eth",
+      "skew_term_slope_btc",
+      "skew_term_slope_eth",
+      "vol_of_vol_30_btc",
+      "vol_of_vol_30_eth"
     ]
   },
   "grids": {
@@ -88,56 +146,67 @@
       "1h"
     ]
   },
-  "cells": 1355200,
-  "testable": 304920,
-  "skipped": 1050280,
+  "cells": 3688000,
+  "testable": 788200,
+  "skipped": 2899800,
   "by_family": {
     "breadth": {
       "cells": 28800,
-      "testable": 6480,
-      "skipped": 22320
+      "testable": 9360,
+      "skipped": 19440
     },
     "cross_venue": {
       "cells": 28800,
-      "testable": 6480,
-      "skipped": 22320
+      "testable": 9360,
+      "skipped": 19440
     },
     "cycle": {
       "cells": 144000,
-      "testable": 32400,
-      "skipped": 111600
+      "testable": 46800,
+      "skipped": 97200
+    },
+    "derivatives": {
+      "cells": 1036800,
+      "testable": 155520,
+      "skipped": 881280
     },
     "momentum": {
       "cells": 201600,
-      "testable": 45360,
-      "skipped": 156240
+      "testable": 65520,
+      "skipped": 136080
+    },
+    "options": {
+      "cells": 1296000,
+      "testable": 192240,
+      "skipped": 1103760
     },
     "positioning": {
       "cells": 115200,
-      "testable": 25920,
-      "skipped": 89280
+      "testable": 37440,
+      "skipped": 77760
     },
     "trend": {
       "cells": 520000,
-      "testable": 117000,
-      "skipped": 403000
+      "testable": 169000,
+      "skipped": 351000
     },
     "volatility": {
       "cells": 144000,
-      "testable": 32400,
-      "skipped": 111600
+      "testable": 46800,
+      "skipped": 97200
     },
     "volume": {
       "cells": 172800,
-      "testable": 38880,
-      "skipped": 133920
+      "testable": 56160,
+      "skipped": 116640
     }
   },
   "skip_reasons": {
-    "min_episodes": 135520,
-    "min_history": 813120,
-    "no_pit_universe": 338800,
-    "no_store": 813120
+    "market_level_only": 777600,
+    "min_episodes": 276600,
+    "min_history": 2241600,
+    "no_store": 2212800,
+    "wrong_asset": 388800
   },
   "duplicate_ids": 0,
   "cell_ids_sample": [

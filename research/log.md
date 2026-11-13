@@ -1,8 +1,12 @@
 # Research log
 
-Each round: date, candidate, transform, horizon, in-sample, out-of-sample, correlation with existing factors, decision, reason.
+## 2026-11-13 — S8, derivatives and options family
 
-The record below covers work done before this log existed, reconstructed from the session. Figures are the ones reported at the time.
+Recorded, not admitted. No cell was scored, so nothing is admitted.
+
+Library 1.1.0 adds 27 market-level measures, 15 options and 12 derivatives, computed for BTC and ETH from the raw store. 54 columns. The re-enumeration counts 3,688,000 cells, 788,200 testable, no duplicate ids, against 1,355,200 and 440,440 before. The options family holds 1,296,000 cells, 192,240 testable. The derivatives family holds 1,036,800 cells, 155,520 testable. results/2026-11-13_s8_derivatives.json.
+
+Absent, and said so rather than filled: the tenor basis curve (7 days in the store), the butterfly (not served), the put-call ratio (the endpoint returns a server error), SOL (not in the store), the Hyperliquid aggregate and the open-interest change on down days (no total futures open interest history on disk). These measures are testable on BTC and ETH only. Scoring them on the pooled names or the cross-section would invent values for the names the store does not cover, so those cells are skipped.
 
 ## 2026-10-19 to 2026-10-26, reconstructed
 

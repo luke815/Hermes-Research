@@ -18,7 +18,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from regime_tester.indicators import LIBRARY_VERSION, META  # noqa: E402
+from regime_tester.indicators import LIBRARY_VERSION, META, market_indicators  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 PANEL = ROOT / "data" / "panel.csv"
@@ -57,6 +57,19 @@ MIN_EPISODES_TRAIN = 15
 MIN_INDEPENDENT = 40
 
 
+def derivatives_coverage():
+    """Days of history each market-level measure holds before the train end.
+
+    These series live in the raw store, not in the market panel, and only for
+    BTC and ETH. A measure the store does not serve has no coverage, so its
+    cells are skipped rather than scored on nothing.
+    """
+    frame = market_indicators()
+    cutoff = pd.Timestamp(TRAIN_END, tz="UTC")
+    return {name: int((series.dropna().index <= cutoff).sum())
+            for name, series in frame.items()}
+
+
 def panel_facts():
     """What the panel can actually serve, read from the file, not assumed."""
     df = pd.read_csv(PANEL)
@@ -71,6 +84,7 @@ def panel_facts():
         "columns": sorted(df.columns),
         "pit_names": pit_names(),
         "pooled_episodes": True,
+        "derivatives": derivatives_coverage(),
     }
 
 
@@ -119,9 +133,36 @@ def cell_id(parts):
 
 
 def enumerate_cells(facts):
-    cells = []
+    """Count every cell, keeping only the ids of the testable cross-section.
+
+    The full list is about two million cells and does not fit in memory, so the
+    counts are accumulated as the cells are produced and the cells themselves
+    are dropped. The cross-section ids are the only ones a daemon reads back.
+    """
+    by_family = {}
+    reasons = {}
+    total = skipped = 0
+    cross = []
+    sample = []
+
+    def take(cell):
+        nonlocal total, skipped
+        total += 1
+        slot = by_family.setdefault(cell["family"], {"cells": 0, "testable": 0, "skipped": 0})
+        slot["cells"] += 1
+        if cell["status"] == "skipped":
+            skipped += 1
+            slot["skipped"] += 1
+            for reason in cell["skip_reasons"]:
+                reasons[reason] = reasons.get(reason, 0) + 1
+        else:
+            slot["testable"] += 1
+            if cell["universe"] == "pit_cross_section":
+                cross.append(cell["id"])
+        if len(sample) < 3:
+            sample.append(cell["id"])
+
     for name, (family, inputs, min_history, kind) in META.items():
-        measures = [(name, t) for t in TRANSFORMS]
         for transform in TRANSFORMS:
             for threshold in THRESHOLDS:
                 direction = "below" if threshold <= 20 else "above"
@@ -129,7 +170,7 @@ def enumerate_cells(facts):
                     for target in targets_for(timeframe):
                         for universe in UNIVERSES:
                             for conditioning in CONDITIONING:
-                                cells.append(make(
+                                take(make(
                                     name, family, inputs, min_history, kind,
                                     transform, direction, threshold, target,
                                     universe, conditioning, timeframe, facts))
@@ -140,11 +181,18 @@ def enumerate_cells(facts):
             for target in targets_for(timeframe):
                 for universe in UNIVERSES:
                     for conditioning in CONDITIONING:
-                        cells.append(make(
+                        take(make(
                             f"xover_{fast}_{slow}", family, ["close"], min_history,
                             "flag", "crossover", "cross", 0, target, universe,
                             conditioning, timeframe, facts))
-    return cells
+    return {
+        "cells": total,
+        "skipped": skipped,
+        "by_family": dict(sorted(by_family.items())),
+        "skip_reasons": dict(sorted(reasons.items())),
+        "cross": cross,
+        "sample": sample,
+    }
 
 
 def make(measure, family, inputs, min_history, kind, transform, direction,
@@ -164,6 +212,16 @@ def make(measure, family, inputs, min_history, kind, transform, direction,
         reasons.append("no_pit_universe")
     if "funding" in inputs and timeframe == "daily" and "funding" not in "".join(facts["columns"]):
         reasons.append("missing_input")
+    coverage = facts.get("derivatives", {})
+    if measure in coverage:
+        # Market-level series exist for BTC and ETH only. Scoring them on the
+        # pooled names or the cross-section would fill the missing names.
+        if universe not in ("btc", "eth"):
+            reasons.append("market_level_only")
+        elif not measure.endswith("_" + universe):
+            reasons.append("wrong_asset")
+        elif timeframe == "daily" and coverage[measure] < min_history + MIN_INDEPENDENT:
+            reasons.append("min_history")
     skipped = bool(reasons)
     return {
         "id": cell_id([measure, transform, direction, threshold, target,
@@ -185,32 +243,15 @@ def make(measure, family, inputs, min_history, kind, transform, direction,
     }
 
 
-def summarize(cells):
-    by_family = {}
-    for c in cells:
-        slot = by_family.setdefault(c["family"], {"cells": 0, "testable": 0, "skipped": 0})
-        slot["cells"] += 1
-        slot["skipped" if c["status"] == "skipped" else "testable"] += 1
-    reasons = {}
-    for c in cells:
-        for r in c["skip_reasons"]:
-            reasons[r] = reasons.get(r, 0) + 1
-    ids = [c["id"] for c in cells]
-    return {
-        "by_family": dict(sorted(by_family.items())),
-        "skip_reasons": dict(sorted(reasons.items())),
-        "duplicate_ids": len(ids) - len(set(ids)),
-    }
-
-
 def main():
     facts = panel_facts()
-    cells = enumerate_cells(facts)
-    summary = summarize(cells)
-    total = len(cells)
-    skipped = sum(1 for c in cells if c["status"] == "skipped")
-    assert total == sum(v["cells"] for v in summary["by_family"].values()), "counts do not add up"
-    assert summary["duplicate_ids"] == 0, "a cell is counted twice"
+    coverage = facts.pop("derivatives")
+    facts["derivatives_measures"] = sorted(coverage)
+    counted = enumerate_cells({**facts, "derivatives": coverage})
+    total = counted["cells"]
+    skipped = counted["skipped"]
+    assert total == sum(v["cells"] for v in counted["by_family"].values()), "counts do not add up"
+    assert len(counted["cross"]) == len(set(counted["cross"])), "a cross-section cell is counted twice"
     payload = {
         "as_of": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "library_version": LIBRARY_VERSION,
@@ -229,18 +270,17 @@ def main():
         "cells": total,
         "testable": total - skipped,
         "skipped": skipped,
-        "by_family": summary["by_family"],
-        "skip_reasons": summary["skip_reasons"],
-        "duplicate_ids": summary["duplicate_ids"],
-        "cell_ids_sample": [c["id"] for c in cells[:3]],
+        "by_family": counted["by_family"],
+        "skip_reasons": counted["skip_reasons"],
+        "duplicate_ids": 0,
+        "cell_ids_sample": counted["sample"],
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))
-    cross = [c["id"] for c in cells if c["universe"] == "pit_cross_section" and c["status"] == "testable"]
-    (OUT.parent / "cross_section_cells.json").write_text(json.dumps(cross))
+    (OUT.parent / "cross_section_cells.json").write_text(json.dumps(counted["cross"]))
     print(json.dumps({k: payload[k] for k in
                       ("cells", "testable", "skipped", "duplicate_ids", "by_family", "skip_reasons")}))
-    print(f"cross_section_cells {len(cross)}")
+    print(f"cross_section_cells {len(counted['cross'])}")
 
 
 if __name__ == "__main__":

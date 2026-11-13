@@ -36,7 +36,7 @@ def frame(n=400, seed=7):
 
 class LibraryTests(unittest.TestCase):
     def test_version_and_metadata_cover_every_column(self):
-        self.assertEqual(LIBRARY_VERSION, "1.0.0")
+        self.assertEqual(LIBRARY_VERSION, "1.1.0")
         out = indicators(frame())
         self.assertTrue(set(out.columns) <= set(META))
         self.assertGreater(len(out.columns), 30)
