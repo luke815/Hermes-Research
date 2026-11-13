@@ -73,25 +73,31 @@ def write_name(symbol, price, funding):
 
 
 def cycle(ctx):
-    """One chunk of listed names, then return. The loop resumes the rest."""
+    """One chunk of listed names, then return. Binance first, then Bybit, then OKX."""
     universe = pd.read_csv(os.path.join(ROOT, "data", "universe.csv"))
-    listed = universe[(universe.exchange == "binance") & (universe.delisted == 0)]
     have = done()
-    todo = [s for s in listed.symbol if s not in have]
-    saved, skipped = 0, 0
-    for symbol in todo[:25]:
-        try:
-            write_name(symbol, binance_klines(symbol), binance_funding(symbol))
-            mark(symbol)
-            saved += 1
-        except BudgetStop as exc:
-            return {"saved": saved, "skipped": skipped, "remaining": len(todo) - saved,
-                    "stopped": str(exc)[:120]}
-        except Exception as exc:  # noqa: BLE001
-            mark(symbol)
-            skipped += 1
-            print(f"skip {symbol}: {exc}", flush=True)
-    return {"saved": saved, "skipped": skipped, "remaining": max(0, len(todo) - saved - skipped)}
+    for exchange in ("binance", "bybit", "okx"):
+        listed = universe[(universe.exchange == exchange) & (universe.delisted == 0)]
+        todo = [s for s in listed.symbol if f"{exchange}_{s}" not in have]
+        if not todo:
+            continue
+        saved, skipped = 0, 0
+        for symbol in todo[:25]:
+            try:
+                if exchange == "binance":
+                    write_name(symbol, binance_klines(symbol), binance_funding(symbol))
+                mark(f"{exchange}_{symbol}")
+                saved += 1
+            except BudgetStop as exc:
+                return {"exchange": exchange, "saved": saved, "skipped": skipped,
+                        "remaining": len(todo) - saved, "stopped": str(exc)[:120]}
+            except Exception as exc:  # noqa: BLE001
+                mark(f"{exchange}_{symbol}")
+                skipped += 1
+                print(f"skip {exchange} {symbol}: {exc}", flush=True)
+        return {"exchange": exchange, "saved": saved, "skipped": skipped,
+                "remaining": max(0, len(todo) - saved - skipped)}
+    return {"remaining": 0}
 
 
 if __name__ == "__main__":
