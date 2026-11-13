@@ -1,0 +1,218 @@
+{
+  "date": "2026-11-13",
+  "candidate": "d1_bybit_prices_401_450",
+  "verdict": "recorded, not admitted",
+  "bound": "400 < days <= 450",
+  "names_count": 20,
+  "listed_days": 8421,
+  "saved_days": 8421,
+  "all_match": true,
+  "failures": [],
+  "empty_archive_days": [
+    {
+      "symbol": "SRMUSDT",
+      "date": "2022-12-12"
+    }
+  ],
+  "archive_gaps": {
+    "SRMUSDT": {
+      "days": 26,
+      "first": "2022-11-16",
+      "last": "2022-12-11",
+      "confirmed_404": 26
+    }
+  },
+  "checks": {
+    "dates_sorted_unique": true,
+    "span_ends_match": true,
+    "ohlc_bounds_ok": true,
+    "rows_equal_listed": true
+  },
+  "names": [
+    {
+      "symbol": "AVLUSDT",
+      "span_first": "2025-02-20",
+      "span_last": "2026-03-27",
+      "span_days": 401,
+      "listed_days": 401,
+      "saved_days": 401,
+      "match": true
+    },
+    {
+      "symbol": "SILLYUSDT",
+      "span_first": "2023-12-27",
+      "span_last": "2025-01-30",
+      "span_days": 401,
+      "listed_days": 401,
+      "saved_days": 401,
+      "match": true
+    },
+    {
+      "symbol": "SRMUSDT",
+      "span_first": "2021-10-11",
+      "span_last": "2022-12-12",
+      "span_days": 402,
+      "listed_days": 402,
+      "saved_days": 402,
+      "match": true
+    },
+    {
+      "symbol": "FTNUSDT",
+      "span_first": "2024-05-16",
+      "span_last": "2025-06-23",
+      "span_days": 404,
+      "listed_days": 404,
+      "saved_days": 404,
+      "match": true
+    },
+    {
+      "symbol": "GPTUSDT",
+      "span_first": "2023-03-17",
+      "span_last": "2024-04-24",
+      "span_days": 405,
+      "listed_days": 405,
+      "saved_days": 405,
+      "match": true
+    },
+    {
+      "symbol": "FOXYUSDT",
+      "span_first": "2024-04-12",
+      "span_last": "2025-05-22",
+      "span_days": 406,
+      "listed_days": 406,
+      "saved_days": 406,
+      "match": true
+    },
+    {
+      "symbol": "ASPUSDT",
+      "span_first": "2025-07-24",
+      "span_last": "2026-09-05",
+      "span_days": 409,
+      "listed_days": 409,
+      "saved_days": 409,
+      "match": true
+    },
+    {
+      "symbol": "PUMPBTCUSDT",
+      "span_first": "2025-06-03",
+      "span_last": "2026-07-20",
+      "span_days": 413,
+      "listed_days": 413,
+      "saved_days": 413,
+      "match": true
+    },
+    {
+      "symbol": "ALUUSDT",
+      "span_first": "2025-01-14",
+      "span_last": "2026-03-06",
+      "span_days": 417,
+      "listed_days": 417,
+      "saved_days": 417,
+      "match": true
+    },
+    {
+      "symbol": "10000000AIDOGEUSDT",
+      "span_first": "2024-03-05",
+      "span_last": "2025-04-28",
+      "span_days": 420,
+      "listed_days": 420,
+      "saved_days": 420,
+      "match": true
+    },
+    {
+      "symbol": "VGXUSDT",
+      "span_first": "2023-08-01",
+      "span_last": "2024-09-24",
+      "span_days": 421,
+      "listed_days": 421,
+      "saved_days": 421,
+      "match": true
+    },
+    {
+      "symbol": "CHESSUSDT",
+      "span_first": "2024-09-02",
+      "span_last": "2025-10-30",
+      "span_days": 424,
+      "listed_days": 424,
+      "saved_days": 424,
+      "match": true
+    },
+    {
+      "symbol": "DOGSUSDT",
+      "span_first": "2024-08-26",
+      "span_last": "2025-10-24",
+      "span_days": 425,
+      "listed_days": 425,
+      "saved_days": 425,
+      "match": true
+    },
+    {
+      "symbol": "NSUSDT",
+      "span_first": "2024-12-20",
+      "span_last": "2026-02-27",
+      "span_days": 435,
+      "listed_days": 435,
+      "saved_days": 435,
+      "match": true
+    },
+    {
+      "symbol": "UXLINKUSDT",
+      "span_first": "2024-07-19",
+      "span_last": "2025-09-26",
+      "span_days": 435,
+      "listed_days": 435,
+      "saved_days": 435,
+      "match": true
+    },
+    {
+      "symbol": "BONDUSDT",
+      "span_first": "2023-10-16",
+      "span_last": "2024-12-24",
+      "span_days": 436,
+      "listed_days": 436,
+      "saved_days": 436,
+      "match": true
+    },
+    {
+      "symbol": "VOXELUSDT",
+      "span_first": "2024-08-21",
+      "span_last": "2025-10-30",
+      "span_days": 436,
+      "listed_days": 436,
+      "saved_days": 436,
+      "match": true
+    },
+    {
+      "symbol": "FWOGUSDT",
+      "span_first": "2024-11-12",
+      "span_last": "2026-01-24",
+      "span_days": 439,
+      "listed_days": 439,
+      "saved_days": 439,
+      "match": true
+    },
+    {
+      "symbol": "MLNUSDT",
+      "span_first": "2025-04-09",
+      "span_last": "2026-06-26",
+      "span_days": 444,
+      "listed_days": 444,
+      "saved_days": 444,
+      "match": true
+    },
+    {
+      "symbol": "QUICKUSDT",
+      "span_first": "2024-09-10",
+      "span_last": "2025-12-01",
+      "span_days": 448,
+      "listed_days": 448,
+      "saved_days": 448,
+      "match": true
+    }
+  ],
+  "stopped_remaining": 155,
+  "stopped_remaining_days": 138074,
+  "not_touched": "the other 155 stopped names (451 or more listed days), funding, open interest, liquidations",
+  "tests_since_last_admission": 53,
+  "score_unchanged": true
+}
