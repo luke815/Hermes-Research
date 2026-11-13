@@ -1,0 +1,280 @@
+{
+  "candidate": "d1_bybit_prices_201_250",
+  "date": "2026-11-13",
+  "source": "https://public.bybit.com/trading/",
+  "bound": "stopped == 1 and 200 < listed days <= 250",
+  "names_in_bound": 23,
+  "rows_saved": 5309,
+  "trades_reduced": 353865482,
+  "part_files": 5309,
+  "empty_archive_days": [
+    {
+      "symbol": "LUNAUSDT",
+      "date": "2022-12-12"
+    }
+  ],
+  "header_failures": [],
+  "script_failures": [],
+  "mismatches": [],
+  "names": [
+    {
+      "symbol": "DOP1USDT",
+      "span_first": "2024-07-10",
+      "span_last": "2025-01-30",
+      "span_days": 205,
+      "saved_days": 205,
+      "parts": 205,
+      "file_first": "2024-07-10",
+      "file_last": "2025-01-30",
+      "match": true
+    },
+    {
+      "symbol": "MILKUSDT",
+      "span_first": "2025-05-06",
+      "span_last": "2025-12-01",
+      "span_days": 210,
+      "saved_days": 210,
+      "parts": 210,
+      "file_first": "2025-05-06",
+      "file_last": "2025-12-01",
+      "match": true
+    },
+    {
+      "symbol": "A2ZUSDT",
+      "span_first": "2025-07-31",
+      "span_last": "2026-02-27",
+      "span_days": 212,
+      "saved_days": 212,
+      "parts": 212,
+      "file_first": "2025-07-31",
+      "file_last": "2026-02-27",
+      "match": true
+    },
+    {
+      "symbol": "LUNAUSDT",
+      "span_first": "2021-10-11",
+      "span_last": "2022-12-12",
+      "span_days": 215,
+      "saved_days": 215,
+      "parts": 215,
+      "file_first": "2021-10-11",
+      "file_last": "2022-12-12",
+      "match": true
+    },
+    {
+      "symbol": "OBOLUSDT",
+      "span_first": "2025-05-07",
+      "span_last": "2025-12-12",
+      "span_days": 220,
+      "saved_days": 220,
+      "parts": 220,
+      "file_first": "2025-05-07",
+      "file_last": "2025-12-12",
+      "match": true
+    },
+    {
+      "symbol": "ORNUSDT",
+      "span_first": "2024-03-11",
+      "span_last": "2024-10-17",
+      "span_days": 221,
+      "saved_days": 221,
+      "parts": 221,
+      "file_first": "2024-03-11",
+      "file_last": "2024-10-17",
+      "match": true
+    },
+    {
+      "symbol": "MOTHERUSDT",
+      "span_first": "2024-08-09",
+      "span_last": "2025-03-18",
+      "span_days": 222,
+      "saved_days": 222,
+      "parts": 222,
+      "file_first": "2024-08-09",
+      "file_last": "2025-03-18",
+      "match": true
+    },
+    {
+      "symbol": "SERAPHUSDT",
+      "span_first": "2025-03-11",
+      "span_last": "2025-10-18",
+      "span_days": 222,
+      "saved_days": 222,
+      "parts": 222,
+      "file_first": "2025-03-11",
+      "file_last": "2025-10-18",
+      "match": true
+    },
+    {
+      "symbol": "CPOOLUSDT",
+      "span_first": "2025-03-06",
+      "span_last": "2025-10-18",
+      "span_days": 227,
+      "saved_days": 227,
+      "parts": 227,
+      "file_first": "2025-03-06",
+      "file_last": "2025-10-18",
+      "match": true
+    },
+    {
+      "symbol": "XTERUSDT",
+      "span_first": "2025-03-06",
+      "span_last": "2025-10-18",
+      "span_days": 227,
+      "saved_days": 227,
+      "parts": 227,
+      "file_first": "2025-03-06",
+      "file_last": "2025-10-18",
+      "match": true
+    },
+    {
+      "symbol": "NULSUSDT",
+      "span_first": "2024-08-27",
+      "span_last": "2025-04-14",
+      "span_days": 231,
+      "saved_days": 231,
+      "parts": 231,
+      "file_first": "2024-08-27",
+      "file_last": "2025-04-14",
+      "match": true
+    },
+    {
+      "symbol": "CAMPUSDT",
+      "span_first": "2025-08-28",
+      "span_last": "2026-04-16",
+      "span_days": 232,
+      "saved_days": 232,
+      "parts": 232,
+      "file_first": "2025-08-28",
+      "file_last": "2026-04-16",
+      "match": true
+    },
+    {
+      "symbol": "YFIIUSDT",
+      "span_first": "2023-08-16",
+      "span_last": "2024-04-03",
+      "span_days": 232,
+      "saved_days": 232,
+      "parts": 232,
+      "file_first": "2023-08-16",
+      "file_last": "2024-04-03",
+      "match": true
+    },
+    {
+      "symbol": "VIDTUSDT",
+      "span_first": "2024-08-26",
+      "span_last": "2025-04-16",
+      "span_days": 234,
+      "saved_days": 234,
+      "parts": 234,
+      "file_first": "2024-08-26",
+      "file_last": "2025-04-16",
+      "match": true
+    },
+    {
+      "symbol": "KOMAUSDT",
+      "span_first": "2024-12-10",
+      "span_last": "2025-08-01",
+      "span_days": 235,
+      "saved_days": 235,
+      "parts": 235,
+      "file_first": "2024-12-10",
+      "file_last": "2025-08-01",
+      "match": true
+    },
+    {
+      "symbol": "AINUSDT",
+      "span_first": "2025-07-10",
+      "span_last": "2026-03-06",
+      "span_days": 240,
+      "saved_days": 240,
+      "parts": 240,
+      "file_first": "2025-07-10",
+      "file_last": "2026-03-06",
+      "match": true
+    },
+    {
+      "symbol": "BENDOGUSDT",
+      "span_first": "2024-06-03",
+      "span_last": "2025-01-30",
+      "span_days": 242,
+      "saved_days": 242,
+      "parts": 242,
+      "file_first": "2024-06-03",
+      "file_last": "2025-01-30",
+      "match": true
+    },
+    {
+      "symbol": "CUDISUSDT",
+      "span_first": "2025-06-12",
+      "span_last": "2026-02-11",
+      "span_days": 245,
+      "saved_days": 245,
+      "parts": 245,
+      "file_first": "2025-06-12",
+      "file_last": "2026-02-11",
+      "match": true
+    },
+    {
+      "symbol": "BOBBOBUSDT",
+      "span_first": "2025-11-24",
+      "span_last": "2026-07-27",
+      "span_days": 246,
+      "saved_days": 246,
+      "parts": 246,
+      "file_first": "2025-11-24",
+      "file_last": "2026-07-27",
+      "match": true
+    },
+    {
+      "symbol": "BSUUSDT",
+      "span_first": "2025-08-27",
+      "span_last": "2026-04-30",
+      "span_days": 247,
+      "saved_days": 247,
+      "parts": 247,
+      "file_first": "2025-08-27",
+      "file_last": "2026-04-30",
+      "match": true
+    },
+    {
+      "symbol": "PIRATEUSDT",
+      "span_first": "2024-07-22",
+      "span_last": "2025-03-25",
+      "span_days": 247,
+      "saved_days": 247,
+      "parts": 247,
+      "file_first": "2024-07-22",
+      "file_last": "2025-03-25",
+      "match": true
+    },
+    {
+      "symbol": "GOMININGUSDT",
+      "span_first": "2024-10-02",
+      "span_last": "2025-06-06",
+      "span_days": 248,
+      "saved_days": 248,
+      "parts": 248,
+      "file_first": "2024-10-02",
+      "file_last": "2025-06-06",
+      "match": true
+    },
+    {
+      "symbol": "PENGUSDT",
+      "span_first": "2024-05-27",
+      "span_last": "2025-01-30",
+      "span_days": 249,
+      "saved_days": 249,
+      "parts": 249,
+      "file_first": "2024-05-27",
+      "file_last": "2025-01-30",
+      "match": true
+    }
+  ],
+  "files": [
+    "data/bybit_prices/",
+    "data/bybit_price_parts/",
+    "scripts/bybit_prices_201_250.py"
+  ],
+  "verdict": "recorded, not admitted"
+}

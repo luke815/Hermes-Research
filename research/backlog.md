@@ -4,7 +4,7 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 ## Queue
 
-S8 is done. D1 continues: the Bybit stopped-name prices through 200 listed days are saved (61 names, 6,767 days). Next slice is the stopped names with 201 to 250 listed days (23 names, 5,309 days), then D2.
+S8 is done. D1 continues: the Bybit stopped-name prices through 250 listed days are saved (84 names, 12,076 days). Next slice is the stopped names with 251 to 300 listed days (20 names, 5,545 days), then D2.
 
 - S8. The derivatives and options family in the library, market level, with tests; cells re-enumerated. Verdict 2026-11-13: recorded, not admitted. 27 measures for BTC and ETH, 54 columns, library 1.1.0. Cells went from 1,355,200 to 3,688,000, of which 788,200 are testable and none are duplicates. The tenor basis curve, the butterfly, the put-call ratio, SOL and the Hyperliquid aggregate are absent because the store does not hold them. results/2026-11-13_s8_derivatives.json.
 
