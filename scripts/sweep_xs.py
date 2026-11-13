@@ -126,14 +126,19 @@ def load_panel(names_kept):
     """Every column the panel has, for the names that pass the history bar.
 
     High and low are not stored, so a measure that needs them is absent rather
-    than filled. A name is absent on a date it has no value.
+    than filled. A name is absent on a date it has no value. Volume is stored
+    as quote units for most names and as base units for the stopped Binance
+    names; either one is volume, and a name that has both keeps the quote one.
     """
     wanted = ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd"]
     frames = {}
     for name in names_kept:
         path = os.path.join(PANEL, name + ".csv")
         have = [c for c in wanted if c in pd.read_csv(path, nrows=0).columns]
-        frames[name] = pd.read_csv(path, usecols=have).set_index("date")
+        frame = pd.read_csv(path, usecols=have).set_index("date")
+        if "volume_usd" not in frame.columns and "volume_base" in frame.columns:
+            frame = frame.rename(columns={"volume_base": "volume_usd"})
+        frames[name] = frame
     return frames
 
 
@@ -177,7 +182,7 @@ def indicator_cache(panel, index, digest):
     pass. Computing it per measure repeats the same work 27 times. A cache
     written for a different hash is ignored, so a panel change recomputes.
     """
-    path = os.path.join(CACHE, f"indicators_{digest}.csv")
+    path = os.path.join(CACHE, f"indicators_{digest}_v2.csv")
     if os.path.exists(path):
         wide = pd.read_csv(path, header=[0, 1], index_col=0)
         return {m: wide[m].set_axis(index) for m in wide.columns.get_level_values(0).unique()}
@@ -195,7 +200,10 @@ def indicator_cache(panel, index, digest):
     for name, columns in per_measure.items():
         if not columns:
             continue
-        matrix = pd.DataFrame(columns).reindex(index)
+        # A measure the inputs cannot support for a name is empty there, not
+        # dropped. Dropping the name makes the matrix narrower than the return
+        # matrix and the spread crashes on the broadcast.
+        matrix = pd.DataFrame(columns).reindex(index=index, columns=panel.keys())
         matrix.columns = pd.MultiIndex.from_product([[name], matrix.columns])
         frames[name] = matrix
     wide = pd.concat(frames.values(), axis=1)
@@ -215,6 +223,7 @@ def _spreads(cut, net, levels, direction):
     80. A threshold that flags fewer than two names, or leaves fewer than two,
     is empty.
     """
+    cut = cut.reindex(columns=net.columns)
     values = cut.to_numpy(dtype=float)
     returns = net.to_numpy(dtype=float)
     dates = len(values)

@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-13",
+  "candidate": "sweep_xs_broadcast_fix",
+  "verdict": "recorded, not admitted",
+  "today_utc": "2026-11-13",
+  "clock": "2026-11-13T03:19:49Z",
+  "failure": "sweep_xs has been in phase error since 2026-11-13T00:32:10Z. _spreads raised ValueError: operands could not be broadcast together with shapes (352,) (380,) on every cycle, on measure roc_12.",
+  "cause": "A measure the panel cannot support for a name was dropped from the matrix instead of left empty. obv and force_13 had 352 columns against the 380-name return matrix, because 28 stopped names store volume as volume_base and the loader only read volume_usd. funding_persist_high and funding_persist_low had 374 columns, because six OKX names have no funding file. oi_on_down_days had 27 columns.",
+  "fix": "scripts/sweep_xs.py now reads volume_base as volume when volume_usd is absent, reindexes every measure matrix to the close columns, and reindexes the cut to the return columns inside _spreads before the comparison. The indicator cache name changed from indicators_<digest>.csv to indicators_<digest>_v2.csv so the daemon does not reload the narrow matrices.",
+  "check": "A probe with a 6 by 3 cut against a 6 by 4 return matrix raises the same ValueError on the old comparison and returns two empty series from the fixed _spreads.",
+  "daemon_restarted": true,
+  "daemon_pid": 22211,
+  "first_cycles_after_restart": [
+    {"cycle": 1, "measure": "obv", "rows": 396, "seconds": 551.8, "ts": "2026-11-13T03:30:12Z"},
+    {"cycle": 2, "measure": "force_13", "rows": 396, "seconds": 174.4, "ts": "2026-11-13T03:33:08Z"},
+    {"cycle": 3, "measure": "td_setup", "rows": 396, "seconds": 96.3, "ts": "2026-11-13T03:34:45Z"},
+    {"cycle": 4, "measure": "pi_cycle", "rows": 396, "seconds": 107.4, "ts": "2026-11-13T03:36:33Z"}
+  ],
+  "last_error_after_restart": null,
+  "rows_already_written": 7128,
+  "measures_already_scored": 18,
+  "scored_file": "results/sweeps/2026-11-12_xs_vec.csv",
+  "scored_file_written_utc": "2026-11-12T23:38:17Z",
+  "daemon_restarted": true,
+  "tests_since_last_admission": 53
+}

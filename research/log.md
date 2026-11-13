@@ -1,3 +1,9 @@
+## 2026-11-13, pre-registered before any computation: sweep_xs broadcast fix
+
+Candidate: sweep_xs_broadcast_fix. Hypothesis: the cross-sectional sweep crashes because a measure the panel cannot support for a name is dropped from the matrix, so the measure matrix is narrower than the return matrix and the comparison cannot broadcast. Rule: read volume_base as volume where volume_usd is absent, reindex every measure matrix to the close columns, and reindex the cut to the return columns before the comparison. A name the measure cannot support stays empty rather than being dropped. Horizon: none. No return is scored and nothing is admitted. Pass: the comparison that raised ValueError on the mismatched shapes returns a series instead, and the daemon leaves the error phase.
+
+Verdict: recorded, not admitted. The crash is fixed and the daemon scored past it. The error had been running since 2026-11-13T00:32:10Z, ValueError on shapes (352,) and (380,), on every cycle. obv and force_13 had 352 columns because 28 stopped names store volume as volume_base, funding persistence had 374 because six OKX names have no funding file, and oi_on_down_days had 27. A 6 by 3 cut against a 6 by 4 return matrix raises the old error and returns two empty series from the fixed function. After the restart the daemon scored obv, force_13, td_setup and pi_cycle, 396 rows each, with no error. The 7,128 rows written before the crash, 18 measures, are unchanged. The score is unchanged. Fifty-three tests since the last admission. results/2026-11-13_sweep_xs_broadcast.json.
+
 # Research log
 
 ## 2026-11-13, pre-registered before any computation: D1 Bybit daily prices, 101 to 150 listed days
