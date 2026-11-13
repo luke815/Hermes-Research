@@ -1,0 +1,193 @@
+{
+  "date": "2026-11-13",
+  "bound": "250 < days <= 300",
+  "names": [
+    {
+      "symbol": "YZYUSDT",
+      "span_first": "2025-08-21",
+      "span_last": "2026-04-30",
+      "span_days": 253,
+      "listed_days": 253,
+      "saved_days": 253,
+      "match": true
+    },
+    {
+      "symbol": "1000MUMUUSDT",
+      "span_first": "2024-09-23",
+      "span_last": "2025-06-12",
+      "span_days": 263,
+      "listed_days": 263,
+      "saved_days": 263,
+      "match": true
+    },
+    {
+      "symbol": "MAXUSDT",
+      "span_first": "2024-08-06",
+      "span_last": "2025-04-28",
+      "span_days": 266,
+      "listed_days": 266,
+      "saved_days": 266,
+      "match": true
+    },
+    {
+      "symbol": "NYANUSDT",
+      "span_first": "2024-05-29",
+      "span_last": "2025-02-19",
+      "span_days": 267,
+      "listed_days": 267,
+      "saved_days": 267,
+      "match": true
+    },
+    {
+      "symbol": "1000CATSUSDT",
+      "span_first": "2024-10-11",
+      "span_last": "2025-07-05",
+      "span_days": 268,
+      "listed_days": 268,
+      "saved_days": 268,
+      "match": true
+    },
+    {
+      "symbol": "ELXUSDT",
+      "span_first": "2025-03-12",
+      "span_last": "2025-12-04",
+      "span_days": 268,
+      "listed_days": 268,
+      "saved_days": 268,
+      "match": true
+    },
+    {
+      "symbol": "SAROSUSDT",
+      "span_first": "2025-05-20",
+      "span_last": "2026-02-11",
+      "span_days": 268,
+      "listed_days": 268,
+      "saved_days": 268,
+      "match": true
+    },
+    {
+      "symbol": "JUSDT",
+      "span_first": "2025-01-22",
+      "span_last": "2025-10-17",
+      "span_days": 269,
+      "listed_days": 269,
+      "saved_days": 269,
+      "match": true
+    },
+    {
+      "symbol": "SPORTFUNUSDT",
+      "span_first": "2026-01-19",
+      "span_last": "2026-10-16",
+      "span_days": 271,
+      "listed_days": 271,
+      "saved_days": 271,
+      "match": true
+    },
+    {
+      "symbol": "DUCKUSDT",
+      "span_first": "2025-01-16",
+      "span_last": "2025-10-14",
+      "span_days": 272,
+      "listed_days": 272,
+      "saved_days": 272,
+      "match": true
+    },
+    {
+      "symbol": "RAYUSDT",
+      "span_first": "2022-02-15",
+      "span_last": "2022-12-12",
+      "span_days": 275,
+      "listed_days": 275,
+      "saved_days": 275,
+      "match": true
+    },
+    {
+      "symbol": "VRUSDT",
+      "span_first": "2025-01-16",
+      "span_last": "2025-10-17",
+      "span_days": 275,
+      "listed_days": 275,
+      "saved_days": 275,
+      "match": true
+    },
+    {
+      "symbol": "REXUSDT",
+      "span_first": "2025-01-09",
+      "span_last": "2025-10-13",
+      "span_days": 278,
+      "listed_days": 278,
+      "saved_days": 278,
+      "match": true
+    },
+    {
+      "symbol": "EPTUSDT",
+      "span_first": "2025-04-21",
+      "span_last": "2026-01-30",
+      "span_days": 285,
+      "listed_days": 285,
+      "saved_days": 285,
+      "match": true
+    },
+    {
+      "symbol": "10000STARLUSDT",
+      "span_first": "2023-10-20",
+      "span_last": "2024-08-01",
+      "span_days": 287,
+      "listed_days": 287,
+      "saved_days": 287,
+      "match": true
+    },
+    {
+      "symbol": "GMEUSDT",
+      "span_first": "2024-06-11",
+      "span_last": "2025-03-25",
+      "span_days": 288,
+      "listed_days": 288,
+      "saved_days": 288,
+      "match": true
+    },
+    {
+      "symbol": "SOLOUSDT",
+      "span_first": "2024-12-26",
+      "span_last": "2025-10-17",
+      "span_days": 296,
+      "listed_days": 296,
+      "saved_days": 296,
+      "match": true
+    },
+    {
+      "symbol": "BUSDUSDT",
+      "span_first": "2023-02-14",
+      "span_last": "2023-12-08",
+      "span_days": 298,
+      "listed_days": 298,
+      "saved_days": 298,
+      "match": true
+    },
+    {
+      "symbol": "SKYAIUSDT",
+      "span_first": "2025-05-13",
+      "span_last": "2026-03-06",
+      "span_days": 298,
+      "listed_days": 298,
+      "saved_days": 298,
+      "match": true
+    },
+    {
+      "symbol": "FUELUSDT",
+      "span_first": "2024-12-31",
+      "span_last": "2025-10-26",
+      "span_days": 300,
+      "listed_days": 300,
+      "saved_days": 300,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": [
+    {
+      "symbol": "RAYUSDT",
+      "date": "2022-12-12"
+    }
+  ]
+}
