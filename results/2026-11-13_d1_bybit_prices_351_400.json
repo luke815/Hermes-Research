@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-13",
+  "candidate": "d1_bybit_prices_351_400",
+  "verdict": "recorded, not admitted",
+  "bound": "350 < days <= 400",
+  "names_count": 13,
+  "listed_days": 4907,
+  "saved_days": 4907,
+  "all_match": true,
+  "failures": [],
+  "empty_archive_days": [
+    {
+      "symbol": "FTTUSDT",
+      "date": "2022-12-12"
+    }
+  ],
+  "archive_gaps": {
+    "FTTUSDT": {
+      "days": 28,
+      "first": "2022-11-14",
+      "last": "2022-12-11",
+      "confirmed_404": 28
+    }
+  },
+  "names": [
+    {
+      "symbol": "ESUSDT",
+      "span_first": "2025-07-16",
+      "span_last": "2026-07-10",
+      "span_days": 360,
+      "listed_days": 360,
+      "saved_days": 360,
+      "match": true
+    },
+    {
+      "symbol": "10000ELONUSDT",
+      "span_first": "2025-02-10",
+      "span_last": "2026-02-06",
+      "span_days": 362,
+      "listed_days": 362,
+      "saved_days": 362,
+      "match": true
+    },
+    {
+      "symbol": "ZRCUSDT",
+      "span_first": "2024-11-25",
+      "span_last": "2025-11-21",
+      "span_days": 362,
+      "listed_days": 362,
+      "saved_days": 362,
+      "match": true
+    },
+    {
+      "symbol": "ZKJUSDT",
+      "span_first": "2024-06-17",
+      "span_last": "2025-06-18",
+      "span_days": 367,
+      "listed_days": 367,
+      "saved_days": 367,
+      "match": true
+    },
+    {
+      "symbol": "ZENTUSDT",
+      "span_first": "2024-12-23",
+      "span_last": "2025-12-26",
+      "span_days": 369,
+      "listed_days": 369,
+      "saved_days": 369,
+      "match": true
+    },
+    {
+      "symbol": "LOOMUSDT",
+      "span_first": "2023-09-21",
+      "span_last": "2024-09-24",
+      "span_days": 370,
+      "listed_days": 370,
+      "saved_days": 370,
+      "match": true
+    },
+    {
+      "symbol": "PRIMEUSDT",
+      "span_first": "2024-09-30",
+      "span_last": "2025-10-06",
+      "span_days": 372,
+      "listed_days": 372,
+      "saved_days": 372,
+      "match": true
+    },
+    {
+      "symbol": "SLFUSDT",
+      "span_first": "2024-09-03",
+      "span_last": "2025-09-19",
+      "span_days": 382,
+      "listed_days": 382,
+      "saved_days": 382,
+      "match": true
+    },
+    {
+      "symbol": "1000APUUSDT",
+      "span_first": "2024-06-20",
+      "span_last": "2025-07-11",
+      "span_days": 387,
+      "listed_days": 387,
+      "saved_days": 387,
+      "match": true
+    },
+    {
+      "symbol": "NEIROETHUSDT",
+      "span_first": "2024-08-15",
+      "span_last": "2025-09-09",
+      "span_days": 391,
+      "listed_days": 391,
+      "saved_days": 391,
+      "match": true
+    },
+    {
+      "symbol": "1CATUSDT",
+      "span_first": "2023-12-27",
+      "span_last": "2025-01-22",
+      "span_days": 393,
+      "listed_days": 393,
+      "saved_days": 393,
+      "match": true
+    },
+    {
+      "symbol": "TOMIUSDT",
+      "span_first": "2023-10-10",
+      "span_last": "2024-11-05",
+      "span_days": 393,
+      "listed_days": 393,
+      "saved_days": 393,
+      "match": true
+    },
+    {
+      "symbol": "FTTUSDT",
+      "span_first": "2021-10-12",
+      "span_last": "2022-12-12",
+      "span_days": 399,
+      "listed_days": 399,
+      "saved_days": 399,
+      "match": true
+    }
+  ],
+  "checks": {
+    "file_rows_equal_listed": true,
+    "first_last_match_span": true,
+    "dates_sorted_unique": true,
+    "no_missing_days_inside_span": true,
+    "ohlc_sane": true,
+    "zero_trade_days": 1
+  },
+  "price_files_total": 134,
+  "stopped_names_remaining": 175,
+  "not_touched": "the other 175 stopped names (401 or more listed days), funding, open interest, liquidations",
+  "score_unchanged": true,
+  "tests_since_last_admission": 53
+}
