@@ -1,0 +1,161 @@
+{
+  "date": "2026-11-13",
+  "bound": "100 < days <= 150",
+  "names": [
+    {
+      "symbol": "PUNDUUSDT",
+      "span_first": "2024-03-28",
+      "span_last": "2024-07-08",
+      "span_days": 103,
+      "listed_days": 103,
+      "saved_days": 103,
+      "match": true
+    },
+    {
+      "symbol": "TANSSIUSDT",
+      "span_first": "2025-07-09",
+      "span_last": "2025-10-21",
+      "span_days": 105,
+      "listed_days": 105,
+      "saved_days": 105,
+      "match": true
+    },
+    {
+      "symbol": "BLUEUSDT",
+      "span_first": "2024-12-18",
+      "span_last": "2025-04-07",
+      "span_days": 111,
+      "listed_days": 111,
+      "saved_days": 111,
+      "match": true
+    },
+    {
+      "symbol": "DMCUSDT",
+      "span_first": "2025-07-03",
+      "span_last": "2025-10-21",
+      "span_days": 111,
+      "listed_days": 111,
+      "saved_days": 111,
+      "match": true
+    },
+    {
+      "symbol": "GEMSUSDT",
+      "span_first": "2024-12-05",
+      "span_last": "2025-03-25",
+      "span_days": 111,
+      "listed_days": 111,
+      "saved_days": 111,
+      "match": true
+    },
+    {
+      "symbol": "1000IQ50USDT",
+      "span_first": "2024-03-19",
+      "span_last": "2024-07-08",
+      "span_days": 112,
+      "listed_days": 112,
+      "saved_days": 112,
+      "match": true
+    },
+    {
+      "symbol": "FRAGUSDT",
+      "span_first": "2025-07-01",
+      "span_last": "2025-10-21",
+      "span_days": 113,
+      "listed_days": 113,
+      "saved_days": 113,
+      "match": true
+    },
+    {
+      "symbol": "WSMUSDT",
+      "span_first": "2023-10-12",
+      "span_last": "2024-02-05",
+      "span_days": 117,
+      "listed_days": 117,
+      "saved_days": 117,
+      "match": true
+    },
+    {
+      "symbol": "MAPOUSDT",
+      "span_first": "2024-05-23",
+      "span_last": "2024-09-24",
+      "span_days": 125,
+      "listed_days": 125,
+      "saved_days": 125,
+      "match": true
+    },
+    {
+      "symbol": "SKATEUSDT",
+      "span_first": "2025-06-09",
+      "span_last": "2025-10-21",
+      "span_days": 135,
+      "listed_days": 135,
+      "saved_days": 135,
+      "match": true
+    },
+    {
+      "symbol": "RLSUSDT",
+      "span_first": "2025-12-02",
+      "span_last": "2026-04-16",
+      "span_days": 136,
+      "listed_days": 136,
+      "saved_days": 136,
+      "match": true
+    },
+    {
+      "symbol": "COVALUSDT",
+      "span_first": "2024-03-08",
+      "span_last": "2024-07-24",
+      "span_days": 139,
+      "listed_days": 139,
+      "saved_days": 139,
+      "match": true
+    },
+    {
+      "symbol": "BDXNUSDT",
+      "span_first": "2025-06-03",
+      "span_last": "2025-10-21",
+      "span_days": 141,
+      "listed_days": 141,
+      "saved_days": 141,
+      "match": true
+    },
+    {
+      "symbol": "RIFSOLUSDT",
+      "span_first": "2024-11-18",
+      "span_last": "2025-04-07",
+      "span_days": 141,
+      "listed_days": 141,
+      "saved_days": 141,
+      "match": true
+    },
+    {
+      "symbol": "1000BEERUSDT",
+      "span_first": "2024-05-31",
+      "span_last": "2024-10-22",
+      "span_days": 145,
+      "listed_days": 145,
+      "saved_days": 145,
+      "match": true
+    },
+    {
+      "symbol": "DAMUSDT",
+      "span_first": "2025-08-18",
+      "span_last": "2026-01-10",
+      "span_days": 146,
+      "listed_days": 146,
+      "saved_days": 146,
+      "match": true
+    },
+    {
+      "symbol": "AGTUSDT",
+      "span_first": "2025-05-28",
+      "span_last": "2025-10-21",
+      "span_days": 147,
+      "listed_days": 147,
+      "saved_days": 147,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}
