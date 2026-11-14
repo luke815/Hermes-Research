@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-14",
+  "candidate": "d1_bybit_prices_701_800",
+  "bound": "700 < days <= 800",
+  "names": [
+    {
+      "symbol": "OMUSDT",
+      "span_first": "2024-03-18",
+      "span_last": "2026-02-20",
+      "span_days": 705,
+      "listed_days": 705,
+      "saved_days": 705,
+      "file_first": "2024-03-18",
+      "file_last": "2026-02-20",
+      "match": true
+    },
+    {
+      "symbol": "TOKENUSDT",
+      "span_first": "2023-11-03",
+      "span_last": "2025-10-21",
+      "span_days": 719,
+      "listed_days": 719,
+      "saved_days": 719,
+      "file_first": "2023-11-03",
+      "file_last": "2025-10-21",
+      "match": true
+    },
+    {
+      "symbol": "DOGUSDT",
+      "span_first": "2024-06-04",
+      "span_last": "2026-05-28",
+      "span_days": 724,
+      "listed_days": 724,
+      "saved_days": 724,
+      "file_first": "2024-06-04",
+      "file_last": "2026-05-28",
+      "match": true
+    },
+    {
+      "symbol": "MDTUSDT",
+      "span_first": "2023-06-30",
+      "span_last": "2025-07-04",
+      "span_days": 736,
+      "listed_days": 736,
+      "saved_days": 736,
+      "file_first": "2023-06-30",
+      "file_last": "2025-07-04",
+      "match": true
+    },
+    {
+      "symbol": "GNOUSDT",
+      "span_first": "2024-05-14",
+      "span_last": "2026-06-03",
+      "span_days": 751,
+      "listed_days": 751,
+      "saved_days": 751,
+      "file_first": "2024-05-14",
+      "file_last": "2026-06-03",
+      "match": true
+    },
+    {
+      "symbol": "LEVERUSDT",
+      "span_first": "2023-06-05",
+      "span_last": "2025-07-01",
+      "span_days": 758,
+      "listed_days": 758,
+      "saved_days": 758,
+      "file_first": "2023-06-05",
+      "file_last": "2025-07-01",
+      "match": true
+    },
+    {
+      "symbol": "RIFUSDT",
+      "span_first": "2023-10-23",
+      "span_last": "2025-12-01",
+      "span_days": 771,
+      "listed_days": 771,
+      "saved_days": 771,
+      "file_first": "2023-10-23",
+      "file_last": "2025-12-01",
+      "match": true
+    },
+    {
+      "symbol": "DEGENUSDT",
+      "span_first": "2024-04-01",
+      "span_last": "2026-05-14",
+      "span_days": 774,
+      "listed_days": 774,
+      "saved_days": 774,
+      "file_first": "2024-04-01",
+      "file_last": "2026-05-14",
+      "match": true
+    },
+    {
+      "symbol": "ATAUSDT",
+      "span_first": "2023-08-08",
+      "span_last": "2025-10-06",
+      "span_days": 791,
+      "listed_days": 791,
+      "saved_days": 791,
+      "file_first": "2023-08-08",
+      "file_last": "2025-10-06",
+      "match": true
+    },
+    {
+      "symbol": "HIFIUSDT",
+      "span_first": "2023-08-28",
+      "span_last": "2025-10-30",
+      "span_days": 795,
+      "listed_days": 795,
+      "saved_days": 795,
+      "file_first": "2023-08-28",
+      "file_last": "2025-10-30",
+      "match": true
+    }
+  ],
+  "name_count": 10,
+  "saved_days": 7524,
+  "span_days": 7524,
+  "all_match": true,
+  "failures": [],
+  "empty": [],
+  "header_fails": 0,
+  "checks": "dates sorted and unique, no missing day inside any span, no OHLC bound break, no empty archive, part file present for every saved day",
+  "verdict": "recorded, not admitted"
+}
