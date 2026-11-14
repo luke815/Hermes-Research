@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-14",
+  "bound": "900 < days <= 1000",
+  "names": [
+    {
+      "symbol": "RADUSDT",
+      "span_first": "2023-06-08",
+      "span_last": "2025-11-26",
+      "span_days": 903,
+      "listed_days": 903,
+      "saved_days": 903,
+      "match": true
+    },
+    {
+      "symbol": "NTRNUSDT",
+      "span_first": "2023-10-10",
+      "span_last": "2026-04-03",
+      "span_days": 907,
+      "listed_days": 907,
+      "saved_days": 907,
+      "match": true
+    },
+    {
+      "symbol": "FITFIUSDT",
+      "span_first": "2022-05-10",
+      "span_last": "2024-11-05",
+      "span_days": 911,
+      "listed_days": 911,
+      "saved_days": 911,
+      "match": true
+    },
+    {
+      "symbol": "BLZUSDT",
+      "span_first": "2022-06-06",
+      "span_last": "2024-12-24",
+      "span_days": 933,
+      "listed_days": 933,
+      "saved_days": 933,
+      "match": true
+    },
+    {
+      "symbol": "GODSUSDT",
+      "span_first": "2023-11-22",
+      "span_last": "2026-06-11",
+      "span_days": 933,
+      "listed_days": 933,
+      "saved_days": 933,
+      "match": true
+    },
+    {
+      "symbol": "AKROUSDT",
+      "span_first": "2022-05-25",
+      "span_last": "2024-12-24",
+      "span_days": 945,
+      "listed_days": 945,
+      "saved_days": 945,
+      "match": true
+    },
+    {
+      "symbol": "PROMUSDT",
+      "span_first": "2023-09-05",
+      "span_last": "2026-04-22",
+      "span_days": 961,
+      "listed_days": 961,
+      "saved_days": 961,
+      "match": true
+    },
+    {
+      "symbol": "JOEUSDT",
+      "span_first": "2023-03-29",
+      "span_last": "2025-11-14",
+      "span_days": 962,
+      "listed_days": 962,
+      "saved_days": 962,
+      "match": true
+    },
+    {
+      "symbol": "RNDRUSDT",
+      "span_first": "2021-12-01",
+      "span_last": "2024-07-22",
+      "span_days": 965,
+      "listed_days": 965,
+      "saved_days": 965,
+      "match": true
+    },
+    {
+      "symbol": "10000NFTUSDT",
+      "span_first": "2022-01-24",
+      "span_last": "2024-09-18",
+      "span_days": 969,
+      "listed_days": 969,
+      "saved_days": 969,
+      "match": true
+    },
+    {
+      "symbol": "ORBSUSDT",
+      "span_first": "2023-10-13",
+      "span_last": "2026-06-11",
+      "span_days": 973,
+      "listed_days": 973,
+      "saved_days": 973,
+      "match": true
+    },
+    {
+      "symbol": "DARUSDT",
+      "span_first": "2022-05-02",
+      "span_last": "2025-01-06",
+      "span_days": 981,
+      "listed_days": 981,
+      "saved_days": 981,
+      "match": true
+    },
+    {
+      "symbol": "AERGOUSDT",
+      "span_first": "2023-11-16",
+      "span_last": "2026-07-25",
+      "span_days": 983,
+      "listed_days": 983,
+      "saved_days": 983,
+      "match": true
+    },
+    {
+      "symbol": "PHBUSDT",
+      "span_first": "2023-05-18",
+      "span_last": "2026-01-29",
+      "span_days": 988,
+      "listed_days": 988,
+      "saved_days": 988,
+      "match": true
+    }
+  ],
+  "failures": [
+    {
+      "symbol": "ANTUSDT",
+      "stage": "listing",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ],
+  "empty": [],
+  "antusdt": {
+    "symbol": "ANTUSDT",
+    "span_first": "2021-12-17",
+    "span_last": "2024-07-25",
+    "span_days": 952,
+    "archive": "absent",
+    "listing_status": 404,
+    "days_probed": 952,
+    "days_404": 952,
+    "note": "The archive folder and every day file in the span return 404. Nothing was saved because nothing was served."
+  }
+}
