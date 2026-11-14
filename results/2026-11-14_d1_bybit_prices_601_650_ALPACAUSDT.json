@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-14",
+  "bound": "600 < days <= 650",
+  "names": [
+    {
+      "symbol": "ALPACAUSDT",
+      "span_first": "2023-08-02",
+      "span_last": "2025-04-30",
+      "span_days": 638,
+      "listed_days": 638,
+      "saved_days": 638,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}

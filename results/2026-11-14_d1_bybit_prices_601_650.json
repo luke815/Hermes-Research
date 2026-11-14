@@ -1,0 +1,114 @@
+{
+  "date": "2026-11-14",
+  "candidate": "d1_bybit_prices_601_650",
+  "bound": "600 < days <= 650",
+  "names": [
+    {
+      "symbol": "KEYUSDT",
+      "span_first": "2023-05-29",
+      "span_last": "2025-01-22",
+      "span_days": 605,
+      "listed_days": 605,
+      "saved_days": 605,
+      "file_first": "2023-05-29",
+      "file_last": "2025-01-22",
+      "match": true
+    },
+    {
+      "symbol": "L3USDT",
+      "span_first": "2024-07-31",
+      "span_last": "2026-04-03",
+      "span_days": 612,
+      "listed_days": 612,
+      "saved_days": 612,
+      "file_first": "2024-07-31",
+      "file_last": "2026-04-03",
+      "match": true
+    },
+    {
+      "symbol": "PYRUSDT",
+      "span_first": "2024-10-07",
+      "span_last": "2026-06-11",
+      "span_days": 613,
+      "listed_days": 613,
+      "saved_days": 613,
+      "file_first": "2024-10-07",
+      "file_last": "2026-06-11",
+      "match": true
+    },
+    {
+      "symbol": "10000WENUSDT",
+      "span_first": "2024-01-31",
+      "span_last": "2025-10-17",
+      "span_days": 626,
+      "listed_days": 626,
+      "saved_days": 626,
+      "file_first": "2024-01-31",
+      "file_last": "2025-10-17",
+      "match": true
+    },
+    {
+      "symbol": "SYNUSDT",
+      "span_first": "2024-08-20",
+      "span_last": "2026-05-08",
+      "span_days": 627,
+      "listed_days": 627,
+      "saved_days": 627,
+      "file_first": "2024-08-20",
+      "file_last": "2026-05-08",
+      "match": true
+    },
+    {
+      "symbol": "AMBUSDT",
+      "span_first": "2023-06-05",
+      "span_last": "2025-02-23",
+      "span_days": 630,
+      "listed_days": 630,
+      "saved_days": 630,
+      "file_first": "2023-06-05",
+      "file_last": "2025-02-23",
+      "match": true
+    },
+    {
+      "symbol": "ACXUSDT",
+      "span_first": "2024-12-06",
+      "span_last": "2026-08-30",
+      "span_days": 633,
+      "listed_days": 633,
+      "saved_days": 633,
+      "file_first": "2024-12-06",
+      "file_last": "2026-08-30",
+      "match": true
+    },
+    {
+      "symbol": "ALPACAUSDT",
+      "span_first": "2023-08-02",
+      "span_last": "2025-04-30",
+      "span_days": 638,
+      "listed_days": 638,
+      "saved_days": 638,
+      "file_first": "2023-08-02",
+      "file_last": "2025-04-30",
+      "match": true
+    },
+    {
+      "symbol": "SCRUSDT",
+      "span_first": "2024-10-10",
+      "span_last": "2026-07-10",
+      "span_days": 639,
+      "listed_days": 639,
+      "saved_days": 639,
+      "file_first": "2024-10-10",
+      "file_last": "2026-07-10",
+      "match": true
+    }
+  ],
+  "name_count": 9,
+  "saved_days": 5623,
+  "span_days": 5623,
+  "all_match": true,
+  "failures": [],
+  "empty": [],
+  "checks": "dates sorted and unique, no missing day inside any span, no OHLC bound break, no empty archive",
+  "verdict": "recorded, not admitted"
+}
