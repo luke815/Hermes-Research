@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-14",
+  "bound": "1000 < days <= 1100",
+  "names": [
+    {
+      "symbol": "OXTUSDT",
+      "span_first": "2023-08-10",
+      "span_last": "2026-05-14",
+      "span_days": 1009,
+      "listed_days": 1009,
+      "saved_days": 1009,
+      "match": true
+    },
+    {
+      "symbol": "IDEXUSDT",
+      "span_first": "2023-05-23",
+      "span_last": "2026-02-27",
+      "span_days": 1012,
+      "listed_days": 1012,
+      "saved_days": 1012,
+      "match": true
+    },
+    {
+      "symbol": "TONUSDT",
+      "span_first": "2023-08-31",
+      "span_last": "2026-06-15",
+      "span_days": 1020,
+      "listed_days": 1020,
+      "saved_days": 1020,
+      "match": true
+    },
+    {
+      "symbol": "KLAYUSDT",
+      "span_first": "2021-12-10",
+      "span_last": "2024-10-28",
+      "span_days": 1054,
+      "listed_days": 1054,
+      "saved_days": 1054,
+      "match": true
+    },
+    {
+      "symbol": "STMXUSDT",
+      "span_first": "2022-03-28",
+      "span_last": "2025-02-23",
+      "span_days": 1064,
+      "listed_days": 1064,
+      "saved_days": 1064,
+      "match": true
+    },
+    {
+      "symbol": "BNXUSDT",
+      "span_first": "2022-04-07",
+      "span_last": "2025-03-17",
+      "span_days": 1065,
+      "listed_days": 1065,
+      "saved_days": 1065,
+      "match": true
+    },
+    {
+      "symbol": "LINAUSDT",
+      "span_first": "2022-04-20",
+      "span_last": "2025-03-27",
+      "span_days": 1073,
+      "listed_days": 1073,
+      "saved_days": 1073,
+      "match": true
+    },
+    {
+      "symbol": "REEFUSDT",
+      "span_first": "2022-02-15",
+      "span_last": "2025-01-22",
+      "span_days": 1073,
+      "listed_days": 1073,
+      "saved_days": 1073,
+      "match": true
+    },
+    {
+      "symbol": "NKNUSDT",
+      "span_first": "2023-02-21",
+      "span_last": "2026-01-29",
+      "span_days": 1074,
+      "listed_days": 1074,
+      "saved_days": 1074,
+      "match": true
+    },
+    {
+      "symbol": "SWEATUSDT",
+      "span_first": "2022-11-04",
+      "span_last": "2025-10-26",
+      "span_days": 1088,
+      "listed_days": 1088,
+      "saved_days": 1088,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}
