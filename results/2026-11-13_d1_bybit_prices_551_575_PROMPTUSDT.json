@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-13",
+  "bound": "550 < days <= 575",
+  "names": [
+    {
+      "symbol": "PROMPTUSDT",
+      "span_first": "2025-04-10",
+      "span_last": "2026-10-16",
+      "span_days": 555,
+      "listed_days": 555,
+      "saved_days": 555,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}

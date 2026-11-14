@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-13",
+  "bound": "550 < days <= 575",
+  "names": [
+    {
+      "symbol": "SWARMSUSDT",
+      "span_first": "2025-01-06",
+      "span_last": "2026-07-10",
+      "span_days": 551,
+      "listed_days": 551,
+      "saved_days": 551,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}

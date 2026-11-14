@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-14",
+  "bound": "550 < days <= 575",
+  "names": [
+    {
+      "symbol": "10000COQUSDT",
+      "span_first": "2024-03-12",
+      "span_last": "2025-10-06",
+      "span_days": 574,
+      "listed_days": 574,
+      "saved_days": 574,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}

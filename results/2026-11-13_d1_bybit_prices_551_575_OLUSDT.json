@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-13",
+  "bound": "550 < days <= 575",
+  "names": [
+    {
+      "symbol": "OLUSDT",
+      "span_first": "2024-11-21",
+      "span_last": "2026-06-03",
+      "span_days": 560,
+      "listed_days": 560,
+      "saved_days": 560,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}

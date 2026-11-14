@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-14",
+  "bound": "550 < days <= 575",
+  "names": [
+    {
+      "symbol": "TOMOUSDT",
+      "span_first": "2022-04-28",
+      "span_last": "2023-11-14",
+      "span_days": 566,
+      "listed_days": 566,
+      "saved_days": 566,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}

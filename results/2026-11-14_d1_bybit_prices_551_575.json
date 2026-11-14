@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-14",
+  "candidate": "d1_bybit_prices_551_575",
+  "verdict": "recorded, not admitted",
+  "bound": "550 < days <= 575",
+  "names_count": 7,
+  "listed_days": 3931,
+  "saved_days": 3931,
+  "all_match": true,
+  "failures": [],
+  "empty_archive_days": [],
+  "archive_gaps": {},
+  "renamed_archive": {},
+  "checks": {
+    "dates_sorted_unique": true,
+    "span_ends_match": true,
+    "ohlc_bounds_ok": true,
+    "rows_equal_listed": true,
+    "calendar_gaps_inside_span": 0
+  },
+  "names": [
+    {"symbol": "SWARMSUSDT", "span_days": 551, "saved_days": 551, "first": "2025-01-06", "last": "2026-07-10", "match": true},
+    {"symbol": "PROMPTUSDT", "span_days": 555, "saved_days": 555, "first": "2025-04-10", "last": "2026-10-16", "match": true},
+    {"symbol": "OLUSDT", "span_days": 560, "saved_days": 560, "first": "2024-11-21", "last": "2026-06-03", "match": true},
+    {"symbol": "XIONUSDT", "span_days": 561, "saved_days": 561, "first": "2024-12-05", "last": "2026-06-18", "match": true},
+    {"symbol": "SLERFUSDT", "span_days": 564, "saved_days": 564, "first": "2024-03-18", "last": "2025-10-02", "match": true},
+    {"symbol": "TOMOUSDT", "span_days": 566, "saved_days": 566, "first": "2022-04-28", "last": "2023-11-14", "match": true},
+    {"symbol": "10000COQUSDT", "span_days": 574, "saved_days": 574, "first": "2024-03-12", "last": "2025-10-06", "match": true}
+  ],
+  "stopped_covered": 189,
+  "stopped_covered_days": 54476,
+  "stopped_remaining": 120,
+  "stopped_remaining_days": 120071,
+  "next_slice": "stopped names with 576 to 600 listed days, 10 names, 5874 listed days",
+  "not_touched": "the other 120 stopped names (576 or more listed days), funding, open interest, liquidations",
+  "tests_since_last_admission": 53,
+  "score_unchanged": true,
+  "note": "TOMOUSDT and 10000COQUSDT finished after midnight UTC, so their per-name files are dated 2026-11-14. No return was scored.",
+  "source_runs": [
+    "results/2026-11-13_d1_bybit_prices_551_575_SWARMSUSDT.json",
+    "results/2026-11-13_d1_bybit_prices_551_575_PROMPTUSDT.json",
+    "results/2026-11-13_d1_bybit_prices_551_575_OLUSDT.json",
+    "results/2026-11-13_d1_bybit_prices_551_575_XIONUSDT.json",
+    "results/2026-11-13_d1_bybit_prices_551_575_SLERFUSDT.json",
+    "results/2026-11-14_d1_bybit_prices_551_575_TOMOUSDT.json",
+    "results/2026-11-14_d1_bybit_prices_551_575_10000COQUSDT.json"
+  ]
+}
