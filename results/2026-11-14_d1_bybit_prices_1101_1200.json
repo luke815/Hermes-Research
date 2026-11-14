@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-14",
+  "candidate": "d1_bybit_prices_1101_1200",
+  "verdict": "recorded, not admitted",
+  "bound": "1100 < days <= 1200",
+  "names_saved": 6,
+  "days_saved": 6903,
+  "days_listed": 6903,
+  "all_match": true,
+  "failures": [],
+  "empty_archives": [],
+  "names": [
+    {
+      "symbol": "RDNTUSDT",
+      "span_first": "2023-04-17",
+      "span_last": "2026-04-30",
+      "span_days": 1110,
+      "listed_days": 1110,
+      "saved_days": 1110,
+      "match": true
+    },
+    {
+      "symbol": "HOOKUSDT",
+      "span_first": "2023-02-13",
+      "span_last": "2026-04-03",
+      "span_days": 1146,
+      "listed_days": 1146,
+      "saved_days": 1146,
+      "match": true
+    },
+    {
+      "symbol": "TRUUSDT",
+      "span_first": "2023-03-09",
+      "span_last": "2026-04-30",
+      "span_days": 1149,
+      "listed_days": 1149,
+      "saved_days": 1149,
+      "match": true
+    },
+    {
+      "symbol": "ETHWUSDT",
+      "span_first": "2022-09-16",
+      "span_last": "2025-11-21",
+      "span_days": 1163,
+      "listed_days": 1163,
+      "saved_days": 1163,
+      "match": true
+    },
+    {
+      "symbol": "MATICUSDT",
+      "span_first": "2021-06-29",
+      "span_last": "2024-09-06",
+      "span_days": 1166,
+      "listed_days": 1166,
+      "saved_days": 1166,
+      "match": true
+    },
+    {
+      "symbol": "RENUSDT",
+      "span_first": "2021-12-24",
+      "span_last": "2025-03-06",
+      "span_days": 1169,
+      "listed_days": 1169,
+      "saved_days": 1169,
+      "match": true
+    }
+  ],
+  "not_touched": "the other 42 stopped names, funding, open interest, liquidations",
+  "score_unchanged": true,
+  "tests_since_last_admission": 53,
+  "panel_check": "PASS panel_end=2026-11-13 today=2026-11-14 age=1d rows=2489 trailing_blank_cols=0 dupes=0 missing_days=0"
+}
