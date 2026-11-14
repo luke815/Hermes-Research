@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-14",
+  "candidate": "d1_bybit_prices_576_600",
+  "verdict": "recorded, not admitted",
+  "bound": "575 < days <= 600",
+  "names_count": 10,
+  "listed_days": 5874,
+  "saved_days": 5874,
+  "all_match": true,
+  "failures": [],
+  "empty_archive_days": [],
+  "archive_gaps": {},
+  "renamed_archive": {},
+  "checks": {
+    "dates_sorted_unique": true,
+    "span_ends_match": true,
+    "ohlc_bounds_ok": true,
+    "rows_equal_listed": true,
+    "calendar_gaps_inside_span": 0
+  },
+  "names": [
+    {
+      "symbol": "VINEUSDT",
+      "span_first": "2025-01-23",
+      "span_last": "2026-08-21",
+      "span_days": 576,
+      "listed_days": 576,
+      "saved_days": 576,
+      "match": true
+    },
+    {
+      "symbol": "XRDUSDT",
+      "span_first": "2023-12-12",
+      "span_last": "2025-07-11",
+      "span_days": 578,
+      "listed_days": 578,
+      "saved_days": 578,
+      "match": true
+    },
+    {
+      "symbol": "FIOUSDT",
+      "span_first": "2024-09-26",
+      "span_last": "2026-04-30",
+      "span_days": 582,
+      "listed_days": 582,
+      "saved_days": 582,
+      "match": true
+    },
+    {
+      "symbol": "HPOS10IUSDT",
+      "span_first": "2024-10-21",
+      "span_last": "2026-05-28",
+      "span_days": 585,
+      "listed_days": 585,
+      "saved_days": 585,
+      "match": true
+    },
+    {
+      "symbol": "SCAUSDT",
+      "span_first": "2024-03-13",
+      "span_last": "2025-10-21",
+      "span_days": 588,
+      "listed_days": 588,
+      "saved_days": 588,
+      "match": true
+    },
+    {
+      "symbol": "VRAUSDT",
+      "span_first": "2023-10-03",
+      "span_last": "2025-05-12",
+      "span_days": 588,
+      "listed_days": 588,
+      "saved_days": 588,
+      "match": true
+    },
+    {
+      "symbol": "STPTUSDT",
+      "span_first": "2023-10-04",
+      "span_last": "2025-05-17",
+      "span_days": 592,
+      "listed_days": 592,
+      "saved_days": 592,
+      "match": true
+    },
+    {
+      "symbol": "SYSUSDT",
+      "span_first": "2024-08-20",
+      "span_last": "2026-04-03",
+      "span_days": 592,
+      "listed_days": 592,
+      "saved_days": 592,
+      "match": true
+    },
+    {
+      "symbol": "GIGAUSDT",
+      "span_first": "2024-12-12",
+      "span_last": "2026-07-27",
+      "span_days": 593,
+      "listed_days": 593,
+      "saved_days": 593,
+      "match": true
+    },
+    {
+      "symbol": "VTHOUSDT",
+      "span_first": "2024-02-19",
+      "span_last": "2025-10-10",
+      "span_days": 600,
+      "listed_days": 600,
+      "saved_days": 600,
+      "match": true
+    }
+  ],
+  "stopped_covered": 199,
+  "stopped_covered_days": 60350,
+  "stopped_remaining": 110,
+  "stopped_remaining_days": 114197,
+  "next_slice": "stopped names with 601 to 650 listed days, 9 names, 5623 listed days",
+  "not_touched": "the other 110 stopped names (601 or more listed days), funding, open interest, liquidations",
+  "tests_since_last_admission": 53,
+  "score_unchanged": true,
+  "source_run": "results/2026-11-14_d1_bybit_prices_576_600_all.json"
+}
