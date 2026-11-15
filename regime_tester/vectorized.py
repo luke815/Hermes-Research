@@ -37,8 +37,22 @@ def load_close_matrix(panel_dir, names=None):
 
 
 def forward_returns(close, horizons):
-    """R_h matrices, computed once and reused across every cell."""
+    """Gross forward return matrices, computed once and reused across every cell."""
     return {h: close.shift(-h) / close - 1 for h in horizons}
+
+
+def net_returns(close, funding, horizons, round_trip):
+    """Gross minus the round trip and the funding carry over the holding window.
+
+    A missing funding value leaves the net missing rather than treating the
+    carry as zero, matching regime_tester/costs.py.
+    """
+    out = {}
+    for horizon in horizons:
+        gross = close.shift(-horizon) / close - 1
+        carry = funding.rolling(horizon).sum().shift(-horizon + 1) if funding is not None else 0
+        out[horizon] = gross - round_trip - carry
+    return out
 
 
 def rank_ic_matrix(signal, forward):
