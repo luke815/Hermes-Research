@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-15",
+  "candidate": "d1_bybit_prices_1501_1600",
+  "verdict": "recorded, not admitted",
+  "bound": "1500 < days <= 1600",
+  "names_saved": 4,
+  "days_saved": 6260,
+  "days_listed": 6260,
+  "all_match": true,
+  "ohlc_breaks": 0,
+  "calendar_gaps": 0,
+  "empty_archives": 0,
+  "failures": [],
+  "names": [
+    {
+      "symbol": "STGUSDT",
+      "span_first": "2022-08-26",
+      "span_last": "2026-10-10",
+      "span_days": 1507,
+      "listed_days": 1507,
+      "saved_days": 1507,
+      "match": true
+    },
+    {
+      "symbol": "SXPUSDT",
+      "span_first": "2021-12-08",
+      "span_last": "2026-04-03",
+      "span_days": 1578,
+      "listed_days": 1578,
+      "saved_days": 1578,
+      "match": true
+    },
+    {
+      "symbol": "SPELLUSDT",
+      "span_first": "2021-12-13",
+      "span_last": "2026-04-09",
+      "span_days": 1579,
+      "listed_days": 1579,
+      "saved_days": 1579,
+      "match": true
+    },
+    {
+      "symbol": "SFPUSDT",
+      "span_first": "2021-11-26",
+      "span_last": "2026-04-09",
+      "span_days": 1596,
+      "listed_days": 1596,
+      "saved_days": 1596,
+      "match": true
+    }
+  ],
+  "not_touched": "the other 8 stopped names, funding, open interest, liquidations",
+  "remaining_in_band": "7 stopped names above 1600 listed days, 11374 days; next slice is the names with 1601 to 1700 listed days: CTKUSDT, XEMUSDT, ICXUSDT, SCRTUSDT, ONEUSDT, REQUSDT, SCUSDT, 11374 days",
+  "stopped_covered": "301 of 309 stopped names, 162221 days",
+  "score_unchanged": true,
+  "tests_since_last_admission": 53,
+  "panel_check": "PASS panel_end=2026-11-14 today=2026-11-15 age=1d rows=2490 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "note": "No day failed its header check and no listed day was an empty archive. The backlog's next-slice line named CTKUSDT in this band; the span file gives it 1602 listed days, so it is in the next slice. The first foreground run was killed by the tool timeout at 1385 of 1507 STGUSDT days and resumed from the part files."
+}
