@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-15",
+  "candidate": "d1_bybit_prices_1261_1300",
+  "verdict": "recorded, not admitted",
+  "bound": "1260 < days <= 1300",
+  "names_saved": 6,
+  "days_saved": 7729,
+  "days_listed": 7729,
+  "all_match": true,
+  "ohlc_breaks": 0,
+  "failures": [],
+  "empty_archives": [],
+  "names": [
+    {
+      "symbol": "FLMUSDT",
+      "span_first": "2022-05-02",
+      "span_last": "2025-11-01",
+      "span_days": 1280,
+      "listed_days": 1280,
+      "saved_days": 1280,
+      "match": true
+    },
+    {
+      "symbol": "MKRUSDT",
+      "span_first": "2022-02-15",
+      "span_last": "2025-08-18",
+      "span_days": 1281,
+      "listed_days": 1281,
+      "saved_days": 1281,
+      "match": true
+    },
+    {
+      "symbol": "BAKEUSDT",
+      "span_first": "2022-04-01",
+      "span_last": "2025-10-06",
+      "span_days": 1285,
+      "listed_days": 1285,
+      "saved_days": 1285,
+      "match": true
+    },
+    {
+      "symbol": "BSWUSDT",
+      "span_first": "2022-03-23",
+      "span_last": "2025-10-01",
+      "span_days": 1289,
+      "listed_days": 1289,
+      "saved_days": 1289,
+      "match": true
+    },
+    {
+      "symbol": "ALPHAUSDT",
+      "span_first": "2022-03-30",
+      "span_last": "2025-10-15",
+      "span_days": 1296,
+      "listed_days": 1296,
+      "saved_days": 1296,
+      "match": true
+    },
+    {
+      "symbol": "HOTUSDT",
+      "span_first": "2022-03-28",
+      "span_last": "2025-10-15",
+      "span_days": 1298,
+      "listed_days": 1298,
+      "saved_days": 1298,
+      "match": true
+    }
+  ],
+  "not_touched": "the other 25 stopped names, funding, open interest, liquidations",
+  "remaining_in_band": "25 stopped names above 1300 listed days, 37,350 days; next slice is the names with 1301 to 1400 listed days: KDAUSDT, OMGUSDT, GLMRUSDT, FXSUSDT, LOOKSUSDT, RSS3USDT",
+  "score_unchanged": true,
+  "tests_since_last_admission": 53,
+  "panel_check": "PASS panel_end=2026-11-13 today=2026-11-15 age=2d rows=2489 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "note": "Two runs were killed by the OOM killer while reducing BAKEUSDT 2025-09-10 and 2025-09-11, whose compressed files are 312 MB and 149 MB. The reducer now streams the gzip line by line instead of reading the whole file into one string. No day failed after that change."
+}
