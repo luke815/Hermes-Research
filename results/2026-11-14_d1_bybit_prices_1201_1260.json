@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-14",
+  "candidate": "d1_bybit_prices_1201_1260",
+  "verdict": "recorded, not admitted",
+  "bound": "1200 < days <= 1260",
+  "names_saved": 5,
+  "days_saved": 6163,
+  "days_listed": 6163,
+  "all_match": true,
+  "failures": [],
+  "empty_archives": [],
+  "names": [
+    {
+      "symbol": "FTMUSDT",
+      "span_first": "2021-09-23",
+      "span_last": "2025-01-10",
+      "span_days": 1206,
+      "listed_days": 1206,
+      "saved_days": 1206,
+      "match": true
+    },
+    {
+      "symbol": "BALUSDT",
+      "span_first": "2022-04-08",
+      "span_last": "2025-07-29",
+      "span_days": 1209,
+      "listed_days": 1209,
+      "saved_days": 1209,
+      "match": true
+    },
+    {
+      "symbol": "XNOUSDT",
+      "span_first": "2022-09-02",
+      "span_last": "2026-01-24",
+      "span_days": 1241,
+      "listed_days": 1241,
+      "saved_days": 1241,
+      "match": true
+    },
+    {
+      "symbol": "HIGHUSDT",
+      "span_first": "2023-02-17",
+      "span_last": "2026-07-20",
+      "span_days": 1250,
+      "listed_days": 1250,
+      "saved_days": 1250,
+      "match": true
+    },
+    {
+      "symbol": "HFTUSDT",
+      "span_first": "2023-03-14",
+      "span_last": "2026-08-21",
+      "span_days": 1257,
+      "listed_days": 1257,
+      "saved_days": 1257,
+      "match": true
+    }
+  ],
+  "not_touched": "the other 31 stopped names, funding, open interest, liquidations",
+  "remaining_in_band": "6 names with 1261 to 1300 listed days, 7,729 days: FLMUSDT, MKRUSDT, BAKEUSDT, BSWUSDT, ALPHAUSDT, HOTUSDT",
+  "score_unchanged": true,
+  "tests_since_last_admission": 53,
+  "panel_check": "PASS panel_end=2026-11-13 today=2026-11-15 age=2d rows=2489 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "note": "The run started 2026-11-14 and the pull finished after midnight UTC, so the machine date at verification is 2026-11-15."
+}

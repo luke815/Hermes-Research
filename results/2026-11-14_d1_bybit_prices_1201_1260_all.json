@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-14",
+  "bound": "1200 < days <= 1260",
+  "names": [
+    {
+      "symbol": "FTMUSDT",
+      "span_first": "2021-09-23",
+      "span_last": "2025-01-10",
+      "span_days": 1206,
+      "listed_days": 1206,
+      "saved_days": 1206,
+      "match": true
+    },
+    {
+      "symbol": "BALUSDT",
+      "span_first": "2022-04-08",
+      "span_last": "2025-07-29",
+      "span_days": 1209,
+      "listed_days": 1209,
+      "saved_days": 1209,
+      "match": true
+    },
+    {
+      "symbol": "XNOUSDT",
+      "span_first": "2022-09-02",
+      "span_last": "2026-01-24",
+      "span_days": 1241,
+      "listed_days": 1241,
+      "saved_days": 1241,
+      "match": true
+    },
+    {
+      "symbol": "HIGHUSDT",
+      "span_first": "2023-02-17",
+      "span_last": "2026-07-20",
+      "span_days": 1250,
+      "listed_days": 1250,
+      "saved_days": 1250,
+      "match": true
+    },
+    {
+      "symbol": "HFTUSDT",
+      "span_first": "2023-03-14",
+      "span_last": "2026-08-21",
+      "span_days": 1257,
+      "listed_days": 1257,
+      "saved_days": 1257,
+      "match": true
+    }
+  ],
+  "failures": [],
+  "empty": []
+}
