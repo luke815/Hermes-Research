@@ -4,7 +4,7 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 ## Queue
 
-S8 is done. D1 Bybit stopped-name prices are complete: 308 of 309 stopped names, 173,595 days, through 1700 listed days (verdict 2026-11-15, results/2026-11-15_d1_bybit_prices_1601_1700.json). ANTUSDT is absent because the archive does not hold its files (recorded 2026-11-14). Next is D2.
+S8 is done. D1 Bybit stopped-name prices are complete: 308 of 309 stopped names, 173,595 days, through 1700 listed days (verdict 2026-11-15, results/2026-11-15_d1_bybit_prices_1601_1700.json). ANTUSDT is absent because the archive does not hold its files (recorded 2026-11-14). D2 has started: the 50 live Binance names with a span of 60 days or fewer now have daily funding, 1,416 days, ending 2026-10-31 because the archive has no file for the current month (verdict 2026-11-15, results/2026-11-15_d2_binance_funding_le60.json). 842 live Binance names remain, then Bybit and OKX, then open interest.
 
 - S8. The derivatives and options family in the library, market level, with tests; cells re-enumerated. Verdict 2026-11-13: recorded, not admitted. 27 measures for BTC and ETH, 54 columns, library 1.1.0. Cells went from 1,355,200 to 3,688,000, of which 788,200 are testable and none are duplicates. The tenor basis curve, the butterfly, the put-call ratio, SOL and the Hyperliquid aggregate are absent because the store does not hold them. results/2026-11-13_s8_derivatives.json.
 
