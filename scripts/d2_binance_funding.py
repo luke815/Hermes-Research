@@ -7,8 +7,8 @@ day, with the count of settlements kept beside it. Each symbol is written to
 data/binance_funding/ as soon as it is done, and a symbol whose saved file
 already covers every month in its listing is skipped.
 
-Bound: exchange binance, delisted 0, span from first_bar to last_bar of 60
-days or fewer. 50 names. No other venue, no open interest, no return scored.
+Bound: exchange binance, delisted 0, span from first_bar to last_bar of
+exactly 61 days. 7 names. No other venue, no open interest, no return scored.
 """
 
 import csv
@@ -30,7 +30,8 @@ UNIVERSE = ROOT / "data" / "universe.csv"
 OUT = ROOT / "data" / "binance_funding"
 BUCKET = "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision"
 NS = {"s3": "http://s3.amazonaws.com/doc/2006-03-01/"}
-MAX_SPAN_DAYS = 60
+MIN_SPAN_DAYS = 61
+MAX_SPAN_DAYS = 61
 COLUMNS = ["date", "funding_rate", "settlements"]
 
 
@@ -113,7 +114,8 @@ def targets() -> list[str]:
             continue
         first = date.fromisoformat(row["first_bar"])
         last = date.fromisoformat(row["last_bar"])
-        if (last - first).days + 1 <= MAX_SPAN_DAYS:
+        span = (last - first).days + 1
+        if MIN_SPAN_DAYS <= span <= MAX_SPAN_DAYS:
             out.append(row["symbol"])
     return out
 
@@ -121,7 +123,7 @@ def targets() -> list[str]:
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     symbols = targets()
-    print(f"{len(symbols)} live names with a span of {MAX_SPAN_DAYS} days or fewer", flush=True)
+    print(f"{len(symbols)} live names with a span of {MIN_SPAN_DAYS} to {MAX_SPAN_DAYS} days", flush=True)
     done = []
     with ThreadPoolExecutor(max_workers=6) as pool:
         futures = [pool.submit(one, symbol) for symbol in symbols]

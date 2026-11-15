@@ -1,0 +1,105 @@
+{
+ "candidate": "d2_binance_funding_span61",
+ "verdict": "recorded, not admitted",
+ "written_utc": "2026-11-15T15:17:35Z",
+ "bound": "binance, delisted 0, span from first_bar to last_bar of exactly 61 days",
+ "names": 7,
+ "days_saved": 420,
+ "absent": 0,
+ "checksum_failures": 0,
+ "problems": [],
+ "archive_note": "monthly fundingRate archive has no file for 2026-11, so every saved series ends 2026-10-31, one day short of the 61-day price span",
+ "per_name": [
+  {
+   "symbol": "DDOGUSDT",
+   "span_first": "2026-09-02",
+   "span_last": "2026-11-01",
+   "span_days": 61,
+   "saved_days": 60,
+   "saved_first": "2026-09-02",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "GTLBUSDT",
+   "span_first": "2026-09-02",
+   "span_last": "2026-11-01",
+   "span_days": 61,
+   "saved_days": 60,
+   "saved_first": "2026-09-02",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "MDBUSDT",
+   "span_first": "2026-09-02",
+   "span_last": "2026-11-01",
+   "span_days": 61,
+   "saved_days": 60,
+   "saved_first": "2026-09-02",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "NVDLUSDT",
+   "span_first": "2026-09-02",
+   "span_last": "2026-11-01",
+   "span_days": 61,
+   "saved_days": 60,
+   "saved_first": "2026-09-02",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "TEAMUSDT",
+   "span_first": "2026-09-02",
+   "span_last": "2026-11-01",
+   "span_days": 61,
+   "saved_days": 60,
+   "saved_first": "2026-09-02",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "TSLLUSDT",
+   "span_first": "2026-09-02",
+   "span_last": "2026-11-01",
+   "span_days": 61,
+   "saved_days": 60,
+   "saved_first": "2026-09-02",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "ZSUSDT",
+   "span_first": "2026-09-02",
+   "span_last": "2026-11-01",
+   "span_days": 61,
+   "saved_days": 60,
+   "saved_first": "2026-09-02",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  }
+ ]
+}
