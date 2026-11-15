@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-15",
+  "candidate": "d1_bybit_prices_1601_1700",
+  "verdict": "recorded, not admitted",
+  "bound": "1600 < days <= 1700",
+  "names_saved": 7,
+  "days_saved": 11374,
+  "days_listed": 11374,
+  "all_match": true,
+  "ohlc_breaks": 0,
+  "calendar_gaps": 0,
+  "empty_archives": 0,
+  "failures": [],
+  "names": [
+    {"symbol": "CTKUSDT", "span_first": "2021-12-03", "span_last": "2026-04-22", "span_days": 1602, "listed_days": 1602, "saved_days": 1602, "match": true},
+    {"symbol": "XEMUSDT", "span_first": "2021-05-13", "span_last": "2025-10-06", "span_days": 1608, "listed_days": 1608, "saved_days": 1608, "match": true},
+    {"symbol": "ICXUSDT", "span_first": "2022-04-13", "span_last": "2026-09-18", "span_days": 1620, "listed_days": 1620, "saved_days": 1620, "match": true},
+    {"symbol": "SCRTUSDT", "span_first": "2022-03-30", "span_last": "2026-09-05", "span_days": 1621, "listed_days": 1621, "saved_days": 1621, "match": true},
+    {"symbol": "ONEUSDT", "span_first": "2021-10-25", "span_last": "2026-04-09", "span_days": 1628, "listed_days": 1628, "saved_days": 1628, "match": true},
+    {"symbol": "REQUSDT", "span_first": "2021-12-06", "span_last": "2026-06-03", "span_days": 1641, "listed_days": 1641, "saved_days": 1641, "match": true},
+    {"symbol": "SCUSDT", "span_first": "2021-12-01", "span_last": "2026-06-11", "span_days": 1654, "listed_days": 1654, "saved_days": 1654, "match": true}
+  ],
+  "not_touched": "funding, open interest, liquidations",
+  "remaining_in_band": "none; no stopped name has more than 1654 listed days",
+  "stopped_covered": "308 of 309 stopped names, 173595 days",
+  "stopped_absent": "ANTUSDT, recorded 2026-11-14: the archive does not hold its files",
+  "next_item": "D2, per-exchange funding and open interest",
+  "score_unchanged": true,
+  "tests_since_last_admission": 53,
+  "panel_check": "PASS panel_end=2026-11-14 today=2026-11-15 age=1d rows=2490 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "note": "No day failed its header check and no listed day was an empty archive. Dates are sorted and unique, no day is missing inside any span, and no bar breaks the OHLC bounds. This slice closes the Bybit stopped-name price pull."
+}
