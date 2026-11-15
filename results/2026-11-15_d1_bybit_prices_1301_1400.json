@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-15",
+  "candidate": "d1_bybit_prices_1301_1400",
+  "verdict": "recorded, not admitted",
+  "bound": "1300 < days <= 1400",
+  "names_saved": 6,
+  "days_saved": 8104,
+  "days_listed": 8104,
+  "all_match": true,
+  "ohlc_breaks": 0,
+  "calendar_gaps": 0,
+  "failures": [],
+  "empty_archives": [],
+  "names": [
+    {"symbol": "KDAUSDT", "span_first": "2022-03-15", "span_last": "2025-10-24", "span_days": 1320, "listed_days": 1320, "saved_days": 1320, "match": true},
+    {"symbol": "OMGUSDT", "span_first": "2021-10-12", "span_last": "2025-06-03", "span_days": 1331, "listed_days": 1331, "saved_days": 1331, "match": true},
+    {"symbol": "GLMRUSDT", "span_first": "2022-03-30", "span_last": "2025-11-26", "span_days": 1338, "listed_days": 1338, "saved_days": 1338, "match": true},
+    {"symbol": "FXSUSDT", "span_first": "2022-04-04", "span_last": "2026-01-02", "span_days": 1370, "listed_days": 1370, "saved_days": 1370, "match": true},
+    {"symbol": "LOOKSUSDT", "span_first": "2022-01-24", "span_last": "2025-10-26", "span_days": 1372, "listed_days": 1372, "saved_days": 1372, "match": true},
+    {"symbol": "RSS3USDT", "span_first": "2022-02-23", "span_last": "2025-11-26", "span_days": 1373, "listed_days": 1373, "saved_days": 1373, "match": true}
+  ],
+  "not_touched": "the other 19 stopped names, funding, open interest, liquidations",
+  "remaining_in_band": "19 stopped names above 1400 listed days, 29246 days; next slice is the names with 1401 to 1500 listed days: DODOUSDT, EOSUSDT, DGBUSDT, AUDIOUSDT, CTSIUSDT, GTCUSDT, DENTUSDT, CELRUSDT, 11612 days",
+  "stopped_covered": "289 of 309 stopped names, 144349 days",
+  "score_unchanged": true,
+  "tests_since_last_admission": 53,
+  "panel_check": "PASS panel_end=2026-11-14 today=2026-11-15 age=1d rows=2490 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "note": "No day failed its header check and no listed day was an empty archive. The first attempt was killed when the tool call timed out; the rerun resumed from the part files already saved."
+}
