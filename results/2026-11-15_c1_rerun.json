@@ -1,0 +1,3853 @@
+{
+ "job": "c1_rerun",
+ "date": "2026-11-15",
+ "panel_end": "2026-11-14",
+ "panel_rows": 2490,
+ "rule": {
+  "candidate": "close within 5 percent of the trailing 60-day extreme",
+  "top": "lowest close in the next 30 days at least 20 percent below today",
+  "bottom": "highest close in the next 30 days at least 20 percent above today, no close more than 7 percent below",
+  "neighbours": [
+   "T(20, 15)",
+   "T(60, 30)",
+   "B(60, 30, 7)"
+  ],
+  "base_rate": "among candidate days whose window has closed"
+ },
+ "assets": {
+  "btc_price": {
+   "rows": 2490,
+   "top": {
+    "candidate_days": 814,
+    "candidate_share": 0.3269076305220884,
+    "T(30, 20)": {
+     "rates": {
+      "all": {
+       "days": 814,
+       "true_days": 51,
+       "day_rate": 0.06265356265356266,
+       "episodes": 14
+      },
+      "by_period": {
+       "test": {
+        "days": 111,
+        "true_days": 20,
+        "day_rate": 0.18018018018018017,
+        "episodes": 2
+       },
+       "train": {
+        "days": 512,
+        "true_days": 27,
+        "day_rate": 0.052734375,
+        "episodes": 10
+       },
+       "validation": {
+        "days": 191,
+        "true_days": 4,
+        "day_rate": 0.020942408376963352,
+        "episodes": 2
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 117,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2021": {
+        "days": 106,
+        "true_days": 18,
+        "day_rate": 0.16981132075471697,
+        "episodes": 7
+       },
+       "2022": {
+        "days": 23,
+        "true_days": 7,
+        "day_rate": 0.30434782608695654,
+        "episodes": 2
+       },
+       "2023": {
+        "days": 190,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2024": {
+        "days": 149,
+        "true_days": 6,
+        "day_rate": 0.040268456375838924,
+        "episodes": 3
+       },
+       "2025": {
+        "days": 118,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2026": {
+        "days": 111,
+        "true_days": 20,
+        "day_rate": 0.18018018018018017,
+        "episodes": 2
+       }
+      },
+      "episodes_by_period": {
+       "train": 10,
+       "validation": 2,
+       "test": 2
+      },
+      "episodes_by_year": {
+       "2021": 7,
+       "2022": 2,
+       "2024": 3,
+       "2026": 2
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.5,
+      "episodes": 14
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2021-01-07",
+       "end": "2021-01-09",
+       "days": 3
+      },
+      {
+       "episode": 2,
+       "start": "2021-01-14",
+       "end": "2021-01-14",
+       "days": 1
+      },
+      {
+       "episode": 3,
+       "start": "2021-02-21",
+       "end": "2021-02-21",
+       "days": 1
+      },
+      {
+       "episode": 4,
+       "start": "2021-04-13",
+       "end": "2021-04-16",
+       "days": 4
+      },
+      {
+       "episode": 5,
+       "start": "2021-09-05",
+       "end": "2021-09-06",
+       "days": 2
+      },
+      {
+       "episode": 6,
+       "start": "2021-11-07",
+       "end": "2021-11-11",
+       "days": 5
+      },
+      {
+       "episode": 7,
+       "start": "2021-11-13",
+       "end": "2021-11-14",
+       "days": 2
+      },
+      {
+       "episode": 8,
+       "start": "2022-08-11",
+       "end": "2022-08-16",
+       "days": 6
+      },
+      {
+       "episode": 9,
+       "start": "2022-11-05",
+       "end": "2022-11-05",
+       "days": 1
+      },
+      {
+       "episode": 10,
+       "start": "2024-06-05",
+       "end": "2024-06-06",
+       "days": 2
+      },
+      {
+       "episode": 11,
+       "start": "2024-07-21",
+       "end": "2024-07-21",
+       "days": 1
+      },
+      {
+       "episode": 12,
+       "start": "2024-07-26",
+       "end": "2024-07-28",
+       "days": 3
+      },
+      {
+       "episode": 13,
+       "start": "2026-01-12",
+       "end": "2026-01-19",
+       "days": 8
+      },
+      {
+       "episode": 14,
+       "start": "2026-05-05",
+       "end": "2026-05-16",
+       "days": 12
+      }
+     ]
+    },
+    "T(20, 15)": {
+     "rates": {
+      "all": {
+       "days": 814,
+       "true_days": 75,
+       "day_rate": 0.09213759213759214,
+       "episodes": 25
+      },
+      "by_period": {
+       "test": {
+        "days": 111,
+        "true_days": 12,
+        "day_rate": 0.10810810810810811,
+        "episodes": 2
+       },
+       "train": {
+        "days": 512,
+        "true_days": 59,
+        "day_rate": 0.115234375,
+        "episodes": 21
+       },
+       "validation": {
+        "days": 191,
+        "true_days": 4,
+        "day_rate": 0.020942408376963352,
+        "episodes": 2
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 117,
+        "true_days": 3,
+        "day_rate": 0.02564102564102564,
+        "episodes": 2
+       },
+       "2021": {
+        "days": 106,
+        "true_days": 30,
+        "day_rate": 0.2830188679245283,
+        "episodes": 9
+       },
+       "2022": {
+        "days": 23,
+        "true_days": 14,
+        "day_rate": 0.6086956521739131,
+        "episodes": 4
+       },
+       "2023": {
+        "days": 190,
+        "true_days": 7,
+        "day_rate": 0.03684210526315789,
+        "episodes": 1
+       },
+       "2024": {
+        "days": 149,
+        "true_days": 9,
+        "day_rate": 0.06040268456375839,
+        "episodes": 7
+       },
+       "2025": {
+        "days": 118,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2026": {
+        "days": 111,
+        "true_days": 12,
+        "day_rate": 0.10810810810810811,
+        "episodes": 2
+       }
+      },
+      "episodes_by_period": {
+       "train": 21,
+       "validation": 2,
+       "test": 2
+      },
+      "episodes_by_year": {
+       "2020": 2,
+       "2021": 9,
+       "2022": 4,
+       "2023": 1,
+       "2024": 7,
+       "2026": 2
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.36,
+      "episodes": 25
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-08-17",
+       "end": "2020-08-18",
+       "days": 2
+      },
+      {
+       "episode": 2,
+       "start": "2020-09-01",
+       "end": "2020-09-01",
+       "days": 1
+      },
+      {
+       "episode": 3,
+       "start": "2021-01-06",
+       "end": "2021-01-09",
+       "days": 4
+      },
+      {
+       "episode": 4,
+       "start": "2021-01-14",
+       "end": "2021-01-14",
+       "days": 1
+      },
+      {
+       "episode": 5,
+       "start": "2021-02-19",
+       "end": "2021-02-21",
+       "days": 3
+      },
+      {
+       "episode": 6,
+       "start": "2021-03-13",
+       "end": "2021-03-13",
+       "days": 1
+      },
+      {
+       "episode": 7,
+       "start": "2021-04-05",
+       "end": "2021-04-05",
+       "days": 1
+      },
+      {
+       "episode": 8,
+       "start": "2021-04-10",
+       "end": "2021-04-16",
+       "days": 7
+      },
+      {
+       "episode": 9,
+       "start": "2021-09-01",
+       "end": "2021-09-06",
+       "days": 6
+      },
+      {
+       "episode": 10,
+       "start": "2021-11-07",
+       "end": "2021-11-11",
+       "days": 5
+      },
+      {
+       "episode": 11,
+       "start": "2021-11-13",
+       "end": "2021-11-14",
+       "days": 2
+      },
+      {
+       "episode": 12,
+       "start": "2022-03-27",
+       "end": "2022-03-30",
+       "days": 4
+      },
+      {
+       "episode": 13,
+       "start": "2022-04-03",
+       "end": "2022-04-04",
+       "days": 2
+      },
+      {
+       "episode": 14,
+       "start": "2022-08-11",
+       "end": "2022-08-17",
+       "days": 7
+      },
+      {
+       "episode": 15,
+       "start": "2022-11-05",
+       "end": "2022-11-05",
+       "days": 1
+      },
+      {
+       "episode": 16,
+       "start": "2023-02-17",
+       "end": "2023-02-23",
+       "days": 7
+      },
+      {
+       "episode": 17,
+       "start": "2024-01-08",
+       "end": "2024-01-08",
+       "days": 1
+      },
+      {
+       "episode": 18,
+       "start": "2024-01-10",
+       "end": "2024-01-10",
+       "days": 1
+      },
+      {
+       "episode": 19,
+       "start": "2024-03-13",
+       "end": "2024-03-13",
+       "days": 1
+      },
+      {
+       "episode": 20,
+       "start": "2024-04-11",
+       "end": "2024-04-11",
+       "days": 1
+      },
+      {
+       "episode": 21,
+       "start": "2024-06-05",
+       "end": "2024-06-05",
+       "days": 1
+      },
+      {
+       "episode": 22,
+       "start": "2024-07-21",
+       "end": "2024-07-21",
+       "days": 1
+      },
+      {
+       "episode": 23,
+       "start": "2024-07-26",
+       "end": "2024-07-28",
+       "days": 3
+      },
+      {
+       "episode": 24,
+       "start": "2026-01-12",
+       "end": "2026-01-19",
+       "days": 8
+      },
+      {
+       "episode": 25,
+       "start": "2026-05-13",
+       "end": "2026-05-16",
+       "days": 4
+      }
+     ]
+    },
+    "T(60, 30)": {
+     "rates": {
+      "all": {
+       "days": 814,
+       "true_days": 51,
+       "day_rate": 0.06265356265356266,
+       "episodes": 9
+      },
+      "by_period": {
+       "test": {
+        "days": 111,
+        "true_days": 8,
+        "day_rate": 0.07207207207207207,
+        "episodes": 1
+       },
+       "train": {
+        "days": 512,
+        "true_days": 36,
+        "day_rate": 0.0703125,
+        "episodes": 7
+       },
+       "validation": {
+        "days": 191,
+        "true_days": 7,
+        "day_rate": 0.03664921465968586,
+        "episodes": 1
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 117,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2021": {
+        "days": 106,
+        "true_days": 21,
+        "day_rate": 0.19811320754716982,
+        "episodes": 6
+       },
+       "2022": {
+        "days": 23,
+        "true_days": 15,
+        "day_rate": 0.6521739130434783,
+        "episodes": 1
+       },
+       "2023": {
+        "days": 190,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2024": {
+        "days": 149,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2025": {
+        "days": 118,
+        "true_days": 7,
+        "day_rate": 0.059322033898305086,
+        "episodes": 1
+       },
+       "2026": {
+        "days": 111,
+        "true_days": 8,
+        "day_rate": 0.07207207207207207,
+        "episodes": 1
+       }
+      },
+      "episodes_by_period": {
+       "train": 7,
+       "validation": 1,
+       "test": 1
+      },
+      "episodes_by_year": {
+       "2021": 6,
+       "2022": 1,
+       "2025": 1,
+       "2026": 1
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.6666666666666666,
+      "episodes": 9
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2021-03-30",
+       "end": "2021-04-02",
+       "days": 4
+      },
+      {
+       "episode": 2,
+       "start": "2021-04-04",
+       "end": "2021-04-05",
+       "days": 2
+      },
+      {
+       "episode": 3,
+       "start": "2021-04-10",
+       "end": "2021-04-16",
+       "days": 7
+      },
+      {
+       "episode": 4,
+       "start": "2021-10-20",
+       "end": "2021-10-20",
+       "days": 1
+      },
+      {
+       "episode": 5,
+       "start": "2021-11-07",
+       "end": "2021-11-11",
+       "days": 5
+      },
+      {
+       "episode": 6,
+       "start": "2021-11-13",
+       "end": "2021-11-14",
+       "days": 2
+      },
+      {
+       "episode": 7,
+       "start": "2022-03-22",
+       "end": "2022-04-05",
+       "days": 15
+      },
+      {
+       "episode": 8,
+       "start": "2025-10-03",
+       "end": "2025-10-09",
+       "days": 7
+      },
+      {
+       "episode": 9,
+       "start": "2026-01-12",
+       "end": "2026-01-19",
+       "days": 8
+      }
+     ]
+    }
+   },
+   "bottom": {
+    "candidate_days": 457,
+    "candidate_share": 0.18353413654618475,
+    "B(30, 20, 7)": {
+     "rates": {
+      "all": {
+       "days": 457,
+       "true_days": 49,
+       "day_rate": 0.10722100656455143,
+       "episodes": 22
+      },
+      "by_period": {
+       "test": {
+        "days": 63,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "train": {
+        "days": 260,
+        "true_days": 39,
+        "day_rate": 0.15,
+        "episodes": 17
+       },
+       "validation": {
+        "days": 134,
+        "true_days": 10,
+        "day_rate": 0.07462686567164178,
+        "episodes": 5
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 6,
+        "true_days": 6,
+        "day_rate": 1.0,
+        "episodes": 4
+       },
+       "2021": {
+        "days": 53,
+        "true_days": 8,
+        "day_rate": 0.1509433962264151,
+        "episodes": 2
+       },
+       "2022": {
+        "days": 127,
+        "true_days": 12,
+        "day_rate": 0.09448818897637795,
+        "episodes": 7
+       },
+       "2023": {
+        "days": 61,
+        "true_days": 11,
+        "day_rate": 0.18032786885245902,
+        "episodes": 3
+       },
+       "2024": {
+        "days": 33,
+        "true_days": 8,
+        "day_rate": 0.24242424242424243,
+        "episodes": 4
+       },
+       "2025": {
+        "days": 114,
+        "true_days": 4,
+        "day_rate": 0.03508771929824561,
+        "episodes": 2
+       },
+       "2026": {
+        "days": 63,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       }
+      },
+      "episodes_by_period": {
+       "train": 17,
+       "validation": 5,
+       "test": 0
+      },
+      "episodes_by_year": {
+       "2020": 4,
+       "2021": 2,
+       "2022": 7,
+       "2023": 3,
+       "2024": 4,
+       "2025": 2
+      }
+     },
+     "year_concentration": {
+      "year": 2022,
+      "share": 0.3181818181818182,
+      "episodes": 22
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-07-16",
+       "end": "2020-07-16",
+       "days": 1
+      },
+      {
+       "episode": 2,
+       "start": "2020-09-23",
+       "end": "2020-09-23",
+       "days": 1
+      },
+      {
+       "episode": 3,
+       "start": "2020-10-01",
+       "end": "2020-10-03",
+       "days": 3
+      },
+      {
+       "episode": 4,
+       "start": "2020-10-06",
+       "end": "2020-10-06",
+       "days": 1
+      },
+      {
+       "episode": 5,
+       "start": "2021-06-07",
+       "end": "2021-06-08",
+       "days": 2
+      },
+      {
+       "episode": 6,
+       "start": "2021-07-15",
+       "end": "2021-07-20",
+       "days": 6
+      },
+      {
+       "episode": 7,
+       "start": "2022-01-21",
+       "end": "2022-01-24",
+       "days": 4
+      },
+      {
+       "episode": 8,
+       "start": "2022-01-26",
+       "end": "2022-01-26",
+       "days": 1
+      },
+      {
+       "episode": 9,
+       "start": "2022-07-01",
+       "end": "2022-07-03",
+       "days": 3
+      },
+      {
+       "episode": 10,
+       "start": "2022-07-12",
+       "end": "2022-07-12",
+       "days": 1
+      },
+      {
+       "episode": 11,
+       "start": "2022-12-19",
+       "end": "2022-12-19",
+       "days": 1
+      },
+      {
+       "episode": 12,
+       "start": "2022-12-28",
+       "end": "2022-12-28",
+       "days": 1
+      },
+      {
+       "episode": 13,
+       "start": "2022-12-31",
+       "end": "2022-12-31",
+       "days": 1
+      },
+      {
+       "episode": 14,
+       "start": "2023-06-05",
+       "end": "2023-06-05",
+       "days": 1
+      },
+      {
+       "episode": 15,
+       "start": "2023-06-10",
+       "end": "2023-06-15",
+       "days": 6
+      },
+      {
+       "episode": 16,
+       "start": "2023-09-24",
+       "end": "2023-09-27",
+       "days": 4
+      },
+      {
+       "episode": 17,
+       "start": "2024-05-01",
+       "end": "2024-05-02",
+       "days": 2
+      },
+      {
+       "episode": 18,
+       "start": "2024-07-05",
+       "end": "2024-07-05",
+       "days": 1
+      },
+      {
+       "episode": 19,
+       "start": "2024-07-07",
+       "end": "2024-07-08",
+       "days": 2
+      },
+      {
+       "episode": 20,
+       "start": "2024-09-06",
+       "end": "2024-09-08",
+       "days": 3
+      },
+      {
+       "episode": 21,
+       "start": "2025-04-06",
+       "end": "2025-04-08",
+       "days": 3
+      },
+      {
+       "episode": 22,
+       "start": "2025-04-10",
+       "end": "2025-04-10",
+       "days": 1
+      }
+     ]
+    },
+    "B(60, 30, 7)": {
+     "rates": {
+      "all": {
+       "days": 457,
+       "true_days": 62,
+       "day_rate": 0.13566739606126915,
+       "episodes": 20
+      },
+      "by_period": {
+       "test": {
+        "days": 63,
+        "true_days": 7,
+        "day_rate": 0.1111111111111111,
+        "episodes": 1
+       },
+       "train": {
+        "days": 260,
+        "true_days": 47,
+        "day_rate": 0.18076923076923077,
+        "episodes": 15
+       },
+       "validation": {
+        "days": 134,
+        "true_days": 8,
+        "day_rate": 0.05970149253731343,
+        "episodes": 4
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 6,
+        "true_days": 6,
+        "day_rate": 1.0,
+        "episodes": 4
+       },
+       "2021": {
+        "days": 53,
+        "true_days": 8,
+        "day_rate": 0.1509433962264151,
+        "episodes": 3
+       },
+       "2022": {
+        "days": 127,
+        "true_days": 11,
+        "day_rate": 0.08661417322834646,
+        "episodes": 5
+       },
+       "2023": {
+        "days": 61,
+        "true_days": 22,
+        "day_rate": 0.36065573770491804,
+        "episodes": 3
+       },
+       "2024": {
+        "days": 33,
+        "true_days": 3,
+        "day_rate": 0.09090909090909091,
+        "episodes": 1
+       },
+       "2025": {
+        "days": 114,
+        "true_days": 5,
+        "day_rate": 0.043859649122807015,
+        "episodes": 3
+       },
+       "2026": {
+        "days": 63,
+        "true_days": 7,
+        "day_rate": 0.1111111111111111,
+        "episodes": 1
+       }
+      },
+      "episodes_by_period": {
+       "train": 15,
+       "validation": 4,
+       "test": 1
+      },
+      "episodes_by_year": {
+       "2020": 4,
+       "2021": 3,
+       "2022": 5,
+       "2023": 3,
+       "2024": 1,
+       "2025": 3,
+       "2026": 1
+      }
+     },
+     "year_concentration": {
+      "year": 2022,
+      "share": 0.25,
+      "episodes": 20
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-07-16",
+       "end": "2020-07-16",
+       "days": 1
+      },
+      {
+       "episode": 2,
+       "start": "2020-09-23",
+       "end": "2020-09-23",
+       "days": 1
+      },
+      {
+       "episode": 3,
+       "start": "2020-10-01",
+       "end": "2020-10-03",
+       "days": 3
+      },
+      {
+       "episode": 4,
+       "start": "2020-10-06",
+       "end": "2020-10-06",
+       "days": 1
+      },
+      {
+       "episode": 5,
+       "start": "2021-06-21",
+       "end": "2021-06-21",
+       "days": 1
+      },
+      {
+       "episode": 6,
+       "start": "2021-06-25",
+       "end": "2021-06-25",
+       "days": 1
+      },
+      {
+       "episode": 7,
+       "start": "2021-07-15",
+       "end": "2021-07-20",
+       "days": 6
+      },
+      {
+       "episode": 8,
+       "start": "2022-11-20",
+       "end": "2022-11-22",
+       "days": 3
+      },
+      {
+       "episode": 9,
+       "start": "2022-11-25",
+       "end": "2022-11-29",
+       "days": 5
+      },
+      {
+       "episode": 10,
+       "start": "2022-12-19",
+       "end": "2022-12-19",
+       "days": 1
+      },
+      {
+       "episode": 11,
+       "start": "2022-12-28",
+       "end": "2022-12-28",
+       "days": 1
+      },
+      {
+       "episode": 12,
+       "start": "2022-12-31",
+       "end": "2022-12-31",
+       "days": 1
+      },
+      {
+       "episode": 13,
+       "start": "2023-08-25",
+       "end": "2023-08-28",
+       "days": 4
+      },
+      {
+       "episode": 14,
+       "start": "2023-08-31",
+       "end": "2023-09-13",
+       "days": 14
+      },
+      {
+       "episode": 15,
+       "start": "2023-09-24",
+       "end": "2023-09-27",
+       "days": 4
+      },
+      {
+       "episode": 16,
+       "start": "2024-09-06",
+       "end": "2024-09-08",
+       "days": 3
+      },
+      {
+       "episode": 17,
+       "start": "2025-03-10",
+       "end": "2025-03-10",
+       "days": 1
+      },
+      {
+       "episode": 18,
+       "start": "2025-04-06",
+       "end": "2025-04-08",
+       "days": 3
+      },
+      {
+       "episode": 19,
+       "start": "2025-04-10",
+       "end": "2025-04-10",
+       "days": 1
+      },
+      {
+       "episode": 20,
+       "start": "2026-06-25",
+       "end": "2026-07-01",
+       "days": 7
+      }
+     ]
+    }
+   },
+   "zigzag": {
+    "size": 0.2,
+    "tops": {
+     "points": 18,
+     "caught": 11,
+     "missed": 7,
+     "open_window": 0,
+     "caught_dates": [
+      "2020-03-11",
+      "2021-01-08",
+      "2021-02-21",
+      "2021-04-13",
+      "2021-05-08",
+      "2021-06-14",
+      "2021-09-06",
+      "2021-11-08",
+      "2022-08-13",
+      "2024-07-28",
+      "2026-05-10"
+     ]
+    },
+    "bottoms": {
+     "points": 17,
+     "caught": 11,
+     "missed": 6,
+     "open_window": 0,
+     "caught_dates": [
+      "2020-03-12",
+      "2021-01-27",
+      "2021-02-28",
+      "2021-06-08",
+      "2021-07-20",
+      "2021-09-21",
+      "2022-01-22",
+      "2024-05-01",
+      "2024-07-07",
+      "2024-09-06",
+      "2025-04-08"
+     ]
+    }
+   },
+   "lookahead_holds": true
+  },
+  "eth_price": {
+   "rows": 2490,
+   "top": {
+    "candidate_days": 696,
+    "candidate_share": 0.27951807228915665,
+    "T(30, 20)": {
+     "rates": {
+      "all": {
+       "days": 696,
+       "true_days": 79,
+       "day_rate": 0.11350574712643678,
+       "episodes": 20
+      },
+      "by_period": {
+       "test": {
+        "days": 103,
+        "true_days": 14,
+        "day_rate": 0.13592233009708737,
+        "episodes": 3
+       },
+       "train": {
+        "days": 491,
+        "true_days": 60,
+        "day_rate": 0.12219959266802444,
+        "episodes": 13
+       },
+       "validation": {
+        "days": 102,
+        "true_days": 5,
+        "day_rate": 0.049019607843137254,
+        "episodes": 4
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 110,
+        "true_days": 9,
+        "day_rate": 0.08181818181818182,
+        "episodes": 2
+       },
+       "2021": {
+        "days": 138,
+        "true_days": 34,
+        "day_rate": 0.2463768115942029,
+        "episodes": 6
+       },
+       "2022": {
+        "days": 23,
+        "true_days": 10,
+        "day_rate": 0.43478260869565216,
+        "episodes": 2
+       },
+       "2023": {
+        "days": 153,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2024": {
+        "days": 107,
+        "true_days": 9,
+        "day_rate": 0.08411214953271028,
+        "episodes": 4
+       },
+       "2025": {
+        "days": 62,
+        "true_days": 3,
+        "day_rate": 0.04838709677419355,
+        "episodes": 3
+       },
+       "2026": {
+        "days": 103,
+        "true_days": 14,
+        "day_rate": 0.13592233009708737,
+        "episodes": 3
+       }
+      },
+      "episodes_by_period": {
+       "train": 13,
+       "validation": 4,
+       "test": 3
+      },
+      "episodes_by_year": {
+       "2020": 2,
+       "2021": 6,
+       "2022": 2,
+       "2024": 4,
+       "2025": 3,
+       "2026": 3
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.3,
+      "episodes": 20
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-08-13",
+       "end": "2020-08-18",
+       "days": 6
+      },
+      {
+       "episode": 2,
+       "start": "2020-08-30",
+       "end": "2020-09-01",
+       "days": 3
+      },
+      {
+       "episode": 3,
+       "start": "2021-02-11",
+       "end": "2021-02-21",
+       "days": 11
+      },
+      {
+       "episode": 4,
+       "start": "2021-04-27",
+       "end": "2021-05-03",
+       "days": 7
+      },
+      {
+       "episode": 5,
+       "start": "2021-05-05",
+       "end": "2021-05-11",
+       "days": 7
+      },
+      {
+       "episode": 6,
+       "start": "2021-05-14",
+       "end": "2021-05-14",
+       "days": 1
+      },
+      {
+       "episode": 7,
+       "start": "2021-09-01",
+       "end": "2021-09-06",
+       "days": 6
+      },
+      {
+       "episode": 8,
+       "start": "2021-11-30",
+       "end": "2021-12-01",
+       "days": 2
+      },
+      {
+       "episode": 9,
+       "start": "2022-04-01",
+       "end": "2022-04-04",
+       "days": 4
+      },
+      {
+       "episode": 10,
+       "start": "2022-08-10",
+       "end": "2022-08-15",
+       "days": 6
+      },
+      {
+       "episode": 11,
+       "start": "2024-03-11",
+       "end": "2024-03-14",
+       "days": 4
+      },
+      {
+       "episode": 12,
+       "start": "2024-06-05",
+       "end": "2024-06-06",
+       "days": 2
+      },
+      {
+       "episode": 13,
+       "start": "2024-06-09",
+       "end": "2024-06-09",
+       "days": 1
+      },
+      {
+       "episode": 14,
+       "start": "2024-12-15",
+       "end": "2024-12-16",
+       "days": 2
+      },
+      {
+       "episode": 15,
+       "start": "2025-06-10",
+       "end": "2025-06-10",
+       "days": 1
+      },
+      {
+       "episode": 16,
+       "start": "2025-09-12",
+       "end": "2025-09-12",
+       "days": 1
+      },
+      {
+       "episode": 17,
+       "start": "2025-10-06",
+       "end": "2025-10-06",
+       "days": 1
+      },
+      {
+       "episode": 18,
+       "start": "2026-01-13",
+       "end": "2026-01-19",
+       "days": 7
+      },
+      {
+       "episode": 19,
+       "start": "2026-05-04",
+       "end": "2026-05-06",
+       "days": 3
+      },
+      {
+       "episode": 20,
+       "start": "2026-05-08",
+       "end": "2026-05-11",
+       "days": 4
+      }
+     ]
+    },
+    "T(20, 15)": {
+     "rates": {
+      "all": {
+       "days": 696,
+       "true_days": 96,
+       "day_rate": 0.13793103448275862,
+       "episodes": 26
+      },
+      "by_period": {
+       "test": {
+        "days": 103,
+        "true_days": 8,
+        "day_rate": 0.07766990291262135,
+        "episodes": 2
+       },
+       "train": {
+        "days": 491,
+        "true_days": 72,
+        "day_rate": 0.14663951120162932,
+        "episodes": 19
+       },
+       "validation": {
+        "days": 102,
+        "true_days": 16,
+        "day_rate": 0.1568627450980392,
+        "episodes": 5
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 110,
+        "true_days": 6,
+        "day_rate": 0.05454545454545454,
+        "episodes": 2
+       },
+       "2021": {
+        "days": 138,
+        "true_days": 42,
+        "day_rate": 0.30434782608695654,
+        "episodes": 12
+       },
+       "2022": {
+        "days": 23,
+        "true_days": 10,
+        "day_rate": 0.43478260869565216,
+        "episodes": 2
+       },
+       "2023": {
+        "days": 153,
+        "true_days": 4,
+        "day_rate": 0.026143790849673203,
+        "episodes": 1
+       },
+       "2024": {
+        "days": 107,
+        "true_days": 19,
+        "day_rate": 0.17757009345794392,
+        "episodes": 4
+       },
+       "2025": {
+        "days": 62,
+        "true_days": 7,
+        "day_rate": 0.11290322580645161,
+        "episodes": 3
+       },
+       "2026": {
+        "days": 103,
+        "true_days": 8,
+        "day_rate": 0.07766990291262135,
+        "episodes": 2
+       }
+      },
+      "episodes_by_period": {
+       "train": 19,
+       "validation": 5,
+       "test": 2
+      },
+      "episodes_by_year": {
+       "2020": 2,
+       "2021": 12,
+       "2022": 2,
+       "2023": 1,
+       "2024": 4,
+       "2025": 3,
+       "2026": 2
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.46153846153846156,
+      "episodes": 26
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-08-16",
+       "end": "2020-08-18",
+       "days": 3
+      },
+      {
+       "episode": 2,
+       "start": "2020-08-30",
+       "end": "2020-09-01",
+       "days": 3
+      },
+      {
+       "episode": 3,
+       "start": "2021-01-09",
+       "end": "2021-01-10",
+       "days": 2
+      },
+      {
+       "episode": 4,
+       "start": "2021-01-19",
+       "end": "2021-01-20",
+       "days": 2
+      },
+      {
+       "episode": 5,
+       "start": "2021-02-08",
+       "end": "2021-02-21",
+       "days": 14
+      },
+      {
+       "episode": 6,
+       "start": "2021-03-09",
+       "end": "2021-03-09",
+       "days": 1
+      },
+      {
+       "episode": 7,
+       "start": "2021-03-13",
+       "end": "2021-03-13",
+       "days": 1
+      },
+      {
+       "episode": 8,
+       "start": "2021-05-01",
+       "end": "2021-05-03",
+       "days": 3
+      },
+      {
+       "episode": 9,
+       "start": "2021-05-05",
+       "end": "2021-05-11",
+       "days": 7
+      },
+      {
+       "episode": 10,
+       "start": "2021-05-14",
+       "end": "2021-05-14",
+       "days": 1
+      },
+      {
+       "episode": 11,
+       "start": "2021-09-01",
+       "end": "2021-09-06",
+       "days": 6
+      },
+      {
+       "episode": 12,
+       "start": "2021-11-08",
+       "end": "2021-11-09",
+       "days": 2
+      },
+      {
+       "episode": 13,
+       "start": "2021-11-11",
+       "end": "2021-11-11",
+       "days": 1
+      },
+      {
+       "episode": 14,
+       "start": "2021-11-30",
+       "end": "2021-12-01",
+       "days": 2
+      },
+      {
+       "episode": 15,
+       "start": "2022-04-03",
+       "end": "2022-04-04",
+       "days": 2
+      },
+      {
+       "episode": 16,
+       "start": "2022-08-08",
+       "end": "2022-08-15",
+       "days": 8
+      },
+      {
+       "episode": 17,
+       "start": "2023-02-17",
+       "end": "2023-02-20",
+       "days": 4
+      },
+      {
+       "episode": 18,
+       "start": "2024-01-11",
+       "end": "2024-01-11",
+       "days": 1
+      },
+      {
+       "episode": 19,
+       "start": "2024-03-06",
+       "end": "2024-03-14",
+       "days": 9
+      },
+      {
+       "episode": 20,
+       "start": "2024-12-06",
+       "end": "2024-12-08",
+       "days": 3
+      },
+      {
+       "episode": 21,
+       "start": "2024-12-12",
+       "end": "2024-12-17",
+       "days": 6
+      },
+      {
+       "episode": 22,
+       "start": "2025-06-09",
+       "end": "2025-06-11",
+       "days": 3
+      },
+      {
+       "episode": 23,
+       "start": "2025-09-12",
+       "end": "2025-09-14",
+       "days": 3
+      },
+      {
+       "episode": 24,
+       "start": "2025-10-06",
+       "end": "2025-10-06",
+       "days": 1
+      },
+      {
+       "episode": 25,
+       "start": "2026-01-13",
+       "end": "2026-01-19",
+       "days": 7
+      },
+      {
+       "episode": 26,
+       "start": "2026-05-10",
+       "end": "2026-05-10",
+       "days": 1
+      }
+     ]
+    },
+    "T(60, 30)": {
+     "rates": {
+      "all": {
+       "days": 696,
+       "true_days": 92,
+       "day_rate": 0.13218390804597702,
+       "episodes": 21
+      },
+      "by_period": {
+       "test": {
+        "days": 103,
+        "true_days": 32,
+        "day_rate": 0.3106796116504854,
+        "episodes": 6
+       },
+       "train": {
+        "days": 491,
+        "true_days": 48,
+        "day_rate": 0.09775967413441955,
+        "episodes": 11
+       },
+       "validation": {
+        "days": 102,
+        "true_days": 12,
+        "day_rate": 0.11764705882352941,
+        "episodes": 4
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 110,
+        "true_days": 1,
+        "day_rate": 0.00909090909090909,
+        "episodes": 1
+       },
+       "2021": {
+        "days": 138,
+        "true_days": 25,
+        "day_rate": 0.18115942028985507,
+        "episodes": 6
+       },
+       "2022": {
+        "days": 23,
+        "true_days": 19,
+        "day_rate": 0.8260869565217391,
+        "episodes": 2
+       },
+       "2023": {
+        "days": 153,
+        "true_days": 0,
+        "day_rate": 0.0,
+        "episodes": 0
+       },
+       "2024": {
+        "days": 107,
+        "true_days": 13,
+        "day_rate": 0.12149532710280374,
+        "episodes": 4
+       },
+       "2025": {
+        "days": 62,
+        "true_days": 2,
+        "day_rate": 0.03225806451612903,
+        "episodes": 2
+       },
+       "2026": {
+        "days": 103,
+        "true_days": 32,
+        "day_rate": 0.3106796116504854,
+        "episodes": 6
+       }
+      },
+      "episodes_by_period": {
+       "train": 11,
+       "validation": 4,
+       "test": 6
+      },
+      "episodes_by_year": {
+       "2020": 1,
+       "2021": 6,
+       "2022": 2,
+       "2024": 4,
+       "2025": 2,
+       "2026": 6
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.2857142857142857,
+      "episodes": 21
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-09-01",
+       "end": "2020-09-01",
+       "days": 1
+      },
+      {
+       "episode": 2,
+       "start": "2021-04-27",
+       "end": "2021-05-03",
+       "days": 7
+      },
+      {
+       "episode": 3,
+       "start": "2021-05-05",
+       "end": "2021-05-11",
+       "days": 7
+      },
+      {
+       "episode": 4,
+       "start": "2021-05-14",
+       "end": "2021-05-14",
+       "days": 1
+      },
+      {
+       "episode": 5,
+       "start": "2021-09-05",
+       "end": "2021-09-05",
+       "days": 1
+      },
+      {
+       "episode": 6,
+       "start": "2021-11-08",
+       "end": "2021-11-14",
+       "days": 7
+      },
+      {
+       "episode": 7,
+       "start": "2021-11-30",
+       "end": "2021-12-01",
+       "days": 2
+      },
+      {
+       "episode": 8,
+       "start": "2022-03-24",
+       "end": "2022-04-05",
+       "days": 13
+      },
+      {
+       "episode": 9,
+       "start": "2022-08-10",
+       "end": "2022-08-15",
+       "days": 6
+      },
+      {
+       "episode": 10,
+       "start": "2024-06-05",
+       "end": "2024-06-06",
+       "days": 2
+      },
+      {
+       "episode": 11,
+       "start": "2024-06-09",
+       "end": "2024-06-09",
+       "days": 1
+      },
+      {
+       "episode": 12,
+       "start": "2024-12-06",
+       "end": "2024-12-08",
+       "days": 3
+      },
+      {
+       "episode": 13,
+       "start": "2024-12-11",
+       "end": "2024-12-17",
+       "days": 7
+      },
+      {
+       "episode": 14,
+       "start": "2025-09-12",
+       "end": "2025-09-12",
+       "days": 1
+      },
+      {
+       "episode": 15,
+       "start": "2025-10-06",
+       "end": "2025-10-06",
+       "days": 1
+      },
+      {
+       "episode": 16,
+       "start": "2026-01-13",
+       "end": "2026-01-19",
+       "days": 7
+      },
+      {
+       "episode": 17,
+       "start": "2026-04-10",
+       "end": "2026-04-11",
+       "days": 2
+      },
+      {
+       "episode": 18,
+       "start": "2026-04-13",
+       "end": "2026-04-18",
+       "days": 6
+      },
+      {
+       "episode": 19,
+       "start": "2026-04-20",
+       "end": "2026-04-27",
+       "days": 8
+      },
+      {
+       "episode": 20,
+       "start": "2026-05-02",
+       "end": "2026-05-06",
+       "days": 5
+      },
+      {
+       "episode": 21,
+       "start": "2026-05-08",
+       "end": "2026-05-11",
+       "days": 4
+      }
+     ]
+    }
+   },
+   "bottom": {
+    "candidate_days": 366,
+    "candidate_share": 0.14698795180722893,
+    "B(30, 20, 7)": {
+     "rates": {
+      "all": {
+       "days": 366,
+       "true_days": 62,
+       "day_rate": 0.16939890710382513,
+       "episodes": 25
+      },
+      "by_period": {
+       "test": {
+        "days": 62,
+        "true_days": 9,
+        "day_rate": 0.14516129032258066,
+        "episodes": 2
+       },
+       "train": {
+        "days": 188,
+        "true_days": 49,
+        "day_rate": 0.26063829787234044,
+        "episodes": 19
+       },
+       "validation": {
+        "days": 116,
+        "true_days": 4,
+        "day_rate": 0.034482758620689655,
+        "episodes": 4
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 1,
+        "true_days": 1,
+        "day_rate": 1.0,
+        "episodes": 1
+       },
+       "2021": {
+        "days": 20,
+        "true_days": 8,
+        "day_rate": 0.4,
+        "episodes": 4
+       },
+       "2022": {
+        "days": 78,
+        "true_days": 12,
+        "day_rate": 0.15384615384615385,
+        "episodes": 8
+       },
+       "2023": {
+        "days": 69,
+        "true_days": 14,
+        "day_rate": 0.2028985507246377,
+        "episodes": 2
+       },
+       "2024": {
+        "days": 39,
+        "true_days": 15,
+        "day_rate": 0.38461538461538464,
+        "episodes": 5
+       },
+       "2025": {
+        "days": 97,
+        "true_days": 3,
+        "day_rate": 0.030927835051546393,
+        "episodes": 3
+       },
+       "2026": {
+        "days": 62,
+        "true_days": 9,
+        "day_rate": 0.14516129032258066,
+        "episodes": 2
+       }
+      },
+      "episodes_by_period": {
+       "train": 19,
+       "validation": 4,
+       "test": 2
+      },
+      "episodes_by_year": {
+       "2020": 1,
+       "2021": 4,
+       "2022": 8,
+       "2023": 2,
+       "2024": 5,
+       "2025": 3,
+       "2026": 2
+      }
+     },
+     "year_concentration": {
+      "year": 2022,
+      "share": 0.32,
+      "episodes": 25
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-09-23",
+       "end": "2020-09-23",
+       "days": 1
+      },
+      {
+       "episode": 2,
+       "start": "2021-06-21",
+       "end": "2021-06-22",
+       "days": 2
+      },
+      {
+       "episode": 3,
+       "start": "2021-06-25",
+       "end": "2021-06-26",
+       "days": 2
+      },
+      {
+       "episode": 4,
+       "start": "2021-07-16",
+       "end": "2021-07-16",
+       "days": 1
+      },
+      {
+       "episode": 5,
+       "start": "2021-07-18",
+       "end": "2021-07-20",
+       "days": 3
+      },
+      {
+       "episode": 6,
+       "start": "2022-01-21",
+       "end": "2022-01-22",
+       "days": 2
+      },
+      {
+       "episode": 7,
+       "start": "2022-01-24",
+       "end": "2022-01-27",
+       "days": 4
+      },
+      {
+       "episode": 8,
+       "start": "2022-03-07",
+       "end": "2022-03-07",
+       "days": 1
+      },
+      {
+       "episode": 9,
+       "start": "2022-03-13",
+       "end": "2022-03-13",
+       "days": 1
+      },
+      {
+       "episode": 10,
+       "start": "2022-06-16",
+       "end": "2022-06-16",
+       "days": 1
+      },
+      {
+       "episode": 11,
+       "start": "2022-06-18",
+       "end": "2022-06-18",
+       "days": 1
+      },
+      {
+       "episode": 12,
+       "start": "2022-07-12",
+       "end": "2022-07-12",
+       "days": 1
+      },
+      {
+       "episode": 13,
+       "start": "2022-10-02",
+       "end": "2022-10-02",
+       "days": 1
+      },
+      {
+       "episode": 14,
+       "start": "2023-06-14",
+       "end": "2023-06-15",
+       "days": 2
+      },
+      {
+       "episode": 15,
+       "start": "2023-10-09",
+       "end": "2023-10-20",
+       "days": 12
+      },
+      {
+       "episode": 16,
+       "start": "2024-01-31",
+       "end": "2024-01-31",
+       "days": 1
+      },
+      {
+       "episode": 17,
+       "start": "2024-04-30",
+       "end": "2024-05-02",
+       "days": 3
+      },
+      {
+       "episode": 18,
+       "start": "2024-05-06",
+       "end": "2024-05-14",
+       "days": 9
+      },
+      {
+       "episode": 19,
+       "start": "2024-05-16",
+       "end": "2024-05-16",
+       "days": 1
+      },
+      {
+       "episode": 20,
+       "start": "2024-09-06",
+       "end": "2024-09-06",
+       "days": 1
+      },
+      {
+       "episode": 21,
+       "start": "2025-04-08",
+       "end": "2025-04-08",
+       "days": 1
+      },
+      {
+       "episode": 22,
+       "start": "2025-04-10",
+       "end": "2025-04-10",
+       "days": 1
+      },
+      {
+       "episode": 23,
+       "start": "2025-11-21",
+       "end": "2025-11-21",
+       "days": 1
+      },
+      {
+       "episode": 24,
+       "start": "2026-02-23",
+       "end": "2026-02-24",
+       "days": 2
+      },
+      {
+       "episode": 25,
+       "start": "2026-06-25",
+       "end": "2026-07-01",
+       "days": 7
+      }
+     ]
+    },
+    "B(60, 30, 7)": {
+     "rates": {
+      "all": {
+       "days": 366,
+       "true_days": 75,
+       "day_rate": 0.20491803278688525,
+       "episodes": 28
+      },
+      "by_period": {
+       "test": {
+        "days": 62,
+        "true_days": 10,
+        "day_rate": 0.16129032258064516,
+        "episodes": 2
+       },
+       "train": {
+        "days": 188,
+        "true_days": 59,
+        "day_rate": 0.31382978723404253,
+        "episodes": 23
+       },
+       "validation": {
+        "days": 116,
+        "true_days": 6,
+        "day_rate": 0.05172413793103448,
+        "episodes": 3
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 1,
+        "true_days": 1,
+        "day_rate": 1.0,
+        "episodes": 1
+       },
+       "2021": {
+        "days": 20,
+        "true_days": 8,
+        "day_rate": 0.4,
+        "episodes": 4
+       },
+       "2022": {
+        "days": 78,
+        "true_days": 12,
+        "day_rate": 0.15384615384615385,
+        "episodes": 7
+       },
+       "2023": {
+        "days": 69,
+        "true_days": 27,
+        "day_rate": 0.391304347826087,
+        "episodes": 5
+       },
+       "2024": {
+        "days": 39,
+        "true_days": 13,
+        "day_rate": 0.3333333333333333,
+        "episodes": 7
+       },
+       "2025": {
+        "days": 97,
+        "true_days": 4,
+        "day_rate": 0.041237113402061855,
+        "episodes": 2
+       },
+       "2026": {
+        "days": 62,
+        "true_days": 10,
+        "day_rate": 0.16129032258064516,
+        "episodes": 2
+       }
+      },
+      "episodes_by_period": {
+       "train": 23,
+       "validation": 3,
+       "test": 2
+      },
+      "episodes_by_year": {
+       "2020": 1,
+       "2021": 4,
+       "2022": 7,
+       "2023": 5,
+       "2024": 7,
+       "2025": 2,
+       "2026": 2
+      }
+     },
+     "year_concentration": {
+      "year": 2022,
+      "share": 0.25,
+      "episodes": 28
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-09-23",
+       "end": "2020-09-23",
+       "days": 1
+      },
+      {
+       "episode": 2,
+       "start": "2021-06-21",
+       "end": "2021-06-22",
+       "days": 2
+      },
+      {
+       "episode": 3,
+       "start": "2021-06-25",
+       "end": "2021-06-26",
+       "days": 2
+      },
+      {
+       "episode": 4,
+       "start": "2021-07-16",
+       "end": "2021-07-16",
+       "days": 1
+      },
+      {
+       "episode": 5,
+       "start": "2021-07-18",
+       "end": "2021-07-20",
+       "days": 3
+      },
+      {
+       "episode": 6,
+       "start": "2022-01-22",
+       "end": "2022-01-22",
+       "days": 1
+      },
+      {
+       "episode": 7,
+       "start": "2022-01-24",
+       "end": "2022-01-27",
+       "days": 4
+      },
+      {
+       "episode": 8,
+       "start": "2022-03-07",
+       "end": "2022-03-07",
+       "days": 1
+      },
+      {
+       "episode": 9,
+       "start": "2022-06-16",
+       "end": "2022-06-16",
+       "days": 1
+      },
+      {
+       "episode": 10,
+       "start": "2022-06-18",
+       "end": "2022-06-18",
+       "days": 1
+      },
+      {
+       "episode": 11,
+       "start": "2022-07-12",
+       "end": "2022-07-12",
+       "days": 1
+      },
+      {
+       "episode": 12,
+       "start": "2022-11-20",
+       "end": "2022-11-22",
+       "days": 3
+      },
+      {
+       "episode": 13,
+       "start": "2023-09-10",
+       "end": "2023-09-14",
+       "days": 5
+      },
+      {
+       "episode": 14,
+       "start": "2023-09-17",
+       "end": "2023-09-17",
+       "days": 1
+      },
+      {
+       "episode": 15,
+       "start": "2023-09-20",
+       "end": "2023-09-27",
+       "days": 8
+      },
+      {
+       "episode": 16,
+       "start": "2023-10-05",
+       "end": "2023-10-05",
+       "days": 1
+      },
+      {
+       "episode": 17,
+       "start": "2023-10-09",
+       "end": "2023-10-20",
+       "days": 12
+      },
+      {
+       "episode": 18,
+       "start": "2024-01-31",
+       "end": "2024-01-31",
+       "days": 1
+      },
+      {
+       "episode": 19,
+       "start": "2024-04-17",
+       "end": "2024-04-17",
+       "days": 1
+      },
+      {
+       "episode": 20,
+       "start": "2024-05-01",
+       "end": "2024-05-02",
+       "days": 2
+      },
+      {
+       "episode": 21,
+       "start": "2024-05-08",
+       "end": "2024-05-08",
+       "days": 1
+      },
+      {
+       "episode": 22,
+       "start": "2024-05-10",
+       "end": "2024-05-14",
+       "days": 5
+      },
+      {
+       "episode": 23,
+       "start": "2024-05-16",
+       "end": "2024-05-16",
+       "days": 1
+      },
+      {
+       "episode": 24,
+       "start": "2024-09-15",
+       "end": "2024-09-16",
+       "days": 2
+      },
+      {
+       "episode": 25,
+       "start": "2025-04-06",
+       "end": "2025-04-08",
+       "days": 3
+      },
+      {
+       "episode": 26,
+       "start": "2025-04-10",
+       "end": "2025-04-10",
+       "days": 1
+      },
+      {
+       "episode": 27,
+       "start": "2026-02-23",
+       "end": "2026-02-24",
+       "days": 2
+      },
+      {
+       "episode": 28,
+       "start": "2026-06-24",
+       "end": "2026-07-01",
+       "days": 8
+      }
+     ]
+    }
+   },
+   "zigzag": {
+    "size": 0.2,
+    "tops": {
+     "points": 25,
+     "caught": 17,
+     "missed": 8,
+     "open_window": 0,
+     "caught_dates": [
+      "2020-03-11",
+      "2020-09-01",
+      "2021-02-19",
+      "2021-05-11",
+      "2021-05-26",
+      "2021-06-03",
+      "2021-07-06",
+      "2021-09-05",
+      "2022-02-09",
+      "2022-04-03",
+      "2022-08-13",
+      "2022-09-10",
+      "2022-11-04",
+      "2024-03-11",
+      "2024-07-21",
+      "2025-06-10",
+      "2026-01-14"
+     ]
+    },
+    "bottoms": {
+     "points": 24,
+     "caught": 18,
+     "missed": 6,
+     "open_window": 0,
+     "caught_dates": [
+      "2020-03-12",
+      "2020-09-23",
+      "2021-02-28",
+      "2021-05-23",
+      "2021-06-25",
+      "2021-07-20",
+      "2021-09-21",
+      "2022-01-22",
+      "2022-03-07",
+      "2022-06-18",
+      "2023-06-14",
+      "2023-10-12",
+      "2024-05-14",
+      "2024-09-06",
+      "2025-04-08",
+      "2025-06-22",
+      "2025-11-21",
+      "2026-06-25"
+     ]
+    }
+   },
+   "lookahead_holds": true
+  },
+  "alt_price": {
+   "rows": 2490,
+   "top": {
+    "candidate_days": 588,
+    "candidate_share": 0.236144578313253,
+    "T(30, 20)": {
+     "rates": {
+      "all": {
+       "days": 588,
+       "true_days": 147,
+       "day_rate": 0.25,
+       "episodes": 39
+      },
+      "by_period": {
+       "test": {
+        "days": 41,
+        "true_days": 13,
+        "day_rate": 0.3170731707317073,
+        "episodes": 4
+       },
+       "train": {
+        "days": 461,
+        "true_days": 109,
+        "day_rate": 0.23644251626898047,
+        "episodes": 28
+       },
+       "validation": {
+        "days": 86,
+        "true_days": 25,
+        "day_rate": 0.29069767441860467,
+        "episodes": 7
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 84,
+        "true_days": 18,
+        "day_rate": 0.21428571428571427,
+        "episodes": 5
+       },
+       "2021": {
+        "days": 168,
+        "true_days": 31,
+        "day_rate": 0.18452380952380953,
+        "episodes": 9
+       },
+       "2022": {
+        "days": 36,
+        "true_days": 28,
+        "day_rate": 0.7777777777777778,
+        "episodes": 5
+       },
+       "2023": {
+        "days": 126,
+        "true_days": 21,
+        "day_rate": 0.16666666666666666,
+        "episodes": 7
+       },
+       "2024": {
+        "days": 96,
+        "true_days": 18,
+        "day_rate": 0.1875,
+        "episodes": 3
+       },
+       "2025": {
+        "days": 37,
+        "true_days": 18,
+        "day_rate": 0.4864864864864865,
+        "episodes": 6
+       },
+       "2026": {
+        "days": 41,
+        "true_days": 13,
+        "day_rate": 0.3170731707317073,
+        "episodes": 4
+       }
+      },
+      "episodes_by_period": {
+       "train": 28,
+       "validation": 7,
+       "test": 4
+      },
+      "episodes_by_year": {
+       "2020": 5,
+       "2021": 9,
+       "2022": 5,
+       "2023": 7,
+       "2024": 3,
+       "2025": 6,
+       "2026": 4
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.23076923076923078,
+      "episodes": 39
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-08-13",
+       "end": "2020-08-18",
+       "days": 6
+      },
+      {
+       "episode": 2,
+       "start": "2020-08-20",
+       "end": "2020-08-20",
+       "days": 1
+      },
+      {
+       "episode": 3,
+       "start": "2020-08-23",
+       "end": "2020-08-26",
+       "days": 4
+      },
+      {
+       "episode": 4,
+       "start": "2020-08-28",
+       "end": "2020-09-01",
+       "days": 5
+      },
+      {
+       "episode": 5,
+       "start": "2020-11-23",
+       "end": "2020-11-24",
+       "days": 2
+      },
+      {
+       "episode": 6,
+       "start": "2021-04-16",
+       "end": "2021-04-16",
+       "days": 1
+      },
+      {
+       "episode": 7,
+       "start": "2021-04-27",
+       "end": "2021-05-09",
+       "days": 13
+      },
+      {
+       "episode": 8,
+       "start": "2021-05-11",
+       "end": "2021-05-11",
+       "days": 1
+      },
+      {
+       "episode": 9,
+       "start": "2021-05-14",
+       "end": "2021-05-14",
+       "days": 1
+      },
+      {
+       "episode": 10,
+       "start": "2021-09-05",
+       "end": "2021-09-06",
+       "days": 2
+      },
+      {
+       "episode": 11,
+       "start": "2021-09-15",
+       "end": "2021-09-16",
+       "days": 2
+      },
+      {
+       "episode": 12,
+       "start": "2021-09-18",
+       "end": "2021-09-18",
+       "days": 1
+      },
+      {
+       "episode": 13,
+       "start": "2021-11-04",
+       "end": "2021-11-11",
+       "days": 8
+      },
+      {
+       "episode": 14,
+       "start": "2021-11-13",
+       "end": "2021-11-14",
+       "days": 2
+      },
+      {
+       "episode": 15,
+       "start": "2022-03-27",
+       "end": "2022-03-27",
+       "days": 1
+      },
+      {
+       "episode": 16,
+       "start": "2022-03-29",
+       "end": "2022-04-05",
+       "days": 8
+      },
+      {
+       "episode": 17,
+       "start": "2022-08-05",
+       "end": "2022-08-16",
+       "days": 12
+      },
+      {
+       "episode": 18,
+       "start": "2022-10-29",
+       "end": "2022-11-01",
+       "days": 4
+      },
+      {
+       "episode": 19,
+       "start": "2022-11-03",
+       "end": "2022-11-05",
+       "days": 3
+      },
+      {
+       "episode": 20,
+       "start": "2023-02-07",
+       "end": "2023-02-07",
+       "days": 1
+      },
+      {
+       "episode": 21,
+       "start": "2023-02-15",
+       "end": "2023-02-15",
+       "days": 1
+      },
+      {
+       "episode": 22,
+       "start": "2023-02-17",
+       "end": "2023-02-23",
+       "days": 7
+      },
+      {
+       "episode": 23,
+       "start": "2023-04-14",
+       "end": "2023-04-18",
+       "days": 5
+      },
+      {
+       "episode": 24,
+       "start": "2023-07-19",
+       "end": "2023-07-23",
+       "days": 5
+      },
+      {
+       "episode": 25,
+       "start": "2023-07-29",
+       "end": "2023-07-29",
+       "days": 1
+      },
+      {
+       "episode": 26,
+       "start": "2023-08-01",
+       "end": "2023-08-01",
+       "days": 1
+      },
+      {
+       "episode": 27,
+       "start": "2024-03-13",
+       "end": "2024-03-15",
+       "days": 3
+      },
+      {
+       "episode": 28,
+       "start": "2024-03-25",
+       "end": "2024-04-01",
+       "days": 8
+      },
+      {
+       "episode": 29,
+       "start": "2024-12-02",
+       "end": "2024-12-08",
+       "days": 7
+      },
+      {
+       "episode": 30,
+       "start": "2025-05-10",
+       "end": "2025-05-13",
+       "days": 4
+      },
+      {
+       "episode": 31,
+       "start": "2025-05-22",
+       "end": "2025-05-22",
+       "days": 1
+      },
+      {
+       "episode": 32,
+       "start": "2025-09-10",
+       "end": "2025-09-14",
+       "days": 5
+      },
+      {
+       "episode": 33,
+       "start": "2025-09-16",
+       "end": "2025-09-21",
+       "days": 6
+      },
+      {
+       "episode": 34,
+       "start": "2025-10-03",
+       "end": "2025-10-03",
+       "days": 1
+      },
+      {
+       "episode": 35,
+       "start": "2025-10-06",
+       "end": "2025-10-06",
+       "days": 1
+      },
+      {
+       "episode": 36,
+       "start": "2026-05-06",
+       "end": "2026-05-12",
+       "days": 7
+      },
+      {
+       "episode": 37,
+       "start": "2026-05-14",
+       "end": "2026-05-14",
+       "days": 1
+      },
+      {
+       "episode": 38,
+       "start": "2026-10-03",
+       "end": "2026-10-06",
+       "days": 4
+      },
+      {
+       "episode": 39,
+       "start": "2026-10-11",
+       "end": "2026-10-11",
+       "days": 1
+      }
+     ]
+    },
+    "T(20, 15)": {
+     "rates": {
+      "all": {
+       "days": 588,
+       "true_days": 135,
+       "day_rate": 0.22959183673469388,
+       "episodes": 40
+      },
+      "by_period": {
+       "test": {
+        "days": 41,
+        "true_days": 4,
+        "day_rate": 0.0975609756097561,
+        "episodes": 3
+       },
+       "train": {
+        "days": 461,
+        "true_days": 108,
+        "day_rate": 0.23427331887201736,
+        "episodes": 27
+       },
+       "validation": {
+        "days": 86,
+        "true_days": 23,
+        "day_rate": 0.26744186046511625,
+        "episodes": 10
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 84,
+        "true_days": 18,
+        "day_rate": 0.21428571428571427,
+        "episodes": 6
+       },
+       "2021": {
+        "days": 168,
+        "true_days": 36,
+        "day_rate": 0.21428571428571427,
+        "episodes": 10
+       },
+       "2022": {
+        "days": 36,
+        "true_days": 28,
+        "day_rate": 0.7777777777777778,
+        "episodes": 5
+       },
+       "2023": {
+        "days": 126,
+        "true_days": 15,
+        "day_rate": 0.11904761904761904,
+        "episodes": 3
+       },
+       "2024": {
+        "days": 96,
+        "true_days": 18,
+        "day_rate": 0.1875,
+        "episodes": 4
+       },
+       "2025": {
+        "days": 37,
+        "true_days": 16,
+        "day_rate": 0.43243243243243246,
+        "episodes": 9
+       },
+       "2026": {
+        "days": 41,
+        "true_days": 4,
+        "day_rate": 0.0975609756097561,
+        "episodes": 3
+       }
+      },
+      "episodes_by_period": {
+       "train": 27,
+       "validation": 10,
+       "test": 3
+      },
+      "episodes_by_year": {
+       "2020": 6,
+       "2021": 10,
+       "2022": 5,
+       "2023": 3,
+       "2024": 4,
+       "2025": 9,
+       "2026": 3
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.25,
+      "episodes": 40
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-08-14",
+       "end": "2020-08-18",
+       "days": 5
+      },
+      {
+       "episode": 2,
+       "start": "2020-08-20",
+       "end": "2020-08-20",
+       "days": 1
+      },
+      {
+       "episode": 3,
+       "start": "2020-08-23",
+       "end": "2020-08-26",
+       "days": 4
+      },
+      {
+       "episode": 4,
+       "start": "2020-08-28",
+       "end": "2020-09-01",
+       "days": 5
+      },
+      {
+       "episode": 5,
+       "start": "2020-11-21",
+       "end": "2020-11-21",
+       "days": 1
+      },
+      {
+       "episode": 6,
+       "start": "2020-11-23",
+       "end": "2020-11-24",
+       "days": 2
+      },
+      {
+       "episode": 7,
+       "start": "2021-02-21",
+       "end": "2021-02-21",
+       "days": 1
+      },
+      {
+       "episode": 8,
+       "start": "2021-04-15",
+       "end": "2021-04-17",
+       "days": 3
+      },
+      {
+       "episode": 9,
+       "start": "2021-04-29",
+       "end": "2021-05-09",
+       "days": 11
+      },
+      {
+       "episode": 10,
+       "start": "2021-05-11",
+       "end": "2021-05-11",
+       "days": 1
+      },
+      {
+       "episode": 11,
+       "start": "2021-05-14",
+       "end": "2021-05-14",
+       "days": 1
+      },
+      {
+       "episode": 12,
+       "start": "2021-09-03",
+       "end": "2021-09-06",
+       "days": 4
+      },
+      {
+       "episode": 13,
+       "start": "2021-09-12",
+       "end": "2021-09-12",
+       "days": 1
+      },
+      {
+       "episode": 14,
+       "start": "2021-09-14",
+       "end": "2021-09-19",
+       "days": 6
+      },
+      {
+       "episode": 15,
+       "start": "2021-11-06",
+       "end": "2021-11-11",
+       "days": 6
+      },
+      {
+       "episode": 16,
+       "start": "2021-11-13",
+       "end": "2021-11-14",
+       "days": 2
+      },
+      {
+       "episode": 17,
+       "start": "2022-03-27",
+       "end": "2022-03-27",
+       "days": 1
+      },
+      {
+       "episode": 18,
+       "start": "2022-03-29",
+       "end": "2022-04-05",
+       "days": 8
+      },
+      {
+       "episode": 19,
+       "start": "2022-08-05",
+       "end": "2022-08-16",
+       "days": 12
+      },
+      {
+       "episode": 20,
+       "start": "2022-10-29",
+       "end": "2022-11-01",
+       "days": 4
+      },
+      {
+       "episode": 21,
+       "start": "2022-11-03",
+       "end": "2022-11-05",
+       "days": 3
+      },
+      {
+       "episode": 22,
+       "start": "2023-02-17",
+       "end": "2023-02-23",
+       "days": 7
+      },
+      {
+       "episode": 23,
+       "start": "2023-04-16",
+       "end": "2023-04-18",
+       "days": 3
+      },
+      {
+       "episode": 24,
+       "start": "2023-07-28",
+       "end": "2023-08-01",
+       "days": 5
+      },
+      {
+       "episode": 25,
+       "start": "2024-01-01",
+       "end": "2024-01-01",
+       "days": 1
+      },
+      {
+       "episode": 26,
+       "start": "2024-03-13",
+       "end": "2024-03-14",
+       "days": 2
+      },
+      {
+       "episode": 27,
+       "start": "2024-03-25",
+       "end": "2024-04-01",
+       "days": 8
+      },
+      {
+       "episode": 28,
+       "start": "2024-12-02",
+       "end": "2024-12-08",
+       "days": 7
+      },
+      {
+       "episode": 29,
+       "start": "2025-05-10",
+       "end": "2025-05-13",
+       "days": 4
+      },
+      {
+       "episode": 30,
+       "start": "2025-05-22",
+       "end": "2025-05-22",
+       "days": 1
+      },
+      {
+       "episode": 31,
+       "start": "2025-07-20",
+       "end": "2025-07-22",
+       "days": 3
+      },
+      {
+       "episode": 32,
+       "start": "2025-07-27",
+       "end": "2025-07-27",
+       "days": 1
+      },
+      {
+       "episode": 33,
+       "start": "2025-09-13",
+       "end": "2025-09-13",
+       "days": 1
+      },
+      {
+       "episode": 34,
+       "start": "2025-09-17",
+       "end": "2025-09-18",
+       "days": 2
+      },
+      {
+       "episode": 35,
+       "start": "2025-09-20",
+       "end": "2025-09-21",
+       "days": 2
+      },
+      {
+       "episode": 36,
+       "start": "2025-10-03",
+       "end": "2025-10-03",
+       "days": 1
+      },
+      {
+       "episode": 37,
+       "start": "2025-10-06",
+       "end": "2025-10-06",
+       "days": 1
+      },
+      {
+       "episode": 38,
+       "start": "2026-05-14",
+       "end": "2026-05-14",
+       "days": 1
+      },
+      {
+       "episode": 39,
+       "start": "2026-10-05",
+       "end": "2026-10-06",
+       "days": 2
+      },
+      {
+       "episode": 40,
+       "start": "2026-10-11",
+       "end": "2026-10-11",
+       "days": 1
+      }
+     ]
+    },
+    "T(60, 30)": {
+     "rates": {
+      "all": {
+       "days": 588,
+       "true_days": 100,
+       "day_rate": 0.17006802721088435,
+       "episodes": 24
+      },
+      "by_period": {
+       "test": {
+        "days": 41,
+        "true_days": 6,
+        "day_rate": 0.14634146341463414,
+        "episodes": 2
+       },
+       "train": {
+        "days": 461,
+        "true_days": 74,
+        "day_rate": 0.16052060737527116,
+        "episodes": 15
+       },
+       "validation": {
+        "days": 86,
+        "true_days": 20,
+        "day_rate": 0.23255813953488372,
+        "episodes": 7
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 84,
+        "true_days": 6,
+        "day_rate": 0.07142857142857142,
+        "episodes": 2
+       },
+       "2021": {
+        "days": 168,
+        "true_days": 33,
+        "day_rate": 0.19642857142857142,
+        "episodes": 7
+       },
+       "2022": {
+        "days": 36,
+        "true_days": 17,
+        "day_rate": 0.4722222222222222,
+        "episodes": 3
+       },
+       "2023": {
+        "days": 126,
+        "true_days": 5,
+        "day_rate": 0.03968253968253968,
+        "episodes": 1
+       },
+       "2024": {
+        "days": 96,
+        "true_days": 18,
+        "day_rate": 0.1875,
+        "episodes": 3
+       },
+       "2025": {
+        "days": 37,
+        "true_days": 15,
+        "day_rate": 0.40540540540540543,
+        "episodes": 6
+       },
+       "2026": {
+        "days": 41,
+        "true_days": 6,
+        "day_rate": 0.14634146341463414,
+        "episodes": 2
+       }
+      },
+      "episodes_by_period": {
+       "train": 15,
+       "validation": 7,
+       "test": 2
+      },
+      "episodes_by_year": {
+       "2020": 2,
+       "2021": 7,
+       "2022": 3,
+       "2023": 1,
+       "2024": 3,
+       "2025": 6,
+       "2026": 2
+      }
+     },
+     "year_concentration": {
+      "year": 2021,
+      "share": 0.2916666666666667,
+      "episodes": 24
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-08-15",
+       "end": "2020-08-17",
+       "days": 3
+      },
+      {
+       "episode": 2,
+       "start": "2020-08-30",
+       "end": "2020-09-01",
+       "days": 3
+      },
+      {
+       "episode": 3,
+       "start": "2021-04-13",
+       "end": "2021-04-17",
+       "days": 5
+      },
+      {
+       "episode": 4,
+       "start": "2021-04-27",
+       "end": "2021-05-09",
+       "days": 13
+      },
+      {
+       "episode": 5,
+       "start": "2021-05-11",
+       "end": "2021-05-11",
+       "days": 1
+      },
+      {
+       "episode": 6,
+       "start": "2021-05-14",
+       "end": "2021-05-14",
+       "days": 1
+      },
+      {
+       "episode": 7,
+       "start": "2021-10-26",
+       "end": "2021-10-26",
+       "days": 1
+      },
+      {
+       "episode": 8,
+       "start": "2021-11-02",
+       "end": "2021-11-11",
+       "days": 10
+      },
+      {
+       "episode": 9,
+       "start": "2021-11-13",
+       "end": "2021-11-14",
+       "days": 2
+      },
+      {
+       "episode": 10,
+       "start": "2022-03-27",
+       "end": "2022-04-05",
+       "days": 10
+      },
+      {
+       "episode": 11,
+       "start": "2022-10-29",
+       "end": "2022-11-01",
+       "days": 4
+      },
+      {
+       "episode": 12,
+       "start": "2022-11-03",
+       "end": "2022-11-05",
+       "days": 3
+      },
+      {
+       "episode": 13,
+       "start": "2023-04-14",
+       "end": "2023-04-18",
+       "days": 5
+      },
+      {
+       "episode": 14,
+       "start": "2024-03-11",
+       "end": "2024-03-15",
+       "days": 5
+      },
+      {
+       "episode": 15,
+       "start": "2024-03-25",
+       "end": "2024-04-01",
+       "days": 8
+      },
+      {
+       "episode": 16,
+       "start": "2024-12-04",
+       "end": "2024-12-08",
+       "days": 5
+      },
+      {
+       "episode": 17,
+       "start": "2025-05-10",
+       "end": "2025-05-10",
+       "days": 1
+      },
+      {
+       "episode": 18,
+       "start": "2025-05-13",
+       "end": "2025-05-13",
+       "days": 1
+      },
+      {
+       "episode": 19,
+       "start": "2025-09-10",
+       "end": "2025-09-14",
+       "days": 5
+      },
+      {
+       "episode": 20,
+       "start": "2025-09-16",
+       "end": "2025-09-21",
+       "days": 6
+      },
+      {
+       "episode": 21,
+       "start": "2025-10-03",
+       "end": "2025-10-03",
+       "days": 1
+      },
+      {
+       "episode": 22,
+       "start": "2025-10-06",
+       "end": "2025-10-06",
+       "days": 1
+      },
+      {
+       "episode": 23,
+       "start": "2026-05-08",
+       "end": "2026-05-12",
+       "days": 5
+      },
+      {
+       "episode": 24,
+       "start": "2026-05-14",
+       "end": "2026-05-14",
+       "days": 1
+      }
+     ]
+    }
+   },
+   "bottom": {
+    "candidate_days": 401,
+    "candidate_share": 0.1610441767068273,
+    "B(30, 20, 7)": {
+     "rates": {
+      "all": {
+       "days": 401,
+       "true_days": 97,
+       "day_rate": 0.24189526184538654,
+       "episodes": 33
+      },
+      "by_period": {
+       "test": {
+        "days": 76,
+        "true_days": 21,
+        "day_rate": 0.27631578947368424,
+        "episodes": 7
+       },
+       "train": {
+        "days": 234,
+        "true_days": 63,
+        "day_rate": 0.2692307692307692,
+        "episodes": 19
+       },
+       "validation": {
+        "days": 91,
+        "true_days": 13,
+        "day_rate": 0.14285714285714285,
+        "episodes": 7
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 11,
+        "true_days": 5,
+        "day_rate": 0.45454545454545453,
+        "episodes": 2
+       },
+       "2021": {
+        "days": 18,
+        "true_days": 5,
+        "day_rate": 0.2777777777777778,
+        "episodes": 4
+       },
+       "2022": {
+        "days": 95,
+        "true_days": 33,
+        "day_rate": 0.3473684210526316,
+        "episodes": 10
+       },
+       "2023": {
+        "days": 81,
+        "true_days": 20,
+        "day_rate": 0.24691358024691357,
+        "episodes": 4
+       },
+       "2024": {
+        "days": 41,
+        "true_days": 4,
+        "day_rate": 0.0975609756097561,
+        "episodes": 3
+       },
+       "2025": {
+        "days": 79,
+        "true_days": 9,
+        "day_rate": 0.11392405063291139,
+        "episodes": 4
+       },
+       "2026": {
+        "days": 76,
+        "true_days": 21,
+        "day_rate": 0.27631578947368424,
+        "episodes": 7
+       }
+      },
+      "episodes_by_period": {
+       "train": 19,
+       "validation": 7,
+       "test": 7
+      },
+      "episodes_by_year": {
+       "2020": 2,
+       "2021": 4,
+       "2022": 10,
+       "2023": 3,
+       "2024": 3,
+       "2025": 4,
+       "2026": 7
+      }
+     },
+     "year_concentration": {
+      "year": 2022,
+      "share": 0.30303030303030304,
+      "episodes": 33
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-10-30",
+       "end": "2020-10-31",
+       "days": 2
+      },
+      {
+       "episode": 2,
+       "start": "2020-11-02",
+       "end": "2020-11-04",
+       "days": 3
+      },
+      {
+       "episode": 3,
+       "start": "2021-07-19",
+       "end": "2021-07-20",
+       "days": 2
+      },
+      {
+       "episode": 4,
+       "start": "2021-12-10",
+       "end": "2021-12-10",
+       "days": 1
+      },
+      {
+       "episode": 5,
+       "start": "2021-12-13",
+       "end": "2021-12-13",
+       "days": 1
+      },
+      {
+       "episode": 6,
+       "start": "2021-12-17",
+       "end": "2021-12-17",
+       "days": 1
+      },
+      {
+       "episode": 7,
+       "start": "2022-02-21",
+       "end": "2022-02-21",
+       "days": 1
+      },
+      {
+       "episode": 8,
+       "start": "2022-02-23",
+       "end": "2022-02-24",
+       "days": 2
+      },
+      {
+       "episode": 9,
+       "start": "2022-02-27",
+       "end": "2022-02-27",
+       "days": 1
+      },
+      {
+       "episode": 10,
+       "start": "2022-03-06",
+       "end": "2022-03-08",
+       "days": 3
+      },
+      {
+       "episode": 11,
+       "start": "2022-03-10",
+       "end": "2022-03-15",
+       "days": 6
+      },
+      {
+       "episode": 12,
+       "start": "2022-06-13",
+       "end": "2022-06-13",
+       "days": 1
+      },
+      {
+       "episode": 13,
+       "start": "2022-06-16",
+       "end": "2022-06-16",
+       "days": 1
+      },
+      {
+       "episode": 14,
+       "start": "2022-06-18",
+       "end": "2022-06-18",
+       "days": 1
+      },
+      {
+       "episode": 15,
+       "start": "2022-11-09",
+       "end": "2022-11-09",
+       "days": 1
+      },
+      {
+       "episode": 16,
+       "start": "2022-12-16",
+       "end": "2023-01-01",
+       "days": 17
+      },
+      {
+       "episode": 17,
+       "start": "2023-06-10",
+       "end": "2023-06-19",
+       "days": 10
+      },
+      {
+       "episode": 18,
+       "start": "2023-10-10",
+       "end": "2023-10-15",
+       "days": 6
+      },
+      {
+       "episode": 19,
+       "start": "2023-10-17",
+       "end": "2023-10-19",
+       "days": 3
+      },
+      {
+       "episode": 20,
+       "start": "2024-07-04",
+       "end": "2024-07-05",
+       "days": 2
+      },
+      {
+       "episode": 21,
+       "start": "2024-08-05",
+       "end": "2024-08-05",
+       "days": 1
+      },
+      {
+       "episode": 22,
+       "start": "2024-08-07",
+       "end": "2024-08-07",
+       "days": 1
+      },
+      {
+       "episode": 23,
+       "start": "2025-04-06",
+       "end": "2025-04-08",
+       "days": 3
+      },
+      {
+       "episode": 24,
+       "start": "2025-06-20",
+       "end": "2025-06-22",
+       "days": 3
+      },
+      {
+       "episode": 25,
+       "start": "2025-12-17",
+       "end": "2025-12-18",
+       "days": 2
+      },
+      {
+       "episode": 26,
+       "start": "2025-12-25",
+       "end": "2025-12-25",
+       "days": 1
+      },
+      {
+       "episode": 27,
+       "start": "2026-04-12",
+       "end": "2026-04-12",
+       "days": 1
+      },
+      {
+       "episode": 28,
+       "start": "2026-04-14",
+       "end": "2026-04-14",
+       "days": 1
+      },
+      {
+       "episode": 29,
+       "start": "2026-07-24",
+       "end": "2026-07-24",
+       "days": 1
+      },
+      {
+       "episode": 30,
+       "start": "2026-07-27",
+       "end": "2026-08-02",
+       "days": 7
+      },
+      {
+       "episode": 31,
+       "start": "2026-08-06",
+       "end": "2026-08-07",
+       "days": 2
+      },
+      {
+       "episode": 32,
+       "start": "2026-08-09",
+       "end": "2026-08-10",
+       "days": 2
+      },
+      {
+       "episode": 33,
+       "start": "2026-08-12",
+       "end": "2026-08-18",
+       "days": 7
+      }
+     ]
+    },
+    "B(60, 30, 7)": {
+     "rates": {
+      "all": {
+       "days": 401,
+       "true_days": 91,
+       "day_rate": 0.22693266832917705,
+       "episodes": 25
+      },
+      "by_period": {
+       "test": {
+        "days": 76,
+        "true_days": 19,
+        "day_rate": 0.25,
+        "episodes": 5
+       },
+       "train": {
+        "days": 234,
+        "true_days": 64,
+        "day_rate": 0.27350427350427353,
+        "episodes": 16
+       },
+       "validation": {
+        "days": 91,
+        "true_days": 8,
+        "day_rate": 0.08791208791208792,
+        "episodes": 4
+       }
+      },
+      "by_year": {
+       "2020": {
+        "days": 11,
+        "true_days": 7,
+        "day_rate": 0.6363636363636364,
+        "episodes": 4
+       },
+       "2021": {
+        "days": 18,
+        "true_days": 2,
+        "day_rate": 0.1111111111111111,
+        "episodes": 1
+       },
+       "2022": {
+        "days": 95,
+        "true_days": 26,
+        "day_rate": 0.2736842105263158,
+        "episodes": 5
+       },
+       "2023": {
+        "days": 81,
+        "true_days": 29,
+        "day_rate": 0.35802469135802467,
+        "episodes": 7
+       },
+       "2024": {
+        "days": 41,
+        "true_days": 2,
+        "day_rate": 0.04878048780487805,
+        "episodes": 2
+       },
+       "2025": {
+        "days": 79,
+        "true_days": 6,
+        "day_rate": 0.0759493670886076,
+        "episodes": 2
+       },
+       "2026": {
+        "days": 76,
+        "true_days": 19,
+        "day_rate": 0.25,
+        "episodes": 5
+       }
+      },
+      "episodes_by_period": {
+       "train": 16,
+       "validation": 4,
+       "test": 5
+      },
+      "episodes_by_year": {
+       "2020": 4,
+       "2021": 1,
+       "2022": 5,
+       "2023": 6,
+       "2024": 2,
+       "2025": 2,
+       "2026": 5
+      }
+     },
+     "year_concentration": {
+      "year": 2023,
+      "share": 0.24,
+      "episodes": 25
+     },
+     "episodes": [
+      {
+       "episode": 1,
+       "start": "2020-09-23",
+       "end": "2020-09-23",
+       "days": 1
+      },
+      {
+       "episode": 2,
+       "start": "2020-10-06",
+       "end": "2020-10-06",
+       "days": 1
+      },
+      {
+       "episode": 3,
+       "start": "2020-10-30",
+       "end": "2020-10-31",
+       "days": 2
+      },
+      {
+       "episode": 4,
+       "start": "2020-11-02",
+       "end": "2020-11-04",
+       "days": 3
+      },
+      {
+       "episode": 5,
+       "start": "2021-07-19",
+       "end": "2021-07-20",
+       "days": 2
+      },
+      {
+       "episode": 6,
+       "start": "2022-02-21",
+       "end": "2022-02-24",
+       "days": 4
+      },
+      {
+       "episode": 7,
+       "start": "2022-02-27",
+       "end": "2022-02-27",
+       "days": 1
+      },
+      {
+       "episode": 8,
+       "start": "2022-06-13",
+       "end": "2022-06-14",
+       "days": 2
+      },
+      {
+       "episode": 9,
+       "start": "2022-06-16",
+       "end": "2022-06-18",
+       "days": 3
+      },
+      {
+       "episode": 10,
+       "start": "2022-12-16",
+       "end": "2023-01-01",
+       "days": 17
+      },
+      {
+       "episode": 11,
+       "start": "2023-06-10",
+       "end": "2023-06-19",
+       "days": 10
+      },
+      {
+       "episode": 12,
+       "start": "2023-09-08",
+       "end": "2023-09-14",
+       "days": 7
+      },
+      {
+       "episode": 13,
+       "start": "2023-09-17",
+       "end": "2023-09-17",
+       "days": 1
+      },
+      {
+       "episode": 14,
+       "start": "2023-09-24",
+       "end": "2023-09-24",
+       "days": 1
+      },
+      {
+       "episode": 15,
+       "start": "2023-10-10",
+       "end": "2023-10-15",
+       "days": 6
+      },
+      {
+       "episode": 16,
+       "start": "2023-10-17",
+       "end": "2023-10-19",
+       "days": 3
+      },
+      {
+       "episode": 17,
+       "start": "2024-08-05",
+       "end": "2024-08-05",
+       "days": 1
+      },
+      {
+       "episode": 18,
+       "start": "2024-08-07",
+       "end": "2024-08-07",
+       "days": 1
+      },
+      {
+       "episode": 19,
+       "start": "2025-04-06",
+       "end": "2025-04-08",
+       "days": 3
+      },
+      {
+       "episode": 20,
+       "start": "2025-06-20",
+       "end": "2025-06-22",
+       "days": 3
+      },
+      {
+       "episode": 21,
+       "start": "2026-07-24",
+       "end": "2026-07-24",
+       "days": 1
+      },
+      {
+       "episode": 22,
+       "start": "2026-07-27",
+       "end": "2026-08-02",
+       "days": 7
+      },
+      {
+       "episode": 23,
+       "start": "2026-08-06",
+       "end": "2026-08-07",
+       "days": 2
+      },
+      {
+       "episode": 24,
+       "start": "2026-08-09",
+       "end": "2026-08-10",
+       "days": 2
+      },
+      {
+       "episode": 25,
+       "start": "2026-08-12",
+       "end": "2026-08-18",
+       "days": 7
+      }
+     ]
+    }
+   },
+   "zigzag": {
+    "size": 0.2,
+    "tops": {
+     "points": 27,
+     "caught": 25,
+     "missed": 2,
+     "open_window": 0,
+     "caught_dates": [
+      "2020-03-11",
+      "2020-09-01",
+      "2020-11-24",
+      "2021-04-16",
+      "2021-05-09",
+      "2021-06-03",
+      "2021-07-07",
+      "2021-09-06",
+      "2021-11-09",
+      "2021-12-26",
+      "2022-02-07",
+      "2022-04-03",
+      "2022-08-12",
+      "2022-11-05",
+      "2022-11-10",
+      "2023-02-20",
+      "2023-04-18",
+      "2024-03-31",
+      "2024-07-21",
+      "2024-12-08",
+      "2025-05-10",
+      "2025-09-18",
+      "2025-11-10",
+      "2026-01-13",
+      "2026-05-10"
+     ]
+    },
+    "bottoms": {
+     "points": 26,
+     "caught": 18,
+     "missed": 8,
+     "open_window": 0,
+     "caught_dates": [
+      "2020-03-12",
+      "2020-11-04",
+      "2020-12-11",
+      "2021-04-24",
+      "2021-07-20",
+      "2021-09-21",
+      "2021-12-13",
+      "2022-03-13",
+      "2022-06-18",
+      "2022-11-09",
+      "2022-12-29",
+      "2023-03-11",
+      "2023-06-14",
+      "2024-07-05",
+      "2024-08-05",
+      "2025-04-08",
+      "2025-06-22",
+      "2025-12-18"
+     ]
+    }
+   },
+   "lookahead_holds": true
+  }
+ }
+}

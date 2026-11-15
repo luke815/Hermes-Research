@@ -6,16 +6,15 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
 
-1. C1 rerun on the amended targets. Days within 5 percent of the 60-day high, a top being a 20 percent drop within 30 days; the mirror for bottoms. Base rates among candidate days. Unblocks items 2 to 4.
-2. C2 rerun on the amended labels. The ETH funding cell is the live candidate under the amended bar.
-3. btc_funding_persistence_top. Five or more days of BTC funding above its own trailing 80th percentile, against the amended top event. Depends on the C1 rerun.
-4. btc_drawdown_90_bottom. Drawdown from the 90-day high at its trailing 10th percentile, against the amended bottom event. Depends on the C1 rerun.
-5. btc_realized_vol_percentile_top. 30-day realized vol at its trailing 90th percentile, against the amended top event. Depends on the C1 rerun.
-6. Single-feature cross-sectional test: relative strength at 14 and 30 days, point-in-time universe, net of costs.
-7. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
-8. One-day reversal in the bottom half of the universe by open interest.
-9. eth_btc_30d_conditioning. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return. Expected n about 20 per cell, so report it as thin.
-10. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
+1. C2 rerun on the amended labels. The ETH funding cell is the live candidate under the amended bar. The C1 rerun it depended on is done: recorded, not admitted, 2026-11-15, results/2026-11-15_c1_rerun.json. A detector on the BTC top label carries the caveat that 2021 holds 7 of its 14 episodes, and a detector on the BTC bottom label stays test pending because none of its 22 episodes starts in the test period.
+2. btc_funding_persistence_top. Five or more days of BTC funding above its own trailing 80th percentile, against the amended top event. The C1 rerun it depended on is done.
+3. btc_drawdown_90_bottom. Drawdown from the 90-day high at its trailing 10th percentile, against the amended bottom event. The C1 rerun it depended on is done.
+4. btc_realized_vol_percentile_top. 30-day realized vol at its trailing 90th percentile, against the amended top event. The C1 rerun it depended on is done.
+5. Single-feature cross-sectional test: relative strength at 14 and 30 days, point-in-time universe, net of costs.
+6. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
+7. One-day reversal in the bottom half of the universe by open interest.
+8. eth_btc_30d_conditioning. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return. Expected n about 20 per cell, so report it as thin.
+9. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
 
 ## Queue
 
@@ -55,7 +54,7 @@ Risk regime, from research/RISK_REGIME.md section 6. These follow the bottom sco
 - R5. Analogs, paper track, transitions and alerts. One run.
 - R6. Weekly review added to the weekly note.
 
-2. C1 rerun on the amended targets. Top candidates are days within 5 percent of the 60-day high; a top is a 20 percent drop within 30 days. Bottom candidates are days within 5 percent of the 60-day low; a bottom is a 20 percent rise within 30 days without a 7 percent dip. Base rates among candidate days, not all days.
+2. C1 rerun on the amended targets. Verdict 2026-11-15: recorded, not admitted. Labels only, no factor scored. On BTC, T(30, 20) among candidate days is 14 episodes, 10 in train, 2 in validation and 2 in test, and 2021 holds 7 of the 14, so every later result on this label carries that caveat. B(30, 20, 7) is 22 episodes with none starting in the test period, so a bottom detector on BTC stays test pending. results/2026-11-15_c1_rerun.json. This unblocks items 3 to 5.
 3. C2 rerun on the amended labels. The ETH funding cell is a live candidate under the amended bar.
 4. C3 to C7 as parallel subagents: TD Sequential, trend exhaustion, options, breadth, on-chain and flows. Verdict 2026-11-10: insufficient, all five. Episode counts sit below 30 even after pooling BTC, ETH and SOL into overlapping windows. results/2026-11-10_c3_td_sequential.json, results/2026-11-10_c4_trend_exhaustion.json, results/2026-11-10_c5_options.json, results/2026-11-10_c6_breadth.json, results/2026-11-10_c7_onchain_flows.json.
 5. D2, D4, D6, D7 between cycle items. Then C8, C9, and the cross-sectional items.
