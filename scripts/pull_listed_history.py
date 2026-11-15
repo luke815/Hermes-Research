@@ -51,6 +51,26 @@ def binance_klines(symbol):
             for r in rows]
 
 
+def bybit_klines(symbol):
+    from urllib.parse import quote
+    url = ("https://api.bybit.com/v5/market/kline?category=linear&symbol="
+           + quote(symbol, safe="") + "&interval=D&limit=1000")
+    got = json.loads(rate_budget.get(url, timeout=30))
+    return [{"date": datetime.fromtimestamp(int(r[0]) / 1000, timezone.utc).strftime("%Y-%m-%d"),
+             "close": float(r[4]), "volume_base": float(r[5])}
+            for r in got.get("result", {}).get("list", [])]
+
+
+def okx_klines(symbol):
+    from urllib.parse import quote
+    url = ("https://www.okx.com/api/v5/market/candles?instId="
+           + quote(symbol, safe="") + "&bar=1D&limit=300")
+    got = json.loads(rate_budget.get(url, timeout=30))
+    return [{"date": datetime.fromtimestamp(int(r[0]) / 1000, timezone.utc).strftime("%Y-%m-%d"),
+             "close": float(r[4]), "volume_base": float(r[5])}
+            for r in got.get("data", [])]
+
+
 def binance_funding(symbol):
     from urllib.parse import quote
     url = ("https://fapi.binance.com/fapi/v1/fundingRate?symbol="
@@ -86,6 +106,14 @@ def cycle(ctx):
             try:
                 if exchange == "binance":
                     write_name(symbol, binance_klines(symbol), binance_funding(symbol))
+                elif exchange == "bybit":
+                    bars = bybit_klines(symbol)
+                    if bars:
+                        pd.DataFrame(bars).to_csv(os.path.join(PANEL, f"bybit_{symbol}.csv"), index=False)
+                elif exchange == "okx":
+                    bars = okx_klines(symbol)
+                    if bars:
+                        pd.DataFrame(bars).to_csv(os.path.join(PANEL, f"okx_{symbol}.csv"), index=False)
                 mark(f"{exchange}_{symbol}")
                 saved += 1
             except BudgetStop as exc:
