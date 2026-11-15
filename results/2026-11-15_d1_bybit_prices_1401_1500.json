@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-15",
+  "candidate": "d1_bybit_prices_1401_1500",
+  "verdict": "recorded, not admitted",
+  "bound": "1400 < days <= 1500",
+  "names_saved": 8,
+  "days_saved": 11612,
+  "days_listed": 11612,
+  "all_match": true,
+  "ohlc_breaks": 0,
+  "calendar_gaps": 0,
+  "empty_archives": 0,
+  "failures": [],
+  "names": [
+    {"symbol": "DODOUSDT", "span_first": "2022-04-22", "span_last": "2026-03-06", "span_days": 1415, "listed_days": 1415, "saved_days": 1415, "match": true},
+    {"symbol": "EOSUSDT", "span_first": "2021-06-29", "span_last": "2025-05-21", "span_days": 1423, "listed_days": 1423, "saved_days": 1423, "match": true},
+    {"symbol": "DGBUSDT", "span_first": "2022-03-28", "span_last": "2026-02-27", "span_days": 1433, "listed_days": 1433, "saved_days": 1433, "match": true},
+    {"symbol": "AUDIOUSDT", "span_first": "2021-11-26", "span_last": "2025-11-14", "span_days": 1450, "listed_days": 1450, "saved_days": 1450, "match": true},
+    {"symbol": "CTSIUSDT", "span_first": "2022-03-23", "span_last": "2026-03-19", "span_days": 1458, "listed_days": 1458, "saved_days": 1458, "match": true},
+    {"symbol": "GTCUSDT", "span_first": "2021-11-29", "span_last": "2025-11-26", "span_days": 1459, "listed_days": 1459, "saved_days": 1459, "match": true},
+    {"symbol": "DENTUSDT", "span_first": "2022-01-14", "span_last": "2026-02-06", "span_days": 1485, "listed_days": 1485, "saved_days": 1485, "match": true},
+    {"symbol": "CELRUSDT", "span_first": "2021-10-25", "span_last": "2025-11-21", "span_days": 1489, "listed_days": 1489, "saved_days": 1489, "match": true}
+  ],
+  "not_touched": "the other 11 stopped names, funding, open interest, liquidations",
+  "remaining_in_band": "11 stopped names above 1500 listed days, 17634 days; next slice is the names with 1501 to 1600 listed days: STGUSDT, SXPUSDT, SPELLUSDT, SFPUSDT, CTKUSDT, 7862 days",
+  "stopped_covered": "297 of 309 stopped names, 155961 days",
+  "score_unchanged": true,
+  "tests_since_last_admission": 53,
+  "panel_check": "PASS panel_end=2026-11-14 today=2026-11-15 age=1d rows=2490 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "note": "No day failed its header check and no listed day was an empty archive. The first name was started with one worker, killed, and resumed with four workers from the part files already saved."
+}
