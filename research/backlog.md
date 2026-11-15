@@ -2,9 +2,24 @@
 
 Ordered by the research program, section 9. One item at a time, pre-registered before any number is computed, verdict before the next item starts.
 
+## Next ten
+
+Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
+
+1. C1 rerun on the amended targets. Days within 5 percent of the 60-day high, a top being a 20 percent drop within 30 days; the mirror for bottoms. Base rates among candidate days. Unblocks items 2 to 4.
+2. C2 rerun on the amended labels. The ETH funding cell is the live candidate under the amended bar.
+3. btc_funding_persistence_top. Five or more days of BTC funding above its own trailing 80th percentile, against the amended top event. Depends on the C1 rerun.
+4. btc_drawdown_90_bottom. Drawdown from the 90-day high at its trailing 10th percentile, against the amended bottom event. Depends on the C1 rerun.
+5. btc_realized_vol_percentile_top. 30-day realized vol at its trailing 90th percentile, against the amended top event. Depends on the C1 rerun.
+6. Single-feature cross-sectional test: relative strength at 14 and 30 days, point-in-time universe, net of costs.
+7. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
+8. One-day reversal in the bottom half of the universe by open interest.
+9. eth_btc_30d_conditioning. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return. Expected n about 20 per cell, so report it as thin.
+10. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
+
 ## Queue
 
-S8 is done. D1 Bybit stopped-name prices are complete: 308 of 309 stopped names, 173,595 days, through 1700 listed days (verdict 2026-11-15, results/2026-11-15_d1_bybit_prices_1601_1700.json). ANTUSDT is absent because the archive does not hold its files (recorded 2026-11-14). D2 continues: the 7 live Binance names with a span of exactly 61 days now have daily funding, 420 days, ending 2026-10-31 because the archive has no file for the current month (verdict 2026-11-15, results/2026-11-15_d2_binance_funding_span61.json). With the 50 names at 60 days or fewer, 57 live Binance names are saved and 835 remain, then Bybit and OKX, then open interest.
+S8 is done. D1 Bybit stopped-name prices are complete: 308 of 309 stopped names, 173,595 days, through 1700 listed days (verdict 2026-11-15, results/2026-11-15_d1_bybit_prices_1601_1700.json). ANTUSDT is absent because the archive does not hold its files (recorded 2026-11-14). D2 continues: the 33 live Binance names with a span of 62 to 90 days now have daily funding, 2,448 days, ending 2026-10-31 because the archive has no file for the current month (verdict 2026-11-15, results/2026-11-15_d2_binance_funding_62_90.json). With the 50 names at 60 days or fewer and the 7 at exactly 61 days, 92 of 892 live Binance names are saved and 800 remain, then Bybit and OKX, then open interest.
 
 - S8. The derivatives and options family in the library, market level, with tests; cells re-enumerated. Verdict 2026-11-13: recorded, not admitted. 27 measures for BTC and ETH, 54 columns, library 1.1.0. Cells went from 1,355,200 to 3,688,000, of which 788,200 are testable and none are duplicates. The tenor basis curve, the butterfly, the put-call ratio, SOL and the Hyperliquid aggregate are absent because the store does not hold them. results/2026-11-13_s8_derivatives.json.
 

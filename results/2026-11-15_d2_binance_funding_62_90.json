@@ -1,0 +1,485 @@
+{
+ "candidate": "d2_binance_funding_62_90",
+ "verdict": "recorded, not admitted",
+ "written_utc": "2026-11-15T17:30:52Z",
+ "bound": "binance, delisted 0, span from first_bar to last_bar of 62 to 90 days inclusive",
+ "names": 33,
+ "span_days": 2470,
+ "days_saved": 2448,
+ "short_of_span": 22,
+ "absent": 0,
+ "checksum_failures": 0,
+ "problems": [],
+ "archive_note": "monthly fundingRate archive has no file for 2026-11, so every saved series ends 2026-10-31; 21 names are one day short of the price span and 12 match it",
+ "already_saved_before_this_run": [
+  "CSOPSKHYNIX2LUSDT",
+  "CXMTUSDT",
+  "DOSUSDT",
+  "GDXUSDT"
+ ],
+ "live_binance": 892,
+ "live_funded_after": 92,
+ "live_unsaved_after": 800,
+ "per_name": [
+  {
+   "symbol": "CSOPSAMSUNG2LUSDT",
+   "span_first": "2026-08-11",
+   "span_last": "2026-11-01",
+   "span_days": 83,
+   "saved_days": 83,
+   "saved_first": "2026-08-10",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "CSOPSKHYNIX2LUSDT",
+   "span_first": "2026-08-11",
+   "span_last": "2026-11-01",
+   "span_days": 83,
+   "saved_days": 83,
+   "saved_first": "2026-08-10",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "CXMTUSDT",
+   "span_first": "2026-08-18",
+   "span_last": "2026-11-01",
+   "span_days": 76,
+   "saved_days": 76,
+   "saved_first": "2026-08-17",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "DJTUSDT",
+   "span_first": "2026-08-25",
+   "span_last": "2026-11-01",
+   "span_days": 69,
+   "saved_days": 68,
+   "saved_first": "2026-08-25",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "DOSUSDT",
+   "span_first": "2026-08-11",
+   "span_last": "2026-11-01",
+   "span_days": 83,
+   "saved_days": 82,
+   "saved_first": "2026-08-11",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "GDXUSDT",
+   "span_first": "2026-08-17",
+   "span_last": "2026-11-01",
+   "span_days": 77,
+   "saved_days": 76,
+   "saved_first": "2026-08-17",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "HANMIUSDT",
+   "span_first": "2026-08-14",
+   "span_last": "2026-11-01",
+   "span_days": 80,
+   "saved_days": 80,
+   "saved_first": "2026-08-13",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "HK0625USDT",
+   "span_first": "2026-09-01",
+   "span_last": "2026-11-01",
+   "span_days": 62,
+   "saved_days": 61,
+   "saved_first": "2026-09-01",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "IONQUSDT",
+   "span_first": "2026-08-28",
+   "span_last": "2026-11-01",
+   "span_days": 66,
+   "saved_days": 65,
+   "saved_first": "2026-08-28",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "KODEX200USDT",
+   "span_first": "2026-08-14",
+   "span_last": "2026-11-01",
+   "span_days": 80,
+   "saved_days": 80,
+   "saved_first": "2026-08-13",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "KOUSDT",
+   "span_first": "2026-08-06",
+   "span_last": "2026-11-01",
+   "span_days": 88,
+   "saved_days": 87,
+   "saved_first": "2026-08-06",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "KUAISHOUUSDT",
+   "span_first": "2026-08-11",
+   "span_last": "2026-11-01",
+   "span_days": 83,
+   "saved_days": 83,
+   "saved_first": "2026-08-10",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "LGELECTRONICSUSDT",
+   "span_first": "2026-08-14",
+   "span_last": "2026-11-01",
+   "span_days": 80,
+   "saved_days": 80,
+   "saved_first": "2026-08-13",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "LYTEUSDT",
+   "span_first": "2026-08-17",
+   "span_last": "2026-11-01",
+   "span_days": 77,
+   "saved_days": 76,
+   "saved_first": "2026-08-17",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "MARAUSDT",
+   "span_first": "2026-08-28",
+   "span_last": "2026-11-01",
+   "span_days": 66,
+   "saved_days": 65,
+   "saved_first": "2026-08-28",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "MARSCOINUSDT",
+   "span_first": "2026-09-01",
+   "span_last": "2026-11-01",
+   "span_days": 62,
+   "saved_days": 61,
+   "saved_first": "2026-09-01",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "MEITUANUSDT",
+   "span_first": "2026-08-11",
+   "span_last": "2026-11-01",
+   "span_days": 83,
+   "saved_days": 83,
+   "saved_first": "2026-08-10",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "MRKUSDT",
+   "span_first": "2026-08-28",
+   "span_last": "2026-11-01",
+   "span_days": 66,
+   "saved_days": 65,
+   "saved_first": "2026-08-28",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "MRNAUSDT",
+   "span_first": "2026-08-25",
+   "span_last": "2026-11-01",
+   "span_days": 69,
+   "saved_days": 68,
+   "saved_first": "2026-08-25",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "NAVERUSDT",
+   "span_first": "2026-08-14",
+   "span_last": "2026-11-01",
+   "span_days": 80,
+   "saved_days": 80,
+   "saved_first": "2026-08-13",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "NETUSDT",
+   "span_first": "2026-08-17",
+   "span_last": "2026-11-01",
+   "span_days": 77,
+   "saved_days": 76,
+   "saved_first": "2026-08-17",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "PDDUSDT",
+   "span_first": "2026-08-28",
+   "span_last": "2026-11-01",
+   "span_days": 66,
+   "saved_days": 65,
+   "saved_first": "2026-08-28",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "RAMUSDT",
+   "span_first": "2026-08-25",
+   "span_last": "2026-11-01",
+   "span_days": 69,
+   "saved_days": 68,
+   "saved_first": "2026-08-25",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "RDDTUSDT",
+   "span_first": "2026-08-06",
+   "span_last": "2026-11-01",
+   "span_days": 88,
+   "saved_days": 87,
+   "saved_first": "2026-08-06",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "SAMSUNGEMUSDT",
+   "span_first": "2026-08-14",
+   "span_last": "2026-11-01",
+   "span_days": 80,
+   "saved_days": 80,
+   "saved_first": "2026-08-13",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "SHOPUSDT",
+   "span_first": "2026-08-17",
+   "span_last": "2026-11-01",
+   "span_days": 77,
+   "saved_days": 76,
+   "saved_first": "2026-08-17",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "SKDDUSDT",
+   "span_first": "2026-08-25",
+   "span_last": "2026-11-01",
+   "span_days": 69,
+   "saved_days": 68,
+   "saved_first": "2026-08-25",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "SKUUUSDT",
+   "span_first": "2026-08-25",
+   "span_last": "2026-11-01",
+   "span_days": 69,
+   "saved_days": 68,
+   "saved_first": "2026-08-25",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "TEMUSDT",
+   "span_first": "2026-08-28",
+   "span_last": "2026-11-01",
+   "span_days": 66,
+   "saved_days": 65,
+   "saved_first": "2026-08-28",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "UNITREEUSDT",
+   "span_first": "2026-08-19",
+   "span_last": "2026-11-01",
+   "span_days": 75,
+   "saved_days": 74,
+   "saved_first": "2026-08-19",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "VSTUSDT",
+   "span_first": "2026-08-17",
+   "span_last": "2026-11-01",
+   "span_days": 77,
+   "saved_days": 76,
+   "saved_first": "2026-08-17",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "ZHONGJIUSDT",
+   "span_first": "2026-08-14",
+   "span_last": "2026-11-01",
+   "span_days": 80,
+   "saved_days": 80,
+   "saved_first": "2026-08-13",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  },
+  {
+   "symbol": "牛来USDT",
+   "span_first": "2026-08-30",
+   "span_last": "2026-11-01",
+   "span_days": 64,
+   "saved_days": 63,
+   "saved_first": "2026-08-30",
+   "saved_last": "2026-10-31",
+   "months": [
+    "2026-08",
+    "2026-09",
+    "2026-10"
+   ]
+  }
+ ]
+}
