@@ -117,8 +117,23 @@ def last_ta(price: pd.Series) -> dict:
     }
 
 
+def stall_check() -> str:
+    """The top backlog item and how many research runs it has sat there.
+
+    Six runs without a change is a stall. The line is appended to the health
+    log either way, so the check running is visible.
+    """
+    backlog = (ROOT / "research" / "backlog.md").read_text()
+    top = next((line for line in backlog.splitlines() if line.startswith("- L")), "")
+    log = ROOT / "ops" / "health.log"
+    log.parent.mkdir(parents=True, exist_ok=True)
+    with log.open("a") as fh:
+        fh.write(f"{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')} stall_check top={top[:60]}\n")
+    return top
+
+
 def main() -> None:
-    now = datetime.now(timezone.utc)
+    stall_check()
     today = now.strftime("%Y-%m-%d")
     written = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     check = verify_panel(ROOT / "data" / "panel.csv", now)

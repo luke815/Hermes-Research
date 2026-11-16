@@ -4,6 +4,8 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 ## Standing rule
 
+- L0. The stall alert in the health check and the top-item line in the daily digest. Done when the health check log shows the check running and the next digest carries the line.
+
 An instruction is written here as numbered items at the top, each with a done-when line naming the file or number that proves it, before the first item is started. A run takes the top item without a verdict. A blocked item is recorded with its reason and the run moves to the next. An item is never marked done without its done-when evidence. The health check posts a stall alert when the top item has not changed in six research runs, and the daily status line names the top item and the runs it has been there.
 
 ## Laevitas, from the 12:19 instruction
