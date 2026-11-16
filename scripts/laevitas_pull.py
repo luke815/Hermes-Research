@@ -109,4 +109,4 @@ def cycle(ctx):
 
 if __name__ == "__main__":
     from daemon_base import run_loop
-    run_loop("laevitas_pull", interval_sec=2, cycle=cycle, align=False)
+    run_loop("laevitas_pull", interval_sec=20, cycle=cycle, align=False)
