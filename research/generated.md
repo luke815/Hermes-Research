@@ -56,3 +56,14 @@ Hypothesis: the basis gap between BTC and ETH was rejected as a 10-day return sp
 
 12. eth_btc_ratio_z90_bottom. Score 13 (prior 3, data 5, novelty 3, reach 1, cost 1).
 Hypothesis: ETH weakening against BTC marks a risk-off tape, and that weakness at a BTC low should precede a bottom if the rotation story is real. The ratio's 90-day z-score is already built in regime_tester/factors.py and has no verdict against the bottom event. Rule: the ETH close divided by the BTC close, its trailing 90-day z-score lagged one bar, at or below its own trailing one-year 10th percentile, neighbours at the 5th and the 15th. The label is the amended bottom event. Horizon: 30 days. Pass: the same bar as item 1. Expected independent n: about 30 to 50 episodes on BTC, which is thin. Assets: BTC, and ETH as the second asset.
+
+
+## Added 2026-11-16, third pass
+
+The queue had fallen to two scoreable items after btc_basis_gap_chg7_bottom was scored. stablecoin_supply_30d_bottom and btc_oi_share_chg7_top both wait on data, and a research run never pulls. Neither candidate below is tested in this run.
+
+13. btc_vol_change_7d_bottom. Score 13 (prior 3, data 5, novelty 3, reach 1, cost 1).
+Hypothesis: the level of realized vol was insufficient against the top event, and a falling vol after a spike is the capitulation shape, which is a different transform and a different target. Rule: the 7-day percent change in BTC 14-day realized vol, lagged one bar, at or below its own trailing one-year 10th percentile, neighbours at the 5th and the 15th. The label is the amended bottom event. Horizon: 30 days. Pass: the same bar as item 1 of the 2026-11-05 list. Expected independent n: about 30 to 50 episodes on BTC, which is thin. Assets: BTC, and ETH as the second asset. This extends the 2026-11-16 btc_realized_vol_percentile_top verdict, which was insufficient, not a rejection, by changing the transform and the target.
+
+14. btc_oi_share_chg7_top. Score 12 (prior 3, data 2, novelty 4, reach 2, cost 1).
+Hypothesis: BTC taking a rising share of open interest marks leverage concentrating in the leader, which should precede a top rather than a bottom. The level of the share has no verdict, and the change is the transform that has not been tried. Rule: the 7-day change in btc_oi_share, lagged one bar, at or above its own trailing one-year 90th percentile, neighbours at the 85th and the 95th. The label is the amended top event. Horizon: 30 days. Pass: the same bar as item 1. Expected independent n: about 20 episodes, below 40, because the series starts 2022-09-09 and the train period is short. Marked insufficient by design and blocked on data until the series is longer or the universe is pooled.

@@ -8,9 +8,13 @@ Refilled 2026-11-15 after the weekly round rejected all three TA conditioning ga
 
 1. BTC 1-day and 3-day horizons for the four live factors. Rescored 2026-11-16 and rejected: no cell keeps a usable size in both held-out periods, largest held-out t-stat 1.2704 on 26 independent dates against a bar of 3. results/2026-11-16_btc_short_horizon.json.
 3. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Needs a DefiLlama pull first. A pull is forbidden in a research run, so this waits.
-4. btc_basis_gap_chg7_bottom. The 7-day change in the BTC minus ETH basis gap at its trailing one-year 90th percentile, against the amended bottom event. Pre-registered in research/generated.md. Not yet scored.
+4. eth_btc_ratio_z90_bottom. The ETH/BTC ratio's trailing 90-day z-score at its trailing one-year 10th percentile, against the amended bottom event. Pre-registered in research/generated.md. Not yet scored.
+5. btc_vol_change_7d_bottom. The 7-day change in BTC 14-day realized vol at its trailing one-year 10th percentile, against the amended bottom event. Pre-registered in research/generated.md. Not yet scored.
+6. btc_oi_share_chg7_top. The 7-day change in BTC's share of open interest at its trailing one-year 90th percentile, against the amended top event. Pre-registered in research/generated.md. Not yet scored. Blocked on data: the series starts 2022-09-09, so the train period is short.
 
 ## Queue
+
+btc_basis_gap_chg7_bottom was scored on 2026-11-16 and is insufficient: 18 fires across train and validation on BTC at the 90th percentile of the 7-day basis-gap change, below 30, and the validation lift is 1.0. results/2026-11-16_btc_basis_gap_chg7_bottom.json.
 
 eth_drawdown_90_bottom was scored on 2026-11-16 and is insufficient: 14 fires across train and validation on ETH at the 10th percentile of the close over the trailing 90-day high, below 30, and the validation bootstrap rests on 4 episode starts. results/2026-11-16_eth_drawdown_90_bottom.json.
 
@@ -78,8 +82,10 @@ Risk regime, from research/RISK_REGIME.md section 6. These follow the bottom sco
 13. eth_drawdown_90_bottom. Verdict 2026-11-16: insufficient. ETH close over the trailing 90-day high at its trailing one-year 10th percentile, against the amended bottom event. 14 fires across train and validation on ETH, below 30. results/2026-11-16_eth_drawdown_90_bottom.json.
 14. disproof_btc_ret_30_weekly. The admitted momentum factor on weekly bars, horizon 2 weeks. Score 13. Thin by design, about 25 per half.
 15. disproof_eth_funding_second_asset. The ETH funding factor scored on SOL. Score 12.
-16. btc_basis_gap_chg7_bottom. The 7-day change in the BTC minus ETH basis gap at its trailing one-year 90th percentile, against the amended bottom event. Score 14. Pre-registered 2026-11-16 in research/generated.md. Not yet scored. Extends the 2026-11-01 rejection of basis_gap_btc_eth by changing the transform and the target.
+16. btc_basis_gap_chg7_bottom. Verdict 2026-11-16: insufficient. The 7-day change in the venue-mean BTC minus ETH basis at its trailing one-year 90th percentile, against the amended bottom event. 18 fires across train and validation on BTC, below 30, and the validation lift is 1.0. results/2026-11-16_btc_basis_gap_chg7_bottom.json.
 17. eth_btc_ratio_z90_bottom. The ETH/BTC ratio's trailing 90-day z-score at its trailing one-year 10th percentile, against the amended bottom event. Score 13. Pre-registered 2026-11-16 in research/generated.md. Not yet scored.
+18. btc_vol_change_7d_bottom. The 7-day change in BTC 14-day realized vol at its trailing one-year 10th percentile, against the amended bottom event. Score 13. Pre-registered 2026-11-16 in research/generated.md. Not yet scored. Extends the 2026-11-16 btc_realized_vol_percentile_top verdict, which was insufficient on the top label, by changing the transform and the target.
+19. btc_oi_share_chg7_top. The 7-day change in BTC's share of open interest at its trailing one-year 90th percentile, against the amended top event. Score 12. Pre-registered 2026-11-16 in research/generated.md. Not yet scored. Blocked on data: the series starts 2022-09-09, so the train period is short.
 
 Completed, with verdicts in research/log.md: point-in-time universe (insufficient, 2026-10-30), costs table (admitted, 2026-10-31), three-period split (rejected, 2026-11-01), C1 on the old labels (recorded, too loose), C2 on the old labels (rejected).
 
