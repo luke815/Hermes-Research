@@ -118,13 +118,27 @@ def last_ta(price: pd.Series) -> dict:
 
 
 def stall_check() -> str:
-    """The top backlog item and how many research runs it has sat there.
+    """The top open backlog item and how many research runs it has sat there.
 
-    Six runs without a change is a stall. The line is appended to the health
-    log either way, so the check running is visible.
+    A line that says Done or carries a verdict is closed, so the first '- L'
+    line is not the top item once L0 is finished. Six runs without a change
+    is a stall. The line is appended to the health log either way, so the
+    check running is visible.
     """
     backlog = (ROOT / "research" / "backlog.md").read_text()
-    top = next((line for line in backlog.splitlines() if line.startswith("- L")), "")
+    top = ""
+    for line in backlog.splitlines():
+        if not line.startswith("- "):
+            continue
+        head = line.split(".", 1)[0]
+        if not any(ch.isdigit() for ch in head):
+            continue
+        lowered = line.lower()
+        closed = " done " in f" {lowered} " or "verdict 20" in lowered
+        if closed:
+            continue
+        top = line
+        break
     log = ROOT / "ops" / "health.log"
     log.parent.mkdir(parents=True, exist_ok=True)
     with log.open("a") as fh:

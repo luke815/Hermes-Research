@@ -1,0 +1,32 @@
+{
+ "job": "regime-research",
+ "written_utc": "2026-11-16T22:05:45Z",
+ "today": "2026-11-16",
+ "verify_panel": "PASS panel_end=2026-11-15 today=2026-11-16 age=1d rows=2491 trailing_blank_cols=0 dupes=0 missing_days=0",
+ "top_item": "L2",
+ "top_item_state": "open",
+ "top_item_runs": 2,
+ "reason": "futures store started this run; options and liquidations still absent",
+ "commit": "9163e53",
+ "daemon": {
+  "name": "laevitas_pull",
+  "pid": 10874,
+  "alive": true,
+  "uptime_s": 128,
+  "heartbeat_age_s": 7,
+  "phase": "working",
+  "cycles": 6,
+  "last_error": null,
+  "version": "9163e53",
+  "head": "9163e53",
+  "stale_code": false
+ },
+ "futures_files": 6,
+ "futures_contracts": 171,
+ "first_file": "data/laevitas/futures/DERIBIT_AVAX_USDC-17NOV26.json",
+ "first_file_rows": 1,
+ "first_file_pages": 1,
+ "first_file_total_pages": 1,
+ "first_file_last_bar": "2026-11-16",
+ "test": "python3 -m unittest tests.test_laevitas_pull: OK, 2 tests"
+}
