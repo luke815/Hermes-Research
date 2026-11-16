@@ -6,12 +6,13 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
 
-1. Single-feature cross-sectional test: relative strength at 14 and 30 days, point-in-time universe, net of costs.
-2. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
-3. One-day reversal in the bottom half of the universe by open interest.
-4. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
+1. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
+2. One-day reversal in the bottom half of the universe by open interest.
+3. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
 
 ## Queue
+
+xs_relative_strength was scored on 2026-11-16 and is rejected: neither the 14-day nor the 30-day relative strength keeps its sign in validation and test at 1, 3 or 10 days, and no held-out t-stat reaches 3. results/2026-11-16_xs_relative_strength.json.
 
 eth_btc_30d_conditioning was scored on 2026-11-16 and is insufficient: no tercile of the ETH/BTC 30-day return has both sides of the btc_ret_30 spread in validation or test.
 
