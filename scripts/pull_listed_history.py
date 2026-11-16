@@ -61,6 +61,18 @@ def bybit_klines(symbol):
             for r in got.get("result", {}).get("list", [])]
 
 
+def bybit_funding(symbol):
+    from urllib.parse import quote
+    url = ("https://api.bybit.com/v5/market/funding/history?category=linear&symbol="
+           + quote(symbol, safe="") + "&limit=200")
+    got = json.loads(rate_budget.get(url, timeout=30))
+    by_day = {}
+    for row in got.get("result", {}).get("list", []):
+        day = datetime.fromtimestamp(int(row["fundingRateTimestamp"]) / 1000, timezone.utc).strftime("%Y-%m-%d")
+        by_day[day] = float(row["fundingRate"])
+    return by_day
+
+
 def okx_klines(symbol):
     from urllib.parse import quote
     url = ("https://www.okx.com/api/v5/market/candles?instId="
@@ -117,7 +129,9 @@ def cycle(ctx):
                 elif exchange == "bybit":
                     bars = bybit_klines(symbol)
                     if bars:
-                        pd.DataFrame(bars).to_csv(os.path.join(PANEL, f"bybit_{symbol}.csv"), index=False)
+                        frame = pd.DataFrame(bars)
+                        frame["funding_rate"] = frame["date"].map(bybit_funding(symbol))
+                        frame.to_csv(os.path.join(PANEL, f"bybit_{symbol}.csv"), index=False)
                 elif exchange == "okx":
                     bars = okx_klines(symbol)
                     if bars:
