@@ -36,3 +36,13 @@ Hypothesis: the ETH funding factor in the score is an ETH-specific artifact and 
 
 - Anything in the options family, Fear and Greed, basket funding, liquidations or the long/short ratio. Each has a verdict and would need a new transform or target, which the candidates above already change where they touch the same family.
 - A cross-sectional candidate on the full universe. D1 is not finished, and a candidate that needs it would score low on data and cost.
+
+## Added 2026-11-16
+
+The queue had fallen to one item, and that item needs a pull, so two candidates were added from series already on disk. Neither is tested in this run. btc_volume_down_day_share_bottom, which was already in the queue, cannot be scored: the market panel has no volume column, and the only BTC volume series on disk starts 2022-10-06, which leaves the train period short. It stays queued and is marked blocked on data.
+
+9. btc_funding_gap_bottom. Score 15 (prior 4, data 5, novelty 3, reach 2, cost 1).
+Hypothesis: BTC funding running hot against ETH funding marks leverage concentrated in BTC, and that crowding precedes a bottom in BTC rather than a top, because the positioning family already failed on the top label. This is the change of the gap, not the level, which is what was rejected before. Rule: the factor is the 7-day change in the BTC minus ETH funding gap, lagged one bar, and the extreme is at or above its own trailing one-year 90th percentile, with neighbours at the 85th and the 95th. The label is the amended bottom event. Horizon: 30 days. Pass: the same bar as item 1 of the 2026-11-05 list. Expected independent n: about 30 to 50 episodes on BTC, which is thin. Assets: BTC, and ETH as the second asset.
+
+10. eth_drawdown_90_bottom. Score 14 (prior 3, data 5, novelty 4, reach 1, cost 1).
+Hypothesis: the BTC drawdown cell was insufficient at 10 fires, and the same measure on ETH may have enough episodes to be scored, which the BTC cell never reached. Rule: the close divided by the trailing 90-day high, lagged one bar, at or below its own trailing one-year 10th percentile, neighbours at the 5th and the 15th. The label is the amended bottom event. Horizon: 30 days. Pass: the same bar as item 1. Expected independent n: about 30 to 50 episodes on ETH. This extends the 2026-11-16 btc_drawdown_90_bottom verdict, which was insufficient, not a rejection, and it changes the asset.

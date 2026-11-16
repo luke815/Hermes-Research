@@ -6,7 +6,7 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
 
-1. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
+1. BTC 1-day and 3-day horizons for the four live factors. Rescored 2026-11-16 and rejected: no cell keeps a usable size in both held-out periods, largest held-out t-stat 1.2704 on 26 independent dates against a bar of 3. results/2026-11-16_btc_short_horizon.json.
 3. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Needs a DefiLlama pull first.
 
 ## Queue
@@ -68,9 +68,11 @@ Risk regime, from research/RISK_REGIME.md section 6. These follow the bottom sco
 8. btc_realized_vol_percentile_top. Verdict 2026-11-16: insufficient. 30-day realized vol at its trailing one-year 90th percentile, against the amended top event. 0 fires across train and validation on BTC, below 30. results/2026-11-16_btc_realized_vol_percentile_top.json.
 9. eth_btc_30d_conditioning. Verdict 2026-11-16: insufficient. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return has no tercile with both sides of the spread in validation or test, on BTC or the alt basket. results/2026-11-16_eth_btc_30d_conditioning.json.
 10. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Score 15. Needs a DefiLlama pull first.
-11. btc_volume_down_day_share_bottom. Share of the last 7 days that closed down on above-median volume, against the amended bottom event. Score 14.
-12. disproof_btc_ret_30_weekly. The admitted momentum factor on weekly bars, horizon 2 weeks. Score 13. Thin by design, about 25 per half.
-13. disproof_eth_funding_second_asset. The ETH funding factor scored on SOL. Score 12.
+11. btc_volume_down_day_share_bottom. Share of the last 7 days that closed down on above-median volume, against the amended bottom event. Score 14. Blocked on data: the market panel has no volume column, and the only BTC volume series on disk starts 2022-10-06, so the train period is short.
+12. btc_funding_gap_bottom. The 7-day change in the BTC minus ETH funding gap at its trailing one-year 90th percentile, against the amended bottom event. Score 15. Pre-registered 2026-11-16 in research/generated.md. Not yet scored.
+13. eth_drawdown_90_bottom. ETH close over its trailing 90-day high at its trailing one-year 10th percentile, against the amended bottom event. Score 14. Extends the BTC cell that was insufficient on 2026-11-16 by changing the asset. Not yet scored.
+14. disproof_btc_ret_30_weekly. The admitted momentum factor on weekly bars, horizon 2 weeks. Score 13. Thin by design, about 25 per half.
+15. disproof_eth_funding_second_asset. The ETH funding factor scored on SOL. Score 12.
 
 Completed, with verdicts in research/log.md: point-in-time universe (insufficient, 2026-10-30), costs table (admitted, 2026-10-31), three-period split (rejected, 2026-11-01), C1 on the old labels (recorded, too loose), C2 on the old labels (rejected).
 
