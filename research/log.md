@@ -1069,3 +1069,12 @@ eth_rsi_14_gate restates btc_trend_stretch at 0.6307 and shrinks the BTC gap in 
 btc_bollinger_width_gate restates btc_vol_z90 at 0.6062, shrinks the BTC out-of-sample gap, 3.7306 to 1.7558, and every conditioned cell holds 2 independent bars or fewer.
 Fifty-three tests since the last admission; these three are recorded and do not add to that count because none was a confirmation attempt.
 
+
+## 2026-11-16, verdict: eth_btc_30d_conditioning
+
+Verdict: insufficient. No tercile of the ETH/BTC 30-day return has both sides of the btc_ret_30 spread in validation or in test, on BTC or on the alt basket, so the comparison the pass rule asks for cannot be made and nothing is admitted. The score is unchanged.
+BTC unsplit spread: train 5.9394% (n=24), validation 4.0707% (n=4), test -1.4453% (n=2), on 239 non-overlapping bars. The test sign flips to negative, but that cell holds 2 bars and is not quoted.
+Alt basket unsplit spread: train 9.879% (n=5), validation 10.5049% (n=4), test 12.3384% (n=2), on 152 bars. The alt basket is the fixed 20 and is survivor-biased.
+BTC: low tercile 81 bars, train 10.0881% (n=9), validation none (n=1), test none (n=0); mid tercile 107 bars, train 4.9194% (n=10), validation none (n=1), test none (n=0); high tercile 51 bars, train -0.8983% (n=4), validation none (n=1), test none (n=0).
+Alt basket: low tercile 56 bars, train none (n=0), validation none (n=1), test none (n=0); mid tercile 60 bars, train 10.7246% (n=4), validation none (n=1), test none (n=0); high tercile 36 bars, train none (n=1), validation none (n=1), test none (n=0).
+Correlation of the conditioner with the factor it splits is 0.0614, so the split is not a restatement. Every tercile cell is below 30 independent observations and is reported, not quoted. Returns are net of the thin tier because the panel has no USD open interest. Fifty-three tests since the last admission; this one is recorded and does not add to that count because it is not a confirmation attempt. results/2026-11-16_eth_btc_30d_conditioning.json.

@@ -9,10 +9,11 @@ Refilled 2026-11-15 after the weekly round rejected all three TA conditioning ga
 1. Single-feature cross-sectional test: relative strength at 14 and 30 days, point-in-time universe, net of costs.
 2. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
 3. One-day reversal in the bottom half of the universe by open interest.
-4. eth_btc_30d_conditioning. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return. Expected n about 20 per cell, so report it as thin.
-5. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
+4. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
 
 ## Queue
+
+eth_btc_30d_conditioning was scored on 2026-11-16 and is insufficient: no tercile of the ETH/BTC 30-day return has both sides of the btc_ret_30 spread in validation or test.
 
 btc_realized_vol_percentile_top was scored on 2026-11-16 and is insufficient: 0 fires across train and validation on BTC at the 90th percentile of 30-day realized vol, against the amended top event.
 
@@ -61,7 +62,7 @@ Risk regime, from research/RISK_REGIME.md section 6. These follow the bottom sco
 6. btc_funding_persistence_top. A streak of 5 or more days of BTC funding above its own trailing 80th percentile, scored against the amended top event. Score 19. Pre-registration in research/generated.md. Depends on the C1 rerun.
 7. btc_drawdown_90_bottom. Verdict 2026-11-16: insufficient. Close over the trailing 90-day high at its trailing one-year 10th percentile, against the amended bottom event. 10 fires across train and validation on BTC, below 30. results/2026-11-16_btc_drawdown_90_bottom.json.
 8. btc_realized_vol_percentile_top. Verdict 2026-11-16: insufficient. 30-day realized vol at its trailing one-year 90th percentile, against the amended top event. 0 fires across train and validation on BTC, below 30. results/2026-11-16_btc_realized_vol_percentile_top.json.
-9. eth_btc_30d_conditioning. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return. Score 16. Expected n is thin, about 20 per cell.
+9. eth_btc_30d_conditioning. Verdict 2026-11-16: insufficient. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return has no tercile with both sides of the spread in validation or test, on BTC or the alt basket. results/2026-11-16_eth_btc_30d_conditioning.json.
 10. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Score 15. Needs a DefiLlama pull first.
 11. btc_volume_down_day_share_bottom. Share of the last 7 days that closed down on above-median volume, against the amended bottom event. Score 14.
 12. disproof_btc_ret_30_weekly. The admitted momentum factor on weekly bars, horizon 2 weeks. Score 13. Thin by design, about 25 per half.
