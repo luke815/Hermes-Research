@@ -56,6 +56,38 @@ class PullOrder(unittest.TestCase):
         self.assertEqual([r["instrument"] for r in left], ["BTCUSDT_261225"])
         self.assertEqual(left[0]["type"], "future")
 
+    def _current(self, folder, name):
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        os.makedirs(folder, exist_ok=True)
+        json.dump({
+            "meta": {"total_pages": 1, "total": 1},
+            "pages_fetched": 1,
+            "items": [{"date": _day_ms(today)}],
+        }, open(os.path.join(folder, name), "w"))
+
+    def test_futures_finish_before_options_and_liquidations(self):
+        self._current(self.perp, "BINANCE_BTCUSDT.json")
+        left = pull.pending()
+        self.assertEqual(left[0]["type"], "future")
+        self._current(self.fut, "BINANCE_BTCUSDT_261225.json")
+        pull.OPTION_CONTRACTS = os.path.join(self.root, "option_contracts.json")
+        pull.OPTIONS_STORE = os.path.join(self.root, "options")
+        pull.LIQUIDATIONS_STORE = os.path.join(self.root, "liquidations")
+        left = pull.pending()
+        self.assertEqual(left[0].get("list"), True)
+        self.assertFalse(os.path.isdir(pull.LIQUIDATIONS_STORE))
+        json.dump([{
+            "market": "DERIBIT", "type": "option", "currency": "BTC",
+            "instrument": "BTC-25DEC26-20000-C", "expiry": "25DEC26",
+        }], open(pull.OPTION_CONTRACTS, "w"))
+        left = pull.pending()
+        self.assertEqual(left[0]["instrument"], "BTC-25DEC26-20000-C")
+        self.assertEqual(left[0]["type"], "option")
+        self._current(pull.OPTIONS_STORE, "DERIBIT_BTC-25DEC26-20000-C.json")
+        left = pull.pending()
+        self.assertEqual(left[0]["type"], "liquidation")
+        self.assertIn("BTC", [r["instrument"] for r in left])
+
 
 if __name__ == "__main__":
     unittest.main()
