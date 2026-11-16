@@ -8,6 +8,7 @@ only when its file is written.
 import json
 import os
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -62,6 +63,13 @@ def cycle(ctx):
     end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
         body = pull(row, end)
+    except urllib.error.HTTPError as exc:
+        if exc.code in (400, 404):
+            path = os.path.join(STORE, f"{row['market']}_{row['instrument']}.json")
+            json.dump({"items": [], "error": exc.code}, open(path, "w"))
+            return {"empty": 1, "code": exc.code, "remaining": len(left) - 1}
+        print(f"skip {row['market']} {row['instrument']}: {exc}", flush=True)
+        return {"skipped": 1, "remaining": len(left)}
     except Exception as exc:  # noqa: BLE001
         print(f"skip {row['market']} {row['instrument']}: {exc}", flush=True)
         return {"skipped": 1, "remaining": len(left)}
