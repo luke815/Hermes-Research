@@ -92,13 +92,21 @@ def write_name(symbol, price, funding):
     os.replace(tmp, path)
 
 
+def needs_funding(exchange, symbol):
+    """True when the name's file is missing or has no funding column."""
+    path = os.path.join(PANEL, f"{exchange}_{symbol}.csv")
+    if not os.path.exists(path):
+        return True
+    return "funding_rate" not in pd.read_csv(path, nrows=0).columns
+
+
 def cycle(ctx):
     """One chunk of listed names, then return. Binance first, then Bybit, then OKX."""
     universe = pd.read_csv(os.path.join(ROOT, "data", "universe.csv"))
     have = done()
     for exchange in ("binance", "bybit", "okx"):
         listed = universe[(universe.exchange == exchange) & (universe.delisted == 0)]
-        todo = [s for s in listed.symbol if f"{exchange}_{s}" not in have]
+        todo = [s for s in listed.symbol if needs_funding(exchange, s)]
         if not todo:
             continue
         saved, skipped = 0, 0
