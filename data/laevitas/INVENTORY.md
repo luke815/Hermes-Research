@@ -63,3 +63,7 @@ The history endpoint returns them by symbol. Probed on Binance for April 2022: L
 ## What this does not cover
 
 The remaining 81 historical endpoints were not each probed for a first bar. The families above are the ones the catalogue groups history under. A per-endpoint first date is L2's inventory, written as the puller stores each series.
+
+## Realtime snapshot, 2026-11-16
+
+The realtime routes have no history, so data/laevitas/daily_snapshots/ accumulates one set a day from 2026-11-16, marked forward history from 2026-11-17. The catalogue serves these routes for deribit, binance, bybit, okx and paradex only. Bullish, derive and gate return 400 on all of them. The trade summary is deribit only. Max pain is computed from the open interest by strike, not served by its own endpoint.
