@@ -134,6 +134,7 @@ def stall_check() -> str:
 
 def main() -> None:
     stall_check()
+    now = datetime.now(timezone.utc)
     today = now.strftime("%Y-%m-%d")
     written = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     check = verify_panel(ROOT / "data" / "panel.csv", now)
