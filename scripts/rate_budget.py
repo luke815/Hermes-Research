@@ -17,6 +17,7 @@ import urllib.request
 
 BUDGET_PER_MINUTE = 22
 RESERVED_PER_MINUTE = 8
+LAEVITAS_PER_MINUTE = 200
 STATE = "/opt/data/workspace/regime-tester/data/rate_bucket.json"
 LOCK = STATE + ".lock"
 
@@ -30,7 +31,8 @@ def _take(now, allowance):
         except json.JSONDecodeError:
             state = {}
         stamps = state.setdefault(allowance, [])
-        cap = RESERVED_PER_MINUTE if allowance == "live" else BUDGET_PER_MINUTE
+        cap = {"live": RESERVED_PER_MINUTE, "laevitas": LAEVITAS_PER_MINUTE}.get(
+            allowance, BUDGET_PER_MINUTE)
         window = [t for t in stamps if now - t < 60]
         wait = 0.0
         if len(window) >= cap:

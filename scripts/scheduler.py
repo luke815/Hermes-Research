@@ -8,6 +8,7 @@ Jobs, UTC:
   05:30  daily refresh
   05:45  universe re-rank
   06:15  book marks
+  06:30  laevitas realtime snapshot
   every hour at :05  health check
 
 Usage: python3 scripts/scheduler.py
@@ -30,6 +31,7 @@ JOBS = [
     {"name": "daily_refresh", "at": "05:30", "script": "scripts/refresh_coinalyze.py"},
     {"name": "rerank", "at": "05:45", "script": "scripts/rank_universe.py"},
     {"name": "book_marks", "at": "06:15", "script": "scripts/book_composite.py"},
+    {"name": "laevitas_snapshot", "at": "06:30", "script": "scripts/laevitas_snapshot.py", "timeout": 2400},
     {"name": "health", "at": ":05", "script": None},
 ]
 
@@ -63,8 +65,8 @@ def record(job, now, result):
     os.replace(tmp, path)
 
 
-def run_script(script):
-    proc = subprocess.run([PY, script], cwd=ROOT, env=ENV, capture_output=True, text=True, timeout=600)
+def run_script(script, timeout=600):
+    proc = subprocess.run([PY, script], cwd=ROOT, env=ENV, capture_output=True, text=True, timeout=timeout)
     return {"exit": proc.returncode, "tail": (proc.stdout + proc.stderr)[-300:]}
 
 
@@ -118,7 +120,7 @@ def cycle(ctx):
             if result["problems"]:
                 result["post"] = post("health: " + "; ".join(result["problems"]))
         else:
-            result = run_script(job["script"])
+            result = run_script(job["script"], job.get("timeout", 600))
         record(job, now, result)
         ran.append(job["name"])
     return {"ran": ran, "minute": now.strftime("%H:%M")}
