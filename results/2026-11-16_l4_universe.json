@@ -1,0 +1,113 @@
+{
+ "job": "regime-research",
+ "item": "L4",
+ "written_utc": "2026-11-16T21:06:49Z",
+ "today": "2026-11-16",
+ "verify_panel": "PASS panel_end=2026-11-15 today=2026-11-16 age=1d rows=2491 trailing_blank_cols=0 dupes=0 missing_days=0",
+ "names": 5185,
+ "exchanges": 13,
+ "with_bars": 5056,
+ "no_bars": 129,
+ "truncated_refetching": 22,
+ "delisted_confirmed": 0,
+ "listed_complete": 5056,
+ "first_bar": "2021-03-26",
+ "last_bar": "2026-11-16",
+ "sha256": "0e9799492a1b56ed294676fe205704900c9e43bed99d2b138d0e39dfc0c118bd",
+ "panel_files": 5056,
+ "by_exchange": {
+  "binance": {
+   "count": 824,
+   "with_bars": 817,
+   "no_bars": 7,
+   "truncated_refetching": 8,
+   "delisted_confirmed": 0
+  },
+  "bitfinex": {
+   "count": 76,
+   "with_bars": 76,
+   "no_bars": 0,
+   "truncated_refetching": 0,
+   "delisted_confirmed": 0
+  },
+  "bitget": {
+   "count": 935,
+   "with_bars": 931,
+   "no_bars": 4,
+   "truncated_refetching": 4,
+   "delisted_confirmed": 0
+  },
+  "bullish": {
+   "count": 37,
+   "with_bars": 0,
+   "no_bars": 37,
+   "truncated_refetching": 0,
+   "delisted_confirmed": 0
+  },
+  "bybit": {
+   "count": 914,
+   "with_bars": 914,
+   "no_bars": 0,
+   "truncated_refetching": 7,
+   "delisted_confirmed": 0
+  },
+  "deribit": {
+   "count": 153,
+   "with_bars": 152,
+   "no_bars": 1,
+   "truncated_refetching": 0,
+   "delisted_confirmed": 0
+  },
+  "dydx": {
+   "count": 296,
+   "with_bars": 296,
+   "no_bars": 0,
+   "truncated_refetching": 1,
+   "delisted_confirmed": 0
+  },
+  "huobi": {
+   "count": 425,
+   "with_bars": 420,
+   "no_bars": 5,
+   "truncated_refetching": 0,
+   "delisted_confirmed": 0
+  },
+  "hyperliquid": {
+   "count": 350,
+   "with_bars": 350,
+   "no_bars": 0,
+   "truncated_refetching": 0,
+   "delisted_confirmed": 0
+  },
+  "kraken": {
+   "count": 209,
+   "with_bars": 209,
+   "no_bars": 0,
+   "truncated_refetching": 0,
+   "delisted_confirmed": 0
+  },
+  "nado": {
+   "count": 73,
+   "with_bars": 0,
+   "no_bars": 73,
+   "truncated_refetching": 0,
+   "delisted_confirmed": 0
+  },
+  "okx": {
+   "count": 809,
+   "with_bars": 807,
+   "no_bars": 2,
+   "truncated_refetching": 2,
+   "delisted_confirmed": 0
+  },
+  "paradex": {
+   "count": 84,
+   "with_bars": 84,
+   "no_bars": 0,
+   "truncated_refetching": 0,
+   "delisted_confirmed": 0
+  }
+ },
+ "rule": "delisted when last bar is more than 14 days before today and the file is complete; a stale file without pages_fetched is the five-page cap and is labelled truncated_refetching, not delisted",
+ "note": "The old data/universe.csv and data/panel_xs are the Binance archive panel the daily append writes. This table is data/universe_laevitas.csv and data/panel_xs_laevitas. NADO and BULLISH return HTTP 400 on every perpetual, so their 110 names have no bars."
+}

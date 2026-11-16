@@ -1,1 +1,17 @@
-{"job": "regime-research", "written_utc": "2026-11-16T17:03:32Z", "today": "2026-11-16", "verify_panel": "PASS panel_end=2026-11-15 today=2026-11-16 age=1d rows=2491 trailing_blank_cols=0 dupes=0 missing_days=0", "top_item": "L2", "top_item_state": "blocked", "top_item_runs": 1, "top_item_reason": "perpetual store 2537 of 5185 at the decision, 48.93 percent, all 13 exchanges below 95 percent; puller alive", "taken_next": "btc_vol_change_7d_bottom", "verdict": "insufficient", "train_val_fires": 4, "lookahead_holds": {"BTC": true, "ETH": true}, "panel_end": "2026-11-15", "results": "results/2026-11-16_btc_vol_change_7d_bottom.json", "commit": "65aaaa4", "pushed": true}
+{
+ "job": "regime-research",
+ "written_utc": "2026-11-16T21:07:09Z",
+ "today": "2026-11-16",
+ "verify_panel": "PASS panel_end=2026-11-15 today=2026-11-16 age=1d rows=2491 trailing_blank_cols=0 dupes=0 missing_days=0",
+ "top_item": "L5",
+ "top_item_state": "open",
+ "top_item_runs": 1,
+ "done_this_run": "L4",
+ "verdict": "done, delisted count partial",
+ "names": 5185,
+ "with_bars": 5056,
+ "no_bars": 129,
+ "truncated_refetching": 22,
+ "delisted_confirmed": 0,
+ "results": "results/2026-11-16_l4_universe.json"
+}

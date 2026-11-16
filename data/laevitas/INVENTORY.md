@@ -60,6 +60,12 @@ BYBIT, OKX, HYPERLIQUID, KRAKEN, DERIBIT, NADO and BULLISH are in the instrument
 
 The history endpoint returns them by symbol. Probed on Binance for April 2022: LUNAUSDT 31 rows, FTTUSDT 16 rows, SRMUSDT 31 rows.
 
+## Universe table, 2026-11-16
+
+data/universe_laevitas.csv, 5,185 rows, sha256 0e9799492a1b56ed294676fe205704900c9e43bed99d2b138d0e39dfc0c118bd. A name is delisted when its last bar is more than 14 days before today and its file is complete. 22 files stopped at the five-page cap and are labelled truncated_refetching, not delisted. 129 files have no bars. Panel files: data/panel_xs_laevitas, 5,056 of them. results/2026-11-16_l4_universe.json.
+
+
+
 ## What this does not cover
 
 The remaining 81 historical endpoints were not each probed for a first bar. The families above are the ones the catalogue groups history under. A per-endpoint first date is L2's inventory, written as the puller stores each series.
