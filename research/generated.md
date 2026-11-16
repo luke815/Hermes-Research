@@ -67,3 +67,14 @@ Hypothesis: the level of realized vol was insufficient against the top event, an
 
 14. btc_oi_share_chg7_top. Score 12 (prior 3, data 2, novelty 4, reach 2, cost 1).
 Hypothesis: BTC taking a rising share of open interest marks leverage concentrating in the leader, which should precede a top rather than a bottom. The level of the share has no verdict, and the change is the transform that has not been tried. Rule: the 7-day change in btc_oi_share, lagged one bar, at or above its own trailing one-year 90th percentile, neighbours at the 85th and the 95th. The label is the amended top event. Horizon: 30 days. Pass: the same bar as item 1. Expected independent n: about 20 episodes, below 40, because the series starts 2022-09-09 and the train period is short. Marked insufficient by design and blocked on data until the series is longer or the universe is pooled.
+
+
+## Added 2026-11-16, fourth pass
+
+The queue had fallen to one scoreable item after eth_btc_ratio_z90_bottom was scored. stablecoin_supply_30d_bottom needs a pull and btc_oi_share_chg7_top starts 2022-09-09, so both stay blocked. Neither candidate below is tested in this run.
+
+15. btc_funding_level_pct_bottom. Score 14 (prior 4, data 5, novelty 2, reach 2, cost 1).
+Hypothesis: funding at a washed-out low marks capitulation, and the level that was rejected against the 10-day return has no verdict against the bottom event. The change of the funding gap was insufficient on 2026-11-16, so this changes the measure and the target. Rule: the BTC funding close, lagged one bar by the percentile, at or below its own trailing one-year 10th percentile, neighbours at the 5th and the 15th. The label is the amended bottom event. Horizon: 30 days. Pass: the same bar as item 1 of the 2026-11-05 list. Expected independent n: about 30 to 50 episodes on BTC, which is thin. Assets: BTC, and ETH as the second asset. This extends the rejected raw funding level by changing the target.
+
+16. btc_alt_dispersion_z90_top. Score 12 (prior 3, data 5, novelty 2, reach 1, cost 1).
+Hypothesis: alt dispersion blowing out marks a late-cycle tape, and the same series flipped sign on the 10-day return, so the top event is a different question rather than a retry. Rule: the trailing 90-day z-score of dispersion_14, lagged one bar, at or above its own trailing one-year 90th percentile, neighbours at the 85th and the 95th. The label is the amended top event. Horizon: 30 days. Pass: the same bar as item 1. Expected independent n: about 30 to 50 episodes on BTC, which is thin. Assets: BTC, and ETH as the second asset. This extends the 2026-11-01 rejection of dispersion_14, which flipped on the 10-day return, by changing the target.
