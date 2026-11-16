@@ -8,6 +8,7 @@ only when its file is written.
 import json
 import os
 import sys
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
@@ -33,11 +34,23 @@ def pending():
         os.path.join(STORE, f"{r['market']}_{r['instrument']}.json"))]
 
 
-def pull(row):
-    url = (f"https://api.laevitas.ch/historical/derivs/perpetuals/{row['market']}/{row['instrument']}"
-           "?start=2021-10-01&end=2026-11-16&granularity=1d&page=1&limit=1000")
-    req = urllib.request.Request(url, headers={"apikey": key(), "User-Agent": "Mozilla/5.0"})
-    return json.loads(urllib.request.urlopen(req, timeout=60).read())
+def pull(row, end):
+    symbol = urllib.parse.quote(row["instrument"], safe="")
+    pages = []
+    meta = None
+    page = 1
+    while page <= 5:
+        url = (f"https://api.laevitas.ch/historical/derivs/perpetuals/{row['market']}/{symbol}"
+               f"?start=2021-03-26&end={end}&granularity=1d&page={page}&limit=1000")
+        req = urllib.request.Request(url, headers={"apikey": key(), "User-Agent": "Mozilla/5.0"})
+        body = json.loads(urllib.request.urlopen(req, timeout=60).read())
+        meta = body.get("meta", meta)
+        pages.extend(body.get("items", []))
+        total_pages = (meta or {}).get("total_pages", 1)
+        if page >= total_pages:
+            break
+        page += 1
+    return {"meta": meta, "items": pages}
 
 
 def cycle(ctx):
@@ -46,11 +59,12 @@ def cycle(ctx):
         return {"remaining": 0}
     row = left[0]
     os.makedirs(STORE, exist_ok=True)
+    end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
-        body = pull(row)
+        body = pull(row, end)
     except Exception as exc:  # noqa: BLE001
         print(f"skip {row['market']} {row['instrument']}: {exc}", flush=True)
-        return {"skipped": 1, "remaining": len(left) - 1}
+        return {"skipped": 1, "remaining": len(left)}
     path = os.path.join(STORE, f"{row['market']}_{row['instrument']}.json")
     json.dump(body, open(path, "w"))
     return {"market": row["market"], "instrument": row["instrument"],

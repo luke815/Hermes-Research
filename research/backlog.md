@@ -10,7 +10,7 @@ An instruction is written here as numbered items at the top, each with a done-wh
 
 ## Laevitas, from the 12:19 instruction
 
-- L1. Inventory: every exchange's instrument count and each family's first date, in data/laevitas/INVENTORY.md. Done when INVENTORY.md lists every exchange's instrument count and each family's first date.
+- L1. Inventory: every exchange's instrument count and each family's first date, in data/laevitas/INVENTORY.md. Done 2026-11-16: INVENTORY.md lists all 13 perpetual exchanges with instrument counts (5,185 perpetuals, 171 dated futures, 529 options) and a first date for each family. The earlier file had 8 of 13 because it dropped rows from the response wrapper. data/laevitas/instruments.json now holds 5,885 rows. Seven venues were not re-probed for a per-venue first bar; the family first dates are pinned.
 - L2. Puller daemon on the laevitas bucket: perpetuals per instrument for all 13 exchanges, then futures, options and liquidations. Done when the perpetual store covers 95 percent of instruments on all 13 exchanges and the futures, options and liquidation stores have their inventories.
 - L3. Realtime analytics captured daily into data/laevitas/daily_snapshots/, marked forward history from 2026-11-17. Done when the first daily snapshot set exists.
 - L4. Universe table and panel_xs rebuilt from the perpetual store, delisted names included. Done when the universe table from the store is posted with listed and delisted counts.

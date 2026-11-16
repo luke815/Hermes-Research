@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-16",
+  "item": "L1",
+  "verdict": "done",
+  "source": "https://api.laevitas.ch",
+  "instruments_path": "data/laevitas/instruments.json",
+  "inventory_path": "data/laevitas/INVENTORY.md",
+  "instruments": 5885,
+  "perpetuals": 5185,
+  "perpetual_exchanges": 13,
+  "dated_futures": 171,
+  "options": 529,
+  "perp_counts": {
+    "BITGET": 935,
+    "BYBIT": 914,
+    "BINANCE": 824,
+    "OKX": 809,
+    "HUOBI": 425,
+    "HYPERLIQUID": 350,
+    "DYDX": 296,
+    "KRAKEN": 209,
+    "DERIBIT": 153,
+    "PARADEX": 84,
+    "BITFINEX": 76,
+    "NADO": 73,
+    "BULLISH": 37
+  },
+  "family_first_date": {
+    "perpetuals": "2021-03-26",
+    "dated_futures_one_contract": "2023-12-30",
+    "futures_basis_30": "2021-03-30",
+    "liquidations": "2021-11-20",
+    "options_dvol": "2021-03-25",
+    "options_atm_iv": "2019-03-31",
+    "options_skew_25d": "2019-03-31",
+    "options_risk_reversal_25d": "2019-03-31",
+    "options_butterfly_25d": "2019-03-31",
+    "options_iv_rv": "2019-03-30",
+    "options_oi_and_ratios": "2020-09-25",
+    "spot": "2018-02-01"
+  },
+  "missing_venue_first_date": {
+    "HUOBI": "2021-07-02",
+    "BITFINEX": "2021-07-13",
+    "DYDX": "2021-08-31",
+    "BITGET": "2023-02-16",
+    "PARADEX": "2024-05-10"
+  },
+  "options_instruments_endpoint": "HTTP 500",
+  "note": "Seven venues in the instrument list were not re-probed for a per-venue first bar. Dated futures first date is one contract, BTCUSDT_240628, not the family."
+}
