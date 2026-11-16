@@ -11,7 +11,8 @@ An instruction is written here as numbered items at the top, each with a done-wh
 ## Laevitas, from the 12:19 instruction
 
 - L1. Inventory: every exchange's instrument count and each family's first date, in data/laevitas/INVENTORY.md. Done 2026-11-16: INVENTORY.md lists all 13 perpetual exchanges with instrument counts (5,185 perpetuals, 171 dated futures, 529 options) and a first date for each family. The earlier file had 8 of 13 because it dropped rows from the response wrapper. data/laevitas/instruments.json now holds 5,885 rows. Seven venues were not re-probed for a per-venue first bar; the family first dates are pinned.
-- L2. Puller daemon on the laevitas bucket: perpetuals per instrument for all 13 exchanges, then futures, options and liquidations. Done when the perpetual store covers 95 percent of instruments on all 13 exchanges and the futures, options and liquidation stores have their inventories.
+
+- L2. Puller daemon on the laevitas bucket: perpetuals per instrument for all 13 exchanges, then futures, options and liquidations. Blocked 2026-11-16: the store covers 2537 of 5185 perpetuals, 48.93 percent, and all 13 exchanges are below 95 percent. The puller is alive and working, so this waits on the daemon. The futures, options and liquidation stores do not exist yet.
 - L3. Realtime analytics captured daily into data/laevitas/daily_snapshots/, marked forward history from 2026-11-17. Done when the first daily snapshot set exists.
 - L4. Universe table and panel_xs rebuilt from the perpetual store, delisted names included. Done when the universe table from the store is posted with listed and delisted counts.
 - L5. Every series into the library with metadata and the lookahead test, then re-enumerate. Done when the measure count and the cell count are posted.
@@ -29,14 +30,14 @@ Refilled 2026-11-15 after the weekly round rejected all three TA conditioning ga
 
 1. BTC 1-day and 3-day horizons for the four live factors. Rescored 2026-11-16 and rejected: no cell keeps a usable size in both held-out periods, largest held-out t-stat 1.2704 on 26 independent dates against a bar of 3. results/2026-11-16_btc_short_horizon.json.
 3. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Needs a DefiLlama pull first. A pull is forbidden in a research run, so this waits.
-4. btc_vol_change_7d_bottom. The 7-day change in BTC 14-day realized vol at its trailing one-year 10th percentile, against the amended bottom event. Pre-registered in research/generated.md. Not yet scored.
-5. btc_funding_level_pct_bottom. The BTC funding close at its trailing one-year 10th percentile, against the amended bottom event. Pre-registered in research/generated.md. Not yet scored.
+4. btc_funding_level_pct_bottom. The BTC funding close at its trailing one-year 10th percentile, against the amended bottom event. Pre-registered in research/generated.md. Not yet scored.
 6. btc_oi_share_chg7_top. The 7-day change in BTC's share of open interest at its trailing one-year 90th percentile, against the amended top event. Pre-registered in research/generated.md. Not yet scored. Blocked on data: the series starts 2022-09-09, so the train period is short.
 7. btc_alt_dispersion_z90_top. The 14-day alt dispersion's trailing 90-day z-score at its trailing one-year 90th percentile, against the amended top event. Pre-registered in research/generated.md. Not yet scored.
-5. btc_vol_change_7d_bottom. The 7-day change in BTC 14-day realized vol at its trailing one-year 10th percentile, against the amended bottom event. Pre-registered in research/generated.md. Not yet scored.
 6. btc_oi_share_chg7_top. The 7-day change in BTC's share of open interest at its trailing one-year 90th percentile, against the amended top event. Pre-registered in research/generated.md. Not yet scored. Blocked on data: the series starts 2022-09-09, so the train period is short.
 
 ## Queue
+
+btc_vol_change_7d_bottom was scored on 2026-11-16 and is insufficient: 4 fires across train and validation on BTC at the 10th percentile of the 7-day percent change in 14-day realized vol, below 30, and validation has zero fires. results/2026-11-16_btc_vol_change_7d_bottom.json.
 
 eth_btc_ratio_z90_bottom was scored on 2026-11-16 and is insufficient: 2 fires across train and validation on BTC at the 10th percentile of the ETH/BTC 90-day z-score, below 30, and validation has zero fires. results/2026-11-16_eth_btc_ratio_z90_bottom.json.
 
@@ -110,7 +111,7 @@ Risk regime, from research/RISK_REGIME.md section 6. These follow the bottom sco
 15. disproof_eth_funding_second_asset. The ETH funding factor scored on SOL. Score 12.
 16. btc_basis_gap_chg7_bottom. Verdict 2026-11-16: insufficient. The 7-day change in the venue-mean BTC minus ETH basis at its trailing one-year 90th percentile, against the amended bottom event. 18 fires across train and validation on BTC, below 30, and the validation lift is 1.0. results/2026-11-16_btc_basis_gap_chg7_bottom.json.
 17. eth_btc_ratio_z90_bottom. Verdict 2026-11-16: insufficient. The ETH/BTC ratio's trailing 90-day z-score at its trailing one-year 10th percentile, against the amended bottom event. 2 fires across train and validation on BTC, below 30, and validation has zero fires. results/2026-11-16_eth_btc_ratio_z90_bottom.json.
-18. btc_vol_change_7d_bottom. The 7-day change in BTC 14-day realized vol at its trailing one-year 10th percentile, against the amended bottom event. Score 13. Pre-registered 2026-11-16 in research/generated.md. Not yet scored. Extends the 2026-11-16 btc_realized_vol_percentile_top verdict, which was insufficient on the top label, by changing the transform and the target.
+18. btc_vol_change_7d_bottom. Verdict 2026-11-16: insufficient. The 7-day percent change in BTC 14-day realized vol at its trailing one-year 10th percentile, against the amended bottom event. 4 fires across train and validation on BTC, below 30. results/2026-11-16_btc_vol_change_7d_bottom.json.
 19. btc_oi_share_chg7_top. The 7-day change in BTC's share of open interest at its trailing one-year 90th percentile, against the amended top event. Score 12. Pre-registered 2026-11-16 in research/generated.md. Not yet scored. Blocked on data: the series starts 2022-09-09, so the train period is short.
 20. btc_funding_level_pct_bottom. The BTC funding close at its trailing one-year 10th percentile, against the amended bottom event. Score 14. Pre-registered 2026-11-16 in research/generated.md. Not yet scored. Extends the rejected funding-level return spread by changing the target.
 21. btc_alt_dispersion_z90_top. The 14-day alt dispersion's trailing 90-day z-score at its trailing one-year 90th percentile, against the amended top event. Score 12. Pre-registered 2026-11-16 in research/generated.md. Not yet scored. Extends the 2026-11-01 dispersion_14 rejection, which flipped on the 10-day return, by changing the target.
