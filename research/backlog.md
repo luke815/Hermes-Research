@@ -6,11 +6,13 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
 
-1. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
-2. One-day reversal in the bottom half of the universe by open interest.
-3. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
+1. One-day reversal in the bottom half of the universe by open interest.
+2. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
+3. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Needs a DefiLlama pull first.
 
 ## Queue
+
+xs_funding_oi was scored on 2026-11-16 and is rejected for funding and insufficient for open interest: the 7-day funding average flips sign between validation and test at 1, 3 and 10 days, and the 7-day open-interest change has no date with 20 names. results/2026-11-16_xs_funding_oi.json.
 
 xs_relative_strength was scored on 2026-11-16 and is rejected: neither the 14-day nor the 30-day relative strength keeps its sign in validation and test at 1, 3 or 10 days, and no held-out t-stat reaches 3. results/2026-11-16_xs_relative_strength.json.
 

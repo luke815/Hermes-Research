@@ -1,0 +1,1067 @@
+{
+ "candidate": "xs_funding_oi",
+ "written_at": "2026-11-16T04:03:49Z",
+ "panel_end": "2026-11-15",
+ "btc_start": "2022-10-06",
+ "names": 1043,
+ "funding_coverage": {
+  "names": 1044,
+  "earliest": "2020-01-08",
+  "latest_end": "2026-11-13",
+  "ending_in_validation": 1002,
+  "ending_in_test": 825,
+  "median_rows": 84
+ },
+ "oi_coverage": {
+  "names": 29,
+  "earliest": "2021-12-01",
+  "latest_end": "2026-07-23",
+  "ending_in_validation": 9,
+  "ending_in_test": 3,
+  "median_rows": 329
+ },
+ "round_trip_bps": 60.0,
+ "funding_carry": "not subtracted; missing funding is never treated as zero",
+ "lookahead": "pass",
+ "primary": [
+  "funding_7_h1",
+  "funding_7_h3",
+  "funding_7_h10",
+  "oi_7_h1",
+  "oi_7_h3",
+  "oi_7_h10"
+ ],
+ "neighbours": [
+  "funding_3_h1",
+  "funding_3_h3",
+  "funding_3_h10",
+  "funding_14_h1",
+  "funding_14_h3",
+  "funding_14_h10",
+  "oi_3_h1",
+  "oi_3_h3",
+  "oi_3_h10",
+  "oi_14_h1",
+  "oi_14_h3",
+  "oi_14_h10"
+ ],
+ "cells": {
+  "funding_7_h1": {
+   "n_dates": 1449,
+   "names_median": 68.0,
+   "train": {
+    "n": 621,
+    "ic_mean": -0.00972959021375775,
+    "ic_t": -1.1554789319616932,
+    "spread": 0.17766071300495503,
+    "spread_t": 0.7111174769691317,
+    "top_mean": -0.5898900226092113,
+    "bottom_mean": -0.7675507356141664,
+    "hit": 0.38755690251443703,
+    "ic_rel": -0.01310556385130741
+   },
+   "validation": {
+    "n": 547,
+    "ic_mean": -0.0020077882515784603,
+    "ic_t": -0.2984844222570564,
+    "spread": 0.05883517511241664,
+    "spread_t": 0.2403930163744689,
+    "top_mean": -0.9150265106226209,
+    "bottom_mean": -0.9738616857350373,
+    "hit": 0.3825403595804399,
+    "ic_rel": -0.0020077882515784603
+   },
+   "test": {
+    "n": 281,
+    "ic_mean": 0.009991101678839591,
+    "ic_t": 0.9744465206543629,
+    "spread": 0.5013792381526812,
+    "spread_t": 1.5179126863917551,
+    "top_mean": -0.5961903912367146,
+    "bottom_mean": -1.0975696293893955,
+    "hit": 0.36851189749028473,
+    "ic_rel": 0.009991101678839591
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 24,
+     "ic_mean": -0.08881207181474794,
+     "spread": -0.7222209174617339
+    },
+    {
+     "year": 2022,
+     "n": 196,
+     "ic_mean": 0.006860945434615611,
+     "spread": 0.848475273087753
+    },
+    {
+     "year": 2023,
+     "n": 219,
+     "ic_mean": -0.019866739077507946,
+     "spread": -0.05065275899126509
+    },
+    {
+     "year": 2024,
+     "n": 366,
+     "ic_mean": -0.005641234441300745,
+     "spread": -0.005885601740968688
+    },
+    {
+     "year": 2025,
+     "n": 363,
+     "ic_mean": 0.00017056855510364102,
+     "spread": 0.018703516564001932
+    },
+    {
+     "year": 2026,
+     "n": 281,
+     "ic_mean": 0.009991101678839591,
+     "spread": 0.5013792381526812
+    }
+   ]
+  },
+  "funding_7_h3": {
+   "n_dates": 482,
+   "names_median": 68.0,
+   "train": {
+    "n": 207,
+    "ic_mean": -0.00977222591401135,
+    "ic_t": -0.6351659564809589,
+    "spread": 1.1205662234614675,
+    "spread_t": 1.1681456394659324,
+    "top_mean": 0.08105551942254945,
+    "bottom_mean": -1.039510704038918,
+    "hit": 0.3976316915507682,
+    "ic_rel": -0.014970875526323979
+   },
+   "validation": {
+    "n": 182,
+    "ic_mean": -0.005643348618936537,
+    "ic_t": -0.4712616821915171,
+    "spread": -0.37874644464586854,
+    "spread_t": -0.4760421187115583,
+    "top_mean": -1.631359637528038,
+    "bottom_mean": -1.25261319288217,
+    "hit": 0.38774458266165585,
+    "ic_rel": -0.005643348618936537
+   },
+   "test": {
+    "n": 93,
+    "ic_mean": 0.0072854492689549515,
+    "ic_t": 0.41497251092277393,
+    "spread": 1.1952123700268513,
+    "spread_t": 1.4372259459847643,
+    "top_mean": -1.1264269880788553,
+    "bottom_mean": -2.321639358105707,
+    "hit": 0.36706520162191975,
+    "ic_rel": 0.0072854492689549515
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 8,
+     "ic_mean": -0.12192054394335786,
+     "spread": -0.21973356010682443
+    },
+    {
+     "year": 2022,
+     "n": 65,
+     "ic_mean": 0.014747860121137327,
+     "spread": 3.06272525302301
+    },
+    {
+     "year": 2023,
+     "n": 73,
+     "ic_mean": -0.011988901668732,
+     "spread": 0.5600243218408689
+    },
+    {
+     "year": 2024,
+     "n": 122,
+     "ic_mean": -0.013455833977718448,
+     "spread": -0.08824263545320891
+    },
+    {
+     "year": 2025,
+     "n": 121,
+     "ic_mean": -0.004267646298138655,
+     "spread": -0.5323148066426228
+    },
+    {
+     "year": 2026,
+     "n": 93,
+     "ic_mean": 0.0072854492689549515,
+     "spread": 1.1952123700268513
+    }
+   ]
+  },
+  "funding_7_h10": {
+   "n_dates": 144,
+   "names_median": 67.0,
+   "train": {
+    "n": 62,
+    "ic_mean": -0.021366993651024797,
+    "ic_t": -0.7857769701783661,
+    "spread": -1.8901289925541074,
+    "spread_t": -0.35273483363816827,
+    "top_mean": 1.4554087198272663,
+    "bottom_mean": 3.3455377123813737,
+    "hit": 0.41582928209433306,
+    "ic_rel": -0.008946490817071846
+   },
+   "validation": {
+    "n": 54,
+    "ic_mean": -0.009619893740795757,
+    "ic_t": -0.42973993567288493,
+    "spread": -2.520940134037422,
+    "spread_t": -1.5514453492169624,
+    "top_mean": -3.9012158244997215,
+    "bottom_mean": -1.3802756904623,
+    "hit": 0.3557971089200632,
+    "ic_rel": -0.009619893740795757
+   },
+   "test": {
+    "n": 28,
+    "ic_mean": 0.017748142972046885,
+    "ic_t": 0.8032718021988786,
+    "spread": 1.3930685502942652,
+    "spread_t": 0.6014730533574694,
+    "top_mean": -2.7752055163265466,
+    "bottom_mean": -4.168274066620812,
+    "hit": 0.32777893478064335,
+    "ic_rel": 0.017748142972046885
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 3,
+     "ic_mean": -0.2512029437033017,
+     "spread": -12.874859869340801
+    },
+    {
+     "year": 2022,
+     "n": 19,
+     "ic_mean": -0.011225533819513599,
+     "spread": -13.668311407448396
+    },
+    {
+     "year": 2023,
+     "n": 21,
+     "ic_mean": 0.008378612622693616,
+     "spread": -0.7044917958269741
+    },
+    {
+     "year": 2024,
+     "n": 37,
+     "ic_mean": -0.017511898097595673,
+     "spread": 4.235724261574398
+    },
+    {
+     "year": 2025,
+     "n": 36,
+     "ic_mean": -0.011259570281982533,
+     "spread": -2.692326066464439
+    },
+    {
+     "year": 2026,
+     "n": 28,
+     "ic_mean": 0.017748142972046885,
+     "spread": 1.3930685502942652
+    }
+   ]
+  },
+  "funding_3_h1": {
+   "n_dates": 1462,
+   "names_median": 68.0,
+   "train": {
+    "n": 633,
+    "ic_mean": -0.0054718667937935965,
+    "ic_t": -0.7079707692965059,
+    "spread": 0.1842995955756099,
+    "spread_t": 0.7238728829661756,
+    "top_mean": -0.6713185555082781,
+    "bottom_mean": -0.8556181510838882,
+    "hit": 0.38569402301616273,
+    "ic_rel": -0.019215590728412408
+   },
+   "validation": {
+    "n": 542,
+    "ic_mean": 0.0023782470949566025,
+    "ic_t": 0.3766140817540826,
+    "spread": 0.04112782620726431,
+    "spread_t": 0.1764441617922279,
+    "top_mean": -0.9797688835786857,
+    "bottom_mean": -1.02089670978595,
+    "hit": 0.38181128856628527,
+    "ic_rel": 0.0023782470949566025
+   },
+   "test": {
+    "n": 287,
+    "ic_mean": 0.012565064628551118,
+    "ic_t": 1.2553037706979155,
+    "spread": 0.6325215319847939,
+    "spread_t": 1.6793512019482717,
+    "top_mean": -0.6961812512778192,
+    "bottom_mean": -1.3287027832626133,
+    "hit": 0.3698160711946383,
+    "ic_rel": 0.012565064628551118
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 28,
+     "ic_mean": -0.008665072094186273,
+     "spread": 1.7957089931637484
+    },
+    {
+     "year": 2022,
+     "n": 205,
+     "ic_mean": 0.021781300631857715,
+     "spread": 0.9106564275016639
+    },
+    {
+     "year": 2023,
+     "n": 218,
+     "ic_mean": -0.024181425603331422,
+     "spread": -0.04494094351855133
+    },
+    {
+     "year": 2024,
+     "n": 366,
+     "ic_mean": -0.007962927476739731,
+     "spread": -0.22347187386373268
+    },
+    {
+     "year": 2025,
+     "n": 358,
+     "ic_mean": 0.004996524782442762,
+     "spread": -0.017943190283679765
+    },
+    {
+     "year": 2026,
+     "n": 287,
+     "ic_mean": 0.012565064628551118,
+     "spread": 0.6325215319847939
+    }
+   ]
+  },
+  "funding_3_h3": {
+   "n_dates": 486,
+   "names_median": 68.0,
+   "train": {
+    "n": 211,
+    "ic_mean": -0.014521574251944355,
+    "ic_t": -1.0399918702918565,
+    "spread": -0.02647534640086437,
+    "spread_t": -0.04066777278536586,
+    "top_mean": -0.8565654600973068,
+    "bottom_mean": -0.8300901136964425,
+    "hit": 0.40072349658392487,
+    "ic_rel": -0.027333190642768037
+   },
+   "validation": {
+    "n": 180,
+    "ic_mean": -0.007150804876423988,
+    "ic_t": -0.6548284185530454,
+    "spread": -0.6494465071957207,
+    "spread_t": -0.7848516799935399,
+    "top_mean": -2.0353659345052213,
+    "bottom_mean": -1.3859194273095006,
+    "hit": 0.3865863002429598,
+    "ic_rel": -0.007150804876423988
+   },
+   "test": {
+    "n": 95,
+    "ic_mean": 0.01442914446752704,
+    "ic_t": 0.8698781360386221,
+    "spread": 1.0606920471915489,
+    "spread_t": 1.1459695710299318,
+    "top_mean": -1.0206437496209135,
+    "bottom_mean": -2.0813357968124624,
+    "hit": 0.3703660357917647,
+    "ic_rel": 0.01442914446752704
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 10,
+     "ic_mean": -0.02770926776373152,
+     "spread": 3.4554657112160188
+    },
+    {
+     "year": 2022,
+     "n": 67,
+     "ic_mean": 0.013069970994148836,
+     "spread": -0.504141975082958
+    },
+    {
+     "year": 2023,
+     "n": 73,
+     "ic_mean": -0.018217808841688624,
+     "spread": 1.0631606697935143
+    },
+    {
+     "year": 2024,
+     "n": 122,
+     "ic_mean": -0.03292596094239278,
+     "spread": -1.072348598951575
+    },
+    {
+     "year": 2025,
+     "n": 119,
+     "ic_mean": 0.0033367635002349095,
+     "spread": -0.5886387730272981
+    },
+    {
+     "year": 2026,
+     "n": 95,
+     "ic_mean": 0.01442914446752704,
+     "spread": 1.0606920471915489
+    }
+   ]
+  },
+  "funding_3_h10": {
+   "n_dates": 145,
+   "names_median": 67.0,
+   "train": {
+    "n": 63,
+    "ic_mean": -0.007660708217206584,
+    "ic_t": -0.3108207312313608,
+    "spread": -1.4064545780239148,
+    "spread_t": -0.533018058147459,
+    "top_mean": -0.948781717131933,
+    "bottom_mean": 0.4576728608919821,
+    "hit": 0.40593076644241066,
+    "ic_rel": -0.021103361535437078
+   },
+   "validation": {
+    "n": 54,
+    "ic_mean": -0.005119044371139114,
+    "ic_t": -0.27322583066219913,
+    "spread": 0.9198506541263998,
+    "spread_t": 0.36983028814684993,
+    "top_mean": -1.4553550257681687,
+    "bottom_mean": -2.3752056798945667,
+    "hit": 0.3621537695820437,
+    "ic_rel": -0.005119044371139114
+   },
+   "test": {
+    "n": 28,
+    "ic_mean": -0.005021373088135665,
+    "ic_t": -0.17456564886429302,
+    "spread": 2.8288585983299384,
+    "spread_t": 1.0830596702200121,
+    "top_mean": -2.963632248793312,
+    "bottom_mean": -5.7924908471232515,
+    "hit": 0.3578046308470877,
+    "ic_rel": -0.005021373088135665
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 3,
+     "ic_mean": -0.09790198839141277,
+     "spread": 16.59857000587556
+    },
+    {
+     "year": 2022,
+     "n": 20,
+     "ic_mean": 0.032760790445385324,
+     "spread": -0.9326471596245554
+    },
+    {
+     "year": 2023,
+     "n": 22,
+     "ic_mean": -0.029215766967601267,
+     "spread": -4.9056517876886865
+    },
+    {
+     "year": 2024,
+     "n": 36,
+     "ic_mean": -0.008435163132495106,
+     "spread": 2.520129535590506
+    },
+    {
+     "year": 2025,
+     "n": 36,
+     "ic_mean": -0.004837503094498427,
+     "spread": -1.4688276074978819
+    },
+    {
+     "year": 2026,
+     "n": 28,
+     "ic_mean": -0.005021373088135665,
+     "spread": 2.8288585983299384
+    }
+   ]
+  },
+  "funding_14_h1": {
+   "n_dates": 1424,
+   "names_median": 67.0,
+   "train": {
+    "n": 601,
+    "ic_mean": -0.003837041949406176,
+    "ic_t": -0.4309243458943799,
+    "spread": 0.23773967115324485,
+    "spread_t": 1.2834661013724082,
+    "top_mean": -0.6080871923370166,
+    "bottom_mean": -0.8458268634902614,
+    "hit": 0.38472858125062587,
+    "ic_rel": -0.0066191848588196345
+   },
+   "validation": {
+    "n": 549,
+    "ic_mean": -0.005389159695153371,
+    "ic_t": -0.7440965458429883,
+    "spread": -0.12326852066595537,
+    "spread_t": -0.6020525402557865,
+    "top_mean": -1.034943845938146,
+    "bottom_mean": -0.9116753252721906,
+    "hit": 0.38301599386609136,
+    "ic_rel": -0.005389159695153371
+   },
+   "test": {
+    "n": 274,
+    "ic_mean": 0.014313920974094235,
+    "ic_t": 1.3357640268962812,
+    "spread": 0.6003095704999044,
+    "spread_t": 1.6236958043381693,
+    "top_mean": -0.36998670601610956,
+    "bottom_mean": -0.9702962765160137,
+    "hit": 0.36559749821453535,
+    "ic_rel": 0.014313920974094235
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 17,
+     "ic_mean": -0.040108673484916105,
+     "spread": -0.9197592511395376
+    },
+    {
+     "year": 2022,
+     "n": 183,
+     "ic_mean": 0.005628843530257561,
+     "spread": 0.6688763797942037
+    },
+    {
+     "year": 2023,
+     "n": 219,
+     "ic_mean": -0.011601671574871094,
+     "spread": 0.1906160994171293
+    },
+    {
+     "year": 2024,
+     "n": 366,
+     "ic_mean": -0.009685132386084806,
+     "spread": -0.09914252190859091
+    },
+    {
+     "year": 2025,
+     "n": 365,
+     "ic_mean": 0.0012947471977477693,
+     "spread": -0.10142495471036589
+    },
+    {
+     "year": 2026,
+     "n": 274,
+     "ic_mean": 0.014313920974094235,
+     "spread": 0.6003095704999044
+    }
+   ]
+  },
+  "funding_14_h3": {
+   "n_dates": 474,
+   "names_median": 67.0,
+   "train": {
+    "n": 200,
+    "ic_mean": -0.01570459202445962,
+    "ic_t": -1.0382221888847074,
+    "spread": -0.978404054931119,
+    "spread_t": -0.9545398771867882,
+    "top_mean": -0.5757014861494563,
+    "bottom_mean": 0.4027025687816627,
+    "hit": 0.4013724014923733,
+    "ic_rel": -0.012615134898539843
+   },
+   "validation": {
+    "n": 183,
+    "ic_mean": -0.013936251273035351,
+    "ic_t": -1.0743942605583614,
+    "spread": -0.1999776553123664,
+    "spread_t": -0.2470007269379272,
+    "top_mean": -1.5974587335680157,
+    "bottom_mean": -1.3974810782556497,
+    "hit": 0.3866132963137931,
+    "ic_rel": -0.013936251273035351
+   },
+   "test": {
+    "n": 91,
+    "ic_mean": 0.014369169297710985,
+    "ic_t": 0.7604202910784543,
+    "spread": 0.6102104338616315,
+    "spread_t": 0.5698465534786158,
+    "top_mean": -0.7003657573582441,
+    "bottom_mean": -1.3105761912198757,
+    "hit": 0.35279245300188705,
+    "ic_rel": 0.014369169297710985
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 6,
+     "ic_mean": -0.15923609331169988,
+     "spread": -2.566789273749906
+    },
+    {
+     "year": 2022,
+     "n": 60,
+     "ic_mean": -0.00825122947695643,
+     "spread": -2.73605075776531
+    },
+    {
+     "year": 2023,
+     "n": 73,
+     "ic_mean": -0.01390312653535721,
+     "spread": 0.0042581643203002196
+    },
+    {
+     "year": 2024,
+     "n": 122,
+     "ic_mean": -0.02269713757096604,
+     "spread": -0.8036357462177678
+    },
+    {
+     "year": 2025,
+     "n": 122,
+     "ic_mean": -0.0037441232674661823,
+     "spread": 0.3690145429771887
+    },
+    {
+     "year": 2026,
+     "n": 91,
+     "ic_mean": 0.014369169297710985,
+     "spread": 0.6102104338616315
+    }
+   ]
+  },
+  "funding_14_h10": {
+   "n_dates": 141,
+   "names_median": 65.0,
+   "train": {
+    "n": 60,
+    "ic_mean": -0.050202149736588125,
+    "ic_t": -1.7811397807890041,
+    "spread": -1.140893180812963,
+    "spread_t": -0.4197954284456187,
+    "top_mean": -0.8635597347167052,
+    "bottom_mean": 0.2773334460962579,
+    "hit": 0.3969178058926618,
+    "ic_rel": -0.012960945454415252
+   },
+   "validation": {
+    "n": 55,
+    "ic_mean": -0.03000737044304271,
+    "ic_t": -1.485332785440618,
+    "spread": -1.3971055703287791,
+    "spread_t": -0.8167782078606527,
+    "top_mean": -4.231288080483979,
+    "bottom_mean": -2.8341825101552,
+    "hit": 0.3620226949619617,
+    "ic_rel": -0.03000737044304271
+   },
+   "test": {
+    "n": 26,
+    "ic_mean": 0.03307380767042022,
+    "ic_t": 1.1939978594064793,
+    "spread": 3.3302757758189925,
+    "spread_t": 1.0641334099541266,
+    "top_mean": -0.06436248735495712,
+    "bottom_mean": -3.3946382631739493,
+    "hit": 0.34513587587394523,
+    "ic_rel": 0.03307380767042022
+   },
+   "by_year": [
+    {
+     "year": 2021,
+     "n": 2,
+     "ic_mean": -0.2386425834701697,
+     "spread": -8.658668474254869
+    },
+    {
+     "year": 2022,
+     "n": 18,
+     "ic_mean": -0.11202255550435214,
+     "spread": -6.177220709552579
+    },
+    {
+     "year": 2023,
+     "n": 21,
+     "ic_mean": 0.00539145729864252,
+     "spread": 0.5761599805880937
+    },
+    {
+     "year": 2024,
+     "n": 37,
+     "ic_mean": -0.045353606421070586,
+     "spread": 0.38845886993708656
+    },
+    {
+     "year": 2025,
+     "n": 37,
+     "ic_mean": -0.016323793465833517,
+     "spread": -1.1691736561196386
+    },
+    {
+     "year": 2026,
+     "n": 26,
+     "ic_mean": 0.03307380767042022,
+     "spread": 3.3302757758189925
+    }
+   ]
+  },
+  "oi_7_h1": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  },
+  "oi_7_h3": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  },
+  "oi_7_h10": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  },
+  "oi_3_h1": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  },
+  "oi_3_h3": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  },
+  "oi_3_h10": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  },
+  "oi_14_h1": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  },
+  "oi_14_h3": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  },
+  "oi_14_h10": {
+   "n_dates": 0,
+   "names_median": null,
+   "train": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "validation": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "test": {
+    "n": 0,
+    "ic_mean": null,
+    "ic_t": null,
+    "spread": null,
+    "spread_t": null,
+    "top_mean": null,
+    "bottom_mean": null,
+    "hit": null,
+    "ic_rel": null
+   },
+   "by_year": []
+  }
+ }
+}
