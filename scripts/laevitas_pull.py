@@ -1,8 +1,9 @@
-"""Laevitas v1 perpetual history, one instrument per cycle, resumable.
+"""Laevitas v1 history, one instrument per cycle, resumable.
 
-Reads the instrument list and pulls daily history for each perpetual that does
-not yet have a file, through the laevitas rate bucket. A name is marked done
-only when its file is written.
+Perpetuals first, then dated futures. A family opens only when the one before
+it has no incomplete file, so a futures pull never takes a token from a
+perpetual that is still short of today. A name is marked done only when its
+file is written and current, or the vendor returned 400 or 404.
 """
 
 import json
@@ -18,7 +19,16 @@ import rate_budget
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STORE = os.path.join(ROOT, "data", "laevitas", "perpetuals")
+FUTURES_STORE = os.path.join(ROOT, "data", "laevitas", "futures")
 INSTRUMENTS = os.path.join(ROOT, "data", "laevitas", "instruments.json")
+
+
+def families():
+    """Looked up at call time so a test can point the stores elsewhere."""
+    return (
+        ("perpetual", STORE, "perpetuals"),
+        ("future", FUTURES_STORE, "futures"),
+    )
 
 
 def key():
@@ -54,25 +64,34 @@ def complete(path, today):
 
 
 def pending():
+    """Incomplete names of the first family that still has any.
+
+    Futures are not listed while a perpetual file is still short of today.
+    """
     rows = json.load(open(INSTRUMENTS))
-    perps = [r for r in rows if r["type"] == "perpetual"]
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    return [r for r in perps if not complete(
-        os.path.join(STORE, f"{r['market']}_{r['instrument']}.json"), today)]
+    for kind, store, _route in families():
+        waiting = [r for r in rows if r["type"] == kind and not complete(
+            os.path.join(store, f"{r['market']}_{r['instrument']}.json"), today)]
+        if waiting:
+            return waiting
+    return []
 
 
 def pull(row, end):
     symbol = urllib.parse.quote(row["instrument"], safe="")
+    route = next(route for kind, _store, route in families() if kind == row["type"])
     pages = []
     meta = None
     page = 1
     # A name listed in 2021 is more than 2000 daily bars, so the page cap has
     # to clear that. Five pages stopped at 1000 bars and looked like a delisting.
     while page <= 20:
-        url = (f"https://api.laevitas.ch/historical/derivs/perpetuals/{row['market']}/{symbol}"
+        url = (f"https://api.laevitas.ch/historical/derivs/{route}/{row['market']}/{symbol}"
                f"?start=2021-03-26&end={end}&granularity=1d&page={page}&limit=1000")
-        req = urllib.request.Request(url, headers={"apikey": key(), "User-Agent": "Mozilla/5.0"})
-        body = json.loads(urllib.request.urlopen(req, timeout=60).read())
+        body = rate_budget.get_json(
+            url, {"apikey": key(), "User-Agent": "Mozilla/5.0"},
+            timeout=60, allowance="laevitas")
         meta = body.get("meta", meta)
         pages.extend(body.get("items", []))
         total_pages = (meta or {}).get("total_pages", 1)
@@ -87,13 +106,14 @@ def cycle(ctx):
     if not left:
         return {"remaining": 0}
     row = left[0]
-    os.makedirs(STORE, exist_ok=True)
+    store = next(store for kind, store, _route in families() if kind == row["type"])
+    os.makedirs(store, exist_ok=True)
     end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     try:
         body = pull(row, end)
     except urllib.error.HTTPError as exc:
         if exc.code in (400, 404):
-            path = os.path.join(STORE, f"{row['market']}_{row['instrument']}.json")
+            path = os.path.join(store, f"{row['market']}_{row['instrument']}.json")
             json.dump({"items": [], "error": exc.code}, open(path, "w"))
             return {"empty": 1, "code": exc.code, "remaining": len(left) - 1}
         print(f"skip {row['market']} {row['instrument']}: {exc}", flush=True)
@@ -101,7 +121,7 @@ def cycle(ctx):
     except Exception as exc:  # noqa: BLE001
         print(f"skip {row['market']} {row['instrument']}: {exc}", flush=True)
         return {"skipped": 1, "remaining": len(left)}
-    path = os.path.join(STORE, f"{row['market']}_{row['instrument']}.json")
+    path = os.path.join(store, f"{row['market']}_{row['instrument']}.json")
     json.dump(body, open(path, "w"))
     return {"market": row["market"], "instrument": row["instrument"],
             "rows": len(body.get("items", [])), "remaining": len(left) - 1}
