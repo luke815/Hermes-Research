@@ -28,11 +28,37 @@ def key():
     raise SystemExit("LAEVITAS_API_KEY missing")
 
 
+def complete(path, today):
+    """Done when the file holds every page, or its last bar is current.
+
+    Files written before pages_fetched existed are complete when they reach
+    today. A file that stops early is the page cap, and is refetched.
+    """
+    if not os.path.exists(path):
+        return False
+    try:
+        body = json.load(open(path))
+    except json.JSONDecodeError:
+        return False
+    if body.get("error"):
+        return True
+    meta = body.get("meta") or {}
+    pages = meta.get("total_pages") or 1
+    if body.get("pages_fetched") == pages and len(body.get("items", [])) == meta.get("total", len(body.get("items", []))):
+        return True
+    dates = [i.get("date") for i in body.get("items", []) if i.get("date")]
+    if not dates:
+        return False
+    last = datetime.fromtimestamp(max(dates) / 1000, timezone.utc).strftime("%Y-%m-%d")
+    return last >= today
+
+
 def pending():
     rows = json.load(open(INSTRUMENTS))
     perps = [r for r in rows if r["type"] == "perpetual"]
-    return [r for r in perps if not os.path.exists(
-        os.path.join(STORE, f"{r['market']}_{r['instrument']}.json"))]
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return [r for r in perps if not complete(
+        os.path.join(STORE, f"{r['market']}_{r['instrument']}.json"), today)]
 
 
 def pull(row, end):
@@ -40,7 +66,9 @@ def pull(row, end):
     pages = []
     meta = None
     page = 1
-    while page <= 5:
+    # A name listed in 2021 is more than 2000 daily bars, so the page cap has
+    # to clear that. Five pages stopped at 1000 bars and looked like a delisting.
+    while page <= 20:
         url = (f"https://api.laevitas.ch/historical/derivs/perpetuals/{row['market']}/{symbol}"
                f"?start=2021-03-26&end={end}&granularity=1d&page={page}&limit=1000")
         req = urllib.request.Request(url, headers={"apikey": key(), "User-Agent": "Mozilla/5.0"})
@@ -51,7 +79,7 @@ def pull(row, end):
         if page >= total_pages:
             break
         page += 1
-    return {"meta": meta, "items": pages}
+    return {"meta": meta, "items": pages, "pages_fetched": page}
 
 
 def cycle(ctx):
