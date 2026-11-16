@@ -163,6 +163,38 @@ Four keys written every morning by scheduler jobs, from the full point-in-time p
 
 Rules: `internals` covers every name in the point-in-time universe that meets the liquidity rule that day; `pct_1y` is each headline reading's percentile within its own trailing year; `cycle` candidate days and base rates come from the episode counter on the amended targets, BTC alone and the pooled universe, with episodes counted once per date cluster; `universe_rank` is every scored name, not just the legs, with `reasons` naming the first rule a name fails; `sweep.leaderboard` is the top 20 per family and `confirmations` the last 30. Shares and hit rates are fractions, returns percent, as elsewhere. Written by code under the scheduler; the model never writes them.
 
+## Edge-facing keys (page version 4)
+Six keys, all written in code by scheduler jobs after the morning refresh (candidates also refreshed by the hourly health run), all labelled on the page for what they are. None of them waits for an admitted signal.
+
+```json
+"risk": { "...": "shape in RISK_REGIME.md section 5; the page renders dial, state, vol_scalar, emergency_cut, rules_fired, inputs, analogs, backtest.status, paper" },
+"derivatives": {
+  "as_of": "2026-11-12",
+  "assets": { "BTC": [ { "name": "DVOL", "value": 58.4, "unit": "", "chg_1d": 1.1, "chg_7d": 4.2, "pct_1y": 0.71, "spark": [30 daily values], "note": "implied vol elevated, rising", "decimals": 1 } ], "ETH": [ ] }
+},
+"heat_stats": {
+  "as_of": "2026-11-12", "current_zone": "mid",
+  "rows": [ { "zone": "hot", "horizon": "10d", "period": "train", "mean": 3.6, "hit": 0.67, "n": 23 } ],
+  "note": "one sentence on definitions"
+},
+"extremes": {
+  "as_of": "2026-11-12", "universe_n": 312,
+  "lists": { "crowded_longs": [ { "symbol": "ZEC", "value": "96th pct", "aux": "OI +18% 7d" } ], "crowded_shorts": [], "volume_surges": [], "oi_builds": [], "oi_flushes": [], "stretched_up": [], "stretched_down": [], "new_highs": [], "new_lows": [], "squeezes": [] }
+},
+"candidates": {
+  "as_of": "2026-11-13",
+  "cells": [ { "cell_id": "obv|chg_7|above|80|rel_1|pit_cross_section|none|daily", "rule": "OBV 7-day change above its 80th percentile", "family": "volume", "side": "fade", "horizon": "1d", "universe": "cross-section",
+               "train_gross": 0.41, "train_net": 0.11, "train_t": 4.15, "train_n": 1241, "status": "unconfirmed",
+               "names": [ { "symbol": "ZEC", "value": "99th" } ],
+               "shadow": { "since": "2026-11-13", "n_fires": 0, "hit_rate": null, "net_return": 0.0, "vs_backtest": "" } } ]
+}
+```
+`cycle` gains `analogs`: `[ { "date", "flag", "fwd_10", "fwd_30", "max_dd_30", "max_up_30" } ]`, the last ten days whose candidate flag matched today's.
+
+Rules. `derivatives`: every market-level series in the derivatives family, BTC and ETH (SOL when served), value as the source reports it, `note` a short plain-English read of the percentile, `spark` the last 30 daily values. `heat_stats`: non-overlapping windows, zones at ±0.40, periods train, validation and test, horizons 10d and 30d, `n` independent. `extremes`: each list the top ten by the stated measure from the point-in-time universe meeting the liquidity rule, `value` and `aux` as display strings; thresholds are the ones in the setup library. `candidates`: the top five leaderboard cells per family by train score with expected validation n at least 30, `side` is fade when the train sign is negative and follow when positive, `names` the liquid names in the cell's signalled state today, `shadow` the paper record of fading or following those names from the first day the cell appeared, net of costs, updated daily; the cell's `status` follows the confirm daemon and a rejected cell drops off at the next write with its shadow record archived. The page says "unconfirmed" next to every candidate; the key never writes a candidate as a signal.
+
+`pair_inputs` and `pairs_board` feed the pair calculator and the pairs board; their shapes are in PAIR_TRADING.md. Without `pair_inputs` the calculator falls back to the `price_<SYM>` series in this file.
+
 `backlog` is the research queue, every item in order:
 
 ```json

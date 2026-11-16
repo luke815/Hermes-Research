@@ -17,6 +17,12 @@ An instruction is written here as numbered items at the top, each with a done-wh
 - L5. Every series into the library with metadata and the lookahead test, then re-enumerate. Done when the measure count and the cell count are posted.
 - L6. Sweep work-list fix, derivatives panel, positioning cross-section, C5, R1 to R6. Done when the sweep status line shows scored against testable moving.
 
+## Pair trading, after the Laevitas items
+
+- P1. pair_inputs for the whole universe, written daily after the refresh. After L4. Done when the calculator's name list on the page shows the universe count.
+- P2. The daily pairs screen: every ordered pair in the liquid universe, mean-reversion and relative-strength lists, top 25 each. After L4. Done when pairs_board is in data.json with both lists.
+- P3. The pair-rule backtest through strategy.py, three periods, per year, net of costs and carry. After L6. Done when the result file shows the admission verdict and bt_sharpe is written for an admitted pair type.
+
 ## Next ten
 
 Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
