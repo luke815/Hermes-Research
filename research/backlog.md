@@ -6,16 +6,16 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
 
-1. btc_funding_persistence_top. Five or more days of BTC funding above its own trailing 80th percentile, against the amended top event. The C1 rerun it depended on is done.
-2. btc_drawdown_90_bottom. Drawdown from the 90-day high at its trailing 10th percentile, against the amended bottom event. The C1 rerun it depended on is done.
-3. btc_realized_vol_percentile_top. 30-day realized vol at its trailing 90th percentile, against the amended top event. The C1 rerun it depended on is done.
-4. Single-feature cross-sectional test: relative strength at 14 and 30 days, point-in-time universe, net of costs.
-5. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
-6. One-day reversal in the bottom half of the universe by open interest.
-7. eth_btc_30d_conditioning. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return. Expected n about 20 per cell, so report it as thin.
-8. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
+1. btc_realized_vol_percentile_top. 30-day realized vol at its trailing 90th percentile, against the amended top event. The C1 rerun it depended on is done.
+2. Single-feature cross-sectional test: relative strength at 14 and 30 days, point-in-time universe, net of costs.
+3. Funding 7-day average and open-interest 7-day change as cross-sectional signals.
+4. One-day reversal in the bottom half of the universe by open interest.
+5. eth_btc_30d_conditioning. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return. Expected n about 20 per cell, so report it as thin.
+6. BTC 1-day and 3-day horizons for the four live factors, non-overlapping, net of costs, both halves, BTC and the alt basket. Not yet scored at those horizons.
 
 ## Queue
+
+btc_funding_persistence_top was skipped on 2026-11-16, not retested. The C2 rerun scored funding_streak_high_5d on the amended top label and closed it as insufficient: 3 fires in train and none in validation. btc_drawdown_90_bottom was scored the same day and is insufficient, 10 fires across train and validation on BTC.
 
 S8 is done. D1 Bybit stopped-name prices are complete: 308 of 309 stopped names, 173,595 days, through 1700 listed days (verdict 2026-11-15, results/2026-11-15_d1_bybit_prices_1601_1700.json). ANTUSDT is absent because the archive does not hold its files (recorded 2026-11-14). D2 continues: the 33 live Binance names with a span of 91 to 120 days now have daily funding, 3,506 days, ending 2026-10-31 because the archive has no file for the current month (verdict 2026-11-15, results/2026-11-15_d2_binance_funding_91_120.json). With the slices through 90 days, 125 of 892 live Binance names are saved and 767 remain, then Bybit and OKX, then open interest.
 
@@ -58,7 +58,7 @@ Risk regime, from research/RISK_REGIME.md section 6. These follow the bottom sco
 4. C3 to C7 as parallel subagents: TD Sequential, trend exhaustion, options, breadth, on-chain and flows. Verdict 2026-11-10: insufficient, all five. Episode counts sit below 30 even after pooling BTC, ETH and SOL into overlapping windows. results/2026-11-10_c3_td_sequential.json, results/2026-11-10_c4_trend_exhaustion.json, results/2026-11-10_c5_options.json, results/2026-11-10_c6_breadth.json, results/2026-11-10_c7_onchain_flows.json.
 5. D2, D4, D6, D7 between cycle items. Then C8, C9, and the cross-sectional items.
 6. btc_funding_persistence_top. A streak of 5 or more days of BTC funding above its own trailing 80th percentile, scored against the amended top event. Score 19. Pre-registration in research/generated.md. Depends on the C1 rerun.
-7. btc_drawdown_90_bottom. Drawdown from the 90-day high at its trailing 10th percentile, scored against the amended bottom event. Score 18. Depends on the C1 rerun.
+7. btc_drawdown_90_bottom. Verdict 2026-11-16: insufficient. Close over the trailing 90-day high at its trailing one-year 10th percentile, against the amended bottom event. 10 fires across train and validation on BTC, below 30. results/2026-11-16_btc_drawdown_90_bottom.json.
 8. btc_realized_vol_percentile_top. 30-day realized vol at its trailing 90th percentile, scored against the amended top event. Score 17. Depends on the C1 rerun.
 9. eth_btc_30d_conditioning. The btc_ret_30 spread split by tercile of the ETH/BTC 30-day return. Score 16. Expected n is thin, about 20 per cell.
 10. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Score 15. Needs a DefiLlama pull first.
