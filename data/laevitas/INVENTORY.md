@@ -19,3 +19,8 @@ The 45 options history endpoints and the remaining futures endpoints were not pr
 
 ## Delisted names
 The history endpoint returns them by symbol. Probed on Binance for April 2022: LUNAUSDT 31 rows, FTTUSDT 16 rows, SRMUSDT 31 rows. Delisted names are in the history, not only the live list.
+
+## Instrument list, 2026-11-16
+From /analytics/futures/instruments: 4,016 instruments. Perpetuals 3,324 across 8 exchanges: BYBIT 880, BINANCE 824, OKX 808, HYPERLIQUID 350, KRAKEN 209, DERIBIT 154, NADO 73, BULLISH 26. Options 529, dated futures 163. Saved at data/laevitas/instruments.json.
+
+Five perpetual exchanges from /exchanges are absent from this list: BITFINEX, BITGET, DYDX, HUOBI, PARADEX. Their instrument counts are unknown until a list endpoint returns them. L1 is not done.

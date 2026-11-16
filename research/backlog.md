@@ -2,6 +2,19 @@
 
 Ordered by the research program, section 9. One item at a time, pre-registered before any number is computed, verdict before the next item starts.
 
+## Standing rule
+
+An instruction is written here as numbered items at the top, each with a done-when line naming the file or number that proves it, before the first item is started. A run takes the top item without a verdict. A blocked item is recorded with its reason and the run moves to the next. An item is never marked done without its done-when evidence. The health check posts a stall alert when the top item has not changed in six research runs, and the daily status line names the top item and the runs it has been there.
+
+## Laevitas, from the 12:19 instruction
+
+- L1. Inventory: every exchange's instrument count and each family's first date, in data/laevitas/INVENTORY.md. Done when INVENTORY.md lists every exchange's instrument count and each family's first date.
+- L2. Puller daemon on the laevitas bucket: perpetuals per instrument for all 13 exchanges, then futures, options and liquidations. Done when the perpetual store covers 95 percent of instruments on all 13 exchanges and the futures, options and liquidation stores have their inventories.
+- L3. Realtime analytics captured daily into data/laevitas/daily_snapshots/, marked forward history from 2026-11-17. Done when the first daily snapshot set exists.
+- L4. Universe table and panel_xs rebuilt from the perpetual store, delisted names included. Done when the universe table from the store is posted with listed and delisted counts.
+- L5. Every series into the library with metadata and the lookahead test, then re-enumerate. Done when the measure count and the cell count are posted.
+- L6. Sweep work-list fix, derivatives panel, positioning cross-section, C5, R1 to R6. Done when the sweep status line shows scored against testable moving.
+
 ## Next ten
 
 Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
