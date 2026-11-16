@@ -1,0 +1,31 @@
+{
+ "job": "regime-research",
+ "written_utc": "2026-11-16T23:08:44Z",
+ "today": "2026-11-16",
+ "verify_panel": "PASS panel_end=2026-11-15 today=2026-11-16 age=1d rows=2491 trailing_blank_cols=0 dupes=0 missing_days=0",
+ "top_item": "L2",
+ "top_item_state": "open",
+ "top_item_runs": 3,
+ "reason": "futures still incomplete; options and liquidations queued behind them, stores not opened",
+ "commit": "983219f",
+ "daemon": {
+  "name": "laevitas_pull",
+  "pid": 12741,
+  "alive": true,
+  "uptime_s": 231,
+  "heartbeat_age_s": 126,
+  "phase": "working",
+  "cycles": 1,
+  "last_error": null,
+  "version": "983219f",
+  "head": "983219f",
+  "stale_code": false
+ },
+ "futures_files": 101,
+ "futures_contracts": 171,
+ "futures_missing": 70,
+ "options_dir": false,
+ "liquidations_dir": false,
+ "first_cycle_line": "2026-11-16T23:06:40Z laevitas_pull: cycle 1 ok in 101.0s {\"market\": \"DERIBIT\", \"instrument\": \"ETH_USDC-25DEC26\", \"rows\": 102, \"remaining\": 70}",
+ "test": "python3 -m unittest tests.test_laevitas_pull: OK, 3 tests"
+}
