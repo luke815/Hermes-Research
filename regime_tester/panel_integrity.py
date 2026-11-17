@@ -32,7 +32,9 @@ def clean_frame(frame, today=None):
     out = out.sort_values("date", kind="mergesort")
     out = out.drop_duplicates("date", keep="first")
     cutoff = today if today is not None else today_utc()
-    out = out[out["date"] <= cutoff]
+    # A bar is stamped with its open time, so a bar dated today is still open
+    # and is not a closed day. Keep only dates strictly before the cutoff.
+    out = out[out["date"] < cutoff]
     return out.reset_index(drop=True)
 
 
@@ -52,14 +54,18 @@ def sum_funding(prints, interval_hours):
 
     prints is an iterable of (epoch milliseconds, rate). A day with no print is
     absent. The interval is stored beside the sum so a later reader can tell an
-    8-hour venue from a 1-hour one.
+    8-hour venue from a 1-hour one, and the count is stored so a reader can tell
+    a summed day from a single print.
     """
-    by_day: dict[str, float] = {}
+    totals: dict[str, float] = {}
+    counts: dict[str, int] = {}
     for stamp, rate in prints:
         day = datetime.fromtimestamp(int(stamp) / 1000, timezone.utc).strftime("%Y-%m-%d")
-        by_day[day] = by_day.get(day, 0.0) + float(rate)
-    return {day: {"funding_rate": total, "funding_interval_hours": int(interval_hours)}
-            for day, total in by_day.items()}
+        totals[day] = totals.get(day, 0.0) + float(rate)
+        counts[day] = counts.get(day, 0) + 1
+    return {day: {"funding_rate": totals[day], "funding_count": counts[day],
+                  "funding_interval_hours": int(interval_hours)}
+            for day in totals}
 
 
 def base_of(symbol):
