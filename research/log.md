@@ -1,3 +1,9 @@
+## 2026-11-17, generated, not tested: pooled_drawdown_90_bottom and pooled_funding_pct_bottom
+
+L6 stays blocked. The derivatives panel, the rest of the positioning cross-section, C5 and R1 to R6 need the options store and the per-name funding and open-interest history, and a research run does not pull. Options are 1,040 contract files of 16,602 listed, 240 maturities, and laevitas_pull reports remaining 15,742. The sweep work-list part is not the block: ops/sweep_status read scored 13,212 of 168,600 at 09:10 UTC, up from 12,312 at 06:28 UTC.
+
+The queue had one item that is not a single-asset BTC or ETH event cell, and that item waits on a pull. Two pooled candidates were pre-registered and not scored. data/universe.csv holds 2,731 names, 838 of them with a first bar on or before 2024-06-30 and a span of at least 400 days. Both are marked survivor-biased until the universe is built from the exchange archive listing. The score is unchanged. Sixty-two tests since the last admission; this run adds none. results/2026-11-17_regime-research.json.
+
 ## 2026-11-16, verdict: L4 universe table
 
 Done for the table, partial for the delisted count. data/universe_laevitas.csv has 5,185 rows, one per perpetual in the store, across all 13 exchanges, sha256 0e9799492a1b56ed294676fe205704900c9e43bed99d2b138d0e39dfc0c118bd. 5,056 have bars and a file in data/panel_xs_laevitas; 129 have no bars. The first bar in the store is 2021-03-26 and the last is 2026-11-16. Confirmed delisted: 0. Truncated and being refetched: 22, all of them files that stopped at the five-page cap of 1,000 bars, which is not a delisting. NADO 73 and BULLISH 37 return HTTP 400 on every perpetual, plus 19 more empty files, which is the 129. The old data/universe.csv was not replaced: the daily append still writes the Binance archive panel. results/2026-11-16_l4_universe.json.
