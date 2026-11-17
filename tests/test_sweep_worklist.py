@@ -17,15 +17,23 @@ import sweep_xs
 
 
 class WorkList(unittest.TestCase):
-    def test_a_scored_measure_is_done_even_with_conditioned_variants(self):
-        work = {"obv|raw|above|80|ret_1", "obv|raw|above|80|ret_1|heat_tercile",
-                "basis_level|raw|above|80|ret_1"}
-        done = {"obv|raw|above|80|ret_1"}
-        done_measures = {cid.split("|", 1)[0] for cid in done}
-        pending = sorted({cid.split("|", 1)[0] for cid in work - done
-                          if cid.split("|", 1)[0] not in done_measures})
+    def test_a_partial_measure_stays_pending_until_every_emittable_cell(self):
+        # Conditioned variants are not this scorer's cells. ratio_btc is.
+        # Saving the raw cell does not finish the measure.
+        work = {
+            "obv|raw|above|80|ret_1|pit_cross_section|none|daily",
+            "obv|raw|above|80|ret_1|pit_cross_section|heat_tercile|daily",
+            "obv|ratio_btc|above|80|ret_1|pit_cross_section|none|daily",
+            "basis_level|raw|above|80|ret_1|pit_cross_section|none|daily",
+        }
+        done = {"obv|raw|above|80|ret_1|pit_cross_section|none|daily"}
+        pending = sweep_xs.pending_measures(work, done, {"obv", "basis_level"})
+        self.assertEqual(pending, ["basis_level", "obv"])
+        done.add("obv|ratio_btc|above|80|ret_1|pit_cross_section|none|daily")
+        pending = sweep_xs.pending_measures(work, done, {"obv", "basis_level"})
         self.assertEqual(pending, ["basis_level"])
-        self.assertEqual(len(done & work), 1)
+        self.assertFalse(sweep_xs.emittable(
+            "obv|raw|above|80|ret_1|pit_cross_section|heat_tercile|daily"))
 
     def test_status_line_counts_cells_against_the_list(self):
         with tempfile.TemporaryDirectory() as tmp:

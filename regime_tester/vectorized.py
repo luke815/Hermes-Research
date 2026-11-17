@@ -18,6 +18,7 @@ CACHE = os.path.join(ROOT, "data", "panel_xs_cache")
 
 HORIZONS = (1, 3, 10)
 TRANSFORMS = ("raw", "pct_252", "z_30", "z_90", "chg_3", "chg_7", "chg_30",
+              "ratio_btc",
               "persistence", "acceleration", "xs_rank", "divergence_20")
 THRESHOLDS = (80, 90, 95, 20, 10, 5)
 
@@ -169,6 +170,13 @@ def transform_matrix(measure, name, window=252, min_periods=30):
     """One transform applied per name. xs_rank and divergence need the matrix."""
     if name == "xs_rank":
         return measure.rank(axis=1, pct=True) * 100
+    if name == "ratio_btc":
+        # The name's value over BTC's on the same bar. BTC itself is one, and
+        # a bar with no BTC value stays empty rather than dividing by zero.
+        if "BTC" not in measure.columns:
+            return measure * np.nan
+        base = measure["BTC"].replace(0, np.nan)
+        return measure.div(base, axis=0)
     if name == "divergence_20":
         price = measure.attrs.get("close")
         if price is None:

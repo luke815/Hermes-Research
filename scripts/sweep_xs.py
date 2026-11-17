@@ -43,7 +43,8 @@ MIN_BARS = 60
 MIN_NAMES = 10
 HORIZONS = (1, 3, 10)
 TRANSFORMS = ("raw", "pct_252", "z_30", "z_90", "chg_3", "chg_7", "chg_30",
-              "persistence", "acceleration", "xs_rank", "divergence_20")
+              "persistence", "acceleration", "xs_rank", "divergence_20",
+              "ratio_btc")
 THRESHOLDS = (80, 90, 95, 20, 10, 5)
 COST_BPS = 15  # the thin tier: 5 bps fee plus 10 bps slippage, each way
 
@@ -132,9 +133,34 @@ _install_fast_rank()
 def _scale(name):
     if name.startswith("z_"):
         return "zscore"
-    if name.startswith("chg_") or name in ("raw", "acceleration"):
+    if name.startswith("chg_") or name in ("raw", "acceleration", "ratio_btc"):
         return "cross_section"
     return "percentile"
+
+
+def emittable(cell_id):
+    """A cell this scorer writes: unconditioned, daily, and a known transform.
+
+    Conditioned variants are a different test and stay on the list uncounted.
+    ratio_btc is one of the transforms, so a measure that has its other cells
+    saved is still pending until those rows exist. A crossover cell is not a
+    thresholded measure and is not emitted here.
+    """
+    parts = cell_id.split("|")
+    if len(parts) < 8:
+        return False
+    return parts[1] in TRANSFORMS and parts[6] == "none" and parts[7] == "daily"
+
+
+def pending_measures(work, done, known):
+    """Measures with an emittable cell still unscored, in a stable order.
+
+    A measure is done only when every cell this scorer can write for it is
+    saved. Marking it done from any one saved cell leaves the rest of its
+    transforms unwritten, and the scored count then stops moving.
+    """
+    open_ids = {cid for cid in work - done if emittable(cid)}
+    return sorted({cid.split("|", 1)[0] for cid in open_ids if cid.split("|", 1)[0] in known})
 
 
 def load_panel(names_kept):
@@ -384,15 +410,11 @@ def cycle(ctx):
         ctx["net"] = net_returns(close)
         ctx["work"] = work_list()
     done = scored_ids()
-    # The scorer writes the unconditioned cell only. The list also holds the
-    # conditioned variants of the same measure, which this scorer cannot emit,
-    # so a measure is done once any of its cells is saved. Counting the
-    # variants as still pending retries the measure and the write refuses its
-    # own rows.
-    done_measures = {cid.split("|", 1)[0] for cid in done}
-    pending = sorted({cid.split("|", 1)[0] for cid in ctx["work"] - done
-                      if cid.split("|", 1)[0] not in done_measures})
-    pending = [name for name in pending if name in ctx["measures"]]
+    # Conditioned cells are a different test and are not counted as pending.
+    # A measure stays pending until every unconditioned cell this scorer emits
+    # is saved, including ratio_btc. Marking it done from any saved cell skips
+    # that transform and the scored count stops moving.
+    pending = pending_measures(ctx["work"], done, ctx["measures"])
     line = status_line(done, ctx["work"])
     if not pending:
         return {"measure": None, "names": int(close.shape[1]), "remaining": 0,
