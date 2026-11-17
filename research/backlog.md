@@ -4,6 +4,11 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 ## Standing rule
 
+- X1. The cross-section sweep reads data/panel_xs_laevitas, restricted to instruments clearing the liquidity floor on at least 60 days, one venue per coin, with funding, open interest, basis and long-short as cross-sectional measures, run in parallel across cores. Done when the status line shows the Laevitas panel's name count and cells per hour above 5,000 for one full hour.
+- X2. One counter: the digest and the sweep status line report the same scored-against-testable number from the same file. Done when both lines cite the same file and the same number.
+- P1. pair_inputs for every name clearing the liquidity floor, from the Laevitas panel. Done when the calculator's name list on the page shows the universe count.
+- P2. The daily pairs screen with the cointegration test, into pairs_board. Done when pairs_board is in data.json with the mean-reversion and relative-strength lists.
+
 - L0. The stall alert in the health check and the top-item line in the daily digest. Done when the health check log shows the check running and the next digest carries the line.
 
 An instruction is written here as numbered items at the top, each with a done-when line naming the file or number that proves it, before the first item is started. A run takes the top item without a verdict. A blocked item is recorded with its reason and the run moves to the next. An item is never marked done without its done-when evidence. The health check posts a stall alert when the top item has not changed in six research runs, and the daily status line names the top item and the runs it has been there.
