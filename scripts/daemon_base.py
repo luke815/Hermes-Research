@@ -85,7 +85,11 @@ def run_loop(name, interval_sec, cycle, align=True, offset_sec=0, max_cycle_sec=
             result = cycle(ctx) or {}
             state["cycles"] += 1
             state["last_error"] = None
-            hb(phase="idle", cycle_sec=round(time.time() - started, 1), **{k: v for k, v in result.items() if k not in state or k in ("as_of", "calls", "pushed")})
+            # status_line is already a state key, so the old filter dropped it and
+            # a working daemon looked stuck. The cycle's value is the one to keep.
+            keep = {k: v for k, v in result.items()
+                    if k not in state or k in ("as_of", "calls", "pushed", "status_line")}
+            hb(phase="idle", cycle_sec=round(time.time() - started, 1), **keep)
             _log(f"{name}: cycle {state['cycles']} ok in {time.time() - started:.1f}s {json.dumps(result)[:300]}")
         except Exception as e:
             err = f"{type(e).__name__}: {e}"
