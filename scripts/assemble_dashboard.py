@@ -16,16 +16,15 @@ KEYS = os.path.join(ROOT, "dashboard", "keys")
 
 
 def assemble():
-    data = json.load(open(BASE))
-    if os.path.isdir(KEYS):
-        for name in sorted(os.listdir(KEYS)):
-            if name.endswith(".json"):
-                key = name[:-5]
-                data[key] = json.load(open(os.path.join(KEYS, name)))
-    tmp = BASE + ".tmp"
-    json.dump(data, open(tmp, "w"))
-    os.replace(tmp, BASE)
-    return sorted(k for k in data if k not in ("series",))
+    """Merge through the locked writer, so meta.as_of records each panel."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import dashboard_io
+    updates = {}
+    for name in sorted(os.listdir(KEYS)):
+        if name.endswith(".json"):
+            updates[name[:-5]] = json.load(open(os.path.join(KEYS, name)))
+    dashboard_io.update_keys(BASE, updates)
+    return sorted(updates)
 
 
 if __name__ == "__main__":
