@@ -26,7 +26,8 @@ INSTRUMENTS = os.path.join(ROOT, "data", "laevitas", "instruments.json")
 OUT_CSV = os.path.join(ROOT, "data", "universe_laevitas.csv")
 OUT_PANEL = os.path.join(ROOT, "data", "panel_xs_laevitas")
 STALE_DAYS = 14
-COLUMNS = ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd"]
+COLUMNS = ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd",
+           "basis", "long_short_ratio"]
 
 
 def day(millis):
@@ -75,6 +76,8 @@ def main():
             "volume_base": [i.get("volume_coin") for i in items],
             "funding_rate": [i.get("funding") for i in items],
             "oi_usd": [i.get("open_interest") for i in items],
+            "basis": [i.get("basis") for i in items],
+            "long_short_ratio": [i.get("long_short_ratio") for i in items],
         })
         frame = frame.drop_duplicates("date").sort_values("date")
         out_name = f"{row['market'].lower()}_{row['instrument']}.csv"

@@ -1,0 +1,33 @@
+{
+  "item": "L5",
+  "ran_at": "2026-11-17T03:04:32Z",
+  "today": "2026-11-17",
+  "verdict": "recorded, not admitted",
+  "library_version": "1.2.0",
+  "measures_before": 128,
+  "measures_after": 132,
+  "added": ["basis_level", "basis_chg_7", "ls_ratio_level", "ls_ratio_chg_7"],
+  "source": "data/laevitas/perpetuals, already pulled by the laevitas_pull daemon",
+  "panel": "data/panel_xs_laevitas",
+  "panel_files": 5056,
+  "panel_columns": ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd", "basis", "long_short_ratio"],
+  "missing_basis_column": 0,
+  "missing_long_short_ratio_column": 0,
+  "universe_sha256": "c3080d4be4090055414b39f50bd4debbd1c8d7a3c315003edd0c7bb14231560a",
+  "names": 5185,
+  "with_bars": 5056,
+  "empty": 129,
+  "listed": 5054,
+  "delisted": 2,
+  "delisted_note": "was 0 on 2026-11-16; the 14-day cutoff moved from 2026-11-02 to 2026-11-03",
+  "lookahead": {
+    "unit_tests": "tests.test_indicators 9 passed, including test_no_lookahead and test_positioning_series_pass_through_and_change_is_lagged",
+    "real_files_checked": 12,
+    "result": "pass"
+  },
+  "cells_before": {"cells": 3688000, "testable": 788200, "source": "results/2026-11-13_s8_derivatives.json"},
+  "cells_after": {"cells": 3803200, "testable": 825640, "skipped": 2977560, "duplicate_ids": 0, "source": "results/sweeps/space.json", "as_of": "2026-11-17T03:04:26Z"},
+  "positioning_family": {"cells": 230400, "testable": 74880, "skipped": 155520},
+  "cross_section_cells": 168600,
+  "not_added": "open_interest_coin and yield are in the store and were not added: coin open interest restates oi_usd, and yield restates funding"
+}

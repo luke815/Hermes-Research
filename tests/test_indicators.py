@@ -31,12 +31,14 @@ def frame(n=400, seed=7):
         "funding": rng.normal(0.0001, 0.0003, n),
         "oi": 1e8 + np.cumsum(rng.normal(0, 1e6, n)),
         "liq": np.abs(rng.normal(1e6, 5e5, n)),
+        "basis": rng.normal(0.02, 0.05, n),
+        "long_short_ratio": np.abs(rng.normal(1.1, 0.3, n)),
     }, index=idx)
 
 
 class LibraryTests(unittest.TestCase):
     def test_version_and_metadata_cover_every_column(self):
-        self.assertEqual(LIBRARY_VERSION, "1.1.0")
+        self.assertEqual(LIBRARY_VERSION, "1.2.0")
         out = indicators(frame())
         self.assertTrue(set(out.columns) <= set(META))
         self.assertGreater(len(out.columns), 30)
@@ -96,7 +98,18 @@ class LibraryTests(unittest.TestCase):
         out = indicators(f)
         self.assertGreater(out["funding_persist_high"].iloc[-1], 0)
 
-    def test_liq_cascade_flags_an_extreme(self):
+    def test_positioning_series_pass_through_and_change_is_lagged(self):
+        f = frame()
+        out = indicators(f)
+        self.assertTrue(np.allclose(out["basis_level"], f["basis"]))
+        self.assertTrue(np.allclose(out["ls_ratio_level"], f["long_short_ratio"]))
+        self.assertTrue(out["basis_chg_7"].iloc[:7].isna().all())
+        self.assertTrue(np.allclose(
+            out["basis_chg_7"].iloc[7:], f["basis"].diff(7).iloc[7:]))
+        bare = frame()[["close"]]
+        dropped = indicators(bare)
+        self.assertNotIn("basis_level", dropped.columns)
+        self.assertNotIn("ls_ratio_chg_7", dropped.columns)
         f = frame()
         f.loc[f.index[-1], "liq"] = f["liq"].max() * 100
         out = indicators(f)

@@ -30,7 +30,7 @@ from ta.volume import (
 )
 from regime_tester.derivatives import DERIVATIVES_META, market_measures
 
-LIBRARY_VERSION = "1.1.0"
+LIBRARY_VERSION = "1.2.0"
 
 # name -> (family, inputs, minimum history, kind)
 META = {
@@ -77,6 +77,10 @@ META = {
     "weekly_band": ("cycle", ["close"], 147, "flag"),
     "funding_persist_high": ("positioning", ["funding"], 30, "count"),
     "funding_persist_low": ("positioning", ["funding"], 30, "count"),
+    "basis_level": ("positioning", ["basis"], 1, "level"),
+    "basis_chg_7": ("positioning", ["basis"], 8, "oscillator"),
+    "ls_ratio_level": ("positioning", ["long_short_ratio"], 1, "level"),
+    "ls_ratio_chg_7": ("positioning", ["long_short_ratio"], 8, "oscillator"),
     "oi_on_down_days": ("positioning", ["close", "oi"], 8, "level"),
     "liq_cascade": ("positioning", ["liq", "oi"], 30, "flag"),
     "breadth": ("breadth", ["breadth"], 1, "level"),
@@ -326,6 +330,14 @@ def indicators(frame):
         high, low = funding_persistence(funding)
         out["funding_persist_high"] = high
         out["funding_persist_low"] = low
+    basis = _col(frame, "basis")
+    if basis is not None:
+        out["basis_level"] = basis
+        out["basis_chg_7"] = basis.diff(7)
+    ratio = _col(frame, "long_short_ratio")
+    if ratio is not None:
+        out["ls_ratio_level"] = ratio
+        out["ls_ratio_chg_7"] = ratio.diff(7)
     if close is not None and _col(frame, "oi") is not None:
         out["oi_on_down_days"] = oi_on_down_days(close, frame["oi"])
     if _col(frame, "liq") is not None and _col(frame, "oi") is not None:

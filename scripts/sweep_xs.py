@@ -48,7 +48,7 @@ def scorable_measures():
     High and low are not stored, so the measures that need them are skipped and
     counted, not filled with a proxy.
     """
-    available = {"close", "volume", "funding", "oi"}
+    available = {"close", "volume", "funding", "oi", "basis", "long_short_ratio"}
     return [name for name, meta in META.items() if set(meta[1]) <= available]
 
 
@@ -130,7 +130,8 @@ def load_panel(names_kept):
     as quote units for most names and as base units for the stopped Binance
     names; either one is volume, and a name that has both keeps the quote one.
     """
-    wanted = ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd"]
+    wanted = ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd",
+              "basis", "long_short_ratio"]
     frames = {}
     for name in names_kept:
         path = os.path.join(PANEL, name + ".csv")
