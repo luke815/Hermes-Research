@@ -1,0 +1,19 @@
+{
+  "job": "regime-research",
+  "written_utc": "2026-11-17T07:23:42Z",
+  "today": "2026-11-17",
+  "top_item": "L6",
+  "top_item_verdict": "blocked, not done",
+  "runs_at_top": 4,
+  "blocked_reason": "The derivatives panel, the rest of the positioning cross-section, C5 and R1 to R6 need the options store and the per-name funding and open-interest history. Options are 721 contracts of 240 maturities, and the pull daemon owns that. A research run does not pull.",
+  "this_run": "btc_funding_level_pct_bottom",
+  "verdict": "insufficient",
+  "panel": "PASS panel_end=2026-11-16 today=2026-11-17 age=1d rows=2492 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "btc_train_val_fires": 4,
+  "eth_train_val_fires": 7,
+  "btc_validation_fires": 0,
+  "lookahead_holds": true,
+  "result_file": "results/2026-11-17_btc_funding_level_pct_bottom.json",
+  "sweep_status_line": "scored 12528 of 168600 testable",
+  "sweep_xs": {"pid": 31873, "version": "08bc076", "stale_code": false, "cycle_1_status_line": "scored 12492 of 168600 testable"}
+}

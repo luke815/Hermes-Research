@@ -1185,3 +1185,20 @@ Fifty-three tests since the last admission; this one is recorded and does not ad
 ## 2026-11-16 daily refresh row count
 
 Panel rows before the rebuild: 2490, ending 2026-11-14. After: 2491, ending 2026-11-15. Change +1. Date added: 2026-11-15. Dates removed: none. The loader drops a day missing price or funding; 2026-11-15 had both. BTC skew returned a bare server error twice, so ETH skew, ATM IV and risk reversal were not called. Skew and ATM IV still end 2026-11-14. Risk reversal still ends 2026-11-13. The panel does not use those series, so the row was kept. verify_panel.py PASS, panel_end 2026-11-15, age 1d. results/2026-11-16_regime-daily-refresh.json.
+
+## 2026-11-17 daily refresh row count
+
+Panel rows before the rebuild: 2491, ending 2026-11-15. After: 2492, ending 2026-11-16. Change +1. Date added: 2026-11-16. Dates removed: none. The loader drops a day missing price or funding; 2026-11-16 had both. Skew and ATM IV were backfilled for 2026-11-15, and risk reversal for 2026-11-14 and 2026-11-15, from the two prior failed pulls. No source failed this run. verify_panel.py PASS, panel_end 2026-11-16, age 1d. results/2026-11-17_regime-daily-refresh.json.
+
+
+## 2026-11-17, verdict: btc_funding_level_pct_bottom
+
+Verdict: insufficient. The BTC funding close at its trailing one-year 10th percentile has 4 fires across train and validation on BTC, and 7 on ETH, both below 30. Validation has zero fires on BTC, so the validation lift is empty and the neighbours cannot hold. Nothing is admitted. The score is unchanged.
+
+Pre-registered in research/generated.md on 2026-11-16, item 15, before this run computed any number. The factor is the funding close, lagged one bar by the percentile. Primary cut 0.10, neighbours 0.05 and 0.15. Label is the amended bottom event B(30, 20, 7) on candidate days; B(60, 30, 10) is reported. Horizon 30 days. Assets BTC and ETH. Reads the retained Coinalyze files, first bar 2020-01-21, last bar 2026-11-16, 2492 rows each. Lookahead holds on both: perturbing every funding value after day t leaves the rank at t unchanged.
+
+BTC, cut 0.10: train fires 4, hits 3, lift 1.821429; validation fires 0; test fires 0. Train and validation together are 4 fires. The 5th-percentile neighbour has 3 fires and the 15th has 6, so neither neighbour reaches the bar either.
+ETH, cut 0.10: train fires 6, hits 4, lift 1.481481; validation fires 1, hits 1, lift 1.0; test fires 1, hits 1, lift 1.0. Train and validation together are 7 fires. The validation bootstrap rests on 4 episode starts and its interval is empty.
+BTC holds 22 bottom episodes and ETH holds 26. Neither year holds more than half, so there is no single-year caveat. The validation cells are below 30 and are reported, not quoted.
+
+Fifty-three tests since the last admission; this one is recorded and does not add to that count because it is not a confirmation attempt. results/2026-11-17_btc_funding_level_pct_bottom.json.
