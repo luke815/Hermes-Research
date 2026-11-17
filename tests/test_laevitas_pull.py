@@ -45,6 +45,18 @@ class PullOrder(unittest.TestCase):
         self.assertEqual([r["instrument"] for r in left], ["BTCUSDT"])
         self.assertFalse(os.path.isdir(self.fut))
 
+    def test_yesterdays_bar_is_current_so_futures_stay_open(self):
+        yesterday = (datetime.now(timezone.utc).date().toordinal() - 1)
+        text = datetime.fromordinal(yesterday).strftime("%Y-%m-%d")
+        json.dump({
+            "meta": {"total_pages": 2, "total": 1001},
+            "pages_fetched": 1,
+            "items": [{"date": _day_ms(text)}],
+        }, open(os.path.join(self.perp, "BINANCE_BTCUSDT.json"), "w"))
+        left = pull.pending()
+        self.assertEqual(left[0]["type"], "future")
+        self.assertEqual(left[0]["instrument"], "BTCUSDT_261225")
+
     def test_current_perpetual_opens_the_futures_store(self):
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         json.dump({

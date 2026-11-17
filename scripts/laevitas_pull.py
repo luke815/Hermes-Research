@@ -59,8 +59,11 @@ def key():
 def complete(path, today):
     """Done when the file holds every page, or its last bar is current.
 
-    Files written before pages_fetched existed are complete when they reach
-    today. A file that stops early is the page cap, and is refetched.
+    A daily bar dated yesterday is the last closed day, so it counts as
+    current. Treating it as stale makes the puller drop the family it is
+    mid-way through and refetch every name the moment the date changes.
+    A file that stops short of its page count, with no bar at the last
+    closed day, is the page cap and is refetched.
     """
     if not os.path.exists(path):
         return False
@@ -77,8 +80,9 @@ def complete(path, today):
     dates = [i.get("date") for i in body.get("items", []) if i.get("date")]
     if not dates:
         return False
-    last = datetime.fromtimestamp(max(dates) / 1000, timezone.utc).strftime("%Y-%m-%d")
-    return last >= today
+    last = datetime.fromtimestamp(max(dates) / 1000, timezone.utc).date()
+    closed = datetime.strptime(today, "%Y-%m-%d").date().toordinal() - 1
+    return last.toordinal() >= closed
 
 
 def _load(path, default):
