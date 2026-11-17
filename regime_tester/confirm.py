@@ -74,19 +74,26 @@ def load_full_frames():
     return frames
 
 
+XS_TRANSFORMS = TRANSFORMS + ["xs_rank", "divergence_20", "ratio_btc"]
+XS_TARGETS = ["ret_1", "ret_3", "ret_10"]
+
+
 def parse_cell_id(cell_id):
     """measure|transform|direction|threshold|target|universe|none|daily."""
     parts = cell_id.split("|")
     if len(parts) != 8:
         raise ValueError(f"cell id has {len(parts)} fields, expected 8")
     measure, transform_name, direction, threshold, target, universe, conditioning, timeframe = parts
-    if transform_name not in TRANSFORMS:
+    cross = universe == "pit_cross_section"
+    allowed_transforms = XS_TRANSFORMS if cross else TRANSFORMS
+    allowed_targets = XS_TARGETS if cross else TARGETS
+    if transform_name not in allowed_transforms:
         raise ValueError(f"unknown transform {transform_name}")
     if direction not in ("above", "below"):
         raise ValueError(f"unknown direction {direction}")
-    if target not in TARGETS:
+    if target not in allowed_targets:
         raise ValueError(f"unknown target {target}")
-    if universe not in UNIVERSES:
+    if not cross and universe not in UNIVERSES:
         raise ValueError(f"unknown universe {universe}")
     if conditioning != "none" or timeframe != "daily":
         raise ValueError("only conditioning none on daily bars is scorable")
@@ -115,18 +122,46 @@ def _period_score(signal, forward, horizon, years, index, start, end):
     return score_signal(scoped, forward, horizon, year_scope)
 
 
+def hac_t(values, lag):
+    """t-stat of a mean. Overlapping windows use HAC with lag at least the horizon.
+
+    A lag of 1 is a non-overlapping sample, and the result is written as
+    t_newey_west. Any other lag is not that statistic, so the caller writes it
+    under hac_t instead.
+    """
+    stat = newey_west_t(np.asarray(values, dtype=float), max(int(lag), 1))
+    return {"t_newey_west": float(stat)} if int(lag) <= 1 else {"hac_t": float(stat)}
+
+
+def family_of(cell_id):
+    """The indicator family a confirmation attempt counts against."""
+    from regime_tester.indicators import META
+    measure = cell_id.split("|")[0]
+    return META[measure][0] if measure in META else "unlisted"
+
+
+def family_attempts(record=None):
+    """Validation attempts already recorded in each family. The count only rises."""
+    rows = _read_record() if record is None else record
+    counts = {}
+    for row in rows:
+        if row.get("validation") is None:
+            continue
+        family = row.get("family") or family_of(row["cell_id"])
+        counts[family] = counts.get(family, 0) + 1
+    return counts
+
+
 def score_periods(cell_id):
     """Validation and test for one cell. Does not read the leaderboard."""
-    if "pit_cross_section" in cell_id:
-        return _score_cross_section({"id": cell_id, "universe": "pit_cross_section"})
     cell = parse_cell_id(cell_id)
+    if cell["universe"] == "pit_cross_section":
+        return _score_cross_section(cell)
     frames = load_full_frames()
     if frames["BTC"].index.max() <= TRAIN_END:
         raise RuntimeError("the series ends at or before the train end")
     if cell["universe"] == "pooled_majors":
         raise ValueError("pooled confirmation is not in this procedure yet")
-    if cell["universe"] == "pit_cross_section":
-        return _score_cross_section(cell)
     token = "BTC" if cell["universe"] == "btc" else "ETH"
     frame = frames[token]
     computed = indicators(frame)
@@ -157,36 +192,65 @@ def score_periods(cell_id):
     }
 
 
-def _score_cross_section(cell):
-    """Validation and test for one cross-sectional cell, from the point-in-time panel."""
-    from regime_tester.cross_section import score_cross_section
+def _xs_signal(close, cell):
+    """The cell's own measure and transform, lagged one bar by the scorer."""
+    from regime_tester.indicators import indicators
+    frame = close.to_frame("close") if isinstance(close, pd.Series) else close
+    built = indicators(frame)
+    measure = cell["measure"]
+    values = built[measure] if measure in built.columns else close * np.nan
+    return pd.Series(
+        transform(values.to_numpy(dtype=float), cell["transform"]), index=values.index)
+
+
+def _score_cross_section(cell, panel=None):
+    """Validation and test for one cross-sectional cell, built from its own id.
+
+    rel_ targets are not scored: subtracting BTC cancels inside a same-day
+    rank, so a rel_ cell is the same test as its ret_ twin. The spread is the
+    daily long-short spread of the names the cell flags, and its t-stat is HAC
+    with lag at least the horizon. t_newey_west is written only for lag 1.
+    """
+    from regime_tester.cross_section import decile_spread
     from regime_tester.panel_integrity import clean_frame, collapse_venues
-    panel = {}
-    for name in sorted(os.listdir(ROOT / "data" / "panel_xs")):
-        frame = clean_frame(pd.read_csv(ROOT / "data" / "panel_xs" / name))
-        if "close" not in frame.columns or frame["close"].notna().sum() < 60:
-            continue
-        panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])[["date", "close"]]
-    panel, _dropped = collapse_venues(panel)
-    measure = cell.split("|")[0]
-
-    def signal(close):
-        from regime_tester.indicators import indicators
-        built = indicators(pd.DataFrame({"close": close}))
-        return built[measure] if measure in built.columns else close * float("nan")
-
-    scored = score_cross_section(panel, signal, horizon=1)
+    if cell["target"].startswith("rel_"):
+        raise ValueError("rel_ cross-sectional targets are dropped; they equal ret_")
+    horizon = int(cell["target"].split("_")[1])
+    if panel is None:
+        panel = {}
+        for name in sorted(os.listdir(ROOT / "data" / "panel_xs")):
+            frame = clean_frame(pd.read_csv(ROOT / "data" / "panel_xs" / name))
+            if "close" not in frame.columns or frame["close"].notna().sum() < 60:
+                continue
+            panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])[["date", "close"]]
+        panel, _dropped = collapse_venues(panel)
+    rows = []
+    for name, frame in panel.items():
+        close = frame.set_index("date")["close"].astype(float)
+        close.index = pd.to_datetime(close.index, utc=True)
+        signal = _xs_signal(close, cell).shift(1)
+        forward = close.shift(-horizon) / close - 1
+        joined = pd.DataFrame({"signal": signal, "forward": forward}).dropna()
+        joined["name"] = name
+        rows.append(joined)
+    if not rows:
+        raise RuntimeError("the cross-sectional panel has no scorable names")
+    stacked = pd.concat(rows)
+    daily = []
+    for date, group in stacked.groupby(level=0):
+        daily.append({"date": date, "spread": decile_spread(group["signal"], group["forward"])})
+    scored = pd.DataFrame(daily)
     scored["date"] = pd.to_datetime(scored["date"], utc=True)
 
     def block(start, end):
-        part = scored[(scored["date"] >= start) & (scored["date"] <= end)]["decile_spread"].dropna()
+        part = scored[(scored["date"] >= start) & (scored["date"] <= end)]["spread"].dropna()
         if part.empty:
             return None
-        return {"spread_independent": float(part.mean()),
-                "t_newey_west": float(part.mean() / (part.std() / len(part) ** 0.5)) if len(part) > 2 else float("nan"),
-                "n_independent": int(len(part))}
+        stats = hac_t(part.to_numpy(), horizon)
+        return {"spread_independent": float(part.iloc[::horizon].mean()),
+                "n_independent": int(len(part.iloc[::horizon])), **stats}
 
-    return {"cell": cell, "token": "cross_section", "horizon": 1,
+    return {"cell": cell, "token": "cross_section", "horizon": horizon,
             "panel_end": str(scored["date"].max().date()), "library_version": LIBRARY_VERSION,
             "validation": block(VALIDATION_START, VALIDATION_END),
             "test": block(TEST_START, scored["date"].max())}
@@ -214,7 +278,11 @@ def confirm_cell(cell_id, family_n, train_sign, family_combinations=None):
     if any(row["cell_id"] == cell_id for row in prior):
         raise RuntimeError(f"{cell_id} already has a confirmation attempt")
     scored = score_periods(cell_id)
-    bar_n = family_combinations if family_combinations is not None else family_n
+    family = family_of(cell_id)
+    attempts = family_attempts(prior)
+    bar_n = attempts.get(family, 0) + 1
+    if family_n is not None and int(family_n) > bar_n:
+        bar_n = int(family_n)
     bar = deflated_bar(bar_n)
     validation = scored["validation"]
     test = scored["test"]
@@ -239,7 +307,8 @@ def confirm_cell(cell_id, family_n, train_sign, family_combinations=None):
     record = {
         "cell_id": cell_id,
         "attempted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "family_n": int(family_n),
+        "family": family,
+        "family_n": int(bar_n),
         "family_combinations": int(bar_n),
         "deflated_bar": round(bar, 4),
         "train_sign": int(train_sign),

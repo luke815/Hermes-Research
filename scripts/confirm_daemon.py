@@ -39,11 +39,9 @@ def cycle(ctx):
     if not queue:
         return {"cell": None, "remaining": 0}
     cell = queue[0]
-    from regime_tester.indicators import META
-    measure = cell["cell_id"].split("|")[0]
-    family = META[measure][0] if measure in META else "trend"
-    from regime_tester.confirm import confirm_cell
-    record = confirm_cell(cell["cell_id"], family_n=cell.get("train_n", 1),
+    from regime_tester.confirm import confirm_cell, family_attempts, family_of
+    family = family_of(cell["cell_id"])
+    record = confirm_cell(cell["cell_id"], family_n=family_attempts().get(family, 0),
                           train_sign=1 if cell.get("train_score", 0) > 0 else -1)
     return {"cell": cell["cell_id"], "verdict": record["verdict"],
             "family": family, "remaining": len(queue) - 1}

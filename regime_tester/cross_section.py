@@ -120,7 +120,7 @@ def row_for(cell_id, measure, dates, ic, spread, period_hash):
     return {
         "id": cell_id, "measure": measure, "transform": "xs_rank",
         "direction": "above", "threshold": 90,
-        "target": "rel_1", "universe": "pit_cross_section",
+        "target": "ret_1", "universe": "pit_cross_section",
         "conditioning": "none", "timeframe": "daily",
         "spread": float(spread.mean()) if spread.notna().any() else np.nan,
         "spread_independent": float(spread.iloc[::1].mean()) if spread.notna().any() else np.nan,

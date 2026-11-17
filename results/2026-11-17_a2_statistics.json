@@ -1,0 +1,19 @@
+{
+  "task": "A2",
+  "date": "2026-11-17",
+  "written_at": "2026-11-17T22:04:28Z",
+  "tests": "tests/test_confirm_cross_section.py",
+  "tests_passed": [
+    "test_two_cells_differ",
+    "test_horizon_changes_the_statistic_and_the_label",
+    "test_rel_target_is_refused",
+    "test_family_count_only_rises",
+    "test_overlapping_t_is_not_labelled_newey_west"
+  ],
+  "confirmations": "results/sweeps/confirmations.json",
+  "rows": 315,
+  "cross_sectional_rows": 265,
+  "cross_sectional_not_void": 0,
+  "voided_this_run": 151,
+  "already_void": 114
+}

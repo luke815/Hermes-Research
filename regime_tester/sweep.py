@@ -189,6 +189,7 @@ def score_signal(signal, forward, horizon, years):
     spread_i = (float(forward[sig_i].mean() - forward[uns_i].mean())
                 if sig_i.any() and uns_i.any() else np.nan)
     gap = np.where(sig, forward - forward[uns].mean(), np.nan)
+    gap = gap[stride]
     year_signs = {}
     for year, mask in years.items():
         a = sig_i & mask
