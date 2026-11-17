@@ -66,7 +66,7 @@ def run_loop(name, interval_sec, cycle, align=True, offset_sec=0, max_cycle_sec=
     signal.signal(signal.SIGINT, on_sig)
 
     state = {"name": name, "phase": "starting", "cycles": 0, "last_error": None, "version": version,
-             "interval_sec": interval_sec, "pid": os.getpid()}
+             "interval_sec": interval_sec, "pid": os.getpid(), "status_line": None}
 
     def hb(**extra):
         now = time.time()

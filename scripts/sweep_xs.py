@@ -7,9 +7,13 @@ transform, threshold and horizon of that measure as matrix operations. Rows
 land in results/sweeps/<today>_xs.csv in the train scorer's format, so the
 leaderboard reads them beside the single-name rows.
 
-A measure whose rows already exist is skipped, across every day's file, so a
-restart continues rather than starting over. Nothing here reads a bar after
-the train end.
+The work list is results/sweeps/cross_section_cells.json, the testable
+cross-section cells written by the enumerator. A measure is pending while any
+of its cells on that list is unscored, read across every day's file, so a
+restart continues and a daemon never reports remaining 0 while that gap exists.
+The panel is data/panel_xs_laevitas, which carries basis and the long/short
+ratio the positioning measures need. Nothing here reads a bar after the train
+end.
 
 Usage: python3 scripts/sweep_xs.py
 """
@@ -30,7 +34,9 @@ from regime_tester.vectorized import (
 )
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PANEL = os.path.join(ROOT, "data", "panel_xs")
+PANEL = os.path.join(ROOT, "data", "panel_xs_laevitas")
+WORK = os.path.join(ROOT, "results", "sweeps", "cross_section_cells.json")
+STATUS = os.path.join(ROOT, "ops", "sweep_status")
 OUT = os.path.join(ROOT, "results", "sweeps")
 TRAIN_END = "2024-06-30"
 MIN_BARS = 60
@@ -58,6 +64,15 @@ def load_train():
     train = close[close.index <= TRAIN_END]
     keep = train.columns[train.notna().sum() >= MIN_BARS]
     return train[keep], digest
+
+
+def work_list():
+    """The testable cross-section cell ids, from the enumerator's list.
+
+    The list is the unit of work. A measure the daemon's own files happen to
+    have scored is not done while one of its cells on this list is unscored.
+    """
+    return set(json.load(open(WORK)))
 
 
 def scored_ids():
@@ -349,6 +364,15 @@ def net_returns(close):
     return out
 
 
+def status_line(done, work):
+    """Scored cells against the testable list, written each cycle so it moves."""
+    line = f"scored {len(done & work)} of {len(work)} testable"
+    tmp = STATUS + ".tmp"
+    open(tmp, "w").write(line + "\n")
+    os.replace(tmp, STATUS)
+    return line
+
+
 def cycle(ctx):
     close = ctx.get("close")
     if close is None:
@@ -358,16 +382,20 @@ def cycle(ctx):
         ctx["panel"] = load_panel(close.columns)
         ctx["measures"] = indicator_cache(ctx["panel"], close.index, digest)
         ctx["net"] = net_returns(close)
-    done = {cid.split("|", 1)[0] for cid in scored_ids()}
-    pending = [name for name in ctx["measures"] if name not in done]
+        ctx["work"] = work_list()
+    done = scored_ids()
+    pending = sorted({cid.split("|", 1)[0] for cid in ctx["work"] - done})
+    pending = [name for name in pending if name in ctx["measures"]]
+    line = status_line(done, ctx["work"])
     if not pending:
-        return {"measure": None, "names": int(close.shape[1]), "remaining": 0}
+        return {"measure": None, "names": int(close.shape[1]), "remaining": 0,
+                "status_line": line}
     name = pending[0]
     rows = score_one(close, ctx["measures"][name], name, ctx["net"])
     path, total = append_rows(rows)
     return {"measure": name, "names": int(close.shape[1]), "rows": len(rows),
             "rows_total": total, "remaining": len(pending) - 1,
-            "file": os.path.basename(path)}
+            "status_line": line, "file": os.path.basename(path)}
 
 
 if __name__ == "__main__":
