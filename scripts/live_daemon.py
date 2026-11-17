@@ -186,12 +186,25 @@ def cycle(ctx):
     note = (f"source lags {round(lag / 60)} min; newest bar returned "
             f"{datetime.fromtimestamp(newest, timezone.utc).strftime('%H:%M:%SZ')}"
             if lag and lag > 2 * FIVEMIN else "")
+    # The marks are fresh every five minutes, but the board reads the hourly store,
+    # which nothing in this loop updates. Judge staleness on the board's own time,
+    # so a board from last week is not shown with this minute's stamp.
+    rs_age = None
+    if built.get("as_of"):
+        rs_age = now - int(datetime.fromisoformat(built["as_of"].replace("Z", "+00:00")).timestamp())
+    rs_stale = rs_age is None or rs_age > 2 * 3600
+    if rs_stale:
+        note = (note + "; " if note else "") + (
+            f"relative strength board is {round(rs_age / 3600)}h old" if rs_age else "no relative strength board")
     payload = {
         "as_of": as_of or built["as_of"], "interval_sec": INTERVAL,
         "health": {"daemon_heartbeat": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                    "api_calls_last_hour": sum(c for _, c in ctx["calls_this_hour"]),
-                   "stale": as_of is None, "note": note},
-        "relative_strength": built, "book_live": book_live(marks), "watchlist": [], "ideas": [], "triggers": [],
+                   "stale": as_of is None or rs_stale, "marks_stale": as_of is None,
+                   "rs_stale": rs_stale, "rs_age_sec": rs_age, "note": note},
+        "relative_strength": built, "book_live": book_live(marks),
+        # watchlist, ideas and triggers are left out until this loop computes them:
+        # an empty list here overwrote the daily file's values on every poll.
     }
     pushed = push(payload)
     return {"calls": calls, "pushed": pushed, "as_of": as_of, "names": len(names)}

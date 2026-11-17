@@ -8,9 +8,9 @@ A research engine for BTC, ETH and the alt universe. It maintains regime and pri
 
 ## Where things stand
 
-Heat score: seven equal-weight factors in regime_tester/heat.py, scaled -1 to +1. Hot above +0.4 has held out of sample. Cold and middle have no reliable edge and must never be dressed up as a forecast.
+Heat score: four equal-weight factors in regime_tester/heat.py, scaled -1 to +1. Not validated. The factors were chosen on the full history through 2026-10-26 and the three-period test rejected them (log.md, 2026-11-01); the hot-zone mean rests on about 23 windows, mostly 2020 and 2024. It is shown as context and must never be dressed up as a forecast, in any zone. Corrected 2026-11-17, see research/AUDIT_2026-11-17.md.
 
-Pricing: rolling two-year refit on the same factors, BTC 10-day forward return. Ranking holds out of sample, top fifth +3.3% against bottom fifth +1.0%. Levels do not hold and are reported as a ranking, not a number to trust.
+Pricing: rolling two-year refit on the same factors, BTC 10-day forward return. The rolling forecast failed after the lookahead fix (log.md, 2026-10-29), and the refit gives three of the four factors a negative weight. Report it as a model output, not a ranking or a number to trust.
 
 TA library: regime_tester/ta.py. Twelve candidates tested 2026-10-27. None admitted to the score. slope_ma20 and atr_regime widened the gap but restate momentum and volatility. They are valid standalone confirmations for the scanner.
 

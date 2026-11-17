@@ -1,23 +1,26 @@
 """Cycle position. Candidate top and bottom days for BTC and the pooled universe.
 
-Uses the amended targets: a 20-day 30 percent drop for a top, a 20-day 30
-percent rally with no more than a 7 percent giveback for a bottom. Episodes are
+Event definitions, as coded below: a top is followed by a 20 percent drop
+within 30 days; a bottom by a 20 percent rally within 30 days with no more
+than a 7 percent giveback first. A candidate day sits within 5 percent of the
+60-day extreme. Episodes are
 counted once per date, so a day on which many names fire counts as one.
 
 Usage: python3 scripts/cycle.py
 """
 
-import json
 import os
 import sys
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import pandas as pd
 
 from regime_tester.episodes import base_rates, bottom_event, top_event
 from regime_tester.periods import assign_period
+from dashboard_io import update_keys  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
@@ -32,8 +35,22 @@ def closes():
             continue
         frame = frame.dropna(subset=["close"])
         index = pd.to_datetime(frame["date"], utc=True)
-        out[name.replace(".csv", "")] = pd.Series(frame["close"].to_numpy(float), index=index)
+        # Bybit and OKX files are written newest-first; rolling windows need oldest-first.
+        series = pd.Series(frame["close"].to_numpy(float), index=index).sort_index()
+        out[name.replace(".csv", "")] = series[~series.index.duplicated(keep="last")]
     return out
+
+
+def base_rate(frame, candidate, event, horizon=30):
+    """Share of candidate name-days whose event followed within the horizon.
+
+    The last horizon days have no outcome yet and are left out, so a young
+    candidate is not counted as a miss.
+    """
+    cutoff = frame.index.max() - pd.Timedelta(days=horizon)
+    rows = frame[(frame.index <= cutoff) & frame[candidate].fillna(False).astype(bool)]
+    hits = rows[event].dropna()
+    return round(float(hits.astype(bool).mean()), 4) if len(hits) else None
 
 
 def main():
@@ -84,14 +101,20 @@ def main():
             "share_at_60d_low": round(float(today_rows["at_low"].mean()), 4),
             "n_top_episodes": top_rates["all"]["episodes"],
             "n_bottom_episodes": bottom_rates["all"]["episodes"],
+            "base_top_30d": base_rate(stacked, "at_high", "top"),
+            "base_bottom_30d": base_rate(stacked, "at_low", "bottom"),
         },
-        "note": "Amended targets, 20-day 30 percent. Episodes counted once per date.",
+        "definition": {"candidate_band": 0.05, "lookback_days": 60, "move": 0.20,
+                       "within_days": 30, "bottom_max_giveback": 0.07},
+        "note": ("Top: a 20 percent drop within 30 days. Bottom: a 20 percent rally within 30 days "
+                 "with at most a 7 percent giveback. Candidate: within 5 percent of the 60-day "
+                 "extreme. Episodes counted once per date."),
     }
-    data = json.load(open(DATA))
-    data["cycle"] = cycle
-    tmp = DATA + ".tmp"
-    json.dump(data, open(tmp, "w"))
-    os.replace(tmp, DATA)
+    btc_frame = pd.DataFrame({"top": btc_top, "bottom": btc_bottom,
+                              "at_high": btc >= high_60 * 0.95, "at_low": btc <= low_60 * 1.05})
+    cycle["btc"]["base_top_30d"] = base_rate(btc_frame, "at_high", "top")
+    cycle["btc"]["base_bottom_30d"] = base_rate(btc_frame, "at_low", "bottom")
+    update_keys(DATA, {"cycle": cycle})
     print(f"cycle as_of {cycle['as_of']} btc_top {cycle['btc']['candidate_top']} "
           f"btc_bottom {cycle['btc']['candidate_bottom']} "
           f"episodes {cycle['universe']['n_top_episodes']}/{cycle['universe']['n_bottom_episodes']}")

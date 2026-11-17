@@ -7,11 +7,14 @@ of the same series.
 Usage: python3 scripts/internals.py
 """
 
-import json
 import os
+import sys
 from datetime import datetime, timezone
 
 import pandas as pd
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from dashboard_io import update_keys  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
@@ -30,8 +33,11 @@ def load():
     return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
 
 
+YEAR = 365  # crypto trades every day; 252 bars is eight months, not a year
+
+
 def pct_of_year(series):
-    year = series.dropna().iloc[-252:]
+    year = series.dropna().iloc[-YEAR:]
     if year.empty:
         return None
     return float((year <= year.iloc[-1]).mean())
@@ -64,6 +70,7 @@ def main():
         },
         "funding": {
             "median": round(float(fund_last.median()), 6) if len(fund_last) else None,
+            "unit": "fraction per funding interval, as stored in panel_xs",
             "share_negative": round(float((fund_last < 0).mean()), 4) if len(fund_last) else None,
         },
         "oi": {"total_usd": round(float(oi_last.sum()), 0) if len(oi_last) else None},
@@ -73,16 +80,12 @@ def main():
             "new_highs_minus_lows": pct_of_year(at_high - at_low),
         },
         "series": {
-            "date": list(wide.index[-252:]),
-            "above_50d": [None if pd.isna(v) else round(float(v), 4) for v in above_50.iloc[-252:]],
-            "above_200d": [None if pd.isna(v) else round(float(v), 4) for v in above_200.iloc[-252:]],
+            "date": list(wide.index[-YEAR:]),
+            "above_50d": [None if pd.isna(v) else round(float(v), 4) for v in above_50.iloc[-YEAR:]],
+            "above_200d": [None if pd.isna(v) else round(float(v), 4) for v in above_200.iloc[-YEAR:]],
         },
     }
-    data = json.load(open(DATA))
-    data["internals"] = internals
-    tmp = DATA + ".tmp"
-    json.dump(data, open(tmp, "w"))
-    os.replace(tmp, DATA)
+    update_keys(DATA, {"internals": internals})
     print(f"internals as_of {internals['as_of']} names {internals['universe_n']} "
           f"above_50d {internals['breadth']['above_50d']}")
 

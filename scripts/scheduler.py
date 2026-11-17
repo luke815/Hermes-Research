@@ -6,12 +6,16 @@ and posts to Telegram only when something is wrong.
 
 Jobs, UTC:
   05:30  daily refresh
-  05:45  universe re-rank
-  06:15  book marks
+  05:45  universe re-rank (scripts/universe_rank.py)
   06:30  laevitas realtime snapshot
   06:40  derivatives key from the raw store
   06:45  heat_stats key from the panel
   every hour at :05  health check
+
+A job whose script is missing, exits non-zero or times out is recorded as a
+failure and reported by the next health check, instead of being recorded as
+"ran". book_composite.py is not in the repo, so the book-marks job is off
+until it is.
 
 Usage: python3 scripts/scheduler.py
 """
@@ -31,8 +35,7 @@ ENV = dict(os.environ, PYTHONPATH="/opt/data/.local/lib/python3.14/site-packages
 
 JOBS = [
     {"name": "daily_refresh", "at": "05:30", "script": "scripts/refresh_coinalyze.py"},
-    {"name": "rerank", "at": "05:45", "script": "scripts/rank_universe.py"},
-    {"name": "book_marks", "at": "06:15", "script": "scripts/book_composite.py"},
+    {"name": "rerank", "at": "05:45", "script": "scripts/universe_rank.py"},
     {"name": "laevitas_snapshot", "at": "06:30", "script": "scripts/laevitas_snapshot.py", "timeout": 2400},
     {"name": "derivatives_key", "at": "06:40", "script": "scripts/build_derivatives_key.py"},
     {"name": "heat_stats", "at": "06:45", "script": "scripts/build_heat_stats.py"},
@@ -70,8 +73,33 @@ def record(job, now, result):
 
 
 def run_script(script, timeout=600):
-    proc = subprocess.run([PY, script], cwd=ROOT, env=ENV, capture_output=True, text=True, timeout=timeout)
-    return {"exit": proc.returncode, "tail": (proc.stdout + proc.stderr)[-300:]}
+    if not os.path.exists(os.path.join(ROOT, script)):
+        return {"exit": None, "ok": False, "tail": f"missing script {script}"}
+    try:
+        proc = subprocess.run([PY, script], cwd=ROOT, env=ENV, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired as exc:
+        return {"exit": None, "ok": False, "tail": f"timeout after {timeout}s: {str(exc.stdout or '')[-200:]}"}
+    return {"exit": proc.returncode, "ok": proc.returncode == 0, "tail": (proc.stdout + proc.stderr)[-300:]}
+
+
+def failed_jobs(now):
+    """Job records from the last hour that did not finish cleanly. Each failure is reported once."""
+    out = []
+    for job in JOBS:
+        if job["script"] is None:
+            continue
+        path = os.path.join(RESULTS, f"{now.strftime('%Y-%m-%d')}_{job['name']}.json")
+        try:
+            record_ = json.loads(open(path).read())
+            ran_at = datetime.fromisoformat(record_["ran_at"].replace("Z", "+00:00"))
+        except (OSError, json.JSONDecodeError, KeyError, ValueError):
+            continue
+        if (now - ran_at).total_seconds() > 3600:
+            continue
+        result = record_.get("result", {})
+        if result.get("ok") is False or result.get("exit") not in (0, None):
+            out.append(f"{job['name']}: {result.get('tail', '')[-120:]}")
+    return out
 
 
 def health(now):
@@ -81,6 +109,7 @@ def health(now):
         "supervisor": (os.path.join(ROOT, "ops", "supervisor_heartbeat"), 300),
         "live": (os.path.join(ROOT, "ops", "live_heartbeat"), 900),
     }
+    problems.extend(failed_jobs(now))
     for name, (path, limit) in heartbeats.items():
         try:
             data = json.loads(open(path).read())

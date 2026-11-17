@@ -9,9 +9,13 @@ Usage: python3 scripts/sweep_stats.py
 
 import json
 import os
+import sys
 from datetime import datetime, timezone
 
 import pandas as pd
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from dashboard_io import update_keys  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SWEEPS = os.path.join(ROOT, "results", "sweeps")
@@ -40,11 +44,7 @@ def main():
             for row in conf[-30:]
         ],
     }
-    data = json.load(open(DATA))
-    data["sweep"] = payload
-    tmp = DATA + ".tmp"
-    json.dump(data, open(tmp, "w"))
-    os.replace(tmp, DATA)
+    update_keys(DATA, {"sweep": payload})
     print(f"sweep cells {scored} confirmations {len(payload['confirmations'])}")
 
 
