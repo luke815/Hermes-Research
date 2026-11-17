@@ -14,7 +14,16 @@ Taken before everything below. Each finding, with the lines and the reasoning, i
 - A6. Counter and scope. One counter of every scored cell that could have been admitted, from the last admission; no single-asset BTC top or bottom cell is queued (they cannot reach 30 episodes); closed neighbours are not retried. Done when the digest's counter and ops/sweep_status cite the same file and number.
 - A7. First research after A1 to A4, pre-registered in order: (1) cross-sectional 1-day and 3-day reversal on the point-in-time universe with a $20M open-interest floor, one row per coin, per-leg costs and carry, vol-scaled; (2) the derivatives family (skew, risk reversal, implied minus realized, basis, funding, OI change) on BTC and ETH at 1 to 3 days and as a filter on (1); (3) pooled crowding before alt tops, OI-to-volume above p90 and 30-day OI change, with date-clustered errors; (4) top-decile funding against forward returns with carry charged. Done per test with its results file and verdict.
 
-## Standing rule
+## Review items, 2026-11-17, after A1 to A4
+
+- L7. Puller freshness. A file is complete only if its last bar is the closed day. A 500 or timeout moves the name to the back of the queue. A 400 or 404 is retried after 7 days. Done when tests show a fully paged file from yesterday is pending today, one failing name does not stall the next, and the perpetual store's newest bar advances daily.
+- L8. Pull order. Liquidations by currency for BTC, ETH and names passing the floor run before option-contract histories. Done when BTC and ETH liquidation history from 2021-11-20 is on disk.
+- L9. Market-level backfill: put/call ratio, futures open interest, 25-delta butterfly, the basis curve, and the 2019 to 2020 options history. Done when each series has first date, last date and missing-day count in data/INVENTORY.md.
+- L10. Deterministic daily Laevitas refresh, a script not a model run, re-requesting the last 14 days. Done when a deleted day is refilled on the next run with no model action, and a stale risk reversal shows as stale.
+- L11. Delisted names. Laevitas history for the delisted names in the span files, merged with the stopped-coin prices. Done when A4's universe has funding, open interest and basis for dead names from 2021.
+- L12. v2 403 test from this box, default user agent and Mozilla, status codes logged, key never printed. Done when both status codes are logged.
+- C8. Liquidation cascade, definition pre-registered on Coinalyze liquidations, then 1 to 5 day forward returns. Done when scored.
+- C9. Cross-sectional momentum, 2 to 4 week lookback, weekly rebalance, on the A4 survivor-free panel. Done when scored across three periods.
 
 - E1. derivatives: every market-level Laevitas series for BTC and ETH, with value, 1d and 7d change, 1y percentile, 30-day sparkline and a one-line read. Done 2026-11-17: the hosted key carries both assets, as_of 2026-11-16, 27 series each. https://luke815.github.io/Hermes-Dashboard-1/data.json generated_at 2026-11-17T10:18:37Z matches local. results/2026-11-17_e1_derivatives.json.
 - E2. heat_stats: forward BTC returns by heat zone, 10d and 30d, train, validation and test, non-overlapping n, current zone marked. Done 2026-11-17: the hosted key has all 18 rows, current zone mid, as_of 2026-11-16. https://luke815.github.io/Hermes-Dashboard-1/data.json generated_at 2026-11-17T12:22:11Z matches local. results/2026-11-17_e2_heat_stats.json.

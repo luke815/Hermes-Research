@@ -32,4 +32,4 @@ Per-asset models for ETH and the majors. Cross-sectional alt ranking as long-sho
 
 ## Broken
 
-Laevitas get_market_positioning_history returns a bare server error. It blocks market-wide OI dominance and the put/call ratio. One attempt per week, no more.
+Laevitas get_market_positioning_history serves the put/call ratio and futures open interest. An outside review on 2026-11-17 pulled both. The earlier "server error, one attempt per week" rule is withdrawn. Re-check from this box before relying on it.

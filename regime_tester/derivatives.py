@@ -8,8 +8,8 @@ rows collapse to the UTC date.
 A series the store does not carry is absent, not invented. The tenor basis curve
 is one of those: the archive holds seven days of it, which is below every
 minimum history in the library, so no measure is built from it. SOL is not in
-the store at all. The put-call ratio needs an endpoint that returns a server
-error, and no butterfly series is served, so both stay out.
+the store at all. The put-call ratio and the 25-delta butterfly are served by
+Laevitas and are not yet pulled, so both stay out until the backfill lands.
 """
 
 import json
