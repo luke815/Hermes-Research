@@ -134,7 +134,9 @@ def stall_check() -> str:
         if not any(ch.isdigit() for ch in head):
             continue
         lowered = line.lower()
-        closed = " done " in f" {lowered} " or "verdict 20" in lowered
+        closed = (" done " in f" {lowered} " or "verdict 20" in lowered
+                  or "done 20" in lowered or "closed," in lowered
+                  or "closed " in lowered)
         if closed:
             continue
         top = line

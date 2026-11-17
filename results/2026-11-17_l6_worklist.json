@@ -1,0 +1,20 @@
+{
+  "job": "L6",
+  "written_utc": "2026-11-17T04:53:55Z",
+  "today": "2026-11-17",
+  "verdict": "partial, not done",
+  "done_when": "the sweep status line shows scored against testable moving",
+  "status_line_before": "scored 10692 of 168600 testable",
+  "status_line_after": "scored 11484 of 168600 testable",
+  "status_line_file": "ops/sweep_status",
+  "moves": [
+    {"at": "2026-11-17T04:07:15Z", "measure": "basis_chg_7", "line": "scored 10692 of 168600 testable", "cycle_sec": 189.1},
+    {"at": "2026-11-17T04:48:56Z", "measure": "basis_level", "line": "scored 11088 of 168600 testable", "cycle_sec": 1205.4}
+  ],
+  "rows_written_today": 792,
+  "rows_file": "results/sweeps/2026-11-17_xs_vec.csv",
+  "duplicate_ids": 0,
+  "daemon": {"name": "sweep_xs", "pid": 23454, "version": "9a69b68", "stale_code": false, "remaining_measures": 2},
+  "blocked": "The derivatives panel, the positioning cross-section beyond basis and the long/short ratio, C5 and R1 to R6 need the options store and the per-name funding and open-interest history. laevitas_pull is mid-list on options, 44 of 240 maturities at 02:12 UTC, and listed_pull is still walking the live names. A research run does not pull.",
+  "note": "The cross-section scorer writes the unconditioned cell only. The work list holds five conditioned variants per cell, which this scorer cannot emit, so a measure counts as done once any of its cells is saved. Counting the variants as pending retried basis_chg_7 and the write refused its own rows."
+}
