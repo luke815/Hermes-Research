@@ -43,6 +43,25 @@ class WorkList(unittest.TestCase):
             self.assertEqual(line, "scored 1 of 3 testable")
             self.assertEqual(open(sweep_xs.STATUS).read().strip(), line)
 
+    def test_append_skips_cells_already_saved(self):
+        # A measure pending only for ratio_btc still emits the cells the
+        # previous scorer wrote. Those are skipped; the missing cell is kept.
+        # A duplicate inside the new rows still refuses the write.
+        import pandas as pd
+        with tempfile.TemporaryDirectory() as tmp:
+            sweep_xs.OUT = tmp
+            saved = "obv|raw|above|80|ret_1|pit_cross_section|none|daily"
+            missing = "obv|ratio_btc|above|80|ret_1|pit_cross_section|none|daily"
+            rows = [{"id": saved, "measure": "obv"}, {"id": missing, "measure": "obv"}]
+            path, total = sweep_xs.append_rows(rows, already={saved})
+            written = pd.read_csv(path)
+            self.assertEqual(list(written["id"]), [missing])
+            self.assertEqual(total, 1)
+            with self.assertRaises(RuntimeError):
+                sweep_xs.append_rows(
+                    [{"id": missing, "measure": "obv"}, {"id": missing, "measure": "obv"}],
+                    already=set())
+
     def test_work_list_reads_the_enumerator_file(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = os.path.join(tmp, "cells.json")

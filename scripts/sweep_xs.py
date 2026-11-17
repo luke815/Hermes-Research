@@ -360,18 +360,30 @@ def out_path():
     return os.path.join(OUT, datetime.now(timezone.utc).strftime("%Y-%m-%d") + "_xs_vec.csv")
 
 
-def append_rows(rows):
-    """Append one measure's rows. A duplicate id refuses the write."""
+def append_rows(rows, already=None):
+    """Append the cells of one measure that are not already saved.
+
+    A measure stays pending until ratio_btc is written, so the next cycle
+    emits the cells the previous scorer already saved. Those are skipped.
+    A duplicate inside the new rows, or against a file this call did not
+    read, still refuses the write.
+    """
     path = out_path()
     frame = pd.DataFrame(rows)
-    if os.path.exists(path):
-        frame = pd.concat([pd.read_csv(path), frame], ignore_index=True)
-    if frame["id"].duplicated().any():
+    if already is None:
+        already = scored_ids()
+    fresh = frame[~frame["id"].isin(already)]
+    if fresh["id"].duplicated().any():
         raise RuntimeError("append would write a duplicate cell id")
+    if os.path.exists(path):
+        prior = pd.read_csv(path)
+        if prior["id"].isin(fresh["id"]).any() or prior["id"].duplicated().any():
+            raise RuntimeError("append would write a duplicate cell id")
+        fresh = pd.concat([prior, fresh], ignore_index=True)
     tmp = path + ".tmp"
-    frame.to_csv(tmp, index=False)
+    fresh.to_csv(tmp, index=False)
     os.replace(tmp, path)
-    return path, len(frame)
+    return path, len(fresh)
 
 
 def net_returns(close):
@@ -421,7 +433,7 @@ def cycle(ctx):
                 "status_line": line}
     name = pending[0]
     rows = score_one(close, ctx["measures"][name], name, ctx["net"])
-    path, total = append_rows(rows)
+    path, total = append_rows(rows, already=done)
     return {"measure": name, "names": int(close.shape[1]), "rows": len(rows),
             "rows_total": total, "remaining": len(pending) - 1,
             "status_line": line, "file": os.path.basename(path)}
