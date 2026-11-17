@@ -1,0 +1,24 @@
+{
+  "job": "L6",
+  "written_utc": "2026-11-17T05:18:23Z",
+  "today": "2026-11-17",
+  "verdict": "partial, not done",
+  "done_when": "the sweep status line shows scored against testable moving, and the derivatives panel, positioning cross-section, C5 and R1 to R6 are scored",
+  "bug": "sweep_xs marked a measure done after any saved cell. The scorer emits 12 transforms and the work list holds 13, so the 36 ratio_btc cells of a scored measure were never written and the status line stopped at scored 12276 of 168600.",
+  "fix": "ratio_btc is the name over BTC on the same bar, ranked cross-sectionally. A measure stays pending until every unconditioned daily cell this scorer emits is saved. Conditioned variants stay uncounted.",
+  "commit": "6b0c739c7b5ce04e72b8e62d3b43b75734a2f5df",
+  "tests": "tests.test_sweep_worklist 3 passed; ratio_btc fixture: 2/1=2, BTC zero stays empty, missing BTC column stays empty",
+  "status_line_before": "scored 12276 of 168600 testable",
+  "status_line_file": "ops/sweep_status",
+  "daemon": {
+    "name": "sweep_xs",
+    "pid": 25637,
+    "version": "6b0c739",
+    "stale_code": false,
+    "phase": "working",
+    "cycles": 0,
+    "started_utc": "2026-11-17T05:05:31Z"
+  },
+  "first_cycle": "not finished at 2026-11-17T05:17:56Z, 12.4 minutes in. The previous basis_level cycle took 1205.4s, so this is inside the measured time, not a hang.",
+  "blocked": "The derivatives panel, the positioning cross-section beyond basis and the long/short ratio, C5 and R1 to R6 need the options store and the per-name funding and open-interest history. laevitas_pull at 05:17 UTC: walked 41 of 240 maturities, 3148 contracts, remaining 16292 instruments, pid 18251. A research run does not pull."
+}
