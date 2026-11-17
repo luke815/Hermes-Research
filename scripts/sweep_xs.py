@@ -384,7 +384,14 @@ def cycle(ctx):
         ctx["net"] = net_returns(close)
         ctx["work"] = work_list()
     done = scored_ids()
-    pending = sorted({cid.split("|", 1)[0] for cid in ctx["work"] - done})
+    # The scorer writes the unconditioned cell only. The list also holds the
+    # conditioned variants of the same measure, which this scorer cannot emit,
+    # so a measure is done once any of its cells is saved. Counting the
+    # variants as still pending retries the measure and the write refuses its
+    # own rows.
+    done_measures = {cid.split("|", 1)[0] for cid in done}
+    pending = sorted({cid.split("|", 1)[0] for cid in ctx["work"] - done
+                      if cid.split("|", 1)[0] not in done_measures})
     pending = [name for name in pending if name in ctx["measures"]]
     line = status_line(done, ctx["work"])
     if not pending:

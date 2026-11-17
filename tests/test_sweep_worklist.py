@@ -17,10 +17,13 @@ import sweep_xs
 
 
 class WorkList(unittest.TestCase):
-    def test_a_scored_measure_stays_pending_while_a_cell_is_unscored(self):
-        work = {"obv|raw|above|80|ret_1", "basis_level|raw|above|80|ret_1"}
+    def test_a_scored_measure_is_done_even_with_conditioned_variants(self):
+        work = {"obv|raw|above|80|ret_1", "obv|raw|above|80|ret_1|heat_tercile",
+                "basis_level|raw|above|80|ret_1"}
         done = {"obv|raw|above|80|ret_1"}
-        pending = sorted({cid.split("|", 1)[0] for cid in work - done})
+        done_measures = {cid.split("|", 1)[0] for cid in done}
+        pending = sorted({cid.split("|", 1)[0] for cid in work - done
+                          if cid.split("|", 1)[0] not in done_measures})
         self.assertEqual(pending, ["basis_level"])
         self.assertEqual(len(done & work), 1)
 
