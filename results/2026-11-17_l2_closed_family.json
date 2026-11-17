@@ -1,0 +1,37 @@
+{
+ "date": "2026-11-17",
+ "written_at": "2026-11-17T02:12:25Z",
+ "item": "L2",
+ "verdict": "open",
+ "commit": "dcde013",
+ "finding": "pending() re-parsed all 5,185 perpetual files before every options maturity call, measured at 169.36s, which is the whole over-budget.",
+ "fix": "a family with every file current is stamped by count and newest mtime in data/laevitas/family_closed.json and skipped until a file changes or the day rolls",
+ "stamp": {
+  "perpetual": {
+   "day": "2026-11-17",
+   "count": 5185,
+   "mtime": 1794874044.7683444
+  },
+  "future": {
+   "day": "2026-11-17",
+   "count": 171,
+   "mtime": 1794877016.4031794
+  }
+ },
+ "before_s": 169.36,
+ "after_cycle_1_s": 1.0,
+ "after_cycle_2_s": 1.2,
+ "walked": 44,
+ "maturities": 240,
+ "contracts": 3328,
+ "last_walked": [
+  "DERIBIT",
+  "ETH",
+  "19NOV26"
+ ],
+ "pid": 18251,
+ "cycles_since_restart": 4,
+ "version": "dcde013",
+ "stale_code": false,
+ "panel_verify": "PASS panel_end=2026-11-15 today=2026-11-17 age=2d rows=2491 trailing_blank_cols=0 dupes=0 missing_days=0"
+}
