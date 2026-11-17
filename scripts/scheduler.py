@@ -10,6 +10,7 @@ Jobs, UTC:
   06:15  book marks
   06:30  laevitas realtime snapshot
   06:40  derivatives key from the raw store
+  06:45  heat_stats key from the panel
   every hour at :05  health check
 
 Usage: python3 scripts/scheduler.py
@@ -34,6 +35,7 @@ JOBS = [
     {"name": "book_marks", "at": "06:15", "script": "scripts/book_composite.py"},
     {"name": "laevitas_snapshot", "at": "06:30", "script": "scripts/laevitas_snapshot.py", "timeout": 2400},
     {"name": "derivatives_key", "at": "06:40", "script": "scripts/build_derivatives_key.py"},
+    {"name": "heat_stats", "at": "06:45", "script": "scripts/build_heat_stats.py"},
     {"name": "health", "at": ":05", "script": None},
 ]
 
