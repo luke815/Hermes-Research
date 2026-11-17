@@ -83,8 +83,13 @@ class PullOrder(unittest.TestCase):
         self.assertEqual(left[0]["type"], "future")
         self._current(self.fut, "BINANCE_BTCUSDT_261225.json")
         pull.OPTION_CONTRACTS = os.path.join(self.root, "option_contracts.json")
+        pull.OPTION_MATURITIES = os.path.join(self.root, "option_maturities.json")
         pull.OPTIONS_STORE = os.path.join(self.root, "options")
         pull.LIQUIDATIONS_STORE = os.path.join(self.root, "liquidations")
+        pull.CATALOG = os.path.join(self.root, "catalog.json")
+        json.dump({"params": {"maturities": {"data": {
+            "deribit": {"BTC": ["25DEC26"]},
+        }}}}, open(pull.CATALOG, "w"))
         left = pull.pending()
         self.assertEqual(left[0].get("list"), True)
         self.assertFalse(os.path.isdir(pull.LIQUIDATIONS_STORE))
@@ -92,6 +97,7 @@ class PullOrder(unittest.TestCase):
             "market": "DERIBIT", "type": "option", "currency": "BTC",
             "instrument": "BTC-25DEC26-20000-C", "expiry": "25DEC26",
         }], open(pull.OPTION_CONTRACTS, "w"))
+        json.dump([["DERIBIT", "BTC", "25DEC26"]], open(pull.OPTION_MATURITIES, "w"))
         left = pull.pending()
         self.assertEqual(left[0]["instrument"], "BTC-25DEC26-20000-C")
         self.assertEqual(left[0]["type"], "option")
@@ -99,6 +105,36 @@ class PullOrder(unittest.TestCase):
         left = pull.pending()
         self.assertEqual(left[0]["type"], "liquidation")
         self.assertIn("BTC", [r["instrument"] for r in left])
+
+    def test_one_saved_strike_does_not_finish_the_maturity(self):
+        self._current(self.perp, "BINANCE_BTCUSDT.json")
+        self._current(self.fut, "BINANCE_BTCUSDT_261225.json")
+        pull.OPTION_CONTRACTS = os.path.join(self.root, "option_contracts.json")
+        pull.OPTION_MATURITIES = os.path.join(self.root, "option_maturities.json")
+        pull.OPTIONS_STORE = os.path.join(self.root, "options")
+        pull.LIQUIDATIONS_STORE = os.path.join(self.root, "liquidations")
+        pull.CATALOG = os.path.join(self.root, "catalog.json")
+        json.dump({"params": {"maturities": {"data": {
+            "deribit": {"TRX": ["17NOV26", "18NOV26"]},
+        }}}}, open(pull.CATALOG, "w"))
+        json.dump([{
+            "market": "DERIBIT", "type": "option", "currency": "TRX",
+            "instrument": "TRX_USDC-18NOV26-0d31-P", "expiry": "18NOV26",
+        }], open(pull.OPTION_CONTRACTS, "w"))
+        left = pull.pending()
+        self.assertEqual(left[0].get("list"), True)
+        self.assertFalse(os.path.isdir(pull.LIQUIDATIONS_STORE))
+        # An empty call is still walked, so the next cycle moves on.
+        json.dump([["DERIBIT", "TRX", "17NOV26"]], open(pull.OPTION_MATURITIES, "w"))
+        left = pull.pending()
+        self.assertEqual(left[0].get("list"), True)
+        json.dump([
+            ["DERIBIT", "TRX", "17NOV26"],
+            ["DERIBIT", "TRX", "18NOV26"],
+        ], open(pull.OPTION_MATURITIES, "w"))
+        left = pull.pending()
+        self.assertEqual(left[0]["type"], "option")
+        self.assertEqual(left[0]["instrument"], "TRX_USDC-18NOV26-0d31-P")
 
 
 if __name__ == "__main__":

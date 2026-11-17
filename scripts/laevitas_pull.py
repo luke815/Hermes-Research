@@ -7,8 +7,11 @@ family that is still short of today. A name is marked done only when its
 file is written and current, or the vendor returned 400 or 404.
 
 Options contracts are not the expiry rows in instruments.json. Those name
-an expiry, not a strike. The contract list is fetched once, when futures
-are current, and saved before any option history is pulled.
+an expiry, not a strike. The contract list is fetched one maturity at a
+time, when futures are current, and saved before any option history is
+pulled. A maturity is walked when its call returns, including a call that
+adds nothing. One saved strike is not the maturity, and liquidations stay
+closed until every maturity in the catalogue has been walked.
 """
 
 import json
@@ -29,6 +32,7 @@ OPTIONS_STORE = os.path.join(ROOT, "data", "laevitas", "options")
 LIQUIDATIONS_STORE = os.path.join(ROOT, "data", "laevitas", "liquidations")
 INSTRUMENTS = os.path.join(ROOT, "data", "laevitas", "instruments.json")
 OPTION_CONTRACTS = os.path.join(ROOT, "data", "laevitas", "option_contracts.json")
+OPTION_MATURITIES = os.path.join(ROOT, "data", "laevitas", "option_maturities.json")
 CATALOG = os.path.join(ROOT, "data", "laevitas", "catalog_v1.json")
 
 # Currency-level liquidations, not per contract. The catalogue lists the
@@ -100,6 +104,36 @@ def option_rows():
     return saved if isinstance(saved, list) else []
 
 
+def walked_maturities():
+    """Maturities whose instrument call has already returned.
+
+    One saved contract does not mean the maturity was listed. The resume
+    set is the calls that finished, including a call that added nothing.
+    """
+    saved = _load(OPTION_MATURITIES, [])
+    return saved if isinstance(saved, list) else []
+
+
+def maturity_keys():
+    """Every market, currency and maturity the catalogue names."""
+    catalog = _load(CATALOG, {})
+    maturities = ((catalog.get("params") or {}).get("maturities") or {}).get("data") or {}
+    keys = []
+    for market, currencies in maturities.items():
+        if not isinstance(currencies, dict):
+            continue
+        for currency, dates in currencies.items():
+            for maturity in dates or []:
+                keys.append([market.upper(), currency, maturity])
+    return keys
+
+
+def list_unfinished():
+    """True while a catalogue maturity has not been walked."""
+    walked = {tuple(row) for row in walked_maturities()}
+    return any(tuple(key) not in walked for key in maturity_keys())
+
+
 def liquidation_rows():
     """One row per venue and currency that has a perpetual."""
     perps = _load(INSTRUMENTS, [])
@@ -129,7 +163,7 @@ def pending():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     for kind, store, _route in families():
         rows = rows_for(kind)
-        if kind == "option" and not rows:
+        if kind == "option" and (not rows or list_unfinished()):
             return [{"type": "option", "instrument": None, "market": None, "list": True}]
         waiting = [r for r in rows if not complete(
             os.path.join(store, f"{r['market']}_{r['instrument']}.json"), today)]
@@ -143,53 +177,50 @@ def fetch_option_contracts(end):
 
     The unfiltered instrument route returns 500, so each call carries a
     market, a currency and a maturity. The list is the work, not the history.
+    A maturity is marked walked only after its call returns, and an empty
+    return is still walked. Marking it from a saved strike skips the rest
+    of that maturity and opens liquidations while the list is one row.
     """
-    catalog = _load(CATALOG, {})
-    maturities = ((catalog.get("params") or {}).get("maturities") or {}).get("data") or {}
     saved = option_rows()
     have = {(r["market"], r["instrument"]) for r in saved}
-    # Resume past maturities already written. A cycle that re-walks the
-    # catalogue from the start spends its token on a call that adds nothing.
-    seen = {(r["market"], r.get("currency"), r.get("expiry")) for r in saved}
-    for market, currencies in maturities.items():
-        if not isinstance(currencies, dict):
+    walked = walked_maturities()
+    seen = {tuple(row) for row in walked}
+    for market, currency, maturity in maturity_keys():
+        if (market, currency, maturity) in seen:
             continue
-        for currency, dates in currencies.items():
-            for maturity in dates or []:
-                if (market.upper(), currency, maturity) in seen:
-                    continue
-                url = ("https://api.laevitas.ch/analytics/options/Instruments?"
-                       + urllib.parse.urlencode({
-                           "market": market.upper(),
-                           "currency": currency,
-                           "maturity": maturity,
-                       }))
-                body = rate_budget.get_json(
-                    url, {"apikey": key(), "User-Agent": "Mozilla/5.0"},
-                    timeout=90, allowance="laevitas")
-                data = body.get("data") if isinstance(body, dict) else body
-                added = 0
-                for row in data or []:
-                    name = row.get("instrument")
-                    if not name or (market.upper(), name) in have:
-                        continue
-                    saved.append({
-                        "market": market.upper(),
-                        "type": "option",
-                        "currency": row.get("currency") or currency,
-                        "instrument": name,
-                        "expiry": row.get("maturity") or maturity,
-                    })
-                    have.add((market.upper(), name))
-                    added += 1
-                if added:
-                    os.makedirs(os.path.dirname(OPTION_CONTRACTS), exist_ok=True)
-                    json.dump(saved, open(OPTION_CONTRACTS, "w"))
-                    return {"listed": added, "contracts": len(saved), "market": market.upper(),
-                            "currency": currency, "maturity": maturity}
-    os.makedirs(os.path.dirname(OPTION_CONTRACTS), exist_ok=True)
-    json.dump(saved, open(OPTION_CONTRACTS, "w"))
-    return {"listed": 0, "contracts": len(saved), "done": True}
+        url = ("https://api.laevitas.ch/analytics/options/Instruments?"
+               + urllib.parse.urlencode({
+                   "market": market,
+                   "currency": currency,
+                   "maturity": maturity,
+               }))
+        body = rate_budget.get_json(
+            url, {"apikey": key(), "User-Agent": "Mozilla/5.0"},
+            timeout=90, allowance="laevitas")
+        data = body.get("data") if isinstance(body, dict) else body
+        added = 0
+        for row in data or []:
+            name = row.get("instrument")
+            if not name or (market, name) in have:
+                continue
+            saved.append({
+                "market": market,
+                "type": "option",
+                "currency": row.get("currency") or currency,
+                "instrument": name,
+                "expiry": row.get("maturity") or maturity,
+            })
+            have.add((market, name))
+            added += 1
+        os.makedirs(os.path.dirname(OPTION_CONTRACTS), exist_ok=True)
+        json.dump(saved, open(OPTION_CONTRACTS, "w"))
+        walked.append([market, currency, maturity])
+        json.dump(walked, open(OPTION_MATURITIES, "w"))
+        return {"listed": added, "contracts": len(saved),
+                "walked": len(walked), "maturities": len(maturity_keys()),
+                "market": market, "currency": currency, "maturity": maturity}
+    return {"listed": 0, "contracts": len(saved), "walked": len(walked),
+            "maturities": len(maturity_keys()), "done": True}
 
 
 def pull(row, end):
