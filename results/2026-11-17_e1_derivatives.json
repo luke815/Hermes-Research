@@ -1,0 +1,17 @@
+{
+ "item": "E1",
+ "date": "2026-11-17",
+ "verdict": "done",
+ "as_of": "2026-11-16",
+ "built": "2026-11-17",
+ "series": {
+  "as_of": "2026-11-16",
+  "btc": 27,
+  "eth": 27
+ },
+ "hosted_url": "https://luke815.github.io/Hermes-Dashboard-1/data.json",
+ "hosted_generated_at": "2026-11-17T10:18:37Z",
+ "hosted_matches_local": true,
+ "commit": "c385fac",
+ "dashboard_commit": "0b245e0"
+}

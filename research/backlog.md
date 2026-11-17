@@ -4,7 +4,7 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 ## Standing rule
 
-- E1. derivatives: every market-level Laevitas series for BTC and ETH, with value, 1d and 7d change, 1y percentile, 30-day sparkline and a one-line read. Done when the hosted key carries both assets with today's as_of.
+- E1. derivatives: every market-level Laevitas series for BTC and ETH, with value, 1d and 7d change, 1y percentile, 30-day sparkline and a one-line read. Done 2026-11-17: the hosted key carries both assets, as_of 2026-11-16, 27 series each. https://luke815.github.io/Hermes-Dashboard-1/data.json generated_at 2026-11-17T10:18:37Z matches local. results/2026-11-17_e1_derivatives.json.
 - E2. heat_stats: forward BTC returns by heat zone, 10d and 30d, train, validation and test, non-overlapping n, current zone marked. Done when the hosted key has all 18 rows.
 - E3. extremes: the ten lists in the spec from the Laevitas panel, liquidity floor applied. Done when the hosted key has every list.
 - E4. candidates: top five leaderboard cells per family with expected validation n at least 30, today's flagged names, signals/shadow.csv started. Done when the hosted key has cells with names and the shadow file exists.
