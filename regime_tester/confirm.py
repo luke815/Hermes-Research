@@ -166,7 +166,14 @@ def _score_cross_section(cell):
         if "close" not in frame.columns or frame["close"].notna().sum() < 60:
             continue
         panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])[["date", "close"]]
-    scored = score_cross_section(panel, lambda close: close.pct_change(14), horizon=1)
+    measure = cell.split("|")[0]
+
+    def signal(close):
+        from regime_tester.indicators import indicators
+        built = indicators(pd.DataFrame({"close": close}))
+        return built[measure] if measure in built.columns else close * float("nan")
+
+    scored = score_cross_section(panel, signal, horizon=1)
     scored["date"] = pd.to_datetime(scored["date"], utc=True)
 
     def block(start, end):
