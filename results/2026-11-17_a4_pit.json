@@ -1,0 +1,11 @@
+{
+ "as_of": "2026-11-17",
+ "rows": 2731,
+ "delisted": 463,
+ "by_exchange": {
+  "binance": 923,
+  "bybit": 1136,
+  "okx": 672
+ },
+ "note": "listed_from and listed_to from the span files. Binance has no stopped flag, so its delisted count is zero and understated."
+}
