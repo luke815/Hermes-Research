@@ -9,6 +9,7 @@ Jobs, UTC:
   05:45  universe re-rank
   06:15  book marks
   06:30  laevitas realtime snapshot
+  06:40  derivatives key from the raw store
   every hour at :05  health check
 
 Usage: python3 scripts/scheduler.py
@@ -32,6 +33,7 @@ JOBS = [
     {"name": "rerank", "at": "05:45", "script": "scripts/rank_universe.py"},
     {"name": "book_marks", "at": "06:15", "script": "scripts/book_composite.py"},
     {"name": "laevitas_snapshot", "at": "06:30", "script": "scripts/laevitas_snapshot.py", "timeout": 2400},
+    {"name": "derivatives_key", "at": "06:40", "script": "scripts/build_derivatives_key.py"},
     {"name": "health", "at": ":05", "script": None},
 ]
 
