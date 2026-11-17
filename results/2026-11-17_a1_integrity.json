@@ -1,0 +1,9 @@
+{
+ "as_of": "2026-11-17",
+ "files": 2731,
+ "resorted": 1340,
+ "duplicate_dates": 0,
+ "future_bars": 0,
+ "venue_collapse": null,
+ "note": "venue collapse not done: one row per coin from the most liquid venue is the remaining half of A1"
+}
