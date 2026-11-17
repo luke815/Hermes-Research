@@ -78,7 +78,12 @@ def load_list(pattern):
     return rows
 
 
-def coinalyze(blob, field):
+def coinalyze(blob, field, extra=None):
+    """Read one field per bar, or the sum of two when extra is given.
+
+    Liquidation bars carry long and short separately. A series named liq_ is
+    the total, so it sums both rather than keeping only the longs.
+    """
     frames = {}
     for path in sorted(RAW.glob(blob)):
         payload = json.loads(path.read_text())
@@ -89,7 +94,11 @@ def coinalyze(blob, field):
             for bar in series.get("history", []):
                 stamp = int(bar["t"])
                 day = datetime.fromtimestamp(stamp, timezone.utc).date().isoformat()
-                column[day] = num(bar.get(field))
+                value = num(bar.get(field))
+                if extra:
+                    other = num(bar.get(extra))
+                    value = (value or 0) + (other or 0) if value is not None or other is not None else None
+                column[day] = value
     return frames
 
 
@@ -424,7 +433,7 @@ def main() -> None:
     price = coinalyze("coinalyze_ohlcv-history.json", "c")
     funding = coinalyze("coinalyze_funding-rate-history.json", "c")
     oi = coinalyze("coinalyze_open-interest-history.json", "c")
-    liq = coinalyze("coinalyze_liquidation-history.json", "l")
+    liq = coinalyze("coinalyze_liquidation-history.json", "l", extra="s")
     lsr = coinalyze("coinalyze_long-short-ratio-history.json", "r")
 
     series = {"date": dates}
