@@ -102,7 +102,6 @@ META = {
     "risk_reversal_30": ("options", ["risk_reversal"], 1, "level"),
     "basis_venue": ("derivatives", ["basis"], 1, "level"),
     "basis_pct_252": ("derivatives", ["basis"], 30, "oscillator"),
-    "perp_premium": ("derivatives", ["basis"], 1, "level"),
     "funding_oiw": ("derivatives", ["funding"], 1, "level"),
     "funding_oiw_avg_7": ("derivatives", ["funding"], 7, "level"),
     "funding_persist_high_oiw": ("derivatives", ["funding"], 30, "count"),

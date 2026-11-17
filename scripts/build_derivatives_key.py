@@ -25,14 +25,14 @@ UNITS = {
     "atm_iv_7": "%", "atm_iv_30": "%", "atm_iv_90": "%", "atm_term_slope": "pts",
     "atm_inversion": "", "skew_25d_7": "", "skew_25d_30": "", "skew_25d_90": "",
     "skew_chg_5": "", "skew_term_slope": "", "risk_reversal_30": "",
-    "basis_venue": "%", "basis_pct_252": "pct", "perp_premium": "%",
+    "basis_venue": "%", "basis_pct_252": "pct",
     "funding_oiw": "", "funding_oiw_avg_7": "", "funding_persist_high_oiw": "days",
     "funding_persist_low_oiw": "days", "funding_dispersion_oiw": "",
     "rv_7": "%", "rv_30": "%", "rv_ratio_7_30": "", "vol_of_vol_30": "",
 }
 DECIMALS = {
     "funding_oiw": 6, "funding_oiw_avg_7": 6, "funding_dispersion_oiw": 6,
-    "perp_premium": 4, "basis_venue": 4,
+    "basis_venue": 4,
 }
 
 
