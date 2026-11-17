@@ -4,6 +4,12 @@ Ordered by the research program, section 9. One item at a time, pre-registered b
 
 ## Standing rule
 
+- E1. derivatives: every market-level Laevitas series for BTC and ETH, with value, 1d and 7d change, 1y percentile, 30-day sparkline and a one-line read. Done when the hosted key carries both assets with today's as_of.
+- E2. heat_stats: forward BTC returns by heat zone, 10d and 30d, train, validation and test, non-overlapping n, current zone marked. Done when the hosted key has all 18 rows.
+- E3. extremes: the ten lists in the spec from the Laevitas panel, liquidity floor applied. Done when the hosted key has every list.
+- E4. candidates: top five leaderboard cells per family with expected validation n at least 30, today's flagged names, signals/shadow.csv started. Done when the hosted key has cells with names and the shadow file exists.
+- E5. risk: R1 inputs and R2 state machine from RISK_REGIME.md, with inputs, rules fired and analogs. Done when the hosted key carries state, dial and inputs with today's as_of.
+
 - X1. The cross-section sweep reads data/panel_xs_laevitas, restricted to instruments clearing the liquidity floor on at least 60 days, one venue per coin, with funding, open interest, basis and long-short as cross-sectional measures, run in parallel across cores. Done when the status line shows the Laevitas panel's name count and cells per hour above 5,000 for one full hour.
 - X2. One counter: the digest and the sweep status line report the same scored-against-testable number from the same file. Done when both lines cite the same file and the same number.
 - P1. pair_inputs for every name clearing the liquidity floor, from the Laevitas panel. Done when the calculator's name list on the page shows the universe count.
