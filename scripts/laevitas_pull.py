@@ -75,6 +75,11 @@ def complete(path, today):
         body = json.load(open(path))
     except json.JSONDecodeError:
         return False
+    return body_complete(body, today)
+
+
+def body_complete(body, today):
+    """The completeness rule, split out so a cached read can reuse it."""
     if body.get("error"):
         return True
     meta = body.get("meta") or {}
@@ -153,22 +158,78 @@ def rows_for(kind):
     return [r for r in _load(INSTRUMENTS, []) if r.get("type") == kind]
 
 
+CLOSED_STAMP = os.path.join(ROOT, "data", "laevitas", "family_closed.json")
+# A family whose every file was current. Re-parsing thousands of histories
+# on every cycle is what made an options list call take minutes: the
+# completeness answer is in the file, and it changes only when the file
+# does. The stamp is the newest mtime seen, so a refetch invalidates it,
+# and it is written to disk so a restart does not pay the parse again.
+_CLOSED = None
+
+
+def _closed():
+    global _CLOSED
+    if _CLOSED is None:
+        saved = _load(CLOSED_STAMP, {})
+        _CLOSED = saved if isinstance(saved, dict) else {}
+    return _CLOSED
+
+
+def family_closed(kind, store, today):
+    """True when every saved file of a family was current at its mtime.
+
+    Missing names are not a closed family. A file newer than the stamp, or
+    a new day, drops the stamp and the files are read again.
+    """
+    if not os.path.isdir(store):
+        return False
+    stamped = _closed().get(kind)
+    if not stamped or stamped.get("day") != today:
+        return False
+    newest = 0
+    count = 0
+    for name in os.listdir(store):
+        if not name.endswith(".json"):
+            continue
+        count += 1
+        newest = max(newest, os.path.getmtime(os.path.join(store, name)))
+    return count > 0 and count == stamped["count"] and newest <= stamped["mtime"] + 1e-6
+
+
+def mark_closed(kind, store, today):
+    newest = 0.0
+    count = 0
+    if os.path.isdir(store):
+        for name in os.listdir(store):
+            if name.endswith(".json"):
+                count += 1
+                newest = max(newest, os.path.getmtime(os.path.join(store, name)))
+    _closed()[kind] = {"day": today, "count": count, "mtime": newest}
+    os.makedirs(os.path.dirname(CLOSED_STAMP), exist_ok=True)
+    json.dump(_closed(), open(CLOSED_STAMP, "w"))
+
+
 def pending():
     """Incomplete names of the first family that still has any.
 
     A later family is not listed while an earlier family is still short of
     today. Options with no saved contract list count as incomplete, so
     liquidations wait until that list exists and every contract is current.
+    A family that was current is not re-parsed until one of its files
+    changes, so a list cycle does not re-read every perpetual history.
     """
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     for kind, store, _route in families():
         rows = rows_for(kind)
         if kind == "option" and (not rows or list_unfinished()):
             return [{"type": "option", "instrument": None, "market": None, "list": True}]
+        if family_closed(kind, store, today):
+            continue
         waiting = [r for r in rows if not complete(
             os.path.join(store, f"{r['market']}_{r['instrument']}.json"), today)]
         if waiting:
             return waiting
+        mark_closed(kind, store, today)
     return []
 
 

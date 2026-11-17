@@ -4,6 +4,7 @@ import json
 import os
 import sys
 import tempfile
+import time
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
@@ -135,6 +136,19 @@ class PullOrder(unittest.TestCase):
         left = pull.pending()
         self.assertEqual(left[0]["type"], "option")
         self.assertEqual(left[0]["instrument"], "TRX_USDC-18NOV26-0d31-P")
+
+    def test_a_closed_family_is_not_reread(self):
+        self._current(self.perp, "BINANCE_BTCUSDT.json")
+        self._current(self.fut, "BINANCE_BTCUSDT_261225.json")
+        pull.CLOSED_STAMP = os.path.join(self.root, "family_closed.json")
+        pull._CLOSED = None
+        pull.pending()
+        self.assertIn("perpetual", json.load(open(pull.CLOSED_STAMP)))
+        os.remove(os.path.join(self.perp, "BINANCE_BTCUSDT.json"))
+        time.sleep(0.05)
+        open(os.path.join(self.perp, "BINANCE_BTCUSDT.json"), "w").write("{")
+        left = pull.pending()
+        self.assertEqual(left[0]["instrument"], "BTCUSDT")
 
 
 if __name__ == "__main__":
