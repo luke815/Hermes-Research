@@ -19,7 +19,7 @@ from dashboard_io import update_keys  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SWEEPS = os.path.join(ROOT, "results", "sweeps")
-DATA = os.path.join(ROOT, "dashboard", "data.json")
+KEY = os.path.join(ROOT, "dashboard", "keys", "sweep.json")
 
 
 def main():

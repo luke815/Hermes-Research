@@ -18,7 +18,7 @@ from dashboard_io import update_keys  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
-DATA = os.path.join(ROOT, "dashboard", "data.json")
+KEY = os.path.join(ROOT, "dashboard", "keys", "internals.json")
 
 
 def load():

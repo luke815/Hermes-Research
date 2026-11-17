@@ -421,11 +421,11 @@ def main() -> None:
     }
 
     dates = [ts.date().isoformat() for ts in panel.index]
-    price = coinalyze("coinalyze_ohlcv*.json", "c")
-    funding = coinalyze("coinalyze_funding*.json", "c")
-    oi = coinalyze("coinalyze_open-interest*.json", "c")
-    liq = coinalyze("coinalyze_liquidation*.json", "c")
-    lsr = coinalyze("coinalyze_long-short-ratio*.json", "c")
+    price = coinalyze("coinalyze_ohlcv-history.json", "c")
+    funding = coinalyze("coinalyze_funding-rate-history.json", "c")
+    oi = coinalyze("coinalyze_open-interest-history.json", "c")
+    liq = coinalyze("coinalyze_liquidation-history.json", "l")
+    lsr = coinalyze("coinalyze_long-short-ratio-history.json", "r")
 
     series = {"date": dates}
     def named(frames):
