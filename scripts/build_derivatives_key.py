@@ -17,7 +17,7 @@ from regime_tester.derivatives import DERIVATIVES_META, _asset
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "dashboard", "keys", "derivatives.json")
 SPARK = 30
-PCT_WINDOW = 252
+PCT_WINDOW = 365
 PCT_MIN = 30
 
 UNITS = {

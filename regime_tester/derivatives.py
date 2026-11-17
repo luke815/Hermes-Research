@@ -44,7 +44,6 @@ DERIVATIVES_META = {
     "risk_reversal_30": ("options", ["risk_reversal"], 1, "level"),
     "basis_venue": ("derivatives", ["basis"], 1, "level"),
     "basis_pct_252": ("derivatives", ["basis"], 30, "oscillator"),
-    "perp_premium": ("derivatives", ["basis"], 1, "level"),
     "funding_oiw": ("derivatives", ["funding"], 1, "level"),
     "funding_oiw_avg_7": ("derivatives", ["funding"], 7, "level"),
     "funding_persist_high_oiw": ("derivatives", ["funding"], 30, "count"),
@@ -163,7 +162,6 @@ def _asset(asset):
     skew90 = daily(f"skew_{asset}*.json", lambda r: tenor(r, "90"))
     rr30 = daily(f"rr_{asset}*.json", lambda r: tenor(r, "30"))
     basis = daily(f"basis_{asset}*.json", venue_mean)
-    premium = daily(f"oiw_funding_{asset}*.json", lambda r: _num(r.get("apr")))
     funding = daily(f"oiw_funding_{asset}*.json", lambda r: _num(r.get("funding")))
     funding_c = daily(f"oiw_funding_{asset}*.json", lambda r: _num(r.get("funding_c")))
     funding_u = daily(f"oiw_funding_{asset}*.json", lambda r: _num(r.get("funding_u")))
@@ -196,7 +194,6 @@ def _asset(asset):
     if basis is not None:
         keep("basis_venue", basis)
         keep("basis_pct_252", _percentile(basis))
-    keep("perp_premium", premium)
     if funding is not None:
         keep("funding_oiw", funding)
         keep("funding_oiw_avg_7", funding.rolling(7).mean())

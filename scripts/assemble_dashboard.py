@@ -16,15 +16,22 @@ KEYS = os.path.join(ROOT, "dashboard", "keys")
 
 
 def assemble():
-    """Merge through the locked writer, so meta.as_of records each panel."""
+    """Stamp each key with its file's modification time, not the assembly time.
+
+    A stale key file would otherwise look fresh because the stamp is when the
+    assembler ran, not when the job wrote it.
+    """
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import dashboard_io
-    updates = {}
+    merged = []
     for name in sorted(os.listdir(KEYS)):
-        if name.endswith(".json"):
-            updates[name[:-5]] = json.load(open(os.path.join(KEYS, name)))
-    dashboard_io.update_keys(BASE, updates)
-    return sorted(updates)
+        if not name.endswith(".json"):
+            continue
+        path = os.path.join(KEYS, name)
+        stamp = datetime.fromtimestamp(os.path.getmtime(path), timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        dashboard_io.update_keys(BASE, {name[:-5]: json.load(open(path))}, stamp=stamp)
+        merged.append(name[:-5])
+    return merged
 
 
 if __name__ == "__main__":
