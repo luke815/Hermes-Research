@@ -1,0 +1,7 @@
+{
+ "scored": 13392,
+ "cross_section_testable": 166440,
+ "all_testable": 811960,
+ "as_of": "2026-11-17",
+ "note": "scored is the daemon reading, which loaded its list before the recount. cross_section_testable is the current list."
+}

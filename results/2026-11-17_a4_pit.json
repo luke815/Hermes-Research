@@ -7,5 +7,11 @@
   "bybit": 1136,
   "okx": 672
  },
- "note": "listed_from and listed_to from the span files. Binance has no stopped flag, so its delisted count is zero and understated."
+ "note": "listed_from and listed_to from the span files. Binance has no stopped flag, so its delisted count is zero and understated.",
+ "costs": {
+  "gross": 0.01,
+  "net": 0.0039,
+  "net_differs_from_gross": true,
+  "note": "one long leg, horizon 1, funding 0.01 per day"
+ }
 }
