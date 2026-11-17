@@ -265,7 +265,9 @@ def cycle(ctx):
             print(f"skip option list: {exc}", flush=True)
             return {"skipped": 1, "remaining": len(left)}
         return {"listed": listed.get("listed", 0), "contracts": listed.get("contracts", 0),
-                "remaining": len(left)}
+                "walked": listed.get("walked", 0), "maturities": listed.get("maturities", 0),
+                "market": listed.get("market"), "currency": listed.get("currency"),
+                "maturity": listed.get("maturity"), "remaining": len(left)}
     store = next(store for kind, store, _route in families() if kind == row["type"])
     os.makedirs(store, exist_ok=True)
     end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
