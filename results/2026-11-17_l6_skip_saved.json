@@ -1,0 +1,26 @@
+{
+  "job": "L6",
+  "written_utc": "2026-11-17T06:28:23Z",
+  "today": "2026-11-17",
+  "verdict": "partial, not done",
+  "done_when": "the sweep status line shows scored against testable moving, and the derivatives panel, positioning cross-section, C5 and R1 to R6 are scored",
+  "bug": "After the completion rule kept a measure pending until ratio_btc was saved, the next cycle re-emitted the 396 cells already on disk and append_rows refused the write. The daemon retried that same measure and the status line stayed at scored 12276 of 168600.",
+  "fix": "append_rows skips ids already saved and still refuses a duplicate inside the new rows. Commit 3b73b31.",
+  "tests": "tests.test_sweep_worklist 4 passed, including test_append_skips_cells_already_saved",
+  "status_line_before": "scored 12276 of 168600 testable",
+  "status_line_after": "scored 12312 of 168600 testable",
+  "status_line_file": "ops/sweep_status",
+  "first_cycle": "2026-11-17T06:28:03Z cycle 1 ok in 1239.0s, measure basis_chg_7, 36 new ratio_btc rows, rows_total 1620, remaining 30. Over the 900s budget.",
+  "file": "results/sweeps/2026-11-17_xs_vec.csv",
+  "daemon": {
+    "name": "sweep_xs",
+    "pid": 29766,
+    "version": "3b73b31",
+    "stale_code": false,
+    "phase": "working",
+    "cycles": 1,
+    "started_utc": "2026-11-17T06:07:24Z"
+  },
+  "panel": "PASS panel_end=2026-11-16 today=2026-11-17 age=1d rows=2492 trailing_blank_cols=0 dupes=0 missing_days=0",
+  "blocked": "The derivatives panel, the positioning cross-section beyond basis and the long/short ratio, C5 and R1 to R6 need the options store and the per-name funding and open-interest history. A research run does not pull."
+}
