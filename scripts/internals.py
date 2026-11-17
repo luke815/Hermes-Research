@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from dashboard_io import update_keys  # noqa: E402
+from dashboard_io import write_key  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
@@ -85,7 +85,7 @@ def main():
             "above_200d": [None if pd.isna(v) else round(float(v), 4) for v in above_200.iloc[-YEAR:]],
         },
     }
-    update_keys(DATA, {"internals": internals})
+    write_key(KEY, internals)
     print(f"internals as_of {internals['as_of']} names {internals['universe_n']} "
           f"above_50d {internals['breadth']['above_50d']}")
 

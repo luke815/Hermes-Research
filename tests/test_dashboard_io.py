@@ -54,3 +54,10 @@ def test_concurrent_writers_do_not_lose_keys(tmp_path):
         p.join()
     data = json.load(open(path))
     assert all(data[k] == 24 for k in keys)
+
+
+def test_write_key_creates_folder_and_nulls_nan(tmp_path):
+    from dashboard_io import write_key
+    path = tmp_path / "keys" / "internals.json"
+    write_key(str(path), {"a": math.nan, "b": [1.0]})
+    assert json.load(open(path)) == {"a": None, "b": [1.0]}

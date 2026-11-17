@@ -86,3 +86,13 @@ def update_keys(path: str, updates: dict, stamp: str | None = None) -> dict:
         data["meta"] = meta
         write_atomic(path, data)
     return data
+
+
+def write_key(path: str, value) -> None:
+    """One job's key file under dashboard/keys/, written whole and atomically.
+
+    The assembler merges these into data.json; it should do so with
+    update_keys(), so the merge is locked and meta.as_of records each key.
+    """
+    os.makedirs(os.path.dirname(os.path.abspath(str(path))), exist_ok=True)
+    write_atomic(str(path), value)

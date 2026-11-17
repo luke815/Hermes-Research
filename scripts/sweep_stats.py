@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from dashboard_io import update_keys  # noqa: E402
+from dashboard_io import write_key  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SWEEPS = os.path.join(ROOT, "results", "sweeps")
@@ -44,7 +44,7 @@ def main():
             for row in conf[-30:]
         ],
     }
-    update_keys(DATA, {"sweep": payload})
+    write_key(KEY, payload)
     print(f"sweep cells {scored} confirmations {len(payload['confirmations'])}")
 
 

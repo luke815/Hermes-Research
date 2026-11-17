@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from dashboard_io import update_keys  # noqa: E402
+from dashboard_io import write_key  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
@@ -145,7 +145,7 @@ def main():
                         "and commodities excluded. Not a tested signal."),
                "rs_basis": "vs_btc",
                "rows": rows}
-    update_keys(DATA, {"universe_rank": payload})
+    write_key(KEY, payload)
     print(f"ranked {len(rows)} of {seen + skipped_floor + skipped_history} live names, "
           f"skipped {skipped_floor} below the liquidity floor, {skipped_history} under 90 days, "
           f"{skipped_delisted} not on binance, {skipped_tradfi} stocks, ETFs or commodities")

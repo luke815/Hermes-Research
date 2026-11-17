@@ -525,7 +525,6 @@ def main() -> None:
         },
         "series": series,
         "factors": factor_rows(heat),
-        "derivatives": derivatives_block(series, dates),
         "alt_ranking": [],
         "alt_ranking_note": "No cross-sectional ranking model exists yet.",
         "setups": [],

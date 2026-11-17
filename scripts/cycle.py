@@ -20,7 +20,7 @@ import pandas as pd
 
 from regime_tester.episodes import base_rates, bottom_event, top_event
 from regime_tester.periods import assign_period
-from dashboard_io import update_keys  # noqa: E402
+from dashboard_io import write_key  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
@@ -114,7 +114,7 @@ def main():
                               "at_high": btc >= high_60 * 0.95, "at_low": btc <= low_60 * 1.05})
     cycle["btc"]["base_top_30d"] = base_rate(btc_frame, "at_high", "top")
     cycle["btc"]["base_bottom_30d"] = base_rate(btc_frame, "at_low", "bottom")
-    update_keys(DATA, {"cycle": cycle})
+    write_key(KEY, cycle)
     print(f"cycle as_of {cycle['as_of']} btc_top {cycle['btc']['candidate_top']} "
           f"btc_bottom {cycle['btc']['candidate_bottom']} "
           f"episodes {cycle['universe']['n_top_episodes']}/{cycle['universe']['n_bottom_episodes']}")
