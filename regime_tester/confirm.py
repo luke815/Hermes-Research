@@ -160,12 +160,14 @@ def score_periods(cell_id):
 def _score_cross_section(cell):
     """Validation and test for one cross-sectional cell, from the point-in-time panel."""
     from regime_tester.cross_section import score_cross_section
+    from regime_tester.panel_integrity import clean_frame, collapse_venues
     panel = {}
     for name in sorted(os.listdir(ROOT / "data" / "panel_xs")):
-        frame = pd.read_csv(ROOT / "data" / "panel_xs" / name)
+        frame = clean_frame(pd.read_csv(ROOT / "data" / "panel_xs" / name))
         if "close" not in frame.columns or frame["close"].notna().sum() < 60:
             continue
         panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])[["date", "close"]]
+    panel, _dropped = collapse_venues(panel)
     measure = cell.split("|")[0]
 
     def signal(close):

@@ -49,8 +49,10 @@ def score_cross_section(panel, signal_fn, horizon):
     panel is a dict of name to a frame with date and close. signal_fn takes a
     close series and returns the signal, lagged one bar by the caller.
     """
+    from regime_tester.panel_integrity import clean_frame
     rows = []
     for name, frame in panel.items():
+        frame = clean_frame(frame)
         close = frame.set_index("date")["close"].astype(float)
         signal = signal_fn(close).shift(1)
         forward = close.shift(-horizon) / close - 1

@@ -62,15 +62,21 @@ def bybit_klines(symbol):
 
 
 def bybit_funding(symbol):
+    """Daily funding as the sum of the day's settlements, with the interval.
+
+    The last print of the day is not the day's funding: an 8-hour venue
+    settles three times and a 1-hour venue twenty-four. The interval is stored
+    beside the sum so the two are not read as the same quantity.
+    """
     from urllib.parse import quote
+    from regime_tester.panel_integrity import sum_funding
     url = ("https://api.bybit.com/v5/market/funding/history?category=linear&symbol="
            + quote(symbol, safe="") + "&limit=200")
     got = json.loads(rate_budget.get(url, timeout=30))
-    by_day = {}
-    for row in got.get("result", {}).get("list", []):
-        day = datetime.fromtimestamp(int(row["fundingRateTimestamp"]) / 1000, timezone.utc).strftime("%Y-%m-%d")
-        by_day[day] = float(row["fundingRate"])
-    return by_day
+    rows = got.get("result", {}).get("list", [])
+    prints = [(int(row["fundingRateTimestamp"]), float(row["fundingRate"])) for row in rows]
+    hours = _interval_hours(prints, default=8)
+    return sum_funding(prints, hours)
 
 
 def okx_klines(symbol):
@@ -83,25 +89,53 @@ def okx_klines(symbol):
             for r in got.get("data", [])]
 
 
+def _interval_hours(prints, default):
+    """Hours between consecutive settlements, from the prints themselves."""
+    stamps = sorted({int(stamp) for stamp, _rate in prints})
+    gaps = [b - a for a, b in zip(stamps, stamps[1:]) if b > a]
+    if not gaps:
+        return default
+    hours = round(min(gaps) / 3_600_000)
+    return hours if hours in (1, 4, 8) else default
+
+
 def binance_funding(symbol):
+    """Daily funding as the sum of the day's settlements, with the interval."""
     from urllib.parse import quote
+    from regime_tester.panel_integrity import sum_funding
     url = ("https://fapi.binance.com/fapi/v1/fundingRate?symbol="
            + quote(symbol, safe="") + "&limit=1000")
     rows = json.loads(rate_budget.get(url, timeout=30))
-    by_day = {}
-    for r in rows:
-        day = datetime.fromtimestamp(r["fundingTime"] / 1000, timezone.utc).strftime("%Y-%m-%d")
-        by_day[day] = float(r["fundingRate"])
-    return by_day
+    prints = [(int(r["fundingTime"]), float(r["fundingRate"])) for r in rows]
+    return sum_funding(prints, _interval_hours(prints, default=8))
 
 
-def write_name(symbol, price, funding):
-    frame = pd.DataFrame(price)
-    frame["funding_rate"] = frame["date"].map(funding)
-    path = os.path.join(PANEL, f"binance_{symbol}.csv")
+def _attach_funding(frame, funding):
+    """Map a daily sum onto the price rows and keep the interval beside it."""
+    if funding and isinstance(next(iter(funding.values())), dict):
+        frame["funding_rate"] = frame["date"].map(
+            lambda day: funding.get(day, {}).get("funding_rate"))
+        frame["funding_interval_hours"] = frame["date"].map(
+            lambda day: funding.get(day, {}).get("funding_interval_hours"))
+    else:
+        frame["funding_rate"] = frame["date"].map(funding)
+    return frame
+
+
+def write_bars(path, bars, funding=None):
+    """Write one name, sorted, with future bars and duplicate dates removed."""
+    from regime_tester.panel_integrity import clean_frame
+    frame = pd.DataFrame(bars)
+    if funding is not None:
+        frame = _attach_funding(frame, funding)
+    frame = clean_frame(frame)
     tmp = path + ".tmp"
     frame.to_csv(tmp, index=False)
     os.replace(tmp, path)
+
+
+def write_name(symbol, price, funding):
+    write_bars(os.path.join(PANEL, f"binance_{symbol}.csv"), price, funding)
 
 
 def needs_funding(exchange, symbol):
@@ -129,13 +163,12 @@ def cycle(ctx):
                 elif exchange == "bybit":
                     bars = bybit_klines(symbol)
                     if bars:
-                        frame = pd.DataFrame(bars)
-                        frame["funding_rate"] = frame["date"].map(bybit_funding(symbol))
-                        frame.to_csv(os.path.join(PANEL, f"bybit_{symbol}.csv"), index=False)
+                        write_bars(os.path.join(PANEL, f"bybit_{symbol}.csv"),
+                                   bars, bybit_funding(symbol))
                 elif exchange == "okx":
                     bars = okx_klines(symbol)
                     if bars:
-                        pd.DataFrame(bars).to_csv(os.path.join(PANEL, f"okx_{symbol}.csv"), index=False)
+                        write_bars(os.path.join(PANEL, f"okx_{symbol}.csv"), bars)
                 mark(f"{exchange}_{symbol}")
                 saved += 1
             except BudgetStop as exc:
