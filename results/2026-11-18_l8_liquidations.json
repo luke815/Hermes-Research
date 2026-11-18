@@ -2,19 +2,60 @@
  "date": "2026-11-18",
  "item": "L8",
  "verdict": "not done, daemon running",
- "written_at": "2026-11-18T03:06:16Z",
+ "written_at": "2026-11-18T03:07:29Z",
  "daemon": "liq_history",
  "pid": 474,
  "version": "f0d6cbd",
- "stale_code": false,
- "cycles": 3,
+ "head": "25c6ce4",
+ "stale_code": true,
+ "stale_reason": "commits since start touched the backlog and the results file, not a file this daemon imports",
+ "cycles": 5,
  "last_error": null,
  "store": "data/laevitas/liquidations_agg",
+ "btc_rows": 3251,
+ "btc_first": "2021-11-20",
+ "btc_last": "2026-11-18",
+ "eth_rows": 660,
+ "eth_first": "2021-11-20",
+ "eth_last": "2022-11-19",
  "windows": [
-  {"file": "BTC_2021.json", "rows": 692, "first": "2021-11-20", "last": "2022-11-19"},
-  {"file": "BTC_2022.json", "rows": 577, "first": "2022-11-20", "last": "2023-11-19"},
-  {"file": "BTC_2023.json", "rows": 669, "first": "2023-11-20", "last": "2024-11-17"}
+  {
+   "file": "BTC_2021.json",
+   "rows": 692,
+   "first": "2021-11-20",
+   "last": "2022-11-19"
+  },
+  {
+   "file": "BTC_2022.json",
+   "rows": 577,
+   "first": "2022-11-20",
+   "last": "2023-11-19"
+  },
+  {
+   "file": "BTC_2023.json",
+   "rows": 669,
+   "first": "2023-11-20",
+   "last": "2024-11-17"
+  },
+  {
+   "file": "BTC_2024.json",
+   "rows": 661,
+   "first": "2024-11-19",
+   "last": "2025-11-18"
+  },
+  {
+   "file": "BTC_2025.json",
+   "rows": 652,
+   "first": "2025-11-19",
+   "last": "2026-11-18"
+  },
+  {
+   "file": "ETH_2021.json",
+   "rows": 660,
+   "first": "2021-11-20",
+   "last": "2022-11-19"
+  }
  ],
- "note": "BTC and ETH aggregated liquidations, resolution 1d, which is a midnight sample and not a daily sum. ETH not started. The instrument puller still holds per-currency liquidations behind unfinished option histories, so this daemon walks the retained aggregate itself.",
+ "note": "resolution 1d is a midnight sample, not a daily sum. BTC runs from 2021-11-20 to the last closed day. ETH has started and is not finished.",
  "tests": "tests/test_liq_history.py, 5 passed under unittest"
 }
