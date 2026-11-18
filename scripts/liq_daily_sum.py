@@ -219,5 +219,9 @@ def cycle(ctx):
 
 
 if __name__ == "__main__":
-    from daemon_base import run_loop
-    run_loop("liq_daily_sum", interval_sec=20, cycle=cycle, align=False, max_cycle_sec=300)
+    import sys as _sys
+    if _sys.argv[1:] == ["--status"]:
+        print(write_status(datetime.now(timezone.utc).strftime("%Y-%m-%d")))
+    else:
+        from daemon_base import run_loop
+        run_loop("liq_daily_sum", interval_sec=20, cycle=cycle, align=False, max_cycle_sec=300)
