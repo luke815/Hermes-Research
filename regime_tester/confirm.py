@@ -360,7 +360,7 @@ def confirm_cell(cell_id, family_n, train_sign, family_combinations=None, panel=
         verdict = "insufficient"
         reason = "validation holds fewer than 30 independent observations; re-queued, not closed"
     else:
-        val_t = validation["t_newey_west"]
+        val_t = validation.get("t_newey_west", validation.get("hac_t"))
         val_sign = int(np.sign(validation["spread_independent"])) if not np.isnan(validation["spread_independent"]) else 0
         if val_sign != train_sign or not (val_sign * val_t > bar):
             verdict = "rejected"
