@@ -10,6 +10,7 @@ Run tracked:
     python3 scripts/live_daemon.py
 """
 
+import csv
 import json
 import os
 import subprocess
@@ -156,17 +157,22 @@ def book_live(marks):
     ledger = os.path.join(ROOT, "signals", "book.csv")
     if not os.path.exists(ledger):
         return {}
-    rows = __import__("pandas").read_csv(ledger)
+    with open(ledger, newline="") as fh:
+        rows = list(csv.DictReader(fh))
     # A row with a close date is a position the book has already exited. Marking
     # it live reports a paper return on a trade that no longer exists.
-    if "closed" in rows.columns:
-        rows = rows[rows["closed"].isna() | (rows["closed"] == "")]
     legs = []
-    for _, row in rows.iterrows():
-        mark = marks.get(row["symbol"])
-        if mark is None or not row["price"] or row["price"] != row["price"]:
+    for row in rows:
+        if row.get("closed"):
             continue
-        pnl = (mark / row["price"] - 1) * (1 if row["side"] == "long" else -1) * 100
+        mark = marks.get(row["symbol"])
+        try:
+            price = float(row["price"])
+        except (TypeError, ValueError):
+            continue
+        if mark is None or not price:
+            continue
+        pnl = (mark / price - 1) * (1 if row["side"] == "long" else -1) * 100
         legs.append({"symbol": row["symbol"], "side": row["side"], "mark": mark,
                      "pnl": round(pnl, 2)})
     if not legs:
