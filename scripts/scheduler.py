@@ -10,6 +10,7 @@ Jobs, UTC:
   06:30  laevitas realtime snapshot
   06:40  derivatives key from the raw store
   06:45  heat_stats key from the panel
+  every hour at :15  hourly store backfill for the relative-strength board
   every hour at :05  health check
 
 A job whose script is missing, exits non-zero or times out is recorded as a
@@ -41,6 +42,7 @@ JOBS = [
     {"name": "laevitas_snapshot", "at": "06:30", "script": "scripts/laevitas_snapshot.py", "timeout": 2400},
     {"name": "derivatives_key", "at": "06:40", "script": "scripts/build_derivatives_key.py"},
     {"name": "heat_stats", "at": "06:45", "script": "scripts/build_heat_stats.py"},
+    {"name": "intraday_backfill", "at": ":15", "script": "scripts/backfill_intraday.py", "timeout": 900},
     {"name": "health", "at": ":05", "script": None},
 ]
 

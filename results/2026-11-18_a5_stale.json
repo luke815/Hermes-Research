@@ -1,0 +1,39 @@
+{
+ "date": "2026-11-18",
+ "item": "A5",
+ "verdict": "partial",
+ "confirmations": {
+  "file": "results/sweeps/confirmations.json",
+  "rows": 315,
+  "void": 315,
+  "not_void": 0,
+  "note": "Every row already carries a void verdict, including the 50 scored on the pre-S7 scorer. Nothing to mark."
+ },
+ "hourly_store": {
+  "script": "scripts/backfill_intraday.py",
+  "result": "results/2026-11-18_intraday_backfill.json",
+  "names": 100,
+  "filled": 99,
+  "skipped": ["币安人生"],
+  "bars_added": 11096,
+  "store_end": "2026-11-18T03:00:00Z",
+  "note": "The store had stopped at 2026-11-05. Binance public klines refilled 99 of 100 names to the last closed hour. One name is not listed on Binance. The scheduler runs the refill hourly at :15, and that process is still on the old code until it is restarted."
+ },
+ "book_live": {
+  "script": "scripts/live_daemon.py",
+  "test": "tests/test_book_live.py",
+  "result": "2 passed",
+  "note": "Closed legs are no longer marked. The running daemon imports this file, so the change takes effect on its next restart."
+ },
+ "ledger": {
+  "writer": "scripts/append_ledger.py",
+  "rewritten_by": "scripts/fix_ledger_forward.py",
+  "file": "research/ledger.csv",
+  "rows": 22,
+  "matured_forward": 12,
+  "blank_until_horizon": 10,
+  "mismatch": 0,
+  "note": "realized_10d was the trailing 10-day return. It is now price[t+10] / price[t] - 1, blank until the horizon elapses."
+ },
+ "open": "live.json health.rs_stale stays true until the restarted live daemon rebuilds the board from the refilled store and a full day passes."
+}

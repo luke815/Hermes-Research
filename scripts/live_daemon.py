@@ -155,10 +155,14 @@ def book_live(marks):
     if not os.path.exists(ledger):
         return {}
     rows = __import__("pandas").read_csv(ledger)
+    # A row with a close date is a position the book has already exited. Marking
+    # it live reports a paper return on a trade that no longer exists.
+    if "closed" in rows.columns:
+        rows = rows[rows["closed"].isna() | (rows["closed"] == "")]
     legs = []
     for _, row in rows.iterrows():
         mark = marks.get(row["symbol"])
-        if mark is None or not row["price"]:
+        if mark is None or not row["price"] or row["price"] != row["price"]:
             continue
         pnl = (mark / row["price"] - 1) * (1 if row["side"] == "long" else -1) * 100
         legs.append({"symbol": row["symbol"], "side": row["side"], "mark": mark,
