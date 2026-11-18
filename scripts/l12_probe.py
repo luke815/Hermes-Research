@@ -34,6 +34,12 @@ def window(today):
     return start.strftime("%Y-%m-%dT00:00:00Z"), end.strftime("%Y-%m-%dT00:00:00Z")
 
 
+def bare_url(today):
+    """The same query with bare dates, which the host rejects as invalid."""
+    return (f"{HOST}?series=futures_annualized_basis&currency=BTC&days=90"
+            f"&resolution=1d&start={today}&end={today}&limit=5&page=1")
+
+
 def url_for(start, end):
     return (f"{HOST}?series=futures_annualized_basis&currency=BTC&days=90"
             f"&resolution=1d&start={start}&end={end}&limit=5&page=1")
@@ -60,6 +66,9 @@ def run(today=None):
     for name, agent in AGENTS:
         status, body = probe(agent, url, token)
         probes.append({"agent": name, "user_agent": agent, "status": status, "body": body})
+    bare_status, bare_body = probe(AGENTS[0][1], bare_url(today), token)
+    probes.append({"agent": "bare_date", "user_agent": AGENTS[0][1],
+                   "status": bare_status, "body": bare_body})
     from regime_tester.results_io import write_result
     payload = {"item": "L12", "host": "apiv2.laevitas.ch",
                "path": "/api/v1/derivatives/funding-history", "header": "X-API-Key",
