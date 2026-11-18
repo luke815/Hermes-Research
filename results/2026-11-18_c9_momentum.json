@@ -1,0 +1,221 @@
+{
+ "date": "2026-11-18",
+ "item": "C9",
+ "panel": "data/panel_xs",
+ "universe_rows": 2731,
+ "coins_with_a_file": 1069,
+ "cost_per_leg": 0.006,
+ "cost_note": "thin tier on every leg; open interest is absent for the live names",
+ "cells": [
+  {
+   "lookback": 14,
+   "horizon": 7,
+   "stride": 7,
+   "dates_scored": 7,
+   "dates_dropped_missing_carry": 202,
+   "periods": {
+    "train": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "validation": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "test": {
+     "n": 7,
+     "mean_spread": 0.058625198178819136,
+     "t": 0.9286744284675137,
+     "hit_rate": 0.5714285714285714
+    }
+   },
+   "years": [
+    {
+     "year": 2026,
+     "n": 7,
+     "mean_spread": 0.058625198178819136
+    }
+   ]
+  },
+  {
+   "lookback": 14,
+   "horizon": 14,
+   "stride": 7,
+   "dates_scored": 6,
+   "dates_dropped_missing_carry": 202,
+   "periods": {
+    "train": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "validation": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "test": {
+     "n": 6,
+     "mean_spread": 0.013255559820325271,
+     "t": 0.23591463984466862,
+     "hit_rate": 0.3333333333333333
+    }
+   },
+   "years": [
+    {
+     "year": 2026,
+     "n": 6,
+     "mean_spread": 0.013255559820325271
+    }
+   ]
+  },
+  {
+   "lookback": 14,
+   "horizon": 28,
+   "stride": 7,
+   "dates_scored": 4,
+   "dates_dropped_missing_carry": 202,
+   "periods": {
+    "train": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "validation": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "test": {
+     "n": 4,
+     "mean_spread": -0.09929369845513694,
+     "t": -1.409804178324176,
+     "hit_rate": 0.25
+    }
+   },
+   "years": [
+    {
+     "year": 2026,
+     "n": 4,
+     "mean_spread": -0.09929369845513694
+    }
+   ]
+  },
+  {
+   "lookback": 28,
+   "horizon": 7,
+   "stride": 7,
+   "dates_scored": 7,
+   "dates_dropped_missing_carry": 200,
+   "periods": {
+    "train": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "validation": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "test": {
+     "n": 7,
+     "mean_spread": -0.002334234496961068,
+     "t": -0.10476626181852919,
+     "hit_rate": 0.2857142857142857
+    }
+   },
+   "years": [
+    {
+     "year": 2026,
+     "n": 7,
+     "mean_spread": -0.002334234496961068
+    }
+   ]
+  },
+  {
+   "lookback": 28,
+   "horizon": 14,
+   "stride": 7,
+   "dates_scored": 6,
+   "dates_dropped_missing_carry": 200,
+   "periods": {
+    "train": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "validation": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "test": {
+     "n": 6,
+     "mean_spread": -0.08058968169630672,
+     "t": -1.5019711120828503,
+     "hit_rate": 0.3333333333333333
+    }
+   },
+   "years": [
+    {
+     "year": 2026,
+     "n": 6,
+     "mean_spread": -0.08058968169630672
+    }
+   ]
+  },
+  {
+   "lookback": 28,
+   "horizon": 28,
+   "stride": 7,
+   "dates_scored": 4,
+   "dates_dropped_missing_carry": 200,
+   "periods": {
+    "train": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "validation": {
+     "n": 0,
+     "mean_spread": null,
+     "t": null,
+     "hit_rate": null
+    },
+    "test": {
+     "n": 4,
+     "mean_spread": -0.10558551258074919,
+     "t": -1.1244252172658122,
+     "hit_rate": 0.25
+    }
+   },
+   "years": [
+    {
+     "year": 2026,
+     "n": 4,
+     "mean_spread": -0.10558551258074919
+    }
+   ]
+  }
+ ],
+ "verdict": "insufficient",
+ "reason": "Funding is saved from 2026-08 for most of the 1,896 names that have any, so a decile with ten names of known carry exists only in the test period. Train and validation have zero dates in every cell. Charging no carry would treat a missing cost as zero, which the scorer refuses.",
+ "funding_coverage": {
+  "files_with_a_value": 1896,
+  "note": "1,069 coins have a price file inside their span; 1,896 files hold a funding value, mostly from 2026-08."
+ }
+}
