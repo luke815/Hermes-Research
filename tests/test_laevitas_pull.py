@@ -50,6 +50,21 @@ class PullOrder(unittest.TestCase):
         left = pull.pending()
         self.assertEqual(left[0]["instrument"], "BTCUSDT")
 
+    def test_a_400_recorded_8_days_ago_is_pending_again(self):
+        """A 400 is done for 7 days, then the name is fetched again."""
+        today = datetime.now(timezone.utc).date()
+        recent = datetime.fromordinal(today.toordinal() - 6).strftime("%Y-%m-%d")
+        old = datetime.fromordinal(today.toordinal() - 8).strftime("%Y-%m-%d")
+        json.dump({"items": [], "error": 400, "error_on": recent},
+                  open(os.path.join(self.perp, "BINANCE_BTCUSDT.json"), "w"))
+        self.assertNotIn("perpetual", [r["type"] for r in pull.pending()])
+        json.dump({"items": [], "error": 404, "error_on": old},
+                  open(os.path.join(self.perp, "BINANCE_BTCUSDT.json"), "w"))
+        self.assertEqual(pull.pending()[0]["instrument"], "BTCUSDT")
+        json.dump({"items": [], "error": 400},
+                  open(os.path.join(self.perp, "BINANCE_BTCUSDT.json"), "w"))
+        self.assertEqual(pull.pending()[0]["instrument"], "BTCUSDT")
+
     def test_a_failing_name_does_not_stall_the_next(self):
         """A 500 defers the name, and the next cycle takes a different one."""
         import urllib.error
@@ -176,6 +191,10 @@ class PullOrder(unittest.TestCase):
         self._current(self.fut, "BINANCE_BTCUSDT_261225.json")
         pull.CLOSED_STAMP = os.path.join(self.root, "family_closed.json")
         pull._CLOSED = None
+        pull.OPTION_CONTRACTS = os.path.join(self.root, "option_contracts.json")
+        pull.OPTION_MATURITIES = os.path.join(self.root, "option_maturities.json")
+        pull.OPTIONS_STORE = os.path.join(self.root, "options")
+        pull.CATALOG = os.path.join(self.root, "catalog.json")
         pull.pending()
         self.assertIn("perpetual", json.load(open(pull.CLOSED_STAMP)))
         os.remove(os.path.join(self.perp, "BINANCE_BTCUSDT.json"))

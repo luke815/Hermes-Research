@@ -4,7 +4,8 @@ Perpetuals first, then dated futures, then options contracts, then
 liquidations by currency. A family opens only when the one before it has
 no incomplete file, so a later pull never takes a token from an earlier
 family that is still short of today. A name is marked done only when its
-file is written and current, or the vendor returned 400 or 404.
+file is written and current. A 400 or 404 is recorded with the day it
+was seen and retried after 7 days, not marked done forever.
 
 Options contracts are not the expiry rows in instruments.json. Those name
 an expiry, not a strike. The contract list is fetched one maturity at a
@@ -79,15 +80,25 @@ def complete(path, today):
     return body_complete(body, today)
 
 
+RETRY_AFTER_DAYS = 7
+
+
 def body_complete(body, today):
     """Current only when the last bar is the last closed day.
 
     A file that fetched every page is still pending once that bar ages past
     yesterday, so a name stays in the queue and gets extended. A file with no
-    bars is not current.
+    bars is not current. A 400 or 404 is current only for the 7 days after it
+    was recorded; after that the name is fetched again. An error with no day
+    is the old mark-forever file, and it is pending so it gets a date.
     """
     if body.get("error"):
-        return True
+        seen = body.get("error_on")
+        if not seen:
+            return False
+        gap = (datetime.strptime(today, "%Y-%m-%d").date()
+               - datetime.strptime(seen, "%Y-%m-%d").date()).days
+        return gap < RETRY_AFTER_DAYS
     dates = [i.get("date") for i in body.get("items", []) if i.get("date")]
     if not dates:
         return False
@@ -353,7 +364,7 @@ def cycle(ctx):
     except urllib.error.HTTPError as exc:
         if exc.code in (400, 404):
             path = os.path.join(store, f"{row['market']}_{row['instrument']}.json")
-            json.dump({"items": [], "error": exc.code}, open(path, "w"))
+            json.dump({"items": [], "error": exc.code, "error_on": end}, open(path, "w"))
             return {"empty": 1, "code": exc.code, "remaining": len(left) - 1}
         # A 500 or a timeout is the server, not the name. Move it to the back
         # so the next cycle takes a different name instead of stalling here.
