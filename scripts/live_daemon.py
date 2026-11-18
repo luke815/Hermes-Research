@@ -193,10 +193,12 @@ def cycle(ctx):
     # The marks are fresh every five minutes, but the board reads the hourly store,
     # which nothing in this loop updates. Judge staleness on the board's own time,
     # so a board from last week is not shown with this minute's stamp.
+    # The board drops the bar still forming and the hourly refill lands after the
+    # hour closes, so a healthy board sits about two hours behind the clock.
     rs_age = None
     if built.get("as_of"):
         rs_age = now - int(datetime.fromisoformat(built["as_of"].replace("Z", "+00:00")).timestamp())
-    rs_stale = rs_age is None or rs_age > 2 * 3600
+    rs_stale = rs_age is None or rs_age > 3 * 3600
     if rs_stale:
         note = (note + "; " if note else "") + (
             f"relative strength board is {round(rs_age / 3600)}h old" if rs_age else "no relative strength board")
