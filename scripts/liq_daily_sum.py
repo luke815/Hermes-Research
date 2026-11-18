@@ -19,6 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import rate_budget
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
 STORE = os.path.join(ROOT, "data", "laevitas", "liquidations_sum")
 PROGRESS = os.path.join(ROOT, "ops", "liq_daily_sum.json")
 SAMPLE = os.path.join(ROOT, "data", "laevitas", "liquidations_agg")
