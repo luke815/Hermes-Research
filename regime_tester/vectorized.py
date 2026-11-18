@@ -25,12 +25,13 @@ THRESHOLDS = (80, 90, 95, 20, 10, 5)
 
 def load_close_matrix(panel_dir, names=None):
     """Dates by names close matrix, and the panel hash the cache keys on."""
+    from regime_tester.panel_integrity import read_panel_csv
     files = sorted(f for f in os.listdir(panel_dir) if f.endswith(".csv"))
     frames = {}
     for name in files:
         if names and name not in names:
             continue
-        frame = pd.read_csv(os.path.join(panel_dir, name), usecols=["date", "close"])
+        frame = read_panel_csv(os.path.join(panel_dir, name))[["date", "close"]]
         frames[name.replace(".csv", "")] = frame.set_index("date")["close"].astype(float)
     matrix = pd.DataFrame(frames).sort_index()
     digest = hashlib.sha256(pd.util.hash_pandas_object(matrix).values.tobytes()).hexdigest()[:16]

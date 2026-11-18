@@ -68,10 +68,11 @@ def load_pooled() -> dict[str, pd.DataFrame]:
     Close and volume only. Open and high are the close, because the panel does
     not store them, and a script that needs the true range cannot use this.
     """
+    from regime_tester.panel_integrity import read_panel_csv
     out = {}
     panel = ROOT / "data" / "panel_xs"
     for name in sorted(os.listdir(panel)):
-        frame = pd.read_csv(panel / name)
+        frame = read_panel_csv(panel / name)
         if "close" not in frame.columns or frame["close"].notna().sum() < 60:
             continue
         frame = frame.dropna(subset=["close"])

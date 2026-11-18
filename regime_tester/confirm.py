@@ -235,13 +235,13 @@ def _xs_signal(close, cell):
 
 def _load_cross_batch(names):
     """One batch of the Laevitas panel. Loading every file takes minutes."""
-    from regime_tester.panel_integrity import clean_frame
+    from regime_tester.panel_integrity import read_panel_csv
     source = ROOT / "data" / "panel_xs_laevitas"
     if not source.exists():
         source = ROOT / "data" / "panel_xs"
     panel = {}
     for name in names:
-        frame = clean_frame(pd.read_csv(source / f"{name}.csv"))
+        frame = read_panel_csv(source / f"{name}.csv")
         if "close" not in frame.columns or frame["close"].notna().sum() < 60:
             continue
         panel[name] = frame.dropna(subset=["close"])

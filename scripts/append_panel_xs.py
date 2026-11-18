@@ -45,6 +45,7 @@ def append_batch(symbols, day):
 
 
 def main():
+    from regime_tester.panel_integrity import replace_last_row
     yesterday = (datetime.now(timezone.utc).date() - timedelta(days=1)).isoformat()
     names = live_names()
     written = 0
@@ -53,9 +54,9 @@ def main():
         for symbol, row in batch.items():
             path = os.path.join(PANEL, f"binance_{symbol}.csv")
             frame = pd.read_csv(path) if os.path.exists(path) and os.path.getsize(path) > 40 else pd.DataFrame()
-            if not frame.empty and yesterday in set(frame["date"]):
-                continue
-            frame = pd.concat([frame, pd.DataFrame([row])], ignore_index=True)
+            # A date already present is the partial print of a day that has
+            # now closed. Replace that row rather than keeping it.
+            frame = replace_last_row(frame, row)
             tmp = path + ".tmp"
             frame.to_csv(tmp, index=False)
             os.replace(tmp, path)

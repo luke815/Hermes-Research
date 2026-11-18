@@ -55,6 +55,39 @@ class PanelIntegrity(unittest.TestCase):
         self.assertEqual(base_of("BTC-USDT-SWAP"), "BTC")
         self.assertEqual(base_of("BTCUSDT"), "BTC")
         self.assertEqual(base_of("1000PEPE-USDT-SWAP"), "1000PEPE")
+        # Inverse and multiplier names collapse to the same coin as the linear.
+        self.assertEqual(base_of("BTCUSD_PERP"), "BTC")
+        self.assertEqual(base_of("1000PEPEUSDT"), "1000PEPE")
+
+    def test_replace_last_row_overwrites_a_partial_bar(self):
+        # A partial print of a day that later closed must be replaced, not kept.
+        from regime_tester.panel_integrity import replace_last_row
+        frame = pd.DataFrame({"date": ["2026-11-16", "2026-11-17"], "close": [1.0, 2.0]})
+        replaced = replace_last_row(frame, {"date": "2026-11-17", "close": 9.0})
+        self.assertEqual(list(replaced["date"]), ["2026-11-16", "2026-11-17"])
+        self.assertEqual(list(replaced["close"]), [1.0, 9.0])
+        appended = replace_last_row(frame, {"date": "2026-11-18", "close": 3.0})
+        self.assertEqual(list(appended["close"]), [1.0, 2.0, 3.0])
+
+    def test_descending_file_fails_through_the_readers(self):
+        # The review asked for the real readers, not the helper on its own.
+        import os
+        import tempfile
+        from regime_tester.cross_section import score_cross_section
+        from regime_tester.panel_integrity import read_panel_csv
+        descending = pd.DataFrame(
+            {"date": ["2026-11-16", "2026-11-15", "2026-11-14"], "close": [3.0, 2.0, 1.0]})
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "binance_BTCUSDT.csv")
+            descending.to_csv(path, index=False)
+            # read_panel_csv sorts before it checks, so a file written
+            # descending comes back ascending. A frame handed to the scorer
+            # already descending, which is what a reader that skipped the sort
+            # would pass on, is refused.
+            read_back = read_panel_csv(path, today="2026-11-17")
+            self.assertEqual(list(read_back["date"]), ["2026-11-14", "2026-11-15", "2026-11-16"])
+        with self.assertRaises(AssertionError):
+            score_cross_section({"binance_BTCUSDT": descending}, lambda s: s, 1)
 
 
 if __name__ == "__main__":

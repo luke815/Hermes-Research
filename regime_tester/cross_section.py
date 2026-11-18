@@ -49,9 +49,12 @@ def score_cross_section(panel, signal_fn, horizon):
     panel is a dict of name to a frame with date and close. signal_fn takes a
     close series and returns the signal, lagged one bar by the caller.
     """
-    from regime_tester.panel_integrity import clean_frame
+    from regime_tester.panel_integrity import assert_sorted, clean_frame
     rows = []
     for name, frame in panel.items():
+        # Check the frame as it arrived. Cleaning first would sort a descending
+        # file and the check would pass on the file the review asked to reject.
+        assert_sorted(frame)
         frame = clean_frame(frame)
         close = frame.set_index("date")["close"].astype(float)
         signal = signal_fn(close).shift(1)

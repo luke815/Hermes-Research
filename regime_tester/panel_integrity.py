@@ -38,6 +38,37 @@ def clean_frame(frame, today=None):
     return out.reset_index(drop=True)
 
 
+def read_panel_csv(path, today=None):
+    """Read one panel file and refuse it when its dates run backwards or repeat.
+
+    Both readers call this, so a descending file fails on the path the code
+    actually uses, not on a helper that nothing imports. The frame is cleaned
+    first: sorted, de-duplicated, and cut before today, because a bar is
+    stamped with its open time.
+    """
+    frame = pd.read_csv(path)
+    frame = clean_frame(frame, today=today)
+    assert_sorted(frame)
+    return frame
+
+
+def replace_last_row(frame, row):
+    """Replace a partial last row of the same date, otherwise append the row.
+
+    A daily append that only checks whether the date is present keeps the
+    first print of a day that later settled. The last row of the same date is
+    dropped and the new row written in its place, so the closed bar replaces
+    the partial one.
+    """
+    day = str(row["date"])[:10]
+    out = frame.copy() if frame is not None and len(frame) else pd.DataFrame()
+    if len(out) and "date" in out.columns:
+        out = out[out["date"].astype(str).str.slice(0, 10) != day]
+    added = pd.DataFrame([{**row, "date": day}])
+    out = pd.concat([out, added], ignore_index=True)
+    return clean_frame(out, today="9999-12-31")
+
+
 def assert_sorted(frame):
     """Fail when dates run backwards or repeat. A reader calls this after cleaning."""
     if frame is None or len(frame) == 0 or "date" not in getattr(frame, "columns", []):
@@ -69,12 +100,22 @@ def sum_funding(prints, interval_hours):
 
 
 def base_of(symbol):
-    """Strip the quote and the multiplier so the same coin collapses to one key."""
+    """Strip the quote and the multiplier so the same coin collapses to one key.
+
+    An inverse name carries the quote in the middle (BTCUSD_PERP), so the quote
+    is stripped again after the contract suffix. 1000PEPE keeps its multiplier:
+    it is a different instrument from PEPE, and collapsing the two would price
+    one with the other's level.
+    """
     stem = str(symbol).split(".")[0]
     for suffix in ("-USDT-SWAP", "-USDC-SWAP", "-USD-SWAP", "_PERP", "-SWAP",
                    "USDT", "USDC", "USD"):
         if stem.endswith(suffix) and len(stem) > len(suffix):
             stem = stem[: -len(suffix)]
+            break
+    for quote in ("USDT", "USDC", "USD"):
+        if stem.endswith(quote) and len(stem) > len(quote):
+            stem = stem[: -len(quote)]
             break
     stem = stem.replace("-", "").replace("_", "")
     return stem.upper()
