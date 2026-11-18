@@ -35,7 +35,8 @@ def eligible():
     board = json.load(open(BOARD)).get("leaderboard", [])
     done = attempted()
     fresh = [row for row in board if row["cell_id"] not in done
-             and row.get("status") != "insufficient"]
+             and row.get("status") != "insufficient"
+             and not row["cell_id"].split("|")[4].startswith(("rel_", "ratio_btc"))]
     cross = [row for row in fresh if row.get("universe") == "pit_cross_section"
              or "pit_cross_section" in row["cell_id"]]
     events = [row for row in fresh if row["cell_id"].split("|")[4].startswith(("top_", "bottom_"))]
