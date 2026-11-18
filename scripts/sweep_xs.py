@@ -28,6 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import pandas as pd
 
+from regime_tester.counter import write_counter
 from regime_tester.indicators import LIBRARY_VERSION, META
 from regime_tester.vectorized import (
     forward_returns, load_close_matrix, signal_matrix, transform_matrix,
@@ -403,8 +404,9 @@ def net_returns(close):
 
 
 def status_line(done, work):
-    """Scored cells against the testable list, written each cycle so it moves."""
-    line = f"scored {len(done & work)} of {len(work)} testable"
+    """Scored cells against the testable list, written to the shared counter."""
+    payload = write_counter(len(done & work), len(work))
+    line = f"scored {payload['scored']} of {payload['testable']} testable, from {payload['file']}"
     tmp = STATUS + ".tmp"
     open(tmp, "w").write(line + "\n")
     os.replace(tmp, STATUS)

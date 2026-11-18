@@ -40,7 +40,8 @@ class WorkList(unittest.TestCase):
             sweep_xs.STATUS = os.path.join(tmp, "sweep_status")
             work = {"a|raw", "b|raw", "c|raw"}
             line = sweep_xs.status_line({"a|raw", "z|raw"}, work)
-            self.assertEqual(line, "scored 1 of 3 testable")
+            self.assertIn("scored 1 of 3 testable, from ", line)
+            self.assertTrue(line.endswith("counter.json"))
             self.assertEqual(open(sweep_xs.STATUS).read().strip(), line)
 
     def test_append_skips_cells_already_saved(self):

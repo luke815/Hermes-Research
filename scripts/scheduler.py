@@ -32,6 +32,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS = os.path.join(ROOT, "results")
 PY = "/opt/hermes/.venv/bin/python3"
 ENV = dict(os.environ, PYTHONPATH="/opt/data/.local/lib/python3.14/site-packages")
+COUNTER = os.path.join(ROOT, "results", "sweeps", "counter.json")
+STATUS = os.path.join(ROOT, "ops", "sweep_status")
 
 JOBS = [
     {"name": "daily_refresh", "at": "05:30", "script": "scripts/refresh_coinalyze.py"},
@@ -102,6 +104,18 @@ def failed_jobs(now):
     return out
 
 
+def sweep_status():
+    """Mirror the shared counter into the status line, so both cite one file."""
+    if not os.path.exists(COUNTER):
+        return {"wrote": False}
+    payload = json.load(open(COUNTER))
+    line = f"scored {payload['scored']} of {payload['testable']} testable, from {payload['file']}\n"
+    tmp = STATUS + ".tmp"
+    open(tmp, "w").write(line)
+    os.replace(tmp, STATUS)
+    return {"wrote": True, "line": line.strip()}
+
+
 def health(now):
     """Read heartbeats and the hosted file. Return the problems, or nothing."""
     problems = []
@@ -145,6 +159,7 @@ def post(text):
 def cycle(ctx):
     now = datetime.now(timezone.utc).replace(second=0, microsecond=0)
     ran = []
+    sweep_status()
     for job in JOBS:
         if not due(job, now) or already_ran(job, now):
             continue
