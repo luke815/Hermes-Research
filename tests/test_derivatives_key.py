@@ -28,12 +28,14 @@ def _rows(values, start, field="dvol"):
 class KeyTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
+        self.saved = derivatives.RAW
         self.store = Path(self.tmp.name)
         derivatives.RAW = self.store
         self.out = self.store / "derivatives.json"
         builder.OUT = str(self.out)
 
     def tearDown(self):
+        derivatives.RAW = self.saved
         self.tmp.cleanup()
 
     def test_planted_series_reads_back(self):
@@ -83,6 +85,11 @@ class KeyTests(unittest.TestCase):
         self.assertEqual(rr["as_of"], (today - timedelta(days=31)).isoformat())
         self.assertNotEqual(rr["as_of"], dvol["as_of"])
         self.assertEqual(payload["as_of"], today.isoformat())
+
+    def test_raw_is_restored_after_the_class(self):
+        """A later test must see the real store, not this class's temp copy."""
+        self.assertTrue(self.saved.exists())
+        self.assertNotEqual(derivatives.RAW, self.saved)
 
 
 if __name__ == "__main__":

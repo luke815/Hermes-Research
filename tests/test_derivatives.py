@@ -41,7 +41,11 @@ class StoreTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
+        self.saved = derivatives.RAW
         derivatives.RAW = Path(self.tmp.name)
+
+    def tearDown(self):
+        derivatives.RAW = self.saved
 
     def test_overlapping_windows_keep_the_last_row(self):
         first = [{"date": 1609459200000, "dvol": 40.0}]
@@ -88,6 +92,11 @@ class StoreTests(unittest.TestCase):
         from regime_tester.derivatives import tenor_mean
         row = {"date": 1, "BINANCE": 100.0, "30": 6.0, "90": 8.0}
         self.assertEqual(tenor_mean(row), 7.0)
+
+    def test_raw_is_restored_after_the_class(self):
+        """A later test must see the real store, not this class's temp copy."""
+        self.assertTrue(self.saved.exists())
+        self.assertNotEqual(derivatives.RAW, self.saved)
 
 
 class LookaheadTests(unittest.TestCase):
