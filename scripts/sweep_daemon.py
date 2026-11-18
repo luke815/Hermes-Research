@@ -19,6 +19,12 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+# procmgr restarts from a clean environment, which does not have the user
+# site on its path. The libraries live there, so the script adds them itself.
+_SITE = "/opt/data/.local/lib/python3.14/site-packages"
+if _SITE not in sys.path:
+    sys.path.insert(0, _SITE)
+
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -204,11 +210,12 @@ def pass_once(state):
 def self_check(state):
     """Score one already-scored measure with its rows hidden, and check the result.
 
-    Reads the newest sweep file that exists, so a date rollover does not make the
-    check fail on a file that has not been created yet.
+    Reads the newest file this daemon wrote, named by date with no suffix, so a
+    vectorized file written later is not checked against a scorer that cannot
+    reproduce it.
     """
     frames, computed, admitted, years, period_hash = state
-    files = sorted(OUT_DIR.glob("*.csv"))
+    files = sorted(p for p in OUT_DIR.glob("*.csv") if len(p.stem) == 10)
     if not files:
         return {"measure": None, "rows": 0, "matched": False, "note": "no sweep file yet"}
     saved = pd.read_csv(files[-1])
