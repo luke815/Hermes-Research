@@ -3,8 +3,10 @@
 The daily file in data/laevitas/liquidations_agg is a midnight sample of the
 vendor's observation grid, and the vendor says that grid is not a daily sum.
 This script reads the retained event feed instead, one day per cycle, and
-writes long and short separately plus their total. A day with no events is
-absent, not written as zero. The midnight-sample file is not touched.
+writes long and short separately plus their total. The event feed's earliest
+observed bar is 2025-09-26, so the walk starts there; earlier days have no
+events to sum. A day with no events is absent, not written as zero. The
+midnight-sample file is not touched.
 """
 
 import json
@@ -23,7 +25,7 @@ SAMPLE = os.path.join(ROOT, "data", "laevitas", "liquidations_agg")
 BASE = "https://apiv2.laevitas.ch/api/v1/perpetuals/liquidations"
 CURRENCIES = ("BTC", "ETH")
 EXCHANGES = ("binance", "bybit", "okx", "hyperliquid", "kraken", "lighter", "nado", "deribit")
-START = datetime(2021, 11, 20, tzinfo=timezone.utc)
+START = datetime(2025, 9, 26, tzinfo=timezone.utc)
 LIMIT = 1000
 
 
