@@ -1,0 +1,24 @@
+{
+ "date": "2026-11-18",
+ "written_at": "2026-11-18T06:09:33Z",
+ "item": "L12",
+ "host": "apiv2.laevitas.ch",
+ "path": "/api/v1/derivatives/funding-history",
+ "header": "X-API-Key",
+ "query": "series=futures_annualized_basis currency=BTC days=90 resolution=1d start=2026-11-10T00:00:00Z end=2026-11-17T00:00:00Z limit=5 page=1",
+ "note": "Bare dates and a query missing series both return 400 invalid_request for either agent. Full ISO timestamps return 200 for both, so the key is accepted on this host and the earlier 403 was a bad request.",
+ "probes": [
+  {
+   "agent": "default",
+   "user_agent": "Python-urllib/3.14",
+   "status": 200,
+   "body": "{\"dataset_id\":\"derivatives.funding_observations\",\"series\":\"futures_annualized_basis\",\"days\":90,\"meta\":{\"total\":8,\"items\":5,\"page\":1,\"total_pages\":2,\"limit\":5,\"availability\":{\"empty_reason\":null,\"cover"
+  },
+  {
+   "agent": "mozilla",
+   "user_agent": "Mozilla/5.0",
+   "status": 200,
+   "body": "{\"dataset_id\":\"derivatives.funding_observations\",\"series\":\"futures_annualized_basis\",\"days\":90,\"meta\":{\"total\":8,\"items\":5,\"page\":1,\"total_pages\":2,\"limit\":5,\"availability\":{\"empty_reason\":null,\"cover"
+  }
+ ]
+}

@@ -1,61 +1,24 @@
 {
  "date": "2026-11-18",
+ "written_at": "2026-11-18T06:08:18Z",
  "item": "L8",
- "verdict": "not done, daemon running",
- "written_at": "2026-11-18T03:07:29Z",
- "daemon": "liq_history",
- "pid": 474,
- "version": "f0d6cbd",
- "head": "25c6ce4",
- "stale_code": true,
- "stale_reason": "commits since start touched the backlog and the results file, not a file this daemon imports",
- "cycles": 5,
- "last_error": null,
+ "verdict": "done",
  "store": "data/laevitas/liquidations_agg",
- "btc_rows": 3251,
- "btc_first": "2021-11-20",
- "btc_last": "2026-11-18",
- "eth_rows": 660,
- "eth_first": "2021-11-20",
- "eth_last": "2022-11-19",
- "windows": [
-  {
-   "file": "BTC_2021.json",
-   "rows": 692,
-   "first": "2021-11-20",
-   "last": "2022-11-19"
-  },
-  {
-   "file": "BTC_2022.json",
-   "rows": 577,
-   "first": "2022-11-20",
-   "last": "2023-11-19"
-  },
-  {
-   "file": "BTC_2023.json",
-   "rows": 669,
-   "first": "2023-11-20",
-   "last": "2024-11-17"
-  },
-  {
-   "file": "BTC_2024.json",
-   "rows": 661,
-   "first": "2024-11-19",
-   "last": "2025-11-18"
-  },
-  {
-   "file": "BTC_2025.json",
-   "rows": 652,
-   "first": "2025-11-19",
-   "last": "2026-11-18"
-  },
-  {
-   "file": "ETH_2021.json",
-   "rows": 660,
-   "first": "2021-11-20",
-   "last": "2022-11-19"
-  }
- ],
- "note": "resolution 1d is a midnight sample, not a daily sum. BTC runs from 2021-11-20 to the last closed day. ETH has started and is not finished.",
- "tests": "tests/test_liq_history.py, 5 passed under unittest"
+ "note": "Each file is one year window, one page, and the vendor's daily grid is a midnight sample, not a daily sum. Both currencies are fully paged: every page meta says total_pages 1 and items equals the saved row count.",
+ "BTC": {
+  "rows": 3251,
+  "windows": 5,
+  "first": "2021-11-20",
+  "last": "2026-11-18",
+  "unique_days_last_window": 356
+ },
+ "ETH": {
+  "rows": 3213,
+  "windows": 5,
+  "first": "2021-11-20",
+  "last": "2026-11-18",
+  "unique_days_last_window": 362
+ },
+ "done_when": "ETH reaches the last closed day. ETH_2025.json ends 2026-11-18, which is today, past the last closed day 2026-11-17.",
+ "daemon": "liq_history pid 474 reports remaining 0"
 }

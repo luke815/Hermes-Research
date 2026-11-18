@@ -1,0 +1,751 @@
+{
+ "date": "2026-11-18",
+ "written_at": "2026-11-18T06:14:34Z",
+ "item": "C8",
+ "names": 20,
+ "funding_source": "data/laevitas/perpetuals/BINANCE_<base>USDT.json",
+ "definition": "3-day sum of long plus short, lagged one bar, above its own trailing 90-day percentile, also lagged, min 30 days",
+ "cost": "thin tier where oi missing, liquid tier otherwise; carry from the Laevitas funding print, missing carry leaves net missing",
+ "cells": [
+  {
+   "asset": "BTC",
+   "pct": 0.9,
+   "horizon": 1,
+   "periods": {
+    "train": {
+     "n_flagged": 93,
+     "n_rest": 540,
+     "n_flagged_indep": 93,
+     "spread": 0.006477,
+     "flagged_mean": 0.004576,
+     "rest_mean": -0.001901,
+     "hit_rate": 0.4516,
+     "base_rate": 0.4037,
+     "t_indep": 1.8793
+    },
+    "validation": {
+     "n_flagged": 66,
+     "n_rest": 482,
+     "n_flagged_indep": 66,
+     "spread": 0.00788,
+     "flagged_mean": 0.004779,
+     "rest_mean": -0.003102,
+     "hit_rate": 0.5,
+     "base_rate": 0.4232,
+     "t_indep": 2.2937
+    },
+    "test": {
+     "n_flagged": 56,
+     "n_rest": 258,
+     "n_flagged_indep": 56,
+     "spread": 0.004288,
+     "flagged_mean": -0.000228,
+     "rest_mean": -0.004516,
+     "hit_rate": 0.4286,
+     "base_rate": 0.3876,
+     "t_indep": 1.5125
+    }
+   }
+  },
+  {
+   "asset": "BTC",
+   "pct": 0.9,
+   "horizon": 3,
+   "periods": {
+    "train": {
+     "n_flagged": 93,
+     "n_rest": 538,
+     "n_flagged_indep": 33,
+     "spread": 0.013033,
+     "flagged_mean": 0.014106,
+     "rest_mean": 0.001073,
+     "hit_rate": 0.6129,
+     "base_rate": 0.4535,
+     "t_indep": 1.5556
+    },
+    "validation": {
+     "n_flagged": 66,
+     "n_rest": 480,
+     "n_flagged_indep": 21,
+     "spread": 0.017481,
+     "flagged_mean": 0.015087,
+     "rest_mean": -0.002394,
+     "hit_rate": 0.5606,
+     "base_rate": 0.4979,
+     "t_indep": 1.9834
+    },
+    "test": {
+     "n_flagged": 53,
+     "n_rest": 250,
+     "n_flagged_indep": 16,
+     "spread": -0.000695,
+     "flagged_mean": -0.006524,
+     "rest_mean": -0.005829,
+     "hit_rate": 0.434,
+     "base_rate": 0.428,
+     "t_indep": 0.1884
+    }
+   }
+  },
+  {
+   "asset": "BTC",
+   "pct": 0.9,
+   "horizon": 5,
+   "periods": {
+    "train": {
+     "n_flagged": 93,
+     "n_rest": 536,
+     "n_flagged_indep": 16,
+     "spread": 0.023258,
+     "flagged_mean": 0.026499,
+     "rest_mean": 0.003242,
+     "hit_rate": 0.5914,
+     "base_rate": 0.459,
+     "t_indep": 0.604
+    },
+    "validation": {
+     "n_flagged": 65,
+     "n_rest": 479,
+     "n_flagged_indep": 12,
+     "spread": 0.018511,
+     "flagged_mean": 0.018243,
+     "rest_mean": -0.000267,
+     "hit_rate": 0.5846,
+     "base_rate": 0.5073,
+     "t_indep": 1.6938
+    },
+    "test": {
+     "n_flagged": 52,
+     "n_rest": 243,
+     "n_flagged_indep": 11,
+     "spread": 0.00085,
+     "flagged_mean": -0.007766,
+     "rest_mean": -0.008616,
+     "hit_rate": 0.4231,
+     "base_rate": 0.3786,
+     "t_indep": 1.3727
+    }
+   }
+  },
+  {
+   "asset": "BTC",
+   "pct": 0.95,
+   "horizon": 1,
+   "periods": {
+    "train": {
+     "n_flagged": 51,
+     "n_rest": 582,
+     "n_flagged_indep": 51,
+     "spread": 0.004941,
+     "flagged_mean": 0.003594,
+     "rest_mean": -0.001347,
+     "hit_rate": 0.4314,
+     "base_rate": 0.4089,
+     "t_indep": 1.1618
+    },
+    "validation": {
+     "n_flagged": 33,
+     "n_rest": 515,
+     "n_flagged_indep": 33,
+     "spread": 0.004817,
+     "flagged_mean": 0.002374,
+     "rest_mean": -0.002443,
+     "hit_rate": 0.4848,
+     "base_rate": 0.4291,
+     "t_indep": 1.009
+    },
+    "test": {
+     "n_flagged": 24,
+     "n_rest": 290,
+     "n_flagged_indep": 24,
+     "spread": -0.000493,
+     "flagged_mean": -0.004206,
+     "rest_mean": -0.003713,
+     "hit_rate": 0.375,
+     "base_rate": 0.3966,
+     "t_indep": -0.1395
+    }
+   }
+  },
+  {
+   "asset": "BTC",
+   "pct": 0.95,
+   "horizon": 3,
+   "periods": {
+    "train": {
+     "n_flagged": 51,
+     "n_rest": 580,
+     "n_flagged_indep": 19,
+     "spread": 0.009207,
+     "flagged_mean": 0.011457,
+     "rest_mean": 0.00225,
+     "hit_rate": 0.5882,
+     "base_rate": 0.4672,
+     "t_indep": -0.1704
+    },
+    "validation": {
+     "n_flagged": 33,
+     "n_rest": 513,
+     "n_flagged_indep": 9,
+     "spread": 0.018574,
+     "flagged_mean": 0.017171,
+     "rest_mean": -0.001403,
+     "hit_rate": 0.5152,
+     "base_rate": 0.5049,
+     "t_indep": 0.7355
+    },
+    "test": {
+     "n_flagged": 21,
+     "n_rest": 282,
+     "n_flagged_indep": 9,
+     "spread": 0.002242,
+     "flagged_mean": -0.003864,
+     "rest_mean": -0.006106,
+     "hit_rate": 0.5238,
+     "base_rate": 0.422,
+     "t_indep": -0.0422
+    }
+   }
+  },
+  {
+   "asset": "BTC",
+   "pct": 0.95,
+   "horizon": 5,
+   "periods": {
+    "train": {
+     "n_flagged": 51,
+     "n_rest": 578,
+     "n_flagged_indep": 8,
+     "spread": 0.023106,
+     "flagged_mean": 0.027913,
+     "rest_mean": 0.004807,
+     "hit_rate": 0.5686,
+     "base_rate": 0.4706,
+     "t_indep": 0.5687
+    },
+    "validation": {
+     "n_flagged": 33,
+     "n_rest": 511,
+     "n_flagged_indep": 5,
+     "spread": 0.01849,
+     "flagged_mean": 0.019313,
+     "rest_mean": 0.000823,
+     "hit_rate": 0.5758,
+     "base_rate": 0.5127,
+     "t_indep": 1.0101
+    },
+    "test": {
+     "n_flagged": 21,
+     "n_rest": 274,
+     "n_flagged_indep": 2,
+     "spread": 0.011191,
+     "flagged_mean": 0.001928,
+     "rest_mean": -0.009262,
+     "hit_rate": 0.5714,
+     "base_rate": 0.3723,
+     "t_indep": null
+    }
+   }
+  },
+  {
+   "asset": "BTC",
+   "pct": 0.99,
+   "horizon": 1,
+   "periods": {
+    "train": {
+     "n_flagged": 19,
+     "n_rest": 614,
+     "n_flagged_indep": 19,
+     "spread": 0.00682,
+     "flagged_mean": 0.005666,
+     "rest_mean": -0.001154,
+     "hit_rate": 0.3684,
+     "base_rate": 0.4121,
+     "t_indep": 0.8701
+    },
+    "validation": {
+     "n_flagged": 15,
+     "n_rest": 533,
+     "n_flagged_indep": 15,
+     "spread": 0.013584,
+     "flagged_mean": 0.01106,
+     "rest_mean": -0.002524,
+     "hit_rate": 0.4667,
+     "base_rate": 0.4315,
+     "t_indep": 1.7357
+    },
+    "test": {
+     "n_flagged": 10,
+     "n_rest": 304,
+     "n_flagged_indep": 10,
+     "spread": -0.003323,
+     "flagged_mean": -0.006968,
+     "rest_mean": -0.003645,
+     "hit_rate": 0.4,
+     "base_rate": 0.3947,
+     "t_indep": -0.5809
+    }
+   }
+  },
+  {
+   "asset": "BTC",
+   "pct": 0.99,
+   "horizon": 3,
+   "periods": {
+    "train": {
+     "n_flagged": 19,
+     "n_rest": 612,
+     "n_flagged_indep": 5,
+     "spread": 0.017964,
+     "flagged_mean": 0.020417,
+     "rest_mean": 0.002453,
+     "hit_rate": 0.5263,
+     "base_rate": 0.4755,
+     "t_indep": 0.4278
+    },
+    "validation": {
+     "n_flagged": 15,
+     "n_rest": 531,
+     "n_flagged_indep": 5,
+     "spread": 0.030941,
+     "flagged_mean": 0.02981,
+     "rest_mean": -0.001131,
+     "hit_rate": 0.6,
+     "base_rate": 0.5028,
+     "t_indep": 1.0868
+    },
+    "test": {
+     "n_flagged": 10,
+     "n_rest": 293,
+     "n_flagged_indep": 3,
+     "spread": 0.00657,
+     "flagged_mean": 0.000403,
+     "rest_mean": -0.006168,
+     "hit_rate": 0.5,
+     "base_rate": 0.4266,
+     "t_indep": 0.2159
+    }
+   }
+  },
+  {
+   "asset": "BTC",
+   "pct": 0.99,
+   "horizon": 5,
+   "periods": {
+    "train": {
+     "n_flagged": 19,
+     "n_rest": 610,
+     "n_flagged_indep": 5,
+     "spread": 0.020683,
+     "flagged_mean": 0.026739,
+     "rest_mean": 0.006056,
+     "hit_rate": 0.5789,
+     "base_rate": 0.4754,
+     "t_indep": 0.6528
+    },
+    "validation": {
+     "n_flagged": 15,
+     "n_rest": 529,
+     "n_flagged_indep": 2,
+     "spread": 0.028966,
+     "flagged_mean": 0.030112,
+     "rest_mean": 0.001146,
+     "hit_rate": 0.5333,
+     "base_rate": 0.5161,
+     "t_indep": null
+    },
+    "test": {
+     "n_flagged": 10,
+     "n_rest": 285,
+     "n_flagged_indep": 1,
+     "spread": 0.004822,
+     "flagged_mean": -0.003807,
+     "rest_mean": -0.008629,
+     "hit_rate": 0.5,
+     "base_rate": 0.3825,
+     "t_indep": null
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.9,
+   "horizon": 1,
+   "periods": {
+    "train": {
+     "dates": 329,
+     "dates_indep": 329,
+     "spread": -0.000547,
+     "t_indep": -0.3263,
+     "flagged_names": 1438
+    },
+    "validation": {
+     "dates": 330,
+     "dates_indep": 330,
+     "spread": 0.003202,
+     "t_indep": 1.9517,
+     "flagged_names": 1359
+    },
+    "test": {
+     "dates": 166,
+     "dates_indep": 166,
+     "spread": -0.002481,
+     "t_indep": -1.2183,
+     "flagged_names": 790
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.9,
+   "horizon": 3,
+   "periods": {
+    "train": {
+     "dates": 329,
+     "dates_indep": 110,
+     "spread": 0.00193,
+     "t_indep": -1.0132,
+     "flagged_names": 1438
+    },
+    "validation": {
+     "dates": 328,
+     "dates_indep": 110,
+     "spread": 0.009278,
+     "t_indep": 2.0891,
+     "flagged_names": 1341
+    },
+    "test": {
+     "dates": 159,
+     "dates_indep": 53,
+     "spread": -0.004588,
+     "t_indep": 0.5089,
+     "flagged_names": 740
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.9,
+   "horizon": 5,
+   "periods": {
+    "train": {
+     "dates": 327,
+     "dates_indep": 66,
+     "spread": 0.006185,
+     "t_indep": -0.2613,
+     "flagged_names": 1436
+    },
+    "validation": {
+     "dates": 326,
+     "dates_indep": 66,
+     "spread": 0.011436,
+     "t_indep": 1.5523,
+     "flagged_names": 1323
+    },
+    "test": {
+     "dates": 156,
+     "dates_indep": 32,
+     "spread": -0.002273,
+     "t_indep": -0.7864,
+     "flagged_names": 735
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.95,
+   "horizon": 1,
+   "periods": {
+    "train": {
+     "dates": 245,
+     "dates_indep": 245,
+     "spread": 7e-06,
+     "t_indep": 0.0028,
+     "flagged_names": 863
+    },
+    "validation": {
+     "dates": 251,
+     "dates_indep": 251,
+     "spread": 0.002381,
+     "t_indep": 1.0077,
+     "flagged_names": 787
+    },
+    "test": {
+     "dates": 125,
+     "dates_indep": 125,
+     "spread": -0.000159,
+     "t_indep": -0.0461,
+     "flagged_names": 496
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.95,
+   "horizon": 3,
+   "periods": {
+    "train": {
+     "dates": 245,
+     "dates_indep": 82,
+     "spread": 0.003137,
+     "t_indep": -0.0524,
+     "flagged_names": 863
+    },
+    "validation": {
+     "dates": 249,
+     "dates_indep": 83,
+     "spread": 0.010129,
+     "t_indep": 1.357,
+     "flagged_names": 778
+    },
+    "test": {
+     "dates": 121,
+     "dates_indep": 41,
+     "spread": -0.003323,
+     "t_indep": -1.0558,
+     "flagged_names": 469
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.95,
+   "horizon": 5,
+   "periods": {
+    "train": {
+     "dates": 245,
+     "dates_indep": 49,
+     "spread": 0.007444,
+     "t_indep": -0.8641,
+     "flagged_names": 863
+    },
+    "validation": {
+     "dates": 247,
+     "dates_indep": 50,
+     "spread": 0.01607,
+     "t_indep": 2.4086,
+     "flagged_names": 763
+    },
+    "test": {
+     "dates": 119,
+     "dates_indep": 24,
+     "spread": -0.006493,
+     "t_indep": -0.4839,
+     "flagged_names": 466
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.99,
+   "horizon": 1,
+   "periods": {
+    "train": {
+     "dates": 162,
+     "dates_indep": 162,
+     "spread": -0.000923,
+     "t_indep": -0.2084,
+     "flagged_names": 398
+    },
+    "validation": {
+     "dates": 155,
+     "dates_indep": 155,
+     "spread": 0.00172,
+     "t_indep": 0.5275,
+     "flagged_names": 408
+    },
+    "test": {
+     "dates": 97,
+     "dates_indep": 97,
+     "spread": 0.000909,
+     "t_indep": 0.2195,
+     "flagged_names": 246
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.99,
+   "horizon": 3,
+   "periods": {
+    "train": {
+     "dates": 162,
+     "dates_indep": 54,
+     "spread": 0.000756,
+     "t_indep": -0.796,
+     "flagged_names": 398
+    },
+    "validation": {
+     "dates": 155,
+     "dates_indep": 52,
+     "spread": 0.0068,
+     "t_indep": 0.9156,
+     "flagged_names": 408
+    },
+    "test": {
+     "dates": 93,
+     "dates_indep": 31,
+     "spread": 0.001353,
+     "t_indep": -0.5196,
+     "flagged_names": 235
+    }
+   }
+  },
+  {
+   "asset": "pooled",
+   "pct": 0.99,
+   "horizon": 5,
+   "periods": {
+    "train": {
+     "dates": 162,
+     "dates_indep": 33,
+     "spread": 0.007655,
+     "t_indep": -0.7854,
+     "flagged_names": 398
+    },
+    "validation": {
+     "dates": 153,
+     "dates_indep": 31,
+     "spread": 0.019707,
+     "t_indep": 1.5572,
+     "flagged_names": 404
+    },
+    "test": {
+     "dates": 91,
+     "dates_indep": 19,
+     "spread": -0.005852,
+     "t_indep": 0.5666,
+     "flagged_names": 233
+    }
+   }
+  }
+ ],
+ "year_split_pooled_95": {
+  "1": {
+   "2022": {
+    "dates": 5,
+    "dates_indep": 5,
+    "spread": -0.037597,
+    "t_indep": -1.3647
+   },
+   "2023": {
+    "dates": 175,
+    "dates_indep": 175,
+    "spread": 0.00086,
+    "t_indep": 0.3399
+   },
+   "2024": {
+    "dates": 177,
+    "dates_indep": 177,
+    "spread": 0.002914,
+    "t_indep": 0.9378
+   },
+   "2025": {
+    "dates": 139,
+    "dates_indep": 139,
+    "spread": 0.00087,
+    "t_indep": 0.2986
+   },
+   "2026": {
+    "dates": 125,
+    "dates_indep": 125,
+    "spread": -0.000159,
+    "t_indep": -0.0461
+   }
+  },
+  "3": {
+   "2022": {
+    "dates": 5,
+    "dates_indep": 2,
+    "spread": -0.026438,
+    "t_indep": null
+   },
+   "2023": {
+    "dates": 175,
+    "dates_indep": 59,
+    "spread": 0.004409,
+    "t_indep": 1.038
+   },
+   "2024": {
+    "dates": 177,
+    "dates_indep": 59,
+    "spread": 0.011986,
+    "t_indep": 1.1021
+   },
+   "2025": {
+    "dates": 137,
+    "dates_indep": 46,
+    "spread": 0.003865,
+    "t_indep": 0.0723
+   },
+   "2026": {
+    "dates": 121,
+    "dates_indep": 41,
+    "spread": -0.003323,
+    "t_indep": -1.0558
+   }
+  },
+  "5": {
+   "2022": {
+    "dates": 5,
+    "dates_indep": 1,
+    "spread": -0.023678,
+    "t_indep": null
+   },
+   "2023": {
+    "dates": 175,
+    "dates_indep": 35,
+    "spread": 0.007443,
+    "t_indep": -0.427
+   },
+   "2024": {
+    "dates": 177,
+    "dates_indep": 36,
+    "spread": 0.024178,
+    "t_indep": 1.5429
+   },
+   "2025": {
+    "dates": 135,
+    "dates_indep": 27,
+    "spread": 0.002439,
+    "t_indep": -0.2035
+   },
+   "2026": {
+    "dates": 119,
+    "dates_indep": 24,
+    "spread": -0.006493,
+    "t_indep": -0.4839
+   }
+  }
+ },
+ "verdict": "rejected",
+ "verdict_reason": "The flagged-minus-rest spread at the 95th percentile is positive in train and validation and negative in test, on BTC at 1 day (0.004941, 0.004817, -0.000493) and on the pooled names at 1, 3 and 5 days. The one cell that keeps its sign, BTC at 5 days, rests on 2 independent flagged days in test, below 30. No non-overlapping t-stat reaches 2 in both held-out periods. The 90th percentile neighbour flips the same way.",
+ "primary": {
+  "asset": "pooled",
+  "pct": 0.95,
+  "horizon": 1,
+  "periods": {
+   "train": {
+    "dates": 245,
+    "dates_indep": 245,
+    "spread": 7e-06,
+    "t_indep": 0.0028,
+    "flagged_names": 863
+   },
+   "validation": {
+    "dates": 251,
+    "dates_indep": 251,
+    "spread": 0.002381,
+    "t_indep": 1.0077,
+    "flagged_names": 787
+   },
+   "test": {
+    "dates": 125,
+    "dates_indep": 125,
+    "spread": -0.000159,
+    "t_indep": -0.0461,
+    "flagged_names": 496
+   }
+  }
+ }
+}
