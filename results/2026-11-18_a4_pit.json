@@ -1,0 +1,78 @@
+{
+ "as_of": "2026-11-18",
+ "written_by": "scripts/a4_pit.py",
+ "rows": 2731,
+ "delisted": 499,
+ "delisted_by_exchange": {
+  "binance": 31,
+  "bybit": 314,
+  "okx": 154
+ },
+ "dates_with_delisted_names": 2488,
+ "delisted_names_file": "data/delisted_by_date.csv",
+ "sample_dates": [
+  {
+   "date": "2020-01-08",
+   "delisted_names": 1
+  },
+  {
+   "date": "2021-05-19",
+   "delisted_names": 15
+  },
+  {
+   "date": "2022-09-28",
+   "delisted_names": 79
+  },
+  {
+   "date": "2024-02-07",
+   "delisted_names": 189
+  },
+  {
+   "date": "2025-06-18",
+   "delisted_names": 253
+  },
+  {
+   "date": "2026-10-28",
+   "delisted_names": 4
+  }
+ ],
+ "costs": {
+  "shape": "long plus short, horizon 1",
+  "gross": 0.02,
+  "net": 0.008,
+  "net_differs_from_gross": true
+ },
+ "delisted_in_panel": 183,
+ "delisted_in_panel_by_exchange": {
+  "binance": 31,
+  "bybit": 152
+ },
+ "delisted_in_panel_file": "data/delisted_in_panel_by_date.csv",
+ "dates_with_delisted_in_panel": 2488,
+ "panel_sample_dates": [
+  {
+   "date": "2020-01-08",
+   "delisted_in_panel": 1
+  },
+  {
+   "date": "2021-05-19",
+   "delisted_in_panel": 14
+  },
+  {
+   "date": "2022-09-28",
+   "delisted_in_panel": 22
+  },
+  {
+   "date": "2024-02-07",
+   "delisted_in_panel": 42
+  },
+  {
+   "date": "2025-06-18",
+   "delisted_in_panel": 82
+  },
+  {
+   "date": "2026-10-28",
+   "delisted_in_panel": 4
+  }
+ ]
+}
