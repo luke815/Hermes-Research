@@ -17,9 +17,11 @@ RECORD = os.path.join(ROOT, "results", "sweeps", "confirmations.json")
 
 
 def attempted():
+    """Cells with a live verdict. A void row is not an attempt."""
     if not os.path.exists(RECORD):
         return set()
-    return {row["cell_id"] for row in json.load(open(RECORD))}
+    return {row["cell_id"] for row in json.load(open(RECORD))
+            if not str(row.get("verdict", "")).startswith("void")}
 
 
 def eligible():
