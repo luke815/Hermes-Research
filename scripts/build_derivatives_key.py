@@ -73,6 +73,7 @@ def build():
             spark = [_round(name, v) for v in clean.iloc[-SPARK:]]
             rows.append({
                 "name": name,
+                "as_of": clean.index[-1].date().isoformat(),
                 "value": _round(name, last),
                 "unit": UNITS.get(name, ""),
                 "chg_1d": None if prev is None else _round(name, last - prev),

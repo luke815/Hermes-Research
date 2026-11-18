@@ -38,6 +38,7 @@ STATUS = os.path.join(ROOT, "ops", "sweep_status")
 
 JOBS = [
     {"name": "daily_refresh", "at": "05:30", "script": "scripts/refresh_coinalyze.py"},
+    {"name": "laevitas_refresh", "at": "05:35", "script": "scripts/laevitas_refresh.py"},
     {"name": "rerank", "at": "05:45", "script": "scripts/universe_rank.py"},
     {"name": "laevitas_snapshot", "at": "06:30", "script": "scripts/laevitas_snapshot.py", "timeout": 2400},
     {"name": "derivatives_key", "at": "06:40", "script": "scripts/build_derivatives_key.py"},
@@ -54,9 +55,15 @@ def slot_key(job, now):
 
 
 def due(job, now):
+    """Due at its minute, and still due later in the hour if that minute was missed.
+
+    A scheduler that was down at 05:35 runs the job on the next cycle instead
+    of waiting until tomorrow. already_ran stops a second fire.
+    """
     if job["at"].startswith(":"):
-        return now.strftime("%M") == job["at"][1:]
-    return now.strftime("%H:%M") == job["at"]
+        return now.strftime("%M") >= job["at"][1:]
+    hour, minute = job["at"].split(":")
+    return now.strftime("%H") == hour and now.strftime("%M") >= minute
 
 
 def already_ran(job, now):

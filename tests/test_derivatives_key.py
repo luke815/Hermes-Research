@@ -49,7 +49,7 @@ class KeyTests(unittest.TestCase):
         self.assertEqual(row["chg_7d"], 7.0)
         self.assertEqual(len(row["spark"]), 30)
         self.assertEqual(row["spark"][-1], 60.0)
-        self.assertEqual(payload["as_of"], today.isoformat())
+        self.assertEqual(row["as_of"], today.isoformat())
         self.assertIn("ETH", payload["assets"])
 
     def test_missing_day_is_absent(self):
@@ -69,6 +69,20 @@ class KeyTests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             builder.build()
         self.assertFalse(self.out.exists())
+
+    def test_a_stale_series_keeps_its_own_date(self):
+        today = datetime.now(timezone.utc).date()
+        fresh = (today - timedelta(days=59)).isoformat()
+        stale = (today - timedelta(days=70)).isoformat()
+        (self.store / "dvol_btc_a.json").write_text(json.dumps(_rows(list(range(1, 61)), fresh)))
+        (self.store / "dvol_eth_a.json").write_text(json.dumps(_rows(list(range(1, 61)), fresh)))
+        (self.store / "rr_btc_a.json").write_text(json.dumps(_rows(list(range(1, 41)), stale, field="30")))
+        payload = builder.build()
+        rr = next(r for r in payload["assets"]["BTC"] if r["name"] == "risk_reversal_30")
+        dvol = next(r for r in payload["assets"]["BTC"] if r["name"] == "dvol_level")
+        self.assertEqual(rr["as_of"], (today - timedelta(days=31)).isoformat())
+        self.assertNotEqual(rr["as_of"], dvol["as_of"])
+        self.assertEqual(payload["as_of"], today.isoformat())
 
 
 if __name__ == "__main__":

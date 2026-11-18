@@ -160,6 +160,23 @@ def factor_rows(heat):
     return rows
 
 
+def _laevitas_span(stem):
+    """Newest bar and row count across the daily files of one Laevitas series."""
+    newest, count = 0, 0
+    for path in RAW.glob(f"{stem}_*.json"):
+        try:
+            payload = json.loads(path.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        rows = payload if isinstance(payload, list) else []
+        count += len(rows)
+        for row in rows:
+            stamp = row.get("date")
+            if isinstance(stamp, (int, float)):
+                newest = max(newest, int(stamp) // 1000 if stamp > 10_000_000_000 else int(stamp))
+    return newest, count
+
+
 def data_health(dates):
     last = dates[-1]
     rows = []
@@ -169,16 +186,22 @@ def data_health(dates):
         ("Open interest", "Coinalyze", "Binance", "coinalyze_open-interest-history.json"),
         ("Liquidations", "Coinalyze", "Binance", "coinalyze_liquidation-history.json"),
         ("Long/short ratio", "Coinalyze", "Binance", "coinalyze_long-short-ratio-history.json"),
+        ("Risk reversal 25d", "Laevitas", "Deribit", "rr_btc"),
+        ("Skew 25d", "Laevitas", "Deribit", "skew_btc"),
+        ("ATM IV", "Laevitas", "Deribit", "atm_iv_btc"),
+        ("DVOL", "Laevitas", "Deribit", "dvol_btc"),
     ]
     for name, source, venue, filename in checks:
-        payload = json.loads((RAW / filename).read_text())
-        newest = 0
-        count = 0
-        for series in payload["data"]:
-            history = series.get("history") or []
-            count += len(history)
-            if history:
-                newest = max(newest, history[-1]["t"])
+        if source == "Laevitas":
+            newest, count = _laevitas_span(filename)
+        else:
+            payload = json.loads((RAW / filename).read_text())
+            newest, count = 0, 0
+            for series in payload["data"]:
+                history = series.get("history") or []
+                count += len(history)
+                if history:
+                    newest = max(newest, history[-1]["t"])
         day = datetime.fromtimestamp(newest, timezone.utc).date().isoformat()
         rows.append({
             "series": name,

@@ -13,6 +13,7 @@ Laevitas and are not yet pulled, so both stay out until the backfill lands.
 """
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -59,6 +60,10 @@ DERIVATIVES_META = {
 def _rows(pattern):
     rows = []
     for path in sorted(RAW.glob(pattern)):
+        # The *_p* and *_t* files are hourly windows of the same series. Reading
+        # them into the daily merge counts one day many times.
+        if re.search(r"_[pt]\d+$", path.stem):
+            continue
         try:
             payload = json.loads(path.read_text())
         except (OSError, json.JSONDecodeError):
