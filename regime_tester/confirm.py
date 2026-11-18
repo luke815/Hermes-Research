@@ -275,7 +275,10 @@ def confirm_cell(cell_id, family_n, train_sign, family_combinations=None):
     if train_sign not in (1, -1):
         raise ValueError("train_sign must be 1 or -1")
     prior = _read_record()
-    if any(row["cell_id"] == cell_id for row in prior):
+    # A void row is not an attempt. The pre-fix scorer wrote a verdict the
+    # current method would not produce, so a void cell is scored again.
+    if any(row["cell_id"] == cell_id and not str(row.get("verdict", "")).startswith("void")
+           for row in prior):
         raise RuntimeError(f"{cell_id} already has a confirmation attempt")
     scored = score_periods(cell_id)
     family = family_of(cell_id)

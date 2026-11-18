@@ -1,0 +1,11 @@
+{
+ "task": "A2",
+ "date": "2026-11-18",
+ "written_by": "scripts/a2_void.py",
+ "written_at": "2026-11-18T00:04:02Z",
+ "confirmations": "/opt/data/workspace/regime-tester/results/sweeps/confirmations.json",
+ "rows": 315,
+ "cross_sectional_rows": 265,
+ "cross_sectional_not_void": 0,
+ "voided_this_run": 114
+}
