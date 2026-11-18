@@ -146,6 +146,7 @@ def save_page(name, currency, route, start, end, page, payload):
     body["pages"][str(page)] = {
         "total": meta.get("total"), "items": meta.get("items", len(items)),
         "total_pages": meta.get("total_pages"),
+        "error": payload.get("error") if isinstance(payload, dict) else None,
     }
     body["end"] = end
     tmp = path + ".tmp"
@@ -215,11 +216,18 @@ def cycle(ctx, getter=None):
         write_inventory(os.path.join(ROOT, "data", "INVENTORY.md"))
         return {"remaining": 0}
     name, currency, route, start, end, page = nxt
-    payload = fetch_page(route, start, end, page, getter)
+    try:
+        payload = fetch_page(route, start, end, page, getter)
+    except Exception as exc:
+        # A 500 on one window must not stop the walk. Record it as fetched
+        # with nothing in it, so the next cycle takes a different window.
+        payload = {"meta": {"total": 0, "items": 0, "total_pages": page}, "items": [],
+                   "error": type(exc).__name__}
     body = save_page(name, currency, route, start, end, page, payload)
     left = pending_page(today)
     return {"series": f"{name}_{currency}", "window": start, "page": page,
-            "rows": len(body["items"]), "remaining": 1 if left else 0}
+            "rows": len(body["items"]), "error": body["pages"][str(page)].get("error"),
+            "remaining": 1 if left else 0}
 
 
 if __name__ == "__main__":
