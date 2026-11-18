@@ -25,6 +25,16 @@ SWEEPS = os.path.join(ROOT, "results", "sweeps")
 LAST_ADMISSION = "2026-10-31"
 
 
+def _cited(path):
+    """The path the digest and the status line print, relative to the repo.
+
+    The counter lives in results/sweeps, three levels under the repo root, so
+    the cited path keeps the results/ prefix. A test that points COUNTER at a
+    temp file gets that file's own name instead.
+    """
+    return os.path.relpath(path, os.path.dirname(os.path.dirname(os.path.dirname(path))))
+
+
 def scored_cell_ids(sweeps_dir=None, since=LAST_ADMISSION):
     """Distinct cell ids written by any scorer on or after the last admission.
 
@@ -54,7 +64,7 @@ def write_counter(sweeps_dir=None, since=LAST_ADMISSION):
         "scored": len(ids),
         "since": since,
         "files": files,
-        "file": os.path.relpath(COUNTER, os.path.dirname(os.path.dirname(COUNTER))),
+        "file": _cited(COUNTER),
     }
     os.makedirs(os.path.dirname(COUNTER), exist_ok=True)
     tmp = COUNTER + ".tmp"
@@ -67,9 +77,9 @@ def write_counter(sweeps_dir=None, since=LAST_ADMISSION):
 def read_counter():
     """The counter both readers cite. A missing file is an empty count, not a guess."""
     if not os.path.exists(COUNTER):
-        return {"scored": None, "since": LAST_ADMISSION,
-                "file": os.path.relpath(COUNTER, os.path.dirname(os.path.dirname(COUNTER)))}
-    return json.load(open(COUNTER))
+        return {"scored": None, "since": LAST_ADMISSION, "file": _cited(COUNTER)}
+    with open(COUNTER) as handle:
+        return json.load(handle)
 
 
 def status_text(payload=None):
