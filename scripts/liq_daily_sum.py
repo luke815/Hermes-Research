@@ -171,7 +171,19 @@ def record_empty(currency, day):
     return path
 
 
-def write_status(today):
+def summed_days(currency):
+    """The days that carry a sum, read back from the files."""
+    out = {}
+    folder = os.path.join(STORE, currency)
+    if not os.path.isdir(folder):
+        return out
+    for name in os.listdir(folder):
+        body = load(os.path.join(folder, name)) or {}
+        out.update(body.get("days", {}))
+    return out
+
+
+def write_status(today, root=ROOT):
     """The results file, written from the sums on disk, not from a typed payload."""
     from regime_tester.results_io import write_result
     payload = {"item": "L8", "store": "data/laevitas/liquidations_sum",
@@ -179,12 +191,14 @@ def write_status(today):
                "note": "The daily files in the sample store stay a midnight sample. "
                        "This file is the sum of retained events."}
     for currency in CURRENCIES:
-        days = done_days(currency)
-        payload[currency] = {"days_summed": len(days),
-                             "first": min(days) if days else None,
-                             "last": max(days) if days else None}
+        summed = summed_days(currency)
+        payload[currency] = {"days_summed": len(summed),
+                             "first": min(summed) if summed else None,
+                             "last": max(summed) if summed else None,
+                             "events": sum(row["events"] for row in summed.values()),
+                             "total_usd": round(sum(row["total"] for row in summed.values()), 2)}
     payload["remaining"] = 0 if pending(today) is None else 1
-    return write_result("l8_sum", payload, inputs=["data/laevitas/liquidations_sum"])
+    return write_result("l8_sum", payload, inputs=["data/laevitas/liquidations_sum"], root=root)
 
 
 def cycle(ctx):
