@@ -85,8 +85,14 @@ def pending(today):
 
 
 def rows_of(payload):
-    data = payload.get("data", payload) if isinstance(payload, dict) else {}
-    return data.get("items", []), (data.get("meta") or {})
+    """REST returns the rows under data as a list. A wrapped items list is accepted too."""
+    if not isinstance(payload, dict):
+        return [], {}
+    data = payload.get("data", [])
+    meta = payload.get("meta") or {}
+    if isinstance(data, list):
+        return data, meta
+    return data.get("items", []), (data.get("meta") or meta)
 
 
 def fetch_day(currency, day):

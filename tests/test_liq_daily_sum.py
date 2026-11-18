@@ -13,6 +13,12 @@ class LiqDailySum(unittest.TestCase):
         self.root = tempfile.mkdtemp()
         summer.STORE = os.path.join(self.root, "store")
 
+    def test_rest_rows_are_read_from_data(self):
+        rows, meta = summer.rows_of({"data": [{"position_side": "long", "amount_usd": 3}],
+                                     "meta": {"next_cursor": None}})
+        self.assertEqual(len(rows), 1)
+        self.assertIsNone(meta["next_cursor"])
+
     def test_two_events_sum_to_their_total(self):
         rows = [{"position_side": "long", "amount_usd": 100.0},
                 {"position_side": "short", "amount_usd": 40.5}]
