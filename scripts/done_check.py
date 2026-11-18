@@ -127,7 +127,9 @@ def run_tests(modules, root=ROOT, python=sys.executable):
             continue
         proc = subprocess.run([python, "-m", "unittest", "-v", module], cwd=root, capture_output=True, text=True)
         text = proc.stdout + proc.stderr
-        # 3.11+: "test_x (mod.Class.test_x) ... ok"; older: "test_x (mod.Class) ... ok"
+        # 3.11+: "test_x (mod.Class.test_x)" with the docstring on the next line;
+        # older: "test_x (mod.Class) ... ok" on one line. The id stops at the
+        # closing parenthesis, so a dotted module name is kept whole.
         ids = [m.group(2) if m.group(2).endswith("." + m.group(1)) else f"{m.group(2)}.{m.group(1)}"
                for m in re.finditer(r"^(test\w*) \(([\w.]+)\)", text, re.M)]
         ran = re.search(r"Ran ([0-9]+) tests?", text)

@@ -242,6 +242,20 @@ class DoneCheck(unittest.TestCase):
     def aud(self):
         return done_check.audit(self.root, self.backlog, self.records)
 
+    def test_a_multiline_verbose_id_keeps_the_dotted_module(self):
+        """3.11 prints the docstring on the next line, so the id ends at ')'.
+
+        A pattern that also demands '... ok' on the same line matches nothing
+        once the module name contains a dot, and every evidence line then fails.
+        """
+        text = ("test_true (tests.test_ok.T.test_true)\n"
+                "A later reader must see the real store. ... ok\n"
+                "\n----------------------------------------------------------------------\n"
+                "Ran 1 test in 0.001s\n\nOK\n")
+        ids = [m.group(2) if m.group(2).endswith("." + m.group(1)) else f"{m.group(2)}.{m.group(1)}"
+               for m in done_check.re.finditer(r"^(test\w*) \(([\w.]+)\)", text, done_check.re.M)]
+        self.assertEqual(ids, ["tests.test_ok.T.test_true"])
+
     def test_passes_with_stamped_results_passing_tests_code_and_evidence(self):
         self.commit_code()
         rec = self.run_check(results=[self.stamped()])
