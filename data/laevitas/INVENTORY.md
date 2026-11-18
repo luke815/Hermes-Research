@@ -1,6 +1,6 @@
 # Laevitas v1 inventory
 
-Source: https://api.laevitas.ch, fetched 2026-11-16 with the apikey header from .env. The v2 host at apiv2.laevitas.ch returns 403 from this machine, so v1 is the source until that changes. Catalogue saved at data/laevitas/catalog_v1.json (164 endpoints, 81 historical). Instrument list saved at data/laevitas/instruments.json, parsed from the `data` array of /analytics/futures/instruments (the wrapper holds a date and the rows; an earlier save dropped rows and is kept as instruments.json.bak_4016).
+Source: https://api.laevitas.ch, fetched 2026-11-16 with the apikey header from .env. The v2 host at apiv2.laevitas.ch accepts the key: a full ISO window returns 200 for both user agents, and a bare date returns 400 rather than 403, so the earlier 403 was a bad request. results/2026-11-18_l12_v2.json. Catalogue saved at data/laevitas/catalog_v1.json (164 endpoints, 81 historical). Instrument list saved at data/laevitas/instruments.json, parsed from the `data` array of /analytics/futures/instruments (the wrapper holds a date and the rows; an earlier save dropped rows and is kept as instruments.json.bak_4016).
 
 ## Exchange instrument counts
 
