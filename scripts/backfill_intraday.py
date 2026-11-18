@@ -38,7 +38,7 @@ def missing_hours(symbol, now):
     last = bars[-1]["t"] if bars else now - 200 * HOUR
     start = last + HOUR
     end = now - (now % HOUR)
-    if start >= end:
+    if start > end:
         return None
     return start, end
 
@@ -54,10 +54,12 @@ def fetch(base, start, end, now):
         return [], str(exc)[:80]
     bars = []
     for row in json.loads(raw):
-        close_time = int(row[6]) // 1000
-        if close_time >= now:
+        # The close time is the end of the hour, so it sits in the future for the
+        # whole hour the bar covers. The bar is closed once the next one opens.
+        open_time = int(row[0]) // 1000
+        if open_time + HOUR > now:
             continue
-        bars.append({"t": int(row[0]) // 1000, "o": float(row[1]), "h": float(row[2]),
+        bars.append({"t": open_time, "o": float(row[1]), "h": float(row[2]),
                       "l": float(row[3]), "c": float(row[4]), "v": float(row[5])})
     return bars, None
 
