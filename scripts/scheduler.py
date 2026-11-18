@@ -119,7 +119,8 @@ def sweep_status():
     if not os.path.exists(COUNTER):
         return {"wrote": False}
     payload = json.load(open(COUNTER))
-    line = f"scored {payload['scored']} of {payload['testable']} testable, from {payload['file']}\n"
+    line = (f"cells scored {payload['scored']} since {payload.get('since')}, "
+            f"from {payload['file']}\n")
     tmp = STATUS + ".tmp"
     open(tmp, "w").write(line)
     os.replace(tmp, STATUS)

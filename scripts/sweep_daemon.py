@@ -24,6 +24,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from regime_tester.indicators import LIBRARY_VERSION, META  # noqa: E402
 from regime_tester.sweep import prepare, score_measure  # noqa: E402
+from regime_tester.counter import write_counter  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "results" / "sweeps"
@@ -240,7 +241,8 @@ def cycle(ctx):
                                         "self_check": result}, indent=2) + "\n")
         return {"self_check": result.get("matched"), "measure": result.get("measure")}
     record = pass_once(state)
-    return {"measure": record.get("measure"), "rows_appended": record.get("rows_appended", 0)}
+    return {"measure": record.get("measure"), "rows_appended": record.get("rows_appended", 0),
+            "counter": write_counter()}
 
 
 if __name__ == "__main__":

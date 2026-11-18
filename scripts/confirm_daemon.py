@@ -31,11 +31,35 @@ def attempted():
             if not str(row.get("verdict", "")).startswith("void")}
 
 
+def closed_cells():
+    """Cells with a rejected verdict, parsed for the neighbour check.
+
+    A void row is not closed: the current scorer has not judged it, so a
+    neighbour of it is still a real test.
+    """
+    if not os.path.exists(RECORD):
+        return []
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    from pick_next_cell import parse
+    return [parse(row["cell_id"]) for row in json.load(open(RECORD))
+            if row.get("verdict") == "rejected"]
+
+
+def is_closed_neighbour(cell_id, closed):
+    """True when the cell differs from a closed one on one adjacent axis only."""
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    from pick_next_cell import is_neighbour, parse
+    cell = parse(cell_id)
+    return any(is_neighbour(cell, other) for other in closed)
+
+
 def eligible():
     board = json.load(open(BOARD)).get("leaderboard", [])
     done = attempted()
+    closed = closed_cells()
     fresh = [row for row in board if row["cell_id"] not in done
              and row.get("status") != "insufficient"
+             and not is_closed_neighbour(row["cell_id"], closed)
              and not row["cell_id"].split("|")[4].startswith(("rel_", "ratio_btc"))]
     cross = [row for row in fresh if row.get("universe") == "pit_cross_section"
              or "pit_cross_section" in row["cell_id"]]

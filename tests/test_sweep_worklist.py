@@ -35,12 +35,16 @@ class WorkList(unittest.TestCase):
         self.assertFalse(sweep_xs.emittable(
             "obv|raw|above|80|ret_1|pit_cross_section|heat_tercile|daily"))
 
-    def test_status_line_counts_cells_against_the_list(self):
+    def test_status_line_cites_the_shared_counter(self):
         with tempfile.TemporaryDirectory() as tmp:
             sweep_xs.STATUS = os.path.join(tmp, "sweep_status")
-            work = {"a|raw", "b|raw", "c|raw"}
-            line = sweep_xs.status_line({"a|raw", "z|raw"}, work)
-            self.assertIn("scored 1 of 3 testable, from ", line)
+            from regime_tester import counter
+            counter.COUNTER = os.path.join(tmp, "counter.json")
+            counter.SWEEPS = tmp
+            open(os.path.join(tmp, "2026-11-05.csv"), "w").write("id\na|raw\n")
+            line = sweep_xs.status_line(set(), set())
+            self.assertEqual(line, counter.status_text())
+            self.assertIn("cells scored 1 since 2026-10-31, from ", line)
             self.assertTrue(line.endswith("counter.json"))
             self.assertEqual(open(sweep_xs.STATUS).read().strip(), line)
 

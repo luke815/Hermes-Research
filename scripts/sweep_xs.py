@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import pandas as pd
 
-from regime_tester.counter import write_counter
+from regime_tester.counter import status_text, write_counter
 from regime_tester.indicators import LIBRARY_VERSION, META
 from regime_tester.vectorized import (
     forward_returns, load_close_matrix, signal_matrix, transform_matrix,
@@ -426,9 +426,14 @@ def panel_spans(columns):
 
 
 def status_line(done, work):
-    """Scored cells against the testable list, written to the shared counter."""
-    payload = write_counter(len(done & work), len(work))
-    line = f"scored {payload['scored']} of {payload['testable']} testable, from {payload['file']}"
+    """The shared counter, recounted from every scorer's files.
+
+    done and work decide what this daemon still has to score. The number on the
+    status line is the counter's, so the digest and this line cite one file.
+    """
+    del done, work
+    payload = write_counter()
+    line = status_text(payload)
     tmp = STATUS + ".tmp"
     open(tmp, "w").write(line + "\n")
     os.replace(tmp, STATUS)
@@ -445,7 +450,9 @@ def cycle(ctx):
         ctx["measures"] = indicator_cache(ctx["panel"], close.index, digest)
         ctx["net"] = net_returns(close)
         ctx["spans"] = panel_spans(close.columns)
-        ctx["work"] = work_list()
+    # The enumerator rewrites the work list while this daemon runs. Reading it
+    # once at the start scores the list as it was then and never sees the rest.
+    ctx["work"] = work_list()
     done = scored_ids()
     # Conditioned cells are a different test and are not counted as pending.
     # A measure stays pending until every unconditioned cell this scorer emits
