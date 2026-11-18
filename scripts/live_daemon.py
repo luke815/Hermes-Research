@@ -87,10 +87,12 @@ def board(names):
     daily = {r["symbol"]: r["history"] for r in json.load(open(DAILY))}
 
     def pct(bars, n):
-        if len(bars) <= n + 1:
+        # The hourly refill drops the bar still forming, so the last stored bar
+        # is closed. Dropping it again stamps the board an hour behind a store
+        # that is already current, and a healthy board then reads as stale.
+        if len(bars) <= n:
             return None
-        done = bars[:-1]
-        last, prev = done[-1]["c"], done[-1 - n]["c"]
+        last, prev = bars[-1]["c"], bars[-1 - n]["c"]
         return (last / prev - 1) * 100 if last and prev else None
 
     windows = {"1h": 1, "4h": 4, "24h": 24, "7d": 7, "30d": 30, "90d": 90}
@@ -113,8 +115,8 @@ def board(names):
                 bv = bench[b][w]
                 rec[k][w] = round(v - bv, 2) if v is not None and bv is not None else None
         rows.append(rec)
-    last = max((intraday_store.read(s, STORE_1H)[-2]["t"] for s in names
-                if len(intraday_store.read(s, STORE_1H)) > 2), default=None)
+    last = max((intraday_store.read(s, STORE_1H)[-1]["t"] for s in names
+                if intraday_store.read(s, STORE_1H)), default=None)
     as_of = (datetime.fromtimestamp(last, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
              if last else None)
     return {"as_of": as_of, "windows": list(windows),
@@ -193,8 +195,8 @@ def cycle(ctx):
     # The marks are fresh every five minutes, but the board reads the hourly store,
     # which nothing in this loop updates. Judge staleness on the board's own time,
     # so a board from last week is not shown with this minute's stamp.
-    # The board drops the bar still forming and the hourly refill lands after the
-    # hour closes, so a healthy board sits about two hours behind the clock.
+    # The refill writes the last closed hour shortly after the hour, so a healthy
+    # board sits about one hour behind the clock, plus the minutes until :15.
     rs_age = None
     if built.get("as_of"):
         rs_age = now - int(datetime.fromisoformat(built["as_of"].replace("Z", "+00:00")).timestamp())

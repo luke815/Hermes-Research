@@ -4,6 +4,7 @@ signals/book.csv keeps closed rows, with a close date in the closed column.
 Marking those reports a paper return on a position that no longer exists.
 """
 
+import json
 import os
 import sys
 import tempfile
@@ -36,6 +37,23 @@ class BookLiveTests(unittest.TestCase):
                 "2026-11-05,PEPE,long,0.7,1.0,2026-11-12,0.9\n")
             live_daemon.ROOT = tmp
             self.assertEqual(live_daemon.book_live({"PEPE": 0.5}), {})
+
+
+class BoardStampTests(unittest.TestCase):
+    def test_board_stamps_the_last_closed_bar(self):
+        # The refill already dropped the bar still forming, so the board reads
+        # the last stored bar. Dropping it again reports an hour that is closed.
+        with tempfile.TemporaryDirectory() as tmp:
+            store = os.path.join(tmp, "intraday")
+            os.makedirs(store)
+            open(os.path.join(store, "BTCUSDT_PERP.A.csv"), "w").write(
+                "t,o,h,l,c,v\n1794970800,1,1,1,1,1\n1794974400,1,1,1,2,1\n")
+            daily = os.path.join(tmp, "daily.json")
+            open(daily, "w").write(json.dumps([]))
+            live_daemon.STORE_1H = store
+            live_daemon.DAILY = daily
+            board = live_daemon.board(["BTCUSDT_PERP.A"])
+        self.assertEqual(board["as_of"], "2026-11-18T04:00:00Z")
 
 
 if __name__ == "__main__":
