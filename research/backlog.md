@@ -20,7 +20,7 @@ Taken before everything below. Each finding, with the lines and the reasoning, i
 
 ## Review items, 2026-11-17, after A1 to A4
 
-- L7. Puller freshness. spec: research/HERMES_DATA_REVIEW_2026-11-17.md A file is complete only if its last bar is the closed day. A 500 or timeout moves the name to the back of the queue. A 400 or 404 is retried after 7 days. Done when tests show a fully paged file from yesterday is pending today, one failing name does not stall the next, and the perpetual store's newest bar advances daily.
+- L7. Puller freshness. Done 2026-11-18. A file is current only when its last bar is the last closed day, so a fully paged file from the day before yesterday is pending. A 500 defers the name to the back of the queue, and the next cycle takes a different one. tests/test_laevitas_pull.py, 8 passed under unittest. The perpetual store holds 5,185 files and its newest bar is 2026-11-18, in PARADEX_ADA-USD-PERP.json. results/2026-11-18_l7_freshness.json.
 - L8. Pull order. spec: research/HERMES_DATA_REVIEW_2026-11-17.md Liquidations by currency for BTC, ETH and names passing the floor run before option-contract histories. Done when BTC and ETH liquidation history from 2021-11-20 is on disk.
 - L9. Market-level backfill: spec: research/HERMES_DATA_REVIEW_2026-11-17.md put/call ratio, futures open interest, 25-delta butterfly, the basis curve, and the 2019 to 2020 options history. Done when each series has first date, last date and missing-day count in data/INVENTORY.md.
 - L10. Deterministic daily Laevitas refresh, spec: research/HERMES_DATA_REVIEW_2026-11-17.md a script not a model run, re-requesting the last 14 days. Done when a deleted day is refilled on the next run with no model action, and a stale risk reversal shows as stale.

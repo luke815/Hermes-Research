@@ -35,6 +35,40 @@ class PullOrder(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
+    def test_a_fully_paged_file_from_yesterday_is_pending_today(self):
+        """Every page fetched does not make a file current once its last bar ages."""
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        yesterday = datetime.fromordinal(datetime.now(timezone.utc).date().toordinal() - 1)
+        older = datetime.fromordinal(yesterday.toordinal() - 1).strftime("%Y-%m-%d")
+        json.dump({
+            "meta": {"total_pages": 1, "total": 1},
+            "pages_fetched": 1,
+            "items": [{"date": _day_ms(older)}],
+        }, open(os.path.join(self.perp, "BINANCE_BTCUSDT.json"), "w"))
+        self.assertFalse(pull.body_complete(json.load(open(
+            os.path.join(self.perp, "BINANCE_BTCUSDT.json"))), today))
+        left = pull.pending()
+        self.assertEqual(left[0]["instrument"], "BTCUSDT")
+
+    def test_a_failing_name_does_not_stall_the_next(self):
+        """A 500 defers the name, and the next cycle takes a different one."""
+        import urllib.error
+        json.dump([
+            {"market": "BINANCE", "type": "perpetual", "instrument": "BTCUSDT", "currency": "BTC"},
+            {"market": "BINANCE", "type": "perpetual", "instrument": "ETHUSDT", "currency": "ETH"},
+        ], open(pull.INSTRUMENTS, "w"))
+        pull.DEFERRED = os.path.join(self.root, "deferred.json")
+
+        def fail(row, end):
+            raise urllib.error.HTTPError("url", 500, "down", hdrs=None, fp=None)
+
+        pull.pull = fail
+        first = pull.cycle({})
+        self.assertEqual(first["deferred"], 1)
+        left = pull.pending()
+        self.assertEqual(left[0]["instrument"], "ETHUSDT")
+        self.assertEqual(left[1]["instrument"], "BTCUSDT")
+
     def test_capped_file_stays_pending_and_futures_wait(self):
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         json.dump({

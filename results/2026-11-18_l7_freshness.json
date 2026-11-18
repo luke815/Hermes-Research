@@ -1,0 +1,11 @@
+{
+ "date": "2026-11-18",
+ "written_at": "2026-11-18T02:25:16Z",
+ "item": "L7",
+ "tests": "tests.test_laevitas_pull, 8 passed under unittest",
+ "fully_paged_old_file_pending": true,
+ "failing_name_deferred": true,
+ "perpetual_files": 5185,
+ "newest_bar": "2026-11-18",
+ "newest_bar_file": "PARADEX_ADA-USD-PERP.json"
+}

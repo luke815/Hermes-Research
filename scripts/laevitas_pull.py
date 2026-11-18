@@ -27,6 +27,7 @@ import rate_budget
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STORE = os.path.join(ROOT, "data", "laevitas", "perpetuals")
+DEFERRED = os.path.join(ROOT, "ops", "laevitas_deferred.json")
 FUTURES_STORE = os.path.join(ROOT, "data", "laevitas", "futures")
 OPTIONS_STORE = os.path.join(ROOT, "data", "laevitas", "options")
 LIQUIDATIONS_STORE = os.path.join(ROOT, "data", "laevitas", "liquidations")
@@ -79,12 +80,13 @@ def complete(path, today):
 
 
 def body_complete(body, today):
-    """The completeness rule, split out so a cached read can reuse it."""
+    """Current only when the last bar is the last closed day.
+
+    A file that fetched every page is still pending once that bar ages past
+    yesterday, so a name stays in the queue and gets extended. A file with no
+    bars is not current.
+    """
     if body.get("error"):
-        return True
-    meta = body.get("meta") or {}
-    pages = meta.get("total_pages") or 1
-    if body.get("pages_fetched") == pages and len(body.get("items", [])) == meta.get("total", len(body.get("items", []))):
         return True
     dates = [i.get("date") for i in body.get("items", []) if i.get("date")]
     if not dates:
@@ -92,6 +94,17 @@ def body_complete(body, today):
     last = datetime.fromtimestamp(max(dates) / 1000, timezone.utc).date()
     closed = datetime.strptime(today, "%Y-%m-%d").date().toordinal() - 1
     return last.toordinal() >= closed
+
+
+def defer(row):
+    """Move a failing name to the back of the queue, remembered across cycles."""
+    order = json.load(open(DEFERRED)) if os.path.exists(DEFERRED) else []
+    key = [row["type"], row["market"], row["instrument"]]
+    order = [item for item in order if item != key]
+    order.append(key)
+    os.makedirs(os.path.dirname(DEFERRED), exist_ok=True)
+    json.dump(order, open(DEFERRED, "w"))
+    return order
 
 
 def _load(path, default):
@@ -228,6 +241,9 @@ def pending():
         waiting = [r for r in rows if not complete(
             os.path.join(store, f"{r['market']}_{r['instrument']}.json"), today)]
         if waiting:
+            order = json.load(open(DEFERRED)) if os.path.exists(DEFERRED) else []
+            rank = {tuple(item): i for i, item in enumerate(order)}
+            waiting.sort(key=lambda r: rank.get((r["type"], r["market"], r["instrument"]), -1))
             return waiting
         mark_closed(kind, store, today)
     return []
@@ -339,11 +355,15 @@ def cycle(ctx):
             path = os.path.join(store, f"{row['market']}_{row['instrument']}.json")
             json.dump({"items": [], "error": exc.code}, open(path, "w"))
             return {"empty": 1, "code": exc.code, "remaining": len(left) - 1}
-        print(f"skip {row['market']} {row['instrument']}: {exc}", flush=True)
-        return {"skipped": 1, "remaining": len(left)}
+        # A 500 or a timeout is the server, not the name. Move it to the back
+        # so the next cycle takes a different name instead of stalling here.
+        print(f"defer {row['market']} {row['instrument']}: {exc}", flush=True)
+        defer(row)
+        return {"deferred": 1, "remaining": len(left)}
     except Exception as exc:  # noqa: BLE001
-        print(f"skip {row['market']} {row['instrument']}: {exc}", flush=True)
-        return {"skipped": 1, "remaining": len(left)}
+        print(f"defer {row['market']} {row['instrument']}: {exc}", flush=True)
+        defer(row)
+        return {"deferred": 1, "remaining": len(left)}
     path = os.path.join(store, f"{row['market']}_{row['instrument']}.json")
     json.dump(body, open(path, "w"))
     return {"market": row["market"], "instrument": row["instrument"],
