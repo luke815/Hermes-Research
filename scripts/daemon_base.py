@@ -48,12 +48,18 @@ def _log(msg):
 def run_loop(name, interval_sec, cycle, align=True, offset_sec=0, max_cycle_sec=None):
     global _STOP
     os.makedirs("ops/locks", exist_ok=True)
+    if os.path.exists(f"ops/disabled/{name}"):
+        _log(f"{name}: disabled by procmgr (ops/disabled/{name}), exiting")
+        sys.exit(3)
     lock_fd = os.open(f"ops/locks/{name}.lock", os.O_RDWR | os.O_CREAT)
     try:
         fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except OSError:
         _log(f"{name}: another instance holds the lock, exiting")
         sys.exit(0)
+    # the lock file carries the pid, so procmgr can see a copy it did not start
+    os.ftruncate(lock_fd, 0)
+    os.write(lock_fd, str(os.getpid()).encode())
     hb_path = f"ops/{name}_heartbeat"
     version = _head()
     max_cycle_sec = max_cycle_sec or interval_sec
