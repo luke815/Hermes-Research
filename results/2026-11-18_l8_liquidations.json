@@ -1,0 +1,20 @@
+{
+ "date": "2026-11-18",
+ "item": "L8",
+ "verdict": "not done, daemon running",
+ "written_at": "2026-11-18T03:06:16Z",
+ "daemon": "liq_history",
+ "pid": 474,
+ "version": "f0d6cbd",
+ "stale_code": false,
+ "cycles": 3,
+ "last_error": null,
+ "store": "data/laevitas/liquidations_agg",
+ "windows": [
+  {"file": "BTC_2021.json", "rows": 692, "first": "2021-11-20", "last": "2022-11-19"},
+  {"file": "BTC_2022.json", "rows": 577, "first": "2022-11-20", "last": "2023-11-19"},
+  {"file": "BTC_2023.json", "rows": 669, "first": "2023-11-20", "last": "2024-11-17"}
+ ],
+ "note": "BTC and ETH aggregated liquidations, resolution 1d, which is a midnight sample and not a daily sum. ETH not started. The instrument puller still holds per-currency liquidations behind unfinished option histories, so this daemon walks the retained aggregate itself.",
+ "tests": "tests/test_liq_history.py, 5 passed under unittest"
+}
