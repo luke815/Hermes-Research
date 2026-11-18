@@ -63,7 +63,7 @@ class Resume(unittest.TestCase):
         result = backfill.cycle(None, getter)
         self.assertEqual(len(calls), 1)
         self.assertEqual(result["page"], 1)
-        self.assertTrue(os.path.exists(os.path.join(backfill.STORE, "oi_pc_ratio_BTC_2020.json")))
+        self.assertTrue(os.path.exists(os.path.join(backfill.STORE, "oi_pc_ratio_BTC_2020-09-25.json")))
         again = backfill.pending_page("2020-09-26")
         self.assertNotEqual((again[0], again[1]), ("oi_pc_ratio", "BTC"))
 

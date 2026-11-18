@@ -54,12 +54,12 @@ def key():
 
 
 def windows(start, today):
-    """Year-long windows. A multi-year request returns 503."""
+    """Half-year windows. A year-long request returns 500 on these routes."""
     out = []
     cursor = datetime.strptime(start, "%Y-%m-%d").replace(tzinfo=timezone.utc)
     end_limit = datetime.strptime(today, "%Y-%m-%d").replace(tzinfo=timezone.utc)
     while cursor <= end_limit:
-        stop = min(cursor + timedelta(days=364), end_limit)
+        stop = min(cursor + timedelta(days=181), end_limit)
         out.append((cursor.strftime("%Y-%m-%d"), stop.strftime("%Y-%m-%d")))
         cursor = stop + timedelta(days=1)
     return out
@@ -74,7 +74,7 @@ def jobs(today):
 
 
 def path_for(name, currency, start):
-    return os.path.join(STORE, f"{name}_{currency}_{start[:4]}.json")
+    return os.path.join(STORE, f"{name}_{currency}_{start}.json")
 
 
 def load(path):
