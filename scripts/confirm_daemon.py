@@ -54,13 +54,12 @@ def _record_void(cell_id, reason):
         "void_reason": reason,
         "voided_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     })
-    tmp = RECORD + ".tmp"
-    json.dump(rows, open(tmp, "w"), indent=2)
-    os.replace(tmp, RECORD)
+    _save(RECORD, rows)
 
 
 BATCH = 40
 PARTIAL = os.path.join(ROOT, "ops", "confirm_partial.json")
+PANEL_DIR = os.path.join(ROOT, "ops", "confirm_panel")
 
 
 def _save(path, payload):
@@ -70,6 +69,29 @@ def _save(path, payload):
 
 
 _PANEL = {}
+
+
+def _panel_dir(cell_id):
+    return os.path.join(PANEL_DIR, cell_id.replace("|", "_"))
+
+
+def _store_batch(cell_id, panel):
+    """Write one batch to disk so a restart resumes the same cell."""
+    dest = _panel_dir(cell_id)
+    os.makedirs(dest, exist_ok=True)
+    for name, frame in panel.items():
+        frame.to_csv(os.path.join(dest, f"{name}.csv"), index=False)
+
+
+def _read_panel(cell_id):
+    dest = _panel_dir(cell_id)
+    if not os.path.isdir(dest):
+        return {}
+    panel = {}
+    for name in sorted(os.listdir(dest)):
+        if name.endswith(".csv"):
+            panel[name[:-4]] = pd.read_csv(os.path.join(dest, name))
+    return panel
 
 
 def cycle(ctx):
@@ -89,7 +111,7 @@ def cycle(ctx):
                               train_sign=1 if cell.get("train_score", 0) > 0 else -1)
         return {"cell": cell["cell_id"], "verdict": record["verdict"],
                 "family": family, "remaining": len(queue) - 1}
-    from regime_tester.confirm import _load_cross_batch, _score_cross_section, parse_cell_id
+    from regime_tester.confirm import _load_cross_batch, confirm_cell, family_attempts, family_of
     source = "/opt/data/workspace/regime-tester/data/panel_xs_laevitas"
     if not os.path.isdir(source):
         source = os.path.join(ROOT, "data", "panel_xs")
@@ -100,17 +122,25 @@ def cycle(ctx):
                if name[:-4] not in set(state["done"])]
     batch = pending[:BATCH]
     panel = _load_cross_batch(batch)
-    parsed = parse_cell_id(cell["cell_id"])
-    scored = _score_cross_section(parsed, panel)
+    _store_batch(cell["cell_id"], panel)
     state["done"] = sorted(set(state["done"]) | set(batch))
-    state["last"] = {"validation": scored["validation"], "test": scored["test"],
-                     "names": len(panel)}
-    _save(PARTIAL, state)
+    _save(PARTIAL, {"cell_id": state["cell_id"], "done": state["done"]})
     if len(pending) > BATCH:
         return {"cell": cell["cell_id"], "batch": len(batch),
                 "done": len(state["done"]), "remaining_names": len(pending) - BATCH}
+    import shutil
+    try:
+        record = confirm_cell(cell["cell_id"],
+                              family_n=family_attempts().get(family_of(cell["cell_id"]), 0),
+                              train_sign=1 if cell.get("train_score", 0) > 0 else -1,
+                              panel=_read_panel(cell["cell_id"]))
+        verdict = record["verdict"]
+    except (ValueError, RuntimeError) as exc:
+        _record_void(cell["cell_id"], f"{type(exc).__name__}: {exc}")
+        verdict = "void"
     os.remove(PARTIAL)
-    return {"cell": cell["cell_id"], "verdict": "batch_complete",
+    shutil.rmtree(_panel_dir(cell["cell_id"]), ignore_errors=True)
+    return {"cell": cell["cell_id"], "verdict": verdict,
             "names": len(state["done"]), "remaining": len(queue) - 1}
 
 

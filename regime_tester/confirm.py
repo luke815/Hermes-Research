@@ -152,11 +152,41 @@ def family_attempts(record=None):
     return counts
 
 
-def score_periods(cell_id):
+# The thin tier the sweep charges, 5 bps fee plus 10 bps slippage, each way.
+XS_COST_BPS = 15
+
+
+def _xs_net_panel(panel, horizon):
+    """Forward return net of two times the sweep's thin-tier cost, per name.
+
+    Two times, because a cross-sectional spread is a long and a short, and
+    each pays the round trip. The sweep charges 15 bps a side, so the spread
+    loses 30 bps. A funding column that is present but blank leaves the net
+    missing rather than treating the carry as zero. A frame with no funding
+    column has no carry to charge.
+    """
+    from regime_tester.costs import apply_costs
+    out = {}
+    for name, frame in panel.items():
+        indexed = frame.set_index("date") if "date" in frame.columns else frame
+        close = indexed["close"].astype(float)
+        close.index = pd.to_datetime(close.index, utc=True)
+        column = next((c for c in ("funding", "funding_rate") if c in indexed.columns), None)
+        funding = indexed[column].astype(float) if column else pd.Series(0.0, index=close.index)
+        funding.index = close.index
+        net = apply_costs(close, horizon, side=1, funding=funding)["gross"]
+        carry = funding.rolling(horizon, min_periods=horizon).sum().shift(-(horizon - 1)) / 100
+        net = net - carry.fillna(0 if column is None else np.nan)
+        net = net - 2 * XS_COST_BPS / 10_000
+        out[name] = net
+    return out
+
+
+def score_periods(cell_id, panel=None):
     """Validation and test for one cell. Does not read the leaderboard."""
     cell = parse_cell_id(cell_id)
     if cell["universe"] == "pit_cross_section":
-        return _score_cross_section(cell)
+        return _score_cross_section(cell, panel)
     frames = load_full_frames()
     if frames["BTC"].index.max() <= TRAIN_END:
         raise RuntimeError("the series ends at or before the train end")
@@ -246,7 +276,7 @@ def _score_cross_section(cell, panel=None, names=None):
         signal = signal.shift(1)
         if signal.notna().sum() == 0:
             continue
-        forward = close.shift(-horizon) / close - 1
+        forward = _xs_net_panel({name: frame}, horizon)[name]
         joined = pd.DataFrame({"signal": signal, "forward": forward}).dropna()
         joined["name"] = name
         rows.append(joined)
@@ -283,7 +313,7 @@ def _read_record():
     return json.loads(RECORD.read_text())
 
 
-def confirm_cell(cell_id, family_n, train_sign, family_combinations=None):
+def confirm_cell(cell_id, family_n, train_sign, family_combinations=None, panel=None):
     """One confirmation attempt. A cell already recorded is refused.
 
     family_n is the raw cell count tested in the family. family_combinations
@@ -301,7 +331,23 @@ def confirm_cell(cell_id, family_n, train_sign, family_combinations=None):
     if any(row["cell_id"] == cell_id and not str(row.get("verdict", "")).startswith("void")
            for row in prior):
         raise RuntimeError(f"{cell_id} already has a confirmation attempt")
-    scored = score_periods(cell_id)
+    try:
+        scored = score_periods(cell_id, panel)
+    except (ValueError, RuntimeError) as exc:
+        if "pit_cross_section" not in cell_id:
+            raise
+        record = {
+            "cell_id": cell_id,
+            "attempted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "verdict": "void",
+            "void_reason": f"{type(exc).__name__}: {exc}",
+        }
+        prior.append(record)
+        RECORD.parent.mkdir(parents=True, exist_ok=True)
+        tmp = RECORD.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(prior, indent=2, default=str))
+        os.replace(tmp, RECORD)
+        return record
     family = family_of(cell_id)
     attempts = family_attempts(prior)
     bar_n = attempts.get(family, 0) + 1
