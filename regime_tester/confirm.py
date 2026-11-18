@@ -203,19 +203,18 @@ def _xs_signal(close, cell):
         transform(values.to_numpy(dtype=float), cell["transform"]), index=values.index)
 
 
-def _load_cross_panel():
-    """The Laevitas panel, one venue per coin. The price panel has no positioning."""
-    from regime_tester.panel_integrity import clean_frame, collapse_venues
+def _load_cross_batch(names):
+    """One batch of the Laevitas panel. Loading every file takes minutes."""
+    from regime_tester.panel_integrity import clean_frame
     source = ROOT / "data" / "panel_xs_laevitas"
     if not source.exists():
         source = ROOT / "data" / "panel_xs"
     panel = {}
-    for name in sorted(os.listdir(source)):
-        frame = clean_frame(pd.read_csv(source / name))
+    for name in names:
+        frame = clean_frame(pd.read_csv(source / f"{name}.csv"))
         if "close" not in frame.columns or frame["close"].notna().sum() < 60:
             continue
-        panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])
-    panel, _dropped = collapse_venues(panel)
+        panel[name] = frame.dropna(subset=["close"])
     return panel
 
 
@@ -234,7 +233,7 @@ def _score_cross_section(cell, panel=None, names=None):
         raise ValueError("rel_ cross-sectional targets are dropped; they equal ret_")
     horizon = int(cell["target"].split("_")[1])
     if panel is None:
-        panel = _load_cross_panel()
+        raise ValueError("a cross-sectional score needs a panel; pass one batch")
     elif names is not None:
         panel = {name: frame for name, frame in panel.items() if name in names}
     rows = []

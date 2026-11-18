@@ -89,19 +89,22 @@ def cycle(ctx):
                               train_sign=1 if cell.get("train_score", 0) > 0 else -1)
         return {"cell": cell["cell_id"], "verdict": record["verdict"],
                 "family": family, "remaining": len(queue) - 1}
-    from regime_tester.confirm import _load_cross_panel, _score_cross_section, parse_cell_id
-    if not _PANEL:
-        _PANEL.update(_load_cross_panel())
+    from regime_tester.confirm import _load_cross_batch, _score_cross_section, parse_cell_id
+    source = "/opt/data/workspace/regime-tester/data/panel_xs_laevitas"
+    if not os.path.isdir(source):
+        source = os.path.join(ROOT, "data", "panel_xs")
     state = json.load(open(PARTIAL)) if os.path.exists(PARTIAL) else {}
     if state.get("cell_id") != cell["cell_id"]:
         state = {"cell_id": cell["cell_id"], "done": []}
-    pending = [name for name in _PANEL if name not in set(state["done"])]
+    pending = [name[:-4] for name in sorted(os.listdir(source))
+               if name[:-4] not in set(state["done"])]
     batch = pending[:BATCH]
+    panel = _load_cross_batch(batch)
     parsed = parse_cell_id(cell["cell_id"])
-    scored = _score_cross_section(parsed, _PANEL, names=set(batch))
+    scored = _score_cross_section(parsed, panel)
     state["done"] = sorted(set(state["done"]) | set(batch))
     state["last"] = {"validation": scored["validation"], "test": scored["test"],
-                     "names": len(batch)}
+                     "names": len(panel)}
     _save(PARTIAL, state)
     if len(pending) > BATCH:
         return {"cell": cell["cell_id"], "batch": len(batch),
