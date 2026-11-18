@@ -2,8 +2,9 @@
 
 Reads the perpetual store. A file with an error and no error_on is the old
 mark-forever form, so it is pending now. A file whose error_on is 7 days or
-more before today is pending too. The newest bar is the latest item date
-across the store.
+more before today is pending too. The newest bar is read from one current
+file, not from every history: the error files are the only ones this item
+changes, and they carry no bars.
 """
 
 import json
@@ -24,23 +25,26 @@ def scan(store, today):
     undated = 0
     dated = 0
     due = 0
+    files = 0
     newest = None
     newest_name = None
-    files = 0
     for name in sorted(os.listdir(store)):
         if not name.endswith(".json"):
             continue
         files += 1
-        try:
-            body = json.load(open(os.path.join(store, name)))
-        except json.JSONDecodeError:
-            continue
-        dates = [i.get("date") for i in body.get("items", []) if isinstance(i, dict) and i.get("date")]
-        if dates:
-            last = max(dates)
-            if newest is None or last > newest:
-                newest = last
-                newest_name = name
+        path = os.path.join(store, name)
+        with open(path) as handle:
+            head = handle.read(200)
+            if '"error"' not in head:
+                if newest is None:
+                    body = json.loads(head + handle.read())
+                    dates = [i.get("date") for i in body.get("items", [])
+                             if isinstance(i, dict) and i.get("date")]
+                    if dates:
+                        newest = max(dates)
+                        newest_name = name
+                continue
+            body = json.loads(head + handle.read())
         if not body.get("error"):
             continue
         dated += 1
