@@ -30,8 +30,14 @@ def rank_ic(signal, forward):
     return float(signal[both].rank().corr(forward[both].rank()))
 
 
-def decile_spread(signal, forward):
-    """Mean return of the top decile minus the bottom decile, in percent."""
+def decile_spread(signal, forward, spans=None):
+    """Mean return of the top decile minus the bottom decile, in percent.
+
+    spans drops names not listed on that date before the rank, so a name whose
+    span has ended cannot move the decile cut.
+    """
+    from regime_tester.pit import apply_listing_mask
+    signal = apply_listing_mask(signal.to_frame().T, spans).iloc[0]
     both = signal.notna() & forward.notna()
     if both.sum() < 20:
         return np.nan
@@ -43,11 +49,13 @@ def decile_spread(signal, forward):
     return float((top.mean() - bottom.mean()) * 100)
 
 
-def score_cross_section(panel, signal_fn, horizon):
-    """Rank IC and decile spread per date, over the names present that date.
+def score_cross_section(panel, signal_fn, horizon, spans=None):
+    """Rank IC and decile spread per date, over the names listed that date.
 
     panel is a dict of name to a frame with date and close. signal_fn takes a
-    close series and returns the signal, lagged one bar by the caller.
+    close series and returns the signal, lagged one bar by the caller. spans
+    maps a name to (listed_from, listed_to); a name outside its span is dropped
+    before the rank, and a name with no span is dropped on every date.
     """
     from regime_tester.panel_integrity import assert_sorted, clean_frame
     rows = []
@@ -61,6 +69,10 @@ def score_cross_section(panel, signal_fn, horizon):
         forward = close.shift(-horizon) / close - 1
         joined = pd.DataFrame({"signal": signal, "forward": forward}).dropna()
         joined["name"] = name
+        if spans is not None:
+            start, end = spans.get(name, ("9999-12-31", "0000-01-01"))
+            days = joined.index.strftime("%Y-%m-%d") if isinstance(joined.index, pd.DatetimeIndex) else joined.index.map(lambda d: str(d)[:10])
+            joined = joined[(days >= start) & (days <= end)]
         rows.append(joined)
     if not rows:
         return pd.DataFrame()

@@ -257,16 +257,18 @@ def indicator_cache(panel, index, digest):
     return {name: frame.droplevel(0, axis=1) for name, frame in frames.items()}
 
 
-def _spreads(cut, net, levels, direction):
+def _spreads(cut, net, levels, direction, spans=None):
     """The daily spread at every threshold, from one pass over the matrix.
 
     The names on a date are sorted by the cut, and the cumulative sum of their
     forward returns gives the mean of every tail. levels maps a threshold to the
     value it cuts on, so a z-score is cut at the normal quantile rather than at
     80. A threshold that flags fewer than two names, or leaves fewer than two,
-    is empty.
+    is empty. spans drops names not listed on that date before the sort, so a
+    name whose span has ended cannot move the cut.
     """
-    cut = cut.reindex(columns=net.columns)
+    from regime_tester.pit import apply_listing_mask
+    cut = apply_listing_mask(cut.reindex(columns=net.columns), spans)
     values = cut.to_numpy(dtype=float)
     returns = net.to_numpy(dtype=float)
     dates = len(values)
@@ -296,8 +298,13 @@ def _spreads(cut, net, levels, direction):
     return {threshold: pd.Series(series, index=cut.index) for threshold, series in out.items()}
 
 
-def score_one(close, measure, name, net_by_horizon):
-    """Every cell of one measure, in the train scorer's row format."""
+def score_one(close, measure, name, net_by_horizon, spans=None):
+    """Every cell of one measure, in the train scorer's row format.
+
+    spans maps a column to (listed_from, listed_to). The rank and the threshold
+    cut both drop names outside their span, so a name that has not listed, or
+    whose last file is past, does not enter the cross-section on that date.
+    """
     measure.attrs["close"] = close
     rows = []
     for transform in TRANSFORMS:
@@ -308,7 +315,8 @@ def score_one(close, measure, name, net_by_horizon):
             cut = transformed
             levels = {threshold: float(norm.ppf(threshold / 100.0)) for threshold in THRESHOLDS}
         elif scale == "cross_section":
-            cut = transformed.rank(axis=1, pct=True) * 100
+            from regime_tester.pit import apply_listing_mask
+            cut = apply_listing_mask(transformed, spans).rank(axis=1, pct=True) * 100
             levels = {threshold: float(threshold) for threshold in THRESHOLDS}
         else:
             cut = transformed
@@ -318,7 +326,7 @@ def score_one(close, measure, name, net_by_horizon):
             group = [t for t in THRESHOLDS if (t <= 20) == (direction == "below")]
             for horizon in HORIZONS:
                 for target in ("ret", "rel"):
-                    spreads = _spreads(cut, net_by_horizon[horizon][target], levels, direction)
+                    spreads = _spreads(cut, net_by_horizon[horizon][target], levels, direction, spans)
                     for threshold in group:
                         spread = spreads[threshold]
                         independent = spread.iloc[::horizon].dropna()
@@ -403,6 +411,20 @@ def net_returns(close):
     return out
 
 
+def panel_spans(columns):
+    """(listed_from, listed_to) per panel column, from the span files.
+
+    A column is exchange_symbol. A column the span files do not name gets no
+    entry, and the mask then drops it on every date rather than keeping it.
+    """
+    from regime_tester.pit import span_rows
+    universe = span_rows()
+    spans = {}
+    for row in universe.itertuples(index=False):
+        spans[f"{row.exchange}_{row.symbol}"] = (row.listed_from, row.listed_to)
+    return {column: spans[column] for column in columns if column in spans}
+
+
 def status_line(done, work):
     """Scored cells against the testable list, written to the shared counter."""
     payload = write_counter(len(done & work), len(work))
@@ -422,6 +444,7 @@ def cycle(ctx):
         ctx["panel"] = load_panel(close.columns)
         ctx["measures"] = indicator_cache(ctx["panel"], close.index, digest)
         ctx["net"] = net_returns(close)
+        ctx["spans"] = panel_spans(close.columns)
         ctx["work"] = work_list()
     done = scored_ids()
     # Conditioned cells are a different test and are not counted as pending.
@@ -434,7 +457,7 @@ def cycle(ctx):
         return {"measure": None, "names": int(close.shape[1]), "remaining": 0,
                 "status_line": line}
     name = pending[0]
-    rows = score_one(close, ctx["measures"][name], name, ctx["net"])
+    rows = score_one(close, ctx["measures"][name], name, ctx["net"], ctx["spans"])
     path, total = append_rows(rows, already=done)
     return {"measure": name, "names": int(close.shape[1]), "rows": len(rows),
             "rows_total": total, "remaining": len(pending) - 1,

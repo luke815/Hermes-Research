@@ -94,6 +94,15 @@ def _read_panel(cell_id):
     return panel
 
 
+def _listing_spans():
+    """(listed_from, listed_to) per panel column, from the span files."""
+    from regime_tester.pit import span_rows
+    spans = {}
+    for row in span_rows().itertuples(index=False):
+        spans[f"{row.exchange}_{row.symbol}"] = (row.listed_from, row.listed_to)
+    return spans
+
+
 def cycle(ctx):
     """One batch of one cross-sectional cell. A killed run resumes the cell.
 
@@ -133,7 +142,8 @@ def cycle(ctx):
         record = confirm_cell(cell["cell_id"],
                               family_n=family_attempts().get(family_of(cell["cell_id"]), 0),
                               train_sign=1 if cell.get("train_score", 0) > 0 else -1,
-                              panel=_read_panel(cell["cell_id"]))
+                              panel=_read_panel(cell["cell_id"]),
+                              spans=_listing_spans())
         verdict = record["verdict"]
     except (ValueError, RuntimeError) as exc:
         _record_void(cell["cell_id"], f"{type(exc).__name__}: {exc}")

@@ -12,6 +12,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -68,6 +69,64 @@ class SpreadCostTests(unittest.TestCase):
         net = long["net"].iloc[1] + short["net"].iloc[1]
         self.assertNotAlmostEqual(net, gross)
         self.assertLess(net, gross)
+        # Both legs pay a round trip, and the long pays the carry the short receives.
+        both_legs = long["round_trip"].iloc[1] + short["round_trip"].iloc[1]
+        both_carry = long["carry"].iloc[1] + short["carry"].iloc[1]
+        self.assertAlmostEqual(gross - net, both_legs + both_carry)
+        self.assertGreater(both_legs, long["round_trip"].iloc[1])
+        # A long pays positive funding and a short receives it, so the two carries
+        # are equal and opposite and the spread's carry is their sum, not one leg's.
+        self.assertAlmostEqual(short["carry"].iloc[1], -long["carry"].iloc[1])
+        self.assertNotAlmostEqual(long["carry"].iloc[1], 0.0)
+
+
+class ListingMaskTests(unittest.TestCase):
+    def test_a_dead_name_changes_the_rank_before_the_mask_and_not_after(self):
+        from regime_tester.cross_section import score_cross_section
+        from scripts.sweep_xs import _spreads
+        dates = pd.date_range("2024-01-01", periods=25, freq="D")
+        days = dates.strftime("%Y-%m-%d")
+        panel = {}
+        for i in range(22):
+            # A rising close, so the forward return is not flat and the decile has a sign.
+            close = pd.Series(np.linspace(100.0, 100.0 + (i + 1) * 5, len(days)), index=days)
+            panel[f"live{i}"] = pd.DataFrame({"date": days, "close": close.to_numpy()})
+        # Dead on every date of the window, and the only falling name, so it takes the bottom decile.
+        panel["dead"] = pd.DataFrame({"date": days, "close": np.linspace(10_000.0, 100.0, len(days))})
+        spans = {name: ("2020-01-01", "2026-01-01") for name in panel if name != "dead"}
+        spans["dead"] = ("2021-01-01", "2021-06-01")
+
+        def signal_fn(close):
+            return pd.Series(close.to_numpy(), index=close.index)
+
+        before = score_cross_section(panel, signal_fn, horizon=1)
+        after = score_cross_section(panel, signal_fn, horizon=1, spans=spans)
+        self.assertFalse(before["decile_spread"].dropna().empty)
+        self.assertFalse(after["decile_spread"].dropna().empty)
+        self.assertFalse(np.allclose(
+            before["decile_spread"].to_numpy(), after["decile_spread"].to_numpy(), equal_nan=True))
+        # With the mask the dead name is out, so dropping it from the panel changes nothing.
+        without = dict(panel)
+        del without["dead"]
+        dropped = score_cross_section(without, signal_fn, horizon=1, spans=spans)
+        self.assertTrue(np.allclose(
+            after["decile_spread"].to_numpy(), dropped["decile_spread"].to_numpy(), equal_nan=True))
+
+        # The same mask in the sweep path. Three dead names sit above the cut and
+        # return the opposite of the live names, so they move the spread before the
+        # mask and the cut flags nobody once they are dropped.
+        index = days
+        cut = pd.DataFrame({name: [50.0] * len(days) for name in panel if name != "dead"}, index=index)
+        net = pd.DataFrame(0.01, index=index, columns=list(cut.columns))
+        for extra in ("dead", "dead2", "dead3"):
+            cut[extra] = 99.0
+            net[extra] = -0.5
+            spans[extra] = ("2021-01-01", "2021-06-01")
+        raw = _spreads(cut, net, {90: 90.0}, "above")
+        masked = _spreads(cut, net, {90: 90.0}, "above", spans)
+        self.assertTrue(raw[90].notna().any())
+        self.assertTrue((raw[90].dropna() < 0).all())
+        self.assertTrue(masked[90].isna().all())
 
 
 if __name__ == "__main__":

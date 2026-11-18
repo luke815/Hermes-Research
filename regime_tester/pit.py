@@ -47,6 +47,34 @@ def span_rows(directory=None):
     return frame.sort_values(["exchange", "symbol"]).reset_index(drop=True)
 
 
+def listing_mask(index, columns, spans):
+    """True where a name's span covers the date. A name with no span is out.
+
+    spans maps a column to (listed_from, listed_to), both YYYY-MM-DD. A name
+    that listed later, or whose last file is already past, is False on that
+    date, so a rank computed on the masked frame cannot see it.
+    """
+    if isinstance(index, pd.DatetimeIndex):
+        dates = index.strftime("%Y-%m-%d")
+    else:
+        dates = pd.Index([str(d)[:10] for d in index])
+    out = pd.DataFrame(False, index=index, columns=list(columns))
+    for column in columns:
+        if column not in spans:
+            continue
+        start, end = spans[column]
+        out[column] = (dates >= start) & (dates <= end)
+    return out
+
+
+def apply_listing_mask(frame, spans):
+    """Set a name to NaN on dates outside its span. None leaves the frame as is."""
+    if spans is None or frame is None or len(frame) == 0:
+        return frame
+    mask = listing_mask(frame.index, frame.columns, spans)
+    return frame.where(mask)
+
+
 def listed_on(universe, date):
     """Names whose span covers the date. A name that listed later is absent."""
     day = str(date)[:10]

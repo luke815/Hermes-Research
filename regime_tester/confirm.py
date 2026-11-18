@@ -182,11 +182,11 @@ def _xs_net_panel(panel, horizon):
     return out
 
 
-def score_periods(cell_id, panel=None):
+def score_periods(cell_id, panel=None, spans=None):
     """Validation and test for one cell. Does not read the leaderboard."""
     cell = parse_cell_id(cell_id)
     if cell["universe"] == "pit_cross_section":
-        return _score_cross_section(cell, panel)
+        return _score_cross_section(cell, panel, spans=spans)
     frames = load_full_frames()
     if frames["BTC"].index.max() <= TRAIN_END:
         raise RuntimeError("the series ends at or before the train end")
@@ -248,7 +248,7 @@ def _load_cross_batch(names):
     return panel
 
 
-def _score_cross_section(cell, panel=None, names=None):
+def _score_cross_section(cell, panel=None, names=None, spans=None):
     """Validation and test for one cross-sectional cell, built from its own id.
 
     rel_ targets are not scored: subtracting BTC cancels inside a same-day
@@ -279,6 +279,10 @@ def _score_cross_section(cell, panel=None, names=None):
         forward = _xs_net_panel({name: frame}, horizon)[name]
         joined = pd.DataFrame({"signal": signal, "forward": forward}).dropna()
         joined["name"] = name
+        if spans is not None:
+            start, end = spans.get(name, ("9999-12-31", "0000-01-01"))
+            days = joined.index.strftime("%Y-%m-%d")
+            joined = joined[(days >= start) & (days <= end)]
         rows.append(joined)
     if not rows:
         raise RuntimeError("the cross-sectional panel has no scorable names")
@@ -313,7 +317,7 @@ def _read_record():
     return json.loads(RECORD.read_text())
 
 
-def confirm_cell(cell_id, family_n, train_sign, family_combinations=None, panel=None):
+def confirm_cell(cell_id, family_n, train_sign, family_combinations=None, panel=None, spans=None):
     """One confirmation attempt. A cell already recorded is refused.
 
     family_n is the raw cell count tested in the family. family_combinations
@@ -332,7 +336,7 @@ def confirm_cell(cell_id, family_n, train_sign, family_combinations=None, panel=
            for row in prior):
         raise RuntimeError(f"{cell_id} already has a confirmation attempt")
     try:
-        scored = score_periods(cell_id, panel)
+        scored = score_periods(cell_id, panel, spans)
     except (ValueError, RuntimeError) as exc:
         if "pit_cross_section" not in cell_id:
             raise
