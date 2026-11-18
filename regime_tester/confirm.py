@@ -238,8 +238,12 @@ def _score_cross_section(cell, panel=None):
     stacked = pd.concat(rows)
     daily = []
     for date, group in stacked.groupby(level=0):
+        if not hasattr(date, "year"):
+            continue
         daily.append({"date": date, "spread": decile_spread(group["signal"], group["forward"])})
-    scored = pd.DataFrame(daily)
+    scored = pd.DataFrame(daily, columns=["date", "spread"])
+    if scored.empty:
+        raise RuntimeError("the cross-sectional panel has no dated spreads")
     scored["date"] = pd.to_datetime(scored["date"], utc=True)
 
     def block(start, end):
