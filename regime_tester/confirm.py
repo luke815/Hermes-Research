@@ -218,17 +218,24 @@ def _score_cross_section(cell, panel=None):
     horizon = int(cell["target"].split("_")[1])
     if panel is None:
         panel = {}
-        for name in sorted(os.listdir(ROOT / "data" / "panel_xs")):
-            frame = clean_frame(pd.read_csv(ROOT / "data" / "panel_xs" / name))
+        source = ROOT / "data" / "panel_xs_laevitas"
+        if not source.exists():
+            source = ROOT / "data" / "panel_xs"
+        for name in sorted(os.listdir(source)):
+            frame = clean_frame(pd.read_csv(source / name))
             if "close" not in frame.columns or frame["close"].notna().sum() < 60:
                 continue
-            panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])[["date", "close"]]
+            panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])
         panel, _dropped = collapse_venues(panel)
     rows = []
     for name, frame in panel.items():
         close = frame.set_index("date")["close"].astype(float)
         close.index = pd.to_datetime(close.index, utc=True)
-        signal = _xs_signal(close, cell).shift(1)
+        signal = _xs_signal(frame.set_index("date"), cell)
+        signal.index = pd.to_datetime(signal.index, utc=True)
+        signal = signal.shift(1)
+        if signal.notna().sum() == 0:
+            continue
         forward = close.shift(-horizon) / close - 1
         joined = pd.DataFrame({"signal": signal, "forward": forward}).dropna()
         joined["name"] = name

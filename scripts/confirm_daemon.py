@@ -44,6 +44,21 @@ def eligible():
     return cross + events + single
 
 
+def _record_void(cell_id, reason):
+    """Write a void row for a cell the current panel cannot score."""
+    from datetime import datetime, timezone
+    rows = json.load(open(RECORD)) if os.path.exists(RECORD) else []
+    rows.append({
+        "cell_id": cell_id,
+        "verdict": "void",
+        "void_reason": reason,
+        "voided_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    })
+    tmp = RECORD + ".tmp"
+    json.dump(rows, open(tmp, "w"), indent=2)
+    os.replace(tmp, RECORD)
+
+
 def cycle(ctx):
     queue = eligible()
     if not queue:
@@ -51,8 +66,15 @@ def cycle(ctx):
     cell = queue[0]
     from regime_tester.confirm import confirm_cell, family_attempts, family_of
     family = family_of(cell["cell_id"])
-    record = confirm_cell(cell["cell_id"], family_n=family_attempts().get(family, 0),
-                          train_sign=1 if cell.get("train_score", 0) > 0 else -1)
+    try:
+        record = confirm_cell(cell["cell_id"], family_n=family_attempts().get(family, 0),
+                              train_sign=1 if cell.get("train_score", 0) > 0 else -1)
+    except (ValueError, RuntimeError) as error:
+        # Recorded as void so the queue moves on. A void row is not an attempt,
+        # and the old reason is kept so the cell can be rebuilt later.
+        _record_void(cell["cell_id"], str(error))
+        return {"cell": cell["cell_id"], "verdict": "void",
+                "error": str(error), "remaining": len(queue) - 1}
     return {"cell": cell["cell_id"], "verdict": record["verdict"],
             "family": family, "remaining": len(queue) - 1}
 
