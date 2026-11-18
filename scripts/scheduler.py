@@ -23,6 +23,7 @@ Usage: python3 scripts/scheduler.py
 
 import json
 import os
+import sys
 import subprocess
 import time
 import urllib.parse
@@ -125,9 +126,68 @@ def sweep_status():
     return {"wrote": True, "line": line.strip()}
 
 
+GUARDED_DIRS = ("data/panel_xs", "data/panel_xs_laevitas")
+
+
+def guard_problems():
+    """Done items without a passing done_check, data that vanished, claims abused, a drifted skill."""
+    out = []
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    try:
+        import done_check
+        out.extend(done_check.audit())
+    except Exception as exc:  # noqa: BLE001
+        out.append(f"done_check audit failed: {exc}")
+    try:
+        import data_guard
+        for rel in GUARDED_DIRS:
+            if os.path.isdir(os.path.join(ROOT, rel)):
+                out.extend(data_guard.check(rel))
+        out.extend("data loss recorded: " + line for line in data_guard.recent_losses())
+    except Exception as exc:  # noqa: BLE001
+        out.append(f"data_guard check failed: {exc}")
+    try:
+        import claim
+        out.extend(f"claim {c['item']} by {c['owner']} expired {c['age_hours']}h ago without release"
+                   + (" (corrupt file)" if c.get("corrupt") else "") for c in claim.status() if c.get("expired"))
+        out.extend("claim abuse: " + line for line in claim.recent_events())
+    except Exception as exc:  # noqa: BLE001
+        out.append(f"claim status failed: {exc}")
+    try:
+        import hashlib
+        skill = os.path.join(ROOT, "skills", "diligence", "SKILL.md")
+        pin = open(os.path.join(ROOT, "skills", "diligence", "SHA256")).read().split()[0]
+        committed = hashlib.sha256(open(skill, "rb").read()).hexdigest()
+        if committed != pin:
+            out.append("skills/diligence/SKILL.md differs from its pinned SHA256")
+        installed = os.path.join(os.environ.get("HERMES_SKILLS_DIR", os.path.expanduser("~/.hermes/skills")),
+                                 "research", "diligence", "SKILL.md")
+        if not os.path.exists(installed):
+            out.append("diligence skill is not installed for this user; run skills/diligence/install.sh")
+        elif hashlib.sha256(open(installed, "rb").read()).hexdigest() != committed:
+            out.append("installed diligence skill differs from skills/diligence/SKILL.md; re-run install.sh")
+    except OSError:
+        out.append("skills/diligence/SHA256 or SKILL.md is missing")
+    try:
+        dlog = os.path.join(ROOT, "ops", "daemons.log")
+        cutoff = time.time() - 24 * 3600
+        for line in open(dlog):
+            stamp = line[:20].strip()
+            try:
+                when = datetime.strptime(stamp, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp()
+            except ValueError:
+                continue
+            if when >= cutoff and line[20:].startswith(("ENABLE", "DISABLE")):
+                out.append("daemon flag changed: " + line.strip())
+    except OSError:
+        pass
+    return out
+
+
 def health(now):
-    """Read heartbeats and the hosted file. Return the problems, or nothing."""
+    """Read heartbeats, the hosted file and the diligence guards. Return the problems, or nothing."""
     problems = []
+    problems.extend(guard_problems())
     heartbeats = {
         "supervisor": (os.path.join(ROOT, "ops", "supervisor_heartbeat"), 300),
         "live": (os.path.join(ROOT, "ops", "live_heartbeat"), 900),

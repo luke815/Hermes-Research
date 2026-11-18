@@ -8,6 +8,10 @@ Usage (run from the workspace root, e.g. /opt/data/workspace/regime-tester):
   python3 scripts/procmgr.py status [NAME]                pid, alive, uptime, heartbeat age, version
   python3 scripts/procmgr.py supervise                    start every registered daemon that is not alive
   python3 scripts/procmgr.py register NAME -- <command...> register without starting
+  python3 scripts/procmgr.py disable NAME REASON          stop NAME and keep it off: start, restart and supervise refuse it,
+                                                          and so does the same command under another name
+  python3 scripts/procmgr.py enable NAME REASON           remove the disabled flag (does not start it)
+  Both are appended to ops/daemons.log, which the health check reads.
 
 Rules this enforces:
   - Identity is a pidfile (ops/pids/NAME.pid) plus a lock (ops/locks/NAME.lock), never a process name.
@@ -21,9 +25,19 @@ import fcntl, json, os, signal, subprocess, sys, time
 
 ROOT = os.getcwd()
 OPS = os.path.join(ROOT, "ops")
-for sub in ("pids", "locks", "logs"):
-    os.makedirs(os.path.join(OPS, sub), exist_ok=True)
 REG = os.path.join(OPS, "daemons.json")
+DLOG = os.path.join(OPS, "daemons.log")
+
+
+def _dirs():
+    for sub in ("pids", "locks", "logs", "disabled"):
+        os.makedirs(os.path.join(OPS, sub), exist_ok=True)
+
+
+def _dlog(line):
+    _dirs()
+    with open(DLOG, "a") as f:
+        f.write(time.strftime("%Y-%m-%dT%H:%M:%SZ ", time.gmtime()) + line + "\n")
 
 
 def _reg():
@@ -34,6 +48,7 @@ def _reg():
 
 
 def _save_reg(r):
+    _dirs()
     tmp = REG + ".tmp"
     json.dump(r, open(tmp, "w"), indent=1)
     os.replace(tmp, REG)
@@ -44,11 +59,81 @@ def _lockfile(n): return os.path.join(OPS, "locks", f"{n}.lock")
 def _verfile(n): return os.path.join(OPS, "pids", f"{n}.version")
 def _logfile(n): return os.path.join(OPS, "logs", f"{n}.log")
 def _hbfile(n): return os.path.join(OPS, f"{n}_heartbeat")
+def _disabledfile(n): return os.path.join(OPS, "disabled", f"{n}")
+
+
+def _disabled():
+    """{name: flag} for every disabled daemon."""
+    out = {}
+    folder = os.path.join(OPS, "disabled")
+    if not os.path.isdir(folder):
+        return out
+    for name in os.listdir(folder):
+        try:
+            out[name] = json.load(open(os.path.join(folder, name)))
+        except Exception:
+            out[name] = {"name": name, "reason": "unreadable flag"}
+    return out
+
+
+def _same_cmd(a, b):
+    """Two commands are the same daemon if they run the same script file."""
+    def key(cmd):
+        for part in cmd or []:
+            if str(part).endswith(".py"):
+                return os.path.realpath(os.path.join(ROOT, part))
+        return tuple(cmd or [])
+    return bool(a) and bool(b) and key(a) == key(b)
+
+
+def is_disabled(n, cmd=None):
+    """A disabled daemon stays off until enable: stop alone is undone by the supervisor within 60s.
+
+    The flag covers the name and the command, so the same script under a new name is refused too.
+    """
+    flags = _disabled()
+    if n in flags:
+        return True
+    return any(_same_cmd(cmd or _reg().get(n, {}).get("cmd"), flag.get("cmd")) for flag in flags.values())
+
+
+def _disabled_reason(n):
+    for name, flag in _disabled().items():
+        if name == n or _same_cmd(_reg().get(n, {}).get("cmd"), flag.get("cmd")):
+            return f"{flag.get('reason', '')} (flag {name})"
+    return ""
+
+
+def disable(n, reason=""):
+    if len(reason.strip()) < 10:
+        print("disable needs a reason, e.g. 'review: off until A2 two-cell test passes'"); return 2
+    _dirs()
+    with open(_disabledfile(n), "w") as f:
+        json.dump({"name": n, "cmd": _reg().get(n, {}).get("cmd"), "reason": reason,
+                   "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}, f)
+    if _alive(_pid(n)):
+        stop(n)
+    _dlog(f"DISABLE {n}: {reason}")
+    print(f"{n}: disabled ({reason}); start, restart and supervise will refuse it until enable")
+    return 0
+
+
+def enable(n, reason=""):
+    if len(reason.strip()) < 10:
+        print("enable needs a reason, e.g. 'A2 two-cell test passed in 1a2b3c4'"); return 2
+    try:
+        os.remove(_disabledfile(n))
+        _dlog(f"ENABLE {n}: {reason}")
+        print(f"{n}: enabled (not started; use start or wait for supervise)")
+    except FileNotFoundError:
+        print(f"{n}: was not disabled")
+    return 0
 
 
 def _head():
     try:
-        return subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, text=True).strip()
+        return subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, text=True,
+                                       stderr=subprocess.DEVNULL).strip()
     except Exception:
         return "unknown"
 
@@ -80,6 +165,7 @@ def _alive(pid):
 
 def _lock_held(n):
     """True if some process holds NAME's lock (the daemon acquires it in daemon_base.run_loop)."""
+    _dirs()
     fd = os.open(_lockfile(n), os.O_RDWR | os.O_CREAT)
     try:
         fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -100,6 +186,10 @@ def start(n, cmd):
         cmd = _reg().get(n, {}).get("cmd")
     if not cmd:
         print(f"{n}: no command given and none registered"); return 2
+    if is_disabled(n, cmd):
+        print(f"{n}: disabled, not started ({_disabled_reason(n) or 'same command as a disabled daemon'}); "
+              f"run procmgr.py enable <name> <reason> first"); return 3
+    _dirs()
     r = _reg(); r[n] = {"cmd": cmd}; _save_reg(r)
     if is_running(n):
         print(f"{n}: already running (pid {_pid(n)})"); return 0
@@ -183,21 +273,24 @@ def status(names=None):
             ver = "?"
         row = {"name": n, "pid": pid, "alive": alive, "uptime_s": up, "heartbeat_age_s": hb_age,
                "phase": hb.get("phase"), "cycles": hb.get("cycles"), "last_error": hb.get("last_error"),
-               "version": ver, "head": head, "stale_code": alive and ver not in ("?", head)}
+               "version": ver, "head": head, "stale_code": alive and ver not in ("?", head),
+               "disabled": is_disabled(n)}
         out.append(row)
         print(json.dumps(row))
     return out
 
 
 def supervise():
-    r = _reg(); started = []
+    r = _reg(); started = []; skipped = []
     for n, spec in r.items():
+        if is_disabled(n):
+            skipped.append(n); continue
         if not is_running(n):
             start(n, spec["cmd"]); started.append(n)
     with open(os.path.join(OPS, "supervisor_heartbeat"), "w") as f:
         json.dump({"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "ts_epoch": int(time.time()),
                    "checked": list(r.keys()), "started": started}, f)
-    print(f"supervise: checked {len(r)}, started {started}")
+    print(f"supervise: checked {len(r)}, started {started}, skipped disabled {skipped}")
     return 0
 
 
@@ -213,11 +306,17 @@ def main(argv):
     if op == "stop":
         return stop(argv[2])
     if op == "restart":
+        if is_disabled(argv[2]):
+            print(f"{argv[2]}: disabled ({_disabled_reason(argv[2])}); not restarted"); return 3
         stop(argv[2]); return start(argv[2], None)
     if op == "status":
         status(argv[2:3] or None); return 0
     if op == "supervise":
         return supervise()
+    if op == "disable" and len(argv) >= 3:
+        return disable(argv[2], " ".join(argv[3:]))
+    if op == "enable" and len(argv) >= 3:
+        return enable(argv[2], " ".join(argv[3:]))
     print(__doc__); return 2
 
 

@@ -11,7 +11,7 @@ def cycle(ctx):
     reg = procmgr._reg()
     started = []
     for name, spec in reg.items():
-        if name == "supervisor":
+        if name == "supervisor" or procmgr.is_disabled(name):
             continue
         if not procmgr.is_running(name):
             procmgr.start(name, spec["cmd"]); started.append(name)
