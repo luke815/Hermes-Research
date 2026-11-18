@@ -19,6 +19,12 @@ import sys
 from datetime import datetime, timezone
 from glob import glob
 
+# procmgr and cron start from a clean environment, which does not have the
+# user site on its path. pandas lives there.
+_SITE = "/opt/data/.local/lib/python3.14/site-packages"
+if _SITE not in sys.path:
+    sys.path.insert(0, _SITE)
+
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -30,21 +36,30 @@ DEST = os.path.join(ROOT, "data", "panel_xs_sum")
 SUMS = os.path.join(ROOT, "data", "funding_sum")
 TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-# The archive walk stores stopped OKX names under okx_archive_. The paged
-# pull stores live names under okx_. A name uses the archive file when it
-# exists, because that one reaches back to 2021.
-SUM_PREFIX = {"binance": ["binance_"], "bybit": ["bybit_"], "okx": ["okx_archive_", "okx_"]}
+# The archive walk stores stopped OKX names under okx_archive_<base>.csv. The
+# paged pull stores live names under okx_<symbol>.csv. A stopped name uses the
+# archive file, matched by base coin, because that one reaches back to 2021.
+SUM_PREFIX = {"binance": ["binance_"], "bybit": ["bybit_"], "okx": ["okx_", "okx_archive_"]}
 
 
 def sum_frame(exchange, symbol):
-    """The daily sum for one name, or None when no sum has been pulled."""
+    """The daily sum for one name, or None when no sum has been pulled.
+
+    The OKX archive writes the base coin, not the instrument, so ACE is the
+    file for ACE-USDT-SWAP. An exact instrument match wins over the base match.
+    """
+    keys = [symbol]
+    base = base_of(symbol)
+    if base and base not in keys:
+        keys.append(base)
     for prefix in SUM_PREFIX.get(exchange, []):
-        path = os.path.join(SUMS, f"{prefix}{symbol}.csv")
-        if os.path.exists(path) and os.path.getsize(path) > 40:
-            frame = pd.read_csv(path)
-            frame["date"] = frame["date"].astype(str).str.slice(0, 10)
-            return frame.set_index("date")[["funding_rate", "funding_count",
-                                            "funding_interval_hours"]]
+        for key in keys:
+            path = os.path.join(SUMS, f"{prefix}{key}.csv")
+            if os.path.exists(path) and os.path.getsize(path) > 40:
+                frame = pd.read_csv(path)
+                frame["date"] = frame["date"].astype(str).str.slice(0, 10)
+                return frame.set_index("date")[["funding_rate", "funding_count",
+                                                "funding_interval_hours"]]
     return None
 
 

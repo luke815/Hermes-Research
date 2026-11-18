@@ -71,7 +71,8 @@ def sum_funding(prints, interval_hours):
 def base_of(symbol):
     """Strip the quote and the multiplier so the same coin collapses to one key."""
     stem = str(symbol).split(".")[0]
-    for suffix in ("_PERP", "-SWAP", "USDT", "USDC", "USD"):
+    for suffix in ("-USDT-SWAP", "-USDC-SWAP", "-USD-SWAP", "_PERP", "-SWAP",
+                   "USDT", "USDC", "USD"):
         if stem.endswith(suffix) and len(stem) > len(suffix):
             stem = stem[: -len(suffix)]
             break

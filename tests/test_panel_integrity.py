@@ -10,7 +10,7 @@ import unittest
 
 import pandas as pd
 
-from regime_tester.panel_integrity import assert_sorted, clean_frame, sum_funding
+from regime_tester.panel_integrity import assert_sorted, base_of, clean_frame, sum_funding
 
 
 class PanelIntegrity(unittest.TestCase):
@@ -47,6 +47,14 @@ class PanelIntegrity(unittest.TestCase):
     def test_a_blank_day_is_absent(self):
         summed = sum_funding([], 8)
         self.assertEqual(summed, {})
+
+    def test_hyphenated_swap_strips_the_quote(self):
+        # The archive stores the base coin. Stripping only "-SWAP" leaves the
+        # quote on, so ACE-USDT-SWAP would never find okx_archive_ACE.csv.
+        self.assertEqual(base_of("ACE-USDT-SWAP"), "ACE")
+        self.assertEqual(base_of("BTC-USDT-SWAP"), "BTC")
+        self.assertEqual(base_of("BTCUSDT"), "BTC")
+        self.assertEqual(base_of("1000PEPE-USDT-SWAP"), "1000PEPE")
 
 
 if __name__ == "__main__":
