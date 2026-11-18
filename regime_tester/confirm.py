@@ -203,35 +203,46 @@ def _xs_signal(close, cell):
         transform(values.to_numpy(dtype=float), cell["transform"]), index=values.index)
 
 
-def _score_cross_section(cell, panel=None):
+def _load_cross_panel():
+    """The Laevitas panel, one venue per coin. The price panel has no positioning."""
+    from regime_tester.panel_integrity import clean_frame, collapse_venues
+    source = ROOT / "data" / "panel_xs_laevitas"
+    if not source.exists():
+        source = ROOT / "data" / "panel_xs"
+    panel = {}
+    for name in sorted(os.listdir(source)):
+        frame = clean_frame(pd.read_csv(source / name))
+        if "close" not in frame.columns or frame["close"].notna().sum() < 60:
+            continue
+        panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])
+    panel, _dropped = collapse_venues(panel)
+    return panel
+
+
+def _score_cross_section(cell, panel=None, names=None):
     """Validation and test for one cross-sectional cell, built from its own id.
 
     rel_ targets are not scored: subtracting BTC cancels inside a same-day
-    rank, so a rel_ cell is the same test as its ret_ twin. The spread is the
-    daily long-short spread of the names the cell flags, and its t-stat is HAC
-    with lag at least the horizon. t_newey_west is written only for lag 1.
+    rank, so a rel_ cell is the same test as its ret_ twin. names limits the
+    score to those coins, so a daemon can score one batch and resume. The
+    spread is the daily long-short spread of the names the cell flags, and its
+    t-stat is HAC with lag at least the horizon. t_newey_west is written only
+    for lag 1.
     """
     from regime_tester.cross_section import decile_spread
-    from regime_tester.panel_integrity import clean_frame, collapse_venues
     if cell["target"].startswith("rel_"):
         raise ValueError("rel_ cross-sectional targets are dropped; they equal ret_")
     horizon = int(cell["target"].split("_")[1])
     if panel is None:
-        panel = {}
-        source = ROOT / "data" / "panel_xs_laevitas"
-        if not source.exists():
-            source = ROOT / "data" / "panel_xs"
-        for name in sorted(os.listdir(source)):
-            frame = clean_frame(pd.read_csv(source / name))
-            if "close" not in frame.columns or frame["close"].notna().sum() < 60:
-                continue
-            panel[name.replace(".csv", "")] = frame.dropna(subset=["close"])
-        panel, _dropped = collapse_venues(panel)
+        panel = _load_cross_panel()
+    elif names is not None:
+        panel = {name: frame for name, frame in panel.items() if name in names}
     rows = []
     for name, frame in panel.items():
-        close = frame.set_index("date")["close"].astype(float)
+        indexed = frame.set_index("date") if "date" in frame.columns else frame
+        close = indexed["close"].astype(float)
         close.index = pd.to_datetime(close.index, utc=True)
-        signal = _xs_signal(frame.set_index("date"), cell)
+        signal = _xs_signal(indexed, cell)
         signal.index = pd.to_datetime(signal.index, utc=True)
         signal = signal.shift(1)
         if signal.notna().sum() == 0:

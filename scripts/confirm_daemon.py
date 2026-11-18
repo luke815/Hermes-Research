@@ -59,24 +59,56 @@ def _record_void(cell_id, reason):
     os.replace(tmp, RECORD)
 
 
+BATCH = 40
+PARTIAL = os.path.join(ROOT, "ops", "confirm_partial.json")
+
+
+def _save(path, payload):
+    tmp = path + ".tmp"
+    json.dump(payload, open(tmp, "w"))
+    os.replace(tmp, path)
+
+
+_PANEL = {}
+
+
 def cycle(ctx):
+    """One batch of one cross-sectional cell. A killed run resumes the cell.
+
+    The panel is loaded once and kept, because reading it again each cycle
+    costs more than the batch itself.
+    """
     queue = eligible()
     if not queue:
         return {"cell": None, "remaining": 0}
     cell = queue[0]
-    from regime_tester.confirm import confirm_cell, family_attempts, family_of
-    family = family_of(cell["cell_id"])
-    try:
+    if "pit_cross_section" not in cell["cell_id"]:
+        from regime_tester.confirm import confirm_cell, family_attempts, family_of
+        family = family_of(cell["cell_id"])
         record = confirm_cell(cell["cell_id"], family_n=family_attempts().get(family, 0),
                               train_sign=1 if cell.get("train_score", 0) > 0 else -1)
-    except (ValueError, RuntimeError) as error:
-        # Recorded as void so the queue moves on. A void row is not an attempt,
-        # and the old reason is kept so the cell can be rebuilt later.
-        _record_void(cell["cell_id"], str(error))
-        return {"cell": cell["cell_id"], "verdict": "void",
-                "error": str(error), "remaining": len(queue) - 1}
-    return {"cell": cell["cell_id"], "verdict": record["verdict"],
-            "family": family, "remaining": len(queue) - 1}
+        return {"cell": cell["cell_id"], "verdict": record["verdict"],
+                "family": family, "remaining": len(queue) - 1}
+    from regime_tester.confirm import _load_cross_panel, _score_cross_section, parse_cell_id
+    if not _PANEL:
+        _PANEL.update(_load_cross_panel())
+    state = json.load(open(PARTIAL)) if os.path.exists(PARTIAL) else {}
+    if state.get("cell_id") != cell["cell_id"]:
+        state = {"cell_id": cell["cell_id"], "done": []}
+    pending = [name for name in _PANEL if name not in set(state["done"])]
+    batch = pending[:BATCH]
+    parsed = parse_cell_id(cell["cell_id"])
+    scored = _score_cross_section(parsed, _PANEL, names=set(batch))
+    state["done"] = sorted(set(state["done"]) | set(batch))
+    state["last"] = {"validation": scored["validation"], "test": scored["test"],
+                     "names": len(batch)}
+    _save(PARTIAL, state)
+    if len(pending) > BATCH:
+        return {"cell": cell["cell_id"], "batch": len(batch),
+                "done": len(state["done"]), "remaining_names": len(pending) - BATCH}
+    os.remove(PARTIAL)
+    return {"cell": cell["cell_id"], "verdict": "batch_complete",
+            "names": len(state["done"]), "remaining": len(queue) - 1}
 
 
 if __name__ == "__main__":
