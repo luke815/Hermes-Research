@@ -62,6 +62,19 @@ class LibraryTests(unittest.TestCase):
                 f"{col} at bar {t} changed when later prices were perturbed",
             )
 
+    def test_a_centred_window_fails_the_same_check(self):
+        """The harness must reject a measure that reads the bars around t."""
+        base = frame()
+        t = len(base) // 2
+        leaky = base["close"].rolling(5, center=True).mean()
+        perturbed = base.copy()
+        perturbed.iloc[t + 1:] *= 3
+        again = perturbed["close"].rolling(5, center=True).mean()
+        self.assertFalse(
+            np.isclose(leaky.iloc[t], again.iloc[t]),
+            "a centred window reads the perturbed bars, so the check must reject it",
+        )
+
     def test_td_setup_counts_a_planted_run(self):
         close = pd.Series([10, 10, 10, 10, 10] + [11, 12, 13, 14, 15, 16, 17, 18, 19])
         setup, _ = td_sequential(close, None, None)

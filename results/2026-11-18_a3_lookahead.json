@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-18",
+  "item": "A3",
+  "written_at": "2026-11-18T02:04:14Z",
+  "runner": "python3 -m unittest",
+  "tests": {
+    "tests.test_derivatives_lookahead": "2 passed: a centred window fails the harness, and market_measures rebuilt from perturbed raw files is unchanged up to t",
+    "tests.test_derivatives": "12 passed, including the real store",
+    "tests.test_derivatives_key": "3 passed, RAW restored in tearDown",
+    "tests.test_indicators.LibraryTests.test_no_lookahead": "passed",
+    "tests.test_indicators.LibraryTests.test_a_centred_window_fails_the_same_check": "passed"
+  },
+  "ran": "17 + 2 tests, all OK",
+  "what_changed": "The old lookahead test compared a series with itself, so it always passed. It now copies the raw files, scales every row after t by 1.5, rebuilds with market_measures, and compares. The same harness rejects a centred rolling window.",
+  "left": "Nothing for A3. A1 is still open: the OKX funding-sum walk is mid-archive."
+}
