@@ -118,33 +118,45 @@ def last_ta(price: pd.Series) -> dict:
 
 
 def stall_check() -> str:
-    """The top open backlog item and how many research runs it has sat there.
+    """The top backlog item without a verdict, and how long it has sat there.
 
-    A line that says Done or carries a verdict is closed, so the first '- L'
-    line is not the top item once L0 is finished. Six runs without a change
-    is a stall. The line is appended to the health log either way, so the
-    check running is visible.
+    The top item is the first '- X1.' line that carries no verdict word, which
+    is what a research run takes next. A blocked item has no verdict, so it
+    stays the top item until it is done or rejected. A rejected or insufficient
+    item is closed, and so is one marked Done. The line is appended to the
+    health log either way, so the check running is visible, and a top item
+    unchanged for six runs is posted as a stall.
     """
+    import re
     backlog = (ROOT / "research" / "backlog.md").read_text()
     top = ""
     for line in backlog.splitlines():
-        if not line.startswith("- "):
-            continue
-        head = line.split(".", 1)[0]
-        if not any(ch.isdigit() for ch in head):
+        if not re.match(r"^- [A-Z]{1,3}\d{1,3}[a-z]?\. ", line):
             continue
         lowered = line.lower()
-        closed = (" done " in f" {lowered} " or "verdict 20" in lowered
-                  or "done 20" in lowered or "closed," in lowered
-                  or "closed " in lowered)
+        closed = any(word in lowered for word in
+                     ("done 20", "rejected", "insufficient", "verdict 20", "admitted"))
         if closed:
             continue
         top = line
         break
+    item = top.split(".", 1)[0].lstrip("- ").strip()
+    prior = [ln for ln in (ROOT / "ops" / "health.log").read_text().splitlines()
+             if "stall_check" in ln and f"item={item} " in ln] if item else []
+    runs = len(prior) + 1
     log = ROOT / "ops" / "health.log"
     log.parent.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     with log.open("a") as fh:
-        fh.write(f"{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')} stall_check top={top[:60]}\n")
+        fh.write(f"{stamp} stall_check item={item} runs={runs} top={top[:60]}\n")
+    if runs >= 6:
+        try:
+            sys.path.insert(0, str(ROOT / "scripts"))
+            import scheduler
+            scheduler.post(f"stall: {item} has been the top backlog item for {runs} research runs")
+        except Exception as exc:  # noqa: BLE001
+            with log.open("a") as fh:
+                fh.write(f"{stamp} stall_post_failed {exc}\n")
     return top
 
 
