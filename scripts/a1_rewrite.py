@@ -8,7 +8,7 @@ writing it would repeat the bug.
 
 Every file is sorted, de-duplicated and cut before today, since a bar is
 stamped with its open time and today's bar has not closed. The rewrite goes
-to data/panel_xs_sum/ and is compared before anything replaces panel_xs.
+to data/panel_xs_sum2/ and is compared before anything replaces panel_xs.
 
 Writes results/<today>_a1_integrity.json itself.
 """
@@ -32,7 +32,7 @@ from regime_tester.panel_integrity import base_of, clean_frame  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
-DEST = os.path.join(ROOT, "data", "panel_xs_sum")
+DEST = os.path.join(ROOT, "data", "panel_xs_sum2")
 SUMS = os.path.join(ROOT, "data", "funding_sum")
 TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
