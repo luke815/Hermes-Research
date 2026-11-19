@@ -18,6 +18,7 @@ end.
 Usage: python3 scripts/sweep_xs.py
 """
 
+import hashlib
 import json
 import os
 import sys
@@ -260,13 +261,15 @@ CACHE = os.path.join(ROOT, "data", "panel_xs_cache")
 
 
 def indicator_cache(panel, index, digest):
-    """Every scorable measure as a matrix, cached on the panel hash.
+    """Every scorable measure as a matrix, cached on the panel hash and the names.
 
     The library is computed once per name and every measure is taken from that
     pass. Computing it per measure repeats the same work 27 times. A cache
-    written for a different hash is ignored, so a panel change recomputes.
+    written for a different hash, or for a different set of names, is ignored,
+    so a universe change recomputes instead of loading the wider one.
     """
-    path = os.path.join(CACHE, f"indicators_{digest}_v2.csv")
+    names = hashlib.sha256("\n".join(sorted(panel)).encode()).hexdigest()[:12]
+    path = os.path.join(CACHE, f"indicators_{digest}_{names}_v3.csv")
     if os.path.exists(path):
         wide = pd.read_csv(path, header=[0, 1], index_col=0)
         return {m: wide[m].set_axis(index) for m in wide.columns.get_level_values(0).unique()}
