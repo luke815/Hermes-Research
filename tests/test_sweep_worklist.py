@@ -41,10 +41,11 @@ class WorkList(unittest.TestCase):
             from regime_tester import counter
             counter.COUNTER = os.path.join(tmp, "counter.json")
             counter.SWEEPS = tmp
+            counter.SPACE = os.path.join(tmp, "space.json")
             open(os.path.join(tmp, "2026-11-05.csv"), "w").write("id\na|raw\n")
             line = sweep_xs.status_line(set(), set())
             self.assertEqual(line, counter.status_text())
-            self.assertIn("cells scored 1 since 2026-10-31, from ", line)
+            self.assertIn("cells scored 1 of None testable since 2026-10-31, from ", line)
             self.assertTrue(line.endswith("counter.json"))
             self.assertEqual(open(sweep_xs.STATUS).read().strip(), line)
 

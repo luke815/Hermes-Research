@@ -31,6 +31,8 @@ import urllib.request
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
+from regime_tester.counter import status_text  # noqa: E402
 RESULTS = os.path.join(ROOT, "results")
 PY = "/opt/hermes/.venv/bin/python3"
 ENV = dict(os.environ, PYTHONPATH="/opt/data/.local/lib/python3.14/site-packages")
@@ -142,8 +144,7 @@ def sweep_status():
     if not os.path.exists(COUNTER):
         return {"wrote": False}
     payload = json.load(open(COUNTER))
-    line = (f"cells scored {payload['scored']} since {payload.get('since')}, "
-            f"from {payload['file']}\n")
+    line = status_text(payload) + "\n"
     tmp = STATUS + ".tmp"
     open(tmp, "w").write(line)
     os.replace(tmp, STATUS)
