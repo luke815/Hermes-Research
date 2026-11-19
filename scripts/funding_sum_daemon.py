@@ -8,6 +8,12 @@ that write_sum already reads.
 import os
 import sys
 
+# procmgr restarts from a clean environment, which does not have the user
+# site on its path. The libraries live there, so the script adds them itself.
+_SITE = "/opt/data/.local/lib/python3.14/site-packages"
+if _SITE not in sys.path:
+    sys.path.insert(0, _SITE)
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
 import funding_sum
