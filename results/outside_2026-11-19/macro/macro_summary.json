@@ -1,0 +1,800 @@
+[
+ {
+  "series": "stable_chg30",
+  "side": "top",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   -1.0,
+   null
+  ],
+  "val_t": -0.09344318880297674,
+  "n_ind": 16,
+  "verdict": "insufficient: a period has fewer than 3 flagged bars"
+ },
+ {
+  "series": "stable_chg30",
+  "side": "top",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   -1.0,
+   null
+  ],
+  "val_t": -1.6367998162629624,
+  "n_ind": 10,
+  "verdict": "insufficient: a period has fewer than 3 flagged bars"
+ },
+ {
+  "series": "stable_chg30",
+  "side": "top",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   -1.0,
+   null
+  ],
+  "val_t": -1.6909945945352687,
+  "n_ind": 6,
+  "verdict": "insufficient: a period has fewer than 3 flagged bars"
+ },
+ {
+  "series": "stable_chg30",
+  "side": "bottom",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.1978598684147168,
+  "n_ind": 16,
+  "verdict": "insufficient: 16 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "stable_chg30",
+  "side": "bottom",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.2782405893463988,
+  "n_ind": 13,
+  "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "stable_chg30",
+  "side": "bottom",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 0.750804825164885,
+  "n_ind": 10,
+  "verdict": "insufficient: 10 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "dxy_chg20",
+  "side": "top",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.9397463999507254,
+  "n_ind": 33,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "dxy_chg20",
+  "side": "top",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.8885275991930508,
+  "n_ind": 20,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "dxy_chg20",
+  "side": "top",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 1.4685497201956788,
+  "n_ind": 13,
+  "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "dxy_chg20",
+  "side": "bottom",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   -1.0,
+   1.0
+  ],
+  "val_t": -0.4050390428035294,
+  "n_ind": 34,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "dxy_chg20",
+  "side": "bottom",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 0.03359481261149867,
+  "n_ind": 21,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "dxy_chg20",
+  "side": "bottom",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 0.7338028972823171,
+  "n_ind": 12,
+  "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "real10_chg20",
+  "side": "top",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.9493186022033868,
+  "n_ind": 35,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "real10_chg20",
+  "side": "top",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 3.0015721623942406,
+  "n_ind": 19,
+  "verdict": "insufficient: 19 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "real10_chg20",
+  "side": "top",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 1.6447752381501017,
+  "n_ind": 9,
+  "verdict": "insufficient: 9 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "real10_chg20",
+  "side": "bottom",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -0.676680107162061,
+  "n_ind": 32,
+  "verdict": "rejected: validation t -0.68 below 2.5"
+ },
+ {
+  "series": "real10_chg20",
+  "side": "bottom",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   1.0
+  ],
+  "val_t": -1.4206089935018018,
+  "n_ind": 20,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "real10_chg20",
+  "side": "bottom",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   1.0
+  ],
+  "val_t": -0.4163535979807871,
+  "n_ind": 14,
+  "verdict": "insufficient: 14 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "fed_chg4w",
+  "side": "top",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 1.1984663339314168,
+  "n_ind": 19,
+  "verdict": "insufficient: 19 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "fed_chg4w",
+  "side": "top",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 0.13862222841780222,
+  "n_ind": 12,
+  "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "fed_chg4w",
+  "side": "top",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -0.5228236193588116,
+  "n_ind": 9,
+  "verdict": "insufficient: 9 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "fed_chg4w",
+  "side": "bottom",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 0.3827620592805571,
+  "n_ind": 18,
+  "verdict": "insufficient: 18 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "fed_chg4w",
+  "side": "bottom",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -0.7360420518670676,
+  "n_ind": 10,
+  "verdict": "insufficient: 10 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "fed_chg4w",
+  "side": "bottom",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -1.0168117728688626,
+  "n_ind": 6,
+  "verdict": "insufficient: 6 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "spx_ret20",
+  "side": "top",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   1.0
+  ],
+  "val_t": -0.47598204803735666,
+  "n_ind": 43,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "spx_ret20",
+  "side": "top",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -0.34970640179541296,
+  "n_ind": 27,
+  "verdict": "rejected: validation t -0.35 below 2.5"
+ },
+ {
+  "series": "spx_ret20",
+  "side": "top",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 0.09881228394236549,
+  "n_ind": 8,
+  "verdict": "insufficient: 8 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "spx_ret20",
+  "side": "bottom",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.3553738940941331,
+  "n_ind": 34,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "spx_ret20",
+  "side": "bottom",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 1.2281792175328752,
+  "n_ind": 18,
+  "verdict": "insufficient: 18 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "spx_ret20",
+  "side": "bottom",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 1.2148116320315667,
+  "n_ind": 12,
+  "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "ndx_ret20",
+  "side": "top",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   1.0
+  ],
+  "val_t": -0.7452061761099221,
+  "n_ind": 39,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "ndx_ret20",
+  "side": "top",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -0.4011312723768669,
+  "n_ind": 26,
+  "verdict": "rejected: validation t -0.4 below 2.5"
+ },
+ {
+  "series": "ndx_ret20",
+  "side": "top",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 0.2938534301365823,
+  "n_ind": 10,
+  "verdict": "insufficient: 10 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "ndx_ret20",
+  "side": "bottom",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.0570764043830538,
+  "n_ind": 35,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "ndx_ret20",
+  "side": "bottom",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 0.6848839931177841,
+  "n_ind": 18,
+  "verdict": "insufficient: 18 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "ndx_ret20",
+  "side": "bottom",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 1.2362021288387894,
+  "n_ind": 11,
+  "verdict": "insufficient: 11 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "vix",
+  "side": "top",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 2.2613677354870374,
+  "n_ind": 25,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "vix",
+  "side": "top",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 2.4697194549743244,
+  "n_ind": 13,
+  "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "vix",
+  "side": "top",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 3.968510909810959,
+  "n_ind": 11,
+  "verdict": "insufficient: 11 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "vix",
+  "side": "bottom",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 0.12334489223419484,
+  "n_ind": 18,
+  "verdict": "insufficient: 18 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "vix",
+  "side": "bottom",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -0.8537716038279316,
+  "n_ind": 10,
+  "verdict": "insufficient: 10 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "vix",
+  "side": "bottom",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -2.1705707550109583,
+  "n_ind": 7,
+  "verdict": "insufficient: 7 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "vix_chg5",
+  "side": "top",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 0.22205794312389077,
+  "n_ind": 68,
+  "verdict": "rejected: validation t 0.22 below 2.5"
+ },
+ {
+  "series": "vix_chg5",
+  "side": "top",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 1.2142417737052502,
+  "n_ind": 15,
+  "verdict": "insufficient: 15 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "vix_chg5",
+  "side": "top",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 2.2615977053728002,
+  "n_ind": 3,
+  "verdict": "insufficient: 3 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "us10y_chg20",
+  "side": "top",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.787574735111,
+  "n_ind": 34,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "us10y_chg20",
+  "side": "top",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 2.5642162017316243,
+  "n_ind": 23,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "us10y_chg20",
+  "side": "top",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 1.509315946921944,
+  "n_ind": 11,
+  "verdict": "insufficient: 11 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "us10y_chg20",
+  "side": "bottom",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -0.20883133242868399,
+  "n_ind": 33,
+  "verdict": "rejected: validation t -0.21 below 2.5"
+ },
+ {
+  "series": "us10y_chg20",
+  "side": "bottom",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   1.0
+  ],
+  "val_t": -1.9480991058826878,
+  "n_ind": 21,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "us10y_chg20",
+  "side": "bottom",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   -1.0,
+   -1.0,
+   1.0
+  ],
+  "val_t": -0.7441932340256301,
+  "n_ind": 12,
+  "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "cb_premium_5d",
+  "side": "top",
+  "h": 10,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 0.17514202896134506,
+  "n_ind": 30,
+  "verdict": "rejected: validation t 0.18 below 2.5"
+ },
+ {
+  "series": "cb_premium_5d",
+  "side": "top",
+  "h": 30,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   -1.0,
+   1.0
+  ],
+  "val_t": -0.9248363564105059,
+  "n_ind": 12,
+  "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "cb_premium_5d",
+  "side": "top",
+  "h": 60,
+  "hyp": 1,
+  "signs": [
+   1.0,
+   -1.0,
+   -1.0
+  ],
+  "val_t": -1.1842725862269798,
+  "n_ind": 6,
+  "verdict": "insufficient: 6 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "cb_premium_5d",
+  "side": "bottom",
+  "h": 10,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 0.29491834950200746,
+  "n_ind": 34,
+  "verdict": "rejected: excess sign differs across periods"
+ },
+ {
+  "series": "cb_premium_5d",
+  "side": "bottom",
+  "h": 30,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "val_t": 0.7398567542712953,
+  "n_ind": 14,
+  "verdict": "insufficient: 14 independent episodes in train+validation (bar 20)"
+ },
+ {
+  "series": "cb_premium_5d",
+  "side": "bottom",
+  "h": 60,
+  "hyp": -1,
+  "signs": [
+   -1.0,
+   1.0,
+   1.0
+  ],
+  "val_t": 0.3376518482670054,
+  "n_ind": 11,
+  "verdict": "insufficient: 11 independent episodes in train+validation (bar 20)"
+ }
+]

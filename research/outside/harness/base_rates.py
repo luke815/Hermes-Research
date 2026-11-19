@@ -37,6 +37,11 @@ CAVEATS = {
     "lsr": "The dashboard long/short series stepped up in level in 2021, so its 2021 'top fifth' days are partly an artefact; since mid-2024 a top reading mostly means the price already fell over the past month. A plain 'price down over 30 days' rule reproduces the weaker returns after high readings.",
     "oi_usd": "USD notional open interest is price times coin open interest: four in five top-fifth days are also price-at-a-1-year-high days, and the price row reproduces what follows. It carries no 30-90 day information beyond price.",
     "oi_coins": "Coin open interest at its highs was followed by weak 1-3 month returns only in the 2021-22 bear; nothing since.",
+    "stable_chg30": "Stablecoin growth was followed by strong BTC returns in 2020-24H1 and by weak ones in 2024H2-25 (decile calibration +0.76 then -0.90): the sign did not hold.",
+    "spx_ret20": "Equity washouts (bottom fifth) were followed by above-average BTC returns in all three periods, but equity rallies were not followed by continuation; a 20-episode base rate, not a signal.",
+    "vix": "A high VIX was followed by above-average BTC 30-day returns in 2024-26 and not in 2020-24H1.",
+    "alt_oi": "20-coin dashboard universe (BTC, ETH, 18 alts), from 2022-09; alts alone never exceed BTC open interest here, alts plus ETH do on a third of days. A broader all-venue universe may differ.",
+    "bigalt_funding": "A quarter of large-alt funding days sit exactly at the 0.01% exchange default, so the fifths are coarse; the level against the default is the clearer reading.",
     "funding": "Crowded funding was followed by shallower drawdowns in 2021-25 and by deeper ones in 2026 for ETH; the sign is not stable.",
 }
 NOTES = [
@@ -46,28 +51,112 @@ NOTES = [
     {"title": "TD Sequential", "text": "TD9 and TD13 completions on daily closes are about as frequent as on a random walk (roughly one per 70 bars). No completion carried the textbook bounce or fade across periods on any timeframe; the daily buy-countdown-13 was followed by further weakness in 18 of 24 episodes in 2019-25, which is too few, too count-specific and already contradicted in 2026 to use. The counts are shown as structure."},
     {"title": "How to read this tab", "text": "A row says what happened after past days in the same fifth, with the number of independent episodes. An 'across periods' badge of consistent means the 30-day direction agreed in 2019-24H1, 2024H2-25 and 2026; it does not mean the reading caused it, and the caveats say where a simpler explanation exists. Rows with fewer than 10 episodes describe a few events."},
 ]
-SOURCES = {"funding": "Laevitas perp funding (2019+), dashboard Binance funding where missing", "oi_usd": "Laevitas futures OI, all venues, USD",
-           "oi_coins": "Laevitas futures OI / price", "basis": "dashboard basis", "lsr": "dashboard long/short ratio",
-           "dvol": "Deribit DVOL via Laevitas, dashboard where missing", "skew30": "Laevitas 25d skew 30d, dashboard where missing",
-           "ivrv30": "Laevitas IV30 / RV30", "price": "spot close"}
+SOURCES = {"stable_chg30": "DefiLlama USDT + USDC circulating, 30-day change", "dxy_chg20": "FRED broad dollar index, 20-day change",
+           "real10_chg20": "FRED 10y real yield, 20-day change", "spx_ret20": "FRED S&P 500, 20-day return", "vix": "FRED VIX close",
+           "alt_oi": "dashboard open interest: (ETH + 18 alts) / BTC", "bigalt_funding": "dashboard funding, median of BNB SOL XRP ADA DOGE LINK AVAX DOT",
+           "funding": "dashboard Binance perp funding", "oi_usd": "dashboard Binance open interest, USD",
+           "oi_coins": "dashboard open interest / price", "basis": "dashboard basis", "lsr": "dashboard long/short ratio",
+           "dvol": "dashboard DVOL", "skew30": "dashboard 25-delta skew", "ivrv30": "dashboard ATM IV / realized vol", "price": "spot close"}
 
 
 def readings(d, a):
+    """The SAME series the dashboard page computes its live state on (data.json columns), so the fifth the page
+    shows and the row it looks up here never disagree. The longer Laevitas tenors are kept for the research
+    passes, not for this table (review of 2026-11-19: the two sets of series agreed on the fifth only 35-73% of days)."""
     A = a.upper()
     px = H.price(d, a)
-    r = {
-        # both columns are percent per 8h (checked 2026-11-19: perp_funding_btc equals btc_funding to the digit where both exist)
-        "funding": d[f"perp_funding_{a}"].combine_first(d[f"{a}_funding"]) if f"perp_funding_{a}" in d else d[f"{a}_funding"],
-        "oi_usd": d[f"futures_oi_{a}"],
-        "oi_coins": d[f"futures_oi_{a}"] / px,
+    return {
+        "funding": d[f"{a}_funding"],                 # Binance perp funding, percent per 8h
+        "oi_usd": d[f"oi_{A}"],                       # Binance open interest, USD
+        "oi_coins": d[f"oi_{A}"] / px,
         "basis": d[f"basis_{a}"],
         "lsr": d[f"lsr_{A}"],
-        "dvol": d[f"dvol_lv_{a}"].combine_first(d[f"dvol_{a}"]) if f"dvol_lv_{a}" in d else d[f"dvol_{a}"],
-        "skew30": d[f"skew_30_{a}"].combine_first(d[f"skew_{a}"]) if f"skew_30_{a}" in d else d[f"skew_{a}"],
-        "ivrv30": d[f"ivrv30_{a}"],
+        "dvol": d[f"dvol_{a}"],
+        "skew30": d[f"skew_{a}"],                     # dashboard 25-delta skew
+        "ivrv30": d[f"atm_iv_{a}"] / d[f"rv_{a}"],    # dashboard ATM IV over realized vol
         "price": px,
+        # owner's alt-froth readings (2022-09+): alt open interest (ETH plus the 18 alts) over BTC open interest, and the
+        # median funding of the eight largest alts. Both from the dashboard columns the page has.
+        "alt_oi": (d["oi_ETH"] + d[[f"oi_{x}" for x in ALTS18]].sum(axis=1, min_count=10)) / d["oi_BTC"],
+        "bigalt_funding": d[[f"funding_{x}" for x in BIG_ALTS]].median(axis=1),
+        # flows and macro (PREREG5), from data/macro/* written by scripts/macro_pull.py; absent when not pulled
+        **macro_readings(d),
     }
-    return r
+
+
+def macro_readings(d):
+    """Derived macro readings on the panel calendar, or {} when data/macro is absent."""
+    M = os.path.join(HERE, "data", "macro")
+    if not os.path.isdir(M):
+        return {}
+    import json as _json, time as _time
+    def fred(fid):
+        p = os.path.join(M, fid + ".csv")
+        if not os.path.exists(p):
+            return None
+        f = pd.read_csv(p); f.columns = ["date", "v"]; f["v"] = pd.to_numeric(f["v"], errors="coerce")
+        s = pd.Series(f["v"].values, index=pd.to_datetime(f["date"])).dropna()
+        return s.reindex(d.index.union(s.index)).ffill().reindex(d.index)
+    def llama(name):
+        p = os.path.join(M, name + ".json")
+        if not os.path.exists(p):
+            return None
+        j = _json.load(open(p))
+        s = pd.Series({pd.Timestamp(_time.strftime("%Y-%m-%d", _time.gmtime(int(r["date"])))): r["totalCirculating"]["peggedUSD"] for r in j})
+        return s[~s.index.duplicated(keep="last")].sort_index().reindex(d.index)
+    out = {}
+    u, c = llama("usdt"), llama("usdc")
+    if u is not None and c is not None:
+        out["stable_chg30"] = (u + c).pct_change(30) * 100
+    for fid, key, fn in (("DTWEXBGS", "dxy_chg20", lambda s: s.pct_change(20) * 100), ("DFII10", "real10_chg20", lambda s: s.diff(20)),
+                         ("SP500", "spx_ret20", lambda s: s.pct_change(20) * 100), ("VIXCLS", "vix", lambda s: s)):
+        s = fred(fid)
+        if s is not None:
+            out[key] = fn(s)
+    return out
+
+
+ALTS18 = ["BNB", "SOL", "XRP", "ADA", "AVAX", "DOGE", "DOT", "LINK", "APT", "BCH", "LTC", "NEAR", "SUI", "ARB", "ATOM", "FIL", "OP", "UNI"]
+BIG_ALTS = ["BNB", "SOL", "XRP", "ADA", "DOGE", "LINK", "AVAX", "DOT"]
+
+
+def composite_table(d, a="btc"):
+    """Alt froth = alt OI (ETH + 18 alts) above BTC OI AND median big-alt funding above the 1 bp/8h default.
+    On/off state known at the prior close; what followed for BTC and for the alt basket relative to BTC."""
+    r = readings(d, a)
+    on = ((r["alt_oi"] > 1) & (r["bigalt_funding"] > 0.0101)).astype(float).where(r["alt_oi"].notna() & r["bigalt_funding"].notna()).shift(1)
+    px = H.price(d, a); rel = d["alt_price"] / d["btc"]
+    out = {"definition": "alt OI (ETH + 18 alts) / BTC OI > 1 and median funding of BNB, SOL, XRP, ADA, DOGE, LINK, AVAX, DOT > 0.01% per 8h (the exchange default); 20-coin dashboard universe, 2022-09 onward",
+           "states": {}}
+    for label, val in (("on", 1.0), ("off", 0.0)):
+        f = on == val
+        st = {"periods": {}, "pooled": {}}
+        signs = []
+        for pname in list(H.PERIODS) + ["pooled"]:
+            m = (period_mask(d.index, pname) if pname != "pooled" else pd.Series(True, index=d.index)) & on.notna()
+            row = {"n_days": int((f & m).sum())}
+            for h in (10, 30):
+                y = (px.shift(-h) / px - 1)[m]; yr = (rel.shift(-h) / rel - 1)[m]
+                yf, yrf = y[f[m]], yr[f[m]]
+                if yf.notna().sum() >= 3:
+                    row[f"ret{h}"] = {"mean": float(yf.mean()), "median": float(yf.median()), "excess": float(yf.mean() - y.mean()), "n_ind": H2.clusters(yf.dropna().index, h, "1d")}
+                    row[f"altrel{h}"] = {"mean": float(yrf.mean()), "median": float(yrf.median()), "excess": float(yrf.mean() - yr.mean())}
+            mdd = H2.forward_mdd(px, 30)[m]; mf = mdd[f[m]]
+            if mf.notna().sum() >= 3:
+                row["mdd30"] = {"mean": float(mf.mean()), "p_le_10": float((mf <= -0.10).mean()), "base_p_le_10": float((mdd <= -0.10).mean()), "diff": float(mf.mean() - mdd.mean())}
+            (st["periods"] if pname != "pooled" else st)[pname if pname != "pooled" else "pooled"] = row
+            if pname != "pooled":
+                r30 = row.get("ret30"); signs.append(int(np.sign(r30["excess"])) if r30 and r30["n_ind"] >= 3 and r30["excess"] != 0 else None)
+        st["agreement_ret30"] = agreement(signs)
+        out["states"][label] = st
+    runs = H3.days_in_state(on == 1.0); ends = runs[(runs > 0) & (runs.shift(-1) == 0)]
+    out["runs"] = {"n_runs": int(len(ends)), "median_days": float(ends.median()) if len(ends) else None, "p90_days": float(ends.quantile(0.9)) if len(ends) else None}
+    out["share_on"] = float((on == 1.0).sum() / on.notna().sum()) if on.notna().any() else None
+    last_on = on[on == 1.0]
+    out["last_on"] = str(last_on.index[-1].date()) if len(last_on) else None
+    out["caveat"] = "On only 7% of days since 2022-09 in 27 short runs; one episode since mid-2024 and never on in 2026, so the record is mostly 2023 to early 2024 and cannot be checked out of sample. 20-coin universe."
+    out["source_start"] = str(on.dropna().index[0].date()) if on.notna().any() else None
+    return out
 
 
 def period_mask(index, pname):
@@ -272,10 +361,11 @@ if __name__ == "__main__":
     payload = {
         "generated_from": {"daily": [str(d.index[0].date()), str(d.index[-1].date())], "hourly": [str(h.index[0]), str(h.index[-1])]},
         "periods": {k: list(v) for k, v in H.PERIODS.items()},
-        "method": "state = quintile of trailing-365-day percentile known at the prior close (lag 1); excess = mean forward return in state minus mean over all days of the period; n_ind = independent episodes (flagged days more than h days apart); mdd30 = worst close-to-close drawdown within 30 days; agreement = sign of 30-day excess across train/validation/test when each has >= 3 episodes. Description of the past, not a forecast.",
+        "method": "series = the dashboard columns the page shows; state = quintile of the trailing-365-day percentile (share of the previous 364 days at or below the value) known at the prior close (lag 1); excess = mean forward return in state minus mean over all days of the period; n_ind = independent episodes (flagged days more than h days apart); mdd30 = worst close-to-close drawdown within 30 days; agreement = sign of 30-day excess across train/validation/test when each has >= 3 episodes. Description of the past, not a forecast.",
         "readings": {a: reading_table(d, a) for a in ("btc", "eth")},
         "td": td_table(d, h, h4),
         "td_setup_counts": setup_counts(d),
+        "composites": {"alt_froth": {a: composite_table(d, a) for a in ("btc", "eth")}},
         "notes": NOTES,
     }
     with open(OUT, "w") as fh:
