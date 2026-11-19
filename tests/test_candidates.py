@@ -51,6 +51,16 @@ class Selection(unittest.TestCase):
         self.assertEqual(candidates._last_closed(tmp.name), "2026-11-17")
         tmp.cleanup()
 
+    def test_a_tail_read_keeps_the_last_rows(self):
+        tmp = tempfile.TemporaryDirectory()
+        path = os.path.join(tmp.name, "one.csv")
+        pd.DataFrame({"date": [f"2026-01-{i:02d}" for i in range(1, 21)],
+                      "close": range(20), "unused": range(20)}).to_csv(path, index=False)
+        tail = candidates._tail(path, rows=5)
+        self.assertEqual(list(tail["close"]), [15, 16, 17, 18, 19])
+        self.assertNotIn("unused", tail.columns)
+        tmp.cleanup()
+
     def test_shadow_file_is_created_once(self):
         tmp = tempfile.TemporaryDirectory()
         path = os.path.join(tmp.name, "shadow.csv")

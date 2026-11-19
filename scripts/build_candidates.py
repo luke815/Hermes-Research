@@ -145,26 +145,61 @@ def _last_closed(panel):
     return max(counts, key=lambda day: (counts[day], day))
 
 
-def flagged_names(cells, panel=PANEL):
-    """Liquid coins in each cell's signalled state on the last closed day."""
+CACHE = os.path.join(ROOT, "ops", "candidates_readings.json")
+READ_COLUMNS = ("date", "funding_rate", "volume_usd", "oi_usd", "close")
+
+
+def _tail(path, rows=400):
+    """The last rows of one file, which is all a trailing window needs.
+
+    A full read of every column of 5,000 files takes longer than a run, and
+    the readings use at most 366 trailing bars. The date column is read whole
+    only to find the day; the readings read the tail.
+    """
+    with open(path) as handle:
+        header = handle.readline()
+    columns = header.strip().split(",")
+    wanted = [name for name in READ_COLUMNS if name in columns]
+    frame = pd.read_csv(path, usecols=wanted)
+    return frame.tail(rows)
+
+
+def _readings_for(panel, day):
+    """One row per liquid coin, cached so a later run does not rescan the panel.
+
+    The cache is valid only for the day and the panel's newest file time, so a
+    panel that grew is reread and a stale cache is not.
+    """
+    newest = max(os.path.getmtime(path) for path in glob(os.path.join(panel, "*.csv")))
+    if os.path.exists(CACHE):
+        cached = json.load(open(CACHE))
+        if cached.get("as_of") == day and cached.get("newest") == newest:
+            return cached["rows"]
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import build_extremes
-    day = _last_closed(panel)
     rows = []
-    if day is not None:
-        for path in sorted(glob(os.path.join(panel, "*.csv"))):
-            frame = pd.read_csv(path)
-            if "date" not in frame.columns or frame.empty:
-                continue
-            frame["date"] = frame["date"].astype(str).str.slice(0, 10)
-            read = build_extremes.readings(frame, day)
-            if read is None:
-                continue
-            name = os.path.basename(path)[:-4]
-            exchange, symbol = name.split("_", 1)
-            rows.append({"coin": build_extremes.base_of(symbol), "venue": exchange,
-                         "readings": read})
+    for path in sorted(glob(os.path.join(panel, "*.csv"))):
+        frame = _tail(path)
+        if "date" not in frame.columns or frame.empty:
+            continue
+        frame["date"] = frame["date"].astype(str).str.slice(0, 10)
+        read = build_extremes.readings(frame, day)
+        if read is None:
+            continue
+        name = os.path.basename(path)[:-4]
+        exchange, symbol = name.split("_", 1)
+        rows.append({"coin": build_extremes.base_of(symbol), "venue": exchange,
+                     "readings": read})
     liquid = build_extremes.liquid(rows)
+    os.makedirs(os.path.dirname(CACHE), exist_ok=True)
+    json.dump({"as_of": day, "newest": newest, "rows": liquid}, open(CACHE, "w"))
+    return liquid
+
+
+def flagged_names(cells, panel=PANEL):
+    """Liquid coins in each cell's signalled state on the last closed day."""
+    day = _last_closed(panel)
+    liquid = _readings_for(panel, day) if day is not None else []
     for cell in cells:
         inputs = META.get(cell["measure"], (None, []))[1]
         key = next((READABLE[name] for name in inputs if name in READABLE), None)
