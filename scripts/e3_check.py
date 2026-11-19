@@ -49,7 +49,9 @@ def main():
         "raw_main": {"status": raw_status, **summary(raw)},
         "pages": {"status": pages_status, **summary(pages)},
         "raw_matches_local": summary(raw)["as_of"] == summary(local)["as_of"],
-        "pages_serves_key": pages_status == 200 and summary(pages)["lists_present"] == list(LISTS),
+        # summary sorts the names, so the comparison sorts too. Comparing
+        # against LISTS as written always fails, even when every list is served.
+        "pages_serves_key": pages_status == 200 and summary(pages)["lists_present"] == sorted(LISTS),
     }
     path = write_result("e3_extremes", out, inputs=["dashboard/data.json"])
     print(json.dumps(out))
