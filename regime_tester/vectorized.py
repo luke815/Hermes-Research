@@ -183,9 +183,13 @@ def transform_matrix(measure, name, window=252, min_periods=30):
         if price is None:
             raise ValueError("divergence_20 needs the close matrix in attrs")
         sign_m = np.sign(measure - measure.shift(20))
+        # The close matrix covers every name. A measure that only some names
+        # carry is narrower, and both sides of the comparison, including the
+        # notna mask, have to follow the measure or the frames cannot compare.
         sign_p = np.sign(price - price.shift(20)).reindex(
             index=measure.index, columns=measure.columns)
-        return (sign_m != sign_p).where(measure.notna() & price.notna())
+        price_here = price.reindex(index=measure.index, columns=measure.columns)
+        return (sign_m != sign_p).where(measure.notna() & price_here.notna())
     out = {col: transform_column(measure[col].to_numpy(), name, window, min_periods)
            for col in measure.columns}
     return pd.DataFrame(out, index=measure.index)

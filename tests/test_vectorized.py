@@ -103,8 +103,28 @@ def test_early_bars_stay_empty():
 def test_divergence_aligns_a_measure_narrower_than_price():
     # The close matrix covers every name. A measure that only some names carry
     # is narrower, and the comparison has to follow the measure, not the price.
+    # Reindexing only one side still raises, because the notna mask keeps the
+    # price's full shape, so both sides and the mask have to be narrowed.
     close = _close(seed=4, names=6, days=80)
     measure = close.iloc[:, :3].copy()
     measure.attrs["close"] = close
     got = transform_matrix(measure, "divergence_20")
     assert list(got.columns) == list(measure.columns)
+    assert got.shape == measure.shape
+    assert got.iloc[20:].notna().any().any()
+
+
+if __name__ == "__main__":
+    import unittest
+
+    class Vectorized(unittest.TestCase):
+        def test_divergence_aligns_a_measure_narrower_than_price(self):
+            test_divergence_aligns_a_measure_narrower_than_price()
+
+        def test_lookahead_holds_for_every_transform(self):
+            test_lookahead_holds_for_every_transform()
+
+        def test_early_bars_stay_empty(self):
+            test_early_bars_stay_empty()
+
+    unittest.main()
