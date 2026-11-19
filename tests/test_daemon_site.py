@@ -8,6 +8,7 @@ from sys.path, which is what a restarted daemon sees.
 """
 
 import importlib
+import os
 import sys
 import unittest
 
@@ -33,31 +34,14 @@ class DaemonFindsLibraries(unittest.TestCase):
         finally:
             sys.path[:] = saved
 
-    def test_finished_walk_records_its_writes(self):
-        # A walk that returns remaining 0 used to skip the record, so the
-        # health check kept flagging the panel as rewritten by an unnamed
-        # writer. A finished walk records the same way a writing cycle does.
-        saved = list(sys.path)
-        try:
-            sys.path[:] = [p for p in sys.path if p != _SITE]
-            sys.modules.pop("scripts.funding_sum_daemon", None)
-            module = importlib.import_module("scripts.funding_sum_daemon")
-        finally:
-            sys.path[:] = saved
-        recorded = {}
-
-        def fake_pending():
-            return []
-
-        def fake_record(written, result):
-            recorded["written"] = written
-            return result
-
-        module.pending = fake_pending
-        module._record = fake_record
-        result = module.cycle(None)
-        self.assertEqual(result, {"remaining": 0})
-        self.assertEqual(recorded["written"], 0)
+    def test_a_count_is_not_a_file_list(self):
+        # record_write takes the names of the files just written. Passing the
+        # count walks the digits of the number and raises, which is what the
+        # funding sum daemon did on its first cycle after the restart.
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+        import data_guard
+        with self.assertRaises(TypeError):
+            data_guard.record_write("data/panel_xs", 0, "funding_sum: daily funding sum")
 
 
 if __name__ == "__main__":
