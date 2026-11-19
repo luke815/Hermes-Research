@@ -126,24 +126,44 @@ def _signalled(reading, direction):
     return reading <= LOW if 0 <= reading <= 1 else reading < 0
 
 
+def _last_closed(panel):
+    """The date most names share, read from the date column only.
+
+    Reading every column of 5,000 files just to find the day is what made the
+    key take longer than a run. The date column is enough, and the day is the
+    one the extremes key already uses: the date with the most names.
+    """
+    counts = {}
+    for path in sorted(glob(os.path.join(panel, "*.csv"))):
+        frame = pd.read_csv(path, usecols=["date"])
+        if frame.empty:
+            continue
+        for day, count in frame["date"].astype(str).str.slice(0, 10).value_counts().items():
+            counts[day] = counts.get(day, 0) + int(count)
+    if not counts:
+        return None
+    return max(counts, key=lambda day: (counts[day], day))
+
+
 def flagged_names(cells, panel=PANEL):
     """Liquid coins in each cell's signalled state on the last closed day."""
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import build_extremes
-    payload = build_extremes.build(panel)
+    day = _last_closed(panel)
     rows = []
-    for path in sorted(glob(os.path.join(panel, "*.csv"))):
-        frame = pd.read_csv(path)
-        if "date" not in frame.columns or frame.empty:
-            continue
-        frame["date"] = frame["date"].astype(str).str.slice(0, 10)
-        read = build_extremes.readings(frame, payload["as_of"])
-        if read is None:
-            continue
-        name = os.path.basename(path)[:-4]
-        exchange, symbol = name.split("_", 1)
-        rows.append({"coin": build_extremes.base_of(symbol), "venue": exchange,
-                     "readings": read})
+    if day is not None:
+        for path in sorted(glob(os.path.join(panel, "*.csv"))):
+            frame = pd.read_csv(path)
+            if "date" not in frame.columns or frame.empty:
+                continue
+            frame["date"] = frame["date"].astype(str).str.slice(0, 10)
+            read = build_extremes.readings(frame, day)
+            if read is None:
+                continue
+            name = os.path.basename(path)[:-4]
+            exchange, symbol = name.split("_", 1)
+            rows.append({"coin": build_extremes.base_of(symbol), "venue": exchange,
+                         "readings": read})
     liquid = build_extremes.liquid(rows)
     for cell in cells:
         inputs = META.get(cell["measure"], (None, []))[1]
@@ -160,7 +180,7 @@ def flagged_names(cells, panel=PANEL):
         cell.pop("transform", None)
         cell.pop("direction", None)
         cell.pop("threshold", None)
-    return payload["as_of"], cells
+    return day, cells
 
 
 def start_shadow(cells, day, path=SHADOW):

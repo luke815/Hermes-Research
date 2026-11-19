@@ -42,6 +42,15 @@ class Selection(unittest.TestCase):
         self.assertTrue(candidates._signalled(-0.2, "below"))
         self.assertFalse(candidates._signalled(None, "above"))
 
+    def test_last_closed_day_is_the_date_most_names_share(self):
+        tmp = tempfile.TemporaryDirectory()
+        pd.DataFrame({"date": ["2026-11-16", "2026-11-17"]}).to_csv(
+            os.path.join(tmp.name, "binance_BTCUSDT.csv"), index=False)
+        pd.DataFrame({"date": ["2026-11-17"]}).to_csv(
+            os.path.join(tmp.name, "bybit_ETHUSDT.csv"), index=False)
+        self.assertEqual(candidates._last_closed(tmp.name), "2026-11-17")
+        tmp.cleanup()
+
     def test_shadow_file_is_created_once(self):
         tmp = tempfile.TemporaryDirectory()
         path = os.path.join(tmp.name, "shadow.csv")
