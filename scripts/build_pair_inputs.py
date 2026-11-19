@@ -137,12 +137,18 @@ def build(panel, sectors):
 def main():
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
     from dashboard_io import write_key
+    from regime_tester.results_io import write_result
     sectors = json.load(open(SECTORS)) if os.path.exists(SECTORS) else {}
     payload = build(PANEL, sectors)
     write_key(OUT, payload)
-    print(json.dumps({"as_of": payload["as_of"], "universe_n": payload["universe_n"],
-                      "dates": len(payload["dates"]), "btc": "BTC" in payload["names"],
-                      "eth": "ETH" in payload["names"]}))
+    summary = {"as_of": payload["as_of"], "universe_n": payload["universe_n"],
+               "dates": len(payload["dates"]), "btc": "BTC" in payload["names"],
+               "eth": "ETH" in payload["names"], "funding_unit": payload["funding_unit"],
+               "venues": sorted({v["venue"] for v in payload["names"].values()})}
+    path = write_result("p1_pair_inputs", summary,
+                        inputs=["data/panel_xs_laevitas", "data/sectors.json"])
+    print(json.dumps(summary))
+    print(path)
 
 
 if __name__ == "__main__":
