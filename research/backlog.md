@@ -52,6 +52,8 @@ An instruction is written here as numbered items at the top, each with a done-wh
 
 ## Outside research pass 3, 2026-11-19: data items and the next pre-registration
 
+- H1. Baseline flaw. Done 2026-11-19: confirm.py _signal returns -1 where the rank is NaN and sweep.py sets those bars to NaN before scoring, so a late-starting measure is never benchmarked against bars before it exists. No test, as instructed.
+
 From research/outside/PASS3_2026-11-19.md. Nothing passed; two data items need Hermes, and PREREG4 is proposed, not scored.
 
 - D1. Liquidation coverage break. liq_BTC / oi_BTC yearly medians 0.0018 (2022), 0.0019 (2023), 0.0024 (2024), 0.0013 (2025),
