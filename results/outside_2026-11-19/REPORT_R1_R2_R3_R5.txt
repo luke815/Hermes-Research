@@ -1,0 +1,593 @@
+daily panel 2019-01-01..2026-11-17 rows 2878
+
+==== R1. Overheating as risk-on / continuation, 30-90 days ====
+[R1] btc ('perp_funding_btc', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -4.12% t=-1.4 n=4 net=+5.09% | val ex +3.14% t=0.9 n=5 net=+2.27% | tes ex +0.43% t=0.2 n=2 net=-0.07% -> insufficient: 9 independent episodes in train+validation (bar 15)
+h=60: tra ex -7.35% t=-1.2 n=2 net=+9.24% | val ex -0.29% t=-0.1 n=2 net=+1.51% | tes ex +3.41% t=0.9 n=2 net=+2.53% -> insufficient: 4 independent episodes in train+validation (bar 15)
+h=90: tra ex -11.06% t=-1.0 n=2 net=+13.78% | val ex -4.02% t=-0.7 n=1 net=+5.65% | tes ex +9.51% t=1.9 n=2 net=+8.34% -> insufficient: 3 independent episodes in train+validation (bar 15)
+[R1] RISK btc ('perp_funding_btc', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +0.2% t=0.2 crash x1.01 (147/390) fa=0.51 n=4 | val mdd +1.5% t=1.6 crash x0.56 (18/141) fa=0.61 n=5 | tes mdd +0.6% t=0.4 crash x0.97 (13/48) fa=0.42 n=2 -> insufficient: 9 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.53/0.63 | val 0.45/0.43 | tes 0.41/0.42
+[R1] RISK btc ('perp_funding_btc', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +0.4% t=0.2 crash x0.70 (63/390) fa=0.51 n=2 | val mdd +1.5% t=0.8 crash x0.75 (22/141) fa=0.61 n=2 | tes mdd +2.0% t=1.0 crash x0.93 (11/41) fa=0.46 n=2 -> insufficient: 4 independent episodes in train+validation (bar 20)
+W=90: tra mdd +1.8% t=0.7 crash x0.69 (84/390) fa=0.51 n=2 | val mdd +1.7% t=0.7 crash x0.66 (32/141) fa=0.61 n=1 | tes mdd +2.5% t=0.9 crash x0.98 (10/29) fa=0.41 n=2 -> insufficient: 3 independent episodes in train+validation (bar 20)
+   W=60 fwd rv flag/all: tra 0.54/0.64 | val 0.46/0.44 | tes 0.42/0.42
+   W=90 fwd rv flag/all: tra 0.53/0.65 | val 0.47/0.45 | tes 0.43/0.41
+[R1] btc ('perp_funding_btc', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex +2.05% t=0.6 n=4 net=+0.74% | val ex -5.65% t=-2.6 n=4 net=+6.18% | tes ex +1.47% t=0.4 n=3 net=+0.93% -> insufficient: 8 independent episodes in train+validation (bar 15)
+h=60: tra ex +2.81% t=0.4 n=2 net=+0.38% | val ex -10.45% t=-2.1 n=2 net=+11.44% | tes ex +5.93% t=1.7 n=2 net=+4.99% -> insufficient: 4 independent episodes in train+validation (bar 15)
+h=90: tra ex +3.91% t=0.4 n=2 net=+0.43% | val ex -18.23% t=-2.5 n=2 net=+19.57% | tes ex +12.09% t=3.0 n=2 net=+10.76% -> insufficient: 4 independent episodes in train+validation (bar 15)
+[R1] RISK btc ('perp_funding_btc', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd +3.5% t=2.8 crash x0.58 (56/258) fa=0.61 n=4 | val mdd -0.1% t=-0.1 crash x0.63 (7/49) fa=0.37 n=4 | tes mdd +0.8% t=0.4 crash x1.03 (6/21) fa=0.38 n=3 -> insufficient: 8 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.51/0.63 | val 0.35/0.43 | tes 0.41/0.42
+[R1] RISK btc ('perp_funding_btc', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd +5.3% t=2.6 crash x0.08 (5/258) fa=0.61 n=2 | val mdd -1.3% t=-0.7 crash x0.98 (10/49) fa=0.37 n=2 | tes mdd +3.1% t=1.5 crash x0.92 (5/19) fa=0.42 n=2 -> insufficient: 4 independent episodes in train+validation (bar 20)
+W=90: tra mdd +7.5% t=2.8 crash x0.06 (5/258) fa=0.61 n=2 | val mdd -2.3% t=-1.0 crash x0.94 (16/49) fa=0.37 n=2 | tes mdd +3.6% t=1.7 crash x1.02 (5/14) fa=0.50 n=2 -> insufficient: 4 independent episodes in train+validation (bar 20)
+   W=60 fwd rv flag/all: tra 0.51/0.64 | val 0.38/0.44 | tes 0.41/0.42
+   W=90 fwd rv flag/all: tra 0.51/0.65 | val 0.41/0.45 | tes 0.42/0.41
+[R1] btc ('futures_oi_btc', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -4.36% t=-1.5 n=4 net=+5.37% | val ex +0.41% t=0.2 n=2 net=-0.33% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -11.24% t=-1.7 n=4 net=+13.13% | val ex -2.29% t=-0.7 n=2 net=+3.37% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -16.08% t=-1.5 n=3 net=+18.73% | val ex -7.16% t=-1.4 n=1 net=+8.70% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK btc ('futures_oi_btc', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +1.1% t=0.8 crash x0.97 (168/464) fa=0.47 n=4 | val mdd +0.6% t=0.7 crash x0.75 (47/277) fa=0.51 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.49/0.63 | val 0.42/0.43
+[R1] RISK btc ('futures_oi_btc', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +0.7% t=0.3 crash x0.63 (68/464) fa=0.47 n=4 | val mdd +0.5% t=0.3 crash x0.80 (46/277) fa=0.51 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +1.2% t=0.4 crash x0.62 (90/464) fa=0.47 n=3 | val mdd -0.2% t=-0.1 crash x0.93 (89/277) fa=0.51 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.49/0.64 | val 0.43/0.44
+   W=90 fwd rv flag/all: tra 0.49/0.65 | val 0.44/0.45
+[R1] btc ('futures_oi_btc', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -7.17% t=-2.3 n=3 net=+8.34% | val ex +1.50% t=0.5 n=4 net=+0.68% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -13.71% t=-2.1 n=3 net=+15.67% | val ex -1.61% t=-0.4 n=2 net=+2.79% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -17.23% t=-1.5 n=2 net=+19.97% | val ex -8.84% t=-1.5 n=2 net=+10.47% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK btc ('futures_oi_btc', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd +0.3% t=0.2 crash x1.13 (134/316) fa=0.38 n=3 | val mdd +0.8% t=0.7 crash x0.62 (26/184) fa=0.49 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.49/0.63 | val 0.43/0.43
+[R1] RISK btc ('futures_oi_btc', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd -0.5% t=-0.2 crash x0.70 (51/316) fa=0.38 n=3 | val mdd +1.8% t=0.9 crash x0.52 (20/184) fa=0.49 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +0.0% t=0.0 crash x0.74 (73/316) fa=0.38 n=2 | val mdd -0.1% t=-0.0 crash x0.83 (53/184) fa=0.49 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.49/0.64 | val 0.42/0.44
+   W=90 fwd rv flag/all: tra 0.49/0.65 | val 0.44/0.45
+[R1] btc ('perp_oi_btc', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -8.47% t=-2.9 n=5 net=+9.50% | val ex +0.46% t=0.2 n=2 net=-0.26% | tes ex -0.30% t=-0.1 n=1 net=+0.49% -> insufficient: 7 independent episodes in train+validation (bar 15)
+h=60: tra ex -17.34% t=-2.9 n=4 net=+19.13% | val ex -0.77% t=-0.2 n=2 net=+1.84% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -23.00% t=-2.3 n=3 net=+25.47% | val ex -4.64% t=-0.9 n=1 net=+6.19% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK btc ('perp_oi_btc', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd -1.0% t=-0.7 crash x1.24 (187/403) fa=0.36 n=5 | val mdd +0.6% t=0.7 crash x0.77 (51/291) fa=0.50 n=2 | tes mdd +4.6% t=1.8 crash x0.00 (0/6) fa=0.33 n=1 -> insufficient: 7 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.51/0.63 | val 0.42/0.43 | tes 0.28/0.42
+[R1] RISK btc ('perp_oi_btc', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd -2.5% t=-1.0 crash x1.05 (98/403) fa=0.36 n=4 | val mdd +0.7% t=0.6 crash x0.74 (45/291) fa=0.50 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd -3.0% t=-0.9 crash x1.00 (127/403) fa=0.36 n=3 | val mdd +0.2% t=0.1 crash x0.86 (87/291) fa=0.50 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.51/0.64 | val 0.44/0.44
+   W=90 fwd rv flag/all: tra 0.52/0.65 | val 0.44/0.45
+[R1] btc ('perp_oi_btc', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -10.37% t=-2.8 n=5 net=+11.62% | val ex +0.57% t=0.2 n=2 net=-0.22% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -21.50% t=-3.4 n=4 net=+23.45% | val ex -1.33% t=-0.4 n=2 net=+2.49% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -27.73% t=-2.6 n=3 net=+30.30% | val ex -7.16% t=-1.4 n=2 net=+8.78% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK btc ('perp_oi_btc', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd -1.9% t=-1.1 crash x1.44 (136/252) fa=0.32 n=5 | val mdd +0.5% t=0.5 crash x0.66 (30/201) fa=0.47 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.52/0.63 | val 0.42/0.43
+[R1] RISK btc ('perp_oi_btc', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd -4.3% t=-1.4 crash x1.39 (81/252) fa=0.32 n=4 | val mdd +1.2% t=0.7 crash x0.60 (25/201) fa=0.47 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd -5.4% t=-1.2 crash x1.24 (98/252) fa=0.32 n=3 | val mdd +0.1% t=0.1 crash x0.75 (52/201) fa=0.47 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.53/0.64 | val 0.43/0.44
+   W=90 fwd rv flag/all: tra 0.53/0.65 | val 0.44/0.45
+[R1] btc ('basis_btc', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -2.25% t=-0.7 n=4 net=+3.20% | val ex -3.68% t=-1.4 n=1 net=+4.58% | tes ex -6.92% t=-1.6 n=1 net=+7.27% -> insufficient: 5 independent episodes in train+validation (bar 15)
+h=60: tra ex -3.63% t=-0.5 n=2 net=+5.47% | val ex -2.58% t=-0.5 n=1 net=+4.09% | tes ex -18.55% t=-3.0 n=1 net=+19.35% -> insufficient: 3 independent episodes in train+validation (bar 15)
+h=90: tra ex -4.73% t=-0.4 n=2 net=+7.45% | val ex -16.50% t=-1.9 n=1 net=+18.40% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK btc ('basis_btc', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +2.2% t=1.7 crash x0.86 (109/339) fa=0.53 n=4 | val mdd +1.3% t=0.9 crash x0.43 (3/31) fa=0.45 n=1 | tes mdd +0.1% t=0.0 crash x0.97 (7/26) fa=0.15 n=1 -> insufficient: 5 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.47/0.63 | val 0.46/0.43 | tes 0.33/0.42
+[R1] RISK btc ('basis_btc', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +3.5% t=1.7 crash x0.13 (10/339) fa=0.53 n=2 | val mdd +4.3% t=2.1 crash x0.00 (0/31) fa=0.45 n=1 | tes mdd -5.9% t=-1.7 crash x1.16 (1/3) fa=1.00 n=1 -> insufficient: 3 independent episodes in train+validation (bar 20)
+W=90: tra mdd +5.6% t=2.1 crash x0.23 (24/339) fa=0.53 n=2 | val mdd +0.3% t=0.1 crash x0.56 (6/31) fa=0.45 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.47/0.64 | val 0.44/0.44 | tes 0.41/0.42
+   W=90 fwd rv flag/all: tra 0.48/0.65 | val 0.47/0.45
+[R1] btc ('basis_btc', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -3.67% t=-1.1 n=4 net=+4.76% | val - | tes ex -11.95% t=-3.1 n=1 net=+12.41% -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -6.09% t=-0.9 n=3 net=+8.05% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -2.81% t=-0.2 n=1 net=+5.75% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK btc ('basis_btc', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd +2.1% t=1.4 crash x0.93 (84/240) fa=0.50 n=4 | val - | tes mdd -4.4% t=-1.6 crash x2.00 (5/9) fa=0.00 n=1 -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK btc ('basis_btc', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd +3.1% t=1.3 crash x0.04 (2/240) fa=0.50 n=3 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +5.4% t=1.8 crash x0.05 (4/240) fa=0.50 n=1 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] btc ('lsr_BTC', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -4.17% t=-1.0 n=10 net=+6.38% | val ex -4.20% t=-1.7 n=4 net=+4.48% | tes ex -5.08% t=-1.2 n=3 net=+5.09% -> insufficient: 14 independent episodes in train+validation (bar 15)
+h=60: tra ex -12.26% t=-1.5 n=6 net=+16.15% | val ex -7.77% t=-1.9 n=3 net=+8.36% | tes ex -3.52% t=-0.5 n=2 net=+3.61% -> insufficient: 9 independent episodes in train+validation (bar 15)
+h=90: tra ex -20.36% t=-2.0 n=4 net=+25.42% | val ex -9.71% t=-1.5 n=3 net=+10.64% | tes ex -1.02% t=-0.2 n=1 net=+1.15% -> insufficient: 7 independent episodes in train+validation (bar 15)
+[R1] RISK btc ('lsr_BTC', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd -3.4% t=-1.8 crash x1.44 (163/302) fa=0.48 n=10 | val mdd -1.1% t=-0.7 crash x1.34 (37/121) fa=0.52 n=4 | tes mdd -4.8% t=-1.4 crash x1.80 (20/40) fa=0.40 n=3 -> insufficient: 14 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.67/0.63 | val 0.43/0.43 | tes 0.60/0.42
+[R1] RISK btc ('lsr_BTC', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd -5.9% t=-1.8 crash x1.74 (122/302) fa=0.48 n=6 | val mdd -3.3% t=-1.5 crash x1.71 (43/121) fa=0.52 n=3 | tes mdd -3.2% t=-0.8 crash x1.48 (17/40) fa=0.40 n=2 -> insufficient: 9 independent episodes in train+validation (bar 20)
+W=90: tra mdd -7.3% t=-1.8 crash x1.55 (147/302) fa=0.48 n=4 | val mdd -6.9% t=-2.3 crash x1.98 (83/121) fa=0.52 n=3 | tes mdd -2.0% t=-0.5 crash x1.21 (17/40) fa=0.40 n=1 -> insufficient: 7 independent episodes in train+validation (bar 20)
+   W=60 fwd rv flag/all: tra 0.69/0.64 | val 0.47/0.44 | tes 0.54/0.42
+   W=90 fwd rv flag/all: tra 0.69/0.65 | val 0.49/0.45 | tes 0.50/0.41
+[R1] btc ('lsr_BTC', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -2.18% t=-0.4 n=10 net=+4.81% | val ex -5.34% t=-1.7 n=4 net=+5.60% | tes ex -9.33% t=-2.3 n=3 net=+9.26% -> insufficient: 14 independent episodes in train+validation (bar 15)
+h=60: tra ex -10.84% t=-1.0 n=7 net=+15.40% | val ex -5.57% t=-1.2 n=3 net=+6.16% | tes ex -8.75% t=-1.4 n=2 net=+8.70% -> insufficient: 10 independent episodes in train+validation (bar 15)
+h=90: tra ex -19.06% t=-1.6 n=6 net=+24.95% | val ex -9.11% t=-1.0 n=3 net=+10.06% | tes ex -1.62% t=-0.3 n=1 net=+1.47% -> insufficient: 9 independent episodes in train+validation (bar 15)
+[R1] RISK btc ('lsr_BTC', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd -3.4% t=-1.6 crash x1.47 (103/187) fa=0.49 n=10 | val mdd -1.4% t=-0.7 crash x1.51 (22/64) fa=0.52 n=4 | tes mdd -7.6% t=-2.5 crash x2.20 (11/18) fa=0.28 n=3 -> insufficient: 14 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.70/0.63 | val 0.45/0.43 | tes 0.65/0.42
+[R1] RISK btc ('lsr_BTC', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd -6.6% t=-1.7 crash x1.96 (85/187) fa=0.49 n=7 | val mdd -1.8% t=-0.8 crash x1.35 (18/64) fa=0.52 n=3 | tes mdd -5.7% t=-1.6 crash x1.74 (9/18) fa=0.28 n=2 -> insufficient: 10 independent episodes in train+validation (bar 20)
+W=90: tra mdd -7.8% t=-1.7 crash x1.63 (96/187) fa=0.49 n=6 | val mdd -7.3% t=-1.8 crash x1.94 (43/64) fa=0.52 n=3 | tes mdd -4.0% t=-1.3 crash x1.43 (9/18) fa=0.28 n=1 -> insufficient: 9 independent episodes in train+validation (bar 20)
+   W=60 fwd rv flag/all: tra 0.72/0.64 | val 0.46/0.44 | tes 0.58/0.42
+   W=90 fwd rv flag/all: tra 0.71/0.65 | val 0.50/0.45 | tes 0.52/0.41
+[R1] btc ('perp_funding_btc', 'pct365', 'top', 0.8) AND ('futures_oi_btc', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -3.19% t=-1.0 n=4 net=+4.36% lift +0.93 | val ex +4.69% t=1.1 n=5 net=+3.74% lift +1.55 | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -6.17% t=-0.9 n=4 net=+8.36% lift +1.18 | val ex +1.63% t=0.3 n=2 net=+0.06% lift +1.91 | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -9.01% t=-0.7 n=3 net=+12.15% lift +2.05 | val ex -2.79% t=-0.4 n=2 net=+4.59% lift +1.23 | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK btc ('perp_funding_btc', 'pct365', 'top', 0.8) AND ('futures_oi_btc', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +1.3% t=0.9 crash x0.97 (101/277) fa=0.48 n=4 | val mdd +2.0% t=1.6 crash x0.45 (12/117) fa=0.61 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.50/0.63 | val 0.44/0.43
+[R1] RISK btc ('perp_funding_btc', 'pct365', 'top', 0.8) AND ('futures_oi_btc', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +2.2% t=0.9 crash x0.42 (27/277) fa=0.48 n=4 | val mdd +2.8% t=1.2 crash x0.45 (11/117) fa=0.61 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +3.3% t=1.0 crash x0.51 (44/277) fa=0.48 n=3 | val mdd +2.9% t=0.9 crash x0.44 (18/117) fa=0.61 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.51/0.64 | val 0.45/0.44
+   W=90 fwd rv flag/all: tra 0.51/0.65 | val 0.46/0.45
+[R1] eth ('perp_funding_eth', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -5.18% t=-1.6 n=4 net=+6.15% | val ex +5.08% t=1.2 n=2 net=+4.26% | tes ex -5.26% t=-1.6 n=3 net=+5.34% -> insufficient: 6 independent episodes in train+validation (bar 15)
+h=60: tra ex -8.10% t=-1.2 n=3 net=+9.99% | val ex +4.10% t=0.6 n=2 net=+2.77% | tes ex -8.24% t=-2.5 n=1 net=+8.50% -> insufficient: 5 independent episodes in train+validation (bar 15)
+h=90: tra ex -11.99% t=-1.0 n=2 net=+14.76% | val ex -3.45% t=-0.4 n=2 net=+4.92% | tes ex -4.36% t=-0.9 n=1 net=+4.68% -> insufficient: 4 independent episodes in train+validation (bar 15)
+[R1] RISK eth ('perp_funding_eth', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +2.1% t=1.3 crash x0.86 (130/345) fa=0.52 n=4 | val mdd +3.9% t=2.2 crash x0.69 (26/69) fa=0.59 n=2 | tes mdd -3.3% t=-1.4 crash x1.24 (21/42) fa=0.33 n=3 -> insufficient: 6 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.61/0.79 | val 0.69/0.70 | tes 0.57/0.57
+[R1] RISK eth ('perp_funding_eth', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +3.2% t=1.3 crash x0.61 (63/345) fa=0.52 n=3 | val mdd +6.3% t=2.2 crash x0.42 (13/69) fa=0.59 n=2 | tes mdd -3.8% t=-1.0 crash x1.31 (16/34) fa=0.41 n=1 -> insufficient: 5 independent episodes in train+validation (bar 20)
+W=90: tra mdd +4.2% t=1.4 crash x0.60 (75/345) fa=0.52 n=2 | val mdd +2.7% t=0.7 crash x0.85 (33/69) fa=0.59 n=2 | tes mdd -6.0% t=-2.0 crash x1.31 (16/24) fa=0.29 n=1 -> insufficient: 4 independent episodes in train+validation (bar 20)
+   W=60 fwd rv flag/all: tra 0.62/0.81 | val 0.67/0.71 | tes 0.58/0.57
+   W=90 fwd rv flag/all: tra 0.61/0.82 | val 0.70/0.72 | tes 0.61/0.57
+[R1] eth ('perp_funding_eth', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -1.05% t=-0.3 n=2 net=+2.18% | val ex +6.55% t=1.4 n=2 net=+5.89% | tes ex -0.45% t=-0.1 n=3 net=+0.58% -> insufficient: 4 independent episodes in train+validation (bar 15)
+h=60: tra ex -2.39% t=-0.3 n=1 net=+4.67% | val ex +9.85% t=1.5 n=2 net=+8.74% | tes ex -7.84% t=-1.6 n=1 net=+8.14% -> insufficient: 3 independent episodes in train+validation (bar 15)
+h=90: tra ex -2.13% t=-0.2 n=1 net=+5.50% | val ex +7.02% t=0.8 n=2 net=+5.55% | tes ex -11.08% t=-1.8 n=1 net=+11.40% -> insufficient: 3 independent episodes in train+validation (bar 15)
+[R1] RISK eth ('perp_funding_eth', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd +5.3% t=3.6 crash x0.57 (64/254) fa=0.60 n=2 | val mdd +3.5% t=1.9 crash x0.67 (19/52) fa=0.60 n=2 | tes mdd -0.4% t=-0.2 crash x1.05 (11/26) fa=0.35 n=3 -> insufficient: 4 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.55/0.79 | val 0.69/0.70 | tes 0.54/0.57
+[R1] RISK eth ('perp_funding_eth', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd +7.6% t=3.2 crash x0.20 (15/254) fa=0.60 n=1 | val mdd +6.4% t=2.1 crash x0.34 (8/52) fa=0.60 n=2 | tes mdd -1.8% t=-0.4 crash x1.06 (8/21) fa=0.43 n=1 -> insufficient: 3 independent episodes in train+validation (bar 20)
+W=90: tra mdd +9.7% t=3.2 crash x0.21 (19/254) fa=0.60 n=1 | val mdd +5.5% t=1.4 crash x0.72 (21/52) fa=0.60 n=2 | tes mdd -5.9% t=-2.1 crash x1.20 (8/13) fa=0.31 n=1 -> insufficient: 3 independent episodes in train+validation (bar 20)
+   W=60 fwd rv flag/all: tra 0.55/0.81 | val 0.68/0.71 | tes 0.54/0.57
+   W=90 fwd rv flag/all: tra 0.56/0.82 | val 0.70/0.72 | tes 0.59/0.57
+[R1] eth ('futures_oi_eth', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -5.13% t=-1.4 n=5 net=+6.19% | val ex -1.80% t=-0.5 n=3 net=+2.27% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -15.40% t=-2.2 n=4 net=+17.38% | val ex -6.31% t=-1.0 n=3 net=+7.20% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -24.01% t=-2.0 n=3 net=+26.78% | val ex -13.28% t=-1.4 n=1 net=+14.54% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK eth ('futures_oi_eth', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +2.8% t=1.9 crash x0.96 (169/400) fa=0.45 n=5 | val mdd -0.4% t=-0.2 crash x1.10 (164/273) fa=0.41 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.57/0.79 | val 0.70/0.70
+[R1] RISK eth ('futures_oi_eth', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +1.9% t=0.7 crash x0.81 (96/400) fa=0.45 n=4 | val mdd -1.8% t=-0.7 crash x1.14 (139/273) fa=0.41 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +0.6% t=0.1 crash x0.87 (126/400) fa=0.45 n=3 | val mdd -4.0% t=-1.1 crash x1.14 (176/273) fa=0.41 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.59/0.81 | val 0.71/0.71
+   W=90 fwd rv flag/all: tra 0.59/0.82 | val 0.72/0.72
+[R1] eth ('futures_oi_eth', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -6.56% t=-1.8 n=4 net=+7.83% | val ex -1.90% t=-0.4 n=3 net=+2.41% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -16.15% t=-2.2 n=3 net=+18.36% | val ex -11.89% t=-1.6 n=3 net=+12.82% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -22.64% t=-1.6 n=2 net=+25.71% | val ex -25.74% t=-2.5 n=3 net=+26.96% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK eth ('futures_oi_eth', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd +2.7% t=1.6 crash x1.04 (121/266) fa=0.45 n=4 | val mdd +0.9% t=0.5 crash x1.06 (106/183) fa=0.40 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.57/0.79 | val 0.69/0.70
+[R1] RISK eth ('futures_oi_eth', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd +1.8% t=0.6 crash x0.91 (72/266) fa=0.45 n=3 | val mdd -1.8% t=-0.5 crash x1.12 (92/183) fa=0.40 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +0.2% t=0.0 crash x0.98 (94/266) fa=0.45 n=2 | val mdd -7.3% t=-1.5 crash x1.25 (129/183) fa=0.40 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.60/0.81 | val 0.71/0.71
+   W=90 fwd rv flag/all: tra 0.61/0.82 | val 0.74/0.72
+[R1] eth ('perp_oi_eth', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -8.75% t=-2.3 n=6 net=+9.69% | val ex -2.19% t=-0.6 n=3 net=+2.70% | tes ex -13.58% t=-2.9 n=2 net=+13.79% -> insufficient: 9 independent episodes in train+validation (bar 15)
+h=60: tra ex -19.05% t=-2.6 n=3 net=+20.82% | val ex -12.18% t=-2.2 n=3 net=+13.11% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -27.13% t=-2.3 n=3 net=+29.64% | val ex -23.22% t=-2.8 n=2 net=+24.50% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK eth ('perp_oi_eth', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd -0.4% t=-0.2 crash x1.20 (202/385) fa=0.40 n=6 | val mdd -0.2% t=-0.1 crash x1.07 (137/235) fa=0.41 n=3 | tes mdd -5.3% t=-1.6 crash x2.28 (11/12) fa=0.00 n=2 -> insufficient: 9 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.66/0.79 | val 0.71/0.70 | tes 0.45/0.57
+[R1] RISK eth ('perp_oi_eth', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd -2.3% t=-0.8 crash x1.44 (165/385) fa=0.40 n=3 | val mdd -2.5% t=-0.9 crash x1.23 (129/235) fa=0.41 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd -5.1% t=-1.2 crash x1.42 (197/385) fa=0.40 n=3 | val mdd -5.8% t=-1.7 crash x1.25 (166/235) fa=0.41 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.68/0.81 | val 0.72/0.71
+   W=90 fwd rv flag/all: tra 0.69/0.82 | val 0.72/0.72
+[R1] eth ('perp_oi_eth', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -9.83% t=-2.1 n=8 net=+10.87% | val ex -1.28% t=-0.3 n=3 net=+1.85% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -20.15% t=-2.5 n=4 net=+22.08% | val ex -13.68% t=-2.0 n=3 net=+14.67% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -28.07% t=-2.2 n=3 net=+30.78% | val ex -29.80% t=-3.0 n=3 net=+31.09% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK eth ('perp_oi_eth', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd -0.9% t=-0.5 crash x1.32 (154/265) fa=0.37 n=8 | val mdd +1.9% t=1.0 crash x1.00 (87/160) fa=0.45 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.65/0.79 | val 0.69/0.70
+[R1] RISK eth ('perp_oi_eth', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd -3.0% t=-0.9 crash x1.53 (121/265) fa=0.37 n=4 | val mdd -0.6% t=-0.2 crash x1.09 (78/160) fa=0.45 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd -5.8% t=-1.2 crash x1.47 (141/265) fa=0.37 n=3 | val mdd -6.8% t=-1.6 crash x1.27 (115/160) fa=0.45 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.68/0.81 | val 0.71/0.71
+   W=90 fwd rv flag/all: tra 0.69/0.82 | val 0.73/0.72
+[R1] eth ('basis_eth', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -3.16% t=-0.6 n=5 net=+4.37% | val ex -12.60% t=-2.8 n=3 net=+13.21% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -5.86% t=-0.6 n=3 net=+8.28% | val ex -27.99% t=-3.0 n=3 net=+29.06% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -7.83% t=-0.6 n=1 net=+11.37% | val ex -42.78% t=-3.0 n=3 net=+44.21% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK eth ('basis_eth', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +4.5% t=2.5 crash x0.82 (88/244) fa=0.49 n=5 | val mdd -4.6% t=-1.6 crash x1.63 (16/18) fa=0.17 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.53/0.79 | val 0.69/0.70
+[R1] RISK eth ('basis_eth', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +6.2% t=2.1 crash x0.29 (21/244) fa=0.49 n=3 | val mdd -7.8% t=-2.1 crash x1.74 (14/18) fa=0.17 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +8.0% t=2.2 crash x0.30 (26/244) fa=0.49 n=1 | val mdd -15.9% t=-3.0 crash x1.77 (18/18) fa=0.17 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.55/0.81 | val 0.68/0.71
+   W=90 fwd rv flag/all: tra 0.55/0.82 | val 0.73/0.72
+[R1] eth ('basis_eth', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -6.95% t=-1.7 n=2 net=+8.21% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -5.90% t=-0.6 n=2 net=+8.34% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -4.40% t=-0.3 n=1 net=+8.15% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK eth ('basis_eth', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd +3.7% t=1.8 crash x0.90 (69/174) fa=0.46 n=2 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK eth ('basis_eth', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd +5.6% t=1.6 crash x0.27 (14/174) fa=0.46 n=2 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +7.9% t=1.9 crash x0.29 (18/174) fa=0.46 n=1 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] eth ('lsr_ETH', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex +1.10% t=0.3 n=6 net=-1.13% | val ex -8.78% t=-1.9 n=3 net=+9.23% | tes ex -7.55% t=-2.5 n=4 net=+7.66% -> insufficient: 9 independent episodes in train+validation (bar 15)
+h=60: tra ex +1.53% t=0.2 n=5 net=-2.72% | val ex -16.12% t=-1.9 n=2 net=+16.96% | tes ex -4.88% t=-1.0 n=1 net=+5.17% -> insufficient: 7 independent episodes in train+validation (bar 15)
+h=90: tra ex +2.49% t=0.2 n=5 net=-3.47% | val ex -17.70% t=-1.4 n=2 net=+18.99% | tes ex +7.25% t=1.4 n=1 net=+6.55% -> insufficient: 7 independent episodes in train+validation (bar 15)
+[R1] RISK eth ('lsr_ETH', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +1.1% t=0.8 crash x1.02 (156/348) fa=0.49 n=6 | val mdd -2.7% t=-1.3 crash x1.18 (79/123) fa=0.35 n=3 | tes mdd -3.9% t=-1.6 crash x1.67 (39/58) fa=0.26 n=4 -> insufficient: 9 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.71/0.79 | val 0.73/0.70 | tes 0.56/0.57
+[R1] RISK eth ('lsr_ETH', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +2.0% t=1.1 crash x0.75 (78/348) fa=0.49 n=5 | val mdd -6.0% t=-1.5 crash x1.52 (84/123) fa=0.35 n=2 | tes mdd -3.0% t=-1.2 crash x1.53 (22/40) fa=0.38 n=1 -> insufficient: 7 independent episodes in train+validation (bar 20)
+W=90: tra mdd +3.0% t=1.3 crash x0.73 (92/348) fa=0.49 n=5 | val mdd -7.8% t=-1.5 crash x1.31 (91/123) fa=0.35 n=2 | tes mdd -0.4% t=-0.2 crash x1.16 (19/32) fa=0.25 n=1 -> insufficient: 7 independent episodes in train+validation (bar 20)
+   W=60 fwd rv flag/all: tra 0.72/0.81 | val 0.75/0.71 | tes 0.57/0.57
+   W=90 fwd rv flag/all: tra 0.72/0.82 | val 0.76/0.72 | tes 0.58/0.57
+[R1] eth ('lsr_ETH', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex +2.68% t=0.5 n=8 net=+0.44% | val ex -11.29% t=-2.5 n=3 net=+11.75% | tes ex -13.60% t=-2.8 n=2 net=+13.76% -> insufficient: 11 independent episodes in train+validation (bar 15)
+h=60: tra ex +4.92% t=0.7 n=6 net=+0.57% | val ex -23.45% t=-2.5 n=1 net=+24.24% | tes ex -15.43% t=-1.7 n=2 net=+15.82% -> insufficient: 7 independent episodes in train+validation (bar 15)
+h=90: tra ex +4.75% t=0.4 n=5 net=-1.30% | val ex -32.17% t=-2.6 n=1 net=+33.27% | tes ex +1.95% t=0.2 n=1 net=+1.04% -> insufficient: 6 independent episodes in train+validation (bar 15)
+[R1] RISK eth ('lsr_ETH', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd +1.6% t=1.1 crash x1.01 (95/214) fa=0.49 n=8 | val mdd -2.4% t=-0.9 crash x1.17 (39/61) fa=0.28 n=3 | tes mdd -7.2% t=-1.8 crash x2.03 (18/22) fa=0.09 n=2 -> insufficient: 11 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.69/0.79 | val 0.71/0.70 | tes 0.55/0.57
+[R1] RISK eth ('lsr_ETH', 'pct365', 'top', 0.9) (1d, crash -20%)
+W=60: tra mdd +3.8% t=1.9 crash x0.58 (37/214) fa=0.49 n=6 | val mdd -9.2% t=-2.0 crash x1.76 (48/61) fa=0.28 n=1 | tes mdd -9.9% t=-2.2 crash x2.38 (12/14) fa=0.14 n=2 -> insufficient: 7 independent episodes in train+validation (bar 20)
+W=90: tra mdd +5.1% t=2.2 crash x0.60 (46/214) fa=0.49 n=5 | val mdd -14.0% t=-2.8 crash x1.51 (52/61) fa=0.28 n=1 | tes mdd -5.6% t=-1.3 crash x1.60 (9/11) fa=0.00 n=1 -> insufficient: 6 independent episodes in train+validation (bar 20)
+   W=60 fwd rv flag/all: tra 0.69/0.81 | val 0.76/0.71 | tes 0.55/0.57
+   W=90 fwd rv flag/all: tra 0.69/0.82 | val 0.78/0.72 | tes 0.55/0.57
+[R1] eth ('perp_funding_eth', 'pct365', 'top', 0.8) AND ('futures_oi_eth', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex -5.20% t=-1.3 n=4 net=+6.49% lift -0.02 | val ex +5.82% t=1.1 n=2 net=+4.93% lift +0.74 | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=60: tra ex -8.13% t=-1.0 n=3 net=+10.60% lift -0.04 | val ex +4.64% t=0.5 n=2 net=+3.20% lift +0.54 | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=90: tra ex -11.01% t=-0.8 n=2 net=+14.58% lift +0.98 | val ex -4.59% t=-0.4 n=2 net=+6.19% lift -1.14 | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R1] RISK eth ('perp_funding_eth', 'pct365', 'top', 0.8) AND ('futures_oi_eth', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +3.4% t=1.9 crash x0.95 (86/207) fa=0.48 n=4 | val mdd +4.5% t=2.3 crash x0.66 (21/58) fa=0.60 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=30 fwd rv flag/all: tra 0.56/0.79 | val 0.69/0.70
+[R1] RISK eth ('perp_funding_eth', 'pct365', 'top', 0.8) AND ('futures_oi_eth', 'pct365', 'top', 0.8) (1d, crash -20%)
+W=60: tra mdd +4.8% t=1.7 crash x0.57 (35/207) fa=0.48 n=3 | val mdd +7.1% t=2.3 crash x0.35 (9/58) fa=0.60 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=90: tra mdd +5.1% t=1.2 crash x0.62 (46/207) fa=0.48 n=2 | val mdd +3.3% t=0.7 crash x0.79 (26/58) fa=0.60 n=2 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=60 fwd rv flag/all: tra 0.58/0.81 | val 0.68/0.71
+   W=90 fwd rv flag/all: tra 0.59/0.82 | val 0.70/0.72
+
+==== R2. Duration of the crowded state (30-day forward return and drawdown by days-in-state) ====
+[R2] btc perp_funding_btc [consecutive] -> insufficient: a bucket has fewer than 3 days in train or validation
+   tra: 1-10: n=224/7 ex30 -4.9% mdd -0.7% (t -0.4) crash x1.08 | 11-30: n=97/4 ex30 -3.3% mdd +2.0% (t 0.9) crash x0.74 | 31-60: n=64/3 ex30 -2.4% mdd +1.0% (t 0.4) crash x1.13 | 61-inf: n=5/1 ex30 -8.4% mdd -0.9% (t -0.9) crash x1.07
+   val: 1-10: n=113/5 ex30 +3.2% mdd +0.7% (t 0.9) crash x0.70 | 11-30: n=20/1 ex30 +5.9% mdd +5.7% (t 4.5) crash x0.00 | 31-60: n=8/1 ex30 -4.4% mdd +2.1% (t 1.8) crash x0.00 | 61-inf: n=0
+   tes: 1-10: n=48/2 ex30 +0.4% mdd +0.6% (t 0.4) crash x0.97 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[R2] btc perp_funding_btc [hysteresis(post-hoc)] -> insufficient: a bucket has fewer than 3 days in train or validation
+   tra: 1-10: n=210/6 ex30 -3.9% mdd -0.4% (t -0.2) crash x1.11 | 11-30: n=102/6 ex30 -4.8% mdd +0.8% (t 0.4) crash x1.02 | 31-60: n=88/3 ex30 -13.0% mdd -2.4% (t -0.7) crash x1.43 | 61-inf: n=40/2 ex30 +1.8% mdd +1.6% (t 1.0) crash x0.67
+   val: 1-10: n=110/6 ex30 +3.3% mdd +0.5% (t 0.6) crash x0.80 | 11-30: n=25/2 ex30 +3.5% mdd +4.9% (t 3.4) crash x0.00 | 31-60: n=16/1 ex30 -5.7% mdd +0.7% (t 0.6) crash x0.00 | 61-inf: n=0
+   tes: 1-10: n=58/2 ex30 +0.5% mdd +0.6% (t 0.3) crash x0.99 | 11-30: n=6/1 ex30 +8.4% mdd +4.4% (t 1.8) crash x0.00 | 31-60: n=0 | 61-inf: n=0
+[R2] btc futures_oi_btc [consecutive] -> insufficient: only 6 independent episodes in the longest-duration bucket
+   tra: 1-10: n=114/6 ex30 +3.5% mdd +4.5% (t 2.5) crash x0.54 | 11-30: n=137/4 ex30 -3.7% mdd +2.7% (t 1.5) crash x0.49 | 31-60: n=124/5 ex30 -10.7% mdd -2.7% (t -1.6) crash x1.66 | 61-inf: n=89/3 ex30 -6.8% mdd -0.5% (t -0.2) crash x1.29
+   val: 1-10: n=75/5 ex30 +0.0% mdd -0.8% (t -0.5) crash x1.17 | 11-30: n=79/4 ex30 +5.5% mdd +1.1% (t 0.7) crash x0.56 | 31-60: n=60/2 ex30 -0.8% mdd +2.9% (t 2.4) crash x0.00 | 61-inf: n=63/3 ex30 -4.4% mdd -0.5% (t -0.3) crash x1.19
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[R2] btc futures_oi_btc [hysteresis(post-hoc)] -> insufficient: only 7 independent episodes in the longest-duration bucket
+   tra: 1-10: n=50/4 ex30 -3.3% mdd -0.3% (t -0.1) crash x1.07 | 11-30: n=73/4 ex30 -0.4% mdd +2.1% (t 1.2) crash x0.88 | 31-60: n=90/3 ex30 -12.1% mdd -1.1% (t -0.3) crash x1.01 | 61-inf: n=287/3 ex30 -1.6% mdd +1.8% (t 1.2) crash x0.93
+   val: 1-10: n=36/3 ex30 -0.4% mdd +1.0% (t 0.8) crash x0.00 | 11-30: n=60/3 ex30 +6.6% mdd +2.2% (t 1.4) crash x0.07 | 31-60: n=90/3 ex30 +9.9% mdd +4.6% (t 3.8) crash x0.00 | 61-inf: n=197/4 ex30 -6.1% mdd -2.8% (t -2.4) crash x1.72
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[R2] btc basis_btc [consecutive] -> insufficient: a bucket has fewer than 3 days in train or validation
+   tra: 1-10: n=106/5 ex30 +2.7% mdd +2.6% (t 1.3) crash x0.73 | 11-30: n=93/4 ex30 +1.7% mdd +3.9% (t 2.8) crash x0.57 | 31-60: n=90/3 ex30 -10.5% mdd +0.8% (t 0.4) crash x1.33 | 61-inf: n=50/3 ex30 -5.2% mdd +0.8% (t 0.7) crash x0.80
+   val: 1-10: n=17/1 ex30 -2.5% mdd +1.4% (t 0.7) crash x0.78 | 11-30: n=14/1 ex30 -5.2% mdd +1.2% (t 1.0) crash x0.00 | 31-60: n=0 | 61-inf: n=0
+   tes: 1-10: n=26/1 ex30 -6.9% mdd +0.1% (t 0.0) crash x0.97 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[R2] btc basis_btc [hysteresis(post-hoc)] -> insufficient: a bucket has fewer than 3 days in train or validation
+   tra: 1-10: n=71/4 ex30 -5.8% mdd -0.4% (t -0.2) crash x1.01 | 11-30: n=101/4 ex30 +1.0% mdd +1.4% (t 0.7) crash x0.98 | 31-60: n=62/3 ex30 -4.6% mdd +6.0% (t 5.1) crash x0.09 | 61-inf: n=188/2 ex30 +0.6% mdd +2.6% (t 1.5) crash x0.91
+   val: 1-10: n=10/1 ex30 +6.5% mdd +5.0% (t 4.1) crash x0.00 | 11-30: n=20/1 ex30 -4.1% mdd +2.1% (t 1.7) crash x0.00 | 31-60: n=28/1 ex30 +0.4% mdd +1.4% (t 1.0) crash x0.47 | 61-inf: n=0
+   tes: 1-10: n=14/1 ex30 -0.1% mdd +6.0% (t 2.4) crash x0.00 | 11-30: n=19/1 ex30 -11.3% mdd -4.0% (t -1.4) crash x1.89 | 31-60: n=0 | 61-inf: n=0
+[R2] eth perp_funding_eth [consecutive] -> insufficient: a bucket has fewer than 3 days in train or validation
+   tra: 1-10: n=181/6 ex30 -4.5% mdd +0.8% (t 0.3) crash x0.95 | 11-30: n=64/4 ex30 -6.3% mdd +3.4% (t 1.5) crash x0.61 | 31-60: n=62/3 ex30 -9.2% mdd +3.0% (t 0.9) crash x0.99 | 61-inf: n=38/2 ex30 -0.4% mdd +5.0% (t 3.5) crash x0.66
+   val: 1-10: n=69/2 ex30 +5.1% mdd +3.9% (t 2.2) crash x0.69 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   tes: 1-10: n=42/3 ex30 -5.3% mdd -3.3% (t -1.4) crash x1.24 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[R2] eth perp_funding_eth [hysteresis(post-hoc)] -> insufficient: a bucket has fewer than 3 days in train or validation
+   tra: 1-10: n=189/6 ex30 -3.8% mdd +1.3% (t 0.5) crash x0.89 | 11-30: n=98/5 ex30 -9.8% mdd +1.0% (t 0.4) crash x1.02 | 31-60: n=92/4 ex30 -13.0% mdd +0.5% (t 0.2) crash x1.31 | 61-inf: n=38/2 ex30 -0.4% mdd +5.0% (t 3.5) crash x0.66
+   val: 1-10: n=62/2 ex30 +8.3% mdd +4.6% (t 2.5) crash x0.59 | 11-30: n=20/1 ex30 -8.3% mdd +2.1% (t 0.9) crash x1.10 | 31-60: n=5/1 ex30 -18.6% mdd -6.9% (t -3.6) crash x1.84 | 61-inf: n=0
+   tes: 1-10: n=55/3 ex30 -5.3% mdd -3.6% (t -1.8) crash x1.36 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[R2] eth futures_oi_eth [consecutive] -> insufficient: only 4 independent episodes in the longest-duration bucket
+   tra: 1-10: n=126/7 ex30 -2.8% mdd +3.6% (t 2.1) crash x0.92 | 11-30: n=110/5 ex30 -1.1% mdd +5.2% (t 2.9) crash x0.50 | 31-60: n=79/3 ex30 -13.4% mdd +0.3% (t 0.1) crash x1.36 | 61-inf: n=85/1 ex30 -6.3% mdd +0.6% (t 0.2) crash x1.26
+   val: 1-10: n=67/4 ex30 +11.2% mdd +3.3% (t 1.1) crash x0.69 | 11-30: n=90/3 ex30 +4.0% mdd +1.6% (t 0.6) crash x0.94 | 31-60: n=61/3 ex30 -9.1% mdd -0.9% (t -0.4) crash x1.35 | 61-inf: n=55/3 ex30 -19.1% mdd -7.5% (t -2.9) crash x1.60
+   tes: 1-10: n=2 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[R2] eth futures_oi_eth [hysteresis(post-hoc)] -> insufficient: only 7 independent episodes in the longest-duration bucket
+   tra: 1-10: n=68/6 ex30 -5.7% mdd +2.7% (t 1.1) crash x0.91 | 11-30: n=90/5 ex30 -6.3% mdd +5.2% (t 2.7) crash x0.63 | 31-60: n=95/4 ex30 -10.6% mdd +2.3% (t 1.1) crash x0.91 | 61-inf: n=227/3 ex30 -5.7% mdd -0.8% (t -0.3) crash x1.31
+   val: 1-10: n=30/3 ex30 +17.1% mdd +6.9% (t 3.5) crash x0.24 | 11-30: n=60/3 ex30 +7.7% mdd +5.8% (t 1.9) crash x0.77 | 31-60: n=90/3 ex30 +7.4% mdd +2.5% (t 1.0) crash x1.12 | 61-inf: n=175/4 ex30 -15.5% mdd -8.1% (t -4.7) crash x1.48
+   tes: 1-10: n=10/1 ex30 -12.3% mdd -2.8% (t -0.8) crash x2.49 | 11-30: n=11/1 ex30 -13.5% mdd -4.5% (t -1.3) crash x2.26 | 31-60: n=0 | 61-inf: n=0
+[R2] eth basis_eth [consecutive] -> insufficient: a bucket has fewer than 3 days in train or validation
+   tra: 1-10: n=44/6 ex30 -6.5% mdd +6.1% (t 3.3) crash x0.47 | 11-30: n=40/2 ex30 -6.0% mdd +5.1% (t 2.2) crash x0.68 | 31-60: n=48/2 ex30 -7.6% mdd +4.9% (t 1.6) crash x0.86 | 61-inf: n=112/1 ex30 +1.1% mdd +3.4% (t 1.2) crash x1.00
+   val: 1-10: n=18/3 ex30 -12.6% mdd -4.6% (t -1.6) crash x1.63 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   tes: 1-10: n=2 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[R2] eth basis_eth [hysteresis(post-hoc)] -> insufficient: a bucket has fewer than 3 days in train or validation
+   tra: 1-10: n=57/5 ex30 -9.3% mdd +3.5% (t 1.1) crash x0.88 | 11-30: n=72/4 ex30 -10.0% mdd +3.0% (t 1.5) crash x0.95 | 31-60: n=59/3 ex30 -8.0% mdd +5.1% (t 1.9) crash x0.73 | 61-inf: n=130/1 ex30 +2.0% mdd +3.4% (t 1.4) crash x0.93
+   val: 1-10: n=21/3 ex30 -13.2% mdd -6.4% (t -1.6) crash x1.66 | 11-30: n=14/2 ex30 -13.3% mdd -2.7% (t -1.0) crash x1.57 | 31-60: n=0 | 61-inf: n=0
+   tes: 1-10: n=2 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+
+==== R3. Exit from a crowded state ====
+[R3] btc perp_funding_btc_hi_exit20: 6 events total, hypothesis down
+[R3] btc ('perp_funding_btc_hi_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +3.09% t=1.6 n=5 net=+2.71% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +1.03% t=0.2 n=5 net=+0.39% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +9.03% t=1.9 n=5 net=+7.97% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('perp_funding_btc_hi_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +5.1% t=3.2 crash x0.00 (0/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +4.5% t=1.7 crash x0.68 (1/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +4.9% t=1.8 crash x0.53 (1/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] btc perp_funding_btc_hi_exit40: 2 events total, hypothesis down
+[R3] btc perp_funding_btc_lo_exit20: 0 events total, hypothesis up
+[R3] btc perp_funding_btc_lo_exit40: 0 events total, hypothesis up
+[R3] btc perp_funding_btc_hyst_exit20: 6 events total, hypothesis down (post-hoc variant)
+[R3] btc ('perp_funding_btc_hyst_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +0.53% t=0.2 n=5 net=+0.17% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -0.71% t=-0.1 n=5 net=+1.09% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +3.75% t=0.5 n=5 net=+2.92% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('perp_funding_btc_hyst_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +3.0% t=1.5 crash x0.00 (0/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +2.2% t=0.9 crash x0.68 (1/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.5% t=0.6 crash x1.07 (2/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] btc perp_funding_btc_hyst_exit10: 10 events total, hypothesis down (post-hoc variant)
+[R3] btc ('perp_funding_btc_hyst_exit10', 'raw', 'top', 1) (1d)
+h=10: tra ex +0.82% t=0.4 n=6 net=+0.50% | val ex +1.15% t=0.2 n=3 net=+0.81% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -1.46% t=-0.4 n=6 net=+1.79% | val ex +2.97% t=0.4 n=3 net=+2.42% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +2.70% t=0.5 n=6 net=+1.97% | val ex -7.45% t=-2.3 n=3 net=+8.00% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('perp_funding_btc_hyst_exit10', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +3.1% t=1.9 crash x0.00 (0/6) fa=0.67 n=6 | val mdd -0.6% t=-0.2 crash x0.00 (0/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +2.7% t=1.3 crash x0.57 (1/6) fa=0.67 n=6 | val mdd +0.6% t=0.2 crash x1.93 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +2.1% t=0.9 crash x0.89 (2/6) fa=0.67 n=6 | val mdd -0.5% t=-0.2 crash x1.46 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.48/0.60 | val 0.38/0.42
+   W=20 fwd rv flag/all: tra 0.47/0.62 | val 0.38/0.43
+   W=30 fwd rv flag/all: tra 0.50/0.63 | val 0.44/0.43
+[R3] btc futures_oi_btc_hi_exit20: 11 events total, hypothesis down
+[R3] btc ('futures_oi_btc_hi_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex -0.79% t=-0.4 n=6 net=+0.90% | val ex +3.00% t=1.1 n=5 net=+2.73% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +4.40% t=0.9 n=6 net=+3.89% | val ex -1.47% t=-0.4 n=5 net=+1.65% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +0.55% t=0.1 n=6 net=-0.21% | val ex -4.59% t=-1.1 n=5 net=+4.93% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('futures_oi_btc_hi_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +1.4% t=1.1 crash x0.00 (0/6) fa=0.67 n=6 | val mdd +1.2% t=0.9 crash x0.00 (0/5) fa=0.40 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +3.0% t=2.0 crash x0.00 (0/6) fa=0.67 n=6 | val mdd -0.4% t=-0.2 crash x1.16 (1/5) fa=0.40 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.3% t=1.6 crash x0.89 (2/6) fa=0.67 n=6 | val mdd -0.1% t=-0.1 crash x0.88 (1/5) fa=0.40 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.44/0.60 | val 0.33/0.42
+   W=20 fwd rv flag/all: tra 0.41/0.62 | val 0.39/0.43
+   W=30 fwd rv flag/all: tra 0.40/0.63 | val 0.45/0.43
+[R3] btc futures_oi_btc_hi_exit40: 7 events total, hypothesis down
+[R3] btc ('futures_oi_btc_hi_exit40', 'raw', 'top', 1) (1d)
+h=10: tra ex +0.33% t=0.1 n=4 net=+0.04% | val ex +6.24% t=2.0 n=3 net=+5.97% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +5.57% t=1.1 n=4 net=+5.07% | val ex -1.73% t=-0.3 n=3 net=+1.88% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +0.87% t=0.1 n=4 net=+0.15% | val ex -7.42% t=-1.7 n=3 net=+7.69% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('futures_oi_btc_hi_exit40', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +1.4% t=0.9 crash x0.00 (0/4) fa=0.75 n=4 | val mdd +2.6% t=1.6 crash x0.00 (0/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +3.4% t=2.0 crash x0.00 (0/4) fa=0.75 n=4 | val mdd -1.2% t=-0.5 crash x1.93 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.3% t=1.3 crash x0.67 (1/4) fa=0.75 n=4 | val mdd -1.0% t=-0.4 crash x1.46 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.45/0.60 | val 0.36/0.42
+   W=20 fwd rv flag/all: tra 0.43/0.62 | val 0.45/0.43
+   W=30 fwd rv flag/all: tra 0.41/0.63 | val 0.53/0.43
+[R3] btc futures_oi_btc_lo_exit20: 5 events total, hypothesis up
+[R3] btc futures_oi_btc_lo_exit40: 3 events total, hypothesis up
+[R3] btc futures_oi_btc_hyst_exit20: 7 events total, hypothesis down (post-hoc variant)
+[R3] btc ('futures_oi_btc_hyst_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +10.04% t=1.0 n=3 net=+9.72% | val ex -2.39% t=-0.9 n=4 net=+2.36% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +8.75% t=0.8 n=3 net=+8.25% | val ex -0.49% t=-0.2 n=4 net=+0.59% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +5.20% t=0.4 n=3 net=+4.58% | val ex -4.06% t=-0.9 n=4 net=+4.26% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('futures_oi_btc_hyst_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +4.5% t=1.3 crash x0.00 (0/3) fa=0.67 n=3 | val mdd -0.3% t=-0.1 crash x0.00 (0/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +6.3% t=1.7 crash x0.00 (0/3) fa=0.67 n=3 | val mdd +1.6% t=0.6 crash x0.00 (0/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +5.6% t=1.1 crash x0.89 (1/3) fa=0.67 n=3 | val mdd -0.4% t=-0.2 crash x1.10 (1/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.64/0.60 | val 0.53/0.42
+   W=20 fwd rv flag/all: tra 0.56/0.62 | val 0.48/0.43
+   W=30 fwd rv flag/all: tra 0.52/0.63 | val 0.47/0.43
+[R3] btc futures_oi_btc_hyst_exit10: 8 events total, hypothesis down (post-hoc variant)
+[R3] btc ('futures_oi_btc_hyst_exit10', 'raw', 'top', 1) (1d)
+h=10: tra ex +4.79% t=0.5 n=4 net=+4.50% | val ex -2.39% t=-0.9 n=4 net=+2.36% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -0.73% t=-0.1 n=4 net=+1.01% | val ex -0.49% t=-0.2 n=4 net=+0.59% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -5.05% t=-0.4 n=4 net=+5.46% | val ex -4.06% t=-0.9 n=4 net=+4.26% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('futures_oi_btc_hyst_exit10', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +2.3% t=0.7 crash x0.00 (0/4) fa=0.50 n=4 | val mdd -0.3% t=-0.1 crash x0.00 (0/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd -0.3% t=-0.0 crash x0.85 (1/4) fa=0.50 n=4 | val mdd +1.6% t=0.6 crash x0.00 (0/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -1.2% t=-0.2 crash x1.34 (2/4) fa=0.50 n=4 | val mdd -0.4% t=-0.2 crash x1.10 (1/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.61/0.60 | val 0.53/0.42
+   W=20 fwd rv flag/all: tra 0.62/0.62 | val 0.48/0.43
+   W=30 fwd rv flag/all: tra 0.58/0.63 | val 0.47/0.43
+[R3] btc basis_btc_hi_exit20: 6 events total, hypothesis down
+[R3] btc ('basis_btc_hi_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +3.51% t=0.8 n=5 net=+3.22% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +4.26% t=0.8 n=5 net=+3.81% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +7.12% t=1.0 n=5 net=+6.51% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('basis_btc_hi_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +3.4% t=1.3 crash x0.00 (0/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +4.9% t=1.7 crash x0.00 (0/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +6.4% t=2.1 crash x0.00 (0/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] btc basis_btc_hi_exit40: 3 events total, hypothesis down
+[R3] btc basis_btc_lo_exit20: 14 events total, hypothesis up
+[R3] btc ('basis_btc_lo_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +0.77% t=0.2 n=8 net=+0.49% | val ex -1.37% t=-0.7 n=4 net=+1.44% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -2.86% t=-0.5 n=8 net=+3.08% | val ex -0.67% t=-0.3 n=4 net=+0.94% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -5.09% t=-0.7 n=6 net=+5.43% | val ex +0.68% t=0.2 n=4 net=+0.01% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('basis_btc_lo_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +1.1% t=0.6 crash x1.51 (2/8) fa=0.62 n=8 | val mdd +0.9% t=0.8 crash x0.00 (0/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd -1.8% t=-0.7 crash x2.13 (5/8) fa=0.62 n=8 | val mdd +2.5% t=2.1 crash x0.00 (0/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -0.8% t=-0.3 crash x1.67 (5/8) fa=0.62 n=6 | val mdd +2.5% t=2.0 crash x0.00 (0/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.46/0.60 | val 0.36/0.42
+   W=20 fwd rv flag/all: tra 0.62/0.62 | val 0.33/0.43
+   W=30 fwd rv flag/all: tra 0.59/0.63 | val 0.33/0.43
+[R3] btc basis_btc_lo_exit40: 5 events total, hypothesis up
+[R3] btc basis_btc_hyst_exit20: 7 events total, hypothesis down (post-hoc variant)
+[R3] btc ('basis_btc_hyst_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +2.89% t=0.9 n=5 net=+2.61% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -1.18% t=-0.3 n=5 net=+1.43% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +5.77% t=1.0 n=5 net=+5.20% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('basis_btc_hyst_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +3.7% t=3.9 crash x0.00 (0/5) fa=0.40 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +2.8% t=1.2 crash x0.68 (1/5) fa=0.40 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +4.6% t=2.0 crash x0.53 (1/5) fa=0.40 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] btc basis_btc_hyst_exit10: 8 events total, hypothesis down (post-hoc variant)
+[R3] btc ('basis_btc_hyst_exit10', 'raw', 'top', 1) (1d)
+h=10: tra ex +2.82% t=1.0 n=6 net=+2.52% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -1.52% t=-0.5 n=6 net=+1.79% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +5.84% t=1.2 n=5 net=+5.24% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK btc ('basis_btc_hyst_exit10', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +4.6% t=4.0 crash x0.00 (0/6) fa=0.50 n=6 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +3.6% t=1.8 crash x0.57 (1/6) fa=0.50 n=6 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.8% t=1.9 crash x0.45 (1/6) fa=0.50 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] eth perp_funding_eth_hi_exit20: 3 events total, hypothesis down
+[R3] eth perp_funding_eth_hi_exit40: 2 events total, hypothesis down
+[R3] eth perp_funding_eth_lo_exit20: 0 events total, hypothesis up
+[R3] eth perp_funding_eth_lo_exit40: 0 events total, hypothesis up
+[R3] eth perp_funding_eth_hyst_exit20: 6 events total, hypothesis down (post-hoc variant)
+[R3] eth ('perp_funding_eth_hyst_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +1.83% t=0.7 n=5 net=+1.49% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -3.75% t=-0.7 n=5 net=+4.12% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -0.17% t=-0.0 n=5 net=+0.76% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK eth ('perp_funding_eth_hyst_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +4.6% t=3.2 crash x0.00 (0/5) fa=0.60 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +3.6% t=1.1 crash x0.55 (1/5) fa=0.60 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.3% t=0.3 crash x0.91 (2/5) fa=0.60 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] eth perp_funding_eth_hyst_exit10: 6 events total, hypothesis down (post-hoc variant)
+[R3] eth ('perp_funding_eth_hyst_exit10', 'raw', 'top', 1) (1d)
+h=10: tra ex +1.83% t=0.7 n=5 net=+1.49% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -3.75% t=-0.7 n=5 net=+4.12% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -0.17% t=-0.0 n=5 net=+0.76% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK eth ('perp_funding_eth_hyst_exit10', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +4.6% t=3.2 crash x0.00 (0/5) fa=0.60 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +3.6% t=1.1 crash x0.55 (1/5) fa=0.60 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.3% t=0.3 crash x0.91 (2/5) fa=0.60 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] eth futures_oi_eth_hi_exit20: 11 events total, hypothesis down
+[R3] eth ('futures_oi_eth_hi_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +0.54% t=0.1 n=5 net=+0.20% | val ex +1.85% t=0.6 n=6 net=+1.65% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -3.06% t=-0.4 n=5 net=+3.44% | val ex +5.94% t=1.2 n=6 net=+5.60% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex +0.39% t=0.0 n=5 net=-0.66% | val ex +1.40% t=0.2 n=5 net=+0.90% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK eth ('futures_oi_eth_hi_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +1.8% t=0.8 crash x0.85 (1/5) fa=0.20 n=5 | val mdd +2.2% t=1.3 crash x0.00 (0/6) fa=0.67 n=6 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +2.8% t=1.0 crash x1.09 (2/5) fa=0.20 n=5 | val mdd +4.0% t=1.7 crash x0.38 (1/6) fa=0.67 n=6 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.8% t=1.1 crash x0.91 (2/5) fa=0.20 n=5 | val mdd -0.7% t=-0.2 crash x0.92 (3/6) fa=0.67 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.64/0.76 | val 0.60/0.67
+   W=20 fwd rv flag/all: tra 0.53/0.78 | val 0.62/0.69
+   W=30 fwd rv flag/all: tra 0.51/0.79 | val 0.78/0.70
+[R3] eth futures_oi_eth_hi_exit40: 5 events total, hypothesis down
+[R3] eth futures_oi_eth_lo_exit20: 3 events total, hypothesis up
+[R3] eth futures_oi_eth_lo_exit40: 2 events total, hypothesis up
+[R3] eth futures_oi_eth_hyst_exit20: 8 events total, hypothesis down (post-hoc variant)
+[R3] eth ('futures_oi_eth_hyst_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex +0.05% t=0.0 n=3 net=-0.10% | val ex -5.26% t=-0.8 n=4 net=+5.24% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -9.02% t=-1.4 n=3 net=+9.04% | val ex -1.28% t=-0.2 n=4 net=+1.39% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -5.84% t=-1.4 n=3 net=+5.93% | val ex -6.21% t=-0.9 n=4 net=+6.43% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK eth ('futures_oi_eth_hyst_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +4.8% t=5.2 crash x0.00 (0/3) fa=0.33 n=3 | val mdd -3.1% t=-0.5 crash x1.83 (2/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +0.7% t=0.1 crash x0.91 (1/3) fa=0.33 n=3 | val mdd -0.7% t=-0.1 crash x1.15 (2/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.3% t=0.2 crash x0.76 (1/3) fa=0.33 n=3 | val mdd -1.1% t=-0.2 crash x0.92 (2/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.49/0.76 | val 0.89/0.67
+   W=20 fwd rv flag/all: tra 0.55/0.78 | val 0.82/0.69
+   W=30 fwd rv flag/all: tra 0.55/0.79 | val 0.80/0.70
+[R3] eth futures_oi_eth_hyst_exit10: 10 events total, hypothesis down (post-hoc variant)
+[R3] eth ('futures_oi_eth_hyst_exit10', 'raw', 'top', 1) (1d)
+h=10: tra ex +3.44% t=0.9 n=5 net=+3.23% | val ex -5.26% t=-0.8 n=4 net=+5.24% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -2.77% t=-0.5 n=5 net=+2.91% | val ex -1.28% t=-0.2 n=4 net=+1.39% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -1.09% t=-0.2 n=4 net=+1.34% | val ex -6.21% t=-0.9 n=4 net=+6.43% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK eth ('futures_oi_eth_hyst_exit10', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +6.7% t=4.2 crash x0.00 (0/5) fa=0.60 n=5 | val mdd -3.1% t=-0.5 crash x1.83 (2/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +5.3% t=1.2 crash x0.55 (1/5) fa=0.60 n=5 | val mdd -0.7% t=-0.1 crash x1.15 (2/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +6.2% t=1.4 crash x0.46 (1/5) fa=0.60 n=4 | val mdd -1.1% t=-0.2 crash x0.92 (2/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.54/0.76 | val 0.89/0.67
+   W=20 fwd rv flag/all: tra 0.54/0.78 | val 0.82/0.69
+   W=30 fwd rv flag/all: tra 0.51/0.79 | val 0.80/0.70
+[R3] eth basis_eth_hi_exit20: 2 events total, hypothesis down
+[R3] eth basis_eth_hi_exit40: 2 events total, hypothesis down
+[R3] eth basis_eth_lo_exit20: 10 events total, hypothesis up
+[R3] eth ('basis_eth_lo_exit20', 'raw', 'top', 1) (1d)
+h=10: tra ex -1.88% t=-0.3 n=5 net=+1.69% | val ex -0.62% t=-0.1 n=3 net=+0.63% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -5.75% t=-0.9 n=5 net=+5.67% | val ex +1.66% t=0.3 n=3 net=+1.37% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -6.48% t=-0.6 n=5 net=+6.51% | val ex -1.60% t=-0.3 n=3 net=+1.77% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK eth ('basis_eth_lo_exit20', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd -2.6% t=-0.5 crash x0.85 (1/5) fa=0.60 n=5 | val mdd +1.5% t=0.3 crash x1.22 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd -1.5% t=-0.3 crash x1.09 (2/5) fa=0.60 n=5 | val mdd +3.3% t=0.8 crash x0.77 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -1.4% t=-0.3 crash x0.91 (2/5) fa=0.60 n=5 | val mdd +0.3% t=0.1 crash x1.22 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.78/0.76 | val 0.38/0.67
+   W=20 fwd rv flag/all: tra 0.73/0.78 | val 0.55/0.69
+   W=30 fwd rv flag/all: tra 0.71/0.79 | val 0.67/0.70
+[R3] eth basis_eth_lo_exit40: 2 events total, hypothesis up
+[R3] eth basis_eth_hyst_exit20: 5 events total, hypothesis down (post-hoc variant)
+[R3] eth basis_eth_hyst_exit10: 7 events total, hypothesis down (post-hoc variant)
+[R3] eth ('basis_eth_hyst_exit10', 'raw', 'top', 1) (1d)
+h=10: tra ex -4.15% t=-1.9 n=4 net=+4.18% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -1.35% t=-0.3 n=4 net=+1.57% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -5.61% t=-0.9 n=4 net=+6.04% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R3] RISK eth ('basis_eth_hyst_exit10', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +2.5% t=1.9 crash x0.00 (0/4) fa=0.50 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +4.6% t=3.4 crash x0.00 (0/4) fa=0.50 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +2.9% t=1.2 crash x0.57 (1/4) fa=0.50 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+
+==== R5. Long horizons for the near misses ====
+[R5] btc ('perp_funding_btc', 'pct365', 'bottom', 0.1) (1d)
+h=30: tra ex -5.20% t=-1.2 n=9 net=+5.53% | val ex -2.76% t=-1.2 n=4 net=+2.97% | tes ex -0.94% t=-0.3 n=2 net=+0.89% -> insufficient: 13 independent episodes in train+validation (bar 15)
+h=60: tra ex -10.14% t=-0.9 n=4 net=+11.03% | val ex +1.55% t=0.5 n=3 net=+0.70% | tes ex -7.39% t=-1.1 n=1 net=+7.44% -> insufficient: 7 independent episodes in train+validation (bar 15)
+h=90: tra ex -16.11% t=-1.1 n=3 net=+17.70% | val ex +12.03% t=2.2 n=1 net=+10.56% | tes ex -11.55% t=-1.5 n=1 net=+11.91% -> insufficient: 4 independent episodes in train+validation (bar 15)
+[R5] btc ('perp_funding_btc', 'pct365', 'bottom', 0.2) (1d)
+h=30: tra ex -4.95% t=-1.5 n=6 net=+5.30% | val ex -0.59% t=-0.4 n=3 net=+0.84% | tes ex -2.10% t=-0.8 n=2 net=+2.09% -> insufficient: 9 independent episodes in train+validation (bar 15)
+h=60: tra ex -11.28% t=-1.4 n=4 net=+12.22% | val ex +4.49% t=1.6 n=2 net=+3.56% | tes ex -4.98% t=-1.0 n=1 net=+5.03% -> insufficient: 6 independent episodes in train+validation (bar 15)
+h=90: tra ex -20.12% t=-1.6 n=2 net=+21.69% | val ex +12.49% t=2.5 n=1 net=+10.96% | tes ex -7.72% t=-1.6 n=1 net=+8.05% -> insufficient: 3 independent episodes in train+validation (bar 15)
+[R5] btc ('ivrv30_btc', 'pct365', 'bottom', 0.1) (1d)
+h=30: tra ex +0.86% t=0.2 n=14 net=-0.05% | val ex +0.68% t=0.3 n=3 net=+0.35% | tes ex +2.78% t=0.7 n=3 net=+2.40% -> rejected: validation t 0.29 below 2.5
+h=60: tra ex +4.66% t=0.6 n=9 net=+2.76% | val ex +3.72% t=0.5 n=3 net=+3.07% | tes ex +14.88% t=3.3 n=2 net=+14.23% -> insufficient: 12 independent episodes in train+validation (bar 15)
+[R5] btc ('ivrv30_btc', 'pct365', 'bottom', 0.2) (1d)
+h=30: tra ex +3.81% t=1.0 n=15 net=+2.59% | val ex -2.63% t=-1.1 n=4 net=+2.80% | tes ex +3.48% t=1.0 n=4 net=+3.09% -> rejected: excess sign differs across periods
+h=60: tra ex +7.17% t=1.2 n=9 net=+4.73% | val ex -3.24% t=-0.5 n=3 net=+3.70% | tes ex +14.67% t=3.8 n=2 net=+13.99% -> insufficient: 12 independent episodes in train+validation (bar 15)
+[R5] btc ('skew_30_btc', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex +0.74% t=0.2 n=12 net=+0.21% | val ex -2.44% t=-1.0 n=3 net=+2.72% | tes ex +1.92% t=0.8 n=1 net=+1.68% -> rejected: excess sign differs across periods
+h=60: tra ex -1.13% t=-0.2 n=6 net=+2.19% | val ex -5.51% t=-1.2 n=2 net=+6.18% | tes ex +4.22% t=1.5 n=1 net=+3.74% -> insufficient: 8 independent episodes in train+validation (bar 15)
+h=90: tra ex -6.98% t=-0.7 n=3 net=+8.83% | val ex -9.16% t=-1.5 n=2 net=+10.19% | tes ex +5.18% t=2.1 n=1 net=+4.39% -> insufficient: 5 independent episodes in train+validation (bar 15)
+[R5] RISK btc ('skew_30_btc', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd +0.1% t=0.0 crash x0.91 (150/438) fa=0.61 n=12 | val mdd -0.5% t=-0.5 crash x1.02 (50/215) fa=0.50 n=3 | tes mdd +1.7% t=1.1 crash x0.70 (25/128) fa=0.52 n=1 -> insufficient: 15 independent episodes in train+validation (bar 20)
+W=60: tra mdd +0.9% t=0.3 crash x0.87 (191/438) fa=0.61 n=6 | val mdd -1.9% t=-1.1 crash x1.17 (96/215) fa=0.50 n=2 | tes mdd +2.5% t=1.2 crash x0.73 (37/128) fa=0.52 n=1 -> insufficient: 8 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.64/0.63 | val 0.40/0.43 | tes 0.41/0.42
+   W=60 fwd rv flag/all: tra 0.63/0.64 | val 0.42/0.44 | tes 0.40/0.42
+[R5] btc ('skew_30_btc', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex +0.51% t=0.1 n=10 net=+0.02% | val ex -1.83% t=-0.7 n=3 net=+2.13% | tes ex +2.99% t=1.0 n=2 net=+2.77% -> insufficient: 13 independent episodes in train+validation (bar 15)
+h=60: tra ex -3.04% t=-0.4 n=8 net=+3.91% | val ex -6.61% t=-1.1 n=2 net=+7.26% | tes ex +6.58% t=1.8 n=1 net=+6.12% -> insufficient: 10 independent episodes in train+validation (bar 15)
+h=90: tra ex -6.09% t=-0.5 n=4 net=+7.74% | val ex -12.46% t=-1.6 n=2 net=+13.42% | tes ex +8.10% t=2.6 n=1 net=+7.36% -> insufficient: 6 independent episodes in train+validation (bar 15)
+[R5] RISK btc ('skew_30_btc', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd -0.6% t=-0.2 crash x0.95 (78/220) fa=0.65 n=10 | val mdd -0.3% t=-0.3 crash x0.89 (26/128) fa=0.47 n=3 | tes mdd +2.6% t=1.5 crash x0.44 (11/89) fa=0.54 n=2 -> insufficient: 13 independent episodes in train+validation (bar 20)
+W=60: tra mdd +0.9% t=0.2 crash x0.92 (101/220) fa=0.65 n=8 | val mdd -2.2% t=-1.1 crash x1.13 (55/128) fa=0.47 n=2 | tes mdd +4.3% t=1.7 crash x0.43 (15/89) fa=0.54 n=1 -> insufficient: 10 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.69/0.63 | val 0.39/0.43 | tes 0.41/0.42
+   W=60 fwd rv flag/all: tra 0.64/0.64 | val 0.42/0.44 | tes 0.40/0.42
+[R5] eth ('perp_funding_eth', 'pct365', 'bottom', 0.1) (1d)
+h=30: tra ex -11.40% t=-1.9 n=5 net=+11.44% | val ex -3.80% t=-1.0 n=4 net=+3.98% | tes ex +2.00% t=0.5 n=2 net=+1.94% -> insufficient: 9 independent episodes in train+validation (bar 15)
+h=60: tra ex -20.09% t=-1.9 n=4 net=+20.47% | val ex +0.29% t=0.1 n=2 net=-0.50% | tes ex -0.66% t=-0.1 n=1 net=+0.49% -> insufficient: 6 independent episodes in train+validation (bar 15)
+h=90: tra ex -35.01% t=-3.0 n=3 net=+35.55% | val ex +12.72% t=2.0 n=2 net=+11.32% | tes ex -2.26% t=-0.3 n=1 net=+2.23% -> insufficient: 5 independent episodes in train+validation (bar 15)
+[R5] eth ('perp_funding_eth', 'pct365', 'bottom', 0.2) (1d)
+h=30: tra ex -9.57% t=-1.9 n=6 net=+9.67% | val ex -3.74% t=-1.3 n=2 net=+3.97% | tes ex +1.73% t=0.4 n=2 net=+1.62% -> insufficient: 8 independent episodes in train+validation (bar 15)
+h=60: tra ex -17.53% t=-2.0 n=4 net=+17.99% | val ex +0.67% t=0.2 n=2 net=-0.20% | tes ex -2.18% t=-0.3 n=1 net=+2.12% -> insufficient: 6 independent episodes in train+validation (bar 15)
+h=90: tra ex -30.75% t=-2.7 n=3 net=+31.47% | val ex +10.34% t=2.0 n=1 net=+8.90% | tes ex -3.90% t=-0.7 n=1 net=+4.01% -> insufficient: 4 independent episodes in train+validation (bar 15)
+[R5] eth ('ivrv30_eth', 'pct365', 'bottom', 0.1) (1d)
+h=30: tra ex +1.00% t=0.2 n=9 net=+0.23% | val ex -16.46% t=-2.8 n=2 net=+16.61% | tes ex +9.19% t=1.7 n=2 net=+8.79% -> insufficient: 11 independent episodes in train+validation (bar 15)
+h=60: tra ex +11.51% t=1.5 n=8 net=+9.50% | val ex -12.63% t=-1.2 n=2 net=+13.10% | tes ex +26.82% t=4.0 n=1 net=+26.00% -> insufficient: 10 independent episodes in train+validation (bar 15)
+[R5] eth ('ivrv30_eth', 'pct365', 'bottom', 0.2) (1d)
+h=30: tra ex +2.36% t=0.5 n=14 net=+1.36% | val ex -11.52% t=-1.8 n=2 net=+11.66% | tes ex +8.99% t=1.7 n=3 net=+8.70% -> rejected: excess sign differs across periods
+h=60: tra ex +8.91% t=1.6 n=9 net=+6.69% | val ex -4.78% t=-0.5 n=2 net=+5.24% | tes ex +24.54% t=3.7 n=2 net=+23.98% -> insufficient: 11 independent episodes in train+validation (bar 15)
+[R5] eth ('skew_30_eth', 'pct365', 'top', 0.8) (1d)
+h=30: tra ex +0.42% t=0.1 n=13 net=-0.21% | val ex +1.19% t=0.3 n=3 net=+0.78% | tes ex +1.20% t=0.3 n=1 net=+1.08% -> rejected: validation t 0.27 below 2.5
+h=60: tra ex +3.46% t=0.5 n=10 net=+2.03% | val ex -3.94% t=-0.4 n=3 net=+4.43% | tes ex +7.56% t=2.1 n=1 net=+7.31% -> insufficient: 13 independent episodes in train+validation (bar 15)
+h=90: tra ex +0.19% t=0.0 n=3 net=-2.16% | val ex -8.84% t=-0.6 n=2 net=+9.53% | tes ex +10.41% t=2.7 n=1 net=+9.97% -> insufficient: 5 independent episodes in train+validation (bar 15)
+[R5] RISK eth ('skew_30_eth', 'pct365', 'top', 0.8) (1d, crash -10%)
+W=30: tra mdd -1.2% t=-0.6 crash x0.99 (190/437) fa=0.56 n=13 | val mdd +1.2% t=0.6 crash x0.85 (58/126) fa=0.43 n=3 | tes mdd +1.1% t=0.5 crash x0.86 (41/119) fa=0.58 n=1 -> insufficient: 16 independent episodes in train+validation (bar 20)
+W=60: tra mdd -0.7% t=-0.2 crash x0.95 (230/437) fa=0.56 n=10 | val mdd -2.2% t=-0.6 crash x1.06 (90/126) fa=0.43 n=3 | tes mdd +3.2% t=1.3 crash x0.82 (45/119) fa=0.58 n=1 -> insufficient: 13 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.80/0.79 | val 0.68/0.70 | tes 0.61/0.57
+   W=60 fwd rv flag/all: tra 0.79/0.81 | val 0.72/0.71 | tes 0.59/0.57
+[R5] eth ('skew_30_eth', 'pct365', 'top', 0.9) (1d)
+h=30: tra ex -1.69% t=-0.3 n=13 net=+2.11% | val ex -3.38% t=-0.6 n=3 net=+3.59% | tes ex +3.37% t=0.8 n=2 net=+3.24% -> rejected: excess sign differs across periods
+h=60: tra ex +3.22% t=0.4 n=11 net=+1.90% | val ex -10.75% t=-0.9 n=2 net=+11.21% | tes ex +12.27% t=2.7 n=1 net=+11.99% -> insufficient: 13 independent episodes in train+validation (bar 15)
+h=90: tra ex +0.93% t=0.1 n=5 net=-1.29% | val ex -20.75% t=-1.6 n=2 net=+21.36% | tes ex +18.41% t=3.8 n=1 net=+17.96% -> insufficient: 7 independent episodes in train+validation (bar 15)
+[R5] RISK eth ('skew_30_eth', 'pct365', 'top', 0.9) (1d, crash -10%)
+W=30: tra mdd -2.7% t=-0.9 crash x1.01 (124/280) fa=0.57 n=13 | val mdd -1.0% t=-0.3 crash x1.04 (39/69) fa=0.35 n=3 | tes mdd +1.8% t=0.8 crash x0.83 (24/72) fa=0.58 n=2 -> insufficient: 16 independent episodes in train+validation (bar 20)
+W=60: tra mdd -1.7% t=-0.4 crash x0.92 (142/280) fa=0.57 n=11 | val mdd -5.0% t=-1.2 crash x1.21 (56/69) fa=0.35 n=2 | tes mdd +5.2% t=1.8 crash x0.72 (24/72) fa=0.58 n=1 -> insufficient: 13 independent episodes in train+validation (bar 20)
+   W=30 fwd rv flag/all: tra 0.85/0.79 | val 0.67/0.70 | tes 0.62/0.57
+   W=60 fwd rv flag/all: tra 0.81/0.81 | val 0.72/0.71 | tes 0.59/0.57
+(lsr top at 30/60/90 is scored in R1)
+
+==== PASSES (any verdict starting with PASS) ====
+none

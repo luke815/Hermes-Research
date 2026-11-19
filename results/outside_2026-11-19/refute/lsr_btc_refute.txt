@@ -1,0 +1,398 @@
+
+====================================================================================================
+0. Baseline reproduction (lag=1, thr 0.8 / 0.9)
+====================================================================================================
+[thr=0.8 lag=1]
+  h=30: tra ex -4.2% t=-1.0 n=10 | val ex -4.2% t=-1.7 n=4 | tes ex -5.1% t=-1.2 n=3
+  h=60: tra ex -12.3% t=-1.5 n=6 | val ex -7.8% t=-1.9 n=3 | tes ex -3.5% t=-0.5 n=2
+  h=90: tra ex -20.4% t=-2.0 n=4 | val ex -9.7% t=-1.5 n=3 | tes ex -1.0% t=-0.2 n=1
+  W=30: tra mdd -3.4 t=-1.8 lift x1.44 n=10 | val mdd -1.1 t=-0.7 lift x1.34 n=4 | tes mdd -4.8 t=-1.4 lift x1.80 n=3
+  W=60: tra mdd -5.9 t=-1.8 lift x1.74 n=6 | val mdd -3.3 t=-1.5 lift x1.71 n=3 | tes mdd -3.2 t=-0.8 lift x1.48 n=2
+  W=90: tra mdd -7.3 t=-1.8 lift x1.55 n=4 | val mdd -6.9 t=-2.3 lift x1.98 n=3 | tes mdd -2.0 t=-0.5 lift x1.21 n=1
+[thr=0.9 lag=1]
+  h=30: tra ex -2.2% t=-0.4 n=10 | val ex -5.3% t=-1.7 n=4 | tes ex -9.3% t=-2.3 n=3
+  h=60: tra ex -10.8% t=-1.0 n=7 | val ex -5.6% t=-1.2 n=3 | tes ex -8.8% t=-1.4 n=2
+  h=90: tra ex -19.1% t=-1.6 n=6 | val ex -9.1% t=-1.0 n=3 | tes ex -1.6% t=-0.3 n=1
+  W=30: tra mdd -3.4 t=-1.6 lift x1.47 n=10 | val mdd -1.4 t=-0.7 lift x1.51 n=4 | tes mdd -7.6 t=-2.5 lift x2.20 n=3
+  W=60: tra mdd -6.6 t=-1.7 lift x1.96 n=7 | val mdd -1.8 t=-0.8 lift x1.35 n=3 | tes mdd -5.7 t=-1.6 lift x1.74 n=2
+  W=90: tra mdd -7.8 t=-1.7 lift x1.63 n=6 | val mdd -7.3 t=-1.8 lift x1.94 n=3 | tes mdd -4.0 t=-1.3 lift x1.43 n=1
+
+====================================================================================================
+1. lag=2 and lag=5
+====================================================================================================
+[thr=0.8 lag=2]
+  h=30: tra ex -4.1% t=-1.0 n=10 | val ex -4.5% t=-1.8 n=4 | tes ex -5.2% t=-1.2 n=3
+  h=60: tra ex -12.5% t=-1.5 n=6 | val ex -7.6% t=-2.0 n=3 | tes ex -3.9% t=-0.6 n=2
+  h=90: tra ex -20.6% t=-2.1 n=4 | val ex -9.8% t=-1.5 n=3 | tes ex -1.6% t=-0.3 n=1
+  W=30: tra mdd -3.3 t=-1.8 lift x1.45 n=10 | val mdd -1.3 t=-0.8 lift x1.34 n=4 | tes mdd -4.6 t=-1.4 lift x1.75 n=3
+  W=60: tra mdd -5.9 t=-1.7 lift x1.75 n=6 | val mdd -3.2 t=-1.5 lift x1.63 n=3 | tes mdd -3.4 t=-0.8 lift x1.44 n=2
+  W=90: tra mdd -7.2 t=-1.8 lift x1.53 n=4 | val mdd -7.0 t=-2.3 lift x1.98 n=3 | tes mdd -2.3 t=-0.6 lift x1.18 n=1
+[thr=0.9 lag=2]
+  h=30: tra ex -2.5% t=-0.5 n=10 | val ex -5.5% t=-1.8 n=4 | tes ex -9.2% t=-2.5 n=3
+  h=60: tra ex -11.1% t=-1.0 n=7 | val ex -5.1% t=-1.2 n=3 | tes ex -9.2% t=-1.6 n=2
+  h=90: tra ex -19.7% t=-1.7 n=6 | val ex -9.3% t=-1.1 n=3 | tes ex -3.3% t=-0.6 n=1
+  W=30: tra mdd -3.5 t=-1.7 lift x1.46 n=10 | val mdd -1.6 t=-0.9 lift x1.58 n=4 | tes mdd -7.5 t=-2.8 lift x2.27 n=3
+  W=60: tra mdd -6.8 t=-1.7 lift x2.00 n=7 | val mdd -1.4 t=-0.7 lift x1.28 n=3 | tes mdd -6.5 t=-2.0 lift x1.65 n=2
+  W=90: tra mdd -7.9 t=-1.8 lift x1.63 n=6 | val mdd -7.3 t=-1.8 lift x1.90 n=3 | tes mdd -4.9 t=-1.6 lift x1.35 n=1
+[thr=0.8 lag=5]
+  h=30: tra ex -4.0% t=-0.9 n=10 | val ex -4.7% t=-1.9 n=4 | tes ex -5.5% t=-1.3 n=3
+  h=60: tra ex -12.8% t=-1.5 n=6 | val ex -7.1% t=-2.0 n=3 | tes ex -4.8% t=-0.8 n=2
+  h=90: tra ex -20.4% t=-2.1 n=4 | val ex -9.6% t=-1.5 n=3 | tes ex -2.0% t=-0.3 n=1
+  W=30: tra mdd -3.3 t=-1.8 lift x1.44 n=10 | val mdd -1.8 t=-1.2 lift x1.60 n=4 | tes mdd -4.5 t=-1.4 lift x1.63 n=3
+  W=60: tra mdd -6.1 t=-1.8 lift x1.77 n=6 | val mdd -3.1 t=-1.8 lift x1.47 n=3 | tes mdd -3.5 t=-0.8 lift x1.42 n=2
+  W=90: tra mdd -7.1 t=-1.8 lift x1.56 n=4 | val mdd -7.2 t=-2.4 lift x1.91 n=3 | tes mdd -2.5 t=-0.6 lift x1.19 n=1
+[thr=0.9 lag=5]
+  h=30: tra ex -2.3% t=-0.4 n=10 | val ex -5.2% t=-1.7 n=4 | tes ex -6.9% t=-1.8 n=3
+  h=60: tra ex -11.0% t=-1.0 n=7 | val ex -4.1% t=-1.0 n=3 | tes ex -7.1% t=-1.3 n=2
+  h=90: tra ex -19.8% t=-1.7 n=6 | val ex -8.8% t=-1.1 n=3 | tes ex -0.7% t=-0.1 n=1
+  W=30: tra mdd -3.2 t=-1.5 lift x1.42 n=10 | val mdd -1.9 t=-1.1 lift x1.69 n=4 | tes mdd -4.6 t=-1.8 lift x1.88 n=3
+  W=60: tra mdd -6.8 t=-1.7 lift x1.93 n=7 | val mdd -0.8 t=-0.4 lift x0.89 n=3 | tes mdd -4.1 t=-1.1 lift x1.49 n=2
+  W=90: tra mdd -7.7 t=-1.8 lift x1.65 n=6 | val mdd -6.8 t=-1.8 lift x1.73 n=3 | tes mdd -2.5 t=-0.7 lift x1.22 n=1
+
+====================================================================================================
+2. Threshold neighbours 0.7 / 0.75 / 0.85 / 0.95 (lag=1)
+====================================================================================================
+[thr=0.7 lag=1]
+  h=30: tra ex -3.1% t=-0.9 n=11 | val ex -3.4% t=-1.6 n=3 | tes ex -2.1% t=-0.6 n=3
+  h=60: tra ex -9.3% t=-1.3 n=3 | val ex -6.5% t=-1.8 n=3 | tes ex +1.0% t=0.2 n=2
+  h=90: tra ex -16.3% t=-1.8 n=1 | val ex -6.9% t=-1.2 n=2 | tes ex +3.3% t=0.6 n=1
+  W=30: tra mdd -2.9 t=-1.9 lift x1.35 n=11 | val mdd -1.1 t=-0.9 lift x1.33 n=3 | tes mdd -2.2 t=-0.7 lift x1.25 n=3
+  W=60: tra mdd -4.7 t=-1.7 lift x1.55 n=3 | val mdd -2.9 t=-1.7 lift x1.51 n=3 | tes mdd -0.1 t=-0.0 lift x1.06 n=2
+  W=90: tra mdd -5.9 t=-1.7 lift x1.40 n=1 | val mdd -5.5 t=-2.0 lift x1.70 n=2 | tes mdd +1.0 t=0.3 lift x0.87 n=1
+[thr=0.75 lag=1]
+  h=30: tra ex -3.7% t=-1.0 n=11 | val ex -3.6% t=-1.5 n=4 | tes ex -3.6% t=-0.9 n=3
+  h=60: tra ex -10.2% t=-1.3 n=5 | val ex -6.6% t=-1.6 n=3 | tes ex -1.2% t=-0.2 n=2
+  h=90: tra ex -17.9% t=-1.9 n=2 | val ex -6.6% t=-1.0 n=2 | tes ex +1.6% t=0.3 n=1
+  W=30: tra mdd -3.1 t=-1.8 lift x1.38 n=11 | val mdd -1.4 t=-1.0 lift x1.41 n=4 | tes mdd -3.4 t=-1.0 lift x1.48 n=3
+  W=60: tra mdd -5.2 t=-1.7 lift x1.64 n=5 | val mdd -3.1 t=-1.6 lift x1.62 n=3 | tes mdd -1.5 t=-0.4 lift x1.24 n=2
+  W=90: tra mdd -6.7 t=-1.8 lift x1.46 n=2 | val mdd -6.0 t=-2.0 lift x1.82 n=2 | tes mdd -0.3 t=-0.1 lift x1.02 n=1
+[thr=0.85 lag=1]
+  h=30: tra ex -3.1% t=-0.7 n=11 | val ex -4.7% t=-1.7 n=3 | tes ex -8.5% t=-1.8 n=2
+  h=60: tra ex -11.6% t=-1.3 n=6 | val ex -7.8% t=-1.7 n=3 | tes ex -6.5% t=-0.9 n=2
+  h=90: tra ex -19.8% t=-1.9 n=5 | val ex -10.3% t=-1.4 n=3 | tes ex -2.1% t=-0.4 n=1
+  W=30: tra mdd -3.3 t=-1.8 lift x1.44 n=11 | val mdd -1.0 t=-0.6 lift x1.31 n=3 | tes mdd -6.9 t=-1.9 lift x2.09 n=2
+  W=60: tra mdd -6.1 t=-1.7 lift x1.78 n=6 | val mdd -3.3 t=-1.4 lift x1.64 n=3 | tes mdd -5.1 t=-1.2 lift x1.68 n=2
+  W=90: tra mdd -7.6 t=-1.9 lift x1.56 n=5 | val mdd -7.2 t=-2.1 lift x2.00 n=3 | tes mdd -3.6 t=-1.0 lift x1.38 n=1
+[thr=0.95 lag=1]
+  h=30: tra ex -2.0% t=-0.3 n=9 | val ex -6.0% t=-1.8 n=5 | tes ex -3.0% t=-0.7 n=3
+  h=60: tra ex -9.9% t=-0.7 n=6 | val ex -2.4% t=-0.5 n=4 | tes ex -2.4% t=-0.4 n=2
+  h=90: tra ex -17.6% t=-1.3 n=5 | val ex -9.4% t=-0.9 n=3 | tes ex +4.4% t=1.1 n=2
+  W=30: tra mdd -4.2 t=-2.0 lift x1.55 n=9 | val mdd -1.6 t=-0.7 lift x1.62 n=5 | tes mdd -2.0 t=-0.6 lift x1.54 n=3
+  W=60: tra mdd -7.9 t=-1.8 lift x2.20 n=6 | val mdd -0.1 t=-0.0 lift x0.76 n=4 | tes mdd +0.7 t=0.2 lift x1.49 n=2
+  W=90: tra mdd -8.7 t=-1.7 lift x1.68 n=5 | val mdd -7.6 t=-1.6 lift x1.82 n=3 | tes mdd +1.4 t=0.5 lift x1.22 n=2
+
+====================================================================================================
+3. Episode-level test: one observation per independent episode (first flagged day of each cluster > h apart)
+====================================================================================================
+[thr=0.8 lag=1] one row per episode (cluster start), excess = fwd return at start minus period mean
+  h=30 tra: n_ep=10 neg=7 sign_p=0.344 mean_ex=-2.4% med_ex=-9.6% mdd_deeper=4/10 mean_mdd_diff=-1.5
+     dates: ['2020-11-27', '2021-07-17', '2021-10-26', '2022-04-14', '2022-06-12', '2022-09-05', '2023-05-10', '2023-07-22', '2024-01-14', '2024-03-18']
+     excess: [47.0, 39.4, -8.7, -31.1, -33.7, -4.6, -10.5, -18.8, 12.6, -15.9]
+  h=30 val: n_ep=4 neg=1 sign_p=0.625 mean_ex=+9.4% med_ex=+0.1% mdd_deeper=1/4 mean_mdd_diff=+2.7
+     dates: ['2024-07-01', '2024-10-12', '2025-01-11', '2025-08-21']
+     excess: [-0.1, 37.6, 0.2, 0.0]
+  h=30 tes: n_ep=3 neg=2 sign_p=1.0 mean_ex=+3.9% med_ex=-0.3% mdd_deeper=1/3 mean_mdd_diff=+1.8
+     dates: ['2026-01-01', '2026-06-04', '2026-08-02']
+     excess: [-10.5, -0.3, 22.6]
+  h=60 tra: n_ep=6 neg=4 sign_p=0.688 mean_ex=+5.4% med_ex=-5.9% mdd_deeper=2/6 mean_mdd_diff=-1.1
+     dates: ['2020-11-27', '2021-10-26', '2022-04-14', '2022-09-05', '2023-05-10', '2024-01-14']
+     excess: [75.4, -30.5, -57.7, -7.2, -4.7, 57.2]
+  h=60 val: n_ep=3 neg=3 sign_p=0.25 mean_ex=-11.2% med_ex=-10.8% mdd_deeper=2/3 mean_mdd_diff=-1.9
+     dates: ['2024-07-01', '2025-01-11', '2025-08-21']
+     excess: [-10.8, -16.3, -6.6]
+  h=60 tes: n_ep=2 neg=2 sign_p=0.5 mean_ex=-13.4% med_ex=-13.4% mdd_deeper=1/2 mean_mdd_diff=-7.3
+     dates: ['2026-01-01', '2026-06-04']
+     excess: [-24.4, -2.4]
+  h=90 tra: n_ep=4 neg=2 sign_p=1.0 mean_ex=+26.7% med_ex=+8.1% mdd_deeper=1/4 mean_mdd_diff=+2.7
+     dates: ['2020-11-27', '2021-10-26', '2023-05-10', '2024-01-14']
+     excess: [152.2, -61.7, -14.6, 30.8]
+  h=90 val: n_ep=3 neg=3 sign_p=0.25 mean_ex=-15.7% med_ex=-18.8% mdd_deeper=3/3 mean_mdd_diff=-3.8
+     dates: ['2024-07-01', '2025-01-11', '2025-08-21']
+     excess: [-2.7, -18.8, -25.6]
+  h=90 tes: n_ep=1 neg=1 sign_p=1.0 mean_ex=-26.9% med_ex=-26.9% mdd_deeper=1/1 mean_mdd_diff=-15.6
+     dates: ['2026-01-01']
+     excess: [-26.9]
+[thr=0.9 lag=1] one row per episode (cluster start), excess = fwd return at start minus period mean
+  h=30 tra: n_ep=10 neg=6 sign_p=0.754 mean_ex=+0.2% med_ex=-6.0% mdd_deeper=4/10 mean_mdd_diff=+0.8
+     dates: ['2020-11-27', '2020-12-30', '2021-10-28', '2022-04-24', '2022-11-10', '2023-05-26', '2023-08-18', '2024-01-14', '2024-03-21', '2024-06-16']
+     excess: [47.0, 12.1, -16.1, -31.3, -9.1, 7.7, -4.6, 12.6, -7.4, -8.9]
+  h=30 val: n_ep=4 neg=4 sign_p=0.125 mean_ex=-8.5% med_ex=-9.2% mdd_deeper=3/4 mean_mdd_diff=-4.3
+     dates: ['2024-07-01', '2025-02-13', '2025-08-27', '2025-10-17']
+     excess: [-0.1, -15.5, -4.2, -14.2]
+  h=30 tes: n_ep=3 neg=1 sign_p=1.0 mean_ex=+4.2% med_ex=+9.7% mdd_deeper=1/3 mean_mdd_diff=+3.4
+     dates: ['2026-01-02', '2026-03-29', '2026-06-26']
+     excess: [-13.7, 16.5, 9.7]
+  h=60 tra: n_ep=7 neg=5 sign_p=0.453 mean_ex=+2.3% med_ex=-5.0% mdd_deeper=2/7 mean_mdd_diff=-0.8
+     dates: ['2020-11-27', '2021-10-28', '2022-04-24', '2022-11-10', '2023-05-26', '2023-08-18', '2024-01-14']
+     excess: [75.4, -30.4, -60.5, -16.4, -4.5, -5.0, 57.2]
+  h=60 val: n_ep=3 neg=3 sign_p=0.25 mean_ex=-10.0% med_ex=-10.8% mdd_deeper=2/3 mean_mdd_diff=-2.9
+     dates: ['2024-07-01', '2025-02-13', '2025-08-27']
+     excess: [-10.8, -17.2, -1.8]
+  h=60 tes: n_ep=2 neg=1 sign_p=1.0 mean_ex=+1.4% med_ex=+1.4% mdd_deeper=1/2 mean_mdd_diff=-4.9
+     dates: ['2026-01-02', '2026-06-26']
+     excess: [-26.0, 28.8]
+  h=90 tra: n_ep=6 neg=3 sign_p=1.0 mean_ex=+6.5% med_ex=-8.2% mdd_deeper=2/6 mean_mdd_diff=-2.8
+     dates: ['2020-11-27', '2021-10-28', '2022-04-24', '2022-11-10', '2023-05-26', '2024-01-14']
+     excess: [152.2, -61.8, -65.5, 8.1, -24.4, 30.8]
+  h=90 val: n_ep=3 neg=2 sign_p=1.0 mean_ex=-10.4% med_ex=-2.7% mdd_deeper=3/3 mean_mdd_diff=-6.1
+     dates: ['2024-07-01', '2025-02-13', '2025-08-27']
+     excess: [-2.7, 0.1, -28.5]
+  h=90 tes: n_ep=1 neg=1 sign_p=1.0 mean_ex=-29.2% med_ex=-29.2% mdd_deeper=1/1 mean_mdd_diff=-16.5
+     dates: ['2026-01-02']
+     excess: [-29.2]
+
+====================================================================================================
+4. Confound: lsr rises when price falls. Correlation of lsr pct with trailing 10/30d return; conditional tests; price-only control
+====================================================================================================
+  train: corr(lsr pct, r10) pearson -0.30 spearman -0.40 | corr(lsr pct, r30) pearson -0.06 spearman -0.17 | spearman(raw lsr, r30) -0.34
+     trailing 30d return: flagged(0.8) +7.5%  flagged(0.9) +10.9%  all +5.4% ; share of flagged(0.8) days with negative trailing 30d: 0.56
+  validation: corr(lsr pct, r10) pearson -0.65 spearman -0.69 | corr(lsr pct, r30) pearson -0.64 spearman -0.70 | spearman(raw lsr, r30) -0.71
+     trailing 30d return: flagged(0.8) -8.3%  flagged(0.9) -10.5%  all +2.4% ; share of flagged(0.8) days with negative trailing 30d: 0.90
+  test: corr(lsr pct, r10) pearson -0.63 spearman -0.67 | corr(lsr pct, r30) pearson -0.66 spearman -0.70 | spearman(raw lsr, r30) -0.68
+     trailing 30d return: flagged(0.8) -10.3%  flagged(0.9) -11.4%  all -0.5% ; share of flagged(0.8) days with negative trailing 30d: 0.81
+[thr=0.8 AND trailing 30d return >= 0]
+  h=30: tra ex +2.5% t=0.4 n=8 | val ex -1.3% t=-0.2 n=6 | tes ex -12.9% t=-1.7 n=3
+  h=60: tra ex -5.0% t=-0.3 n=6 | val ex -0.4% t=-0.0 n=3 | tes ex -12.6% t=-1.5 n=3
+  h=90: tra ex -19.8% t=-1.2 n=6 | val ex +12.6% t=1.8 n=3 | tes ex -12.7% t=-2.4 n=2
+  W=30: tra mdd -2.8 t=-1.3 lift x1.56 n=8 | val mdd -2.4 t=-0.6 lift x2.00 n=6 | tes mdd -12.5 t=-2.6 lift x2.69 n=3
+  W=60: tra mdd -5.9 t=-1.1 lift x1.80 n=6 | val mdd -2.1 t=-0.5 lift x2.19 n=3 | tes mdd -11.2 t=-2.3 lift x2.61 n=3
+  W=90: tra mdd -10.5 t=-1.8 lift x1.90 n=6 | val mdd +1.1 t=0.3 lift x1.58 n=3 | tes mdd -9.9 t=-2.3 lift x2.14 n=2
+[thr=0.8 AND trailing 30d return < 0]
+  h=30: tra ex -9.4% t=-2.7 n=12 | val ex -4.5% t=-1.5 n=4 | tes ex -1.7% t=-0.5 n=3
+  h=60: tra ex -17.9% t=-2.4 n=7 | val ex -8.5% t=-1.8 n=3 | tes ex +0.4% t=0.1 n=2
+  h=90: tra ex -20.8% t=-2.0 n=4 | val ex -11.9% t=-1.8 n=3 | tes ex +4.0% t=0.7 n=1
+  W=30: tra mdd -3.8 t=-1.8 lift x1.35 n=12 | val mdd -1.0 t=-0.6 lift x1.28 n=4 | tes mdd -1.4 t=-0.6 lift x1.41 n=3
+  W=60: tra mdd -6.0 t=-1.7 lift x1.70 n=7 | val mdd -3.4 t=-1.4 lift x1.66 n=3 | tes mdd +0.2 t=0.1 lift x0.99 n=2
+  W=90: tra mdd -4.7 t=-1.2 lift x1.27 n=4 | val mdd -7.7 t=-2.4 lift x2.02 n=3 | tes mdd +1.4 t=0.4 lift x0.81 n=1
+[thr=0.9 AND trailing 30d return >= 0]
+  h=30: tra ex +3.8% t=0.5 n=6 | val ex -1.1% t=-0.2 n=3 | tes ex -25.7% t=-7.4 n=1
+  h=60: tra ex -3.2% t=-0.2 n=4 | val ex +3.0% t=0.3 n=2 | tes ex -25.5% t=-4.2 n=1
+  h=90: tra ex -17.6% t=-1.0 n=3 | val ex +29.7% t=2.3 n=2 | tes ex -18.7% t=-2.6 n=1
+  W=30: tra mdd -3.4 t=-1.4 lift x1.63 n=6 | val mdd -0.2 t=-0.0 lift x1.46 n=3 | tes mdd -21.8 t=-9.5 lift x3.59 n=1
+  W=60: tra mdd -6.4 t=-1.2 lift x1.97 n=4 | val mdd +1.9 t=0.4 lift x1.61 n=2 | tes mdd -19.1 t=-6.0 lift x3.48 n=1
+  W=90: tra mdd -10.1 t=-1.6 lift x1.84 n=3 | val mdd +5.2 t=0.9 lift x0.96 n=2 | tes mdd -16.9 t=-5.4 lift x2.85 n=1
+[thr=0.9 AND trailing 30d return < 0]
+  h=30: tra ex -7.7% t=-1.8 n=10 | val ex -5.5% t=-1.7 n=4 | tes ex -3.0% t=-0.9 n=3
+  h=60: tra ex -17.9% t=-1.9 n=8 | val ex -6.0% t=-1.3 n=3 | tes ex -2.3% t=-0.4 n=2
+  h=90: tra ex -20.4% t=-1.8 n=7 | val ex -11.0% t=-1.3 n=3 | tes ex +4.9% t=1.1 n=1
+  W=30: tra mdd -3.4 t=-1.4 lift x1.32 n=10 | val mdd -1.5 t=-0.7 lift x1.51 n=4 | tes mdd -2.1 t=-0.9 lift x1.66 n=3
+  W=60: tra mdd -6.7 t=-1.6 lift x1.96 n=8 | val mdd -2.0 t=-0.9 lift x1.34 n=3 | tes mdd -0.5 t=-0.2 lift x1.07 n=2
+  W=90: tra mdd -5.6 t=-1.2 lift x1.44 n=7 | val mdd -7.9 t=-2.1 lift x1.99 n=3 | tes mdd +0.9 t=0.3 lift x0.88 n=1
+
+-- price-only control: trailing 30d return in its BOTTOM quintile / decile of the trailing 365 days (no lsr) --
+[price-only: r30 pct365 <= 0.2, lag=1]
+  h=30: tra ex -5.6% t=-1.8 n=12 | val ex -4.1% t=-1.7 n=6 | tes ex +2.8% t=0.8 n=2
+  h=60: tra ex -9.4% t=-1.5 n=9 | val ex -3.4% t=-0.7 n=4 | tes ex +8.2% t=1.8 n=2
+  h=90: tra ex -16.0% t=-1.7 n=5 | val ex -4.3% t=-0.6 n=2 | tes ex +17.6% t=4.0 n=2
+  W=30: tra mdd -3.3 t=-2.1 lift x1.28 n=12 | val mdd -2.0 t=-2.0 lift x1.43 n=6 | tes mdd +2.8 t=1.3 lift x0.41 n=2
+  W=60: tra mdd -3.8 t=-1.7 lift x1.62 n=9 | val mdd -2.0 t=-1.2 lift x0.94 n=4 | tes mdd +5.5 t=1.8 lift x0.06 n=2
+  W=90: tra mdd -3.1 t=-1.2 lift x1.34 n=5 | val mdd -5.3 t=-1.7 lift x1.49 n=2 | tes mdd +7.7 t=2.6 lift x0.05 n=2
+[price-only: r30 pct365 <= 0.1, lag=1]
+  h=30: tra ex -4.0% t=-1.1 n=12 | val ex -4.9% t=-1.9 n=4 | tes ex +3.2% t=0.9 n=2
+  h=60: tra ex -7.7% t=-1.0 n=9 | val ex -0.3% t=-0.0 n=3 | tes ex +7.3% t=1.3 n=2
+  h=90: tra ex -13.0% t=-1.2 n=5 | val ex -4.6% t=-0.4 n=3 | tes ex +15.0% t=2.7 n=2
+  W=30: tra mdd -2.3 t=-1.4 lift x1.22 n=12 | val mdd -2.1 t=-1.6 lift x1.38 n=4 | tes mdd +3.3 t=1.4 lift x0.18 n=2
+  W=60: tra mdd -2.5 t=-1.1 lift x1.35 n=9 | val mdd +0.4 t=0.2 lift x0.26 n=3 | tes mdd +6.0 t=1.8 lift x0.09 n=2
+  W=90: tra mdd -1.4 t=-0.5 lift x1.17 n=5 | val mdd -4.9 t=-1.1 lift x1.31 n=3 | tes mdd +8.2 t=2.4 lift x0.07 n=2
+[price-only: trailing 30d return < -10%, lag=1]
+  h=30: tra ex -4.7% t=-1.6 n=17 | val ex -3.8% t=-1.5 n=4 | tes ex +2.6% t=0.7 n=2
+  h=60: tra ex -4.7% t=-0.8 n=10 | val ex -1.1% t=-0.2 n=3 | tes ex +8.2% t=1.7 n=2
+  h=90: tra ex -10.5% t=-1.2 n=6 | val ex -4.7% t=-0.4 n=3 | tes ex +17.1% t=3.9 n=2
+  W=30: tra mdd -1.4 t=-1.0 lift x1.05 n=17 | val mdd -1.5 t=-1.3 lift x1.08 n=4 | tes mdd +2.7 t=1.2 lift x0.41 n=2
+  W=60: tra mdd -1.4 t=-0.6 lift x1.23 n=10 | val mdd -0.9 t=-0.4 lift x0.42 n=3 | tes mdd +5.5 t=1.8 lift x0.06 n=2
+  W=90: tra mdd -0.6 t=-0.3 lift x1.18 n=6 | val mdd -5.5 t=-1.1 lift x1.32 n=3 | tes mdd +7.7 t=2.6 lift x0.05 n=2
+
+-- lsr pct ORTHOGONALISED to trailing 30d return (rolling 365d past-only OLS residual), then top quintile/decile of residual pct365 --
+[lsr residual (net of trailing r30) pct365 >= 0.8, lag=1]
+  h=30: tra ex -5.4% t=-1.5 n=10 | val ex -5.4% t=-2.1 n=6 | tes ex -11.8% t=-1.9 n=3
+  h=60: tra ex -11.2% t=-1.6 n=2 | val ex -10.3% t=-2.8 n=2 | tes ex -17.0% t=-2.3 n=2
+  h=90: tra ex -17.0% t=-1.7 n=1 | val ex -15.2% t=-3.4 n=1 | tes ex -19.0% t=-2.6 n=1
+  W=30: tra mdd -1.4 t=-0.8 lift x1.16 n=10 | val mdd -1.5 t=-0.8 lift x1.38 n=6 | tes mdd -10.0 t=-2.0 lift x2.49 n=3
+  W=60: tra mdd -2.8 t=-0.9 lift x1.09 n=2 | val mdd -3.7 t=-1.6 lift x1.96 n=2 | tes mdd -11.0 t=-2.2 lift x2.41 n=2
+  W=90: tra mdd -1.2 t=-0.3 lift x0.89 n=1 | val mdd -7.1 t=-3.7 lift x2.01 n=1 | tes mdd -12.4 t=-2.7 lift x2.33 n=1
+[lsr residual (net of trailing r30) pct365 >= 0.9, lag=1]
+  h=30: tra ex -3.5% t=-0.9 n=12 | val ex -4.9% t=-1.5 n=6 | tes ex -14.2% t=-2.4 n=3
+  h=60: tra ex -12.3% t=-1.6 n=6 | val ex -12.8% t=-2.5 n=3 | tes ex -19.6% t=-2.8 n=2
+  h=90: tra ex -18.8% t=-1.9 n=3 | val ex -20.0% t=-4.5 n=3 | tes ex -18.6% t=-2.5 n=1
+  W=30: tra mdd -0.4 t=-0.2 lift x1.03 n=12 | val mdd -0.5 t=-0.2 lift x1.20 n=6 | tes mdd -11.5 t=-2.3 lift x2.75 n=3
+  W=60: tra mdd -2.7 t=-0.7 lift x0.96 n=6 | val mdd -3.8 t=-1.2 lift x2.10 n=3 | tes mdd -12.9 t=-2.8 lift x2.66 n=2
+  W=90: tra mdd -0.5 t=-0.1 lift x0.77 n=3 | val mdd -7.7 t=-4.1 lift x2.19 n=3 | tes mdd -13.3 t=-3.2 lift x2.47 n=1
+
+====================================================================================================
+5. Excess against a TRAILING 365-day mean of the forward return (past-only drift), instead of the period mean
+====================================================================================================
+[thr=0.8 lag=1] excess_trailing = fwd_h(t) - mean of fwd_h over the 365 days whose forward window ENDED by t (fully known at t)
+  h=30: tra flag -9.0% (t0=-1.5) all -1.3% diff -7.7% t=-1.7 n=10 | val flag -6.4% (t0=-2.4) all -3.1% diff -3.3% t=-1.3 n=4 | tes flag -4.7% (t0=-0.6) all +1.1% diff -5.8% t=-1.3 n=3
+  h=60: tra flag -22.3% (t0=-1.5) all -2.3% diff -20.0% t=-2.0 n=6 | val flag -14.7% (t0=-3.7) all -8.0% diff -6.7% t=-1.8 n=3 | tes flag +0.2% (t0=0.0) all +5.4% diff -5.3% t=-0.7 n=2
+  h=90: tra flag -35.2% (t0=-1.7) all -2.8% diff -32.4% t=-2.3 n=4 | val flag -21.8% (t0=-2.3) all -13.1% diff -8.7% t=-1.5 n=3 | tes flag +3.2% (t0=0.5) all +6.9% diff -3.8% t=-0.6 n=1
+[thr=0.9 lag=1] excess_trailing = fwd_h(t) - mean of fwd_h over the 365 days whose forward window ENDED by t (fully known at t)
+  h=30: tra flag -8.7% (t0=-1.1) all -1.3% diff -7.4% t=-1.3 n=10 | val flag -7.5% (t0=-2.9) all -3.1% diff -4.4% t=-1.4 n=4 | tes flag -9.4% (t0=-2.1) all +1.1% diff -10.5% t=-2.4 n=3
+  h=60: tra flag -24.3% (t0=-1.4) all -2.3% diff -22.0% t=-1.8 n=7 | val flag -12.5% (t0=-4.4) all -8.0% diff -4.5% t=-1.0 n=3 | tes flag -5.7% (t0=-1.3) all +5.4% diff -11.1% t=-1.6 n=2
+  h=90: tra flag -38.8% (t0=-1.9) all -2.8% diff -36.0% t=-2.3 n=6 | val flag -21.2% (t0=-2.7) all -13.1% diff -8.1% t=-1.0 n=3 | tes flag +1.8% (t0=0.5) all +6.9% diff -5.2% t=-0.9 n=1
+
+====================================================================================================
+6. Drop the best 3 validation episodes (the 3 episodes with the most negative 90d excess), recompute validation
+====================================================================================================
+  thr=0.8 h=30 validation: episodes 4 -> per-episode excess {2024-07-01: +1.9%, 2024-10-12: +37.6%, 2025-01-11: -5.5%, 2025-08-21: -6.1%}
+     before drop: ex -4.2% t=-1.7 mdd_diff -1.1 | after dropping 3: ex - t=- mdd_diff - n_flag_after=1
+  thr=0.8 h=60 validation: episodes 3 -> per-episode excess {2024-07-01: +10.7%, 2025-01-11: +2.7%, 2025-08-21: -16.4%}
+     before drop: ex -7.8% t=-1.9 mdd_diff -3.3 | after dropping 3: ex - t=- mdd_diff - n_flag_after=0
+  thr=0.8 h=90 validation: episodes 3 -> per-episode excess {2024-07-01: +33.8%, 2025-01-11: +12.3%, 2025-08-21: -29.2%}
+     before drop: ex -9.7% t=-1.5 mdd_diff -6.9 | after dropping 3: ex - t=- mdd_diff - n_flag_after=0
+  thr=0.9 h=30 validation: episodes 4 -> per-episode excess {2024-07-01: +3.2%, 2025-02-13: -7.3%, 2025-08-27: +3.2%, 2025-10-17: -9.4%}
+     before drop: ex -5.3% t=-1.7 mdd_diff -1.4 | after dropping 3: ex +3.2% t=1.2 mdd_diff +5.3 n_flag_after=5
+  thr=0.9 h=60 validation: episodes 3 -> per-episode excess {2024-07-01: +11.6%, 2025-02-13: +5.7%, 2025-08-27: -13.9%}
+     before drop: ex -5.6% t=-1.2 mdd_diff -1.8 | after dropping 3: ex - t=- mdd_diff - n_flag_after=0
+  thr=0.9 h=90 validation: episodes 3 -> per-episode excess {2024-07-01: +35.7%, 2025-02-13: +16.5%, 2025-08-27: -30.0%}
+     before drop: ex -9.1% t=-1.0 mdd_diff -7.3 | after dropping 3: ex - t=- mdd_diff - n_flag_after=0
+
+====================================================================================================
+7. The lsr_BTC series: start, gaps, level shifts, top-decile dates, regime change
+====================================================================================================
+  first valid 2020-05-31  last valid 2026-11-17  n valid 2354  gaps>1d: {'2021-02-21': 2, '2022-04-04': 2, '2022-04-08': 3, '2022-04-30': 3, '2022-05-12': 3}
+      count      mean       std     min     max   median
+date                                                    
+2019      0       NaN       NaN     NaN     NaN      NaN
+2020    215  1.348483  0.289028  0.8041  2.2258  1.32560
+2021    364  2.105038  0.847855  0.7304  5.7843  2.00030
+2022    358  1.771063  0.726108  0.6455  4.3677  1.67380
+2023    365  1.412818  0.534380  0.5929  3.2212  1.31050
+2024    366  1.479459  0.617292  0.5618  3.6598  1.36915
+2025    365  1.421879  0.676592  0.4409  3.9925  1.32670
+2026    321  1.597433  0.604316  0.5063  3.2827  1.50820
+  quarterly mean/std:
+         mean    std
+date                
+2019Q1    NaN    NaN
+2019Q2    NaN    NaN
+2019Q3    NaN    NaN
+2019Q4    NaN    NaN
+2020Q1    NaN    NaN
+2020Q2  1.061  0.163
+2020Q3  1.409  0.307
+2020Q4  1.385  0.245
+2021Q1  2.283  0.396
+2021Q2  2.149  0.759
+2021Q3  1.486  0.393
+2021Q4  2.508  1.186
+2022Q1  1.765  0.856
+2022Q2  2.069  0.726
+2022Q3  1.571  0.629
+2022Q4  1.705  0.590
+2023Q1  1.299  0.478
+2023Q2  1.510  0.586
+2023Q3  1.766  0.473
+2023Q4  1.075  0.303
+2024Q1  1.413  0.582
+2024Q2  1.794  0.575
+2024Q3  1.645  0.648
+2024Q4  1.068  0.380
+2025Q1  1.607  0.541
+2025Q2  0.889  0.372
+2025Q3  1.202  0.471
+2025Q4  1.987  0.704
+2026Q1  1.866  0.553
+2026Q2  1.305  0.550
+2026Q3  1.391  0.368
+2026Q4  2.043  0.690
+  largest 15 absolute day-to-day jumps in raw lsr:
+date
+2021-12-05    2.975
+2021-11-27    2.353
+2021-05-20    2.233
+2022-05-06    2.089
+2022-05-05    1.800
+2021-04-19    1.657
+2023-06-07    1.624
+2024-05-01    1.572
+2026-11-06    1.526
+2022-11-09    1.515
+2022-01-04    1.477
+2025-11-22    1.386
+2023-06-06    1.318
+2022-10-04    1.283
+2021-01-30    1.260
+  lag-1 autocorr raw lsr: 0.859  lag-5: 0.625  lag-30: 0.243
+  pct365 first valid: 2020-11-26
+  flag(pct365>=0.8) by year: {2019: 0, 2020: 6, 2021: 163, 2022: 39, 2023: 45, 2024: 72, 2025: 99, 2026: 59}
+  flag(pct365>=0.9) by year: {2019: 0, 2020: 3, 2021: 121, 2022: 12, 2023: 22, 2024: 43, 2025: 50, 2026: 33}
+  top-decile episodes (clusters > 15 days apart), first day, raw lsr that day, trailing 30d ret, forward 30/60/90 ret:
+    2020-11-26 len=  1 lsr=2.23 r30_trail=+25.9% f30=+54.5% f60=+88.0% f90=+189.7%
+    2020-12-29 len=  2 lsr=1.82 r30_trail=+50.7% f30=+21.9% f60=+68.2% f90=+110.5%
+    2021-10-27 len=  2 lsr=2.85 r30_trail=+38.8% f30=-8.0% f60=-13.1% f90=-36.8%
+    2022-04-23 len=  1 lsr=3.32 r30_trail=-10.4% f30=-26.2% f60=-49.3% f90=-42.5%
+    2022-11-09 len=  1 lsr=3.21 r30_trail=-16.8% f30=+7.7% f60=+7.7% f90=+46.1%
+    2023-05-25 len=  1 lsr=2.61 r30_trail=-6.5% f30=+15.4% f60=+10.2% f90=-0.2%
+    2023-08-17 len=  1 lsr=2.39 r30_trail=-10.8% f30=-0.2% f60=+7.1% f90=+42.4%
+    2024-01-13 len=  4 lsr=2.70 r30_trail=-0.4% f30=+16.6% f60=+70.7% f90=+56.7%
+    2024-03-20 len=  1 lsr=2.25 r30_trail=+31.0% f30=-6.0% f60=-2.4% f90=-4.0%
+    2024-04-18 len=  1 lsr=2.42 r30_trail=+2.4% f30=+5.4% f60=+4.8% f90=+1.0%
+    2024-06-15 len=  1 lsr=2.31 r30_trail=+1.5% f30=-2.3% f60=-11.4% f90=-8.7%
+    2024-08-04 len=  2 lsr=2.53 r30_trail=+2.7% f30=-1.2% f60=+4.4% f90=+19.3%
+    2024-08-29 len=  1 lsr=2.38 r30_trail=-10.3% f30=+11.0% f60=+17.9% f90=+61.7%
+    2025-02-12 len=  1 lsr=2.31 r30_trail=+3.5% f30=-14.2% f60=-14.4% f90=+6.4%
+    2025-08-26 len=  1 lsr=2.03 r30_trail=-6.5% f30=-2.5% f60=-0.1% f90=-21.0%
+    2025-10-16 len=  5 lsr=1.98 r30_trail=-7.4% f30=-11.6% f60=-20.1% f90=-10.4%
+    2025-12-15 len=  2 lsr=2.37 r30_trail=-9.6% f30=+12.2% f60=-20.3% f90=-15.8%
+    2026-03-28 len=  1 lsr=2.73 r30_trail=-1.7% f30=+16.6% f60=+12.2% f90=-9.4%
+    2026-06-25 len=  1 lsr=2.57 r30_trail=-21.3% f30=+7.6% f60=+32.1% f90=+41.1%
+    2026-10-31 len=  2 lsr=2.84 r30_trail=-8.6% f30=- f60=- f90=-
+
+  Level-shift check: pct365 top-quintile share by half-year (should be ~0.2 if stationary):
+date   
+2019  0     NaN
+      1     NaN
+2020  0     NaN
+      1    0.03
+2021  0    0.66
+      1    0.23
+2022  0    0.15
+      1    0.06
+2023  0    0.10
+      1    0.15
+2024  0    0.27
+      1    0.12
+2025  0    0.12
+      1    0.42
+2026  0    0.19
+      1    0.17
+
+  Alternative: z90 of lsr (removes slow level drift) >= 1.0 / 1.5, lag=1
+[lsr z90 >= 1.0, lag=1]
+  h=30: tra ex -3.2% t=-1.1 n=13 | val ex -5.0% t=-2.0 n=3 | tes ex +2.2% t=0.9 n=5
+  h=60: tra ex -6.4% t=-1.1 n=5 | val ex -7.6% t=-1.9 n=3 | tes ex +10.8% t=3.1 n=2
+  h=90: tra ex -10.4% t=-1.3 n=4 | val ex -12.8% t=-3.0 n=3 | tes ex +18.5% t=3.7 n=1
+  W=30: tra mdd -2.0 t=-1.6 lift x1.30 n=13 | val mdd -1.0 t=-0.7 lift x1.30 n=3 | tes mdd +2.1 t=1.1 lift x0.58 n=5
+  W=60: tra mdd -3.5 t=-1.5 lift x1.26 n=5 | val mdd -1.1 t=-0.6 lift x1.09 n=3 | tes mdd +6.0 t=2.8 lift x0.42 n=2
+  W=90: tra mdd -4.0 t=-1.4 lift x1.12 n=4 | val mdd -5.7 t=-3.1 lift x1.63 n=3 | tes mdd +7.6 t=4.4 lift x0.35 n=1
+[lsr z90 >= 1.5, lag=1]
+  h=30: tra ex -2.8% t=-0.7 n=14 | val ex -5.8% t=-2.1 n=5 | tes ex +3.2% t=1.0 n=4
+  h=60: tra ex -7.8% t=-0.9 n=8 | val ex -7.7% t=-1.7 n=4 | tes ex +9.7% t=2.2 n=2
+  h=90: tra ex -11.0% t=-1.0 n=6 | val ex -14.7% t=-2.6 n=3 | tes ex +22.8% t=5.9 n=1
+  W=30: tra mdd -2.7 t=-1.7 lift x1.38 n=14 | val mdd -1.4 t=-0.8 lift x1.39 n=5 | tes mdd +3.4 t=1.6 lift x0.22 n=4
+  W=60: tra mdd -5.6 t=-1.9 lift x1.71 n=8 | val mdd -1.1 t=-0.5 lift x1.00 n=4 | tes mdd +6.5 t=2.3 lift x0.23 n=2
+  W=90: tra mdd -6.4 t=-1.7 lift x1.33 n=6 | val mdd -6.5 t=-2.9 lift x1.66 n=3 | tes mdd +8.0 t=3.2 lift x0.19 n=1
+
+====================================================================================================
+8. ETH cross-check and ex-2021 train
+====================================================================================================
+[ETH lsr_ETH pct365 >= 0.8, lag=1]
+  h=30: tra ex +1.1% t=0.3 n=6 | val ex -8.8% t=-1.9 n=3 | tes ex -7.5% t=-2.5 n=4
+  h=60: tra ex +1.5% t=0.2 n=5 | val ex -16.1% t=-1.9 n=2 | tes ex -4.9% t=-1.0 n=1
+  h=90: tra ex +2.5% t=0.2 n=5 | val ex -17.7% t=-1.4 n=2 | tes ex +7.2% t=1.4 n=1
+[ETH lsr_ETH pct365 >= 0.9, lag=1]
+  h=30: tra ex +2.7% t=0.5 n=8 | val ex -11.3% t=-2.5 n=3 | tes ex -13.6% t=-2.8 n=2
+  h=60: tra ex +4.9% t=0.7 n=6 | val ex -23.4% t=-2.5 n=1 | tes ex -15.4% t=-1.7 n=2
+  h=90: tra ex +4.7% t=0.4 n=5 | val ex -32.2% t=-2.6 n=1 | tes ex +1.9% t=0.2 n=1
+
+  BTC train split by sub-period (lag=1), excess vs sub-period mean:
+  thr=0.8 2020-01-01..2021-12-31: h=30 ex -7.5% t=-1.1 mdd -4.7 n=3 (168d) | h=60 ex -22.6% t=-1.8 mdd -8.5 n=2 (168d) | h=90 ex -39.3% t=-2.7 mdd -12.4 n=2 (168d)
+  thr=0.8 2022-01-01..2024-06-30: h=30 ex -0.5% t=-0.2 mdd -1.0 n=8 (134d) | h=60 ex +0.7% t=0.1 mdd -1.0 n=5 (134d) | h=90 ex +1.3% t=0.2 mdd +0.4 n=3 (134d)
+  thr=0.8 2022-01-01..2022-12-31: h=30 ex -5.1% t=-1.4 mdd -4.2 n=4 (40d) | h=60 ex -10.5% t=-1.6 mdd -8.1 n=3 (40d) | h=90 ex -4.5% t=-0.5 mdd -4.7 n=1 (40d)
+  thr=0.8 2023-01-01..2024-06-30: h=30 ex -0.3% t=-0.1 mdd -0.7 n=4 (94d) | h=60 ex +2.4% t=0.4 mdd +0.4 n=2 (94d) | h=90 ex -0.5% t=-0.1 mdd +0.5 n=2 (94d)
+  thr=0.9 2020-01-01..2021-12-31: h=30 ex -7.3% t=-1.0 mdd -4.8 n=3 (124d) | h=60 ex -22.6% t=-1.6 mdd -9.0 n=2 (124d) | h=90 ex -38.8% t=-2.5 mdd -11.9 n=2 (124d)
+  thr=0.9 2022-01-01..2024-06-30: h=30 ex +4.9% t=1.4 mdd +0.8 n=8 (63d) | h=60 ex +7.4% t=0.9 mdd +1.2 n=6 (63d) | h=90 ex +8.6% t=1.1 mdd +3.0 n=5 (63d)
+  thr=0.9 2022-01-01..2022-12-31: h=30 ex -4.9% t=-1.2 mdd -5.8 n=3 (12d) | h=60 ex -16.9% t=-2.1 mdd -13.4 n=3 (12d) | h=90 ex -5.2% t=-0.5 mdd -8.5 n=3 (12d)
+  thr=0.9 2023-01-01..2024-06-30: h=30 ex +4.1% t=1.2 mdd +0.5 n=5 (51d) | h=60 ex +7.7% t=1.0 mdd +1.9 n=3 (51d) | h=90 ex +4.1% t=0.6 mdd +1.9 n=2 (51d)
+
+wrote /private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results3/refute/lsr_btc_refute.json

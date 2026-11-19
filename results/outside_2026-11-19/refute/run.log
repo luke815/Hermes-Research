@@ -1,0 +1,679 @@
+==============================================================================================================
+S1. REPRODUCE: USD OI top, price-top control, coin-OI top (lag 1, excess vs period mean, NW t lag h)
+==============================================================================================================
+  btc USD perp_oi pct365 top 0.8                   h=30: tra ex   -8.5% t= -2.9 n_ind= 5 n_flag=403 | val ex   +0.5% t= +0.2 n_ind= 2 n_flag=291 | tes ex   -0.3% t= -0.1 n_ind= 1 n_flag=  6
+  btc USD perp_oi pct365 top 0.8                   h=60: tra ex  -17.3% t= -2.9 n_ind= 4 n_flag=403 | val ex   -0.8% t= -0.2 n_ind= 2 n_flag=291 | tes - (n_flag=1)
+  btc USD perp_oi pct365 top 0.8                   h=90: tra ex  -23.0% t= -2.3 n_ind= 3 n_flag=403 | val ex   -4.6% t= -0.9 n_ind= 1 n_flag=291 | tes - (n_flag=0)
+  btc USD perp_oi pct365 top 0.9                   h=30: tra ex  -10.4% t= -2.8 n_ind= 5 n_flag=252 | val ex   +0.6% t= +0.2 n_ind= 2 n_flag=201 | tes - (n_flag=2)
+  btc USD perp_oi pct365 top 0.9                   h=60: tra ex  -21.5% t= -3.4 n_ind= 4 n_flag=252 | val ex   -1.3% t= -0.4 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD perp_oi pct365 top 0.9                   h=90: tra ex  -27.7% t= -2.6 n_ind= 3 n_flag=252 | val ex   -7.2% t= -1.4 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD futures_oi pct365 top 0.8                h=30: tra ex   -4.4% t= -1.5 n_ind= 4 n_flag=464 | val ex   +0.4% t= +0.2 n_ind= 2 n_flag=277 | tes - (n_flag=0)
+  btc USD futures_oi pct365 top 0.8                h=60: tra ex  -11.2% t= -1.7 n_ind= 4 n_flag=464 | val ex   -2.3% t= -0.7 n_ind= 2 n_flag=277 | tes - (n_flag=0)
+  btc USD futures_oi pct365 top 0.8                h=90: tra ex  -16.1% t= -1.5 n_ind= 3 n_flag=464 | val ex   -7.2% t= -1.4 n_ind= 1 n_flag=277 | tes - (n_flag=0)
+  btc USD futures_oi pct365 top 0.9                h=30: tra ex   -7.2% t= -2.3 n_ind= 3 n_flag=316 | val ex   +1.5% t= +0.5 n_ind= 4 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi pct365 top 0.9                h=60: tra ex  -13.7% t= -2.1 n_ind= 3 n_flag=316 | val ex   -1.6% t= -0.4 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi pct365 top 0.9                h=90: tra ex  -17.2% t= -1.5 n_ind= 2 n_flag=316 | val ex   -8.8% t= -1.5 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc PRICE pct365 top 0.8 (control)               h=30: tra ex   +0.8% t= +0.3 n_ind= 7 n_flag=750 | val ex   -0.9% t= -0.6 n_ind= 3 n_flag=301 | tes - (n_flag=0)
+  btc PRICE pct365 top 0.8 (control)               h=60: tra ex   +2.3% t= +0.3 n_ind= 6 n_flag=750 | val ex   -5.0% t= -1.4 n_ind= 3 n_flag=301 | tes - (n_flag=0)
+  btc PRICE pct365 top 0.8 (control)               h=90: tra ex   +6.9% t= +0.5 n_ind= 5 n_flag=750 | val ex   -8.9% t= -1.6 n_ind= 1 n_flag=301 | tes - (n_flag=0)
+  btc PRICE pct365 top 0.9 (control)               h=30: tra ex   +3.4% t= +0.9 n_ind= 6 n_flag=531 | val ex   -1.0% t= -0.5 n_ind= 2 n_flag=205 | tes - (n_flag=0)
+  btc PRICE pct365 top 0.9 (control)               h=60: tra ex   +6.3% t= +0.7 n_ind= 5 n_flag=531 | val ex   -4.2% t= -1.0 n_ind= 2 n_flag=205 | tes - (n_flag=0)
+  btc PRICE pct365 top 0.9 (control)               h=90: tra ex  +10.6% t= +0.7 n_ind= 4 n_flag=531 | val ex   -9.8% t= -1.5 n_ind= 2 n_flag=205 | tes - (n_flag=0)
+  btc COIN perp_oi/price pct365 top 0.8            h=30: tra ex  -13.9% t= -4.7 n_ind= 2 n_flag=354 | val ex   +1.1% t= +0.6 n_ind= 5 n_flag=182 | tes ex   -1.2% t= -0.6 n_ind= 1 n_flag=183
+  btc COIN perp_oi/price pct365 top 0.8            h=60: tra ex  -25.6% t= -4.2 n_ind= 2 n_flag=354 | val ex   -0.9% t= -0.3 n_ind= 2 n_flag=182 | tes ex   -1.9% t= -0.8 n_ind= 1 n_flag=179
+  btc COIN perp_oi/price pct365 top 0.8            h=90: tra ex  -36.5% t= -3.6 n_ind= 2 n_flag=354 | val ex   -6.3% t= -1.8 n_ind= 1 n_flag=182 | tes ex   +0.6% t= +0.3 n_ind= 1 n_flag=156
+  btc COIN perp_oi/price pct365 top 0.9            h=30: tra ex  -13.8% t= -4.3 n_ind= 1 n_flag=266 | val ex   +0.3% t= +0.1 n_ind= 5 n_flag=106 | tes ex   -3.5% t= -1.1 n_ind= 2 n_flag=133
+  btc COIN perp_oi/price pct365 top 0.9            h=60: tra ex  -27.4% t= -4.4 n_ind= 1 n_flag=266 | val ex   -4.1% t= -1.5 n_ind= 2 n_flag=106 | tes ex   -4.1% t= -1.0 n_ind= 1 n_flag=129
+  btc COIN perp_oi/price pct365 top 0.9            h=90: tra ex  -37.6% t= -4.0 n_ind= 1 n_flag=266 | val ex  -12.2% t= -4.0 n_ind= 1 n_flag=106 | tes ex   -3.0% t= -1.0 n_ind= 1 n_flag=117
+  btc COIN futures_oi/price pct365 top 0.8         h=30: tra ex  -12.4% t= -3.9 n_ind= 5 n_flag=354 | val ex   +3.8% t= +1.3 n_ind= 3 n_flag=207 | tes ex  +12.3% t= +2.3 n_ind= 4 n_flag= 11
+  btc COIN futures_oi/price pct365 top 0.8         h=60: tra ex  -23.8% t= -4.0 n_ind= 3 n_flag=354 | val ex   +4.9% t= +0.9 n_ind= 2 n_flag=207 | tes ex  +17.3% t= +2.6 n_ind= 3 n_flag= 10
+  btc COIN futures_oi/price pct365 top 0.8         h=90: tra ex  -32.0% t= -3.3 n_ind= 3 n_flag=354 | val ex   +1.4% t= +0.2 n_ind= 2 n_flag=207 | tes ex   +5.5% t= +0.6 n_ind= 2 n_flag= 10
+  btc COIN futures_oi/price pct365 top 0.9         h=30: tra ex  -14.3% t= -3.8 n_ind= 6 n_flag=242 | val ex   +6.3% t= +1.6 n_ind= 2 n_flag=125 | tes - (n_flag=1)
+  btc COIN futures_oi/price pct365 top 0.9         h=60: tra ex  -27.4% t= -4.6 n_ind= 4 n_flag=242 | val ex   +5.0% t= +1.0 n_ind= 2 n_flag=125 | tes - (n_flag=1)
+  btc COIN futures_oi/price pct365 top 0.9         h=90: tra ex  -36.5% t= -3.9 n_ind= 3 n_flag=242 | val ex   -1.2% t= -0.2 n_ind= 2 n_flag=125 | tes - (n_flag=1)
+  eth USD perp_oi pct365 top 0.8                   h=30: tra ex   -8.8% t= -2.3 n_ind= 6 n_flag=385 | val ex   -2.2% t= -0.6 n_ind= 3 n_flag=235 | tes ex  -13.6% t= -2.9 n_ind= 2 n_flag= 12
+  eth USD perp_oi pct365 top 0.8                   h=60: tra ex  -19.0% t= -2.6 n_ind= 3 n_flag=385 | val ex  -12.2% t= -2.2 n_ind= 3 n_flag=235 | tes - (n_flag=1)
+  eth USD perp_oi pct365 top 0.8                   h=90: tra ex  -27.1% t= -2.3 n_ind= 3 n_flag=385 | val ex  -23.2% t= -2.8 n_ind= 2 n_flag=235 | tes - (n_flag=1)
+  eth USD perp_oi pct365 top 0.9                   h=30: tra ex   -9.8% t= -2.1 n_ind= 8 n_flag=265 | val ex   -1.3% t= -0.3 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi pct365 top 0.9                   h=60: tra ex  -20.1% t= -2.5 n_ind= 4 n_flag=265 | val ex  -13.7% t= -2.0 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi pct365 top 0.9                   h=90: tra ex  -28.1% t= -2.2 n_ind= 3 n_flag=265 | val ex  -29.8% t= -3.0 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD futures_oi pct365 top 0.8                h=30: tra ex   -5.1% t= -1.4 n_ind= 5 n_flag=400 | val ex   -1.8% t= -0.5 n_ind= 3 n_flag=273 | tes - (n_flag=2)
+  eth USD futures_oi pct365 top 0.8                h=60: tra ex  -15.4% t= -2.2 n_ind= 4 n_flag=400 | val ex   -6.3% t= -1.0 n_ind= 3 n_flag=273 | tes - (n_flag=0)
+  eth USD futures_oi pct365 top 0.8                h=90: tra ex  -24.0% t= -2.0 n_ind= 3 n_flag=400 | val ex  -13.3% t= -1.4 n_ind= 1 n_flag=273 | tes - (n_flag=0)
+  eth USD futures_oi pct365 top 0.9                h=30: tra ex   -6.6% t= -1.8 n_ind= 4 n_flag=266 | val ex   -1.9% t= -0.4 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth USD futures_oi pct365 top 0.9                h=60: tra ex  -16.2% t= -2.2 n_ind= 3 n_flag=266 | val ex  -11.9% t= -1.6 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth USD futures_oi pct365 top 0.9                h=90: tra ex  -22.6% t= -1.6 n_ind= 2 n_flag=266 | val ex  -25.7% t= -2.5 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth PRICE pct365 top 0.8 (control)               h=30: tra ex   +2.2% t= +0.8 n_ind= 5 n_flag=919 | val ex   -6.9% t= -1.4 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth PRICE pct365 top 0.8 (control)               h=60: tra ex   +7.0% t= +1.1 n_ind= 5 n_flag=919 | val ex  -19.9% t= -2.5 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth PRICE pct365 top 0.8 (control)               h=90: tra ex  +12.1% t= +1.1 n_ind= 4 n_flag=919 | val ex  -32.5% t= -3.0 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth PRICE pct365 top 0.9 (control)               h=30: tra ex   +4.3% t= +1.1 n_ind= 7 n_flag=636 | val ex   -4.1% t= -0.7 n_ind= 2 n_flag= 89 | tes - (n_flag=0)
+  eth PRICE pct365 top 0.9 (control)               h=60: tra ex   +9.0% t= +1.0 n_ind= 5 n_flag=636 | val ex  -17.0% t= -2.0 n_ind= 2 n_flag= 89 | tes - (n_flag=0)
+  eth PRICE pct365 top 0.9 (control)               h=90: tra ex  +15.1% t= +1.1 n_ind= 5 n_flag=636 | val ex  -32.4% t= -2.8 n_ind= 2 n_flag= 89 | tes - (n_flag=0)
+  eth COIN perp_oi/price pct365 top 0.8            h=30: tra ex   -9.9% t= -2.5 n_ind= 5 n_flag=425 | val ex   +4.0% t= +2.2 n_ind= 3 n_flag=372 | tes ex   -0.5% t= -0.2 n_ind= 1 n_flag=168
+  eth COIN perp_oi/price pct365 top 0.8            h=60: tra ex  -21.3% t= -2.9 n_ind= 3 n_flag=425 | val ex   +3.6% t= +1.1 n_ind= 1 n_flag=372 | tes ex   -0.4% t= -0.1 n_ind= 1 n_flag=155
+  eth COIN perp_oi/price pct365 top 0.8            h=90: tra ex  -33.8% t= -3.0 n_ind= 2 n_flag=425 | val ex   -0.4% t= -0.1 n_ind= 1 n_flag=372 | tes ex   +1.4% t= +0.3 n_ind= 1 n_flag=139
+  eth COIN perp_oi/price pct365 top 0.9            h=30: tra ex  -10.1% t= -2.3 n_ind= 4 n_flag=323 | val ex   +7.9% t= +2.2 n_ind= 3 n_flag=249 | tes ex   -1.6% t= -0.3 n_ind= 2 n_flag= 98
+  eth COIN perp_oi/price pct365 top 0.9            h=60: tra ex  -21.6% t= -3.0 n_ind= 2 n_flag=323 | val ex   +7.0% t= +1.0 n_ind= 1 n_flag=249 | tes ex   -2.8% t= -0.5 n_ind= 1 n_flag= 94
+  eth COIN perp_oi/price pct365 top 0.9            h=90: tra ex  -35.0% t= -3.2 n_ind= 2 n_flag=323 | val ex   +1.3% t= +0.1 n_ind= 1 n_flag=249 | tes ex   -0.5% t= -0.1 n_ind= 1 n_flag= 82
+  eth COIN futures_oi/price pct365 top 0.8         h=30: tra ex   -9.2% t= -2.0 n_ind= 3 n_flag=394 | val ex   +2.4% t= +1.6 n_ind= 1 n_flag=429 | tes ex  +13.9% t= +2.4 n_ind= 1 n_flag= 33
+  eth COIN futures_oi/price pct365 top 0.8         h=60: tra ex  -20.3% t= -2.8 n_ind= 3 n_flag=394 | val ex   +5.1% t= +2.1 n_ind= 1 n_flag=429 | tes ex  +22.8% t= +3.7 n_ind= 1 n_flag= 28
+  eth COIN futures_oi/price pct365 top 0.8         h=90: tra ex  -32.1% t= -2.9 n_ind= 3 n_flag=394 | val ex   +6.1% t= +1.5 n_ind= 1 n_flag=429 | tes ex  +18.3% t= +2.0 n_ind= 1 n_flag= 25
+  eth COIN futures_oi/price pct365 top 0.9         h=30: tra ex  -11.1% t= -2.0 n_ind= 6 n_flag=283 | val ex   +6.2% t= +2.6 n_ind= 1 n_flag=327 | tes ex   +8.8% t= +1.2 n_ind= 3 n_flag=  7
+  eth COIN futures_oi/price pct365 top 0.9         h=60: tra ex  -20.1% t= -2.6 n_ind= 3 n_flag=283 | val ex   +8.6% t= +1.8 n_ind= 1 n_flag=327 | tes ex  +15.7% t= +1.6 n_ind= 1 n_flag=  5
+  eth COIN futures_oi/price pct365 top 0.9         h=90: tra ex  -32.5% t= -3.0 n_ind= 3 n_flag=283 | val ex   +7.1% t= +0.9 n_ind= 1 n_flag=327 | tes ex  +30.2% t= +2.3 n_ind= 1 n_flag=  4
+
+Comparison with results3/R1_overheating_long_horizon.json (excess, %):
+  keys found: 16 ['btc:futures_oi:0.8:ret', 'btc:futures_oi:0.8:risk', 'btc:futures_oi:0.9:ret', 'btc:futures_oi:0.9:risk', 'btc:perp_oi:0.8:ret', 'btc:perp_oi:0.8:risk']
+  R1 btc:futures_oi:0.8:ret                   h30 -4.4/+0.4/+nan | h60 -11.2/-2.3/+nan | h90 -16.1/-7.2/+nan
+  R1 btc:futures_oi:0.9:ret                   h30 -7.2/+1.5/+nan | h60 -13.7/-1.6/+nan | h90 -17.2/-8.8/+nan
+  R1 btc:perp_oi:0.8:ret                      h30 -8.5/+0.5/-0.3 | h60 -17.3/-0.8/+nan | h90 -23.0/-4.6/+nan
+  R1 btc:perp_oi:0.9:ret                      h30 -10.4/+0.6/+nan | h60 -21.5/-1.3/+nan | h90 -27.7/-7.2/+nan
+  R1 eth:futures_oi:0.8:ret                   h30 -5.1/-1.8/+nan | h60 -15.4/-6.3/+nan | h90 -24.0/-13.3/+nan
+  R1 eth:futures_oi:0.9:ret                   h30 -6.6/-1.9/+nan | h60 -16.2/-11.9/+nan | h90 -22.6/-25.7/+nan
+  R1 eth:perp_oi:0.8:ret                      h30 -8.8/-2.2/-13.6 | h60 -19.0/-12.2/+nan | h90 -27.1/-23.2/+nan
+  R1 eth:perp_oi:0.9:ret                      h30 -9.8/-1.3/+nan | h60 -20.1/-13.7/+nan | h90 -28.1/-29.8/+nan
+
+Overlap of flags (bars flagged by both / bars flagged by OI), signal-available sample:
+  btc perp_oi 0.8: tra n=403 price-top share=0.77 coin-top share=0.17 OI-not-price=93 | val n=291 price-top share=0.83 coin-top share=0.51 OI-not-price=49 | tes n=6 price-top share=0.0 coin-top share=0.83 OI-not-price=6
+  btc perp_oi 0.9: tra n=252 price-top share=0.66 coin-top share=0.17 OI-not-price=86 | val n=201 price-top share=0.73 coin-top share=0.63 OI-not-price=54 | tes n=2 price-top share=0.0 coin-top share=1.0 OI-not-price=2
+  btc futures_oi 0.8: tra n=464 price-top share=0.79 coin-top share=0.18 OI-not-price=96 | val n=277 price-top share=0.89 coin-top share=0.65 OI-not-price=31 | tes n=0 price-top share=None coin-top share=None OI-not-price=0
+  btc futures_oi 0.9: tra n=316 price-top share=0.69 coin-top share=0.17 OI-not-price=98 | val n=184 price-top share=0.71 coin-top share=0.83 OI-not-price=54 | tes n=0 price-top share=None coin-top share=None OI-not-price=0
+  eth perp_oi 0.8: tra n=385 price-top share=0.68 coin-top share=0.45 OI-not-price=123 | val n=235 price-top share=0.51 coin-top share=0.93 OI-not-price=114 | tes n=12 price-top share=0.0 coin-top share=0.58 OI-not-price=12
+  eth perp_oi 0.9: tra n=265 price-top share=0.67 coin-top share=0.48 OI-not-price=87 | val n=160 price-top share=0.53 coin-top share=0.96 OI-not-price=76 | tes n=0 price-top share=None coin-top share=None OI-not-price=0
+  eth futures_oi 0.8: tra n=400 price-top share=0.91 coin-top share=0.2 OI-not-price=38 | val n=273 price-top share=0.44 coin-top share=0.97 OI-not-price=152 | tes n=2 price-top share=0.0 coin-top share=1.0 OI-not-price=2
+  eth futures_oi 0.9: tra n=266 price-top share=0.78 coin-top share=0.27 OI-not-price=58 | val n=183 price-top share=0.46 coin-top share=0.99 OI-not-price=99 | tes n=0 price-top share=None coin-top share=None OI-not-price=0
+
+corr(log OI, log price) by period (signal-available bars):
+  btc perp_oi: tra 0.55 (n=1190) | val 0.95 (n=548) | tes 0.79 (n=315)
+  btc futures_oi: tra 0.74 (n=1190) | val 0.95 (n=548) | tes 0.69 (n=317)
+  eth perp_oi: tra 0.32 (n=1190) | val 0.78 (n=548) | tes 0.91 (n=315)
+  eth futures_oi: tra 0.60 (n=1190) | val 0.74 (n=548) | tes 0.79 (n=317)
+
+==============================================================================================================
+S2. DECOMPOSITION: OLS fwd60 ~ const + price_top + coinOI_top (and + usdOI_top), NW lag 60, per period
+==============================================================================================================
+  btc perp_oi h=30 tra n=1009 | alone: P   +1.6 (t +0.3)  C  -14.4 (t -3.9)  U   -6.5 (t -1.8) | joint P+C: P   -8.2 (t -1.9) C  -18.8 (t -5.1) | joint P+U: P  +10.2 (t +2.4) U  -13.1 (t -4.8) | nP=384 nC=354 nU=403 C&!P=343 U&!P=93
+  btc perp_oi h=30 val n= 547 | alone: P   -1.9 (t -0.5)  C   +1.6 (t +0.6)  U   +1.0 (t +0.2) | joint P+C: P   -2.2 (t -0.6) C   +2.0 (t +0.8) | joint P+U: P   -4.0 (t -1.0) U   +3.4 (t +0.7) | nP=299 nC=182 nU=290 C&!P=61 U&!P=49
+  btc perp_oi h=30 tes n= 280 | alone: P   +nan (t +nan)  C   -2.4 (t -0.4)  U   -0.0 (t -0.0) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=182 nU=6 C&!P=182 U&!P=6
+  btc perp_oi h=60 tra n=1009 | alone: P   +2.4 (t +0.3)  C  -22.9 (t -3.5)  U  -11.1 (t -1.7) | joint P+C: P  -13.2 (t -1.7) C  -30.0 (t -5.1) | joint P+U: P  +16.9 (t +1.8) U  -22.0 (t -3.8) | nP=384 nC=354 nU=403 C&!P=343 U&!P=93
+  btc perp_oi h=60 val n= 547 | alone: P  -11.0 (t -1.4)  C   -1.5 (t -0.3)  U   -1.7 (t -0.2) | joint P+C: P  -11.1 (t -1.3) C   +0.5 (t +0.1) | joint P+U: P  -15.9 (t -1.7) U   +8.0 (t +1.0) | nP=299 nC=182 nU=290 C&!P=61 U&!P=49
+  btc perp_oi h=60 tes n= 250 | alone: P   +nan (t +nan)  C   -7.0 (t -0.9)  U   -1.2 (t -0.2) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=182 nU=6 C&!P=182 U&!P=6
+  btc perp_oi h=90 tra n=1009 | alone: P   +6.1 (t +0.4)  C  -29.9 (t -3.1)  U   -9.9 (t -1.0) | joint P+C: P  -13.1 (t -1.1) C  -37.0 (t -4.2) | joint P+U: P  +22.1 (t +1.8) U  -24.2 (t -3.8) | nP=384 nC=354 nU=403 C&!P=343 U&!P=93
+  btc perp_oi h=90 val n= 547 | alone: P  -19.6 (t -1.6)  C   -9.4 (t -1.8)  U   -9.9 (t -0.9) | joint P+C: P  -18.7 (t -1.4) C   -6.1 (t -1.0) | joint P+U: P  -21.5 (t -1.9) U   +3.1 (t +0.3) | nP=299 nC=182 nU=290 C&!P=61 U&!P=49
+  btc perp_oi h=90 tes n= 220 | alone: P   +nan (t +nan)  C   +1.0 (t +0.1)  U   +nan (t +nan) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=182 nU=6 C&!P=182 U&!P=6
+  btc futures_oi h=30 tra n=1009 | alone: P   +1.6 (t +0.3)  C  -12.0 (t -3.2)  U   +0.4 (t +0.1) | joint P+C: P   -3.6 (t -0.8) C  -13.4 (t -3.5) | joint P+U: P   +3.3 (t +0.6) U   -2.1 (t -0.5) | nP=384 nC=354 nU=464 C&!P=311 U&!P=96
+  btc futures_oi h=30 val n= 547 | alone: P   -1.9 (t -0.5)  C   +6.0 (t +1.3)  U   +0.8 (t +0.2) | joint P+C: P   -4.0 (t -1.2) C   +7.2 (t +1.6) | joint P+U: P   -4.8 (t -1.1) U   +4.1 (t +0.8) | nP=299 nC=207 nU=276 C&!P=55 U&!P=31
+  btc futures_oi h=30 tes n= 284 | alone: P   +nan (t +nan)  C  +13.2 (t +2.4)  U   +nan (t +nan) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=21 nU=0 C&!P=21 U&!P=0
+  btc futures_oi h=60 tra n=1009 | alone: P   +2.4 (t +0.3)  C  -20.2 (t -3.3)  U   -1.0 (t -0.1) | joint P+C: P   -6.3 (t -0.8) C  -22.7 (t -3.7) | joint P+U: P   +8.4 (t +0.8) U   -7.4 (t -0.9) | nP=384 nC=354 nU=464 C&!P=311 U&!P=96
+  btc futures_oi h=60 val n= 547 | alone: P  -11.0 (t -1.4)  C   +7.8 (t +0.9)  U   -4.6 (t -0.7) | joint P+C: P  -14.5 (t -1.7) C  +12.2 (t +1.4) | joint P+U: P  -15.0 (t -1.5) U   +5.7 (t +0.7) | nP=299 nC=207 nU=276 C&!P=55 U&!P=31
+  btc futures_oi h=60 tes n= 254 | alone: P   +nan (t +nan)  C  +17.9 (t +2.6)  U   +nan (t +nan) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=21 nU=0 C&!P=21 U&!P=0
+  btc futures_oi h=90 tra n=1009 | alone: P   +6.1 (t +0.4)  C  -23.1 (t -2.7)  U   +1.8 (t +0.1) | joint P+C: P   -3.3 (t -0.3) C  -24.4 (t -2.8) | joint P+U: P  +12.2 (t +1.0) U   -7.6 (t -0.8) | nP=384 nC=354 nU=464 C&!P=311 U&!P=96
+  btc futures_oi h=90 val n= 547 | alone: P  -19.6 (t -1.6)  C   +2.2 (t +0.2)  U  -14.5 (t -1.3) | joint P+C: P  -22.2 (t -1.8) C   +8.9 (t +0.8) | joint P+U: P  -18.3 (t -1.6) U   -1.9 (t -0.2) | nP=299 nC=207 nU=276 C&!P=55 U&!P=31
+  btc futures_oi h=90 tes n= 224 | alone: P   +nan (t +nan)  C   +5.3 (t +0.6)  U   +nan (t +nan) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=21 nU=0 C&!P=21 U&!P=0
+  eth perp_oi h=30 tra n=1009 | alone: P   +1.9 (t +0.4)  C   -6.0 (t -1.3)  U   -3.7 (t -0.8) | joint P+C: P   -1.0 (t -0.2) C   -6.5 (t -1.6) | joint P+U: P   +4.1 (t +0.8) U   -5.4 (t -1.3) | nP=430 nC=425 nU=385 C&!P=357 U&!P=123
+  eth perp_oi h=30 val n= 547 | alone: P   -9.4 (t -1.5)  C  +12.5 (t +2.2)  U   -3.9 (t -0.6) | joint P+C: P  -11.7 (t -2.1) C  +14.1 (t +2.5) | joint P+U: P  -10.1 (t -1.3) U   +1.0 (t +0.1) | nP=128 nC=371 nU=234 C&!P=268 U&!P=114
+  eth perp_oi h=30 tes n= 280 | alone: P   +nan (t +nan)  C   -1.2 (t -0.2)  U  -14.0 (t -2.8) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=180 nU=12 C&!P=180 U&!P=12
+  eth perp_oi h=60 tra n=1009 | alone: P   -0.3 (t -0.0)  C  -11.1 (t -1.5)  U   -6.7 (t -1.0) | joint P+C: P   -6.9 (t -0.8) C  -14.3 (t -2.2) | joint P+U: P   +2.8 (t +0.3) U   -7.9 (t -1.4) | nP=430 nC=425 nU=385 C&!P=357 U&!P=123
+  eth perp_oi h=60 val n= 547 | alone: P  -26.5 (t -2.5)  C  +11.2 (t +1.1)  U  -21.4 (t -2.3) | joint P+C: P  -28.9 (t -2.8) C  +15.1 (t +1.6) | joint P+U: P  -18.1 (t -1.3) U  -12.6 (t -1.0) | nP=128 nC=371 nU=234 C&!P=268 U&!P=114
+  eth perp_oi h=60 tes n= 250 | alone: P   +nan (t +nan)  C   -1.5 (t -0.1)  U  -31.8 (t -3.6) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=180 nU=12 C&!P=180 U&!P=12
+  eth perp_oi h=90 tra n=1009 | alone: P   -1.9 (t -0.1)  C  -17.2 (t -1.6)  U   -5.3 (t -0.6) | joint P+C: P  -12.4 (t -1.2) C  -22.9 (t -2.8) | joint P+U: P   +0.3 (t +0.0) U   -5.4 (t -0.7) | nP=430 nC=425 nU=385 C&!P=357 U&!P=123
+  eth perp_oi h=90 val n= 547 | alone: P  -43.1 (t -3.0)  C   -1.1 (t -0.1)  U  -40.7 (t -2.8) | joint P+C: P  -43.9 (t -2.9) C   +4.8 (t +0.3) | joint P+U: P  -23.7 (t -1.5) U  -29.2 (t -1.5) | nP=128 nC=371 nU=234 C&!P=268 U&!P=114
+  eth perp_oi h=90 tes n= 220 | alone: P   +nan (t +nan)  C   +3.0 (t +0.3)  U  -33.9 (t -3.1) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=180 nU=12 C&!P=180 U&!P=12
+  eth futures_oi h=30 tra n=1009 | alone: P   +1.9 (t +0.4)  C   -4.5 (t -0.8)  U   +2.2 (t +0.4) | joint P+C: P   +0.2 (t +0.0) C   -4.4 (t -0.9) | joint P+U: P   +0.6 (t +0.1) U   +1.7 (t +0.3) | nP=430 nC=394 nU=400 C&!P=322 U&!P=38
+  eth futures_oi h=30 val n= 547 | alone: P   -9.4 (t -1.5)  C  +11.0 (t +1.7)  U   -3.6 (t -0.5) | joint P+C: P  -10.9 (t -1.7) C  +12.3 (t +1.8) | joint P+U: P   -9.6 (t -1.3) U   +0.3 (t +0.0) | nP=128 nC=428 nU=272 C&!P=316 U&!P=152
+  eth futures_oi h=30 tes n= 284 | alone: P   +nan (t +nan)  C  +16.0 (t +2.4)  U   -9.9 (t -1.9) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=37 nU=2 C&!P=37 U&!P=2
+  eth futures_oi h=60 tra n=1009 | alone: P   -0.3 (t -0.0)  C   -8.8 (t -1.2)  U   -0.8 (t -0.1) | joint P+C: P   -4.4 (t -0.5) C  -10.5 (t -1.6) | joint P+U: P   +0.8 (t +0.1) U   -1.5 (t -0.2) | nP=430 nC=394 nU=400 C&!P=322 U&!P=38
+  eth futures_oi h=60 val n= 547 | alone: P  -26.5 (t -2.5)  C  +23.6 (t +2.1)  U  -12.6 (t -1.0) | joint P+C: P  -29.8 (t -3.0) C  +27.4 (t +2.2) | joint P+U: P  -25.2 (t -1.6) U   -2.2 (t -0.1) | nP=128 nC=428 nU=272 C&!P=316 U&!P=152
+  eth futures_oi h=60 tes n= 254 | alone: P   +nan (t +nan)  C  +25.1 (t +3.7)  U   +nan (t +nan) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=37 nU=2 C&!P=37 U&!P=2
+  eth futures_oi h=90 tra n=1009 | alone: P   -1.9 (t -0.1)  C  -13.6 (t -1.4)  U   -0.3 (t -0.0) | joint P+C: P   -8.5 (t -0.7) C  -16.9 (t -2.0) | joint P+U: P   -4.4 (t -0.4) U   +3.2 (t +0.4) | nP=430 nC=394 nU=400 C&!P=322 U&!P=38
+  eth futures_oi h=90 val n= 547 | alone: P  -43.1 (t -3.0)  C  +28.2 (t +1.5)  U  -26.5 (t -1.4) | joint P+C: P  -47.2 (t -3.5) C  +34.2 (t +1.8) | joint P+U: P  -36.5 (t -1.8) U  -11.5 (t -0.5) | nP=128 nC=428 nU=272 C&!P=316 U&!P=152
+  eth futures_oi h=90 tes n= 224 | alone: P   +nan (t +nan)  C  +19.8 (t +1.9)  U   +nan (t +nan) | joint P+C: P   +nan (t +nan) C   +nan (t +nan) | joint P+U: P   +nan (t +nan) U   +nan (t +nan) | nP=0 nC=37 nU=2 C&!P=37 U&!P=2
+
+S2b. coin-OI top CONDITIONAL on price NOT at top (pct365 < 0.8), and USD-OI top conditional on price NOT top; and price top conditional on OI NOT top
+  btc COIN perp_oi top0.8 & price NOT top          h=30: tra ex  -13.6% t= -4.5 n_ind= 2 n_flag=343 | val ex   +3.7% t= +1.3 n_ind= 4 n_flag= 61 | tes ex   -1.2% t= -0.6 n_ind= 1 n_flag=183
+  btc COIN perp_oi top0.8 & price NOT top          h=60: tra ex  -25.1% t= -4.1 n_ind= 2 n_flag=343 | val ex   +9.7% t= +0.9 n_ind= 3 n_flag= 61 | tes ex   -1.9% t= -0.8 n_ind= 1 n_flag=179
+  btc COIN perp_oi top0.8 & price NOT top          h=90: tra ex  -36.1% t= -3.5 n_ind= 2 n_flag=343 | val ex   +9.6% t= +0.6 n_ind= 3 n_flag= 61 | tes ex   +0.6% t= +0.3 n_ind= 1 n_flag=156
+  btc USD perp_oi top0.8 & price NOT top           h=30: tra ex  -15.1% t= -4.2 n_ind= 7 n_flag= 93 | val ex   +4.1% t= +1.0 n_ind= 4 n_flag= 49 | tes ex   -0.3% t= -0.1 n_ind= 1 n_flag=  6
+  btc USD perp_oi top0.8 & price NOT top           h=60: tra ex  -26.4% t= -3.5 n_ind= 5 n_flag= 93 | val ex  +17.9% t= +1.6 n_ind= 4 n_flag= 49 | tes - (n_flag=1)
+  btc USD perp_oi top0.8 & price NOT top           h=90: tra ex  -37.5% t= -3.2 n_ind= 4 n_flag= 93 | val ex  +25.3% t= +2.5 n_ind= 3 n_flag= 49 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin perp_oi NOT top          h=30: tra ex   -3.0% t= -0.8 n_ind= 3 n_flag=373 | val ex   -1.3% t= -0.6 n_ind= 3 n_flag=179 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin perp_oi NOT top          h=60: tra ex   -8.3% t= -1.1 n_ind= 3 n_flag=373 | val ex   -4.1% t= -1.0 n_ind= 3 n_flag=179 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin perp_oi NOT top          h=90: tra ex  -12.2% t= -1.0 n_ind= 2 n_flag=373 | val ex   -5.2% t= -0.8 n_ind= 1 n_flag=179 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin perp_oi top              h=30: tra ex  -23.6% t= -7.5 n_ind= 2 n_flag= 11 | val ex   -0.2% t= -0.1 n_ind= 4 n_flag=121 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin perp_oi top              h=60: tra ex  -40.9% t= -7.0 n_ind= 2 n_flag= 11 | val ex   -6.3% t= -1.7 n_ind= 3 n_flag=121 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin perp_oi top              h=90: tra ex  -48.3% t= -4.7 n_ind= 2 n_flag= 11 | val ex  -14.3% t= -2.5 n_ind= 2 n_flag=121 | tes - (n_flag=0)
+  btc COIN futures_oi top0.8 & price NOT top       h=30: tra ex  -11.4% t= -3.2 n_ind= 4 n_flag=311 | val ex   +6.0% t= +1.5 n_ind= 2 n_flag= 55 | tes ex  +12.3% t= +2.3 n_ind= 4 n_flag= 11
+  btc COIN futures_oi top0.8 & price NOT top       h=60: tra ex  -22.8% t= -3.5 n_ind= 3 n_flag=311 | val ex  +23.7% t= +2.1 n_ind= 2 n_flag= 55 | tes ex  +17.3% t= +2.6 n_ind= 3 n_flag= 10
+  btc COIN futures_oi top0.8 & price NOT top       h=90: tra ex  -31.1% t= -3.0 n_ind= 3 n_flag=311 | val ex  +33.0% t= +3.3 n_ind= 2 n_flag= 55 | tes ex   +5.5% t= +0.6 n_ind= 2 n_flag= 10
+  btc USD futures_oi top0.8 & price NOT top        h=30: tra ex   -3.4% t= -1.0 n_ind= 5 n_flag= 96 | val ex   +4.9% t= +0.9 n_ind= 2 n_flag= 31 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 & price NOT top        h=60: tra ex  -13.1% t= -2.0 n_ind= 4 n_flag= 96 | val ex  +16.4% t= +1.3 n_ind= 2 n_flag= 31 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 & price NOT top        h=90: tra ex  -22.2% t= -2.3 n_ind= 4 n_flag= 96 | val ex  +19.9% t= +1.7 n_ind= 2 n_flag= 31 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin futures_oi NOT top       h=30: tra ex   -1.6% t= -0.4 n_ind= 3 n_flag=341 | val ex   -4.8% t= -1.7 n_ind= 5 n_flag=148 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin futures_oi NOT top       h=60: tra ex   -6.4% t= -0.8 n_ind= 3 n_flag=341 | val ex   -8.1% t= -1.4 n_ind= 3 n_flag=148 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin futures_oi NOT top       h=90: tra ex  -10.0% t= -0.8 n_ind= 2 n_flag=341 | val ex   -7.7% t= -1.1 n_ind= 2 n_flag=148 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin futures_oi top           h=30: tra ex  -19.3% t= -7.6 n_ind= 4 n_flag= 43 | val ex   +3.0% t= +0.9 n_ind= 4 n_flag=152 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin futures_oi top           h=60: tra ex  -31.1% t= -4.9 n_ind= 3 n_flag= 43 | val ex   -1.9% t= -0.4 n_ind= 3 n_flag=152 | tes - (n_flag=0)
+  btc PRICE top0.8 & coin futures_oi top           h=90: tra ex  -38.7% t= -3.0 n_ind= 3 n_flag= 43 | val ex  -10.0% t= -1.7 n_ind= 2 n_flag=152 | tes - (n_flag=0)
+  eth COIN perp_oi top0.8 & price NOT top          h=30: tra ex   -9.7% t= -2.1 n_ind= 2 n_flag=357 | val ex   +7.3% t= +2.5 n_ind= 4 n_flag=268 | tes ex   -0.5% t= -0.2 n_ind= 1 n_flag=168
+  eth COIN perp_oi top0.8 & price NOT top          h=60: tra ex  -20.7% t= -2.5 n_ind= 2 n_flag=357 | val ex  +11.6% t= +2.1 n_ind= 2 n_flag=268 | tes ex   -0.4% t= -0.1 n_ind= 1 n_flag=155
+  eth COIN perp_oi top0.8 & price NOT top          h=90: tra ex  -32.4% t= -2.6 n_ind= 2 n_flag=357 | val ex  +12.1% t= +1.4 n_ind= 1 n_flag=268 | tes ex   +1.4% t= +0.3 n_ind= 1 n_flag=139
+  eth USD perp_oi top0.8 & price NOT top           h=30: tra ex  -17.6% t= -4.9 n_ind= 6 n_flag=123 | val ex   +1.7% t= +0.3 n_ind= 4 n_flag=114 | tes ex  -13.6% t= -2.9 n_ind= 2 n_flag= 12
+  eth USD perp_oi top0.8 & price NOT top           h=60: tra ex  -30.7% t= -3.6 n_ind= 3 n_flag=123 | val ex   -4.4% t= -0.4 n_ind= 4 n_flag=114 | tes - (n_flag=1)
+  eth USD perp_oi top0.8 & price NOT top           h=90: tra ex  -38.5% t= -2.6 n_ind= 3 n_flag=123 | val ex  -12.8% t= -0.9 n_ind= 2 n_flag=114 | tes - (n_flag=1)
+  eth PRICE top0.8 & coin perp_oi NOT top          h=30: tra ex   -4.2% t= -1.0 n_ind= 3 n_flag=362 | val ex  -17.6% t= -3.3 n_ind= 2 n_flag= 25 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin perp_oi NOT top          h=60: tra ex  -13.3% t= -1.7 n_ind= 3 n_flag=362 | val ex  -32.4% t= -3.5 n_ind= 2 n_flag= 25 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin perp_oi NOT top          h=90: tra ex  -21.9% t= -1.7 n_ind= 3 n_flag=362 | val ex  -34.1% t= -2.4 n_ind= 2 n_flag= 25 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin perp_oi top              h=30: tra ex  -11.3% t= -2.2 n_ind= 5 n_flag= 68 | val ex   -4.5% t= -0.9 n_ind= 3 n_flag=104 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin perp_oi top              h=60: tra ex  -24.8% t= -2.3 n_ind= 3 n_flag= 68 | val ex  -17.1% t= -2.1 n_ind= 3 n_flag=104 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin perp_oi top              h=90: tra ex  -41.2% t= -2.8 n_ind= 3 n_flag= 68 | val ex  -32.5% t= -2.8 n_ind= 3 n_flag=104 | tes - (n_flag=0)
+  eth COIN futures_oi top0.8 & price NOT top       h=30: tra ex   -8.5% t= -1.5 n_ind= 4 n_flag=322 | val ex   +5.0% t= +1.7 n_ind= 2 n_flag=316 | tes ex  +13.9% t= +2.4 n_ind= 1 n_flag= 33
+  eth COIN futures_oi top0.8 & price NOT top       h=60: tra ex  -17.9% t= -2.2 n_ind= 3 n_flag=322 | val ex  +13.5% t= +2.6 n_ind= 2 n_flag=316 | tes ex  +22.8% t= +3.7 n_ind= 1 n_flag= 28
+  eth COIN futures_oi top0.8 & price NOT top       h=90: tra ex  -27.5% t= -2.3 n_ind= 3 n_flag=322 | val ex  +20.0% t= +2.8 n_ind= 1 n_flag=316 | tes ex  +18.3% t= +2.0 n_ind= 1 n_flag= 25
+  eth USD futures_oi top0.8 & price NOT top        h=30: tra ex   -9.3% t= -1.5 n_ind= 7 n_flag= 38 | val ex   +1.4% t= +0.3 n_ind= 4 n_flag=152 | tes - (n_flag=2)
+  eth USD futures_oi top0.8 & price NOT top        h=60: tra ex  -21.7% t= -2.9 n_ind= 5 n_flag= 38 | val ex   +4.2% t= +0.3 n_ind= 4 n_flag=152 | tes - (n_flag=0)
+  eth USD futures_oi top0.8 & price NOT top        h=90: tra ex  -26.0% t= -2.4 n_ind= 4 n_flag= 38 | val ex   +2.5% t= +0.1 n_ind= 1 n_flag=152 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin futures_oi NOT top       h=30: tra ex   -3.9% t= -0.9 n_ind= 3 n_flag=358 | val ex  -22.0% t= -4.6 n_ind= 1 n_flag= 16 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin futures_oi NOT top       h=60: tra ex  -11.9% t= -1.5 n_ind= 3 n_flag=358 | val ex  -32.3% t= -3.4 n_ind= 1 n_flag= 16 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin futures_oi NOT top       h=90: tra ex  -19.3% t= -1.5 n_ind= 3 n_flag=358 | val ex  -32.6% t= -2.3 n_ind= 1 n_flag= 16 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin futures_oi top           h=30: tra ex  -12.3% t= -3.1 n_ind= 2 n_flag= 72 | val ex   -4.9% t= -1.0 n_ind= 3 n_flag=113 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin futures_oi top           h=60: tra ex  -30.7% t= -4.1 n_ind= 2 n_flag= 72 | val ex  -18.4% t= -2.3 n_ind= 3 n_flag=113 | tes - (n_flag=0)
+  eth PRICE top0.8 & coin futures_oi top           h=90: tra ex  -52.8% t= -5.0 n_ind= 2 n_flag= 72 | val ex  -32.8% t= -2.9 n_ind= 3 n_flag=113 | tes - (n_flag=0)
+
+==============================================================================================================
+S3. EPISODE-LEVEL: one observation per independent episode (gap > h bars); dates, bars, mean fwd return, excess vs period mean
+==============================================================================================================
+  btc USD perp_oi top0.8 h=30 train: 5 episodes, mean episode excess -16.3%, 5/5 negative, bar-weighted -8.5%, dropping worst (2022-10-28, 0% of bars) -> -13.7%
+      2021-10-03..2022-02-18 bars= 87 mean fwd  -10.1% excess  -16.6% neg-share 0.83
+      2022-03-26..2022-05-05 bars= 20 mean fwd  -20.0% excess  -26.4% neg-share 1.00
+      2022-10-28..2022-10-28 bars=  1 mean fwd  -20.2% excess  -26.6% neg-share 1.00
+      2023-03-21..2023-08-18 bars=113 mean fwd   -3.9% excess  -10.3% neg-share 0.81
+      2023-11-03..2024-06-25 bars=182 mean fwd   +5.0% excess   -1.4% neg-share 0.46
+  btc USD perp_oi top0.8 h=30 validation: 2 episodes, mean episode excess -0.0%, 1/2 negative, bar-weighted +0.5%, dropping worst (2025-05-03, 43% of bars) -> +3.5%
+      2024-07-01..2025-02-26 bars=166 mean fwd   +6.3% excess   +3.5% neg-share 0.42
+      2025-05-03..2025-10-11 bars=125 mean fwd   -0.8% excess   -3.6% neg-share 0.59
+  btc USD perp_oi top0.8 h=30 test: 1 episodes, mean episode excess -0.3%, 1/1 negative, bar-weighted -0.3%, dropping worst (2026-09-05, 100% of bars) -> +0.0%
+      2026-09-05..2026-09-24 bars=  6 mean fwd   -1.1% excess   -0.3% neg-share 0.67
+  btc USD perp_oi top0.9 h=30 train: 5 episodes, mean episode excess -14.5%, 4/5 negative, bar-weighted -10.4%, dropping worst (2022-03-26, 5% of bars) -> -11.5%
+      2021-10-07..2022-01-06 bars= 65 mean fwd  -11.6% excess  -18.0% neg-share 0.86
+      2022-03-26..2022-04-12 bars= 13 mean fwd  -20.1% excess  -26.5% neg-share 1.00
+      2023-04-12..2023-08-18 bars= 64 mean fwd   -4.6% excess  -11.0% neg-share 0.84
+      2023-12-03..2024-04-14 bars= 85 mean fwd   +6.9% excess   +0.4% neg-share 0.49
+      2024-05-17..2024-06-18 bars= 25 mean fwd  -10.8% excess  -17.2% neg-share 1.00
+  btc USD perp_oi top0.9 h=30 validation: 2 episodes, mean episode excess -0.2%, 1/2 negative, bar-weighted +0.6%, dropping worst (2025-05-20, 42% of bars) -> +4.9%
+      2024-07-02..2025-02-01 bars=116 mean fwd   +7.7% excess   +4.9% neg-share 0.41
+      2025-05-20..2025-10-11 bars= 85 mean fwd   -2.6% excess   -5.4% neg-share 0.76
+  btc USD perp_oi top0.9 h=30 test: 1 episodes, mean episode excess -3.2%, 1/1 negative, bar-weighted -3.2%, dropping worst (2026-09-23, 100% of bars) -> +0.0%
+      2026-09-23..2026-09-24 bars=  2 mean fwd   -4.0% excess   -3.2% neg-share 1.00
+  btc USD futures_oi top0.8 h=30 train: 4 episodes, mean episode excess -14.0%, 3/4 negative, bar-weighted -4.4%, dropping worst (2022-04-09, 1% of bars) -> -7.4%
+      2021-10-06..2021-12-05 bars= 60 mean fwd   -9.5% excess  -16.0% neg-share 0.83
+      2022-04-09..2022-04-12 bars=  4 mean fwd  -27.5% excess  -33.9% neg-share 1.00
+      2023-02-17..2023-08-18 bars=160 mean fwd   -0.2% excess   -6.7% neg-share 0.64
+      2023-10-23..2024-06-30 bars=240 mean fwd   +7.0% excess   +0.6% neg-share 0.38
+  btc USD futures_oi top0.8 h=30 validation: 2 episodes, mean episode excess +0.1%, 1/2 negative, bar-weighted +0.4%, dropping worst (2025-05-13, 45% of bars) -> +3.7%
+      2024-07-01..2025-02-22 bars=151 mean fwd   +6.5% excess   +3.7% neg-share 0.44
+      2025-05-13..2025-10-11 bars=126 mean fwd   -0.7% excess   -3.5% neg-share 0.59
+  btc PRICE top0.8 h=30 train: 7 episodes, mean episode excess -12.0%, 5/7 negative, bar-weighted +0.8%, dropping worst (2020-02-10, 1% of bars) -> -6.0%
+      2019-06-30..2019-09-15 bars= 64 mean fwd   -5.3% excess  -11.8% neg-share 0.72
+      2020-02-10..2020-02-19 bars=  6 mean fwd  -41.4% excess  -47.8% neg-share 1.00
+      2020-06-02..2020-06-02 bars=  1 mean fwd   -4.5% excess  -10.9% neg-share 1.00
+      2020-07-27..2021-05-15 bars=292 mean fwd  +16.8% excess  +10.3% neg-share 0.31
+      2021-09-04..2021-11-30 bars= 53 mean fwd   -7.4% excess  -13.9% neg-share 0.75
+      2023-04-01..2023-08-16 bars= 92 mean fwd   -5.5% excess  -11.9% neg-share 0.90
+      2023-10-21..2024-06-18 bars=242 mean fwd   +8.3% excess   +1.9% neg-share 0.37
+  btc PRICE top0.8 h=30 validation: 3 episodes, mean episode excess -4.3%, 2/3 negative, bar-weighted -0.9%, dropping worst (2024-07-20, 3% of bars) -> -0.3%
+      2024-07-20..2024-07-30 bars=  9 mean fwd   -9.7% excess  -12.5% neg-share 1.00
+      2024-10-16..2025-02-24 bars=129 mean fwd   +4.8% excess   +2.0% neg-share 0.50
+      2025-05-02..2025-10-29 bars=163 mean fwd   +0.3% excess   -2.5% neg-share 0.52
+  btc COIN perp_oi top0.8 h=30 train: 2 episodes, mean episode excess -12.8%, 2/2 negative, bar-weighted -13.9%, dropping worst (2021-10-22, 99% of bars) -> -11.6%
+      2021-10-22..2022-12-06 bars=352 mean fwd   -7.5% excess  -13.9% neg-share 0.67
+      2023-08-10..2023-08-18 bars=  2 mean fwd   -5.1% excess  -11.6% neg-share 0.50
+  btc COIN perp_oi top0.8 h=30 validation: 5 episodes, mean episode excess -1.9%, 4/5 negative, bar-weighted +1.1%, dropping worst (2025-07-13, 29% of bars) -> -0.8%
+      2024-07-05..2025-01-23 bars= 96 mean fwd   +9.4% excess   +6.6% neg-share 0.28
+      2025-02-26..2025-02-27 bars=  2 mean fwd   -1.1% excess   -3.9% neg-share 0.50
+      2025-05-24..2025-05-30 bars=  5 mean fwd   +0.2% excess   -2.6% neg-share 0.60
+      2025-07-13..2025-10-11 bars= 52 mean fwd   -3.5% excess   -6.3% neg-share 0.81
+      2025-11-15..2025-12-31 bars= 27 mean fwd   -0.3% excess   -3.1% neg-share 0.52
+  btc COIN perp_oi top0.8 h=30 test: 1 episodes, mean episode excess -1.2%, 1/1 negative, bar-weighted -1.2%, dropping worst (2026-01-01, 100% of bars) -> +0.0%
+      2026-01-01..2026-09-24 bars=183 mean fwd   -2.0% excess   -1.2% neg-share 0.48
+  btc USD perp_oi top0.8 h=60 train: 4 episodes, mean episode excess -23.3%, 4/4 negative, bar-weighted -17.3%, dropping worst (2021-10-03, 27% of bars) -> -18.6%
+      2021-10-03..2022-05-05 bars=107 mean fwd  -23.4% excess  -37.4% neg-share 0.95
+      2022-10-28..2022-10-28 bars=  1 mean fwd  -18.9% excess  -32.9% neg-share 1.00
+      2023-03-21..2023-08-18 bars=113 mean fwd   -3.9% excess  -17.9% neg-share 0.66
+      2023-11-03..2024-06-25 bars=182 mean fwd   +8.9% excess   -5.1% neg-share 0.47
+  btc USD perp_oi top0.8 h=60 validation: 2 episodes, mean episode excess -1.6%, 1/2 negative, bar-weighted -0.8%, dropping worst (2025-05-03, 43% of bars) -> +4.3%
+      2024-07-01..2025-02-26 bars=166 mean fwd   +9.1% excess   +4.3% neg-share 0.51
+      2025-05-03..2025-10-11 bars=125 mean fwd   -2.8% excess   -7.6% neg-share 0.57
+  btc USD perp_oi top0.8 h=60 test: 1 episodes, mean episode excess -1.0%, 1/1 negative, bar-weighted -1.0%, dropping worst (2026-09-05, 100% of bars) -> +0.0%
+      2026-09-05..2026-09-05 bars=  1 mean fwd   +0.8% excess   -1.0% neg-share 0.00
+  btc USD perp_oi top0.9 h=60 train: 4 episodes, mean episode excess -28.6%, 4/4 negative, bar-weighted -21.5%, dropping worst (2022-03-26, 5% of bars) -> -22.8%
+      2021-10-07..2022-01-06 bars= 65 mean fwd  -24.7% excess  -38.7% neg-share 1.00
+      2022-03-26..2022-04-12 bars= 13 mean fwd  -32.0% excess  -46.0% neg-share 1.00
+      2023-04-12..2023-08-18 bars= 64 mean fwd   -7.2% excess  -21.2% neg-share 0.80
+      2023-12-03..2024-06-18 bars=110 mean fwd   +5.4% excess   -8.6% neg-share 0.51
+  btc USD perp_oi top0.9 h=60 validation: 2 episodes, mean episode excess -2.3%, 1/2 negative, bar-weighted -1.3%, dropping worst (2025-05-20, 42% of bars) -> +3.7%
+      2024-07-02..2025-02-01 bars=116 mean fwd   +8.5% excess   +3.7% neg-share 0.49
+      2025-05-20..2025-10-11 bars= 85 mean fwd   -3.4% excess   -8.2% neg-share 0.65
+  btc USD futures_oi top0.8 h=60 train: 4 episodes, mean episode excess -24.5%, 4/4 negative, bar-weighted -11.2%, dropping worst (2022-04-09, 1% of bars) -> -18.6%
+      2021-10-06..2021-12-05 bars= 60 mean fwd  -25.9% excess  -39.9% neg-share 1.00
+      2022-04-09..2022-04-12 bars=  4 mean fwd  -28.3% excess  -42.4% neg-share 1.00
+      2023-02-17..2023-08-18 bars=160 mean fwd   -0.3% excess  -14.3% neg-share 0.57
+      2023-10-23..2024-06-30 bars=240 mean fwd  +12.5% excess   -1.5% neg-share 0.40
+  btc USD futures_oi top0.8 h=60 validation: 2 episodes, mean episode excess -2.8%, 1/2 negative, bar-weighted -2.3%, dropping worst (2025-05-13, 45% of bars) -> +2.5%
+      2024-07-01..2025-02-22 bars=151 mean fwd   +7.3% excess   +2.5% neg-share 0.54
+      2025-05-13..2025-10-11 bars=126 mean fwd   -3.2% excess   -8.0% neg-share 0.59
+  btc PRICE top0.8 h=60 train: 6 episodes, mean episode excess -17.3%, 4/6 negative, bar-weighted +2.3%, dropping worst (2020-02-10, 1% of bars) -> -11.7%
+      2019-06-30..2019-09-15 bars= 64 mean fwd  -14.4% excess  -28.4% neg-share 0.92
+      2020-02-10..2020-02-19 bars=  6 mean fwd  -31.6% excess  -45.6% neg-share 1.00
+      2020-06-02..2021-05-15 bars=293 mean fwd  +39.0% excess  +25.0% neg-share 0.32
+      2021-09-04..2021-11-30 bars= 53 mean fwd  -21.6% excess  -35.6% neg-share 0.94
+      2023-04-01..2023-08-16 bars= 92 mean fwd   -6.8% excess  -20.8% neg-share 0.76
+      2023-10-21..2024-06-18 bars=242 mean fwd  +15.2% excess   +1.2% neg-share 0.36
+  btc PRICE top0.8 h=60 validation: 3 episodes, mean episode excess -6.3%, 3/3 negative, bar-weighted -5.0%, dropping worst (2024-07-20, 3% of bars) -> -4.6%
+      2024-07-20..2024-07-30 bars=  9 mean fwd   -4.7% excess   -9.5% neg-share 1.00
+      2024-10-16..2025-02-24 bars=129 mean fwd   +2.1% excess   -2.7% neg-share 0.60
+      2025-05-02..2025-10-29 bars=163 mean fwd   -1.8% excess   -6.6% neg-share 0.51
+  btc COIN perp_oi top0.8 h=60 train: 2 episodes, mean episode excess -19.2%, 2/2 negative, bar-weighted -25.6%, dropping worst (2021-10-22, 99% of bars) -> -12.7%
+      2021-10-22..2022-12-06 bars=352 mean fwd  -11.6% excess  -25.6% neg-share 0.76
+      2023-08-10..2023-08-18 bars=  2 mean fwd   +1.3% excess  -12.7% neg-share 0.50
+  btc COIN perp_oi top0.8 h=60 validation: 2 episodes, mean episode excess -1.8%, 1/2 negative, bar-weighted -0.9%, dropping worst (2025-05-24, 46% of bars) -> +9.7%
+      2024-07-05..2025-02-27 bars= 98 mean fwd  +14.5% excess   +9.7% neg-share 0.42
+      2025-05-24..2025-12-31 bars= 84 mean fwd   -8.5% excess  -13.3% neg-share 0.73
+  btc COIN perp_oi top0.8 h=60 test: 1 episodes, mean episode excess -1.9%, 1/1 negative, bar-weighted -1.9%, dropping worst (2026-01-01, 100% of bars) -> +0.0%
+      2026-01-01..2026-09-18 bars=179 mean fwd   -0.0% excess   -1.9% neg-share 0.55
+  eth USD perp_oi top0.8 h=30 train: 6 episodes, mean episode excess -14.3%, 6/6 negative, bar-weighted -8.8%, dropping worst (2022-10-24, 5% of bars) -> -12.3%
+      2021-10-07..2022-04-12 bars=102 mean fwd   -7.7% excess  -15.9% neg-share 0.74
+      2022-07-29..2022-09-14 bars= 23 mean fwd  -15.1% excess  -23.3% neg-share 1.00
+      2022-10-24..2022-12-05 bars= 19 mean fwd  -15.8% excess  -24.0% neg-share 1.00
+      2023-01-08..2023-05-07 bars= 41 mean fwd   +0.4% excess   -7.8% neg-share 0.44
+      2023-07-05..2023-07-15 bars=  2 mean fwd   -4.3% excess  -12.6% neg-share 1.00
+      2023-11-11..2024-06-30 bars=198 mean fwd   +6.2% excess   -2.1% neg-share 0.50
+  eth USD perp_oi top0.8 h=30 validation: 3 episodes, mean episode excess -7.0%, 2/3 negative, bar-weighted -2.2%, dropping worst (2024-07-01, 11% of bars) -> -0.3%
+      2024-07-01..2024-08-03 bars= 26 mean fwd  -18.4% excess  -20.5% neg-share 1.00
+      2024-10-22..2025-02-03 bars= 97 mean fwd   -3.2% excess   -5.2% neg-share 0.72
+      2025-05-12..2025-10-11 bars=112 mean fwd   +6.7% excess   +4.7% neg-share 0.41
+  eth USD perp_oi top0.8 h=30 test: 2 episodes, mean episode excess -23.6%, 2/2 negative, bar-weighted -13.6%, dropping worst (2026-01-15, 8% of bars) -> -11.6%
+      2026-01-15..2026-01-15 bars=  1 mean fwd  -37.1% excess  -35.6% neg-share 1.00
+      2026-09-21..2026-10-09 bars= 11 mean fwd  -13.2% excess  -11.6% neg-share 1.00
+  eth USD perp_oi top0.9 h=30 train: 8 episodes, mean episode excess -16.2%, 7/8 negative, bar-weighted -9.8%, dropping worst (2022-10-25, 5% of bars) -> -14.8%
+      2021-10-16..2022-01-06 bars= 44 mean fwd   -8.6% excess  -16.8% neg-share 0.68
+      2022-03-24..2022-04-07 bars= 13 mean fwd  -14.9% excess  -23.2% neg-share 1.00
+      2022-07-31..2022-09-13 bars= 16 mean fwd  -14.7% excess  -23.0% neg-share 1.00
+      2022-10-25..2022-12-04 bars= 13 mean fwd  -17.7% excess  -26.0% neg-share 1.00
+      2023-01-12..2023-02-09 bars=  8 mean fwd   +0.4% excess   -7.8% neg-share 0.38
+      2023-04-06..2023-05-07 bars= 10 mean fwd   -7.8% excess  -16.1% neg-share 0.70
+      2023-11-11..2024-04-13 bars=121 mean fwd   +8.5% excess   +0.3% neg-share 0.45
+      2024-05-22..2024-06-30 bars= 40 mean fwd   -8.5% excess  -16.7% neg-share 0.93
+  eth USD perp_oi top0.9 h=30 validation: 3 episodes, mean episode excess -3.9%, 2/3 negative, bar-weighted -1.3%, dropping worst (2024-07-01, 2% of bars) -> -1.5%
+      2024-07-01..2024-07-04 bars=  4 mean fwd   -6.7% excess   -8.8% neg-share 1.00
+      2024-11-08..2025-01-25 bars= 72 mean fwd   -4.8% excess   -6.9% neg-share 0.75
+      2025-05-30..2025-10-08 bars= 84 mean fwd   +5.9% excess   +3.9% neg-share 0.38
+  eth USD futures_oi top0.8 h=30 train: 5 episodes, mean episode excess -9.5%, 4/5 negative, bar-weighted -5.1%, dropping worst (2022-04-05, 0% of bars) -> -5.0%
+      2021-10-04..2021-12-29 bars= 66 mean fwd   -0.8% excess   -9.0% neg-share 0.61
+      2022-04-05..2022-04-05 bars=  1 mean fwd  -19.3% excess  -27.6% neg-share 1.00
+      2023-02-22..2023-03-04 bars=  4 mean fwd  +10.5% excess   +2.2% neg-share 0.00
+      2023-04-06..2023-08-18 bars= 99 mean fwd   -4.3% excess  -12.6% neg-share 0.76
+      2023-11-07..2024-06-30 bars=230 mean fwd   +7.4% excess   -0.9% neg-share 0.44
+  eth USD futures_oi top0.8 h=30 validation: 3 episodes, mean episode excess -7.2%, 2/3 negative, bar-weighted -1.8%, dropping worst (2024-07-01, 12% of bars) -> -0.7%
+      2024-07-01..2024-08-04 bars= 33 mean fwd  -18.3% excess  -20.3% neg-share 1.00
+      2024-10-22..2025-02-25 bars= 96 mean fwd   -5.9% excess   -8.0% neg-share 0.76
+      2025-05-12..2025-10-11 bars=144 mean fwd   +8.6% excess   +6.5% neg-share 0.41
+  eth USD futures_oi top0.8 h=30 test: 1 episodes, mean episode excess -10.1%, 1/1 negative, bar-weighted -10.1%, dropping worst (2026-09-23, 100% of bars) -> +0.0%
+      2026-09-23..2026-09-24 bars=  2 mean fwd  -11.7% excess  -10.1% neg-share 1.00
+  eth PRICE top0.8 h=30 train: 5 episodes, mean episode excess -17.5%, 4/5 negative, bar-weighted +2.2%, dropping worst (2020-02-08, 2% of bars) -> -8.8%
+      2019-06-30..2019-07-15 bars= 16 mean fwd  -24.2% excess  -32.4% neg-share 1.00
+      2020-02-08..2020-03-07 bars= 20 mean fwd  -44.1% excess  -52.3% neg-share 1.00
+      2020-05-31..2021-12-28 bars=548 mean fwd  +17.4% excess   +9.2% neg-share 0.35
+      2023-04-01..2023-08-02 bars=105 mean fwd   -2.9% excess  -11.1% neg-share 0.70
+      2023-11-06..2024-06-29 bars=230 mean fwd   +7.3% excess   -1.0% neg-share 0.43
+  eth PRICE top0.8 h=30 validation: 3 episodes, mean episode excess -12.8%, 3/3 negative, bar-weighted -6.9%, dropping worst (2024-07-01, 8% of bars) -> -8.8%
+      2024-07-01..2024-07-24 bars= 10 mean fwd  -18.9% excess  -20.9% neg-share 1.00
+      2024-11-28..2025-01-07 bars= 26 mean fwd  -12.2% excess  -14.3% neg-share 1.00
+      2025-07-17..2025-10-28 bars= 94 mean fwd   -1.3% excess   -3.3% neg-share 0.51
+  eth COIN perp_oi top0.8 h=30 train: 5 episodes, mean episode excess -10.4%, 4/5 negative, bar-weighted -9.9%, dropping worst (2023-04-15, 0% of bars) -> -7.7%
+      2021-10-22..2021-10-31 bars=  4 mean fwd   +2.1% excess   -6.1% neg-share 0.50
+      2021-12-27..2023-02-10 bars=358 mean fwd   -1.6% excess   -9.9% neg-share 0.58
+      2023-04-15..2023-04-15 bars=  1 mean fwd  -13.2% excess  -21.4% neg-share 1.00
+      2024-01-15..2024-04-13 bars= 21 mean fwd  +10.1% excess   +1.9% neg-share 0.33
+      2024-05-20..2024-06-30 bars= 41 mean fwd   -8.4% excess  -16.6% neg-share 0.93
+  eth COIN perp_oi top0.8 h=30 validation: 3 episodes, mean episode excess -3.6%, 1/3 negative, bar-weighted +4.0%, dropping worst (2024-07-01, 9% of bars) -> +3.9%
+      2024-07-01..2024-08-06 bars= 32 mean fwd  -16.5% excess  -18.6% neg-share 0.97
+      2024-09-16..2025-10-11 bars=313 mean fwd   +8.6% excess   +6.6% neg-share 0.46
+      2025-11-20..2025-12-31 bars= 27 mean fwd   +3.3% excess   +1.3% neg-share 0.33
+  eth COIN perp_oi top0.8 h=30 test: 1 episodes, mean episode excess -0.5%, 1/1 negative, bar-weighted -0.5%, dropping worst (2026-01-01, 100% of bars) -> +0.0%
+      2026-01-01..2026-10-16 bars=168 mean fwd   -2.1% excess   -0.5% neg-share 0.45
+  eth USD perp_oi top0.8 h=60 train: 3 episodes, mean episode excess -22.9%, 3/3 negative, bar-weighted -19.0%, dropping worst (2021-10-07, 26% of bars) -> -15.4%
+      2021-10-07..2022-04-12 bars=102 mean fwd  -21.1% excess  -38.0% neg-share 0.80
+      2022-07-29..2023-07-15 bars= 85 mean fwd   -6.3% excess  -23.3% neg-share 0.58
+      2023-11-11..2024-06-30 bars=198 mean fwd   +9.5% excess   -7.5% neg-share 0.34
+  eth USD perp_oi top0.8 h=60 validation: 3 episodes, mean episode excess -16.8%, 2/3 negative, bar-weighted -12.2%, dropping worst (2024-07-01, 11% of bars) -> -11.0%
+      2024-07-01..2024-08-03 bars= 26 mean fwd  -24.5% excess  -28.4% neg-share 1.00
+      2024-10-22..2025-02-03 bars= 97 mean fwd  -18.8% excess  -22.7% neg-share 0.78
+      2025-05-12..2025-10-11 bars=112 mean fwd   +4.7% excess   +0.7% neg-share 0.55
+  eth USD perp_oi top0.8 h=60 test: 1 episodes, mean episode excess -31.4%, 1/1 negative, bar-weighted -31.4%, dropping worst (2026-01-15, 100% of bars) -> +0.0%
+      2026-01-15..2026-01-15 bars=  1 mean fwd  -29.1% excess  -31.4% neg-share 1.00
+  eth USD perp_oi top0.9 h=60 train: 4 episodes, mean episode excess -33.8%, 4/4 negative, bar-weighted -20.1%, dropping worst (2022-03-24, 5% of bars) -> -24.7%
+      2021-10-16..2022-01-06 bars= 44 mean fwd  -17.6% excess  -34.6% neg-share 0.84
+      2022-03-24..2022-04-07 bars= 13 mean fwd  -44.2% excess  -61.2% neg-share 1.00
+      2022-07-31..2023-05-07 bars= 47 mean fwd  -12.4% excess  -29.4% neg-share 0.74
+      2023-11-11..2024-06-30 bars=161 mean fwd   +6.7% excess  -10.2% neg-share 0.40
+  eth USD perp_oi top0.9 h=60 validation: 3 episodes, mean episode excess -18.8%, 3/3 negative, bar-weighted -13.7%, dropping worst (2024-07-01, 2% of bars) -> -14.1%
+      2024-07-01..2024-07-04 bars=  4 mean fwd  -24.2% excess  -28.1% neg-share 1.00
+      2024-11-08..2025-01-25 bars= 72 mean fwd  -21.0% excess  -24.9% neg-share 0.83
+      2025-05-30..2025-10-08 bars= 84 mean fwd   +0.5% excess   -3.4% neg-share 0.58
+  eth USD futures_oi top0.8 h=60 train: 4 episodes, mean episode excess -31.6%, 4/4 negative, bar-weighted -15.4%, dropping worst (2022-04-05, 0% of bars) -> -20.7%
+      2021-10-04..2021-12-29 bars= 66 mean fwd  -16.6% excess  -33.6% neg-share 0.76
+      2022-04-05..2022-04-05 bars=  1 mean fwd  -47.0% excess  -64.0% neg-share 1.00
+      2023-02-22..2023-08-18 bars=103 mean fwd   -4.4% excess  -21.3% neg-share 0.63
+      2023-11-07..2024-06-30 bars=230 mean fwd   +9.6% excess   -7.3% neg-share 0.31
+  eth USD futures_oi top0.8 h=60 validation: 3 episodes, mean episode excess -13.9%, 2/3 negative, bar-weighted -6.3%, dropping worst (2024-07-01, 12% of bars) -> -7.1%
+      2024-07-01..2024-08-04 bars= 33 mean fwd  -23.5% excess  -27.4% neg-share 1.00
+      2024-10-22..2025-02-25 bars= 96 mean fwd  -21.8% excess  -25.8% neg-share 0.82
+      2025-05-12..2025-10-11 bars=144 mean fwd  +15.4% excess  +11.5% neg-share 0.43
+  eth PRICE top0.8 h=60 train: 5 episodes, mean episode excess -22.0%, 4/5 negative, bar-weighted +7.0%, dropping worst (2019-06-30, 2% of bars) -> -13.6%
+      2019-06-30..2019-07-15 bars= 16 mean fwd  -38.6% excess  -55.5% neg-share 1.00
+      2020-02-08..2020-03-07 bars= 20 mean fwd  -31.2% excess  -48.2% neg-share 1.00
+      2020-05-31..2021-12-28 bars=548 mean fwd  +38.8% excess  +21.8% neg-share 0.26
+      2023-04-01..2023-08-02 bars=105 mean fwd   -5.5% excess  -22.4% neg-share 0.67
+      2023-11-06..2024-06-29 bars=230 mean fwd  +11.3% excess   -5.6% neg-share 0.30
+  eth PRICE top0.8 h=60 validation: 3 episodes, mean episode excess -26.3%, 3/3 negative, bar-weighted -19.9%, dropping worst (2024-07-01, 8% of bars) -> -23.2%
+      2024-07-01..2024-07-24 bars= 10 mean fwd  -28.5% excess  -32.4% neg-share 1.00
+      2024-11-28..2025-01-07 bars= 26 mean fwd  -26.9% excess  -30.9% neg-share 1.00
+      2025-07-17..2025-10-28 bars= 94 mean fwd  -11.6% excess  -15.5% neg-share 0.73
+  eth COIN perp_oi top0.8 h=60 train: 3 episodes, mean episode excess -27.7%, 3/3 negative, bar-weighted -21.3%, dropping worst (2023-04-15, 0% of bars) -> -22.6%
+      2021-10-22..2023-02-10 bars=362 mean fwd   -3.8% excess  -20.8% neg-share 0.59
+      2023-04-15..2023-04-15 bars=  1 mean fwd  -21.1% excess  -38.0% neg-share 1.00
+      2024-01-15..2024-06-30 bars= 62 mean fwd   -7.4% excess  -24.4% neg-share 0.69
+  eth COIN perp_oi top0.8 h=60 validation: 1 episodes, mean episode excess +3.6%, 0/1 negative, bar-weighted +3.6%, dropping worst (2024-07-01, 100% of bars) -> +0.0%
+      2024-07-01..2025-12-31 bars=372 mean fwd   +7.5% excess   +3.6% neg-share 0.50
+  eth COIN perp_oi top0.8 h=60 test: 1 episodes, mean episode excess -0.4%, 1/1 negative, bar-weighted -0.4%, dropping worst (2026-01-01, 100% of bars) -> +0.0%
+      2026-01-01..2026-09-16 bars=155 mean fwd   +1.9% excess   -0.4% neg-share 0.55
+
+==============================================================================================================
+S4. EXCESS vs TRAILING 365-day mean of realized h-day returns (known at t); t = NW t of the mean on flagged bars; also vs-rest t
+==============================================================================================================
+  btc USD perp_oi top0.8 [trail365]                h=30: tra ex   -9.1% t= -2.5 n_ind= 5 n_flag=403 | val ex   -3.7% t= -1.1 n_ind= 2 n_flag=291 | tes ex   +1.0% t= +nan n_ind= 1 n_flag=  6
+  btc USD perp_oi top0.8 [trail365]                h=60: tra ex  -18.1% t= -2.2 n_ind= 4 n_flag=403 | val ex  -10.2% t= -1.7 n_ind= 2 n_flag=291 | tes - (n_flag=1)
+  btc USD perp_oi top0.8 [trail365]                h=90: tra ex  -24.0% t= -1.6 n_ind= 3 n_flag=403 | val ex  -19.1% t= -2.6 n_ind= 1 n_flag=291 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 [trail365]             h=30: tra ex   -4.2% t= -1.2 n_ind= 4 n_flag=464 | val ex   -3.8% t= -1.1 n_ind= 2 n_flag=277 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 [trail365]             h=60: tra ex   -9.9% t= -1.3 n_ind= 4 n_flag=464 | val ex  -11.7% t= -2.1 n_ind= 2 n_flag=277 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 [trail365]             h=90: tra ex  -12.5% t= -1.0 n_ind= 3 n_flag=464 | val ex  -21.4% t= -3.4 n_ind= 1 n_flag=277 | tes - (n_flag=0)
+  btc USD perp_oi top0.9 [trail365]                h=30: tra ex  -12.2% t= -2.6 n_ind= 5 n_flag=252 | val ex   -3.7% t= -1.0 n_ind= 2 n_flag=201 | tes - (n_flag=2)
+  btc USD perp_oi top0.9 [trail365]                h=60: tra ex  -24.7% t= -2.5 n_ind= 4 n_flag=252 | val ex  -10.9% t= -2.0 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD perp_oi top0.9 [trail365]                h=90: tra ex  -32.8% t= -1.8 n_ind= 3 n_flag=252 | val ex  -21.8% t= -3.3 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 [trail365]             h=30: tra ex   -7.7% t= -2.2 n_ind= 3 n_flag=316 | val ex   -2.7% t= -0.7 n_ind= 4 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 [trail365]             h=60: tra ex  -13.5% t= -1.8 n_ind= 3 n_flag=316 | val ex  -11.1% t= -2.1 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 [trail365]             h=90: tra ex  -15.4% t= -1.1 n_ind= 2 n_flag=316 | val ex  -23.3% t= -3.5 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc PRICE top0.8 [trail365]                      h=30: tra ex   -1.9% t= -0.4 n_ind= 7 n_flag=721 | val ex   -4.8% t= -1.6 n_ind= 3 n_flag=301 | tes - (n_flag=0)
+  btc PRICE top0.8 [trail365]                      h=60: tra ex   +0.9% t= +0.1 n_ind= 6 n_flag=695 | val ex  -13.7% t= -2.9 n_ind= 3 n_flag=301 | tes - (n_flag=0)
+  btc PRICE top0.8 [trail365]                      h=90: tra ex   +8.8% t= +0.3 n_ind= 4 n_flag=686 | val ex  -22.1% t= -4.0 n_ind= 1 n_flag=301 | tes - (n_flag=0)
+  btc COIN perp_oi top0.8 [trail365]               h=30: tra ex   -7.3% t= -2.1 n_ind= 2 n_flag=354 | val ex   -2.5% t= -0.8 n_ind= 5 n_flag=182 | tes ex   +0.0% t= +0.0 n_ind= 1 n_flag=183
+  btc COIN perp_oi top0.8 [trail365]               h=60: tra ex  -13.8% t= -1.9 n_ind= 2 n_flag=354 | val ex   -9.6% t= -1.3 n_ind= 2 n_flag=182 | tes ex   +3.8% t= +0.4 n_ind= 1 n_flag=179
+  btc COIN perp_oi top0.8 [trail365]               h=90: tra ex  -21.5% t= -1.5 n_ind= 2 n_flag=354 | val ex  -20.1% t= -1.9 n_ind= 1 n_flag=182 | tes ex   +7.9% t= +0.7 n_ind= 1 n_flag=156
+  btc COIN futures_oi top0.8 [trail365]            h=30: tra ex   -5.8% t= -1.5 n_ind= 5 n_flag=354 | val ex   -0.8% t= -0.2 n_ind= 3 n_flag=207 | tes ex  +14.7% t= +7.6 n_ind= 4 n_flag= 11
+  btc COIN futures_oi top0.8 [trail365]            h=60: tra ex  -10.9% t= -1.3 n_ind= 3 n_flag=354 | val ex   -5.5% t= -0.6 n_ind= 2 n_flag=207 | tes ex  +25.6% t=+11.7 n_ind= 3 n_flag= 10
+  btc COIN futures_oi top0.8 [trail365]            h=90: tra ex  -13.4% t= -0.9 n_ind= 3 n_flag=354 | val ex  -14.4% t= -1.2 n_ind= 2 n_flag=207 | tes ex  +17.7% t=+22.0 n_ind= 2 n_flag= 10
+  eth USD perp_oi top0.8 [trail365]                h=30: tra ex   -7.8% t= -1.6 n_ind= 6 n_flag=385 | val ex   -5.0% t= -0.9 n_ind= 3 n_flag=235 | tes ex  -12.9% t=-12.9 n_ind= 2 n_flag= 12
+  eth USD perp_oi top0.8 [trail365]                h=60: tra ex  -17.4% t= -1.4 n_ind= 3 n_flag=385 | val ex  -17.2% t= -1.7 n_ind= 3 n_flag=235 | tes - (n_flag=1)
+  eth USD perp_oi top0.8 [trail365]                h=90: tra ex  -25.9% t= -1.2 n_ind= 3 n_flag=385 | val ex  -28.5% t= -2.9 n_ind= 2 n_flag=235 | tes - (n_flag=1)
+  eth USD futures_oi top0.8 [trail365]             h=30: tra ex   -4.6% t= -1.1 n_ind= 5 n_flag=400 | val ex   -4.0% t= -0.6 n_ind= 3 n_flag=273 | tes - (n_flag=2)
+  eth USD futures_oi top0.8 [trail365]             h=60: tra ex  -14.1% t= -1.4 n_ind= 4 n_flag=400 | val ex  -10.0% t= -0.7 n_ind= 3 n_flag=273 | tes - (n_flag=0)
+  eth USD futures_oi top0.8 [trail365]             h=90: tra ex  -21.8% t= -1.3 n_ind= 3 n_flag=400 | val ex  -16.6% t= -0.9 n_ind= 1 n_flag=273 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 [trail365]                h=30: tra ex   -9.1% t= -1.5 n_ind= 8 n_flag=265 | val ex   -4.2% t= -0.8 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 [trail365]                h=60: tra ex  -18.6% t= -1.4 n_ind= 4 n_flag=265 | val ex  -18.5% t= -2.4 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 [trail365]                h=90: tra ex  -26.6% t= -1.3 n_ind= 3 n_flag=265 | val ex  -34.7% t= -5.3 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 [trail365]             h=30: tra ex   -6.2% t= -1.5 n_ind= 4 n_flag=266 | val ex   -4.5% t= -0.7 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 [trail365]             h=60: tra ex  -15.1% t= -1.6 n_ind= 3 n_flag=266 | val ex  -16.1% t= -1.4 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 [trail365]             h=90: tra ex  -21.0% t= -1.1 n_ind= 2 n_flag=266 | val ex  -29.8% t= -2.6 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth PRICE top0.8 [trail365]                      h=30: tra ex   -1.9% t= -0.4 n_ind= 4 n_flag=903 | val ex  -10.6% t= -2.0 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth PRICE top0.8 [trail365]                      h=60: tra ex   -1.2% t= -0.1 n_ind= 4 n_flag=903 | val ex  -26.1% t= -3.5 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth PRICE top0.8 [trail365]                      h=90: tra ex   -0.2% t= -0.0 n_ind= 3 n_flag=903 | val ex  -38.9% t=-10.0 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth COIN perp_oi top0.8 [trail365]               h=30: tra ex   -4.5% t= -0.8 n_ind= 5 n_flag=425 | val ex   +3.0% t= +0.5 n_ind= 3 n_flag=372 | tes ex   -2.1% t= -0.3 n_ind= 1 n_flag=168
+  eth COIN perp_oi top0.8 [trail365]               h=60: tra ex  -12.0% t= -1.2 n_ind= 3 n_flag=425 | val ex   +1.3% t= +0.1 n_ind= 1 n_flag=372 | tes ex   -0.2% t= -0.0 n_ind= 1 n_flag=155
+  eth COIN perp_oi top0.8 [trail365]               h=90: tra ex  -22.7% t= -1.3 n_ind= 2 n_flag=425 | val ex   -3.0% t= -0.2 n_ind= 1 n_flag=372 | tes ex   -1.1% t= -0.1 n_ind= 1 n_flag=139
+  eth COIN futures_oi top0.8 [trail365]            h=30: tra ex   -3.4% t= -0.6 n_ind= 3 n_flag=394 | val ex   +1.4% t= +0.2 n_ind= 1 n_flag=429 | tes ex  +14.2% t= +3.6 n_ind= 1 n_flag= 33
+  eth COIN futures_oi top0.8 [trail365]            h=60: tra ex   -9.9% t= -0.9 n_ind= 3 n_flag=394 | val ex   +2.8% t= +0.2 n_ind= 1 n_flag=429 | tes ex  +26.2% t= +7.6 n_ind= 1 n_flag= 28
+  eth COIN futures_oi top0.8 [trail365]            h=90: tra ex  -18.8% t= -1.1 n_ind= 3 n_flag=394 | val ex   +3.5% t= +0.2 n_ind= 1 n_flag=429 | tes ex  +21.0% t=+13.4 n_ind= 1 n_flag= 25
+
+==============================================================================================================
+S5. LAG 2 and LAG 5 (flag shifted 2 / 5 bars), excess vs period mean
+==============================================================================================================
+  btc USD perp_oi top0.8 lag2                      h=30: tra ex   -8.5% t= -3.0 n_ind= 5 n_flag=403 | val ex   +0.4% t= +0.2 n_ind= 2 n_flag=291 | tes ex   -1.6% t= -0.4 n_ind= 1 n_flag=  6
+  btc USD perp_oi top0.8 lag2                      h=60: tra ex  -17.3% t= -2.9 n_ind= 4 n_flag=403 | val ex   -0.8% t= -0.3 n_ind= 2 n_flag=291 | tes - (n_flag=1)
+  btc USD perp_oi top0.8 lag2                      h=90: tra ex  -23.0% t= -2.3 n_ind= 3 n_flag=403 | val ex   -4.7% t= -1.0 n_ind= 1 n_flag=291 | tes - (n_flag=0)
+  btc USD perp_oi top0.9 lag2                      h=30: tra ex  -10.6% t= -3.0 n_ind= 5 n_flag=252 | val ex   +0.5% t= +0.2 n_ind= 2 n_flag=201 | tes - (n_flag=2)
+  btc USD perp_oi top0.9 lag2                      h=60: tra ex  -21.6% t= -3.4 n_ind= 4 n_flag=252 | val ex   -1.4% t= -0.4 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD perp_oi top0.9 lag2                      h=90: tra ex  -27.6% t= -2.6 n_ind= 3 n_flag=252 | val ex   -7.4% t= -1.4 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 lag2                   h=30: tra ex   -4.5% t= -1.5 n_ind= 4 n_flag=463 | val ex   +0.3% t= +0.2 n_ind= 2 n_flag=278 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 lag2                   h=60: tra ex  -11.3% t= -1.7 n_ind= 4 n_flag=463 | val ex   -2.5% t= -0.8 n_ind= 2 n_flag=278 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 lag2                   h=90: tra ex  -16.0% t= -1.5 n_ind= 3 n_flag=463 | val ex   -7.3% t= -1.4 n_ind= 1 n_flag=278 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 lag2                   h=30: tra ex   -7.3% t= -2.4 n_ind= 3 n_flag=316 | val ex   +1.4% t= +0.4 n_ind= 4 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 lag2                   h=60: tra ex  -13.6% t= -2.1 n_ind= 3 n_flag=316 | val ex   -1.9% t= -0.5 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 lag2                   h=90: tra ex  -17.1% t= -1.5 n_ind= 2 n_flag=316 | val ex   -9.2% t= -1.6 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc PRICE top0.8 lag2                            h=30: tra ex   +0.7% t= +0.2 n_ind= 7 n_flag=750 | val ex   -1.0% t= -0.6 n_ind= 3 n_flag=301 | tes - (n_flag=0)
+  btc PRICE top0.8 lag2                            h=60: tra ex   +2.3% t= +0.3 n_ind= 6 n_flag=750 | val ex   -5.2% t= -1.4 n_ind= 3 n_flag=301 | tes - (n_flag=0)
+  btc PRICE top0.8 lag2                            h=90: tra ex   +6.9% t= +0.5 n_ind= 5 n_flag=750 | val ex   -9.0% t= -1.6 n_ind= 1 n_flag=301 | tes - (n_flag=0)
+  btc COIN perp_oi top0.8 lag2                     h=30: tra ex  -13.8% t= -4.7 n_ind= 2 n_flag=354 | val ex   +1.2% t= +0.6 n_ind= 5 n_flag=181 | tes ex   -1.3% t= -0.7 n_ind= 1 n_flag=184
+  btc COIN perp_oi top0.8 lag2                     h=60: tra ex  -25.4% t= -4.2 n_ind= 2 n_flag=354 | val ex   -0.9% t= -0.3 n_ind= 2 n_flag=181 | tes ex   -2.0% t= -0.8 n_ind= 1 n_flag=179
+  btc COIN perp_oi top0.8 lag2                     h=90: tra ex  -36.3% t= -3.6 n_ind= 2 n_flag=354 | val ex   -6.3% t= -1.8 n_ind= 1 n_flag=181 | tes ex   +0.6% t= +0.3 n_ind= 1 n_flag=156
+  btc USD perp_oi top0.8 lag5                      h=30: tra ex   -8.4% t= -3.0 n_ind= 5 n_flag=403 | val ex   -0.0% t= -0.0 n_ind= 2 n_flag=291 | tes ex   -1.7% t= -0.5 n_ind= 1 n_flag=  6
+  btc USD perp_oi top0.8 lag5                      h=60: tra ex  -17.0% t= -2.8 n_ind= 4 n_flag=403 | val ex   -1.6% t= -0.5 n_ind= 2 n_flag=291 | tes - (n_flag=1)
+  btc USD perp_oi top0.8 lag5                      h=90: tra ex  -22.4% t= -2.2 n_ind= 3 n_flag=403 | val ex   -5.1% t= -1.1 n_ind= 1 n_flag=291 | tes - (n_flag=0)
+  btc USD perp_oi top0.9 lag5                      h=30: tra ex  -11.0% t= -3.4 n_ind= 5 n_flag=252 | val ex   +0.1% t= +0.1 n_ind= 2 n_flag=201 | tes - (n_flag=2)
+  btc USD perp_oi top0.9 lag5                      h=60: tra ex  -21.4% t= -3.4 n_ind= 4 n_flag=252 | val ex   -2.0% t= -0.6 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD perp_oi top0.9 lag5                      h=90: tra ex  -26.8% t= -2.5 n_ind= 3 n_flag=252 | val ex   -7.9% t= -1.6 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 lag5                   h=30: tra ex   -4.6% t= -1.6 n_ind= 4 n_flag=460 | val ex   -0.0% t= -0.0 n_ind= 2 n_flag=281 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 lag5                   h=60: tra ex  -11.2% t= -1.7 n_ind= 4 n_flag=460 | val ex   -3.2% t= -1.0 n_ind= 2 n_flag=281 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 lag5                   h=90: tra ex  -15.6% t= -1.4 n_ind= 3 n_flag=460 | val ex   -7.5% t= -1.4 n_ind= 1 n_flag=281 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 lag5                   h=30: tra ex   -7.6% t= -2.6 n_ind= 3 n_flag=316 | val ex   +1.4% t= +0.5 n_ind= 4 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 lag5                   h=60: tra ex  -13.3% t= -2.0 n_ind= 3 n_flag=316 | val ex   -2.8% t= -0.7 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 lag5                   h=90: tra ex  -16.5% t= -1.4 n_ind= 2 n_flag=316 | val ex  -10.0% t= -1.8 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc PRICE top0.8 lag5                            h=30: tra ex   +0.6% t= +0.2 n_ind= 7 n_flag=750 | val ex   -1.4% t= -0.9 n_ind= 3 n_flag=301 | tes - (n_flag=0)
+  btc PRICE top0.8 lag5                            h=60: tra ex   +2.2% t= +0.3 n_ind= 6 n_flag=750 | val ex   -5.8% t= -1.5 n_ind= 3 n_flag=301 | tes - (n_flag=0)
+  btc PRICE top0.8 lag5                            h=90: tra ex   +7.0% t= +0.5 n_ind= 5 n_flag=750 | val ex   -9.3% t= -1.7 n_ind= 1 n_flag=301 | tes - (n_flag=0)
+  btc COIN perp_oi top0.8 lag5                     h=30: tra ex  -13.4% t= -4.6 n_ind= 2 n_flag=354 | val ex   +0.8% t= +0.5 n_ind= 5 n_flag=178 | tes ex   -1.3% t= -0.6 n_ind= 1 n_flag=187
+  btc COIN perp_oi top0.8 lag5                     h=60: tra ex  -24.8% t= -4.0 n_ind= 2 n_flag=354 | val ex   -1.4% t= -0.5 n_ind= 2 n_flag=178 | tes ex   -1.9% t= -0.8 n_ind= 1 n_flag=180
+  btc COIN perp_oi top0.8 lag5                     h=90: tra ex  -36.0% t= -3.6 n_ind= 2 n_flag=354 | val ex   -7.1% t= -2.1 n_ind= 1 n_flag=178 | tes ex   +1.1% t= +0.6 n_ind= 1 n_flag=156
+  eth USD perp_oi top0.8 lag2                      h=30: tra ex   -8.6% t= -2.3 n_ind= 6 n_flag=384 | val ex   -2.5% t= -0.7 n_ind= 3 n_flag=236 | tes ex  -14.0% t= -2.9 n_ind= 2 n_flag= 12
+  eth USD perp_oi top0.8 lag2                      h=60: tra ex  -18.9% t= -2.6 n_ind= 3 n_flag=384 | val ex  -12.6% t= -2.3 n_ind= 3 n_flag=236 | tes - (n_flag=1)
+  eth USD perp_oi top0.8 lag2                      h=90: tra ex  -27.2% t= -2.3 n_ind= 3 n_flag=384 | val ex  -23.7% t= -2.8 n_ind= 2 n_flag=236 | tes - (n_flag=1)
+  eth USD perp_oi top0.9 lag2                      h=30: tra ex   -9.7% t= -2.1 n_ind= 8 n_flag=264 | val ex   -1.9% t= -0.4 n_ind= 3 n_flag=161 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 lag2                      h=60: tra ex  -20.2% t= -2.5 n_ind= 4 n_flag=264 | val ex  -14.4% t= -2.1 n_ind= 3 n_flag=161 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 lag2                      h=90: tra ex  -27.9% t= -2.2 n_ind= 3 n_flag=264 | val ex  -30.4% t= -3.0 n_ind= 3 n_flag=161 | tes - (n_flag=0)
+  eth USD futures_oi top0.8 lag2                   h=30: tra ex   -5.3% t= -1.4 n_ind= 5 n_flag=399 | val ex   -2.0% t= -0.6 n_ind= 3 n_flag=274 | tes - (n_flag=2)
+  eth USD futures_oi top0.8 lag2                   h=60: tra ex  -15.5% t= -2.2 n_ind= 4 n_flag=399 | val ex   -6.5% t= -1.0 n_ind= 3 n_flag=274 | tes - (n_flag=0)
+  eth USD futures_oi top0.8 lag2                   h=90: tra ex  -24.1% t= -2.0 n_ind= 3 n_flag=399 | val ex  -13.6% t= -1.5 n_ind= 1 n_flag=274 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 lag2                   h=30: tra ex   -6.8% t= -1.9 n_ind= 4 n_flag=266 | val ex   -2.3% t= -0.5 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 lag2                   h=60: tra ex  -16.5% t= -2.3 n_ind= 3 n_flag=266 | val ex  -12.3% t= -1.7 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 lag2                   h=90: tra ex  -22.7% t= -1.6 n_ind= 2 n_flag=266 | val ex  -26.2% t= -2.5 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth PRICE top0.8 lag2                            h=30: tra ex   +2.2% t= +0.8 n_ind= 5 n_flag=919 | val ex   -7.1% t= -1.5 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth PRICE top0.8 lag2                            h=60: tra ex   +7.0% t= +1.1 n_ind= 5 n_flag=919 | val ex  -20.0% t= -2.5 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth PRICE top0.8 lag2                            h=90: tra ex  +12.1% t= +1.1 n_ind= 4 n_flag=919 | val ex  -32.7% t= -3.0 n_ind= 3 n_flag=130 | tes - (n_flag=0)
+  eth COIN perp_oi top0.8 lag2                     h=30: tra ex   -9.9% t= -2.5 n_ind= 5 n_flag=424 | val ex   +3.9% t= +2.2 n_ind= 3 n_flag=372 | tes ex   -0.7% t= -0.3 n_ind= 1 n_flag=169
+  eth COIN perp_oi top0.8 lag2                     h=60: tra ex  -21.4% t= -2.9 n_ind= 3 n_flag=424 | val ex   +3.2% t= +1.0 n_ind= 1 n_flag=372 | tes ex   -0.6% t= -0.1 n_ind= 1 n_flag=156
+  eth COIN perp_oi top0.8 lag2                     h=90: tra ex  -33.8% t= -3.0 n_ind= 2 n_flag=424 | val ex   -0.8% t= -0.2 n_ind= 1 n_flag=372 | tes ex   +1.3% t= +0.3 n_ind= 1 n_flag=139
+  eth USD perp_oi top0.8 lag5                      h=30: tra ex   -8.8% t= -2.3 n_ind= 6 n_flag=381 | val ex   -3.7% t= -1.1 n_ind= 3 n_flag=239 | tes ex  -14.8% t= -3.1 n_ind= 2 n_flag= 12
+  eth USD perp_oi top0.8 lag5                      h=60: tra ex  -18.7% t= -2.5 n_ind= 3 n_flag=381 | val ex  -14.2% t= -2.7 n_ind= 3 n_flag=239 | tes - (n_flag=1)
+  eth USD perp_oi top0.8 lag5                      h=90: tra ex  -27.3% t= -2.3 n_ind= 3 n_flag=381 | val ex  -25.4% t= -3.0 n_ind= 2 n_flag=239 | tes - (n_flag=1)
+  eth USD perp_oi top0.9 lag5                      h=30: tra ex   -9.4% t= -2.0 n_ind= 8 n_flag=261 | val ex   -3.1% t= -0.7 n_ind= 3 n_flag=164 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 lag5                      h=60: tra ex  -19.5% t= -2.4 n_ind= 4 n_flag=261 | val ex  -16.7% t= -2.5 n_ind= 3 n_flag=164 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 lag5                      h=90: tra ex  -27.4% t= -2.2 n_ind= 3 n_flag=261 | val ex  -31.9% t= -3.2 n_ind= 3 n_flag=164 | tes - (n_flag=0)
+  eth USD futures_oi top0.8 lag5                   h=30: tra ex   -5.6% t= -1.5 n_ind= 5 n_flag=396 | val ex   -2.6% t= -0.7 n_ind= 3 n_flag=277 | tes - (n_flag=2)
+  eth USD futures_oi top0.8 lag5                   h=60: tra ex  -15.8% t= -2.2 n_ind= 4 n_flag=396 | val ex   -7.1% t= -1.1 n_ind= 3 n_flag=277 | tes - (n_flag=0)
+  eth USD futures_oi top0.8 lag5                   h=90: tra ex  -24.2% t= -1.9 n_ind= 3 n_flag=396 | val ex  -14.7% t= -1.7 n_ind= 1 n_flag=277 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 lag5                   h=30: tra ex   -7.8% t= -2.2 n_ind= 4 n_flag=263 | val ex   -3.2% t= -0.8 n_ind= 3 n_flag=186 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 lag5                   h=60: tra ex  -16.6% t= -2.2 n_ind= 3 n_flag=263 | val ex  -14.7% t= -2.1 n_ind= 3 n_flag=186 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 lag5                   h=90: tra ex  -22.2% t= -1.6 n_ind= 2 n_flag=263 | val ex  -28.0% t= -2.8 n_ind= 3 n_flag=186 | tes - (n_flag=0)
+  eth PRICE top0.8 lag5                            h=30: tra ex   +2.1% t= +0.7 n_ind= 5 n_flag=916 | val ex   -7.9% t= -1.7 n_ind= 3 n_flag=133 | tes - (n_flag=0)
+  eth PRICE top0.8 lag5                            h=60: tra ex   +7.1% t= +1.1 n_ind= 5 n_flag=916 | val ex  -21.3% t= -2.7 n_ind= 3 n_flag=133 | tes - (n_flag=0)
+  eth PRICE top0.8 lag5                            h=90: tra ex  +12.0% t= +1.1 n_ind= 4 n_flag=916 | val ex  -33.4% t= -3.1 n_ind= 3 n_flag=133 | tes - (n_flag=0)
+  eth COIN perp_oi top0.8 lag5                     h=30: tra ex   -9.5% t= -2.3 n_ind= 5 n_flag=421 | val ex   +3.6% t= +2.0 n_ind= 3 n_flag=372 | tes ex   -0.7% t= -0.3 n_ind= 1 n_flag=170
+  eth COIN perp_oi top0.8 lag5                     h=60: tra ex  -21.1% t= -2.8 n_ind= 3 n_flag=421 | val ex   +2.5% t= +0.8 n_ind= 1 n_flag=372 | tes ex   -0.8% t= -0.2 n_ind= 1 n_flag=158
+  eth COIN perp_oi top0.8 lag5                     h=90: tra ex  -33.3% t= -2.9 n_ind= 2 n_flag=421 | val ex   -1.7% t= -0.3 n_ind= 1 n_flag=372 | tes ex   +2.3% t= +0.6 n_ind= 1 n_flag=139
+
+==============================================================================================================
+S6. DASHBOARD OI (oi_BTC / oi_ETH, from 2022-09-09; pct365 flags from ~2023-03) as a second source
+==============================================================================================================
+  log corr dashboard OI vs perp_oi (common sample): 0.996  -- near-identical series; agreement is largely by construction
+  btc DASH oi pct365 top 0.8                       h=30: tra ex   -4.5% t= -1.3 n_ind= 2 n_flag=291 | val ex   +0.5% t= +0.2 n_ind= 2 n_flag=291 | tes ex   +0.7% t= +0.2 n_ind= 1 n_flag=  6
+  btc DASH oi pct365 top 0.8                       h=60: tra ex  -10.2% t= -1.5 n_ind= 2 n_flag=291 | val ex   -0.7% t= -0.2 n_ind= 2 n_flag=291 | tes - (n_flag=1)
+  btc DASH oi pct365 top 0.8                       h=90: tra ex  -12.0% t= -1.0 n_ind= 1 n_flag=291 | val ex   -4.5% t= -0.9 n_ind= 1 n_flag=291 | tes - (n_flag=0)
+  btc USD perp_oi top 0.8 [dash sample only]       h=30: tra ex   -4.8% t= -1.4 n_ind= 2 n_flag=295 | val ex   +0.5% t= +0.2 n_ind= 2 n_flag=291 | tes ex   -0.3% t= -0.1 n_ind= 1 n_flag=  6
+  btc USD perp_oi top 0.8 [dash sample only]       h=60: tra ex  -10.0% t= -1.5 n_ind= 2 n_flag=295 | val ex   -0.8% t= -0.2 n_ind= 2 n_flag=291 | tes - (n_flag=1)
+  btc USD perp_oi top 0.8 [dash sample only]       h=90: tra ex  -12.4% t= -1.1 n_ind= 1 n_flag=295 | val ex   -4.6% t= -0.9 n_ind= 1 n_flag=291 | tes - (n_flag=0)
+     flag agreement (Jaccard) dash vs perp_oi: tra 0.79 (n 291/295) | val 0.87 (n 291/291) | tes 0.5 (n 6/6)
+  btc DASH oi pct365 top 0.9                       h=30: tra ex   -6.2% t= -1.3 n_ind= 3 n_flag=174 | val ex   +0.5% t= +0.2 n_ind= 2 n_flag=199 | tes - (n_flag=2)
+  btc DASH oi pct365 top 0.9                       h=60: tra ex  -13.2% t= -2.1 n_ind= 2 n_flag=174 | val ex   -1.3% t= -0.4 n_ind= 2 n_flag=199 | tes - (n_flag=0)
+  btc DASH oi pct365 top 0.9                       h=90: tra ex  -15.5% t= -1.4 n_ind= 2 n_flag=174 | val ex   -6.8% t= -1.3 n_ind= 2 n_flag=199 | tes - (n_flag=0)
+  btc USD perp_oi top 0.9 [dash sample only]       h=30: tra ex   -6.3% t= -1.4 n_ind= 3 n_flag=174 | val ex   +0.6% t= +0.2 n_ind= 2 n_flag=201 | tes - (n_flag=2)
+  btc USD perp_oi top 0.9 [dash sample only]       h=60: tra ex  -13.2% t= -2.1 n_ind= 2 n_flag=174 | val ex   -1.3% t= -0.4 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD perp_oi top 0.9 [dash sample only]       h=90: tra ex  -15.7% t= -1.5 n_ind= 2 n_flag=174 | val ex   -7.2% t= -1.4 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+     flag agreement (Jaccard) dash vs perp_oi: tra 0.7 (n 174/174) | val 0.77 (n 199/201) | tes 0.33 (n 2/2)
+  btc COIN dash oi/price top 0.8                   h=30: tra - (n_flag=1) | val ex   +1.6% t= +0.7 n_ind= 5 n_flag=188 | tes ex   -0.9% t= -0.5 n_ind= 2 n_flag=199
+  btc COIN dash oi/price top 0.8                   h=60: tra - (n_flag=1) | val ex   +0.5% t= +0.1 n_ind= 2 n_flag=188 | tes ex   -1.9% t= -0.9 n_ind= 1 n_flag=194
+  btc COIN dash oi/price top 0.8                   h=90: tra - (n_flag=1) | val ex   -6.3% t= -1.6 n_ind= 1 n_flag=188 | tes ex   +0.8% t= +0.3 n_ind= 1 n_flag=167
+  log corr dashboard OI vs perp_oi (common sample): 0.995  -- near-identical series; agreement is largely by construction
+  eth DASH oi pct365 top 0.8                       h=30: tra ex   -2.8% t= -0.5 n_ind= 3 n_flag=213 | val ex   -2.0% t= -0.5 n_ind= 3 n_flag=235 | tes ex  -13.3% t= -2.8 n_ind= 2 n_flag= 12
+  eth DASH oi pct365 top 0.8                       h=60: tra ex   -8.9% t= -0.9 n_ind= 2 n_flag=213 | val ex  -11.9% t= -2.2 n_ind= 3 n_flag=235 | tes - (n_flag=1)
+  eth DASH oi pct365 top 0.8                       h=90: tra ex  -13.8% t= -0.9 n_ind= 2 n_flag=213 | val ex  -22.9% t= -2.7 n_ind= 2 n_flag=235 | tes - (n_flag=1)
+  eth USD perp_oi top 0.8 [dash sample only]       h=30: tra ex   -2.9% t= -0.5 n_ind= 3 n_flag=213 | val ex   -2.2% t= -0.6 n_ind= 3 n_flag=235 | tes ex  -13.6% t= -2.9 n_ind= 2 n_flag= 12
+  eth USD perp_oi top 0.8 [dash sample only]       h=60: tra ex   -8.8% t= -0.9 n_ind= 2 n_flag=213 | val ex  -12.2% t= -2.2 n_ind= 3 n_flag=235 | tes - (n_flag=1)
+  eth USD perp_oi top 0.8 [dash sample only]       h=90: tra ex  -13.9% t= -0.9 n_ind= 2 n_flag=213 | val ex  -23.2% t= -2.8 n_ind= 2 n_flag=235 | tes - (n_flag=1)
+     flag agreement (Jaccard) dash vs perp_oi: tra 0.88 (n 213/213) | val 0.87 (n 235/235) | tes 0.6 (n 12/12)
+  eth DASH oi pct365 top 0.9                       h=30: tra ex   -4.8% t= -0.7 n_ind= 3 n_flag=172 | val ex   -0.4% t= -0.1 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth DASH oi pct365 top 0.9                       h=60: tra ex  -11.7% t= -1.1 n_ind= 2 n_flag=172 | val ex  -12.7% t= -1.8 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth DASH oi pct365 top 0.9                       h=90: tra ex  -17.2% t= -1.1 n_ind= 2 n_flag=172 | val ex  -29.0% t= -2.9 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi top 0.9 [dash sample only]       h=30: tra ex   -4.6% t= -0.7 n_ind= 3 n_flag=171 | val ex   -1.3% t= -0.3 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi top 0.9 [dash sample only]       h=60: tra ex  -11.3% t= -1.1 n_ind= 2 n_flag=171 | val ex  -13.7% t= -2.0 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi top 0.9 [dash sample only]       h=90: tra ex  -17.0% t= -1.1 n_ind= 2 n_flag=171 | val ex  -29.8% t= -3.0 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+     flag agreement (Jaccard) dash vs perp_oi: tra 0.84 (n 172/171) | val 0.89 (n 160/160) | tes None (n 0/0)
+  eth COIN dash oi/price top 0.8                   h=30: tra ex   -7.3% t= -1.1 n_ind= 4 n_flag= 74 | val ex   +3.5% t= +1.7 n_ind= 3 n_flag=369 | tes ex   +1.2% t= +0.5 n_ind= 2 n_flag=195
+  eth COIN dash oi/price top 0.8                   h=60: tra ex  -20.1% t= -1.5 n_ind= 2 n_flag= 74 | val ex   +4.1% t= +1.2 n_ind= 1 n_flag=369 | tes ex   -0.2% t= -0.1 n_ind= 1 n_flag=182
+  eth COIN dash oi/price top 0.8                   h=90: tra ex  -35.6% t= -2.1 n_ind= 2 n_flag= 74 | val ex   +0.6% t= +0.1 n_ind= 1 n_flag=369 | tes ex   +0.4% t= +0.1 n_ind= 1 n_flag=159
+
+==============================================================================================================
+S7. ALTERNATIVE: OI 30-day CHANGE in its top quintile of the trailing year (fast build-up), USD and coin terms, lag 1
+==============================================================================================================
+  btc USD perp_oi 30d-change pct365 top 0.8        h=30: tra ex   -5.5% t= -1.5 n_ind=11 n_flag=183 | val ex   +0.6% t= +0.3 n_ind= 6 n_flag= 89 | tes ex   -0.4% t= -0.1 n_ind= 3 n_flag= 69
+  btc USD perp_oi 30d-change pct365 top 0.8        h=60: tra ex  -13.2% t= -2.3 n_ind= 6 n_flag=183 | val ex   +1.5% t= +0.3 n_ind= 3 n_flag= 89 | tes ex  -10.7% t= -3.2 n_ind= 2 n_flag= 66
+  btc USD perp_oi 30d-change pct365 top 0.8        h=90: tra ex  -18.6% t= -2.0 n_ind= 2 n_flag=183 | val ex   -2.1% t= -0.3 n_ind= 2 n_flag= 89 | tes ex  -18.9% t= -3.3 n_ind= 1 n_flag= 41
+  btc COIN perp_oi 30d-change pct365 top 0.8       h=30: tra ex   -1.5% t= -0.3 n_ind=13 n_flag=154 | val ex   -1.4% t= -0.5 n_ind= 7 n_flag=101 | tes ex   -3.6% t= -0.7 n_ind= 2 n_flag= 37
+  btc COIN perp_oi 30d-change pct365 top 0.8       h=60: tra ex   -9.4% t= -1.4 n_ind= 5 n_flag=154 | val ex   -0.3% t= -0.1 n_ind= 2 n_flag=101 | tes ex  -13.5% t= -2.5 n_ind= 1 n_flag= 37
+  btc COIN perp_oi 30d-change pct365 top 0.8       h=90: tra ex  -16.7% t= -1.7 n_ind= 2 n_flag=154 | val ex   -3.9% t= -0.8 n_ind= 1 n_flag=101 | tes ex  -17.1% t= -2.6 n_ind= 1 n_flag= 37
+  btc USD perp_oi 30d-change > +30% (raw)          h=30: tra ex   -5.7% t= -1.6 n_ind=11 n_flag=165 | val ex   -0.5% t= -0.2 n_ind= 4 n_flag= 58 | tes ex   -9.5% t= -1.7 n_ind= 2 n_flag=  9
+  btc USD perp_oi 30d-change > +30% (raw)          h=60: tra ex  -13.4% t= -1.9 n_ind= 7 n_flag=165 | val ex   +0.0% t= +0.0 n_ind= 3 n_flag= 58 | tes ex  -17.2% t= -3.1 n_ind= 2 n_flag=  9
+  btc USD perp_oi 30d-change > +30% (raw)          h=90: tra ex  -21.8% t= -2.0 n_ind= 3 n_flag=165 | val ex   -6.1% t= -0.7 n_ind= 2 n_flag= 58 | tes ex  -22.1% t= -3.0 n_ind= 1 n_flag=  7
+  btc COIN perp_oi 30d-change > +15% (raw)         h=30: tra ex   -5.4% t= -1.4 n_ind=13 n_flag=230 | val ex   -0.1% t= -0.0 n_ind= 8 n_flag= 55 | tes ex   +1.7% t= +0.3 n_ind= 2 n_flag= 19
+  btc COIN perp_oi 30d-change > +15% (raw)         h=60: tra ex  -11.8% t= -1.5 n_ind= 5 n_flag=230 | val ex   +1.4% t= +0.4 n_ind= 5 n_flag= 55 | tes ex  -11.0% t= -1.9 n_ind= 1 n_flag= 19
+  btc COIN perp_oi 30d-change > +15% (raw)         h=90: tra ex  -17.6% t= -1.5 n_ind= 3 n_flag=230 | val ex   -3.9% t= -0.6 n_ind= 2 n_flag= 55 | tes ex  -16.5% t= -2.2 n_ind= 1 n_flag= 19
+  btc USD futures_oi 30d-change pct365 top 0.8     h=30: tra ex   -5.1% t= -1.4 n_ind= 9 n_flag=184 | val ex   +2.4% t= +0.7 n_ind= 3 n_flag= 88 | tes ex   +1.4% t= +0.4 n_ind= 4 n_flag= 58
+  btc USD futures_oi 30d-change pct365 top 0.8     h=60: tra ex  -12.0% t= -1.9 n_ind= 7 n_flag=184 | val ex   +4.4% t= +0.9 n_ind= 2 n_flag= 88 | tes ex   -5.5% t= -1.6 n_ind= 1 n_flag= 53
+  btc USD futures_oi 30d-change pct365 top 0.8     h=90: tra ex  -19.0% t= -2.1 n_ind= 4 n_flag=184 | val ex   -0.7% t= -0.1 n_ind= 2 n_flag= 88 | tes ex   -9.6% t= -2.2 n_ind= 1 n_flag= 26
+  btc COIN futures_oi 30d-change pct365 top 0.8    h=30: tra ex   -7.6% t= -2.1 n_ind=11 n_flag=163 | val ex   +3.5% t= +1.4 n_ind= 4 n_flag= 92 | tes ex   -3.4% t= -1.7 n_ind= 4 n_flag= 41
+  btc COIN futures_oi 30d-change pct365 top 0.8    h=60: tra ex  -14.7% t= -2.5 n_ind= 3 n_flag=163 | val ex   +8.6% t= +2.1 n_ind= 3 n_flag= 92 | tes ex   -5.7% t= -2.1 n_ind= 1 n_flag= 39
+  btc COIN futures_oi 30d-change pct365 top 0.8    h=90: tra ex  -27.6% t= -3.0 n_ind= 3 n_flag=163 | val ex   +4.2% t= +0.8 n_ind= 2 n_flag= 92 | tes ex   -2.0% t= -0.5 n_ind= 1 n_flag= 39
+  btc USD futures_oi 30d-change > +30% (raw)       h=30: tra ex   +1.9% t= +0.3 n_ind= 8 n_flag=126 | val ex   +1.5% t= +0.5 n_ind= 3 n_flag= 41 | tes ex   -3.5% t= -0.4 n_ind= 2 n_flag=  5
+  btc USD futures_oi 30d-change > +30% (raw)       h=60: tra ex   -6.8% t= -0.8 n_ind= 6 n_flag=126 | val ex   +2.6% t= +0.5 n_ind= 2 n_flag= 41 | tes ex   +2.4% t= +0.3 n_ind= 1 n_flag=  5
+  btc USD futures_oi 30d-change > +30% (raw)       h=90: tra ex   -9.3% t= -0.6 n_ind= 6 n_flag=126 | val ex   -6.4% t= -0.7 n_ind= 2 n_flag= 41 | tes ex   +7.8% t= +1.6 n_ind= 1 n_flag=  5
+  btc COIN futures_oi 30d-change > +15% (raw)      h=30: tra ex   +0.0% t= +0.0 n_ind=13 n_flag=153 | val ex   -1.4% t= -0.5 n_ind= 7 n_flag= 27 | tes ex   -2.4% t= -0.6 n_ind= 3 n_flag= 12
+  btc COIN futures_oi 30d-change > +15% (raw)      h=60: tra ex   -6.4% t= -0.8 n_ind= 4 n_flag=153 | val ex   +4.7% t= +0.8 n_ind= 4 n_flag= 27 | tes ex   -0.2% t= -0.0 n_ind= 2 n_flag= 12
+  btc COIN futures_oi 30d-change > +15% (raw)      h=90: tra ex  -12.5% t= -0.9 n_ind= 3 n_flag=153 | val ex   +0.3% t= +0.0 n_ind= 3 n_flag= 27 | tes ex  +11.5% t= +2.3 n_ind= 2 n_flag= 12
+  btc PRICE 30d-change pct365 top 0.8 (control)    h=30: tra ex   +2.9% t= +1.0 n_ind=13 n_flag=362 | val ex   +1.8% t= +0.7 n_ind= 3 n_flag= 67 | tes ex   +0.4% t= +0.1 n_ind= 3 n_flag= 78
+  btc PRICE 30d-change pct365 top 0.8 (control)    h=60: tra ex   +7.2% t= +0.9 n_ind=10 n_flag=362 | val ex   +4.4% t= +0.8 n_ind= 2 n_flag= 67 | tes ex   -7.4% t= -2.3 n_ind= 3 n_flag= 68
+  btc PRICE 30d-change pct365 top 0.8 (control)    h=90: tra ex  +13.0% t= +1.0 n_ind= 5 n_flag=362 | val ex   -0.9% t= -0.1 n_ind= 2 n_flag= 67 | tes ex  -11.4% t= -1.9 n_ind= 1 n_flag= 38
+  btc COIN perp_oi 30d-chg top0.8 & price 30d-chg NOT top h=30: tra ex   -2.8% t= -0.7 n_ind=13 n_flag=133 | val ex   -2.2% t= -0.9 n_ind= 7 n_flag= 81 | tes ex   -1.5% t= -0.2 n_ind= 2 n_flag= 32
+  btc COIN perp_oi 30d-chg top0.8 & price 30d-chg NOT top h=60: tra ex  -10.1% t= -1.5 n_ind= 6 n_flag=133 | val ex   -1.3% t= -0.4 n_ind= 3 n_flag= 81 | tes ex  -12.0% t= -2.0 n_ind= 1 n_flag= 32
+  btc COIN perp_oi 30d-chg top0.8 & price 30d-chg NOT top h=90: tra ex  -18.8% t= -1.9 n_ind= 2 n_flag=133 | val ex   -5.5% t= -1.0 n_ind= 2 n_flag= 81 | tes ex  -16.2% t= -2.4 n_ind= 1 n_flag= 32
+  btc USD perp_oi top0.8 & USD 30d-chg top0.8      h=30: tra ex   -5.5% t= -1.0 n_ind= 9 n_flag=107 | val ex   -1.0% t= -0.4 n_ind= 5 n_flag= 71 | tes ex   +2.8% t= +0.7 n_ind= 1 n_flag=  3
+  btc USD perp_oi top0.8 & USD 30d-chg top0.8      h=60: tra ex  -18.0% t= -2.8 n_ind= 6 n_flag=107 | val ex   -0.4% t= -0.1 n_ind= 4 n_flag= 71 | tes - (n_flag=1)
+  btc USD perp_oi top0.8 & USD 30d-chg top0.8      h=90: tra ex  -23.6% t= -2.2 n_ind= 4 n_flag=107 | val ex   -7.0% t= -0.9 n_ind= 3 n_flag= 71 | tes - (n_flag=0)
+  eth USD perp_oi 30d-change pct365 top 0.8        h=30: tra ex   -8.8% t= -2.4 n_ind=10 n_flag=210 | val ex   +4.6% t= +0.9 n_ind= 3 n_flag=102 | tes ex   +8.9% t= +2.8 n_ind= 3 n_flag= 50
+  eth USD perp_oi 30d-change pct365 top 0.8        h=60: tra ex  -19.8% t= -2.5 n_ind= 7 n_flag=210 | val ex   +8.6% t= +1.0 n_ind= 2 n_flag=102 | tes ex   -3.6% t= -0.5 n_ind= 2 n_flag= 49
+  eth USD perp_oi 30d-change pct365 top 0.8        h=90: tra ex  -22.7% t= -1.7 n_ind= 3 n_flag=210 | val ex   +2.9% t= +0.2 n_ind= 2 n_flag=102 | tes ex   -8.2% t= -1.3 n_ind= 2 n_flag= 20
+  eth COIN perp_oi 30d-change pct365 top 0.8       h=30: tra ex   -1.1% t= -0.2 n_ind=11 n_flag=190 | val ex   +8.5% t= +1.5 n_ind= 4 n_flag=107 | tes ex   +2.9% t= +0.5 n_ind= 3 n_flag= 25
+  eth COIN perp_oi 30d-change pct365 top 0.8       h=60: tra ex   -5.7% t= -0.6 n_ind= 4 n_flag=190 | val ex  +10.2% t= +1.4 n_ind= 3 n_flag=107 | tes ex   -8.4% t= -1.0 n_ind= 1 n_flag= 25
+  eth COIN perp_oi 30d-change pct365 top 0.8       h=90: tra ex  -14.4% t= -1.1 n_ind= 4 n_flag=190 | val ex   -2.4% t= -0.3 n_ind= 1 n_flag=107 | tes ex  -16.7% t= -2.8 n_ind= 1 n_flag= 25
+  eth USD perp_oi 30d-change > +30% (raw)          h=30: tra ex  -10.8% t= -3.0 n_ind=14 n_flag=231 | val ex   +5.1% t= +1.0 n_ind= 3 n_flag=122 | tes ex   +7.6% t= +1.9 n_ind= 3 n_flag= 28
+  eth USD perp_oi 30d-change > +30% (raw)          h=60: tra ex  -24.2% t= -3.5 n_ind= 7 n_flag=231 | val ex   +8.6% t= +1.1 n_ind= 2 n_flag=122 | tes ex  -10.0% t= -1.1 n_ind= 2 n_flag= 28
+  eth USD perp_oi 30d-change > +30% (raw)          h=90: tra ex  -24.8% t= -2.0 n_ind= 3 n_flag=231 | val ex   +1.3% t= +0.1 n_ind= 2 n_flag=122 | tes ex  -25.3% t= -2.4 n_ind= 1 n_flag= 12
+  eth COIN perp_oi 30d-change > +15% (raw)         h=30: tra ex   +0.8% t= +0.1 n_ind=14 n_flag=269 | val ex   +7.0% t= +1.6 n_ind= 3 n_flag=157 | tes ex   +1.6% t= +0.3 n_ind= 3 n_flag= 32
+  eth COIN perp_oi 30d-change > +15% (raw)         h=60: tra ex   -4.5% t= -0.5 n_ind= 3 n_flag=269 | val ex  +12.2% t= +2.0 n_ind= 3 n_flag=157 | tes ex   -9.3% t= -1.2 n_ind= 1 n_flag= 32
+  eth COIN perp_oi 30d-change > +15% (raw)         h=90: tra ex  -12.1% t= -0.9 n_ind= 1 n_flag=269 | val ex   +2.4% t= +0.4 n_ind= 1 n_flag=157 | tes ex  -15.1% t= -2.6 n_ind= 1 n_flag= 32
+  eth USD futures_oi 30d-change pct365 top 0.8     h=30: tra ex  -10.3% t= -2.7 n_ind= 8 n_flag=195 | val ex   +2.2% t= +0.4 n_ind= 3 n_flag= 98 | tes ex  +11.8% t= +2.2 n_ind= 2 n_flag= 55
+  eth USD futures_oi 30d-change pct365 top 0.8     h=60: tra ex  -21.7% t= -3.0 n_ind= 3 n_flag=195 | val ex   +6.8% t= +0.7 n_ind= 2 n_flag= 98 | tes ex   +5.4% t= +0.6 n_ind= 1 n_flag= 51
+  eth USD futures_oi 30d-change pct365 top 0.8     h=90: tra ex  -23.3% t= -1.8 n_ind= 3 n_flag=195 | val ex   +3.6% t= +0.2 n_ind= 2 n_flag= 98 | tes ex  +15.0% t= +2.5 n_ind= 1 n_flag= 23
+  eth COIN futures_oi 30d-change pct365 top 0.8    h=30: tra ex   -6.1% t= -1.1 n_ind=13 n_flag=187 | val ex   +4.5% t= +0.8 n_ind= 5 n_flag=103 | tes ex   -2.1% t= -0.5 n_ind= 4 n_flag= 38
+  eth COIN futures_oi 30d-change pct365 top 0.8    h=60: tra ex  -10.1% t= -1.2 n_ind= 4 n_flag=187 | val ex   +2.5% t= +0.3 n_ind= 2 n_flag=103 | tes ex   -1.3% t= -0.3 n_ind= 1 n_flag= 37
+  eth COIN futures_oi 30d-change pct365 top 0.8    h=90: tra ex  -23.1% t= -1.9 n_ind= 1 n_flag=187 | val ex   -7.5% t= -0.6 n_ind= 2 n_flag=103 | tes ex   +0.9% t= +0.2 n_ind= 1 n_flag= 37
+  eth USD futures_oi 30d-change > +30% (raw)       h=30: tra ex   -6.8% t= -1.0 n_ind=10 n_flag=192 | val ex   +1.6% t= +0.3 n_ind= 3 n_flag=106 | tes ex   +7.9% t= +1.3 n_ind= 4 n_flag=  9
+  eth USD futures_oi 30d-change > +30% (raw)       h=60: tra ex  -17.5% t= -1.7 n_ind= 8 n_flag=192 | val ex   +5.5% t= +0.6 n_ind= 2 n_flag=106 | tes ex   +6.3% t= +0.9 n_ind= 1 n_flag=  9
+  eth USD futures_oi 30d-change > +30% (raw)       h=90: tra ex  -18.2% t= -1.1 n_ind= 6 n_flag=192 | val ex   +0.8% t= +0.1 n_ind= 2 n_flag=106 | tes ex   +7.6% t= +1.3 n_ind= 1 n_flag=  7
+  eth COIN futures_oi 30d-change > +15% (raw)      h=30: tra ex   +0.9% t= +0.1 n_ind=14 n_flag=186 | val ex   +2.3% t= +0.5 n_ind= 6 n_flag= 99 | tes ex   -2.5% t= -0.6 n_ind= 4 n_flag= 23
+  eth COIN futures_oi 30d-change > +15% (raw)      h=60: tra ex   -2.9% t= -0.3 n_ind= 4 n_flag=186 | val ex   +2.7% t= +0.3 n_ind= 2 n_flag= 99 | tes ex   -2.0% t= -0.4 n_ind= 1 n_flag= 23
+  eth COIN futures_oi 30d-change > +15% (raw)      h=90: tra ex  -14.1% t= -0.9 n_ind= 3 n_flag=186 | val ex   -5.8% t= -0.5 n_ind= 1 n_flag= 99 | tes ex   +3.1% t= +0.5 n_ind= 1 n_flag= 23
+  eth PRICE 30d-change pct365 top 0.8 (control)    h=30: tra ex   -5.9% t= -1.6 n_ind=17 n_flag=361 | val ex   +4.6% t= +0.9 n_ind= 3 n_flag= 98 | tes ex  +10.1% t= +1.9 n_ind= 1 n_flag= 52
+  eth PRICE 30d-change pct365 top 0.8 (control)    h=60: tra ex  -13.7% t= -2.3 n_ind= 8 n_flag=361 | val ex   +8.9% t= +1.0 n_ind= 2 n_flag= 98 | tes ex   +3.5% t= +0.4 n_ind= 1 n_flag= 44
+  eth PRICE 30d-change pct365 top 0.8 (control)    h=90: tra ex   -4.0% t= -0.4 n_ind= 5 n_flag=361 | val ex   +7.4% t= +0.5 n_ind= 2 n_flag= 98 | tes ex  +23.2% t= +2.3 n_ind= 1 n_flag= 14
+  eth COIN perp_oi 30d-chg top0.8 & price 30d-chg NOT top h=30: tra ex   +3.0% t= +0.5 n_ind=11 n_flag=146 | val ex  +11.1% t= +1.8 n_ind= 5 n_flag= 82 | tes ex   +2.9% t= +0.5 n_ind= 3 n_flag= 25
+  eth COIN perp_oi 30d-chg top0.8 & price 30d-chg NOT top h=60: tra ex   +1.3% t= +0.1 n_ind= 4 n_flag=146 | val ex  +16.1% t= +1.9 n_ind= 4 n_flag= 82 | tes ex   -8.4% t= -1.0 n_ind= 1 n_flag= 25
+  eth COIN perp_oi 30d-chg top0.8 & price 30d-chg NOT top h=90: tra ex   -9.2% t= -0.8 n_ind= 4 n_flag=146 | val ex   +2.3% t= +0.2 n_ind= 1 n_flag= 82 | tes ex  -16.7% t= -2.8 n_ind= 1 n_flag= 25
+  eth USD perp_oi top0.8 & USD 30d-chg top0.8      h=30: tra ex  -12.3% t= -3.6 n_ind=10 n_flag=166 | val ex   +5.7% t= +0.9 n_ind= 3 n_flag= 77 | tes - (n_flag=1)
+  eth USD perp_oi top0.8 & USD 30d-chg top0.8      h=60: tra ex  -25.0% t= -3.5 n_ind= 7 n_flag=166 | val ex   +0.4% t= +0.0 n_ind= 2 n_flag= 77 | tes - (n_flag=1)
+  eth USD perp_oi top0.8 & USD 30d-chg top0.8      h=90: tra ex  -28.4% t= -2.2 n_ind= 3 n_flag=166 | val ex  -13.4% t= -1.1 n_ind= 2 n_flag= 77 | tes - (n_flag=1)
+
+==============================================================================================================
+S8. EXTRA CONTROLS: (a) excess vs the period mean over the SIGNAL-AVAILABLE sample only (OI exists from 2021-03; pct365 flags from 2021-09); (b) train restricted to 2023-01-01..2024-06-30 (ex 2021-22)
+==============================================================================================================
+  btc USD perp_oi top0.8 [avail-sample mean]       h=30: tra ex   -3.9% t= -1.8 n_ind= 5 n_flag=403 | val ex   +0.4% t= +0.2 n_ind= 2 n_flag=291 | tes ex   -0.1% t= -0.0 n_ind= 1 n_flag=  6
+  btc USD perp_oi top0.8 [avail-sample mean]       h=60: tra ex   -6.7% t= -1.7 n_ind= 4 n_flag=403 | val ex   -0.8% t= -0.3 n_ind= 2 n_flag=291 | tes - (n_flag=1)
+  btc USD perp_oi top0.8 [avail-sample mean]       h=90: tra ex   -6.0% t= -1.0 n_ind= 3 n_flag=403 | val ex   -4.7% t= -0.9 n_ind= 1 n_flag=291 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 [avail-sample mean]    h=30: tra ex   +0.2% t= +0.1 n_ind= 4 n_flag=464 | val ex   +0.4% t= +0.2 n_ind= 2 n_flag=277 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 [avail-sample mean]    h=60: tra ex   -0.6% t= -0.1 n_ind= 4 n_flag=464 | val ex   -2.3% t= -0.7 n_ind= 2 n_flag=277 | tes - (n_flag=0)
+  btc USD futures_oi top0.8 [avail-sample mean]    h=90: tra ex   +0.9% t= +0.1 n_ind= 3 n_flag=464 | val ex   -7.2% t= -1.4 n_ind= 1 n_flag=277 | tes - (n_flag=0)
+  btc USD perp_oi top0.9 [avail-sample mean]       h=30: tra ex   -5.8% t= -1.9 n_ind= 5 n_flag=252 | val ex   +0.6% t= +0.2 n_ind= 2 n_flag=201 | tes - (n_flag=2)
+  btc USD perp_oi top0.9 [avail-sample mean]       h=60: tra ex  -10.9% t= -2.3 n_ind= 4 n_flag=252 | val ex   -1.3% t= -0.4 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD perp_oi top0.9 [avail-sample mean]       h=90: tra ex  -10.7% t= -1.7 n_ind= 3 n_flag=252 | val ex   -7.2% t= -1.4 n_ind= 2 n_flag=201 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 [avail-sample mean]    h=30: tra ex   -2.6% t= -1.0 n_ind= 3 n_flag=316 | val ex   +1.5% t= +0.5 n_ind= 4 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 [avail-sample mean]    h=60: tra ex   -3.1% t= -0.6 n_ind= 3 n_flag=316 | val ex   -1.6% t= -0.4 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc USD futures_oi top0.9 [avail-sample mean]    h=90: tra ex   -0.2% t= -0.0 n_ind= 2 n_flag=316 | val ex   -8.9% t= -1.5 n_ind= 2 n_flag=184 | tes - (n_flag=0)
+  btc PRICE top0.8 [avail-sample mean]             h=30: tra ex   +1.0% t= +0.3 n_ind= 3 n_flag=384 | val ex   -0.9% t= -0.5 n_ind= 3 n_flag=300 | tes - (n_flag=0)
+  btc PRICE top0.8 [avail-sample mean]             h=60: tra ex   +1.5% t= +0.2 n_ind= 3 n_flag=384 | val ex   -5.0% t= -1.4 n_ind= 3 n_flag=300 | tes - (n_flag=0)
+  btc PRICE top0.8 [avail-sample mean]             h=90: tra ex   +3.8% t= +0.4 n_ind= 2 n_flag=384 | val ex   -8.9% t= -1.6 n_ind= 1 n_flag=300 | tes - (n_flag=0)
+  btc COIN perp_oi top0.8 [avail-sample mean]      h=30: tra ex   -9.4% t= -3.9 n_ind= 2 n_flag=354 | val ex   +1.1% t= +0.6 n_ind= 5 n_flag=182 | tes ex   -1.0% t= -0.5 n_ind= 1 n_flag=183
+  btc COIN perp_oi top0.8 [avail-sample mean]      h=60: tra ex  -14.9% t= -3.6 n_ind= 2 n_flag=354 | val ex   -1.0% t= -0.3 n_ind= 2 n_flag=182 | tes ex   -1.9% t= -0.8 n_ind= 1 n_flag=179
+  btc COIN perp_oi top0.8 [avail-sample mean]      h=90: tra ex  -19.5% t= -3.2 n_ind= 2 n_flag=354 | val ex   -6.3% t= -1.8 n_ind= 1 n_flag=182 | tes ex   +0.5% t= +0.2 n_ind= 1 n_flag=156
+  eth USD perp_oi top0.8 [avail-sample mean]       h=30: tra ex   -2.3% t= -0.8 n_ind= 6 n_flag=385 | val ex   -2.2% t= -0.6 n_ind= 3 n_flag=235 | tes ex  -13.5% t= -2.8 n_ind= 2 n_flag= 12
+  eth USD perp_oi top0.8 [avail-sample mean]       h=60: tra ex   -4.2% t= -1.0 n_ind= 3 n_flag=385 | val ex  -12.2% t= -2.2 n_ind= 3 n_flag=235 | tes - (n_flag=1)
+  eth USD perp_oi top0.8 [avail-sample mean]       h=90: tra ex   -3.3% t= -0.6 n_ind= 3 n_flag=385 | val ex  -23.2% t= -2.7 n_ind= 2 n_flag=235 | tes - (n_flag=1)
+  eth USD futures_oi top0.8 [avail-sample mean]    h=30: tra ex   +1.3% t= +0.4 n_ind= 5 n_flag=400 | val ex   -1.8% t= -0.5 n_ind= 3 n_flag=273 | tes - (n_flag=2)
+  eth USD futures_oi top0.8 [avail-sample mean]    h=60: tra ex   -0.5% t= -0.1 n_ind= 4 n_flag=400 | val ex   -6.3% t= -1.0 n_ind= 3 n_flag=273 | tes - (n_flag=0)
+  eth USD futures_oi top0.8 [avail-sample mean]    h=90: tra ex   -0.2% t= -0.0 n_ind= 3 n_flag=400 | val ex  -13.3% t= -1.4 n_ind= 1 n_flag=273 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 [avail-sample mean]       h=30: tra ex   -3.4% t= -0.9 n_ind= 8 n_flag=265 | val ex   -1.3% t= -0.3 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 [avail-sample mean]       h=60: tra ex   -5.3% t= -1.0 n_ind= 4 n_flag=265 | val ex  -13.7% t= -2.0 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD perp_oi top0.9 [avail-sample mean]       h=90: tra ex   -4.3% t= -0.6 n_ind= 3 n_flag=265 | val ex  -29.8% t= -3.0 n_ind= 3 n_flag=160 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 [avail-sample mean]    h=30: tra ex   -0.1% t= -0.0 n_ind= 4 n_flag=266 | val ex   -1.9% t= -0.4 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 [avail-sample mean]    h=60: tra ex   -1.3% t= -0.3 n_ind= 3 n_flag=266 | val ex  -11.9% t= -1.6 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth USD futures_oi top0.9 [avail-sample mean]    h=90: tra ex   +1.2% t= +0.1 n_ind= 2 n_flag=266 | val ex  -25.7% t= -2.5 n_ind= 3 n_flag=183 | tes - (n_flag=0)
+  eth PRICE top0.8 [avail-sample mean]             h=30: tra ex   +1.1% t= +0.4 n_ind= 3 n_flag=430 | val ex   -7.0% t= -1.4 n_ind= 3 n_flag=129 | tes - (n_flag=0)
+  eth PRICE top0.8 [avail-sample mean]             h=60: tra ex   -0.2% t= -0.0 n_ind= 3 n_flag=430 | val ex  -20.1% t= -2.5 n_ind= 3 n_flag=129 | tes - (n_flag=0)
+  eth PRICE top0.8 [avail-sample mean]             h=90: tra ex   -1.1% t= -0.2 n_ind= 3 n_flag=430 | val ex  -32.8% t= -3.0 n_ind= 3 n_flag=129 | tes - (n_flag=0)
+  eth COIN perp_oi top0.8 [avail-sample mean]      h=30: tra ex   -3.5% t= -1.3 n_ind= 5 n_flag=425 | val ex   +4.0% t= +2.2 n_ind= 3 n_flag=372 | tes ex   -0.4% t= -0.1 n_ind= 1 n_flag=168
+  eth COIN perp_oi top0.8 [avail-sample mean]      h=60: tra ex   -6.5% t= -1.5 n_ind= 3 n_flag=425 | val ex   +3.6% t= +1.1 n_ind= 1 n_flag=372 | tes ex   -0.5% t= -0.1 n_ind= 1 n_flag=155
+  eth COIN perp_oi top0.8 [avail-sample mean]      h=90: tra ex  -10.0% t= -1.6 n_ind= 2 n_flag=425 | val ex   -0.4% t= -0.1 n_ind= 1 n_flag=372 | tes ex   +1.2% t= +0.3 n_ind= 1 n_flag=139
+
+  (b) ex-2021-22: train sample 2023-01-01..2024-06-30 only (mean over that sample)
+  btc USD perp_oi 0.8      train-ex2122: h30 ex -5.9% t=-3.6 n_ind=2 n_flag=295 | h60 ex -10.1% t=-4.5 n_ind=2 n_flag=295 | h90 ex -10.4% t=-2.7 n_ind=1 n_flag=295
+  btc USD perp_oi 0.9      train-ex2122: h30 ex -7.4% t=-2.5 n_ind=3 n_flag=174 | h60 ex -13.3% t=-4.1 n_ind=2 n_flag=174 | h90 ex -13.7% t=-3.5 n_ind=2 n_flag=174
+  btc USD futures_oi 0.8   train-ex2122: h30 ex -3.4% t=-2.9 n_ind=2 n_flag=400 | h60 ex -6.7% t=-4.5 n_ind=2 n_flag=400 | h90 ex -7.8% t=-3.0 n_ind=1 n_flag=400
+  btc PRICE 0.8            train-ex2122: h30 ex -3.0% t=-1.7 n_ind=2 n_flag=334 | h60 ex -4.9% t=-1.5 n_ind=2 n_flag=334 | h90 ex -5.0% t=-1.0 n_ind=1 n_flag=334
+  btc COIN perp_oi 0.8     train-ex2122: h30 - | h60 - | h90 -
+  eth USD perp_oi 0.8      train-ex2122: h30 ex -0.4% t=-0.1 n_ind=3 n_flag=241 | h60 ex -0.6% t=-0.1 n_ind=2 n_flag=241 | h90 ex +0.1% t=+0.0 n_ind=2 n_flag=241
+  eth USD perp_oi 0.9      train-ex2122: h30 ex -2.1% t=-0.5 n_ind=4 n_flag=179 | h60 ex -3.3% t=-0.5 n_ind=2 n_flag=179 | h90 ex -3.6% t=-0.5 n_ind=2 n_flag=179
+  eth USD futures_oi 0.8   train-ex2122: h30 ex -1.6% t=-1.0 n_ind=3 n_flag=333 | h60 ex -4.0% t=-1.7 n_ind=2 n_flag=333 | h90 ex -5.3% t=-1.3 n_ind=1 n_flag=333
+  eth PRICE 0.8            train-ex2122: h30 ex -1.5% t=-0.8 n_ind=2 n_flag=335 | h60 ex -3.3% t=-1.1 n_ind=2 n_flag=335 | h90 ex -5.5% t=-1.4 n_ind=2 n_flag=335
+  eth COIN perp_oi 0.8     train-ex2122: h30 ex -3.8% t=-0.8 n_ind=4 n_flag=84 | h60 ex -10.8% t=-1.2 n_ind=3 n_flag=84 | h90 ex -15.0% t=-1.1 n_ind=2 n_flag=84
+
+  Flagged bars by calendar year (USD perp_oi top 0.8 / price top 0.8 / coin perp_oi top 0.8):
+  btc: 2021[usd 70 price 187 coin 31] 2022[usd 38 price 0 coin 321] 2023[usd 149 price 164 coin 2] 2024[usd 275 price 254 coin 81] 2025[usd 162 price 217 coin 101] 2026[usd 6 price 0 coin 184]
+  eth: 2021[usd 55 price 336 coin 9] 2022[usd 89 price 0 coin 332] 2023[usd 89 price 161 coin 22] 2024[usd 241 price 206 coin 190] 2025[usd 146 price 98 coin 244] 2026[usd 12 price 0 coin 183]
+
+written /private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results3/refute/refute_oi.json

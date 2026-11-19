@@ -1,0 +1,166 @@
+====================================================================================================
+A. Episode day-weights: each cluster's n flagged days, mean excess over ITS days, contribution to the period excess
+====================================================================================================
+thr=0.8 h=30 train: period excess -4.2% from 302 flagged days in 10 clusters
+    2020-11-27..2021-05-20 n=126 (42%) mean_ex +1.3% contrib +0.5pp mdd_diff -4.6
+    2021-07-17..2021-07-17 n=  1 (0%) mean_ex +39.4% contrib +0.1pp mdd_diff +3.6
+    2021-10-26..2022-01-22 n= 54 (18%) mean_ex -19.3% contrib -3.5pp mdd_diff -9.2
+    2022-04-14..2022-05-10 n= 14 (5%) mean_ex -25.2% contrib -1.2pp mdd_diff -13.4
+    2022-06-12..2022-06-19 n=  2 (1%) mean_ex -13.2% contrib -0.1pp mdd_diff -8.5
+    2022-09-05..2022-11-23 n= 11 (4%) mean_ex -10.1% contrib -0.4pp mdd_diff +0.5
+    2023-05-10..2023-06-17 n= 18 (6%) mean_ex +4.2% contrib +0.2pp mdd_diff +5.1
+    2023-07-22..2023-10-13 n= 27 (9%) mean_ex -4.8% contrib -0.4pp mdd_diff +3.8
+    2024-01-14..2024-01-27 n= 14 (5%) mean_ex +18.7% contrib +0.9pp mdd_diff +6.1
+    2024-03-18..2024-06-30 n= 35 (12%) mean_ex -3.9% contrib -0.5pp mdd_diff -0.7
+thr=0.8 h=30 validation: period excess -4.2% from 121 flagged days in 4 clusters
+    2024-07-01..2024-09-10 n= 22 (18%) mean_ex +1.9% contrib +0.3pp mdd_diff +2.1
+    2024-10-12..2024-10-12 n=  1 (1%) mean_ex +37.6% contrib +0.3pp mdd_diff +6.1
+    2025-01-11..2025-04-10 n= 22 (18%) mean_ex -5.5% contrib -1.0pp mdd_diff -3.5
+    2025-08-21..2025-12-31 n= 76 (63%) mean_ex -6.1% contrib -3.8pp mdd_diff -1.5
+thr=0.8 h=30 test: period excess -5.1% from 40 flagged days in 3 clusters
+    2026-01-01..2026-03-30 n= 31 (78%) mean_ex -9.8% contrib -7.6pp mdd_diff -8.4
+    2026-06-04..2026-07-02 n=  6 (15%) mean_ex +5.9% contrib +0.9pp mdd_diff +6.4
+    2026-08-02..2026-08-18 n=  3 (8%) mean_ex +21.4% contrib +1.6pp mdd_diff +10.4
+thr=0.8 h=60 train: period excess -12.3% from 302 flagged days in 6 clusters
+    2020-11-27..2021-07-17 n=127 (42%) mean_ex -7.6% contrib -3.2pp mdd_diff -7.9
+    2021-10-26..2022-01-22 n= 54 (18%) mean_ex -36.3% contrib -6.5pp mdd_diff -15.2
+    2022-04-14..2022-06-19 n= 16 (5%) mean_ex -51.8% contrib -2.7pp mdd_diff -30.7
+    2022-09-05..2022-11-23 n= 11 (4%) mean_ex -16.1% contrib -0.6pp mdd_diff +0.6
+    2023-05-10..2023-10-13 n= 45 (15%) mean_ex +2.9% contrib +0.4pp mdd_diff +7.9
+    2024-01-14..2024-06-30 n= 49 (16%) mean_ex +2.0% contrib +0.3pp mdd_diff +3.2
+thr=0.8 h=60 validation: period excess -7.8% from 121 flagged days in 3 clusters
+    2024-07-01..2024-10-12 n= 23 (19%) mean_ex +10.7% contrib +2.0pp mdd_diff +5.2
+    2025-01-11..2025-04-10 n= 22 (18%) mean_ex +2.7% contrib +0.5pp mdd_diff -2.2
+    2025-08-21..2025-12-31 n= 76 (63%) mean_ex -16.4% contrib -10.3pp mdd_diff -6.2
+thr=0.8 h=60 test: period excess -3.5% from 40 flagged days in 2 clusters
+    2026-01-01..2026-03-30 n= 31 (78%) mean_ex -11.1% contrib -8.6pp mdd_diff -7.2
+    2026-06-04..2026-08-18 n=  9 (22%) mean_ex +22.6% contrib +5.1pp mdd_diff +10.5
+thr=0.8 h=90 train: period excess -20.4% from 302 flagged days in 4 clusters
+    2020-11-27..2021-07-17 n=127 (42%) mean_ex -18.5% contrib -7.8pp mdd_diff -11.5
+    2021-10-26..2022-11-23 n= 81 (27%) mean_ex -43.9% contrib -11.8pp mdd_diff -17.6
+    2023-05-10..2023-10-13 n= 45 (15%) mean_ex +3.7% contrib +0.6pp mdd_diff +10.3
+    2024-01-14..2024-06-30 n= 49 (16%) mean_ex -8.3% contrib -1.3pp mdd_diff +4.8
+thr=0.8 h=90 validation: period excess -9.7% from 121 flagged days in 3 clusters
+    2024-07-01..2024-10-12 n= 23 (19%) mean_ex +33.8% contrib +6.4pp mdd_diff +8.5
+    2025-01-11..2025-04-10 n= 22 (18%) mean_ex +12.3% contrib +2.2pp mdd_diff +0.9
+    2025-08-21..2025-12-31 n= 76 (63%) mean_ex -29.2% contrib -18.4pp mdd_diff -13.8
+thr=0.8 h=90 test: period excess -1.0% from 40 flagged days in 1 clusters
+    2026-01-01..2026-08-18 n= 40 (100%) mean_ex -1.0% contrib -1.0pp mdd_diff -2.0
+thr=0.9 h=30 train: period excess -2.2% from 187 flagged days in 10 clusters
+    2020-11-27..2020-11-27 n=  1 (1%) mean_ex +47.0% contrib +0.3pp mdd_diff +12.4
+    2020-12-30..2021-05-20 n= 90 (48%) mean_ex +2.1% contrib +1.0pp mdd_diff -4.6
+    2021-10-28..2022-01-08 n= 38 (20%) mean_ex -20.3% contrib -4.1pp mdd_diff -9.5
+    2022-04-24..2022-05-09 n=  6 (3%) mean_ex -21.4% contrib -0.7pp mdd_diff -10.4
+    2022-11-10..2022-11-10 n=  1 (1%) mean_ex -9.1% contrib -0.0pp mdd_diff -1.3
+    2023-05-26..2023-06-17 n= 10 (5%) mean_ex +9.8% contrib +0.5pp mdd_diff +6.3
+    2023-08-18..2023-09-13 n= 12 (6%) mean_ex -3.1% contrib -0.2pp mdd_diff +5.6
+    2024-01-14..2024-01-25 n= 11 (6%) mean_ex +18.5% contrib +1.1pp mdd_diff +5.6
+    2024-03-21..2024-05-12 n=  6 (3%) mean_ex -0.8% contrib -0.0pp mdd_diff +5.0
+    2024-06-16..2024-06-30 n= 12 (6%) mean_ex +0.3% contrib +0.0pp mdd_diff -1.8
+thr=0.9 h=30 validation: period excess -5.3% from 64 flagged days in 4 clusters
+    2024-07-01..2024-09-10 n= 14 (22%) mean_ex +3.2% contrib +0.7pp mdd_diff +3.7
+    2025-02-13..2025-03-15 n=  9 (14%) mean_ex -7.3% contrib -1.0pp mdd_diff -3.8
+    2025-08-27..2025-09-03 n=  5 (8%) mean_ex +3.2% contrib +0.3pp mdd_diff +5.3
+    2025-10-17..2025-12-31 n= 36 (56%) mean_ex -9.4% contrib -5.3pp mdd_diff -3.7
+thr=0.9 h=30 test: period excess -9.3% from 18 flagged days in 3 clusters
+    2026-01-02..2026-02-20 n= 15 (83%) mean_ex -13.1% contrib -10.9pp mdd_diff -10.8
+    2026-03-29..2026-03-29 n=  1 (6%) mean_ex +16.5% contrib +0.9pp mdd_diff +9.9
+    2026-06-26..2026-07-02 n=  2 (11%) mean_ex +6.3% contrib +0.7pp mdd_diff +8.0
+thr=0.9 h=60 train: period excess -10.8% from 187 flagged days in 7 clusters
+    2020-11-27..2021-05-20 n= 91 (49%) mean_ex -6.0% contrib -2.9pp mdd_diff -8.0
+    2021-10-28..2022-01-08 n= 38 (20%) mean_ex -40.1% contrib -8.2pp mdd_diff -17.4
+    2022-04-24..2022-05-09 n=  6 (3%) mean_ex -55.0% contrib -1.8pp mdd_diff -33.6
+    2022-11-10..2022-11-10 n=  1 (1%) mean_ex -16.4% contrib -0.1pp mdd_diff +2.8
+    2023-05-26..2023-06-17 n= 10 (5%) mean_ex -2.5% contrib -0.1pp mdd_diff +10.3
+    2023-08-18..2023-09-13 n= 12 (6%) mean_ex +14.0% contrib +0.9pp mdd_diff +9.6
+    2024-01-14..2024-06-30 n= 29 (16%) mean_ex +8.7% contrib +1.3pp mdd_diff +4.6
+thr=0.9 h=60 validation: period excess -5.6% from 64 flagged days in 3 clusters
+    2024-07-01..2024-09-10 n= 14 (22%) mean_ex +11.6% contrib +2.5pp mdd_diff +6.3
+    2025-02-13..2025-03-15 n=  9 (14%) mean_ex +5.7% contrib +0.8pp mdd_diff -1.9
+    2025-08-27..2025-12-31 n= 41 (64%) mean_ex -13.9% contrib -8.9pp mdd_diff -4.5
+thr=0.9 h=60 test: period excess -8.8% from 18 flagged days in 2 clusters
+    2026-01-02..2026-03-29 n= 16 (89%) mean_ex -13.3% contrib -11.8pp mdd_diff -7.7
+    2026-06-26..2026-07-02 n=  2 (11%) mean_ex +27.3% contrib +3.0pp mdd_diff +10.8
+thr=0.9 h=90 train: period excess -19.1% from 187 flagged days in 6 clusters
+    2020-11-27..2021-05-20 n= 91 (49%) mean_ex -16.5% contrib -8.0pp mdd_diff -10.4
+    2021-10-28..2022-01-08 n= 38 (20%) mean_ex -48.2% contrib -9.8pp mdd_diff -20.7
+    2022-04-24..2022-05-09 n=  6 (3%) mean_ex -57.9% contrib -1.9pp mdd_diff -30.8
+    2022-11-10..2022-11-10 n=  1 (1%) mean_ex +8.1% contrib +0.0pp mdd_diff +5.5
+    2023-05-26..2023-09-13 n= 22 (12%) mean_ex +4.9% contrib +0.6pp mdd_diff +12.0
+    2024-01-14..2024-06-30 n= 29 (16%) mean_ex -0.1% contrib -0.0pp mdd_diff +6.6
+thr=0.9 h=90 validation: period excess -9.1% from 64 flagged days in 3 clusters
+    2024-07-01..2024-09-10 n= 14 (22%) mean_ex +35.7% contrib +7.8pp mdd_diff +9.6
+    2025-02-13..2025-03-15 n=  9 (14%) mean_ex +16.5% contrib +2.3pp mdd_diff +1.4
+    2025-08-27..2025-12-31 n= 41 (64%) mean_ex -30.0% contrib -19.2pp mdd_diff -15.0
+thr=0.9 h=90 test: period excess -1.6% from 18 flagged days in 1 clusters
+    2026-01-02..2026-07-02 n= 18 (100%) mean_ex -1.6% contrib -1.6pp mdd_diff -4.0
+
+====================================================================================================
+B. Circular-shift placebo: shift the flag within each period by a random offset (keeps run lengths), 4000 shifts; two-sided p
+====================================================================================================
+thr=0.8 h=30 RET: tra ex -4.2% p2=0.55 p1=0.28 (sd 6.0) | val ex -4.2% p2=0.30 p1=0.10 (sd 3.6) | tes ex -5.1% p2=0.64 p1=0.22 (sd 6.7)
+thr=0.8 W=30 MDD: tra mdd -3.4 p2=0.16 p1=0.05 (sd 2.3) | val mdd -1.1 p2=0.53 p1=0.19 (sd 1.5) | tes mdd -4.8 p2=0.20 p1=0.07 (sd 3.6)
+thr=0.8 h=60 RET: tra ex -12.3% p2=0.30 p1=0.13 (sd 12.3) | val ex -7.8% p2=0.31 p1=0.07 (sd 6.5) | tes ex -3.5% p2=0.87 p1=0.41 (sd 10.4)
+thr=0.8 W=60 MDD: tra mdd -5.9 p2=0.07 p1=0.02 (sd 3.6) | val mdd -3.3 p2=0.25 p1=0.00 (sd 2.3) | tes mdd -3.2 p2=0.74 p1=0.30 (sd 5.1)
+thr=0.8 h=90 RET: tra ex -20.4% p2=0.26 p1=0.11 (sd 19.2) | val ex -9.7% p2=0.34 p1=0.05 (sd 8.6) | tes ex -1.0% p2=0.96 p1=0.55 (sd 6.9)
+thr=0.8 W=90 MDD: tra mdd -7.3 p2=0.10 p1=0.03 (sd 4.7) | val mdd -6.9 p2=0.00 p1=0.00 (sd 3.1) | tes mdd -2.0 p2=0.72 p1=0.57 (sd 3.1)
+thr=0.9 h=30 RET: tra ex -2.2% p2=0.80 p1=0.44 (sd 7.0) | val ex -5.3% p2=0.26 p1=0.09 (sd 4.6) | tes ex -9.3% p2=0.40 p1=0.17 (sd 9.1)
+thr=0.9 W=30 MDD: tra mdd -3.4 p2=0.27 p1=0.10 (sd 2.8) | val mdd -1.4 p2=0.49 p1=0.14 (sd 1.7) | tes mdd -7.6 p2=0.09 p1=0.09 (sd 5.1)
+thr=0.9 h=60 RET: tra ex -10.8% p2=0.47 p1=0.28 (sd 14.0) | val ex -5.6% p2=0.55 p1=0.19 (sd 8.2) | tes ex -8.8% p2=0.78 p1=0.36 (sd 15.0)
+thr=0.9 W=60 MDD: tra mdd -6.6 p2=0.08 p1=0.02 (sd 4.3) | val mdd -1.8 p2=0.75 p1=0.20 (sd 2.8) | tes mdd -5.7 p2=0.66 p1=0.27 (sd 7.4)
+thr=0.9 h=90 RET: tra ex -19.1% p2=0.41 p1=0.24 (sd 22.0) | val ex -9.1% p2=0.41 p1=0.07 (sd 11.4) | tes ex -1.6% p2=0.94 p1=0.51 (sd 11.1)
+thr=0.9 W=90 MDD: tra mdd -7.8 p2=0.14 p1=0.05 (sd 5.5) | val mdd -7.3 p2=0.01 p1=0.00 (sd 3.8) | tes mdd -4.0 p2=0.69 p1=0.53 (sd 4.9)
+
+====================================================================================================
+C. Residual variant (lsr pct net of trailing 30d return): which episodes, what overlap with the raw flag, placebo p
+====================================================================================================
+[resid thr=0.8] flagged days by year: {2019: 0, 2020: 0, 2021: 24, 2022: 63, 2023: 94, 2024: 59, 2025: 108, 2026: 42}
+   train: resid flags 230, raw flags 302, overlap 126 (55% of resid)
+   validation: resid flags 118, raw flags 121, overlap 81 (69% of resid)
+   test: resid flags 42, raw flags 59, overlap 33 (79% of resid)
+   h=30 train: ex -5.4% placebo p2=0.18 p1=0.08 | mdd -1.4 p2=0.50 | n_flag 230 clusters [('2021-11-21', 36, -23.1), ('2022-03-15', 27, -4.8), ('2022-06-12', 2, -33.7), ('2022-08-19', 27, -13.3), ('2023-02-05', 21, -9.7), ('2023-04-22', 64, -9.9), ('2023-11-16', 2, 10.5), ('2023-12-28', 13, -7.6), ('2024-02-25', 25, 28.9), ('2024-05-31', 13, -13.6)]
+   h=30 validation: ex -5.4% placebo p2=0.13 p1=0.01 | mdd -1.5 p2=0.33 | n_flag 118 clusters [('2024-08-04', 8, -4.0), ('2024-10-12', 1, 37.6), ('2024-11-28', 1, -3.3), ('2025-02-04', 16, -10.8), ('2025-06-07', 1, -0.2), ('2025-07-23', 91, -4.3)]
+   h=30 test: ex -11.8% placebo p2=0.06 p1=0.00 | mdd -10.0 p2=0.00 | n_flag 26 clusters [('2026-01-01', 18, -10.5), ('2026-03-08', 4, 9.9), ('2026-09-12', 4, 6.7)]
+   h=60 train: ex -11.2% placebo p2=0.18 p1=0.07 | mdd -2.8 p2=0.39 | n_flag 230 clusters [('2021-11-21', 65, -44.7), ('2022-08-19', 165, -21.2)]
+   h=60 validation: ex -10.3% placebo p2=0.18 p1=0.00 | mdd -3.7 p2=0.16 | n_flag 118 clusters [('2024-08-04', 10, -0.3), ('2025-02-04', 108, -19.3)]
+   h=60 test: ex -17.0% placebo p2=0.17 p1=0.00 | mdd -11.0 p2=0.00 | n_flag 26 clusters [('2026-01-01', 22, -24.4), ('2026-09-12', 4, -6.1)]
+   h=90 train: ex -17.0% placebo p2=0.14 p1=0.07 | mdd -1.2 p2=0.81 | n_flag 230 clusters [('2021-11-21', 230, -54.2)]
+   h=90 validation: ex -15.2% placebo p2=0.11 p1=0.00 | mdd -7.1 p2=0.03 | n_flag 118 clusters [('2024-08-04', 118, 12.3)]
+   h=90 test: ex -19.0% placebo p2=0.00 p1=0.00 | mdd -12.4 p2=0.00 | n_flag 22 clusters [('2026-01-01', 22, -26.9)]
+[resid thr=0.9] flagged days by year: {2019: 0, 2020: 0, 2021: 14, 2022: 18, 2023: 49, 2024: 34, 2025: 59, 2026: 23}
+   train: resid flags 112, raw flags 187, overlap 47 (42% of resid)
+   validation: resid flags 62, raw flags 64, overlap 25 (40% of resid)
+   test: resid flags 23, raw flags 32, overlap 15 (65% of resid)
+   h=30 train: ex -3.5% placebo p2=0.56 p1=0.30 | mdd -0.4 p2=0.84 | n_flag 112 clusters [('2021-11-21', 14, -23.1), ('2022-01-05', 2, -10.7), ('2022-04-14', 11, -31.1), ('2022-09-05', 1, -4.6), ('2022-11-10', 1, -9.1), ('2022-12-29', 5, 32.0), ('2023-02-07', 7, -18.9), ('2023-04-22', 37, -9.9), ('2023-10-13', 1, 31.7), ('2023-12-28', 8, -7.6), ('2024-03-01', 21, 7.9), ('2024-06-02', 4, -14.8)]
+   h=30 validation: ex -4.9% placebo p2=0.37 p1=0.12 | mdd -0.5 p2=0.83 | n_flag 62 clusters [('2024-08-05', 1, 4.5), ('2024-09-05', 2, 7.7), ('2025-02-04', 2, -10.8), ('2025-04-10', 1, 28.9), ('2025-07-23', 49, -4.3), ('2025-12-17', 7, 8.0)]
+   h=30 test: ex -14.2% placebo p2=0.03 p1=0.00 | mdd -11.5 p2=0.00 | n_flag 17 clusters [('2026-01-01', 13, -10.5), ('2026-03-29', 2, 16.5), ('2026-09-15', 2, 9.5)]
+   h=60 train: ex -12.3% placebo p2=0.25 p1=0.09 | mdd -2.7 p2=0.46 | n_flag 112 clusters [('2021-11-21', 16, -44.7), ('2022-04-14', 11, -57.7), ('2022-09-05', 1, -7.2), ('2022-11-10', 51, -16.4), ('2023-12-28', 29, 14.0), ('2024-06-02', 4, -17.7)]
+   h=60 validation: ex -12.8% placebo p2=0.20 p1=0.01 | mdd -3.8 p2=0.30 | n_flag 62 clusters [('2024-08-05', 3, 10.1), ('2025-02-04', 3, -19.3), ('2025-07-23', 56, -7.8)]
+   h=60 test: ex -19.6% placebo p2=0.14 p1=0.00 | mdd -12.9 p2=0.00 | n_flag 17 clusters [('2026-01-01', 15, -24.4), ('2026-09-15', 2, -17.1)]
+   h=90 train: ex -18.8% placebo p2=0.26 p1=0.09 | mdd -0.5 p2=0.91 | n_flag 112 clusters [('2021-11-21', 16, -54.2), ('2022-04-14', 11, -71.8), ('2022-09-05', 85, -36.0)]
+   h=90 validation: ex -20.0% placebo p2=0.17 p1=0.00 | mdd -7.7 p2=0.04 | n_flag 62 clusters [('2024-08-05', 3, 20.3), ('2025-02-04', 3, -10.1), ('2025-07-23', 56, -15.8)]
+   h=90 test: ex -18.6% placebo p2=0.00 p1=0.00 | mdd -13.3 p2=0.00 | n_flag 15 clusters [('2026-01-01', 15, -26.9)]
+
+====================================================================================================
+D. ETH lsr_ETH episode-level (first day of cluster), lag=1, thr 0.8 / 0.9
+====================================================================================================
+ETH thr=0.8 h=30: tra n=6 neg=4 mean=-5.5% | val n=3 neg=1 mean=+11.4% | tes n=4 neg=2 mean=-3.6%
+ETH thr=0.8 h=60: tra n=5 neg=4 mean=+4.2% | val n=2 neg=1 mean=-13.4% | tes n=1 neg=1 mean=-28.8%
+ETH thr=0.8 h=90: tra n=5 neg=4 mean=-5.2% | val n=2 neg=2 mean=-32.2% | tes n=1 neg=1 mean=-26.2%
+ETH thr=0.9 h=30: tra n=8 neg=5 mean=-11.4% | val n=3 neg=1 mean=+15.6% | tes n=2 neg=1 mean=-10.7%
+ETH thr=0.9 h=60: tra n=6 neg=4 mean=+5.3% | val n=1 neg=1 mean=-22.6% | tes n=2 neg=2 mean=-26.5%
+ETH thr=0.9 h=90: tra n=5 neg=4 mean=-5.7% | val n=1 neg=1 mean=-27.6% | tes n=1 neg=1 mean=-22.3%
+
+====================================================================================================
+E. Test period in detail: 2026 flagged clusters at thr 0.8 and the BTC path
+====================================================================================================
+   cluster 2025-12-03..2026-03-01 n=47: BTC at start 93377, +30d 89951, +60d 76932, +90d 68295
+   cluster 2026-03-28..2026-03-30 n=3: BTC at start 66335, +30d 77331, +60d 74418, +90d 60072
+   cluster 2026-06-04..2026-06-05 n=2: BTC at start 63853, +30d 63115, +60d 63497, +90d 77300
+   cluster 2026-06-26..2026-07-02 n=4: BTC at start 60072, +30d 65375, +60d 78505, +90d 84370
+   cluster 2026-08-02..2026-08-18 n=3: BTC at start 63550, +30d 77400, +60d 84830, +90d 77523
+   cluster 2026-10-26..2026-11-17 n=19: BTC at start 80116, +30d nan, +60d nan, +90d nan
+   BTC month-end closes 2025-10..2026-11: 2025-10: 109557, 2025-11: 90321, 2025-12: 87608, 2026-01: 78707, 2026-02: 66937, 2026-03: 68242, 2026-04: 76305, 2026-05: 73653, 2026-06: 58605, 2026-07: 62860, 2026-08: 78550, 2026-09: 83577, 2026-10: 77523, 2026-11: 64921
+   test-period mean fwd 30/60/90: 30: -0.8%, 60: +1.9%, 90: +3.5%
+
+wrote /private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results3/refute/lsr_btc_refute_part2.json

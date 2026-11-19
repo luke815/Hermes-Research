@@ -1,0 +1,42 @@
+==== (a) buy13 difference, NaN-in-place mode, BTC 1H ====
+  countdown started by buy9 at 2024-12-02 11:00:00; independent completes 13 at 2024-12-05 05:00:00, harness3 at 2024-12-08 09:00:00
+  bars where close and close[-2] are valid and close<=close[-2] (a countdown bar by the definition) but harness3 skips them because close[-4] is NaN: 9
+     2024-12-03 08:00:00 close 95537.9 close[-4] NaN -> independent cd=7
+     2024-12-04 03:00:00 close 95782.9 close[-4] NaN -> independent cd=10
+     2024-12-04 12:00:00 close 95975.3 close[-4] NaN -> independent cd=11
+     2024-12-05 05:00:00 close 102479.9 close[-4] NaN -> independent cd=13
+     2024-12-05 18:00:00 close 100168.5 close[-4] NaN -> independent cd=0
+     2024-12-06 03:00:00 close 97732.4 close[-4] NaN -> independent cd=0
+     2024-12-06 12:00:00 close 97623.2 close[-4] NaN -> independent cd=0
+     2024-12-06 23:00:00 close 99738.6 close[-4] NaN -> independent cd=0
+     2024-12-07 13:00:00 close 99387.0 close[-4] NaN -> independent cd=0
+  bars with valid close, valid close[-2], NaN close[-4] in the whole series: 373 (these are countdown-eligible by the definition but skipped by harness3 in NaN-in-place mode)
+
+==== (b) gap ground truth, matching tolerance 0 / 2 / 6 / 12 bars ====
+  skip      buy9: truth 69 got 54 | unmatched (no truth within +/-tol): tol0=19, tol2=17, tol6=8, tol12=5 | missed: tol0=34, tol2=32, tol6=23, tol12=19
+  skip      sell9: truth 74 got 56 | unmatched (no truth within +/-tol): tol0=17, tol2=14, tol6=6, tol12=4 | missed: tol0=35, tol2=32, tol6=24, tol12=21
+  nan_reset buy9: truth 69 got 34 | unmatched (no truth within +/-tol): tol0=0, tol2=0, tol6=0, tol12=0 | missed: tol0=35, tol2=35, tol6=35, tol12=35
+  nan_reset sell9: truth 74 got 37 | unmatched (no truth within +/-tol): tol0=0, tol2=0, tol6=0, tol12=0 | missed: tol0=37, tol2=37, tol6=37, tol12=37
+  ffill     buy9: truth 69 got 70 | unmatched (no truth within +/-tol): tol0=20, tol2=17, tol6=13, tol12=9 | missed: tol0=19, tol2=16, tol6=12, tol12=10
+  ffill     sell9: truth 74 got 68 | unmatched (no truth within +/-tol): tol0=25, tol2=16, tol6=12, tol12=10 | missed: tol0=31, tol2=22, tol6=18, tol12=16
+  rate per 1000 bars: truth buy9 12.39 (L=5568); skip buy9 12.17 per 1000 AVAILABLE bars (n_avail=4437); skip per 1000 calendar hours 9.70
+  fwd 12h return after skip matched  : mean -0.958% n=37
+  fwd 12h return after skip unmatched: mean -0.460% n=17
+  fwd 12h return after truth all     : mean -0.529% n=68
+  fwd 12h return after all bars      : mean -0.099% n=5556
+
+==== (c) 4H frame (resample('4h').last(), dropna), harness3 vs independent ====
+  btc: buy9 h3=52 ind=52 diff=0, sell9 h3=60 ind=60 diff=0, buy9p h3=37 ind=37 diff=0, sell9p h3=38 ind=38 diff=0, buy13 h3=31 ind=31 diff=0, sell13 h3=45 ind=45 diff=0
+  eth: buy9 h3=47 ind=47 diff=0, sell9 h3=54 ind=54 diff=0, buy9p h3=30 ind=30 diff=0, sell9p h3=37 ind=37 diff=0, buy13 h3=29 ind=29 diff=0, sell13 h3=34 ind=34 diff=0
+  eth 1H skip mode: buy9 h3=187 ind=187 diff=0, sell9 h3=220 ind=220 diff=0, buy9p h3=135 ind=135 diff=0, sell9p h3=152 ind=152 diff=0, buy13 h3=121 ind=121 diff=0, sell13 h3=135 ind=135 diff=0
+
+==== (d) 1H BTC flags (skip mode) by period and by gapped window ====
+  buy9    train 58 (of which 29 in Dec-2024..Mar-2025, the gapped window) | validation 54 | test 95
+  sell9   train 63 (of which 26 in Dec-2024..Mar-2025, the gapped window) | validation 60 | test 95
+  buy9p   train 42 (of which 20 in Dec-2024..Mar-2025, the gapped window) | validation 40 | test 71
+  sell9p  train 50 (of which 23 in Dec-2024..Mar-2025, the gapped window) | validation 47 | test 71
+  buy13   train 29 (of which 14 in Dec-2024..Mar-2025, the gapped window) | validation 32 | test 62
+  sell13  train 41 (of which 16 in Dec-2024..Mar-2025, the gapped window) | validation 31 | test 64
+  NaN share of hours inside Dec-2024..Mar-2025: 36.3%; outside: 0.57%
+
+wrote td_compare_followup.json

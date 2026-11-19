@@ -1,0 +1,117 @@
+
+==== A1. Crowding -> observable events: event-day base rates (unconditional) and crowded-state episodes ====
+  flag: perp_funding_btc pct365>=0.8                         | tra bars= 390 ep10=9 ep20=5 | val bars= 141 ep10=12 ep20=6 | tes bars=  61 ep10=6 ep20=3 | tr+va ep10=20 ep20=10
+  flag: perp_funding_btc pct365>=0.9                         | tra bars= 258 ep10=7 ep20=4 | val bars=  49 ep10=10 ep20=5 | tes bars=  31 ep10=7 ep20=5 | tr+va ep10=17 ep20=9
+  flag: funding top AND futures_oi top (0.8)                 | tra bars= 277 ep10=8 ep20=4 | val bars= 117 ep10=9 ep20=5 | tes bars=   0 ep10=0 ep20=0 | tr+va ep10=16 ep20=8
+  flag: perp_funding_eth pct365>=0.8                         | tra bars= 345 ep10=14 ep20=5 | val bars=  69 ep10=11 ep20=5 | tes bars=  51 ep10=7 ep20=4 | tr+va ep10=25 ep20=10
+  event liq cascade raw: liq_BTC pct365>=0.9                 | tra days= 83 ep10=15 P(within10)=0.16 P(within20)=0.21 | val days= 63 ep10=14 P(within10)=0.59 P(within20)=0.80 | tes days= 81 ep10= 9 P(within10)=0.83 P(within20)=0.97
+  event liq cascade norm: (liq_BTC/oi_BTC) pct365>=0.9       | tra days= 53 ep10=13 P(within10)=0.12 P(within20)=0.17 | val days= 33 ep10=15 P(within10)=0.40 P(within20)=0.65 | tes days= 90 ep10= 5 P(within10)=0.91 P(within20)=0.99
+  event OI flush USD: futures_oi_btc 3d%chg pct365<=0.1      | tra days= 87 ep10=28 P(within10)=0.23 P(within20)=0.34 | val days= 56 ep10=18 P(within10)=0.44 P(within20)=0.70 | tes days= 34 ep10= 9 P(within10)=0.51 P(within20)=0.71
+  event OI flush coin: (futures_oi_btc/btc) 3d%chg pct365<=0.1 | tra days= 87 ep10=36 P(within10)=0.26 P(within20)=0.40 | val days= 58 ep10=22 P(within10)=0.63 P(within20)=0.90 | tes days= 26 ep10=10 P(within10)=0.46 P(within20)=0.70
+  event OI flush USD -5%/3d absolute                         | tra days=155 ep10=37 P(within10)=0.35 P(within20)=0.48 | val days= 60 ep10=20 P(within10)=0.47 P(within20)=0.76 | tes days= 37 ep10=10 P(within10)=0.53 P(within20)=0.72
+  event funding reset: pct<0.5 today, >=0.8 within last 5d   | tra days=221 ep10=11 P(within10)=0.26 P(within20)=0.31 | val days=110 ep10=12 P(within10)=0.55 P(within20)=0.68 | tes days= 46 ep10= 8 P(within10)=0.50 P(within20)=0.63
+  event DVOL spike: dvol_lv_btc 5d chg pct365>=0.9           | tra days= 91 ep10=19 P(within10)=0.15 P(within20)=0.24 | val days= 42 ep10=10 P(within10)=0.30 P(within20)=0.44 | tes days= 33 ep10= 8 P(within10)=0.34 P(within20)=0.50
+  event dispersion spike: dispersion_14 pct365>=0.9          | tra days=194 ep10=14 P(within10)=0.17 P(within20)=0.24 | val days= 34 ep10= 2 P(within10)=0.10 P(within20)=0.14 | tes days= 50 ep10= 3 P(within10)=0.27 P(within20)=0.38
+
+==== A2. Price x coin-OI quadrants (7-day), BTC; flags at the quintile of the 7d OI change ====
+  leveraged rally: px7d>0 AND coinOI 7d chg pct>=0.8         | tra bars=  89 ep10=24 ep20=15 | val bars=  57 ep10=14 ep20=9 | tes bars=  18 ep10=3 ep20=3 | tr+va ep10=38 ep20=24
+  long flush: px7d<0 AND coinOI 7d chg pct<=0.2              | tra bars= 105 ep10=30 ep20=15 | val bars=  54 ep10=16 ep20=11 | tes bars=  25 ep10=7 ep20=5 | tr+va ep10=46 ep20=25
+  short covering: px7d>0 AND coinOI 7d chg pct<=0.2          | tra bars=  85 ep10=33 ep20=16 | val bars=  46 ep10=16 ep20=10 | tes bars=  24 ep10=10 ep20=6 | tr+va ep10=49 ep20=26
+  new shorts: px7d<0 AND coinOI 7d chg pct>=0.8              | tra bars=  81 ep10=33 ep20=20 | val bars=  48 ep10=15 ep20=12 | tes bars=  24 ep10=12 ep20=8 | tr+va ep10=48 ep20=32
+  control: same with USD OI (leveraged rally)                | tra bars= 162 ep10=31 ep20=16 | val bars=  83 ep10=17 ep20=12 | tes bars=  50 ep10=8 ep20=6 | tr+va ep10=48 ep20=28
+  ETH leveraged rally (coin OI)                              | tra bars=  98 ep10=27 ep20=15 | val bars=  47 ep10=13 ep20=6 | tes bars=  16 ep10=6 ep20=6 | tr+va ep10=40 ep20=21
+  ETH long flush (coin OI)                                   | tra bars=  96 ep10=32 ep20=19 | val bars=  58 ep10=17 ep20=7 | tes bars=  27 ep10=9 ep20=6 | tr+va ep10=49 ep20=25
+
+==== A3. Coin-OI high vs USD-OI high vs price high (overlap diagnostic, not a score) ====
+  flag: perp_oi USD pct365>=0.8                              | tra bars= 403 ep30=5 ep60=4 | val bars= 291 ep30=2 ep60=2 | tes bars=   6 ep30=1 ep60=1 | tr+va ep30=6 ep60=5
+     overlap perp_oi USD      | tra P(price top|OI top)=0.77 vs P(price top)=0.37 corr(pct)=0.76 | val P(price top|OI top)=0.83 vs P(price top)=0.55 corr(pct)=0.82 | tes P(price top|OI top)=0.00 vs P(price top)=0.00 corr(pct)=0.78
+  flag: perp_oi coin pct365>=0.8                             | tra bars= 354 ep30=2 ep60=2 | val bars= 182 ep30=5 ep60=2 | tes bars= 184 ep30=2 ep60=1 | tr+va ep30=7 ep60=4
+     overlap perp_oi coin     | tra P(price top|OI top)=0.03 vs P(price top)=0.37 corr(pct)=-0.73 | val P(price top|OI top)=0.66 vs P(price top)=0.55 corr(pct)=-0.02 | tes P(price top|OI top)=0.00 vs P(price top)=0.00 corr(pct)=-0.17
+  flag: futures_oi USD pct365>=0.8                           | tra bars= 464 ep30=4 ep60=4 | val bars= 277 ep30=2 ep60=2 | tes bars=   0 ep30=0 ep60=0 | tr+va ep30=5 ep60=5
+     overlap futures_oi USD   | tra P(price top|OI top)=0.79 vs P(price top)=0.37 corr(pct)=0.93 | val P(price top|OI top)=0.89 vs P(price top)=0.55 corr(pct)=0.89
+  flag: futures_oi coin pct365>=0.8                          | tra bars= 354 ep30=5 ep60=3 | val bars= 207 ep30=3 ep60=2 | tes bars=  21 ep30=5 ep60=3 | tr+va ep30=7 ep60=4
+     overlap futures_oi coin  | tra P(price top|OI top)=0.12 vs P(price top)=0.37 corr(pct)=-0.67 | val P(price top|OI top)=0.73 vs P(price top)=0.55 corr(pct)=0.39 | tes P(price top|OI top)=0.00 vs P(price top)=0.00 corr(pct)=-0.06
+  control: btc price pct365>=0.8                             | tra bars= 750 ep30=7 ep60=6 | val bars= 301 ep30=3 ep60=3 | tes bars=   0 ep30=0 ep60=0 | tr+va ep30=10 ep60=8
+  coin OI top (pct365>=0.8), dup for ep30                    | tra bars= 354 ep30=2 ep60=2 | val bars= 182 ep30=5 ep60=2 | tes bars= 184 ep30=2 ep60=1 | tr+va ep30=7 ep60=4
+  coin OI top AND price NOT top (the clean cell)             | tra bars= 343 ep30=2 ep60=2 | val bars=  61 ep30=4 ep60=3 | tes bars= 184 ep30=2 ep60=1 | tr+va ep30=6 ep60=5
+  ETH perp_oi coin pct365>=0.8                               | tra bars= 425 ep30=5 ep60=3 | val bars= 372 ep30=3 ep60=1 | tes bars= 183 ep30=1 ep60=1 | tr+va ep30=7 ep60=3
+
+==== A4. Breadth of alt crowding (share of 18 alts with funding pct365>=0.8) ====
+  tra breadth: n=1208 mean=0.35 q50=0.21 q80=0.82 q90=0.94 share(>=0.5)=0.34
+  val breadth: n=549 mean=0.25 q50=0.17 q80=0.41 q90=0.68 share(>=0.5)=0.17
+  tes breadth: n=321 mean=0.25 q50=0.17 q80=0.44 q90=0.61 share(>=0.5)=0.18
+  flag: breadth >= 0.5 (absolute)                            | tra bars= 406 ep10=15 ep20=8 ep30=5 | val bars=  95 ep10=10 ep20=7 ep30=4 | tes bars=  58 ep10=9 ep20=4 ep30=4 | tr+va ep10=25 ep20=15 ep30=9
+  flag: breadth pct365 >= 0.8 (relative)                     | tra bars= 427 ep10=9 ep20=5 ep30=3 | val bars= 103 ep10=8 ep20=5 ep30=3 | tes bars=  76 ep10=8 ep20=4 ep30=4 | tr+va ep10=17 ep20=10 ep30=6
+  flag: breadth>=0.5 AND BTC funding NOT crowded             | tra bars= 111 ep10=16 ep20=10 ep30=6 | val bars=  49 ep10=11 ep20=7 ep30=3 | tes bars=  36 ep10=11 ep20=4 ep30=4 | tr+va ep10=27 ep20=17 ep30=9
+  mirror: breadth <= 0.05 (no alt crowded)                   | tra bars= 365 ep10=16 ep20=12 ep30=6 | val bars=  92 ep10=13 ep20=5 ep30=3 | tes bars=  37 ep10=9 ep20=3 ep30=2 | tr+va ep10=28 ep20=16 ep30=8
+     funding_SOL: share exactly 0.01 = 0.33, share==0 = 0.00
+     funding_DOGE: share exactly 0.01 = 0.41, share==0 = 0.00
+     funding_XRP: share exactly 0.01 = 0.40, share==0 = 0.00
+     btc_funding (=perp_funding*100 in daily2): share exactly 0.01 = 0.32
+
+==== A5. Funding-state transition matrices (BASE RATES), state from perp_funding pct365: C>=0.8, W<=0.2, N otherwise ====
+  BTC train      n=1011 occupancy C=0.39 N=0.41 W=0.20 | run length (days) mean/median/max/#runs: C=4/1/65/92 N=3/2/18/154 W=2/1/7/102
+       k= 7: from C (days= 391, ep= 22) -> C 0.67 N 0.24 W 0.09 | from N (days= 418, ep= 17) -> C 0.24 N 0.55 W 0.21 | from W (days= 201, ep= 25) -> C 0.15 N 0.48 W 0.37
+       k=14: from C (days= 391, ep=  6) -> C 0.63 N 0.27 W 0.10 | from N (days= 418, ep=  7) -> C 0.27 N 0.52 W 0.20 | from W (days= 201, ep= 11) -> C 0.19 N 0.46 W 0.35
+       k=30: from C (days= 391, ep=  4) -> C 0.52 N 0.33 W 0.15 | from N (days= 419, ep=  5) -> C 0.31 N 0.47 W 0.22 | from W (days= 200, ep=  6) -> C 0.30 N 0.43 W 0.26
+  BTC validation n=548 occupancy C=0.26 N=0.48 W=0.27 | run length (days) mean/median/max/#runs: C=3/1/38/42 N=3/1/11/104 W=2/1/11/77
+       k= 7: from C (days= 139, ep= 16) -> C 0.53 N 0.31 W 0.16 | from N (days= 261, ep=  8) -> C 0.18 N 0.56 W 0.26 | from W (days= 147, ep= 14) -> C 0.11 N 0.50 W 0.39
+       k=14: from C (days= 139, ep=  7) -> C 0.48 N 0.38 W 0.14 | from N (days= 261, ep=  3) -> C 0.18 N 0.51 W 0.30 | from W (days= 147, ep=  7) -> C 0.14 N 0.51 W 0.35
+       k=30: from C (days= 140, ep=  5) -> C 0.39 N 0.47 W 0.14 | from N (days= 261, ep=  2) -> C 0.20 N 0.50 W 0.30 | from W (days= 146, ep=  3) -> C 0.18 N 0.49 W 0.33
+  BTC test       n=315 occupancy C=0.19 N=0.58 W=0.23 | run length (days) mean/median/max/#runs: C=2/1/5/35 N=3/2/12/66 W=2/1/8/36
+       k= 7: from C (days=  59, ep=  9) -> C 0.27 N 0.66 W 0.07 | from N (days= 175, ep=  3) -> C 0.22 N 0.58 W 0.19 | from W (days=  68, ep=  6) -> C 0.03 N 0.53 W 0.44
+       k=14: from C (days=  55, ep=  4) -> C 0.20 N 0.60 W 0.20 | from N (days= 173, ep=  1) -> C 0.24 N 0.56 W 0.20 | from W (days=  67, ep=  4) -> C 0.07 N 0.64 W 0.28
+       k=30: from C (days=  48, ep=  2) -> C 0.31 N 0.56 W 0.12 | from N (days= 165, ep=  1) -> C 0.19 N 0.61 W 0.20 | from W (days=  66, ep=  2) -> C 0.14 N 0.48 W 0.38
+  BTC 2025 only  n=364 occupancy C=0.17 N=0.57 W=0.26 | run length (days) mean/median/max/#runs: C=2/1/15/28 N=3/2/11/74 W=2/1/11/56
+       k= 7: from C (days=  60, ep= 12) -> C 0.35 N 0.42 W 0.23 | from N (days= 207, ep=  4) -> C 0.14 N 0.61 W 0.25 | from W (days=  96, ep= 11) -> C 0.08 N 0.60 W 0.31
+       k=14: from C (days=  60, ep=  6) -> C 0.27 N 0.57 W 0.17 | from N (days= 207, ep=  2) -> C 0.14 N 0.54 W 0.32 | from W (days=  96, ep=  5) -> C 0.10 N 0.66 W 0.24
+       k=30: from C (days=  61, ep=  4) -> C 0.11 N 0.72 W 0.16 | from N (days= 207, ep=  1) -> C 0.15 N 0.54 W 0.31 | from W (days=  95, ep=  2) -> C 0.13 N 0.61 W 0.26
+  ETH train      n=1011 occupancy C=0.34 N=0.48 W=0.18 | run length (days) mean/median/max/#runs: C=4/1/95/83 N=3/2/37/140 W=2/2/9/87
+       k= 7: from C (days= 345, ep= 19) -> C 0.65 N 0.29 W 0.06 | from N (days= 482, ep= 14) -> C 0.21 N 0.61 W 0.18 | from W (days= 183, ep= 23) -> C 0.10 N 0.50 W 0.40
+       k=14: from C (days= 345, ep=  8) -> C 0.62 N 0.30 W 0.08 | from N (days= 483, ep=  6) -> C 0.21 N 0.61 W 0.18 | from W (days= 182, ep= 10) -> C 0.15 N 0.49 W 0.36
+       k=30: from C (days= 345, ep=  4) -> C 0.55 N 0.35 W 0.10 | from N (days= 482, ep=  4) -> C 0.25 N 0.54 W 0.21 | from W (days= 183, ep=  6) -> C 0.15 N 0.57 W 0.28
+  ETH validation n=548 occupancy C=0.13 N=0.56 W=0.31 | run length (days) mean/median/max/#runs: C=2/2/10/31 N=3/2/29/105 W=2/1/9/80
+       k= 7: from C (days=  68, ep= 13) -> C 0.34 N 0.51 W 0.15 | from N (days= 308, ep=  9) -> C 0.13 N 0.59 W 0.27 | from W (days= 171, ep= 14) -> C 0.04 N 0.53 W 0.44
+       k=14: from C (days=  68, ep=  9) -> C 0.31 N 0.53 W 0.16 | from N (days= 308, ep=  1) -> C 0.14 N 0.59 W 0.27 | from W (days= 171, ep=  6) -> C 0.06 N 0.51 W 0.43
+       k=30: from C (days=  69, ep=  2) -> C 0.17 N 0.65 W 0.17 | from N (days= 308, ep=  1) -> C 0.16 N 0.55 W 0.29 | from W (days= 170, ep=  2) -> C 0.08 N 0.55 W 0.38
+  ETH test       n=315 occupancy C=0.16 N=0.60 W=0.24 | run length (days) mean/median/max/#runs: C=2/1/6/33 N=3/2/19/58 W=2/1/7/37
+       k= 7: from C (days=  50, ep= 16) -> C 0.14 N 0.66 W 0.20 | from N (days= 181, ep=  5) -> C 0.18 N 0.61 W 0.20 | from W (days=  71, ep=  8) -> C 0.11 N 0.51 W 0.38
+       k=14: from C (days=  47, ep=  5) -> C 0.21 N 0.49 W 0.30 | from N (days= 178, ep=  1) -> C 0.18 N 0.65 W 0.17 | from W (days=  70, ep=  6) -> C 0.06 N 0.56 W 0.39
+       k=30: from C (days=  42, ep=  3) -> C 0.14 N 0.64 W 0.21 | from N (days= 174, ep=  1) -> C 0.17 N 0.57 W 0.26 | from W (days=  63, ep=  2) -> C 0.13 N 0.60 W 0.27
+  ETH 2025 only  n=364 occupancy C=0.13 N=0.55 W=0.33 | run length (days) mean/median/max/#runs: C=2/2/10/24 N=3/2/14/79 W=2/1/9/61
+       k= 7: from C (days=  45, ep= 12) -> C 0.18 N 0.60 W 0.22 | from N (days= 199, ep=  5) -> C 0.17 N 0.54 W 0.29 | from W (days= 119, ep= 11) -> C 0.05 N 0.53 W 0.42
+       k=14: from C (days=  45, ep=  8) -> C 0.24 N 0.51 W 0.24 | from N (days= 199, ep=  1) -> C 0.15 N 0.56 W 0.30 | from W (days= 119, ep=  4) -> C 0.09 N 0.50 W 0.40
+       k=30: from C (days=  46, ep=  1) -> C 0.26 N 0.50 W 0.24 | from N (days= 199, ep=  1) -> C 0.14 N 0.55 W 0.31 | from W (days= 118, ep=  1) -> C 0.10 N 0.53 W 0.37
+
+==== A6. Funding cooling inside/after the crowded state, conditioned on price (BTC) ====
+  cooling: pct>=0.8 at t-5 AND pct<0.6 at t                  | tra bars=  99 ep10=16 ep20=9 ep30=7 | val bars=  56 ep10=16 ep20=8 ep30=6 | tes bars=  26 ep10=11 ep20=3 ep30=3 | tr+va ep10=32 ep20=16 ep30=12
+  healthy reset: cooling AND 5d return > -3%                 | tra bars=  60 ep10=19 ep20=11 ep30=10 | val bars=  33 ep10=17 ep20=10 ep30=7 | tes bars=  21 ep10=11 ep20=2 ep30=2 | tr+va ep10=36 ep20=21 ep30=16
+  flush reset: cooling AND 5d return <= -3%                  | tra bars=  39 ep10=16 ep20=10 ep30=8 | val bars=  23 ep10=12 ep20=7 ep30=5 | tes bars=   5 ep10=3 ep20=2 ep30=2 | tr+va ep10=28 ep20=16 ep30=12
+  crowded AND funding rising (3d diff>0)                     | tra bars= 167 ep10=21 ep20=8 | val bars=  68 ep10=15 ep20=7 | tes bars=  44 ep10=6 ep20=3 | tr+va ep10=36 ep20=14
+  crowded AND funding falling (3d diff<0)                    | tra bars=  48 ep10=7 ep20=6 | val bars=   8 ep10=1 ep20=1 | tes bars=   7 ep10=4 ep20=4 | tr+va ep10=8 ep20=7
+  control: 5d return > -3% AND pct<0.6 (no prior crowding)   | tra bars= 335 ep10=13 ep20=6 ep30=6 | val bars= 284 ep10=4 ep20=3 ep30=2 | tes bars= 139 ep10=6 ep20=1 ep30=1 | tr+va ep10=17 ep20=9 ep30=7
+
+==== Base rates for the dashboard: unconditional forward-drawdown frequencies ====
+  BTC W=10: tra P(mdd10<=-10%)=0.17 mean mdd=-4.7% (n=2008) | val P(mdd10<=-10%)=0.09 mean mdd=-3.5% (n=549) | tes P(mdd10<=-10%)=0.10 mean mdd=-4.2% (n=311)
+  BTC W=20: tra P(mdd20<=-10%)=0.29 mean mdd=-7.2% (n=2008) | val P(mdd20<=-10%)=0.17 mean mdd=-5.4% (n=549) | tes P(mdd20<=-10%)=0.20 mean mdd=-6.8% (n=301)
+  BTC W=30: tra P(mdd30<=-10%)=0.37 mean mdd=-9.0% (n=2008) | val P(mdd30<=-10%)=0.23 mean mdd=-6.6% (n=549) | tes P(mdd30<=-10%)=0.28 mean mdd=-8.7% (n=291)
+  BTC W=60: tra P(mdd60<=-20%)=0.23 mean mdd=-13.1% (n=2008) | val P(mdd60<=-20%)=0.21 mean mdd=-10.3% (n=549) | tes P(mdd60<=-20%)=0.29 mean mdd=-11.4% (n=261)
+  BTC W=90: tra P(mdd90<=-20%)=0.31 mean mdd=-15.9% (n=2008) | val P(mdd90<=-20%)=0.35 mean mdd=-13.6% (n=549) | tes P(mdd90<=-20%)=0.35 mean mdd=-13.6% (n=231)
+  ETH W=10: tra P(mdd10<=-10%)=0.24 mean mdd=-5.9% (n=2008) | val P(mdd10<=-10%)=0.27 mean mdd=-6.1% (n=549) | tes P(mdd10<=-10%)=0.16 mean mdd=-5.5% (n=311)
+  ETH W=20: tra P(mdd20<=-10%)=0.37 mean mdd=-9.0% (n=2008) | val P(mdd20<=-10%)=0.43 mean mdd=-9.5% (n=549) | tes P(mdd20<=-10%)=0.33 mean mdd=-8.9% (n=301)
+  ETH W=30: tra P(mdd30<=-10%)=0.44 mean mdd=-11.1% (n=2008) | val P(mdd30<=-10%)=0.54 mean mdd=-12.2% (n=549) | tes P(mdd30<=-10%)=0.40 mean mdd=-11.4% (n=291)
+  ETH W=60: tra P(mdd60<=-20%)=0.30 mean mdd=-15.4% (n=2008) | val P(mdd60<=-20%)=0.45 mean mdd=-19.2% (n=549) | tes P(mdd60<=-20%)=0.36 mean mdd=-15.0% (n=261)
+  ETH W=90: tra P(mdd90<=-20%)=0.36 mean mdd=-18.2% (n=2008) | val P(mdd90<=-20%)=0.56 mean mdd=-24.7% (n=549) | tes P(mdd90<=-20%)=0.51 mean mdd=-18.3% (n=231)
+
+==== Diagnostic for the lsr result: does lsr_BTC top coincide with recent weakness? (overlap, not a score) ====
+  tra P(14d ret<0 | lsr top)=0.64 vs P(14d ret<0)=0.44; mean 14d ret | lsr top = +0.9% vs all +2.9%; corr(lsr pct, 14d ret)=-0.24
+  val P(14d ret<0 | lsr top)=0.84 vs P(14d ret<0)=0.46; mean 14d ret | lsr top = -6.5% vs all +1.2%; corr(lsr pct, 14d ret)=-0.69
+  tes P(14d ret<0 | lsr top)=0.85 vs P(14d ret<0)=0.53; mean 14d ret | lsr top = -7.2% vs all -0.5%; corr(lsr pct, 14d ret)=-0.64
+  lsr_BTC pct365>=0.8 (for reference)                        | tra bars= 302 ep10=19 ep20=12 ep30=10 | val bars= 121 ep10=11 ep20=6 ep30=4 | tes bars=  59 ep10=7 ep20=6 ep30=4 | tr+va ep10=29 ep20=17 ep30=13
+  lsr top AND 14d return >= 0 (the clean cell)               | tra bars= 109 ep10=17 ep20=13 ep30=11 | val bars=  18 ep10=8 ep20=6 ep30=6 | tes bars=  10 ep10=3 ep20=3 ep30=3 | tr+va ep10=25 ep20=19 ep30=17
+
+==== 2026 regime descriptives ====
+  tra: median perp_funding_btc per 8h = 100.00 bp; share days pct>=0.8 = 0.19; share pct<=0.2 = 0.10; coin OI (perp) median = 82,062 BTC; median dvol_lv_btc = 66.9; mean |btc 1d ret| = 2.34%
+  val: median perp_funding_btc per 8h = 49.44 bp; share days pct>=0.8 = 0.26; share pct<=0.2 = 0.27; coin OI (perp) median = 84,739 BTC; median dvol_lv_btc = 49.8; mean |btc 1d ret| = 1.70%
+  tes: median perp_funding_btc per 8h = 35.70 bp; share days pct>=0.8 = 0.19; share pct<=0.2 = 0.22; coin OI (perp) median = 98,844 BTC; median dvol_lv_btc = 40.0; mean |btc 1d ret| = 1.60%
+  test period length: 321 days (2026-01-01 .. 2026-11-17)

@@ -1,0 +1,66 @@
+[LOO] eth:consecutive validation >60: full mdd_diff -7.5 (t -2.9) n=55/3
+      drop 2024-07-01..2024-07-08 (n=8, that span's own mdd_diff -2.3, share mdd<=-10% 0.75) -> mdd_diff -8.4 (t -3.3) n=47/2
+      drop 2025-01-07..2025-02-05 (n=30, that span's own mdd_diff -10.8, share mdd<=-10% 1.00) -> mdd_diff -4.1 (t -1.8) n=25/2
+      drop 2025-09-25..2025-10-11 (n=17, that span's own mdd_diff -4.0, share mdd<=-10% 0.71) -> mdd_diff -9.1 (t -3.5) n=38/2
+      equal-episode-weighted mdd_diff of the >60 bucket (validation): -5.7 over 3 spans; spans with mdd_diff<0: 3/3
+      train spans: 2024-04-07..2024-06-30 (n=85) +0.6 | equal-weight +0.6
+[lag2] eth:consecutive >60: tra mdd_diff +0.7 (t 0.3) n=84/1 | val mdd_diff -7.8 (t -3.3) n=56/3
+[run-ends] eth:consecutive: runs >= 30d: 6; price return over the last 10 days of the run (to the exit day):
+      2021-10-13..2021-12-04 (53d, train): px last10 -3.6%, next10 -6.3%, next30 -8.5% | USD OI chg -14.8%, coin OI chg -8.1%
+      2023-11-09..2024-01-03 (56d, train): px last10 -2.4%, next10 +16.7%, next30 +4.4% | USD OI chg -13.0%, coin OI chg -12.8%
+      2024-02-06..2024-07-07 (153d, validation): px last10 -15.1%, next10 +15.6%, next30 -16.1% | USD OI chg -22.2%, coin OI chg -12.9%
+      2024-11-07..2025-02-04 (90d, validation): px last10 -17.7%, next10 -0.2%, next30 -19.4% | USD OI chg -23.0%, coin OI chg -10.7%
+      2025-05-22..2025-06-21 (31d, validation): px last10 -17.2%, next10 +4.8%, next30 +63.9% | USD OI chg -22.3%, coin OI chg -7.8%
+      2025-07-26..2025-10-10 (77d, validation): px last10 -7.8%, next10 +4.1%, next30 -6.2% | USD OI chg -23.6%, coin OI chg -11.3%
+      runs ending with a >5% price fall over the preceding 10 days: 4/6; mean last-10 return -10.6%; mean next-30 return +3.0%
+[LOO] eth:hysteresis validation >60: full mdd_diff -8.1 (t -4.7) n=175/4
+      drop 2024-07-01..2024-08-06 (n=37, that span's own mdd_diff -11.4, share mdd<=-10% 0.89) -> mdd_diff -8.1 (t -3.8) n=138/3
+      drop 2024-12-21..2025-03-01 (n=71, that span's own mdd_diff -9.6, share mdd<=-10% 0.86) -> mdd_diff -8.6 (t -3.4) n=104/3
+      drop 2025-07-11..2025-07-25 (n=15, that span's own mdd_diff +8.8, share mdd<=-10% 0.00) -> mdd_diff -9.5 (t -5.7) n=160/3
+      drop 2025-09-25..2025-11-15 (n=52, that span's own mdd_diff -8.7, share mdd<=-10% 0.90) -> mdd_diff -8.8 (t -3.7) n=123/3
+      equal-episode-weighted mdd_diff of the >60 bucket (validation): -5.2 over 4 spans; spans with mdd_diff<0: 3/4
+      train spans: 2021-12-03..2022-01-08 (n=37) -16.7; 2023-06-05..2023-06-17 (n=13) +5.7; 2024-01-06..2024-06-30 (n=177) +2.1 | equal-weight -3.0
+[lag2] eth:hysteresis >60: tra mdd_diff -0.8 (t -0.3) n=226/3 | val mdd_diff -8.3 (t -5.0) n=176/4
+[run-ends] eth:hysteresis: runs >= 30d: 7; price return over the last 10 days of the run (to the exit day):
+      2021-10-03..2022-01-07 (97d, train): px last10 -15.7%, next10 +0.4%, next30 -4.5% | USD OI chg -17.4%, coin OI chg -2.7%
+      2023-04-05..2023-06-16 (73d, train): px last10 -8.8%, next10 +8.2%, next30 +11.9% | USD OI chg -5.8%, coin OI chg -0.1%
+      2023-07-14..2023-08-17 (35d, train): px last10 -8.1%, next10 -1.4%, next30 -2.8% | USD OI chg -18.1%, coin OI chg -8.5%
+      2023-11-06..2024-08-05 (274d, validation): px last10 -26.1%, next10 +6.2%, next30 +1.3% | USD OI chg -32.8%, coin OI chg -11.2%
+      2024-10-21..2025-02-28 (131d, validation): px last10 -16.3%, next10 -16.6%, next30 -19.2% | USD OI chg -18.6%, coin OI chg -0.3%
+      2025-05-11..2025-07-24 (75d, validation): px last10 +23.0%, next10 -5.7%, next30 +28.9% | USD OI chg +nan%, coin OI chg +nan%
+      2025-07-26..2025-11-14 (112d, validation): px last10 -5.3%, next10 -5.1%, next30 -1.6% | USD OI chg -5.0%, coin OI chg +2.6%
+      runs ending with a >5% price fall over the preceding 10 days: 6/7; mean last-10 return -8.2%; mean next-30 return +2.0%
+[co-move] eth: corr(daily change in OI pct365, daily price return) = 0.00; mean OI-pct change on days with price <= -5%: -0.005 (n=117) vs all days -0.0003
+[LOO] btc:consecutive validation >60: full mdd_diff -0.5 (t -0.3) n=63/3
+      drop 2024-07-01..2024-07-05 (n=5, that span's own mdd_diff +0.2, share mdd<=-10% 0.40) -> mdd_diff -0.6 (t -0.3) n=58/2
+      drop 2024-12-12..2025-02-05 (n=56, that span's own mdd_diff -0.8, share mdd<=-10% 0.27) -> mdd_diff +1.2 (t 0.7) n=7/2
+      drop 2025-09-25..2025-09-26 (n=2, that span's own mdd_diff +4.0, share mdd<=-10% 0.00) -> mdd_diff -0.7 (t -0.4) n=61/2
+      equal-episode-weighted mdd_diff of the >60 bucket (validation): +1.2 over 3 spans; spans with mdd_diff<0: 1/3
+      train spans: 2023-08-16..2023-08-18 (n=3) +1.9; 2024-01-23..2024-01-23 (n=1) +9.2; 2024-04-07..2024-06-30 (n=85) -0.7 | equal-weight +3.5
+[lag2] btc:consecutive >60: tra mdd_diff -0.3 (t -0.1) n=88/3 | val mdd_diff -0.6 (t -0.3) n=64/3
+[run-ends] btc:consecutive: runs >= 30d: 7; price return over the last 10 days of the run (to the exit day):
+      2021-10-13..2021-12-04 (53d, train): px last10 -14.0%, next10 -1.7%, next30 -5.5% | USD OI chg -32.6%, coin OI chg -19.5%
+      2023-04-28..2023-06-07 (41d, train): px last10 -6.2%, next10 +0.7%, next30 +15.2% | USD OI chg -8.2%, coin OI chg -4.0%
+      2023-06-16..2023-08-17 (63d, train): px last10 -8.9%, next10 -2.0%, next30 -0.2% | USD OI chg -14.2%, coin OI chg -2.0%
+      2023-11-23..2024-01-22 (61d, train): px last10 -7.5%, next10 +8.9%, next30 +31.1% | USD OI chg -8.8%, coin OI chg -2.1%
+      2024-02-06..2024-07-04 (150d, validation): px last10 -5.4%, next10 +6.5%, next30 +6.4% | USD OI chg -4.8%, coin OI chg +3.9%
+      2024-10-12..2025-02-04 (116d, validation): px last10 -6.7%, next10 -0.3%, next30 -8.0% | USD OI chg -9.5%, coin OI chg -3.8%
+      2025-07-26..2025-09-25 (62d, validation): px last10 -5.5%, next10 +13.3%, next30 +2.4% | USD OI chg -6.6%, coin OI chg -0.5%
+      runs ending with a >5% price fall over the preceding 10 days: 7/7; mean last-10 return -7.7%; mean next-30 return +5.9%
+[LOO] btc:hysteresis validation >60: full mdd_diff -2.8 (t -2.4) n=197/4
+      drop 2024-07-01..2024-08-06 (n=37, that span's own mdd_diff -5.6, share mdd<=-10% 0.62) -> mdd_diff -2.6 (t -1.9) n=160/3
+      drop 2024-11-22..2025-03-30 (n=129, that span's own mdd_diff -2.4, share mdd<=-10% 0.34) -> mdd_diff -4.4 (t -2.5) n=68/3
+      drop 2025-07-12..2025-07-25 (n=14, that span's own mdd_diff +1.7, share mdd<=-10% 0.00) -> mdd_diff -3.2 (t -2.5) n=183/3
+      drop 2025-09-25..2025-10-11 (n=17, that span's own mdd_diff -4.0, share mdd<=-10% 0.59) -> mdd_diff -2.9 (t -2.1) n=180/3
+      equal-episode-weighted mdd_diff of the >60 bucket (validation): -2.6 over 4 spans; spans with mdd_diff<0: 3/4
+      train spans: 2021-12-05..2021-12-05 (n=1) +1.9; 2023-05-18..2023-08-19 (n=94) +2.3; 2023-12-22..2024-06-30 (n=192) +1.6 | equal-weight +1.9
+[lag2] btc:hysteresis >60: tra mdd_diff +1.8 (t 1.2) n=286/3 | val mdd_diff -2.9 (t -2.4) n=198/4
+[run-ends] btc:hysteresis: runs >= 30d: 6; price return over the last 10 days of the run (to the exit day):
+      2021-10-05..2021-12-04 (61d, train): px last10 -14.0%, next10 -1.7%, next30 -5.5% | USD OI chg -32.6%, coin OI chg -19.5%
+      2023-03-18..2023-08-18 (154d, train): px last10 -12.5%, next10 +0.2%, next30 +1.8% | USD OI chg -25.6%, coin OI chg -15.7%
+      2023-10-22..2024-08-05 (289d, validation): px last10 -20.4%, next10 +6.5%, next30 +7.3% | USD OI chg -29.2%, coin OI chg -14.1%
+      2024-09-22..2025-03-29 (189d, validation): px last10 -4.8%, next10 -7.6%, next30 +15.0% | USD OI chg -7.4%, coin OI chg -5.3%
+      2025-05-12..2025-07-24 (74d, validation): px last10 -1.3%, next10 -3.5%, next30 -2.5% | USD OI chg +nan%, coin OI chg +nan%
+      2025-07-26..2025-10-10 (77d, validation): px last10 -1.1%, next10 -2.0%, next30 -7.1% | USD OI chg -15.0%, coin OI chg -8.9%
+      runs ending with a >5% price fall over the preceding 10 days: 3/6; mean last-10 return -9.0%; mean next-30 return +1.5%
+[co-move] btc: corr(daily change in OI pct365, daily price return) = 0.02; mean OI-pct change on days with price <= -5%: -0.012 (n=62) vs all days -0.0003

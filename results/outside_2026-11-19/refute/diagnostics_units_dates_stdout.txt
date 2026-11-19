@@ -1,0 +1,39 @@
+== funding units ==
+                       50%      mean       min      max
+perp_funding_btc  0.007040  0.007281 -0.119000  0.12270
+btc_funding       0.006856  0.007764 -0.089697  0.12267
+ratio btc_funding/perp_funding_btc median: 1.0
+perp_funding_btc == 0.0001 share: 0.00034746351633078526  == 0.01 share: 0.2286309937456567
+
+== liq_BTC and oi_BTC by year (median) ==
+         liq_BTC        oi_BTC     liq_ETH        oi_ETH  lsr_BTC  liq/oi_BTC
+date                                                                         
+2019         NaN           NaN         NaN           NaN      NaN         NaN
+2020         NaN           NaN         NaN           NaN  1.32560         NaN
+2021         NaN           NaN         NaN           NaN  2.00030         NaN
+2022   4186809.5  2.267238e+09   3527360.5  1.406025e+09  1.67380    0.001847
+2023   5280167.0  2.846158e+09   3350819.0  1.490807e+09  1.31050    0.001855
+2024  12108631.0  5.123298e+09   9083587.0  2.805256e+09  1.36915    0.002363
+2025  11024384.0  8.433260e+09  14536693.0  5.419390e+09  1.32670    0.001307
+2026  20429965.0  7.224267e+09  20386918.0  4.672647e+09  1.50820    0.002828
+
+== td_buy9_eth completions in validation and test (the single R4 PASS cell), with forward 10d mdd ==
+validation flagged dates: ['2024-08-09', '2025-02-11', '2025-06-22', '2025-09-25']
+   mdd10 on those bars: ['-1.7%', '+2.3%', '+8.0%', '+3.7%']  r10: ['+1.4%', '+2.3%', '+15.4%', '+16.5%']  vs period mean mdd10: -6.1%
+test flagged dates: ['2026-02-08', '2026-05-21', '2026-06-05', '2026-11-14']
+   mdd10 on those bars: ['-7.1%', '-5.9%', '-0.9%', '+nan%']  r10: ['-6.4%', '-5.9%', '+13.4%', '+nan%']  vs period mean mdd10: -5.5%
+
+== lsr_BTC pct365>=0.8 episode start dates (h=30 clusters), lag=1 ==
+train n_bars=302 episodes(30)=10: ['2020-11-27 (14d ret before +5%)', '2021-07-17 (14d ret before -9%)', '2021-10-26 (14d ret before +8%)', '2022-04-14 (14d ret before -12%)', '2022-06-12 (14d ret before -10%)', '2022-09-05 (14d ret before -7%)', '2023-05-10 (14d ret before -3%)', '2023-07-22 (14d ret before -2%)', '2024-01-14 (14d ret before -1%)', '2024-03-18 (14d ret before -1%)']
+validation n_bars=121 episodes(30)=4: ['2024-07-01 (14d ret before -5%)', '2024-10-12 (14d ret before -4%)', '2025-01-11 (14d ret before -1%)', '2025-08-21 (14d ret before -4%)']
+test n_bars=59 episodes(30)=4: ['2026-01-01 (14d ret before +4%)', '2026-06-04 (14d ret before -18%)', '2026-08-02 (14d ret before -2%)', '2026-10-26 (14d ret before -2%)']
+
+== perp_oi_btc USD pct365>=0.8 episode start dates (h=30), lag=1 ==
+train n_bars=403 episodes(30)=5: ['2021-10-03', '2022-03-26', '2022-10-28', '2023-03-21', '2023-11-03']
+validation n_bars=291 episodes(30)=2: ['2024-07-01', '2025-05-03']
+test n_bars=6 episodes(30)=1: ['2026-09-05']
+
+== perp_funding_btc pct365>=0.8 episode start dates (h=20), lag=1 ==
+train n_bars=390 episodes(20)=5: ['2021-10-09', '2022-04-08', '2022-09-11', '2022-12-15', '2023-10-13']
+validation n_bars=141 episodes(20)=6: ['2024-07-01', '2024-09-28', '2025-05-10', '2025-07-11', '2025-10-05', '2025-12-15']
+test n_bars=61 episodes(20)=3: ['2026-01-02', '2026-05-25', '2026-07-03']

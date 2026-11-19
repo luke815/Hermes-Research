@@ -1,0 +1,1771 @@
+{
+ "daily": {
+  "btc": {
+   "buy9": {
+    "n_harness3": 31,
+    "n_independent": 31,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "sell9": {
+    "n_harness3": 43,
+    "n_independent": 43,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "buy9p": {
+    "n_harness3": 20,
+    "n_independent": 20,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "sell9p": {
+    "n_harness3": 32,
+    "n_independent": 32,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "buy13": {
+    "n_harness3": 20,
+    "n_independent": 20,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "sell13": {
+    "n_harness3": 29,
+    "n_independent": 29,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "setup_count_diff_bars": 0,
+   "completion_dates": {
+    "buy9": {
+     "train": [
+      "2019-07-31",
+      "2019-09-25",
+      "2019-11-22",
+      "2019-12-18",
+      "2020-08-27",
+      "2021-04-25",
+      "2021-05-18",
+      "2021-06-25",
+      "2021-11-23",
+      "2022-01-24",
+      "2022-04-13",
+      "2022-05-13",
+      "2022-06-18",
+      "2022-09-21",
+      "2023-02-13",
+      "2023-03-10",
+      "2023-07-22",
+      "2023-08-20",
+      "2024-01-25",
+      "2024-05-02",
+      "2024-06-16"
+     ],
+     "validation": [
+      "2024-08-07",
+      "2024-09-04",
+      "2025-02-09",
+      "2025-09-01",
+      "2025-09-28",
+      "2025-11-19"
+     ],
+     "test": [
+      "2026-02-06",
+      "2026-06-04",
+      "2026-08-01",
+      "2026-11-13"
+     ]
+    },
+    "sell9": {
+     "train": [
+      "2019-04-05",
+      "2019-04-25",
+      "2019-05-08",
+      "2019-06-21",
+      "2019-08-09",
+      "2020-02-13",
+      "2020-03-26",
+      "2020-04-08",
+      "2020-05-01",
+      "2020-07-27",
+      "2020-09-17",
+      "2020-10-13",
+      "2020-10-26",
+      "2020-11-19",
+      "2020-12-20",
+      "2021-01-01",
+      "2021-02-05",
+      "2021-03-14",
+      "2021-07-29",
+      "2021-08-13",
+      "2021-10-08",
+      "2021-10-19",
+      "2022-03-22",
+      "2023-01-09",
+      "2023-03-20",
+      "2023-06-24",
+      "2023-09-21",
+      "2023-10-23",
+      "2023-12-06",
+      "2024-02-15",
+      "2024-03-05",
+      "2024-05-22"
+     ],
+     "validation": [
+      "2024-07-19",
+      "2024-10-19",
+      "2024-11-14",
+      "2025-01-21",
+      "2025-04-27",
+      "2025-07-16",
+      "2025-08-13",
+      "2025-10-28"
+     ],
+     "test": [
+      "2026-03-18",
+      "2026-06-17",
+      "2026-08-25"
+     ]
+    },
+    "buy9p": {
+     "train": [
+      "2019-09-25",
+      "2019-11-22",
+      "2019-12-18",
+      "2021-04-25",
+      "2021-05-18",
+      "2021-06-25",
+      "2021-11-23",
+      "2022-05-13",
+      "2022-06-18",
+      "2022-09-21",
+      "2023-03-10",
+      "2023-07-22",
+      "2024-05-02"
+     ],
+     "validation": [
+      "2025-02-09",
+      "2025-09-01",
+      "2025-11-19"
+     ],
+     "test": [
+      "2026-02-06",
+      "2026-06-04",
+      "2026-08-01",
+      "2026-11-13"
+     ]
+    },
+    "sell9p": {
+     "train": [
+      "2019-04-05",
+      "2019-04-25",
+      "2019-06-21",
+      "2019-08-09",
+      "2020-02-13",
+      "2020-04-08",
+      "2020-05-01",
+      "2020-07-27",
+      "2020-09-17",
+      "2020-10-13",
+      "2020-11-19",
+      "2020-12-20",
+      "2021-01-01",
+      "2021-02-05",
+      "2021-03-14",
+      "2021-07-29",
+      "2021-08-13",
+      "2021-10-19",
+      "2022-03-22",
+      "2023-01-09",
+      "2023-03-20",
+      "2023-06-24",
+      "2023-10-23",
+      "2023-12-06",
+      "2024-02-15",
+      "2024-03-05"
+     ],
+     "validation": [
+      "2024-07-19",
+      "2024-10-19",
+      "2024-11-14",
+      "2025-01-21",
+      "2025-08-13"
+     ],
+     "test": [
+      "2026-08-25"
+     ]
+    },
+    "buy13": {
+     "train": [
+      "2019-10-17",
+      "2019-12-12",
+      "2020-01-17",
+      "2021-05-17",
+      "2021-06-08",
+      "2021-07-16",
+      "2021-12-14",
+      "2022-02-27",
+      "2022-05-03",
+      "2022-06-03",
+      "2022-07-12",
+      "2022-10-19",
+      "2023-08-10",
+      "2023-09-12"
+     ],
+     "validation": [
+      "2024-07-03",
+      "2024-09-01",
+      "2024-10-03",
+      "2025-03-04",
+      "2025-12-14"
+     ],
+     "test": [
+      "2026-02-24"
+     ]
+    },
+    "sell13": {
+     "train": [
+      "2019-04-21",
+      "2019-05-26",
+      "2019-07-08",
+      "2019-09-04",
+      "2020-03-14",
+      "2020-04-27",
+      "2020-05-18",
+      "2020-08-14",
+      "2020-10-10",
+      "2020-11-13",
+      "2020-12-12",
+      "2021-01-23",
+      "2021-02-19",
+      "2021-04-08",
+      "2021-09-05",
+      "2021-11-09",
+      "2023-01-23",
+      "2023-04-11",
+      "2023-10-17",
+      "2023-11-08",
+      "2024-01-01",
+      "2024-03-02",
+      "2024-03-25"
+     ],
+     "validation": [
+      "2024-11-09",
+      "2024-12-06",
+      "2025-05-18"
+     ],
+     "test": [
+      "2026-04-11",
+      "2026-07-18",
+      "2026-09-20"
+     ]
+    }
+   }
+  },
+  "eth": {
+   "buy9": {
+    "n_harness3": 29,
+    "n_independent": 29,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "sell9": {
+    "n_harness3": 42,
+    "n_independent": 42,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "buy9p": {
+    "n_harness3": 23,
+    "n_independent": 23,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "sell9p": {
+    "n_harness3": 28,
+    "n_independent": 28,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "buy13": {
+    "n_harness3": 15,
+    "n_independent": 15,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "sell13": {
+    "n_harness3": 33,
+    "n_independent": 33,
+    "only_harness3": [],
+    "only_independent": []
+   },
+   "setup_count_diff_bars": 0,
+   "completion_dates": {
+    "buy9": {
+     "train": [
+      "2019-01-29",
+      "2019-06-08",
+      "2019-08-17",
+      "2019-08-31",
+      "2019-11-23",
+      "2019-12-18",
+      "2020-07-18",
+      "2020-08-26",
+      "2021-05-23",
+      "2021-06-24",
+      "2021-07-16",
+      "2022-01-24",
+      "2022-05-13",
+      "2022-06-16",
+      "2022-09-21",
+      "2022-11-22",
+      "2023-03-11",
+      "2023-08-07",
+      "2023-08-20",
+      "2023-10-11",
+      "2024-01-25"
+     ],
+     "validation": [
+      "2024-08-08",
+      "2025-02-10",
+      "2025-06-21",
+      "2025-09-24"
+     ],
+     "test": [
+      "2026-02-07",
+      "2026-05-20",
+      "2026-06-04",
+      "2026-11-13"
+     ]
+    },
+    "sell9": {
+     "train": [
+      "2019-02-24",
+      "2019-04-05",
+      "2019-05-08",
+      "2019-09-22",
+      "2020-01-21",
+      "2020-02-04",
+      "2020-04-08",
+      "2020-05-01",
+      "2020-06-04",
+      "2020-07-27",
+      "2020-11-25",
+      "2020-12-20",
+      "2021-01-10",
+      "2021-02-06",
+      "2021-04-03",
+      "2021-05-04",
+      "2021-07-05",
+      "2021-07-29",
+      "2021-10-09",
+      "2021-11-05",
+      "2022-02-05",
+      "2022-03-23",
+      "2022-10-30",
+      "2023-01-09",
+      "2023-03-20",
+      "2023-04-05",
+      "2023-04-18",
+      "2023-10-24",
+      "2023-11-06",
+      "2023-12-09",
+      "2024-02-14",
+      "2024-03-04",
+      "2024-05-23"
+     ],
+     "validation": [
+      "2024-07-17",
+      "2024-10-19",
+      "2024-12-05",
+      "2025-05-16",
+      "2025-07-16",
+      "2025-08-12"
+     ],
+     "test": [
+      "2026-01-05",
+      "2026-03-18",
+      "2026-04-14"
+     ]
+    },
+    "buy9p": {
+     "train": [
+      "2019-01-29",
+      "2019-08-17",
+      "2019-08-31",
+      "2019-11-23",
+      "2019-12-18",
+      "2020-07-18",
+      "2020-08-26",
+      "2021-05-23",
+      "2021-07-16",
+      "2022-05-13",
+      "2022-06-16",
+      "2022-09-21",
+      "2022-11-22",
+      "2023-03-11",
+      "2023-08-07",
+      "2023-10-11",
+      "2024-01-25"
+     ],
+     "validation": [
+      "2024-08-08",
+      "2025-06-21",
+      "2025-09-24"
+     ],
+     "test": [
+      "2026-05-20",
+      "2026-06-04",
+      "2026-11-13"
+     ]
+    },
+    "sell9p": {
+     "train": [
+      "2019-02-24",
+      "2019-05-08",
+      "2020-02-04",
+      "2020-04-08",
+      "2020-07-27",
+      "2020-12-20",
+      "2021-01-10",
+      "2021-02-06",
+      "2021-04-03",
+      "2021-05-04",
+      "2021-07-05",
+      "2021-07-29",
+      "2022-02-05",
+      "2022-03-23",
+      "2022-10-30",
+      "2023-01-09",
+      "2023-04-05",
+      "2023-10-24",
+      "2023-11-06",
+      "2023-12-09",
+      "2024-02-14",
+      "2024-03-04"
+     ],
+     "validation": [
+      "2024-10-19",
+      "2024-12-05",
+      "2025-07-16",
+      "2025-08-12"
+     ],
+     "test": [
+      "2026-01-05",
+      "2026-04-14"
+     ]
+    },
+    "buy13": {
+     "train": [
+      "2019-07-13",
+      "2019-12-13",
+      "2020-01-20",
+      "2020-09-20",
+      "2021-06-17",
+      "2022-06-02",
+      "2022-07-09",
+      "2022-10-15",
+      "2022-12-25",
+      "2023-09-12"
+     ],
+     "validation": [
+      "2024-08-31",
+      "2025-03-04",
+      "2025-10-18"
+     ],
+     "test": [
+      "2026-03-06",
+      "2026-06-25"
+     ]
+    },
+    "sell13": {
+     "train": [
+      "2019-03-24",
+      "2019-05-02",
+      "2019-05-26",
+      "2019-10-22",
+      "2020-02-21",
+      "2020-04-27",
+      "2020-05-28",
+      "2020-07-02",
+      "2020-08-14",
+      "2020-12-18",
+      "2021-01-07",
+      "2021-01-30",
+      "2021-03-06",
+      "2021-04-22",
+      "2021-08-13",
+      "2021-10-28",
+      "2021-12-01",
+      "2022-02-28",
+      "2022-04-08",
+      "2023-01-29",
+      "2023-05-16",
+      "2023-11-29",
+      "2024-01-10",
+      "2024-02-29",
+      "2024-03-29",
+      "2024-06-20"
+     ],
+     "validation": [
+      "2024-11-11",
+      "2024-12-28",
+      "2025-06-07",
+      "2025-08-04",
+      "2025-09-10"
+     ],
+     "test": [
+      "2026-04-11",
+      "2026-05-05"
+     ]
+    }
+   }
+  }
+ },
+ "3d": {
+  "a0:btc": {
+   "buy9": {
+    "n_harness3": 15,
+    "n_independent": 15,
+    "n_diff": 0
+   },
+   "sell9": {
+    "n_harness3": 19,
+    "n_independent": 19,
+    "n_diff": 0
+   },
+   "buy9p": {
+    "n_harness3": 10,
+    "n_independent": 10,
+    "n_diff": 0
+   },
+   "sell9p": {
+    "n_harness3": 14,
+    "n_independent": 14,
+    "n_diff": 0
+   },
+   "buy13": {
+    "n_harness3": 5,
+    "n_independent": 5,
+    "n_diff": 0
+   },
+   "sell13": {
+    "n_harness3": 15,
+    "n_independent": 15,
+    "n_diff": 0
+   }
+  },
+  "a0:eth": {
+   "buy9": {
+    "n_harness3": 12,
+    "n_independent": 12,
+    "n_diff": 0
+   },
+   "sell9": {
+    "n_harness3": 19,
+    "n_independent": 19,
+    "n_diff": 0
+   },
+   "buy9p": {
+    "n_harness3": 10,
+    "n_independent": 10,
+    "n_diff": 0
+   },
+   "sell9p": {
+    "n_harness3": 15,
+    "n_independent": 15,
+    "n_diff": 0
+   },
+   "buy13": {
+    "n_harness3": 6,
+    "n_independent": 6,
+    "n_diff": 0
+   },
+   "sell13": {
+    "n_harness3": 13,
+    "n_independent": 13,
+    "n_diff": 0
+   }
+  },
+  "a1:btc": {
+   "buy9": {
+    "n_harness3": 9,
+    "n_independent": 9,
+    "n_diff": 0
+   },
+   "sell9": {
+    "n_harness3": 16,
+    "n_independent": 16,
+    "n_diff": 0
+   },
+   "buy9p": {
+    "n_harness3": 6,
+    "n_independent": 6,
+    "n_diff": 0
+   },
+   "sell9p": {
+    "n_harness3": 11,
+    "n_independent": 11,
+    "n_diff": 0
+   },
+   "buy13": {
+    "n_harness3": 6,
+    "n_independent": 6,
+    "n_diff": 0
+   },
+   "sell13": {
+    "n_harness3": 12,
+    "n_independent": 12,
+    "n_diff": 0
+   }
+  },
+  "a1:eth": {
+   "buy9": {
+    "n_harness3": 12,
+    "n_independent": 12,
+    "n_diff": 0
+   },
+   "sell9": {
+    "n_harness3": 17,
+    "n_independent": 17,
+    "n_diff": 0
+   },
+   "buy9p": {
+    "n_harness3": 9,
+    "n_independent": 9,
+    "n_diff": 0
+   },
+   "sell9p": {
+    "n_harness3": 12,
+    "n_independent": 12,
+    "n_diff": 0
+   },
+   "buy13": {
+    "n_harness3": 7,
+    "n_independent": 7,
+    "n_diff": 0
+   },
+   "sell13": {
+    "n_harness3": 14,
+    "n_independent": 14,
+    "n_diff": 0
+   }
+  },
+  "a2:btc": {
+   "buy9": {
+    "n_harness3": 13,
+    "n_independent": 13,
+    "n_diff": 0
+   },
+   "sell9": {
+    "n_harness3": 16,
+    "n_independent": 16,
+    "n_diff": 0
+   },
+   "buy9p": {
+    "n_harness3": 9,
+    "n_independent": 9,
+    "n_diff": 0
+   },
+   "sell9p": {
+    "n_harness3": 12,
+    "n_independent": 12,
+    "n_diff": 0
+   },
+   "buy13": {
+    "n_harness3": 6,
+    "n_independent": 6,
+    "n_diff": 0
+   },
+   "sell13": {
+    "n_harness3": 13,
+    "n_independent": 13,
+    "n_diff": 0
+   }
+  },
+  "a2:eth": {
+   "buy9": {
+    "n_harness3": 12,
+    "n_independent": 12,
+    "n_diff": 0
+   },
+   "sell9": {
+    "n_harness3": 19,
+    "n_independent": 19,
+    "n_diff": 0
+   },
+   "buy9p": {
+    "n_harness3": 9,
+    "n_independent": 9,
+    "n_diff": 0
+   },
+   "sell9p": {
+    "n_harness3": 12,
+    "n_independent": 12,
+    "n_diff": 0
+   },
+   "buy13": {
+    "n_harness3": 7,
+    "n_independent": 7,
+    "n_diff": 0
+   },
+   "sell13": {
+    "n_harness3": 15,
+    "n_independent": 15,
+    "n_diff": 0
+   }
+  }
+ },
+ "variants": {
+  "btc:countdown_starts_bar10": {
+   "buy9": {
+    "n_base": 31,
+    "n_variant": 31,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "sell9": {
+    "n_base": 43,
+    "n_variant": 43,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "buy9p": {
+    "n_base": 20,
+    "n_variant": 20,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "sell9p": {
+    "n_base": 32,
+    "n_variant": 32,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "buy13": {
+    "n_base": 20,
+    "n_variant": 19,
+    "n_bars_changed": 27,
+    "changed_dates": [
+     "2019-10-17",
+     "2019-10-18",
+     "2019-12-12",
+     "2019-12-13",
+     "2020-01-17",
+     "2020-01-20",
+     "2021-05-17",
+     "2021-06-08",
+     "2021-06-11",
+     "2021-07-16",
+     "2021-07-17",
+     "2021-12-14",
+     "2021-12-16",
+     "2022-07-12",
+     "2022-07-17",
+     "2022-10-19",
+     "2022-10-20",
+     "2023-08-10",
+     "2023-08-11",
+     "2024-10-03",
+     "2024-10-08",
+     "2025-03-04",
+     "2025-03-07",
+     "2025-12-14",
+     "2025-12-15",
+     "2026-02-24",
+     "2026-02-27"
+    ]
+   },
+   "sell13": {
+    "n_base": 29,
+    "n_variant": 29,
+    "n_bars_changed": 46,
+    "changed_dates": [
+     "2019-04-21",
+     "2019-04-22",
+     "2019-05-26",
+     "2019-05-27",
+     "2019-07-08",
+     "2019-07-09",
+     "2019-09-04",
+     "2019-09-05",
+     "2020-03-14",
+     "2020-03-18",
+     "2020-04-27",
+     "2020-04-28",
+     "2020-05-18",
+     "2020-05-19",
+     "2020-08-14",
+     "2020-08-15",
+     "2020-10-10",
+     "2020-10-11",
+     "2020-12-12",
+     "2020-12-13",
+     "2021-01-23",
+     "2021-01-25",
+     "2021-02-19",
+     "2021-02-20",
+     "2021-04-08",
+     "2021-04-09",
+     "2021-09-05",
+     "2021-09-06",
+     "2021-11-09",
+     "2021-11-14",
+     "2023-01-23",
+     "2023-01-25",
+     "2023-04-11",
+     "2023-04-12",
+     "2023-11-08",
+     "2023-11-09",
+     "2024-01-01",
+     "2024-01-02",
+     "2024-03-02",
+     "2024-03-03",
+     "2024-03-25",
+     "2024-03-26",
+     "2024-11-09",
+     "2024-11-10",
+     "2026-09-20",
+     "2026-09-21"
+    ]
+   }
+  },
+  "btc:setup_resets_after_9": {
+   "buy9": {
+    "n_base": 31,
+    "n_variant": 32,
+    "n_bars_changed": 1,
+    "changed_dates": [
+     "2024-06-25"
+    ]
+   },
+   "sell9": {
+    "n_base": 43,
+    "n_variant": 49,
+    "n_bars_changed": 6,
+    "changed_dates": [
+     "2019-05-17",
+     "2019-06-30",
+     "2020-11-04",
+     "2021-01-10",
+     "2021-02-14",
+     "2023-11-01"
+    ]
+   },
+   "buy9p": {
+    "n_base": 20,
+    "n_variant": 21,
+    "n_bars_changed": 1,
+    "changed_dates": [
+     "2024-06-25"
+    ]
+   },
+   "sell9p": {
+    "n_base": 32,
+    "n_variant": 36,
+    "n_bars_changed": 4,
+    "changed_dates": [
+     "2019-05-17",
+     "2020-11-04",
+     "2021-02-14",
+     "2023-11-01"
+    ]
+   },
+   "buy13": {
+    "n_base": 20,
+    "n_variant": 20,
+    "n_bars_changed": 2,
+    "changed_dates": [
+     "2024-07-03",
+     "2024-07-18"
+    ]
+   },
+   "sell13": {
+    "n_base": 29,
+    "n_variant": 28,
+    "n_bars_changed": 11,
+    "changed_dates": [
+     "2019-05-26",
+     "2019-06-12",
+     "2019-07-08",
+     "2019-07-22",
+     "2020-11-13",
+     "2021-01-23",
+     "2021-02-04",
+     "2021-02-19",
+     "2021-03-07",
+     "2023-11-08",
+     "2023-11-19"
+    ]
+   }
+  },
+  "eth:countdown_starts_bar10": {
+   "buy9": {
+    "n_base": 29,
+    "n_variant": 29,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "sell9": {
+    "n_base": 42,
+    "n_variant": 42,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "buy9p": {
+    "n_base": 23,
+    "n_variant": 23,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "sell9p": {
+    "n_base": 28,
+    "n_variant": 28,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "buy13": {
+    "n_base": 15,
+    "n_variant": 14,
+    "n_bars_changed": 19,
+    "changed_dates": [
+     "2019-12-13",
+     "2019-12-15",
+     "2020-01-20",
+     "2020-09-20",
+     "2020-09-21",
+     "2021-06-17",
+     "2021-06-18",
+     "2022-06-02",
+     "2022-06-03",
+     "2022-07-09",
+     "2022-07-10",
+     "2022-10-15",
+     "2022-10-19",
+     "2022-12-25",
+     "2022-12-27",
+     "2025-10-18",
+     "2025-10-21",
+     "2026-06-25",
+     "2026-06-26"
+    ]
+   },
+   "sell13": {
+    "n_base": 33,
+    "n_variant": 33,
+    "n_bars_changed": 42,
+    "changed_dates": [
+     "2019-03-24",
+     "2019-03-28",
+     "2019-05-26",
+     "2019-05-27",
+     "2020-02-21",
+     "2020-02-22",
+     "2020-04-27",
+     "2020-04-29",
+     "2020-07-02",
+     "2020-07-04",
+     "2020-08-14",
+     "2020-08-15",
+     "2021-01-30",
+     "2021-02-02",
+     "2021-03-06",
+     "2021-03-07",
+     "2021-04-22",
+     "2021-04-23",
+     "2021-08-13",
+     "2021-08-14",
+     "2022-02-28",
+     "2022-03-01",
+     "2022-04-08",
+     "2022-04-09",
+     "2023-01-29",
+     "2023-02-01",
+     "2023-11-29",
+     "2023-11-30",
+     "2024-02-29",
+     "2024-03-01",
+     "2024-03-29",
+     "2024-03-31",
+     "2024-11-11",
+     "2024-11-12",
+     "2024-12-28",
+     "2024-12-29",
+     "2025-08-04",
+     "2025-08-05",
+     "2025-09-10",
+     "2025-09-11",
+     "2026-05-05",
+     "2026-05-06"
+    ]
+   }
+  },
+  "eth:setup_resets_after_9": {
+   "buy9": {
+    "n_base": 29,
+    "n_variant": 29,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "sell9": {
+    "n_base": 42,
+    "n_variant": 47,
+    "n_bars_changed": 5,
+    "changed_dates": [
+     "2019-05-17",
+     "2020-02-13",
+     "2020-08-05",
+     "2021-08-07",
+     "2024-03-13"
+    ]
+   },
+   "buy9p": {
+    "n_base": 23,
+    "n_variant": 23,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "sell9p": {
+    "n_base": 28,
+    "n_variant": 32,
+    "n_bars_changed": 4,
+    "changed_dates": [
+     "2019-05-17",
+     "2020-02-13",
+     "2020-08-05",
+     "2021-08-07"
+    ]
+   },
+   "buy13": {
+    "n_base": 15,
+    "n_variant": 15,
+    "n_bars_changed": 0,
+    "changed_dates": []
+   },
+   "sell13": {
+    "n_base": 33,
+    "n_variant": 31,
+    "n_bars_changed": 8,
+    "changed_dates": [
+     "2019-05-26",
+     "2020-02-21",
+     "2020-03-06",
+     "2020-08-14",
+     "2021-08-13",
+     "2021-08-31",
+     "2024-03-29",
+     "2024-04-15"
+    ]
+   }
+  }
+ },
+ "eth_buy9_W10": {
+  "cell": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_n": 3,
+    "crash_lift": 0.6064633041377226
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mdd_flag": 0.03070669545991911,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.09150440108085264,
+    "t_nw": 4.916686111872423,
+    "crash_n": 0,
+    "crash_lift": 0.0
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_n": 0,
+    "crash_lift": 0.0
+   }
+  },
+  "verdict": "PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial",
+  "episodes": {
+   "train": [
+    {
+     "entry_date": "2019-01-30",
+     "completion_date": "2019-01-29",
+     "fwd_mdd10": -0.006832178598922378,
+     "fwd_ret10": 0.13548883756735952
+    },
+    {
+     "entry_date": "2019-06-09",
+     "completion_date": "2019-06-08",
+     "fwd_mdd10": -0.05321326238231683,
+     "fwd_ret10": 0.08215309046254604
+    },
+    {
+     "entry_date": "2019-08-18",
+     "completion_date": "2019-08-17",
+     "fwd_mdd10": 0.005388221348132882,
+     "fwd_ret10": 0.007274098819979535
+    },
+    {
+     "entry_date": "2019-09-01",
+     "completion_date": "2019-08-31",
+     "fwd_mdd10": -0.015878555225964153,
+     "fwd_ret10": 0.04484383179200835
+    },
+    {
+     "entry_date": "2019-11-24",
+     "completion_date": "2019-11-23",
+     "fwd_mdd10": -0.07901315789473673,
+     "fwd_ret10": -0.03072368421052618
+    },
+    {
+     "entry_date": "2019-12-19",
+     "completion_date": "2019-12-18",
+     "fwd_mdd10": -0.059673414101888755,
+     "fwd_ret10": -0.03747460305515837
+    },
+    {
+     "entry_date": "2020-07-19",
+     "completion_date": "2020-07-18",
+     "fwd_mdd10": -0.013211254651114168,
+     "fwd_ret10": 0.32998871190267165
+    },
+    {
+     "entry_date": "2020-08-27",
+     "completion_date": "2020-08-26",
+     "fwd_mdd10": -0.12708550573514077,
+     "fwd_ret10": -0.08057872784150166
+    },
+    {
+     "entry_date": "2021-05-24",
+     "completion_date": "2021-05-23",
+     "fwd_mdd10": -0.14014426615633746,
+     "fwd_ret10": 0.07891607876886853
+    },
+    {
+     "entry_date": "2021-06-25",
+     "completion_date": "2021-06-24",
+     "fwd_mdd10": 0.01154867256637182,
+     "fwd_ret10": 0.21425884955752217
+    },
+    {
+     "entry_date": "2021-07-17",
+     "completion_date": "2021-07-16",
+     "fwd_mdd10": -0.05978773274340943,
+     "fwd_ret10": 0.2104184772589608
+    },
+    {
+     "entry_date": "2022-01-25",
+     "completion_date": "2022-01-24",
+     "fwd_mdd10": -0.014145204018930713,
+     "fwd_ret10": 0.21823331447848715
+    },
+    {
+     "entry_date": "2022-05-14",
+     "completion_date": "2022-05-13",
+     "fwd_mdd10": -0.06851581508515814,
+     "fwd_ret10": -0.037197080291970774
+    },
+    {
+     "entry_date": "2022-06-17",
+     "completion_date": "2022-06-16",
+     "fwd_mdd10": -0.08462324699122459,
+     "fwd_ret10": 0.09752391826812401
+    },
+    {
+     "entry_date": "2022-09-22",
+     "completion_date": "2022-09-21",
+     "fwd_mdd10": -0.03754158086488202,
+     "fwd_ret10": -0.03754158086488202
+    },
+    {
+     "entry_date": "2022-11-23",
+     "completion_date": "2022-11-22",
+     "fwd_mdd10": -0.014039177922505641,
+     "fwd_ret10": 0.04724495915798732
+    },
+    {
+     "entry_date": "2023-03-12",
+     "completion_date": "2023-03-11",
+     "fwd_mdd10": 0.04467282144801987,
+     "fwd_ret10": 0.09773564834162829
+    },
+    {
+     "entry_date": "2023-08-08",
+     "completion_date": "2023-08-07",
+     "fwd_mdd10": -0.10488530527768192,
+     "fwd_ret10": -0.10488530527768192
+    },
+    {
+     "entry_date": "2023-08-21",
+     "completion_date": "2023-08-20",
+     "fwd_mdd10": -0.019372566430084115,
+     "fwd_ret10": -0.01291104458270087
+    },
+    {
+     "entry_date": "2023-10-12",
+     "completion_date": "2023-10-11",
+     "fwd_mdd10": 0.008279124778237668,
+     "fwd_ret10": 0.08059474529019184
+    },
+    {
+     "entry_date": "2024-01-26",
+     "completion_date": "2024-01-25",
+     "fwd_mdd10": -0.004729300487047228,
+     "fwd_ret10": 0.01504817533705105
+    }
+   ],
+   "validation": [
+    {
+     "entry_date": "2024-08-09",
+     "completion_date": "2024-08-08",
+     "fwd_mdd10": -0.01664806189614687,
+     "fwd_ret10": 0.014338504176450106
+    },
+    {
+     "entry_date": "2025-02-11",
+     "completion_date": "2025-02-10",
+     "fwd_mdd10": 0.022671787714866776,
+     "fwd_ret10": 0.022998581331241663
+    },
+    {
+     "entry_date": "2025-06-22",
+     "completion_date": "2025-06-21",
+     "fwd_mdd10": 0.07964677294022016,
+     "fwd_ret10": 0.15408317724685916
+    },
+    {
+     "entry_date": "2025-09-25",
+     "completion_date": "2025-09-24",
+     "fwd_mdd10": 0.037156283080736374,
+     "fwd_ret10": 0.16504608711368163
+    }
+   ],
+   "test": [
+    {
+     "entry_date": "2026-02-08",
+     "completion_date": "2026-02-07",
+     "fwd_mdd10": -0.07111462223498999,
+     "fwd_ret10": -0.0640764148233266
+    },
+    {
+     "entry_date": "2026-05-21",
+     "completion_date": "2026-05-20",
+     "fwd_mdd10": -0.059298192968801344,
+     "fwd_ret10": -0.059298192968801344
+    },
+    {
+     "entry_date": "2026-06-05",
+     "completion_date": "2026-06-04",
+     "fwd_mdd10": -0.008689607229753205,
+     "fwd_ret10": 0.13448984105918416
+    }
+   ]
+  },
+  "validation_leave_one_out": {
+   "2024-08-09": {
+    "mdd_diff_without": 0.10728932019954131,
+    "t_without": 6.893471427414151
+   },
+   "2025-02-11": {
+    "mdd_diff_without": 0.09418270366253675,
+    "t_without": 3.9588861986022104
+   },
+   "2025-06-22": {
+    "mdd_diff_without": 0.0751910419207523,
+    "t_without": 4.94714533801725
+   },
+   "2025-09-25": {
+    "mdd_diff_without": 0.08935453854058023,
+    "t_without": 3.749886159017355
+   }
+  },
+  "lag2_cell": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_diff": 0.030797316527793907,
+    "t_nw": 2.100068724973626
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mdd_diff": 0.04705121671412058,
+    "t_nw": 5.151693545901788
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_diff": 0.030609111851430098,
+    "t_nw": 1.0753399666134629
+   }
+  },
+  "lag2_verdict": "rejected (risk-on): crash lift validation 0.0, test 0.0 not low enough, or 20d mean not positive",
+  "buy9p_cell": {
+   "train": {
+    "n_flag": 17,
+    "n_ind": 17,
+    "mdd_diff": 0.014638650142299009,
+    "t_nw": 1.1885486817239073
+   },
+   "validation": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_diff": 0.09418270366253675,
+    "t_nw": 3.9588861986022104
+   },
+   "test": {
+    "n_flag": 2,
+    "n_ind": 0,
+    "mdd_diff": null,
+    "t_nw": null
+   }
+  },
+  "buy9p_verdict": "insufficient: a period has fewer than 3 flagged bars",
+  "btc_buy9_cell": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_diff": 0.02124997223813241,
+    "t_nw": 1.918219461285195
+   },
+   "validation": {
+    "n_flag": 6,
+    "n_ind": 6,
+    "mdd_diff": 0.00832454050416756,
+    "t_nw": 0.8568384813616129
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_diff": 0.025864078431660126,
+    "t_nw": 1.9944078605746338
+   }
+  },
+  "btc_buy9_verdict": "rejected: validation t 0.86 on mdd below 2.5"
+ },
+ "random_walk": {
+  "n_seeds": 200,
+  "bars": 3000,
+  "sigma_per_bar": 0.02,
+  "flags": {
+   "buy9": {
+    "harness3_per_1000_mean": 14.048333333333336,
+    "harness3_per_1000_sd": 1.8136511669986475,
+    "independent_per_1000_mean": 14.048333333333336,
+    "independent_per_1000_sd": 1.8136511669986475,
+    "bars_disagreeing_total": 0
+   },
+   "sell9": {
+    "harness3_per_1000_mean": 13.866666666666667,
+    "harness3_per_1000_sd": 1.8618986725025255,
+    "independent_per_1000_mean": 13.866666666666667,
+    "independent_per_1000_sd": 1.8618986725025255,
+    "bars_disagreeing_total": 0
+   },
+   "buy9p": {
+    "harness3_per_1000_mean": 10.771666666666665,
+    "harness3_per_1000_sd": 1.59359046042437,
+    "independent_per_1000_mean": 10.771666666666665,
+    "independent_per_1000_sd": 1.59359046042437,
+    "bars_disagreeing_total": 0
+   },
+   "sell9p": {
+    "harness3_per_1000_mean": 10.536666666666667,
+    "harness3_per_1000_sd": 1.8356924215855623,
+    "independent_per_1000_mean": 10.536666666666667,
+    "independent_per_1000_sd": 1.8356924215855623,
+    "bars_disagreeing_total": 0
+   },
+   "buy13": {
+    "harness3_per_1000_mean": 8.265,
+    "harness3_per_1000_sd": 1.4599457752487475,
+    "independent_per_1000_mean": 8.265,
+    "independent_per_1000_sd": 1.4599457752487475,
+    "bars_disagreeing_total": 0
+   },
+   "sell13": {
+    "harness3_per_1000_mean": 7.968333333333334,
+    "harness3_per_1000_sd": 1.3443699474309723,
+    "independent_per_1000_mean": 7.968333333333334,
+    "independent_per_1000_sd": 1.3443699474309723,
+    "bars_disagreeing_total": 0
+   }
+  },
+  "white_noise_buy9_per_1000": 0.18666666666666665,
+  "white_noise_sell9_per_1000": 0.1533333333333333,
+  "real_daily_per_1000": {
+   "btc": {
+    "buy9": 10.771369006254343,
+    "sell9": 14.940931202223766,
+    "buy9p": 6.949270326615705,
+    "sell9p": 11.118832522585128,
+    "buy13": 6.949270326615705,
+    "sell13": 10.076441973592772
+   },
+   "eth": {
+    "buy9": 10.076441973592772,
+    "sell9": 14.593467685892982,
+    "buy9p": 7.991660875608061,
+    "sell9p": 9.728978457261988,
+    "buy13": 5.211952744961779,
+    "sell13": 11.466296038915914
+   }
+  }
+ },
+ "hourly": {
+  "n_rows": 17942,
+  "n_nan": 1131,
+  "skip_h3_vs_ind": {
+   "buy9": {
+    "n_harness3": 207,
+    "n_independent": 207,
+    "n_diff": 0
+   },
+   "sell9": {
+    "n_harness3": 218,
+    "n_independent": 218,
+    "n_diff": 0
+   },
+   "buy9p": {
+    "n_harness3": 153,
+    "n_independent": 153,
+    "n_diff": 0
+   },
+   "sell9p": {
+    "n_harness3": 168,
+    "n_independent": 168,
+    "n_diff": 0
+   },
+   "buy13": {
+    "n_harness3": 123,
+    "n_independent": 123,
+    "n_diff": 0
+   },
+   "sell13": {
+    "n_harness3": 137,
+    "n_independent": 137,
+    "n_diff": 0
+   }
+  },
+  "nan_reset_h3_vs_ind": {
+   "buy9": {
+    "n_harness3": 184,
+    "n_independent": 184,
+    "n_diff": 0,
+    "only_h3": [],
+    "only_ind": []
+   },
+   "sell9": {
+    "n_harness3": 195,
+    "n_independent": 195,
+    "n_diff": 0,
+    "only_h3": [],
+    "only_ind": []
+   },
+   "buy9p": {
+    "n_harness3": 139,
+    "n_independent": 139,
+    "n_diff": 0,
+    "only_h3": [],
+    "only_ind": []
+   },
+   "sell9p": {
+    "n_harness3": 147,
+    "n_independent": 147,
+    "n_diff": 0,
+    "only_h3": [],
+    "only_ind": []
+   },
+   "buy13": {
+    "n_harness3": 111,
+    "n_independent": 111,
+    "n_diff": 2,
+    "only_h3": [
+     "2024-12-08 09:00:00"
+    ],
+    "only_ind": [
+     "2024-12-05 05:00:00"
+    ]
+   },
+   "sell13": {
+    "n_harness3": 123,
+    "n_independent": 123,
+    "n_diff": 0,
+    "only_h3": [],
+    "only_ind": []
+   }
+  },
+  "skip_mode_gap_in_window": {
+   "buy9": {
+    "n": 207,
+    "n_window_contains_gap": 23,
+    "share": 0.1111111111111111,
+    "base_share_all_bars": 0.09482707304006191
+   },
+   "sell9": {
+    "n": 218,
+    "n_window_contains_gap": 23,
+    "share": 0.10550458715596331,
+    "base_share_all_bars": 0.09482707304006191
+   },
+   "buy9p": {
+    "n": 153,
+    "n_window_contains_gap": 14,
+    "share": 0.0915032679738562,
+    "base_share_all_bars": 0.09482707304006191
+   },
+   "sell9p": {
+    "n": 168,
+    "n_window_contains_gap": 21,
+    "share": 0.125,
+    "base_share_all_bars": 0.09482707304006191
+   }
+  },
+  "counts_by_mode": {
+   "skip": {
+    "buy9": 207,
+    "sell9": 218,
+    "buy9p": 153,
+    "sell9p": 168,
+    "buy13": 123,
+    "sell13": 137
+   },
+   "nan_reset": {
+    "buy9": 184,
+    "sell9": 195,
+    "buy9p": 139,
+    "sell9p": 147,
+    "buy13": 111,
+    "sell13": 123
+   },
+   "ffill": {
+    "buy9": 216,
+    "sell9": 229,
+    "buy9p": 167,
+    "sell9p": 174,
+    "buy13": 129,
+    "sell13": 142
+   }
+  },
+  "ground_truth_real_tail": {
+   "skip": {
+    "buy9": {
+     "truth": 69,
+     "mode": 54,
+     "false_completions": 17,
+     "missed_completions": 32,
+     "false_near_gap": 17,
+     "truth_near_gap": 37
+    },
+    "sell9": {
+     "truth": 74,
+     "mode": 56,
+     "false_completions": 14,
+     "missed_completions": 32,
+     "false_near_gap": 14,
+     "truth_near_gap": 39
+    },
+    "buy13": {
+     "truth": 40,
+     "mode": 33,
+     "false_completions": 12,
+     "missed_completions": 19,
+     "false_near_gap": 11,
+     "truth_near_gap": 21
+    },
+    "sell13": {
+     "truth": 43,
+     "mode": 34,
+     "false_completions": 8,
+     "missed_completions": 17,
+     "false_near_gap": 8,
+     "truth_near_gap": 19
+    }
+   },
+   "nan_reset": {
+    "buy9": {
+     "truth": 69,
+     "mode": 34,
+     "false_completions": 0,
+     "missed_completions": 35,
+     "false_near_gap": 0,
+     "truth_near_gap": 37
+    },
+    "sell9": {
+     "truth": 74,
+     "mode": 37,
+     "false_completions": 0,
+     "missed_completions": 37,
+     "false_near_gap": 0,
+     "truth_near_gap": 39
+    },
+    "buy13": {
+     "truth": 40,
+     "mode": 19,
+     "false_completions": 0,
+     "missed_completions": 21,
+     "false_near_gap": 0,
+     "truth_near_gap": 21
+    },
+    "sell13": {
+     "truth": 43,
+     "mode": 24,
+     "false_completions": 0,
+     "missed_completions": 19,
+     "false_near_gap": 0,
+     "truth_near_gap": 19
+    }
+   },
+   "ffill": {
+    "buy9": {
+     "truth": 69,
+     "mode": 70,
+     "false_completions": 17,
+     "missed_completions": 16,
+     "false_near_gap": 17,
+     "truth_near_gap": 37
+    },
+    "sell9": {
+     "truth": 74,
+     "mode": 68,
+     "false_completions": 16,
+     "missed_completions": 22,
+     "false_near_gap": 16,
+     "truth_near_gap": 39
+    },
+    "buy13": {
+     "truth": 40,
+     "mode": 47,
+     "false_completions": 22,
+     "missed_completions": 15,
+     "false_near_gap": 22,
+     "truth_near_gap": 21
+    },
+    "sell13": {
+     "truth": 43,
+     "mode": 39,
+     "false_completions": 9,
+     "missed_completions": 13,
+     "false_near_gap": 9,
+     "truth_near_gap": 19
+    }
+   },
+   "share_bars_near_gap": 0.5073635057471264
+  },
+  "ground_truth_random_walk_x20": {
+   "skip": {
+    "buy9": {
+     "truth": 1552,
+     "mode": 1237,
+     "false_completions": 330,
+     "missed_completions": 645,
+     "false_near_gap": 330,
+     "truth_near_gap": 776
+    },
+    "sell9": {
+     "truth": 1537,
+     "mode": 1222,
+     "false_completions": 333,
+     "missed_completions": 648,
+     "false_near_gap": 333,
+     "truth_near_gap": 759
+    },
+    "buy13": {
+     "truth": 903,
+     "mode": 731,
+     "false_completions": 270,
+     "missed_completions": 442,
+     "false_near_gap": 261,
+     "truth_near_gap": 457
+    },
+    "sell13": {
+     "truth": 884,
+     "mode": 704,
+     "false_completions": 236,
+     "missed_completions": 416,
+     "false_near_gap": 228,
+     "truth_near_gap": 436
+    }
+   },
+   "nan_reset": {
+    "buy9": {
+     "truth": 1552,
+     "mode": 809,
+     "false_completions": 4,
+     "missed_completions": 747,
+     "false_near_gap": 4,
+     "truth_near_gap": 776
+    },
+    "sell9": {
+     "truth": 1537,
+     "mode": 808,
+     "false_completions": 5,
+     "missed_completions": 734,
+     "false_near_gap": 5,
+     "truth_near_gap": 759
+    },
+    "buy13": {
+     "truth": 903,
+     "mode": 468,
+     "false_completions": 27,
+     "missed_completions": 462,
+     "false_near_gap": 15,
+     "truth_near_gap": 457
+    },
+    "sell13": {
+     "truth": 884,
+     "mode": 460,
+     "false_completions": 13,
+     "missed_completions": 437,
+     "false_near_gap": 9,
+     "truth_near_gap": 436
+    }
+   },
+   "ffill": {
+    "buy9": {
+     "truth": 1552,
+     "mode": 1555,
+     "false_completions": 285,
+     "missed_completions": 282,
+     "false_near_gap": 285,
+     "truth_near_gap": 776
+    },
+    "sell9": {
+     "truth": 1537,
+     "mode": 1519,
+     "false_completions": 268,
+     "missed_completions": 286,
+     "false_near_gap": 268,
+     "truth_near_gap": 759
+    },
+    "buy13": {
+     "truth": 903,
+     "mode": 958,
+     "false_completions": 367,
+     "missed_completions": 312,
+     "false_near_gap": 365,
+     "truth_near_gap": 457
+    },
+    "sell13": {
+     "truth": 884,
+     "mode": 927,
+     "false_completions": 339,
+     "missed_completions": 296,
+     "false_near_gap": 334,
+     "truth_near_gap": 436
+    }
+   }
+  },
+  "h4_nan_bars": 31
+ }
+}

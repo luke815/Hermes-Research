@@ -1,0 +1,38 @@
+A. Train-period mean forward return: full train (2019-01..2024-06) vs signal-available (perp_oi pct365 notna, 2021-09..2024-06)
+  btc h=30: full-train mean +6.4% | signal-available mean +1.9% (from 2021-09-24, n=1010) | 2019..pre-signal mean +11.0% (n=998)
+  btc h=60: full-train mean +14.0% | signal-available mean +3.4% (from 2021-09-24, n=1010) | 2019..pre-signal mean +24.8% (n=998)
+  btc h=90: full-train mean +22.5% | signal-available mean +5.5% (from 2021-09-24, n=1010) | 2019..pre-signal mean +39.6% (n=998)
+  eth h=30: full-train mean +8.2% | signal-available mean +1.8% (from 2021-09-24, n=1010) | 2019..pre-signal mean +14.7% (n=998)
+  eth h=60: full-train mean +16.9% | signal-available mean +2.1% (from 2021-09-24, n=1010) | 2019..pre-signal mean +32.0% (n=998)
+  eth h=90: full-train mean +25.3% | signal-available mean +1.5% (from 2021-09-24, n=1010) | 2019..pre-signal mean +49.4% (n=998)
+
+B. ETH validation drop-one-episode sensitivity, USD perp_oi top 0.8, h=60 and h=90 (episodes gap>h)
+  eth perp_oi h=60 validation: excess all -0.122 (n_flag=235)
+     drop 2024-07-01..2024-08-03 (26 bars, own excess -0.284) -> remaining excess -0.102 over 209 bars
+     drop 2024-10-22..2025-02-03 (97 bars, own excess -0.227) -> remaining excess -0.048 over 138 bars
+     drop 2025-05-12..2025-10-11 (112 bars, own excess +0.007) -> remaining excess -0.239 over 123 bars
+  eth perp_oi h=90 validation: excess all -0.232 (n_flag=235)
+     drop 2024-07-01..2025-02-03 (123 bars, own excess -0.375) -> remaining excess -0.076 over 112 bars
+     drop 2025-05-12..2025-10-11 (112 bars, own excess -0.076) -> remaining excess -0.375 over 123 bars
+  btc perp_oi h=60 validation: excess all -0.008 (n_flag=291)
+     drop 2024-07-01..2025-02-26 (166 bars, own excess +0.043) -> remaining excess -0.076 over 125 bars
+     drop 2025-05-03..2025-10-11 (125 bars, own excess -0.076) -> remaining excess +0.043 over 166 bars
+  btc perp_oi h=90 validation: excess all -0.046 (n_flag=291)
+     drop 2024-07-01..2025-10-11 (291 bars, own excess -0.046) -> remaining excess +nan over 0 bars
+
+C. PRICE top 0.8 & USD perp_oi NOT top (pct<0.8), and & USD futures_oi NOT top: is price-at-high alone negative in validation?
+  btc perp_oi h=30: [price&!OI] tra +8.5% t=+2.2 n_ind=5 n=74 | val -3.3% t=-0.7 n_ind=4 n=58 | tes -  ||  [price&OI] tra -6.5% t=-1.9 n_ind=3 n=310 | val -0.3% t=-0.1 n_ind=3 n=242 | tes -
+  btc perp_oi h=60: [price&!OI] tra +13.6% t=+1.3 n_ind=4 n=74 | val -6.8% t=-1.1 n_ind=4 n=58 | tes -  ||  [price&OI] tra -14.6% t=-2.1 n_ind=3 n=310 | val -4.6% t=-1.2 n_ind=3 n=242 | tes -
+  btc perp_oi h=90: [price&!OI] tra +9.5% t=+0.8 n_ind=3 n=74 | val -1.3% t=-0.2 n_ind=2 n=58 | tes -  ||  [price&OI] tra -18.7% t=-1.6 n_ind=2 n=310 | val -10.7% t=-1.8 n_ind=1 n=242 | tes -
+  btc futures_oi h=30: [price&!OI] tra +19.7% t=+2.9 n_ind=4 n=16 | val -4.1% t=-0.9 n_ind=3 n=54 | tes -  ||  [price&OI] tra -4.6% t=-1.4 n_ind=3 n=368 | val -0.2% t=-0.1 n_ind=3 n=246 | tes -
+  btc futures_oi h=60: [price&!OI] tra +27.0% t=+2.0 n_ind=4 n=16 | val -6.5% t=-1.0 n_ind=3 n=54 | tes -  ||  [price&OI] tra -10.8% t=-1.5 n_ind=3 n=368 | val -4.7% t=-1.2 n_ind=3 n=246 | tes -
+  btc futures_oi h=90: [price&!OI] tra +15.3% t=+1.3 n_ind=3 n=16 | val -1.2% t=-0.2 n_ind=1 n=54 | tes -  ||  [price&OI] tra -14.5% t=-1.2 n_ind=2 n=368 | val -10.6% t=-1.8 n_ind=1 n=246 | tes -
+  eth perp_oi h=30: [price&!OI] tra -6.5% t=-1.4 n_ind=6 n=168 | val -24.9% t=-5.4 n_ind=1 n=8 | tes -  ||  [price&OI] tra -4.6% t=-0.9 n_ind=4 n=262 | val -5.8% t=-1.2 n_ind=3 n=121 | tes -
+  eth perp_oi h=60: [price&!OI] tra -17.4% t=-2.3 n_ind=4 n=168 | val -29.2% t=-3.1 n_ind=1 n=8 | tes -  ||  [price&OI] tra -13.6% t=-1.5 n_ind=3 n=262 | val -19.5% t=-2.4 n_ind=3 n=121 | tes -
+  eth perp_oi h=90: [price&!OI] tra -29.8% t=-2.8 n_ind=4 n=168 | val -28.2% t=-2.0 n_ind=1 n=8 | tes -  ||  [price&OI] tra -21.8% t=-1.4 n_ind=3 n=262 | val -33.1% t=-3.0 n_ind=3 n=121 | tes -
+  eth futures_oi h=30: [price&!OI] tra -8.8% t=-1.1 n_ind=5 n=68 | val -24.9% t=-5.4 n_ind=1 n=8 | tes -  ||  [price&OI] tra -4.7% t=-1.2 n_ind=3 n=362 | val -5.8% t=-1.2 n_ind=3 n=121 | tes -
+  eth futures_oi h=60: [price&!OI] tra -16.9% t=-1.5 n_ind=3 n=68 | val -29.2% t=-3.1 n_ind=1 n=8 | tes -  ||  [price&OI] tra -14.7% t=-2.0 n_ind=3 n=362 | val -19.5% t=-2.4 n_ind=3 n=121 | tes -
+  eth futures_oi h=90: [price&!OI] tra -31.0% t=-2.4 n_ind=3 n=68 | val -28.2% t=-2.0 n_ind=1 n=8 | tes -  ||  [price&OI] tra -23.8% t=-1.8 n_ind=3 n=362 | val -33.1% t=-3.0 n_ind=3 n=121 | tes -
+
+D. Validation ETH: what fraction of USD perp_oi top bars fall in Jul-2024 / Nov-2024..Feb-2025 / May-Oct 2025?
+   {Period('2024-07', 'M'): 23, Period('2024-08', 'M'): 3, Period('2024-10', 'M'): 4, Period('2024-11', 'M'): 28, Period('2024-12', 'M'): 31, Period('2025-01', 'M'): 31, Period('2025-02', 'M'): 3, Period('2025-05', 'M'): 5, Period('2025-06', 'M'): 9, Period('2025-07', 'M'): 26, Period('2025-08', 'M'): 31, Period('2025-09', 'M'): 30, Period('2025-10', 'M'): 11}

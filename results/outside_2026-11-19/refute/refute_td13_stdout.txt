@@ -1,0 +1,296 @@
+==== 1. REPRODUCE (daily, lag 1, excess = mean fwd return on flagged bars - period mean) ====
+[btc] completions total 20; matches stored JSON: True
+   h=1: tra -1.62% t=-1.4 ep=14 | val -0.63% t=-1.0 ep=5 | tes - (n_flag=1)
+   h=3: tra -2.58% t=-1.9 ep=14 | val -2.85% t=-3.1 ep=5 | tes - (n_flag=1)
+   h=5: tra -4.04% t=-1.6 ep=14 | val -4.53% t=-1.7 ep=5 | tes - (n_flag=1)
+   h=10: tra -3.02% t=-0.8 ep=14 | val -0.00% t=-0.0 ep=5 | tes - (n_flag=1)
+   h=20: tra -6.94% t=-1.6 ep=14 | val +4.82% t=1.7 ep=5 | tes - (n_flag=1)
+[eth] completions total 15; matches stored JSON: True
+   h=1: tra -2.62% t=-1.6 ep=10 | val +0.89% t=0.6 ep=3 | tes - (n_flag=2)
+   h=3: tra -6.12% t=-2.2 ep=10 | val -1.86% t=-1.4 ep=3 | tes - (n_flag=2)
+   h=5: tra -4.03% t=-1.9 ep=10 | val -9.07% t=-2.5 ep=3 | tes - (n_flag=2)
+   h=10: tra -3.54% t=-0.7 ep=10 | val -7.05% t=-2.2 ep=3 | tes - (n_flag=2)
+   h=20: tra +1.55% t=0.2 ep=10 | val -6.26% t=-1.1 ep=3 | tes - (n_flag=2)
+
+==== 2. LAG 2 (enter two bars after the completion bar) ====
+[btc] lag 2:
+   h=1: tra +0.13% t=0.1 ep=14 | val -0.17% t=-0.2 ep=5 | tes - (n_flag=1)
+   h=3: tra -1.56% t=-1.3 ep=14 | val -3.43% t=-1.8 ep=5 | tes - (n_flag=1)
+   h=5: tra -1.24% t=-0.6 ep=14 | val -2.97% t=-1.8 ep=5 | tes - (n_flag=1)
+   h=10: tra -2.15% t=-0.7 ep=14 | val +2.71% t=0.8 ep=5 | tes - (n_flag=1)
+   h=20: tra -5.55% t=-1.3 ep=14 | val +5.42% t=1.8 ep=5 | tes - (n_flag=1)
+[eth] lag 2:
+   h=1: tra -1.49% t=-1.6 ep=10 | val -3.34% t=-6.7 ep=3 | tes - (n_flag=2)
+   h=3: tra -3.89% t=-1.9 ep=10 | val -6.17% t=-4.8 ep=3 | tes - (n_flag=2)
+   h=5: tra -0.55% t=-0.2 ep=10 | val -8.23% t=-2.7 ep=3 | tes - (n_flag=2)
+   h=10: tra -0.29% t=-0.1 ep=10 | val -9.23% t=-3.4 ep=3 | tes - (n_flag=2)
+   h=20: tra +6.25% t=0.9 ep=10 | val -7.03% t=-1.8 ep=3 | tes - (n_flag=2)
+[btc] lag 0 (reference only):
+   h=3: tra +1.13% t=0.7 ep=14 | val -0.58% t=-0.5 ep=5 | tes - (n_flag=1)
+   h=5: tra -0.57% t=-0.3 ep=14 | val -3.90% t=-2.3 ep=5 | tes - (n_flag=1)
+[eth] lag 0 (reference only):
+   h=3: tra -6.03% t=-2.8 ep=10 | val -1.92% t=-2.3 ep=3 | tes - (n_flag=2)
+   h=5: tra -8.34% t=-3.0 ep=10 | val -4.83% t=-3.0 ep=3 | tes - (n_flag=2)
+
+==== 3. EPISODE TABLE (signal date = completion bar; entry = next close; fwd returns from the entry close) ====
+[btc] 20 completions with an entry bar
+    signal     period  fwd3   ex3  fwd5   ex5  fwd10  ret20  ret20pct  ret60pct  dd60
+2019-10-17      train   2.0   1.4  -0.6  -1.6   18.2   -0.8      0.33      0.05 -26.8
+2019-12-12      train  -1.0  -1.6  -7.9  -8.9    4.6   -5.5      0.27      0.20 -24.6
+2020-01-17      train  -1.8  -2.4  -5.5  -6.5    5.6   20.3      0.82      0.47  -1.1
+2021-05-17      train -13.2 -13.8 -19.2 -20.2  -16.8  -20.8      0.00      0.00 -31.6
+2021-06-08      train  -4.9  -5.5   8.4   7.4   -5.0   -9.0      0.13      0.00 -47.6
+2021-07-16      train  -5.5  -6.1   2.4   1.5   25.2   -2.7      0.29      0.16 -26.8
+2021-12-14      train  -4.2  -4.8  -4.0  -5.0    3.1  -15.5      0.11      0.17 -28.5
+2022-02-27      train  -1.6  -2.2  -8.8  -9.7   -8.7  -14.0      0.17      0.33 -21.0
+2022-05-03      train -10.6 -11.2 -24.3 -25.2  -24.2   -8.3      0.35      0.52 -20.5
+2022-06-03      train   4.3   3.7   0.8  -0.2  -25.9   -1.3      0.54      0.10 -34.7
+2022-07-12      train   4.8   4.2  10.9   9.9   11.0   -3.3      0.50      0.13 -39.2
+2022-10-19      train   2.8   2.2   5.4   4.4    8.3   -2.4      0.56      0.59 -14.6
+2023-08-10      train   0.0  -0.6  -2.4  -3.4  -11.2   -1.5      0.41      0.65  -6.4
+2023-09-12      train   1.3   0.7   2.1   1.1    1.3   -2.2      0.37      0.19 -14.7
+2024-07-03 validation  -2.1  -2.4   1.7   1.2    6.5   -9.9      0.08      0.18 -15.8
+2024-09-01 validation  -5.0  -5.3  -8.4  -8.9   -1.7   -3.5      0.25      0.24 -16.0
+2024-10-03 validation   0.2  -0.1  -2.3  -2.8    6.5    0.4      0.38      0.45  -7.7
+2025-03-04 validation  -4.8  -5.1 -13.2 -13.8   -6.9  -10.8      0.08      0.05 -17.8
+2025-12-14 validation  -1.1  -1.4   2.2   1.7    0.9   -0.1      0.54      0.06 -23.0
+2026-02-24       test  -1.5  -1.3   1.2   1.6   -1.1  -12.5      0.13      0.01 -33.9
+   train h=3: n=14 mean excess -2.58%  negative 9/14  median -1.93%  leave-one-out range [-3.10%, -1.71%]  worst single episode 2021-05-17 (-13.8%)
+   train h=5: n=14 mean excess -4.04%  negative 9/14  median -2.50%  leave-one-out range [-5.11%, -2.41%]  worst single episode 2022-05-03 (-25.2%)
+   validation h=3: n=5 mean excess -2.85%  negative 5/5  median -2.42%  leave-one-out range [-3.55%, -2.24%]  worst single episode 2024-09-01 (-5.3%)
+   validation h=5: n=5 mean excess -4.53%  negative 3/5  median -2.85%  leave-one-out range [-6.09%, -2.22%]  worst single episode 2025-03-04 (-13.8%)
+[eth] 15 completions with an entry bar
+    signal     period  fwd3   ex3  fwd5   ex5  fwd10  ret20  ret20pct  ret60pct  dd60
+2019-07-13      train -26.1 -26.8 -15.9 -17.1  -21.2  -10.7       NaN       NaN -17.7
+2019-12-13      train  -8.5  -9.3  -8.2  -9.4  -11.7   -3.5      0.41      0.16 -24.3
+2020-01-20      train  -4.1  -4.8  -1.0  -2.2    6.3   27.2      0.88      0.52  -4.2
+2020-09-20      train   2.5   1.8   4.0   2.8    3.6  -14.6      0.16      0.67 -22.0
+2021-06-17      train -15.5 -16.3 -11.9 -13.1   -6.6   -1.6      0.24      0.12 -43.2
+2022-06-02      train   4.8   4.0   1.0  -0.3  -31.9   -8.7      0.36      0.01 -47.9
+2022-07-09      train  -4.6  -5.3   5.4   4.1   30.3    7.9      0.70      0.09 -43.3
+2022-10-15      train  -1.6  -2.4  -0.5  -1.7   19.9   -1.5      0.62      0.23 -31.0
+2022-12-25      train  -2.2  -3.0  -2.6  -3.8    1.9   -3.2      0.56      0.38 -25.9
+2023-09-12      train   1.7   0.9   1.8   0.5   -0.9   -5.2      0.26      0.14 -17.5
+2024-08-31 validation   1.0   0.9  -8.3  -8.6   -3.5   -1.7      0.43      0.04 -28.9
+2025-03-04 validation  -1.7  -1.8 -16.8 -17.1  -13.6  -20.7      0.04      0.00 -41.1
+2025-10-18 validation  -4.4  -4.6  -1.2  -1.5   -2.0   -6.1      0.31      0.31 -19.5
+2026-03-06       test   3.4   3.7   5.3   5.9   17.7   -5.2      0.39      0.10 -41.0
+2026-06-25       test   2.2   2.5   2.0   2.6   14.0   -1.0      0.53      0.09 -33.9
+   train h=3: n=10 mean excess -6.12%  negative 7/10  median -3.90%  leave-one-out range [-7.25%, -3.82%]  worst single episode 2019-07-13 (-26.8%)
+   train h=5: n=10 mean excess -4.03%  negative 7/10  median -1.98%  leave-one-out range [-4.94%, -2.58%]  worst single episode 2019-07-13 (-17.1%)
+   validation h=3: n=3 mean excess -1.86%  negative 2/3  median -1.84%  leave-one-out range [-3.22%, -0.49%]  worst single episode 2025-10-18 (-4.6%)
+   validation h=5: n=3 mean excess -9.07%  negative 3/3  median -8.60%  leave-one-out range [-12.85%, -5.06%]  worst single episode 2025-03-04 (-17.1%)
+
+BTC/ETH completion dates: exact same date 2; ETH completions within 5 days of a BTC completion: 8/15
+validation BTC episodes: 2024-07-03, 2024-09-01, 2024-10-03, 2025-03-04, 2025-12-14
+validation ETH episodes: 2024-08-31, 2025-03-04, 2025-10-18
+
+==== 4. DOWNTREND CONFOUND ====
+[btc] state at completion: trailing-20d-return percentile (pct365) distribution: 0.1=0.08, 0.5=0.31, 0.9=0.55; share in bottom quintile 0.35, bottom decile 0.15; 60d-return bottom quintile 0.65
+[btc] control ret20 bottom quintile (lag 1):
+   h=1: tra +0.10% t=0.6 ep=59 | val -0.09% t=-0.4 ep=30 | tes -0.58% t=-1.8 ep=5
+   h=3: tra -0.08% t=-0.2 ep=45 | val +0.21% t=0.5 ep=17 | tes -1.76% t=-2.3 ep=5
+   h=5: tra -0.06% t=-0.1 ep=39 | val +0.16% t=0.2 ep=13 | tes -2.92% t=-2.6 ep=4
+   h=10: tra -0.69% t=-0.6 ep=27 | val -0.11% t=-0.1 ep=10 | tes -2.74% t=-1.8 ep=3
+   h=20: tra -2.27% t=-1.2 ep=18 | val -2.60% t=-1.3 ep=6 | tes -1.46% t=-0.6 ep=3
+[btc] control ret20 bottom decile (lag 1):
+   h=1: tra -0.04% t=-0.1 ep=40 | val +0.15% t=0.5 ep=15 | tes +0.04% t=0.1 ep=4
+   h=3: tra -0.16% t=-0.3 ep=27 | val +0.39% t=0.7 ep=9 | tes -0.51% t=-0.5 ep=3
+   h=5: tra +0.52% t=0.7 ep=24 | val +0.41% t=0.5 ep=9 | tes -0.46% t=-0.4 ep=2
+   h=10: tra +0.72% t=0.6 ep=21 | val +0.77% t=0.5 ep=6 | tes -0.64% t=-0.4 ep=2
+   h=20: tra -0.64% t=-0.3 ep=16 | val -1.67% t=-0.7 ep=5 | tes -1.29% t=-0.5 ep=2
+[btc] control ret60 bottom quintile (lag 1):
+   h=1: tra -0.20% t=-1.1 ep=35 | val +0.05% t=0.3 ep=21 | tes +0.33% t=1.3 ep=7
+   h=3: tra -0.49% t=-1.1 ep=16 | val +0.24% t=0.7 ep=12 | tes +0.39% t=0.7 ep=3
+   h=5: tra -0.60% t=-0.9 ep=14 | val +0.36% t=0.7 ep=10 | tes +0.73% t=1.0 ep=3
+   h=10: tra -1.29% t=-1.0 ep=9 | val +0.40% t=0.4 ep=8 | tes +1.57% t=1.2 ep=3
+   h=20: tra -2.90% t=-1.1 ep=8 | val -0.49% t=-0.3 ep=3 | tes +3.33% t=1.4 ep=3
+[btc] control ret60 bottom decile (lag 1):
+   h=1: tra -0.07% t=-0.3 ep=20 | val +0.07% t=0.3 ep=14 | tes +0.42% t=1.4 ep=11
+   h=3: tra +0.04% t=0.1 ep=17 | val -0.15% t=-0.3 ep=7 | tes +0.80% t=1.2 ep=6
+   h=5: tra -0.11% t=-0.1 ep=15 | val -0.29% t=-0.4 ep=6 | tes +0.83% t=1.0 ep=3
+   h=10: tra -0.09% t=-0.1 ep=11 | val -0.49% t=-0.5 ep=6 | tes +2.08% t=1.4 ep=3
+   h=20: tra -0.67% t=-0.2 ep=9 | val +0.29% t=0.1 ep=5 | tes +3.71% t=1.5 ep=3
+[btc] buy13 AND ret20 NOT in bottom quintile: 13 completions
+   h=1: tra -0.59% t=-0.7 ep=10 | val -0.49% t=-0.5 ep=3 | tes - (n_flag=0)
+   h=3: tra -0.98% t=-0.7 ep=10 | val -2.24% t=-1.7 ep=3 | tes - (n_flag=0)
+   h=5: tra -2.89% t=-1.0 ep=10 | val -3.35% t=-1.3 ep=3 | tes - (n_flag=0)
+   h=10: tra -0.69% t=-0.1 ep=10 | val +0.83% t=0.4 ep=3 | tes - (n_flag=0)
+   h=20: tra -4.42% t=-0.8 ep=10 | val +5.72% t=3.2 ep=3 | tes - (n_flag=0)
+[btc] buy13 AND ret20 in bottom quintile: 7 completions
+   h=1: tra -4.20% t=-1.3 ep=4 | val - (n_flag=2) | tes - (n_flag=1)
+   h=3: tra -6.58% t=-3.0 ep=4 | val - (n_flag=2) | tes - (n_flag=1)
+   h=5: tra -6.90% t=-1.4 ep=4 | val - (n_flag=2) | tes - (n_flag=1)
+   h=10: tra -8.84% t=-2.5 ep=4 | val - (n_flag=2) | tes - (n_flag=1)
+   h=20: tra -13.24% t=-3.4 ep=4 | val - (n_flag=2) | tes - (n_flag=1)
+[btc] h=3 train: buy13 mean fwd -1.99% | all bars +0.59% | bottom-quintile-ret20 bars +0.51% (n=411) -> excess vs all -2.58%, excess vs downtrend bars -2.50% (NW t within downtrend bars -1.8)
+[btc] h=3 validation: buy13 mean fwd -2.57% | all bars +0.29% | bottom-quintile-ret20 bars +0.50% (n=122) -> excess vs all -2.85%, excess vs downtrend bars -3.06% (NW t within downtrend bars -2.8)
+[btc] h=5 train: buy13 mean fwd -3.05% | all bars +0.99% | bottom-quintile-ret20 bars +0.92% (n=411) -> excess vs all -4.04%, excess vs downtrend bars -3.97% (NW t within downtrend bars -1.6)
+[btc] h=5 validation: buy13 mean fwd -4.01% | all bars +0.51% | bottom-quintile-ret20 bars +0.67% (n=122) -> excess vs all -4.53%, excess vs downtrend bars -4.68% (NW t within downtrend bars -1.7)
+[btc] h=10 train: buy13 mean fwd -1.03% | all bars +1.99% | bottom-quintile-ret20 bars +1.30% (n=411) -> excess vs all -3.02%, excess vs downtrend bars -2.33% (NW t within downtrend bars -0.6)
+[btc] h=10 validation: buy13 mean fwd +1.05% | all bars +1.06% | bottom-quintile-ret20 bars +0.95% (n=122) -> excess vs all -0.00%, excess vs downtrend bars +0.10% (NW t within downtrend bars +0.0)
+[eth] state at completion: trailing-20d-return percentile (pct365) distribution: 0.1=0.19, 0.5=0.40, 0.9=0.67; share in bottom quintile 0.13, bottom decile 0.07; 60d-return bottom quintile 0.60
+[eth] control ret20 bottom quintile (lag 1):
+   h=1: tra -0.14% t=-0.7 ep=71 | val +0.29% t=1.1 ep=27 | tes -0.46% t=-1.1 ep=7
+   h=3: tra -0.39% t=-0.8 ep=48 | val +0.48% t=0.9 ep=17 | tes -2.12% t=-2.3 ep=4
+   h=5: tra -0.58% t=-0.8 ep=37 | val -0.11% t=-0.1 ep=12 | tes -2.99% t=-2.2 ep=4
+   h=10: tra -1.64% t=-1.3 ep=28 | val -0.83% t=-0.5 ep=6 | tes -3.59% t=-1.5 ep=3
+   h=20: tra -4.50% t=-2.1 ep=21 | val -4.81% t=-1.6 ep=4 | tes -2.56% t=-0.8 ep=3
+[eth] control ret20 bottom decile (lag 1):
+   h=1: tra -0.20% t=-0.5 ep=33 | val +0.29% t=0.9 ep=17 | tes -0.41% t=-0.6 ep=4
+   h=3: tra -0.35% t=-0.4 ep=25 | val +0.52% t=0.7 ep=12 | tes -1.05% t=-0.9 ep=2
+   h=5: tra -0.09% t=-0.1 ep=24 | val +0.52% t=0.5 ep=9 | tes -0.50% t=-0.4 ep=2
+   h=10: tra -0.04% t=-0.0 ep=19 | val +1.09% t=0.6 ep=8 | tes -0.23% t=-0.1 ep=2
+   h=20: tra -3.04% t=-0.8 ep=15 | val -4.15% t=-1.2 ep=5 | tes -1.33% t=-0.4 ep=2
+[eth] control ret60 bottom quintile (lag 1):
+   h=1: tra +0.03% t=0.1 ep=36 | val -0.34% t=-1.4 ep=8 | tes +0.96% t=2.3 ep=15
+   h=3: tra +0.16% t=0.3 ep=20 | val -1.13% t=-1.9 ep=4 | tes +1.68% t=2.0 ep=6
+   h=5: tra +0.36% t=0.4 ep=16 | val -1.99% t=-2.2 ep=4 | tes +2.65% t=2.1 ep=4
+   h=10: tra +0.69% t=0.4 ep=15 | val -3.88% t=-2.3 ep=3 | tes +4.27% t=1.9 ep=3
+   h=20: tra +1.69% t=0.5 ep=12 | val -3.93% t=-1.2 ep=3 | tes +7.10% t=2.0 ep=2
+[eth] control ret60 bottom decile (lag 1):
+   h=1: tra -0.26% t=-0.8 ep=29 | val -0.34% t=-1.1 ep=7 | tes +0.96% t=1.4 ep=3
+   h=3: tra -0.44% t=-0.5 ep=13 | val -0.85% t=-1.2 ep=5 | tes +3.85% t=4.7 ep=3
+   h=5: tra -0.45% t=-0.3 ep=11 | val -1.41% t=-1.3 ep=3 | tes +3.49% t=1.4 ep=3
+   h=10: tra -0.05% t=-0.0 ep=10 | val -3.11% t=-1.6 ep=2 | tes +10.87% t=3.3 ep=3
+   h=20: tra +1.87% t=0.3 ep=8 | val -4.90% t=-1.4 ep=2 | tes +5.55% t=1.3 ep=3
+[eth] buy13 AND ret20 NOT in bottom quintile: 12 completions
+   h=1: tra -1.34% t=-1.5 ep=8 | val - (n_flag=2) | tes - (n_flag=2)
+   h=3: tra -4.52% t=-2.2 ep=8 | val - (n_flag=2) | tes - (n_flag=2)
+   h=5: tra -3.25% t=-1.8 ep=8 | val - (n_flag=2) | tes - (n_flag=2)
+   h=10: tra -1.60% t=-0.3 ep=8 | val - (n_flag=2) | tes - (n_flag=2)
+   h=20: tra +4.39% t=0.5 ep=8 | val - (n_flag=2) | tes - (n_flag=2)
+[eth] buy13 AND ret20 in bottom quintile: 2 completions
+   h=1: tra - (n_flag=1) | val - (n_flag=1) | tes - (n_flag=0)
+   h=3: tra - (n_flag=1) | val - (n_flag=1) | tes - (n_flag=0)
+   h=5: tra - (n_flag=1) | val - (n_flag=1) | tes - (n_flag=0)
+   h=10: tra - (n_flag=1) | val - (n_flag=1) | tes - (n_flag=0)
+   h=20: tra - (n_flag=1) | val - (n_flag=1) | tes - (n_flag=0)
+[eth] h=3 train: buy13 mean fwd -5.36% | all bars +0.76% | bottom-quintile-ret20 bars +0.36% (n=391) -> excess vs all -6.12%, excess vs downtrend bars -5.73% (NW t within downtrend bars -2.0)
+[eth] h=3 validation: buy13 mean fwd -1.69% | all bars +0.16% | bottom-quintile-ret20 bars +0.65% (n=136) -> excess vs all -1.86%, excess vs downtrend bars -2.34% (NW t within downtrend bars -1.6)
+[eth] h=5 train: buy13 mean fwd -2.78% | all bars +1.26% | bottom-quintile-ret20 bars +0.68% (n=391) -> excess vs all -4.03%, excess vs downtrend bars -3.46% (NW t within downtrend bars -1.6)
+[eth] h=5 validation: buy13 mean fwd -8.75% | all bars +0.32% | bottom-quintile-ret20 bars +0.21% (n=136) -> excess vs all -9.07%, excess vs downtrend bars -8.96% (NW t within downtrend bars -2.6)
+[eth] h=10 train: buy13 mean fwd -1.03% | all bars +2.52% | bottom-quintile-ret20 bars +0.87% (n=391) -> excess vs all -3.54%, excess vs downtrend bars -1.90% (NW t within downtrend bars -0.3)
+[eth] h=10 validation: buy13 mean fwd -6.37% | all bars +0.68% | bottom-quintile-ret20 bars -0.15% (n=136) -> excess vs all -7.05%, excess vs downtrend bars -6.22% (NW t within downtrend bars -2.1)
+
+==== 5. COUNTDOWN VARIANTS ====
+[btc] countdown 'close <= close[2 earlier]' identical to the harness3 flag (which used low=close): True
+[btc] count12: 22 completions
+   h=1: tra +2.06% t=2.2 ep=15 | val +0.33% t=0.3 ep=6 | tes - (n_flag=1)
+   h=3: tra +2.06% t=1.2 ep=15 | val +0.61% t=0.5 ep=6 | tes - (n_flag=1)
+   h=5: tra +2.39% t=1.0 ep=15 | val +0.82% t=0.3 ep=6 | tes - (n_flag=1)
+   h=10: tra +1.49% t=0.4 ep=15 | val -0.20% t=-0.1 ep=6 | tes - (n_flag=1)
+   h=20: tra +0.08% t=0.0 ep=15 | val +2.88% t=1.2 ep=6 | tes - (n_flag=1)
+[btc] count14: 18 completions
+   h=1: tra +0.94% t=1.0 ep=13 | val -1.57% t=-1.0 ep=4 | tes - (n_flag=1)
+   h=3: tra -1.03% t=-0.6 ep=13 | val -0.07% t=-0.0 ep=4 | tes - (n_flag=1)
+   h=5: tra -1.40% t=-0.7 ep=13 | val +0.97% t=0.4 ep=4 | tes - (n_flag=1)
+   h=10: tra -0.93% t=-0.3 ep=13 | val +4.54% t=1.2 ep=4 | tes - (n_flag=1)
+   h=20: tra -3.75% t=-0.8 ep=13 | val +8.19% t=1.9 ep=4 | tes - (n_flag=1)
+[btc] count13_strict: 20 completions
+   h=1: tra -1.62% t=-1.4 ep=14 | val -0.63% t=-1.0 ep=5 | tes - (n_flag=1)
+   h=3: tra -2.58% t=-1.9 ep=14 | val -2.85% t=-3.1 ep=5 | tes - (n_flag=1)
+   h=5: tra -4.04% t=-1.6 ep=14 | val -4.53% t=-1.7 ep=5 | tes - (n_flag=1)
+   h=10: tra -3.02% t=-0.8 ep=14 | val -0.00% t=-0.0 ep=5 | tes - (n_flag=1)
+   h=20: tra -6.94% t=-1.6 ep=14 | val +4.82% t=1.7 ep=5 | tes - (n_flag=1)
+[btc] count13_nocancel: 28 completions
+   h=1: tra -1.61% t=-1.7 ep=19 | val -0.34% t=-0.6 ep=6 | tes -0.50% t=-1.0 ep=3
+   h=3: tra -2.17% t=-1.9 ep=19 | val -2.08% t=-2.0 ep=6 | tes +0.74% t=0.6 ep=3
+   h=5: tra -3.18% t=-1.6 ep=19 | val -4.91% t=-2.2 ep=6 | tes +0.68% t=0.6 ep=3
+   h=10: tra -1.89% t=-0.7 ep=19 | val -0.73% t=-0.4 ep=6 | tes +1.50% t=0.6 ep=3
+   h=20: tra -5.70% t=-1.7 ep=19 | val +1.10% t=0.3 ep=6 | tes +7.63% t=2.6 ep=3
+[btc] count11: 23 completions
+   h=1: tra -1.02% t=-1.9 ep=16 | val -0.42% t=-1.0 ep=6 | tes - (n_flag=1)
+   h=3: tra -0.62% t=-0.4 ep=16 | val +2.93% t=1.7 ep=6 | tes - (n_flag=1)
+   h=5: tra -1.06% t=-0.5 ep=16 | val +1.02% t=0.6 ep=6 | tes - (n_flag=1)
+   h=10: tra -0.76% t=-0.2 ep=16 | val +0.13% t=0.0 ep=6 | tes - (n_flag=1)
+   h=20: tra -1.60% t=-0.4 ep=16 | val -0.22% t=-0.1 ep=6 | tes - (n_flag=1)
+[btc] count15: 17 completions
+   h=1: tra -0.46% t=-0.5 ep=12 | val -1.07% t=-0.7 ep=4 | tes - (n_flag=1)
+   h=3: tra -2.31% t=-1.2 ep=12 | val +2.21% t=2.4 ep=4 | tes - (n_flag=1)
+   h=5: tra -4.42% t=-1.4 ep=12 | val +3.60% t=1.6 ep=4 | tes - (n_flag=1)
+   h=10: tra -2.57% t=-0.5 ep=12 | val +7.85% t=3.3 ep=4 | tes - (n_flag=1)
+   h=20: tra -4.33% t=-0.7 ep=12 | val +9.87% t=2.9 ep=4 | tes - (n_flag=1)
+[eth] countdown 'close <= close[2 earlier]' identical to the harness3 flag (which used low=close): True
+[eth] count12: 16 completions
+   h=1: tra -1.26% t=-1.0 ep=10 | val +0.67% t=0.4 ep=3 | tes -1.68% t=-0.5 ep=3
+   h=3: tra -3.47% t=-1.5 ep=10 | val -1.92% t=-2.3 ep=3 | tes +2.14% t=0.6 ep=3
+   h=5: tra -6.48% t=-1.9 ep=10 | val -4.83% t=-3.0 ep=3 | tes -1.12% t=-0.5 ep=3
+   h=10: tra -8.85% t=-3.0 ep=10 | val -5.54% t=-1.6 ep=3 | tes +6.69% t=1.7 ep=3
+   h=20: tra -1.89% t=-0.3 ep=10 | val -5.99% t=-1.5 ep=3 | tes +8.67% t=1.2 ep=3
+[eth] count14: 14 completions
+   h=1: tra -3.12% t=-1.8 ep=9 | val -3.86% t=-1.7 ep=3 | tes - (n_flag=2)
+   h=3: tra -1.36% t=-0.7 ep=9 | val -5.33% t=-1.4 ep=3 | tes - (n_flag=2)
+   h=5: tra +1.21% t=0.4 ep=9 | val -6.17% t=-1.1 ep=3 | tes - (n_flag=2)
+   h=10: tra +0.40% t=0.1 ep=9 | val -6.51% t=-1.8 ep=3 | tes - (n_flag=2)
+   h=20: tra -0.71% t=-0.1 ep=9 | val -8.83% t=-2.0 ep=3 | tes - (n_flag=2)
+[eth] count13_strict: 15 completions
+   h=1: tra -2.62% t=-1.6 ep=10 | val +0.89% t=0.6 ep=3 | tes - (n_flag=2)
+   h=3: tra -6.12% t=-2.2 ep=10 | val -1.86% t=-1.4 ep=3 | tes - (n_flag=2)
+   h=5: tra -4.03% t=-1.9 ep=10 | val -9.07% t=-2.5 ep=3 | tes - (n_flag=2)
+   h=10: tra -3.54% t=-0.7 ep=10 | val -7.05% t=-2.2 ep=3 | tes - (n_flag=2)
+   h=20: tra +1.55% t=0.2 ep=10 | val -6.26% t=-1.1 ep=3 | tes - (n_flag=2)
+[eth] count13_nocancel: 25 completions
+   h=1: tra -2.18% t=-2.1 ep=19 | val +1.41% t=1.1 ep=4 | tes - (n_flag=2)
+   h=3: tra -5.31% t=-3.2 ep=19 | val +0.17% t=0.1 ep=4 | tes - (n_flag=2)
+   h=5: tra -3.17% t=-2.4 ep=19 | val -3.08% t=-0.5 ep=4 | tes - (n_flag=2)
+   h=10: tra -0.43% t=-0.1 ep=19 | val +3.36% t=0.4 ep=4 | tes - (n_flag=2)
+   h=20: tra +0.80% t=0.2 ep=19 | val +5.56% t=0.5 ep=4 | tes - (n_flag=2)
+[eth] count11: 17 completions
+   h=1: tra +0.37% t=0.8 ep=11 | val -4.45% t=-1.1 ep=3 | tes -2.22% t=-4.3 ep=3
+   h=3: tra -1.25% t=-0.7 ep=11 | val -3.89% t=-1.1 ep=3 | tes -4.83% t=-1.4 ep=3
+   h=5: tra -2.57% t=-0.7 ep=11 | val -6.88% t=-1.9 ep=3 | tes -0.03% t=-0.0 ep=3
+   h=10: tra -5.80% t=-1.9 ep=11 | val -9.29% t=-1.2 ep=3 | tes +3.02% t=0.7 ep=3
+   h=20: tra -3.97% t=-0.6 ep=11 | val -14.98% t=-3.5 ep=3 | tes +7.47% t=1.2 ep=3
+[eth] count15: 14 completions
+   h=1: tra +0.08% t=0.0 ep=9 | val +0.55% t=0.3 ep=3 | tes - (n_flag=2)
+   h=3: tra +2.25% t=0.8 ep=9 | val +0.01% t=0.0 ep=3 | tes - (n_flag=2)
+   h=5: tra +3.61% t=0.8 ep=9 | val +0.78% t=0.4 ep=3 | tes - (n_flag=2)
+   h=10: tra +5.11% t=0.8 ep=9 | val +1.41% t=0.6 ep=3 | tes - (n_flag=2)
+   h=20: tra +3.87% t=0.5 ep=9 | val -3.46% t=-0.7 ep=3 | tes - (n_flag=2)
+
+==== 6. THREE-DAY BARS (every third daily close, anchors 0/1/2) ====
+[3d a0 btc] 5 completions: 2019-10-01, 2022-04-12, 2022-06-17, 2024-10-04, 2026-01-30  (not scored in R4: fewer than 6 completions)
+   h=1: tra -1.08% t=-0.6 ep=3 | val - (n_flag=1) | tes - (n_flag=1)
+   h=3: tra -3.15% t=-2.9 ep=3 | val - (n_flag=1) | tes - (n_flag=1)
+   h=5: tra -7.24% t=-4.4 ep=3 | val - (n_flag=1) | tes - (n_flag=1)
+   pooled all-period excess (sign only): h=1 -5.37%, h=3 -3.41%, h=5 -6.04%
+[3d a0 eth] 6 completions: 2019-11-24, 2022-04-09, 2022-06-17, 2024-09-01, 2026-02-05, 2026-05-15
+   h=1: tra +1.41% t=1.3 ep=3 | val - (n_flag=1) | tes - (n_flag=2)
+   h=3: tra -3.51% t=-3.4 ep=3 | val - (n_flag=1) | tes - (n_flag=2)
+   h=5: tra -6.32% t=-3.6 ep=3 | val - (n_flag=1) | tes - (n_flag=2)
+   pooled all-period excess (sign only): h=1 -1.81%, h=3 -3.90%, h=5 -7.86%
+[3d a1 btc] 6 completions: 2022-02-12, 2022-06-21, 2024-10-02, 2026-02-03, 2026-04-28, 2026-08-14
+   h=1: tra - (n_flag=2) | val - (n_flag=1) | tes +5.10% t=1.5 ep=3
+   h=3: tra - (n_flag=2) | val - (n_flag=1) | tes +8.81% t=1.6 ep=3
+   h=5: tra - (n_flag=2) | val - (n_flag=1) | tes +6.05% t=1.1 ep=3
+   pooled all-period excess (sign only): h=1 -0.07%, h=3 +0.04%, h=5 +2.22%
+[3d a1 eth] 7 completions: 2022-04-16, 2022-06-21, 2023-09-26, 2024-09-05, 2026-02-06, 2026-05-13, 2026-08-14
+   h=1: tra -3.27% t=-3.2 ep=3 | val - (n_flag=1) | tes +4.00% t=0.6 ep=3
+   h=3: tra -8.86% t=-3.4 ep=3 | val - (n_flag=1) | tes +7.73% t=0.8 ep=3
+   h=5: tra -8.13% t=-4.1 ep=3 | val - (n_flag=1) | tes +3.30% t=0.4 ep=3
+   pooled all-period excess (sign only): h=1 +0.24%, h=3 -1.20%, h=5 -1.54%
+[3d a2 btc] 6 completions: 2022-04-14, 2022-07-04, 2024-09-30, 2026-02-07, 2026-05-26, 2026-08-15
+   h=1: tra - (n_flag=2) | val - (n_flag=1) | tes +6.34% t=1.1 ep=3
+   h=3: tra - (n_flag=2) | val - (n_flag=1) | tes +3.07% t=0.4 ep=3
+   h=5: tra - (n_flag=2) | val - (n_flag=1) | tes +2.75% t=0.4 ep=3
+   pooled all-period excess (sign only): h=1 +3.30%, h=3 -0.42%, h=5 +1.10%
+[3d a2 eth] 7 completions: 2019-11-26, 2022-04-26, 2022-06-16, 2023-10-12, 2024-09-03, 2026-02-07, 2026-05-02
+   h=1: tra -2.04% t=-1.2 ep=4 | val - (n_flag=1) | tes - (n_flag=2)
+   h=3: tra -1.49% t=-0.3 ep=4 | val - (n_flag=1) | tes - (n_flag=2)
+   h=5: tra -7.13% t=-0.9 ep=4 | val - (n_flag=1) | tes - (n_flag=2)
+   pooled all-period excess (sign only): h=1 -0.53%, h=3 -1.57%, h=5 -3.31%
+
+==== 7. PLACEBO: random dates matched on count (5000 draws), and matched on count AND drawn from bottom-quintile ret20 bars ====
+[btc] h=3 train: observed excess -2.58% (n=14); random-date placebo p(<=obs)=0.052 [placebo mean -0.02%, sd 1.59%]; downtrend-matched placebo p(<=obs)=0.081 [placebo mean -0.12%, sd 1.77%]
+[btc] h=3 validation: observed excess -2.85% (n=5); random-date placebo p(<=obs)=0.056 [placebo mean -0.00%, sd 1.84%]; downtrend-matched placebo p(<=obs)=0.050 [placebo mean +0.21%, sd 1.90%]
+[btc] h=3 train+validation pooled: observed -2.65%, random p=0.019, downtrend-matched p=0.034
+[btc] h=5 train: observed excess -4.04% (n=14); random-date placebo p(<=obs)=0.027 [placebo mean -0.00%, sd 2.08%]; downtrend-matched placebo p(<=obs)=0.033 [placebo mean -0.05%, sd 2.11%]
+[btc] h=5 validation: observed excess -4.53% (n=5); random-date placebo p(<=obs)=0.024 [placebo mean -0.05%, sd 2.29%]; downtrend-matched placebo p(<=obs)=0.025 [placebo mean +0.22%, sd 2.36%]
+[btc] h=5 train+validation pooled: observed -4.17%, random p=0.007, downtrend-matched p=0.007
+[eth] h=3 train: observed excess -6.12% (n=10); random-date placebo p(<=obs)=0.006 [placebo mean +0.02%, sd 2.36%]; downtrend-matched placebo p(<=obs)=0.020 [placebo mean -0.40%, sd 2.56%]
+[eth] h=3 validation: observed excess -1.86% (n=3); random-date placebo p(<=obs)=0.320 [placebo mean -0.09%, sd 3.74%]; downtrend-matched placebo p(<=obs)=0.212 [placebo mean +0.48%, sd 2.99%]
+[eth] h=3 train+validation pooled: observed -5.14%, random p=0.006, downtrend-matched p=0.015
+[eth] h=5 train: observed excess -4.03% (n=10); random-date placebo p(<=obs)=0.090 [placebo mean -0.02%, sd 3.07%]; downtrend-matched placebo p(<=obs)=0.114 [placebo mean -0.67%, sd 2.87%]
+[eth] h=5 validation: observed excess -9.07% (n=3); random-date placebo p(<=obs)=0.024 [placebo mean +0.04%, sd 4.87%]; downtrend-matched placebo p(<=obs)=0.013 [placebo mean -0.09%, sd 3.69%]
+[eth] h=5 train+validation pooled: observed -5.20%, random p=0.024, downtrend-matched p=0.028
