@@ -1,0 +1,59 @@
+{
+ "item": "A1",
+ "live_names": 2237,
+ "per_venue": {
+  "binance": {
+   "live": 892,
+   "summed": 892
+  },
+  "bybit": {
+   "live": 827,
+   "summed": 827
+  },
+  "okx": {
+   "live": 518,
+   "summed": 518
+  }
+ },
+ "missing_per_venue": {
+  "binance": 0,
+  "bybit": 0,
+  "okx": 0
+ },
+ "remaining": 0,
+ "store": "data/funding_sum",
+ "provenance": {
+  "script": "scripts/a1_funding_state.py",
+  "script_blob": "a6f0352bb8b2490394cc648dcebd525afde2df52",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/a1_funding_state.py"
+  ],
+  "commit": "a0dc2f728a85ccf409a1a97b0a5fd1eb57ce0dfd",
+  "written_at": "2026-11-19T07:22:22Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/universe.csv",
+    "kind": "file",
+    "bytes": 129387,
+    "mtime_ns": 1794505687554137697,
+    "sha256": "e442072b733202b7b580a61340d793d7d99895b1c1d3d980c6d09e465da7f6a7"
+   },
+   {
+    "path": "data/funding_sum",
+    "kind": "dir",
+    "files": 2385,
+    "bytes": 18619683,
+    "listing_sha256": "b42aa3d78d5cb2f4c1ab88a81dbeaf3757b318c0101a586b0dc65b1f1881002d",
+    "content_sha256": "193e988f0fa10cc4d7bdbac04ab15d964617296c5f65f0f8f8ca55d1fe7e3dfb",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "c657572a6cf38a18c19e5603e2c62781151b3a9df5cbf5c9a7cafdaab465b0dd"
+ }
+}

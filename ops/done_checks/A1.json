@@ -1,0 +1,45 @@
+{
+ "item": "A1",
+ "checked_at": "2026-11-19T09:03:33Z",
+ "head": "44d0ba04869cd1bc56b6577ff9ca90ea375595df",
+ "done_when": "a committed script sums funding per day for every venue and the results file is written by that script",
+ "parts": [
+  "a committed script sums funding per day for every venue and the results file is written by that script"
+ ],
+ "evidence": [
+  "a committed script sums funding per day for every venue: results/2026-11-19_a1_integrity.json:funded_from_sum",
+  "the results file is written by that script: tests.test_panel_integrity.PanelIntegrity.test_funding_sum_is_not_the_last_print_times_the_count"
+ ],
+ "results": [
+  {
+   "file": "results/2026-11-19_a1_integrity.json",
+   "problems": []
+  }
+ ],
+ "tests": [
+  {
+   "module": "tests.test_panel_integrity",
+   "passed": true,
+   "ran": 7,
+   "ids": [
+    "tests.test_panel_integrity.PanelIntegrity.test_a_blank_day_is_absent",
+    "tests.test_panel_integrity.PanelIntegrity.test_clean_sorts_and_drops_today",
+    "tests.test_panel_integrity.PanelIntegrity.test_descending_file_fails",
+    "tests.test_panel_integrity.PanelIntegrity.test_descending_file_fails_through_the_readers",
+    "tests.test_panel_integrity.PanelIntegrity.test_funding_sum_is_not_the_last_print_times_the_count",
+    "tests.test_panel_integrity.PanelIntegrity.test_hyphenated_swap_strips_the_quote",
+    "tests.test_panel_integrity.PanelIntegrity.test_replace_last_row_overwrites_a_partial_bar"
+   ],
+   "tail": "----------------------------------------------------------------------\nRan 7 tests in 0.051s\n\nOK"
+  }
+ ],
+ "code_changed_since": "2011f24",
+ "code_files": [
+  "scripts/a1_compare.py",
+  "scripts/a1_rewrite.py"
+ ],
+ "no_code_reason": null,
+ "problems": [],
+ "ok": true,
+ "token": "967af67f0f"
+}
