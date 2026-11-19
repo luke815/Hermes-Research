@@ -16,11 +16,14 @@ HEALTH = os.path.join(ROOT, "ops", "health.log")
 DIGEST = os.path.join(ROOT, "cron_output_digest.md")
 
 
-def digest_carries_line(text, line):
-    """True when the digest's response quotes the health check's line."""
+def digest_response_line(text):
+    """The top-item line the digest printed, taken from its response only."""
     marker = "## Response"
     response = text.split(marker, 1)[1] if marker in text else ""
-    return line in response
+    for row in response.splitlines():
+        if row.startswith("top backlog item "):
+            return row.strip().strip("`")
+    return ""
 
 
 def main():
@@ -31,6 +34,7 @@ def main():
     line = f"top backlog item {item}, {runs} runs" if item else ""
     digest_path = sys.argv[1] if len(sys.argv) > 1 else DIGEST
     digest = open(digest_path).read() if os.path.exists(digest_path) else ""
+    quoted = digest_response_line(digest)
     out = {
         "item": "L0",
         "health_log_rows": len(rows),
@@ -39,10 +43,11 @@ def main():
         "runs": int(runs) if runs.isdigit() else None,
         "line": line,
         "digest_file": os.path.basename(digest_path),
-        "digest_carries_line": digest_carries_line(digest, line) if line else False,
+        "digest_line": quoted,
+        "digest_carries_line": quoted.startswith("top backlog item ") and " runs" in quoted,
     }
     path = write_result("l0_check", out, inputs=["ops/health.log"])
-    print(json.dumps({k: out[k] for k in ("top_item", "runs", "digest_carries_line")}))
+    print(json.dumps({k: out[k] for k in ("top_item", "runs", "digest_line", "digest_carries_line")}))
     print(path)
 
 
