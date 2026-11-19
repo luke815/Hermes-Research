@@ -21,7 +21,14 @@ Usage: python3 scripts/sweep_xs.py
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
+
+# procmgr restarts from a clean environment, which does not have the user
+# site on its path. The libraries live there, so the script adds them itself.
+_SITE = "/opt/data/.local/lib/python3.14/site-packages"
+if _SITE not in sys.path:
+    sys.path.insert(0, _SITE)
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -41,6 +48,8 @@ STATUS = os.path.join(ROOT, "ops", "sweep_status")
 OUT = os.path.join(ROOT, "results", "sweeps")
 TRAIN_END = "2024-06-30"
 MIN_BARS = 60
+OI_FLOOR = 20_000_000  # the book's liquidity floor, dollars of open interest
+OI_FLOOR_DAYS = 60
 MIN_NAMES = 10
 HORIZONS = (1, 3, 10)
 TRANSFORMS = ("raw", "pct_252", "z_30", "z_90", "chg_3", "chg_7", "chg_30",
@@ -61,11 +70,34 @@ def scorable_measures():
 
 
 def load_train():
-    """The close matrix cut at the train end, names with enough history only."""
+    """The close matrix cut at the train end, liquid names with enough history.
+
+    A name clears the floor when its open interest is at least OI_FLOOR on
+    OI_FLOOR_DAYS days. Two venues for one coin would count the coin twice, so
+    the venue with the most days above the floor is the one that stays.
+    """
     close, digest = load_close_matrix(PANEL)
     train = close[close.index <= TRAIN_END]
-    keep = train.columns[train.notna().sum() >= MIN_BARS]
-    return train[keep], digest
+    enough = train.columns[train.notna().sum() >= MIN_BARS]
+    liquid = liquid_names(enough)
+    return train[train.columns.intersection(liquid)], digest
+
+
+def liquid_names(candidates):
+    """One venue per coin, among names clearing the open-interest floor."""
+    best = {}
+    for name in candidates:
+        path = os.path.join(PANEL, name + ".csv")
+        frame = pd.read_csv(path, usecols=lambda c: c in ("oi_usd",))
+        if "oi_usd" not in frame.columns:
+            continue
+        days = int((frame["oi_usd"] >= OI_FLOOR).sum())
+        if days < OI_FLOOR_DAYS:
+            continue
+        coin = name.split("_", 1)[1]
+        if coin not in best or days > best[coin][0]:
+            best[coin] = (days, name)
+    return [name for days, name in best.values()]
 
 
 def work_list():
@@ -425,15 +457,39 @@ def panel_spans(columns):
     return {column: spans[column] for column in columns if column in spans}
 
 
-def status_line(done, work):
-    """The shared counter, recounted from every scorer's files.
+def cells_this_hour():
+    """Cells written to this sweep's files in the last hour, from file mtimes.
 
-    done and work decide what this daemon still has to score. The number on the
-    status line is the counter's, so the digest and this line cite one file.
+    Counting from the process's own memory reads zero after every restart, so
+    the rate is read from the files instead.
+    """
+    cutoff = time.time() - 3600
+    total = 0
+    for name in os.listdir(OUT):
+        if not name.endswith("_xs_vec.csv"):
+            continue
+        path = os.path.join(OUT, name)
+        if os.path.getmtime(path) < cutoff:
+            continue
+        with open(path) as handle:
+            total += max(sum(1 for _ in handle) - 1, 0)
+    return total
+
+
+def status_line(done, work, names=None, rows_this_hour=None):
+    """The shared counter, with this sweep's name count and hourly rate.
+
+    The counter number is unchanged, so the digest and this line still cite one
+    file. The name count and the cells scored in the last hour are what shows
+    whether the sweep is covering the panel and moving.
     """
     del done, work
     payload = write_counter()
     line = status_text(payload)
+    if names is not None:
+        line += f", names {names}"
+    if rows_this_hour is not None:
+        line += f", cells per hour {rows_this_hour}"
     tmp = STATUS + ".tmp"
     open(tmp, "w").write(line + "\n")
     os.replace(tmp, STATUS)
@@ -454,12 +510,13 @@ def cycle(ctx):
     # once at the start scores the list as it was then and never sees the rest.
     ctx["work"] = work_list()
     done = scored_ids()
+    line = status_line(done, ctx["work"], names=int(close.shape[1]),
+                       rows_this_hour=cells_this_hour())
     # Conditioned cells are a different test and are not counted as pending.
     # A measure stays pending until every unconditioned cell this scorer emits
     # is saved, including ratio_btc. Marking it done from any saved cell skips
     # that transform and the scored count stops moving.
     pending = pending_measures(ctx["work"], done, ctx["measures"])
-    line = status_line(done, ctx["work"])
     if not pending:
         return {"measure": None, "names": int(close.shape[1]), "remaining": 0,
                 "status_line": line}

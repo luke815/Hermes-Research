@@ -74,6 +74,26 @@ class WorkList(unittest.TestCase):
             sweep_xs.WORK = path
             self.assertEqual(sweep_xs.work_list(), {"basis_level|raw|above|80|ret_1"})
 
+    def test_the_floor_keeps_one_venue_and_drops_a_thin_name(self):
+        import pandas as pd
+        with tempfile.TemporaryDirectory() as tmp:
+            sweep_xs.PANEL = tmp
+            pd.DataFrame({"oi_usd": [20_000_000] * 60}).to_csv(
+                os.path.join(tmp, "binance_AAAUSDT.csv"), index=False)
+            pd.DataFrame({"oi_usd": [20_000_000] * 90}).to_csv(
+                os.path.join(tmp, "bybit_AAAUSDT.csv"), index=False)
+            pd.DataFrame({"oi_usd": [1_000] * 90}).to_csv(
+                os.path.join(tmp, "binance_THINUSDT.csv"), index=False)
+            kept = sweep_xs.liquid_names(
+                ["binance_AAAUSDT", "bybit_AAAUSDT", "binance_THINUSDT"])
+            self.assertEqual(kept, ["bybit_AAAUSDT"])
+
+    def test_status_line_names_the_count_and_the_rate(self):
+        line = sweep_xs.status_line(set(), set(), names=321, rows_this_hour=5400)
+        self.assertIn("names 321", line)
+        self.assertIn("cells per hour 5400", line)
+        self.assertIn("cells scored", line)
+
 
 if __name__ == "__main__":
     unittest.main()
