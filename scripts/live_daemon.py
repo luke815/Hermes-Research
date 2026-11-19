@@ -127,6 +127,21 @@ def board(names):
             "rows": rows}
 
 
+def hourly_closes(n=600):
+    """Last n completed hourly closes for BTC and ETH (about 10 KB), so the dashboard's State tab can count TD
+    Sequential setups on 1H and 4H bars. Read as live.hourly_closes.{BTC,ETH}.{t,c}: unix seconds and close."""
+    out = {}
+    for base in ("BTC", "ETH"):
+        try:
+            bars = intraday_store.read(base + "USDT_PERP.A", STORE_1H)
+        except Exception:  # a store problem must not stop the push
+            continue
+        done = bars[:-1][-n:]  # the last bar is still forming
+        if done:
+            out[base] = {"t": [b["t"] for b in done], "c": [b["c"] for b in done]}
+    return out
+
+
 def push(payload):
     """Force-push live.json as a single-file orphan commit on the live branch."""
     save(LIVE, payload)
@@ -217,6 +232,7 @@ def cycle(ctx):
                    "stale": as_of is None or rs_stale, "marks_stale": as_of is None,
                    "rs_stale": rs_stale, "rs_age_sec": rs_age, "note": note},
         "relative_strength": built, "book_live": book_live(marks),
+        "hourly_closes": hourly_closes(),
         # watchlist, ideas and triggers are left out until this loop computes them:
         # an empty list here overwrote the daily file's values on every poll.
     }

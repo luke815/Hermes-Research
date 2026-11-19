@@ -1,0 +1,1132 @@
+{
+ "1_reproduce": {
+  "10": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_lift": 0.6064633041377226,
+    "crash_n": 3,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mdd_flag": 0.03070669545991911,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.09150440108085264,
+    "t_nw": 4.916686111872423,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.037081521308662185,
+    "false_alarm": 0.5
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial"
+  },
+  "20": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 19,
+    "mdd_flag": -0.04986186125397342,
+    "mdd_all": -0.09012057413366038,
+    "mdd_diff": 0.040258712879686964,
+    "t_nw": 3.285277890577213,
+    "crash_lift": 0.5210847281691968,
+    "crash_n": 4,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mdd_flag": -0.045536888884964655,
+    "mdd_all": -0.09522143676005604,
+    "mdd_diff": 0.049684547875091384,
+    "t_nw": 1.1554862122311453,
+    "crash_lift": 0.5766806722689075,
+    "crash_n": 1,
+    "missed_mean20": 0.037081521308662185,
+    "false_alarm": 0.5
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 2,
+    "mdd_flag": -0.12932167674122863,
+    "mdd_all": -0.0892203804066979,
+    "mdd_diff": -0.04010129633453073,
+    "t_nw": -0.7747456900480796,
+    "crash_lift": 2.0066666666666664,
+    "crash_n": 2,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "rejected: drawdown effect changes sign across periods"
+  },
+  "30": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 17,
+    "mdd_flag": -0.08070866090180588,
+    "mdd_all": -0.11106735077607857,
+    "mdd_diff": 0.03035868987427269,
+    "t_nw": 1.500293630688409,
+    "crash_lift": 0.5426733690070806,
+    "crash_n": 5,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mdd_flag": -0.09523065014701146,
+    "mdd_all": -0.1223748792704094,
+    "mdd_diff": 0.027144229123397937,
+    "t_nw": 0.441902347786325,
+    "crash_lift": 0.9180602006688963,
+    "crash_n": 2,
+    "missed_mean20": 0.037081521308662185,
+    "false_alarm": 0.5
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 2,
+    "mdd_flag": -0.12932167674122863,
+    "mdd_all": -0.11439702850067063,
+    "mdd_diff": -0.014924648240558003,
+    "t_nw": -0.3162765166322945,
+    "crash_lift": 1.658119658119658,
+    "crash_n": 2,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "rejected: drawdown effect changes sign across periods"
+  },
+  "matches_stored_json": true
+ },
+ "2_lag2": {
+  "train": {
+   "n_flag": 21,
+   "n_ind": 21,
+   "mdd_flag": -0.02840723503577704,
+   "mdd_all": -0.05920455156357095,
+   "mdd_diff": 0.030797316527793907,
+   "t_nw": 2.100068724973626,
+   "crash_lift": 1.0107721735628712,
+   "crash_n": 5,
+   "missed_mean20": 0.1442108954785865,
+   "false_alarm": 0.6666666666666666
+  },
+  "validation": {
+   "n_flag": 4,
+   "n_ind": 4,
+   "mdd_flag": -0.01374648890681296,
+   "mdd_all": -0.06079770562093354,
+   "mdd_diff": 0.04705121671412058,
+   "t_nw": 5.151693545901788,
+   "crash_lift": 0.0,
+   "crash_n": 0,
+   "missed_mean20": -0.010271523205507255,
+   "false_alarm": 0.25
+  },
+  "test": {
+   "n_flag": 3,
+   "n_ind": 3,
+   "mdd_flag": -0.02441030203371956,
+   "mdd_all": -0.05501941388514966,
+   "mdd_diff": 0.030609111851430098,
+   "t_nw": 1.0753399666134629,
+   "crash_lift": 0.0,
+   "crash_n": 0,
+   "missed_mean20": -0.08757881726298307,
+   "false_alarm": 0.3333333333333333
+  },
+  "verdict": "rejected (risk-on): crash lift validation 0.0, test 0.0 not low enough, or 20d mean not positive"
+ },
+ "2_lag0_reference": {
+  "train": {
+   "n_flag": 21,
+   "n_ind": 21,
+   "mdd_flag": -0.019398213576492407,
+   "mdd_all": -0.05920455156357095,
+   "mdd_diff": 0.03980633798707854,
+   "t_nw": 3.174675984659348,
+   "crash_lift": 0.20215443471257422,
+   "crash_n": 1,
+   "missed_mean20": 0.13800926937432742,
+   "false_alarm": 0.7142857142857143
+  },
+  "validation": {
+   "n_flag": 4,
+   "n_ind": 4,
+   "mdd_flag": -0.0415264501431335,
+   "mdd_all": -0.06079770562093354,
+   "mdd_diff": 0.019271255477800044,
+   "t_nw": 1.7425715083270572,
+   "crash_lift": 0.0,
+   "crash_n": 0,
+   "missed_mean20": 0.04269264939453837,
+   "false_alarm": 0.25
+  },
+  "test": {
+   "n_flag": 3,
+   "n_ind": 3,
+   "mdd_flag": -0.07995520081671736,
+   "mdd_all": -0.05501941388514966,
+   "mdd_diff": -0.024935786931567706,
+   "t_nw": -1.3916926165892722,
+   "crash_lift": 2.0326797385620914,
+   "crash_n": 1,
+   "missed_mean20": -0.1298183435463034,
+   "false_alarm": 0.0
+  },
+  "verdict": "rejected: drawdown effect changes sign across periods"
+ },
+ "3_validation_episodes": {
+  "episodes": [
+   {
+    "completion": "2024-08-08",
+    "entry": "2024-08-09",
+    "entry_close": 2597.9,
+    "mdd10": -0.01664806189614687,
+    "fwd10": 0.014338504176450106,
+    "fwd20": -0.027568420647446024,
+    "trail9_ret": -0.18198568103545576,
+    "perfected": 1,
+    "setup_count_next_day": 1
+   },
+   {
+    "completion": "2025-02-10",
+    "entry": "2025-02-11",
+    "entry_close": 2601.03,
+    "mdd10": 0.022671787714866776,
+    "fwd10": 0.022998581331241663,
+    "fwd20": -0.1740887263891614,
+    "trail9_ret": -0.14640493931750653,
+    "perfected": 0,
+    "setup_count_next_day": -10
+   },
+   {
+    "completion": "2025-06-21",
+    "entry": "2025-06-22",
+    "entry_close": 2226.33,
+    "mdd10": 0.07964677294022016,
+    "fwd10": 0.15408317724685916,
+    "fwd20": 0.32139889414417455,
+    "trail9_ret": -0.13127607538483665,
+    "perfected": 1,
+    "setup_count_next_day": -10
+   },
+   {
+    "completion": "2025-09-24",
+    "entry": "2025-09-25",
+    "entry_close": 3873.1,
+    "mdd10": 0.037156283080736374,
+    "fwd10": 0.16504608711368163,
+    "fwd20": 0.02858433812708161,
+    "trail9_ret": -0.08205832526086243,
+    "perfected": 1,
+    "setup_count_next_day": -10
+   }
+  ],
+  "val_mean_mdd10_all": -0.06079770562093354,
+  "val_share_mdd10_nonneg": 0.18579234972677597
+ },
+ "3_leave_out": {
+  "drop_2024-08-08": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_lift": 0.6064633041377226,
+    "crash_n": 3,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": 0.046491614578607766,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.10728932019954131,
+    "t_nw": 6.893471427414151,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.05863150196069825,
+    "false_alarm": 0.6666666666666666
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial"
+  },
+  "drop_2025-02-10": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_lift": 0.6064633041377226,
+    "crash_n": 3,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": 0.03338499804160322,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.09418270366253675,
+    "t_nw": 3.9588861986022104,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.10747160387460337,
+    "false_alarm": 0.6666666666666666
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial"
+  },
+  "drop_2025-06-21": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_lift": 0.6064633041377226,
+    "crash_n": 3,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": 0.01439333629981876,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.0751910419207523,
+    "t_nw": 4.94714533801725,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.05769093630317527,
+    "false_alarm": 0.3333333333333333
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "rejected (risk-on): crash lift validation 0.0, test 0.0 not low enough, or 20d mean not positive"
+  },
+  "drop_2025-09-24": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_lift": 0.6064633041377226,
+    "crash_n": 3,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": 0.028556832919646686,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.08935453854058023,
+    "t_nw": 3.749886159017355,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.039913915702522375,
+    "false_alarm": 0.3333333333333333
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial"
+  },
+  "drop_best2": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_lift": 0.6064633041377226,
+    "crash_n": 3,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 2,
+    "n_ind": 0,
+    "mdd_flag": null,
+    "mdd_all": null,
+    "mdd_diff": null,
+    "t_nw": null,
+    "crash_lift": null,
+    "crash_n": null,
+    "missed_mean20": null,
+    "false_alarm": null
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "drop_best3": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_lift": 0.6064633041377226,
+    "crash_n": 3,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 1,
+    "n_ind": 0,
+    "mdd_flag": null,
+    "mdd_all": null,
+    "mdd_diff": null,
+    "t_nw": null,
+    "crash_lift": null,
+    "crash_n": null,
+    "missed_mean20": null,
+    "false_alarm": null
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  }
+ },
+ "4_perfected": {
+  "perfected": {
+   "train": {
+    "n_flag": 17,
+    "n_ind": 17,
+    "mdd_flag": -0.04456590142127194,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.014638650142299009,
+    "t_nw": 1.1885486817239073,
+    "crash_lift": 0.7491605521701281,
+    "crash_n": 3,
+    "missed_mean20": 0.1334280747040753,
+    "false_alarm": 0.5882352941176471
+   },
+   "validation": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": 0.03338499804160322,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.09418270366253675,
+    "t_nw": 3.9588861986022104,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.10747160387460337,
+    "false_alarm": 0.6666666666666666
+   },
+   "test": {
+    "n_flag": 2,
+    "n_ind": 0,
+    "mdd_flag": null,
+    "mdd_all": null,
+    "mdd_diff": null,
+    "t_nw": null,
+    "crash_lift": null,
+    "crash_n": null,
+    "missed_mean20": null,
+    "false_alarm": null
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "non_perfected": {
+   "train": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mdd_flag": -0.01879559006623996,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.04040896149733099,
+    "t_nw": 3.211939071447791,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.12240556654595947,
+    "false_alarm": 0.75
+   },
+   "validation": {
+    "n_flag": 1,
+    "n_ind": 0,
+    "mdd_flag": null,
+    "mdd_all": null,
+    "mdd_diff": null,
+    "t_nw": null,
+    "crash_lift": null,
+    "crash_n": null,
+    "missed_mean20": null,
+    "false_alarm": null
+   },
+   "test": {
+    "n_flag": 1,
+    "n_ind": 0,
+    "mdd_flag": null,
+    "mdd_all": null,
+    "mdd_diff": null,
+    "t_nw": null,
+    "crash_lift": null,
+    "crash_n": null,
+    "missed_mean20": null,
+    "false_alarm": null
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "n": {
+   "buy9": 29,
+   "perfected": 23,
+   "non_perfected": 6
+  }
+ },
+ "5_placebo": {
+  "draws": 500,
+  "seed": 20261119,
+  "n_per_period": {
+   "train": 21,
+   "validation": 4,
+   "test": 3
+  },
+  "counts": {
+   "val_t_ge_4p9": 12,
+   "val_t_ge_2p5": 57,
+   "all_pos": 76,
+   "val_t_ge_4p9_and_all_pos": 4,
+   "val_t_ge_2p5_and_all_pos": 19,
+   "full_pass_rule": 14,
+   "val_diff_ge_real": 1,
+   "val_all4_nonneg": 2
+  },
+  "rates": {
+   "val_t_ge_4p9": 0.024,
+   "val_t_ge_2p5": 0.114,
+   "all_pos": 0.152,
+   "val_t_ge_4p9_and_all_pos": 0.008,
+   "val_t_ge_2p5_and_all_pos": 0.038,
+   "full_pass_rule": 0.028,
+   "val_diff_ge_real": 0.002,
+   "val_all4_nonneg": 0.004
+  },
+  "val_t_dist": {
+   "mean": 0.2639713558820594,
+   "sd": 1.8484552511209833,
+   "p95": 3.7036207504759306,
+   "p99": 5.6574097967470385,
+   "max": 8.296072077076934
+  }
+ },
+ "5_placebo_B_trailing_decline": {
+  "thr_trail9": -0.08980120669970637,
+  "eligible": {
+   "train": 294,
+   "validation": 111,
+   "test": 37
+  },
+  "counts": {
+   "val_t_ge_4p9": 50,
+   "val_t_ge_2p5_and_all_pos": 23,
+   "all_pos": 54,
+   "val_diff_ge_real": 0
+  },
+  "rates": {
+   "val_t_ge_4p9": 0.1,
+   "val_t_ge_2p5_and_all_pos": 0.046,
+   "all_pos": 0.108,
+   "val_diff_ge_real": 0.0
+  }
+ },
+ "6_setup_count_neighbours": {
+  "5": {
+   "train": {
+    "n_flag": 76,
+    "n_ind": 66,
+    "mdd_flag": -0.06281366789058007,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": -0.0036091163270091237,
+    "t_nw": -0.434475188050757,
+    "crash_lift": 1.0613107822410148,
+    "crash_n": 19,
+    "missed_mean20": 0.051401813679474585,
+    "false_alarm": 0.5789473684210527
+   },
+   "validation": {
+    "n_flag": 25,
+    "n_ind": 18,
+    "mdd_flag": -0.06438150513388896,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": -0.00358379951295542,
+    "t_nw": -0.2691432625490695,
+    "crash_lift": 1.1712,
+    "crash_n": 8,
+    "missed_mean20": 0.003804882262929721,
+    "false_alarm": 0.6
+   },
+   "test": {
+    "n_flag": 12,
+    "n_ind": 9,
+    "mdd_flag": -0.07817653168709608,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": -0.023157117801946424,
+    "t_nw": -1.2307056255202042,
+    "crash_lift": 2.0326797385620914,
+    "crash_n": 4,
+    "missed_mean20": -0.08946739502029162,
+    "false_alarm": 0.25
+   },
+   "verdict": "rejected: validation t -0.27 on mdd below 2.5",
+   "n_total": 114
+  },
+  "6": {
+   "train": {
+    "n_flag": 56,
+    "n_ind": 51,
+    "mdd_flag": -0.06890166627078269,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": -0.00969711470721174,
+    "t_nw": -0.8325199643451485,
+    "crash_lift": 1.0613107822410148,
+    "crash_n": 14,
+    "missed_mean20": 0.06262796788132811,
+    "false_alarm": 0.6071428571428571
+   },
+   "validation": {
+    "n_flag": 16,
+    "n_ind": 14,
+    "mdd_flag": -0.06119095506934166,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": -0.0003932494484081214,
+    "t_nw": -0.019235595946973525,
+    "crash_lift": 0.9149999999999999,
+    "crash_n": 4,
+    "missed_mean20": 0.009127823774890319,
+    "false_alarm": 0.5625
+   },
+   "test": {
+    "n_flag": 9,
+    "n_ind": 7,
+    "mdd_flag": -0.0653188873882927,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": -0.010299473503143038,
+    "t_nw": -0.41462345671226664,
+    "crash_lift": 1.355119825708061,
+    "crash_n": 2,
+    "missed_mean20": -0.09481753100451076,
+    "false_alarm": 0.2222222222222222
+   },
+   "verdict": "rejected: validation t -0.02 on mdd below 2.5",
+   "n_total": 82
+  },
+  "7": {
+   "train": {
+    "n_flag": 42,
+    "n_ind": 40,
+    "mdd_flag": -0.05594747377627746,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.0032570777872934914,
+    "t_nw": 0.31393710853060597,
+    "crash_lift": 0.8086177388502969,
+    "crash_n": 8,
+    "missed_mean20": 0.08306361006325978,
+    "false_alarm": 0.5952380952380952
+   },
+   "validation": {
+    "n_flag": 9,
+    "n_ind": 9,
+    "mdd_flag": -0.015040780423044983,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.04575692519788856,
+    "t_nw": 2.670709914109696,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.034120644240824984,
+    "false_alarm": 0.6666666666666666
+   },
+   "test": {
+    "n_flag": 5,
+    "n_ind": 5,
+    "mdd_flag": -0.10087697395688863,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": -0.045857560071738974,
+    "t_nw": -1.4092211298315838,
+    "crash_lift": 2.43921568627451,
+    "crash_n": 2,
+    "missed_mean20": -0.1425001054076437,
+    "false_alarm": 0.0
+   },
+   "verdict": "rejected: drawdown effect changes sign across periods",
+   "n_total": 57
+  },
+  "8": {
+   "train": {
+    "n_flag": 32,
+    "n_ind": 31,
+    "mdd_flag": -0.025452558338661162,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.033751993224909786,
+    "t_nw": 3.2437789995108295,
+    "crash_lift": 0.2653276955602537,
+    "crash_n": 2,
+    "missed_mean20": 0.09969845203722374,
+    "false_alarm": 0.65625
+   },
+   "validation": {
+    "n_flag": 6,
+    "n_ind": 6,
+    "mdd_flag": -0.04568327423945353,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.015114431381480012,
+    "t_nw": 1.5138925666746625,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.017026519977873078,
+    "false_alarm": 0.16666666666666666
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.07995520081671736,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": -0.024935786931567706,
+    "t_nw": -1.3916926165892722,
+    "crash_lift": 2.0326797385620914,
+    "crash_n": 1,
+    "missed_mean20": -0.1298183435463034,
+    "false_alarm": 0.0
+   },
+   "verdict": "rejected: drawdown effect changes sign across periods",
+   "n_total": 42
+  },
+  "9": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.039657270686980134,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.019547280876590814,
+    "t_nw": 1.8331217155041017,
+    "crash_lift": 0.6064633041377226,
+    "crash_n": 3,
+    "missed_mean20": 0.13132854934062468,
+    "false_alarm": 0.6190476190476191
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mdd_flag": 0.03070669545991911,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.09150440108085264,
+    "t_nw": 4.916686111872423,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.037081521308662185,
+    "false_alarm": 0.5
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial",
+   "n_total": 29
+  },
+  "10": {
+   "train": {
+    "n_flag": 38,
+    "n_ind": 17,
+    "mdd_flag": -0.02677764419177789,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.03242690737179306,
+    "t_nw": 2.832672325128015,
+    "crash_lift": 0.558584622232113,
+    "crash_n": 5,
+    "missed_mean20": 0.1401120337916819,
+    "false_alarm": 0.631578947368421
+   },
+   "validation": {
+    "n_flag": 7,
+    "n_ind": 3,
+    "mdd_flag": -0.00536917783004195,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.055428527790891594,
+    "t_nw": 5.645259221727804,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.00843004827439058,
+    "false_alarm": 0.2857142857142857
+   },
+   "test": {
+    "n_flag": 5,
+    "n_ind": 2,
+    "mdd_flag": -0.027390294517095737,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.02762911936805392,
+    "t_nw": 1.5137183442416648,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.045558851919658847,
+    "false_alarm": 0.2
+   },
+   "verdict": "PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial",
+   "n_total": 54
+  },
+  "ge7_state": {
+   "train": {
+    "n_flag": 133,
+    "n_ind": 40,
+    "mdd_flag": -0.037703976910939505,
+    "mdd_all": -0.05920455156357095,
+    "mdd_diff": 0.021500574652631443,
+    "t_nw": 3.205645207496277,
+    "crash_lift": 0.5745441828673162,
+    "crash_n": 18,
+    "missed_mean20": 0.11098630757958722,
+    "false_alarm": 0.6240601503759399
+   },
+   "validation": {
+    "n_flag": 26,
+    "n_ind": 9,
+    "mdd_flag": -0.012470158931336277,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.04832754668959727,
+    "t_nw": 5.368447441288851,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.01585627313290651,
+    "false_alarm": 0.4230769230769231
+   },
+   "test": {
+    "n_flag": 16,
+    "n_ind": 5,
+    "mdd_flag": -0.06376902295335116,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": -0.008749609068201498,
+    "t_nw": -0.6292311878118794,
+    "crash_lift": 1.1433823529411764,
+    "crash_n": 3,
+    "missed_mean20": -0.10246663085160357,
+    "false_alarm": 0.0625
+   },
+   "verdict": "rejected: drawdown effect changes sign across periods"
+  }
+ },
+ "7_return_check": {
+  "10": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mean_flag": 0.06278146242280783,
+    "mean_all": 0.025152314392244454,
+    "excess": 0.03762914803056337,
+    "hit": 0.6666666666666666,
+    "t_nw": 1.6174946221366195,
+    "net": 0.035153096601991944
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mean_flag": 0.08911658746705814,
+    "mean_all": 0.00680121264025942,
+    "excess": 0.08231537482679872,
+    "hit": 1.0,
+    "t_nw": 2.2275551281532997,
+    "net": 0.08049078732679872
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mean_flag": 0.003705077755685404,
+    "mean_all": -0.009721267585447571,
+    "excess": 0.013426345341132975,
+    "hit": 0.3333333333333333,
+    "t_nw": 0.24733582404571866,
+    "net": 0.012597595341132974
+   }
+  },
+  "20": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 19,
+    "mean_flag": 0.13132854934062468,
+    "mean_all": 0.053453878576314576,
+    "excess": 0.07787467076431011,
+    "hit": 0.6190476190476191,
+    "t_nw": 1.8632111544429668,
+    "net": 0.07355330647859581
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mean_flag": 0.037081521308662185,
+    "mean_all": 0.013623775201803698,
+    "excess": 0.02345774610685849,
+    "hit": 0.5,
+    "t_nw": 0.2821667376514649,
+    "net": 0.02070552110685849
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 2,
+    "mean_flag": -0.10323875878341134,
+    "mean_all": -0.015288173684358803,
+    "excess": -0.08795058509905253,
+    "hit": 0.0,
+    "t_nw": -1.630983669316056,
+    "net": 0.08653213509905253
+   }
+  }
+ },
+ "8_control_trailing_decline": {
+  "train": {
+   "n_flag": 294,
+   "n_ind": 43,
+   "mdd_flag": -0.0642581989361004,
+   "mdd_all": -0.05920455156357095,
+   "mdd_diff": -0.005053647372529446,
+   "t_nw": -0.620669190003996,
+   "crash_lift": 1.0107721735628712,
+   "crash_n": 70,
+   "missed_mean20": 0.034652680645163775,
+   "false_alarm": 0.48299319727891155
+  },
+  "validation": {
+   "n_flag": 111,
+   "n_ind": 17,
+   "mdd_flag": -0.04443466801471547,
+   "mdd_all": -0.06079770562093354,
+   "mdd_diff": 0.016363037606218073,
+   "t_nw": 1.7315705429894723,
+   "crash_lift": 0.6264864864864864,
+   "crash_n": 19,
+   "missed_mean20": -0.003730677013029052,
+   "false_alarm": 0.44144144144144143
+  },
+  "test": {
+   "n_flag": 37,
+   "n_ind": 8,
+   "mdd_flag": -0.08769173986188877,
+   "mdd_all": -0.05501941388514966,
+   "mdd_diff": -0.032672325976739115,
+   "t_nw": -1.0586677837650438,
+   "crash_lift": 1.9777424483306838,
+   "crash_n": 12,
+   "missed_mean20": -0.04807427023139235,
+   "false_alarm": 0.35135135135135137
+  },
+  "verdict": "rejected: drawdown effect changes sign across periods"
+ },
+ "8_control_trail9_bottom_decile": {
+  "train": {
+   "n_flag": 181,
+   "n_ind": 34,
+   "mdd_flag": -0.06724523826296612,
+   "mdd_all": -0.05920455156357095,
+   "mdd_diff": -0.008040686699395172,
+   "t_nw": -0.7886899736448493,
+   "crash_lift": 1.149264714470933,
+   "crash_n": 49,
+   "missed_mean20": 0.04725370868601573,
+   "false_alarm": 0.5248618784530387
+  },
+  "validation": {
+   "n_flag": 74,
+   "n_ind": 15,
+   "mdd_flag": -0.038042859709198684,
+   "mdd_all": -0.06079770562093354,
+   "mdd_diff": 0.022754845911734857,
+   "t_nw": 2.086294068787387,
+   "crash_lift": 0.4945945945945946,
+   "crash_n": 10,
+   "missed_mean20": -0.00020967079530426953,
+   "false_alarm": 0.43243243243243246
+  },
+  "test": {
+   "n_flag": 21,
+   "n_ind": 3,
+   "mdd_flag": -0.07354364478226831,
+   "mdd_all": -0.05501941388514966,
+   "mdd_diff": -0.018524230897118653,
+   "t_nw": -0.6774798149282943,
+   "crash_lift": 1.7422969187675068,
+   "crash_n": 6,
+   "missed_mean20": -0.051045324841601666,
+   "false_alarm": 0.23809523809523808
+  },
+  "verdict": "rejected: drawdown effect changes sign across periods"
+ },
+ "9_btc_and_ex2020": {
+  "btc_buy9": {
+   "train": {
+    "n_flag": 21,
+    "n_ind": 21,
+    "mdd_flag": -0.0256023729839628,
+    "mdd_all": -0.04685234522209521,
+    "mdd_diff": 0.02124997223813241,
+    "t_nw": 1.918219461285195,
+    "crash_lift": 0.5760183591508893,
+    "crash_n": 2,
+    "missed_mean20": 0.018038994078142308,
+    "false_alarm": 0.38095238095238093
+   },
+   "validation": {
+    "n_flag": 6,
+    "n_ind": 6,
+    "mdd_flag": -0.02645460157829921,
+    "mdd_all": -0.03477914208246677,
+    "mdd_diff": 0.00832454050416756,
+    "t_nw": 0.8568384813616129,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.012331659764120003,
+    "false_alarm": 0.5
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.01593404329753974,
+    "mdd_all": -0.04179812172919987,
+    "mdd_diff": 0.025864078431660126,
+    "t_nw": 1.9944078605746338,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.04771022889480133,
+    "false_alarm": 0.3333333333333333
+   },
+   "verdict": "rejected: validation t 0.86 on mdd below 2.5"
+  },
+  "eth_ex2020": {
+   "train": {
+    "n_flag": 19,
+    "n_ind": 19,
+    "mdd_flag": -0.03644768021264883,
+    "mdd_all": -0.05857154606175721,
+    "mdd_diff": 0.02212386584910838,
+    "t_nw": 1.968942776964113,
+    "crash_lift": 0.4246734773050562,
+    "crash_n": 2,
+    "missed_mean20": 0.5387617227914092,
+    "false_alarm": 0.631578947368421
+   },
+   "validation": {
+    "n_flag": 4,
+    "n_ind": 4,
+    "mdd_flag": 0.03070669545991911,
+    "mdd_all": -0.06079770562093354,
+    "mdd_diff": 0.09150440108085264,
+    "t_nw": 4.916686111872423,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": 0.037081521308662185,
+    "false_alarm": 0.5
+   },
+   "test": {
+    "n_flag": 3,
+    "n_ind": 3,
+    "mdd_flag": -0.04636747414451484,
+    "mdd_all": -0.05501941388514966,
+    "mdd_diff": 0.008651939740634815,
+    "t_nw": 0.4513388386137359,
+    "crash_lift": 0.0,
+    "crash_n": 0,
+    "missed_mean20": -0.10323875878341134,
+    "false_alarm": 0.0
+   },
+   "verdict": "PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial"
+  }
+ }
+}

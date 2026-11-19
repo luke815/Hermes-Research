@@ -1,0 +1,154 @@
+==== STEP 2: daily flag-by-flag comparison, data/daily2.pkl ====
+  [1D btc] buy9    harness3   31 independent   31 -> IDENTICAL
+  [1D btc] sell9   harness3   43 independent   43 -> IDENTICAL
+  [1D btc] buy9p   harness3   20 independent   20 -> IDENTICAL
+  [1D btc] sell9p  harness3   32 independent   32 -> IDENTICAL
+  [1D btc] buy13   harness3   20 independent   20 -> IDENTICAL
+  [1D btc] sell13  harness3   29 independent   29 -> IDENTICAL
+  [1D btc] signed setup-count column differs on 0 bars
+  [1D eth] buy9    harness3   29 independent   29 -> IDENTICAL
+  [1D eth] sell9   harness3   42 independent   42 -> IDENTICAL
+  [1D eth] buy9p   harness3   23 independent   23 -> IDENTICAL
+  [1D eth] sell9p  harness3   28 independent   28 -> IDENTICAL
+  [1D eth] buy13   harness3   15 independent   15 -> IDENTICAL
+  [1D eth] sell13  harness3   33 independent   33 -> IDENTICAL
+  [1D eth] signed setup-count column differs on 0 bars
+
+==== STEP 2b: 3D anchors (every third daily bar), flag-by-flag ====
+  [3D-a0 btc] buy9    harness3   15 independent   15 -> IDENTICAL
+  [3D-a0 btc] sell9   harness3   19 independent   19 -> IDENTICAL
+  [3D-a0 btc] buy9p   harness3   10 independent   10 -> IDENTICAL
+  [3D-a0 btc] sell9p  harness3   14 independent   14 -> IDENTICAL
+  [3D-a0 btc] buy13   harness3    5 independent    5 -> IDENTICAL
+  [3D-a0 btc] sell13  harness3   15 independent   15 -> IDENTICAL
+  [3D-a0 eth] buy9    harness3   12 independent   12 -> IDENTICAL
+  [3D-a0 eth] sell9   harness3   19 independent   19 -> IDENTICAL
+  [3D-a0 eth] buy9p   harness3   10 independent   10 -> IDENTICAL
+  [3D-a0 eth] sell9p  harness3   15 independent   15 -> IDENTICAL
+  [3D-a0 eth] buy13   harness3    6 independent    6 -> IDENTICAL
+  [3D-a0 eth] sell13  harness3   13 independent   13 -> IDENTICAL
+  [3D-a1 btc] buy9    harness3    9 independent    9 -> IDENTICAL
+  [3D-a1 btc] sell9   harness3   16 independent   16 -> IDENTICAL
+  [3D-a1 btc] buy9p   harness3    6 independent    6 -> IDENTICAL
+  [3D-a1 btc] sell9p  harness3   11 independent   11 -> IDENTICAL
+  [3D-a1 btc] buy13   harness3    6 independent    6 -> IDENTICAL
+  [3D-a1 btc] sell13  harness3   12 independent   12 -> IDENTICAL
+  [3D-a1 eth] buy9    harness3   12 independent   12 -> IDENTICAL
+  [3D-a1 eth] sell9   harness3   17 independent   17 -> IDENTICAL
+  [3D-a1 eth] buy9p   harness3    9 independent    9 -> IDENTICAL
+  [3D-a1 eth] sell9p  harness3   12 independent   12 -> IDENTICAL
+  [3D-a1 eth] buy13   harness3    7 independent    7 -> IDENTICAL
+  [3D-a1 eth] sell13  harness3   14 independent   14 -> IDENTICAL
+  [3D-a2 btc] buy9    harness3   13 independent   13 -> IDENTICAL
+  [3D-a2 btc] sell9   harness3   16 independent   16 -> IDENTICAL
+  [3D-a2 btc] buy9p   harness3    9 independent    9 -> IDENTICAL
+  [3D-a2 btc] sell9p  harness3   12 independent   12 -> IDENTICAL
+  [3D-a2 btc] buy13   harness3    6 independent    6 -> IDENTICAL
+  [3D-a2 btc] sell13  harness3   13 independent   13 -> IDENTICAL
+  [3D-a2 eth] buy9    harness3   12 independent   12 -> IDENTICAL
+  [3D-a2 eth] sell9   harness3   19 independent   19 -> IDENTICAL
+  [3D-a2 eth] buy9p   harness3    9 independent    9 -> IDENTICAL
+  [3D-a2 eth] sell9p  harness3   12 independent   12 -> IDENTICAL
+  [3D-a2 eth] buy13   harness3    7 independent    7 -> IDENTICAL
+  [3D-a2 eth] sell13  harness3   15 independent   15 -> IDENTICAL
+
+==== STEP 3a: sensitivity to the two points the definition leaves open (daily) ====
+  [btc] countdown_starts_bar10: buy9 31->31 (0 bars moved), sell9 43->43 (0 bars moved), buy9p 20->20 (0 bars moved), sell9p 32->32 (0 bars moved), buy13 20->19 (27 bars moved), sell13 29->29 (46 bars moved)
+  [btc] setup_resets_after_9: buy9 31->32 (1 bars moved), sell9 43->49 (6 bars moved), buy9p 20->21 (1 bars moved), sell9p 32->36 (4 bars moved), buy13 20->20 (2 bars moved), sell13 29->28 (11 bars moved)
+  [btc] max consecutive buy-setup bars 20, sell 22; bars with count>=18: buy 3, sell 13
+  [eth] countdown_starts_bar10: buy9 29->29 (0 bars moved), sell9 42->42 (0 bars moved), buy9p 23->23 (0 bars moved), sell9p 28->28 (0 bars moved), buy13 15->14 (19 bars moved), sell13 33->33 (42 bars moved)
+  [eth] setup_resets_after_9: buy9 29->29 (0 bars moved), sell9 42->47 (5 bars moved), buy9p 23->23 (0 bars moved), sell9p 28->32 (4 bars moved), buy13 15->15 (0 bars moved), sell13 33->31 (8 bars moved)
+  [eth] max consecutive buy-setup bars 13, sell 21; bars with count>=18: buy 0, sell 15
+
+==== STEP 3b: ETH buy9 risk W=10 (the only PASS in R4) reproduced episode by episode ====
+  harness2 risk_test W=10: {'train': {'n_flag': 21, 'n_ind': 21, 'mdd_flag': -0.039657270686980134, 'mdd_all': -0.05920455156357095, 'mdd_diff': 0.019547280876590814, 't_nw': 1.8331217155041017, 'crash_n': 3}, 'validation': {'n_flag': 4, 'n_ind': 4, 'mdd_flag': 0.03070669545991911, 'mdd_all': -0.06079770562093354, 'mdd_diff': 0.09150440108085264, 't_nw': 4.916686111872423, 'crash_n': 0}, 'test': {'n_flag': 3, 'n_ind': 3, 'mdd_flag': -0.04636747414451484, 'mdd_all': -0.05501941388514966, 'mdd_diff': 0.008651939740634815, 't_nw': 0.4513388386137359, 'crash_n': 0}}
+  verdict: PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial
+  train: mdd_all -5.92%  flagged entries:
+     entry 2019-01-30 (buy9 on 2019-01-29): fwd mdd10 -0.68%  fwd ret10 +13.55%
+     entry 2019-06-09 (buy9 on 2019-06-08): fwd mdd10 -5.32%  fwd ret10 +8.22%
+     entry 2019-08-18 (buy9 on 2019-08-17): fwd mdd10 +0.54%  fwd ret10 +0.73%
+     entry 2019-09-01 (buy9 on 2019-08-31): fwd mdd10 -1.59%  fwd ret10 +4.48%
+     entry 2019-11-24 (buy9 on 2019-11-23): fwd mdd10 -7.90%  fwd ret10 -3.07%
+     entry 2019-12-19 (buy9 on 2019-12-18): fwd mdd10 -5.97%  fwd ret10 -3.75%
+     entry 2020-07-19 (buy9 on 2020-07-18): fwd mdd10 -1.32%  fwd ret10 +33.00%
+     entry 2020-08-27 (buy9 on 2020-08-26): fwd mdd10 -12.71%  fwd ret10 -8.06%
+     entry 2021-05-24 (buy9 on 2021-05-23): fwd mdd10 -14.01%  fwd ret10 +7.89%
+     entry 2021-06-25 (buy9 on 2021-06-24): fwd mdd10 +1.15%  fwd ret10 +21.43%
+     entry 2021-07-17 (buy9 on 2021-07-16): fwd mdd10 -5.98%  fwd ret10 +21.04%
+     entry 2022-01-25 (buy9 on 2022-01-24): fwd mdd10 -1.41%  fwd ret10 +21.82%
+     entry 2022-05-14 (buy9 on 2022-05-13): fwd mdd10 -6.85%  fwd ret10 -3.72%
+     entry 2022-06-17 (buy9 on 2022-06-16): fwd mdd10 -8.46%  fwd ret10 +9.75%
+     entry 2022-09-22 (buy9 on 2022-09-21): fwd mdd10 -3.75%  fwd ret10 -3.75%
+     entry 2022-11-23 (buy9 on 2022-11-22): fwd mdd10 -1.40%  fwd ret10 +4.72%
+     entry 2023-03-12 (buy9 on 2023-03-11): fwd mdd10 +4.47%  fwd ret10 +9.77%
+     entry 2023-08-08 (buy9 on 2023-08-07): fwd mdd10 -10.49%  fwd ret10 -10.49%
+     entry 2023-08-21 (buy9 on 2023-08-20): fwd mdd10 -1.94%  fwd ret10 -1.29%
+     entry 2023-10-12 (buy9 on 2023-10-11): fwd mdd10 +0.83%  fwd ret10 +8.06%
+     entry 2024-01-26 (buy9 on 2024-01-25): fwd mdd10 -0.47%  fwd ret10 +1.50%
+  validation: mdd_all -6.08%  flagged entries:
+     entry 2024-08-09 (buy9 on 2024-08-08): fwd mdd10 -1.66%  fwd ret10 +1.43%
+     entry 2025-02-11 (buy9 on 2025-02-10): fwd mdd10 +2.27%  fwd ret10 +2.30%
+     entry 2025-06-22 (buy9 on 2025-06-21): fwd mdd10 +7.96%  fwd ret10 +15.41%
+     entry 2025-09-25 (buy9 on 2025-09-24): fwd mdd10 +3.72%  fwd ret10 +16.50%
+  test: mdd_all -5.50%  flagged entries:
+     entry 2026-02-08 (buy9 on 2026-02-07): fwd mdd10 -7.11%  fwd ret10 -6.41%
+     entry 2026-05-21 (buy9 on 2026-05-20): fwd mdd10 -5.93%  fwd ret10 -5.93%
+     entry 2026-06-05 (buy9 on 2026-06-04): fwd mdd10 -0.87%  fwd ret10 +13.45%
+  validation leave-one-out drop 2024-08-09: mdd_diff +10.73% t=6.89
+  validation leave-one-out drop 2025-02-11: mdd_diff +9.42% t=3.96
+  validation leave-one-out drop 2025-06-22: mdd_diff +7.52% t=4.95
+  validation leave-one-out drop 2025-09-25: mdd_diff +8.94% t=3.75
+  eth buy9 lag=2 W=10: tra mdd_diff +3.08% t=2.10 n=21 n_ind=21 | val mdd_diff +4.71% t=5.15 n=4 n_ind=4 | tes mdd_diff +3.06% t=1.08 n=3 n_ind=3
+     verdict: rejected (risk-on): crash lift validation 0.0, test 0.0 not low enough, or 20d mean not positive
+  eth buy9p lag=1 W=10: tra mdd_diff +1.46% t=1.19 n=17 n_ind=17 | val mdd_diff +9.42% t=3.96 n=3 n_ind=3 | tes n<3
+     verdict: insufficient: a period has fewer than 3 flagged bars
+  btc buy9 lag=1 W=10: tra mdd_diff +2.12% t=1.92 n=21 n_ind=21 | val mdd_diff +0.83% t=0.86 n=6 n_ind=6 | tes mdd_diff +2.59% t=1.99 n=3 n_ind=3
+     verdict: rejected: validation t 0.86 on mdd below 2.5
+
+==== STEP 4: pure random walk, 3000 bars, completions per 1000 bars ====
+  buy9    harness3  14.05 +/- 1.81 per 1000 bars | independent  14.05 +/- 1.81 | disagreeing bars over 200 seeds: 0
+  sell9   harness3  13.87 +/- 1.86 per 1000 bars | independent  13.87 +/- 1.86 | disagreeing bars over 200 seeds: 0
+  buy9p   harness3  10.77 +/- 1.59 per 1000 bars | independent  10.77 +/- 1.59 | disagreeing bars over 200 seeds: 0
+  sell9p  harness3  10.54 +/- 1.84 per 1000 bars | independent  10.54 +/- 1.84 | disagreeing bars over 200 seeds: 0
+  buy13   harness3   8.27 +/- 1.46 per 1000 bars | independent   8.27 +/- 1.46 | disagreeing bars over 200 seeds: 0
+  sell13  harness3   7.97 +/- 1.34 per 1000 bars | independent   7.97 +/- 1.34 | disagreeing bars over 200 seeds: 0
+  real daily btc: buy9 10.77/1000, sell9 14.94/1000, buy9p 6.95/1000, sell9p 11.12/1000, buy13 6.95/1000, sell13 10.08/1000
+  real daily eth: buy9 10.08/1000, sell9 14.59/1000, buy9p 7.99/1000, sell9p 9.73/1000, buy13 5.21/1000, sell13 11.47/1000
+  contrast, iid white noise around a constant: buy9 0.187/1000, sell9 0.153/1000 (2^-9*1000 = 1.95 would be the independent-coin rate)
+
+==== STEP 5: hourly BTC gaps (data/hourly.pkl) ====
+  hourly rows 17942, NaN closes 1131, gap runs 633
+  5a. gaps skipped (score3 behaviour), harness3 vs independent on the dropna'd series:
+  [1H btc skip] buy9    harness3  207 independent  207 -> IDENTICAL
+  [1H btc skip] sell9   harness3  218 independent  218 -> IDENTICAL
+  [1H btc skip] buy9p   harness3  153 independent  153 -> IDENTICAL
+  [1H btc skip] sell9p  harness3  168 independent  168 -> IDENTICAL
+  [1H btc skip] buy13   harness3  123 independent  123 -> IDENTICAL
+  [1H btc skip] sell13  harness3  137 independent  137 -> IDENTICAL
+  5b. gaps as NaN in place (count resets at a gap), harness3 vs independent:
+  [1H btc nan-reset] buy9    harness3  184 independent  184 -> IDENTICAL
+  [1H btc nan-reset] sell9   harness3  195 independent  195 -> IDENTICAL
+  [1H btc nan-reset] buy9p   harness3  139 independent  139 -> IDENTICAL
+  [1H btc nan-reset] sell9p  harness3  147 independent  147 -> IDENTICAL
+  [1H btc nan-reset] buy13   harness3  111 independent  111 -> DIFF h3-only=1 ind-only=1
+       only harness3   : 2024-12-08 09:00:00
+       only independent: 2024-12-05 05:00:00
+  [1H btc nan-reset] sell13  harness3  123 independent  123 -> IDENTICAL
+  skip-mode buy9: 207 completions, 23 (11.1%) have a gap inside the 13-bar window; 9.5% of all bars do
+  skip-mode sell9: 218 completions, 23 (10.6%) have a gap inside the 13-bar window; 9.5% of all bars do
+  skip-mode buy9p: 153 completions, 14 (9.2%) have a gap inside the 13-bar window; 9.5% of all bars do
+  skip-mode sell9p: 168 completions, 21 (12.5%) have a gap inside the 13-bar window; 9.5% of all bars do
+  completions by gap mode (harness3): {"skip": {"buy9": 207, "sell9": 218, "buy9p": 153, "sell9p": 168, "buy13": 123, "sell13": 137}, "nan_reset": {"buy9": 184, "sell9": 195, "buy9p": 139, "sell9p": 147, "buy13": 111, "sell13": 123}, "ffill": {"buy9": 216, "sell9": 229, "buy9p": 167, "sell9p": 174, "buy13": 129, "sell13": 142}}
+  5c. ground-truth test: real gap mask transplanted onto the gap-free tail of BTC hourly
+  tail 2025-07-07 00:00:00..2026-02-23 23:00:00 (5568 bars, NaN in tail: 0); transplanted NaN hours 1131
+   [real tail] skip     : buy9 truth 69 got 54 false 17 (near gap 17) missed 32 | sell9 truth 74 got 56 false 14 (near gap 14) missed 32 | buy13 truth 40 got 33 false 12 (near gap 11) missed 19 | sell13 truth 43 got 34 false 8 (near gap 8) missed 17
+   [real tail] nan_reset: buy9 truth 69 got 34 false 0 (near gap 0) missed 35 | sell9 truth 74 got 37 false 0 (near gap 0) missed 37 | buy13 truth 40 got 19 false 0 (near gap 0) missed 21 | sell13 truth 43 got 24 false 0 (near gap 0) missed 19
+   [real tail] ffill    : buy9 truth 69 got 70 false 17 (near gap 17) missed 16 | sell9 truth 74 got 68 false 16 (near gap 16) missed 22 | buy13 truth 40 got 47 false 22 (near gap 22) missed 15 | sell13 truth 43 got 39 false 9 (near gap 9) missed 13
+   [real tail] share of bars within 16 h of a gap: 50.7%
+  5d. same gap mask on random-walk hourly series (20 seeds, aggregated)
+   [rw x20] skip     : buy9 truth 1552 got 1237 false 330 (near gap 330) missed 645 | sell9 truth 1537 got 1222 false 333 (near gap 333) missed 648 | buy13 truth 903 got 731 false 270 (near gap 261) missed 442 | sell13 truth 884 got 704 false 236 (near gap 228) missed 416
+   [rw x20] nan_reset: buy9 truth 1552 got 809 false 4 (near gap 4) missed 747 | sell9 truth 1537 got 808 false 5 (near gap 5) missed 734 | buy13 truth 903 got 468 false 27 (near gap 15) missed 462 | sell13 truth 884 got 460 false 13 (near gap 9) missed 437
+   [rw x20] ffill    : buy9 truth 1552 got 1555 false 285 (near gap 285) missed 282 | sell9 truth 1537 got 1519 false 268 (near gap 268) missed 286 | buy13 truth 903 got 958 false 367 (near gap 365) missed 312 | sell13 truth 884 got 927 false 339 (near gap 334) missed 296
+  4H frame: rows 4486, NaN btc closes after resample().last(): 31 (dropped by score3 before TD)
+
+wrote /private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results3/refute/td_compare.json

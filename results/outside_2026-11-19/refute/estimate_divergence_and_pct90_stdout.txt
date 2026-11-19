@@ -1,0 +1,21 @@
+==== A3 candidates: divergences ====
+  funding top AND coin futures_oi 7d chg pct<=0.2 (paying up, OI leaving) | tra bars=  64 ep10=21 ep20=13 | val bars=  21 ep10=8 ep20=6 | tes bars=   9 ep10=4 ep20=3 | tr+va ep10=29 ep20=19
+  funding top AND coin futures_oi 7d chg pct>=0.8 (paying up, OI building) | tra bars=  88 ep10=26 ep20=13 | val bars=  32 ep10=13 ep20=11 | tes bars=  13 ep10=6 ep20=5 | tr+va ep10=39 ep20=24
+  funding top AND basis pct<=0.4 (perp crowded, term not)        | tra bars=  65 ep10=5 ep20=4 ep30=3 | val bars=  40 ep10=12 ep20=8 ep30=6 | tes bars=  18 ep10=4 ep20=3 ep30=2 | tr+va ep10=17 ep20=12 ep30=9
+  basis top AND funding pct<=0.4 (term rich, perp not)           | tra bars=  53 ep10=7 ep20=3 ep30=3 | val bars=   1 ep10=1 ep20=1 ep30=1 | tes bars=  13 ep10=3 ep20=2 ep30=1 | tr+va ep10=8 ep20=4 ep30=4
+  reference: basis top AND funding top (tested in PREREG2 risk)  | tra bars= 245 ep10=7 ep20=5 ep30=4 | val bars=  24 ep10=3 ep20=1 ep30=1 | tes bars=  17 ep10=2 ep20=1 ep30=1 | tr+va ep10=10 ep20=6 ep30=5
+  funding pct minus basis pct >= 0.5                             | tra bars= 100 ep10=7 ep20=5 ep30=3 | val bars=  51 ep10=11 ep20=9 ep30=6 | tes bars=  39 ep10=7 ep20=3 ep30=1 | tr+va ep10=18 ep20=14 ep30=9
+  basis pct minus funding pct >= 0.5                             | tra bars=  89 ep10=8 ep20=5 ep30=4 | val bars=   8 ep10=4 ep20=3 ep30=2 | tes bars=  16 ep10=2 ep20=1 ep30=1 | tr+va ep10=12 ep20=8 ep30=6
+
+==== A1 event targets on trailing-90-day percentiles (saturation check) ====
+  liq norm pct90>=0.9                                | tra days= 67 ep10=20 P(w10)=0.17 P(w20)=0.24 | val days= 56 ep10=16 P(w10)=0.57 P(w20)=0.78 | tes days= 52 ep10=11 P(w10)=0.70 P(w20)=0.87
+  liq raw log-chg z90>=2 (vs 90d mean)               | tra days=  8 ep10= 4 P(w10)=0.03 P(w20)=0.05 | val days= 13 ep10=10 P(w10)=0.19 P(w20)=0.35 | tes days= 10 ep10= 4 P(w10)=0.18 P(w20)=0.32
+  OI flush coin 3d chg pct90<=0.1                    | tra days=108 ep10=42 P(w10)=0.31 P(w20)=0.46 | val days= 52 ep10=24 P(w10)=0.56 P(w20)=0.83 | tes days= 32 ep10=11 P(w10)=0.57 P(w20)=0.79
+  OI flush coin 3d chg <= -5%                        | tra days=180 ep10=45 P(w10)=0.44 P(w20)=0.56 | val days= 73 ep10=19 P(w10)=0.71 P(w20)=0.94 | tes days= 35 ep10=12 P(w10)=0.60 P(w20)=0.84
+  DVOL 5d chg pct90>=0.9                             | tra days= 92 ep10=25 P(w10)=0.19 P(w20)=0.30 | val days= 67 ep10=11 P(w10)=0.40 P(w20)=0.56 | tes days= 27 ep10= 7 P(w10)=0.27 P(w20)=0.45
+  funding reset: pct365<0.5 today, >=0.8 in last 5d  | tra days=221 ep10=11 P(w10)=0.26 P(w20)=0.31 | val days=110 ep10=12 P(w10)=0.55 P(w20)=0.68 | tes days= 46 ep10= 8 P(w10)=0.50 P(w20)=0.63
+
+==== A2 robustness: quadrants with futures_oi coin, BTC ====
+  leveraged rally (futures_oi coin)                              | tra bars=  52 ep10=22 ep20=15 | val bars=  47 ep10=13 ep20=10 | tes bars=  17 ep10=6 ep20=5 | tr+va ep10=35 ep20=25
+  long flush (futures_oi coin)                                   | tra bars=  60 ep10=24 ep20=20 | val bars=  49 ep10=16 ep20=12 | tes bars=  16 ep10=9 ep20=6 | tr+va ep10=40 ep20=32
+  leveraged rally AND funding top (the overheated subset)        | tra bars=  38 ep10=17 ep20=11 | val bars=  18 ep10=8 ep20=7 | tes bars=   1 ep10=1 ep20=1 | tr+va ep10=25 ep20=18

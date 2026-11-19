@@ -29,11 +29,11 @@ sys.path.insert(0, HERE)
 import harness as H  # noqa: E402
 
 PERIODS_1H = {"train": ("2024-11-01", "2025-06-30"), "validation": ("2025-07-01", "2025-12-31"), "test": ("2026-01-01", None)}
-BARS_PER_DAY = {"1d": 1, "1h": 24}
+BARS_PER_DAY = {"1d": 1, "1h": 24, "3d": 1 / 3, "4h": 6}  # 3d/4h added in pass 3 (TD Sequential)
 
 
 def periods_for(freq):
-    return H.PERIODS if freq == "1d" else PERIODS_1H
+    return H.PERIODS if freq in ("1d", "3d") else PERIODS_1H
 
 
 def transform(series, name, freq="1d"):
@@ -41,17 +41,17 @@ def transform(series, name, freq="1d"):
     b = BARS_PER_DAY[freq]
     table = {
         "raw": lambda s: s,
-        "pct365": lambda s: H.pct_rank(s, 365 * b, 180 * b),
-        "pct180": lambda s: H.pct_rank(s, 180 * b, 90 * b),
-        "pct90": lambda s: H.pct_rank(s, 90 * b, 45 * b),
-        "z90": lambda s: H.zscore(s, 90 * b, 60 * b),
-        "z30": lambda s: H.zscore(s, 30 * b, 20 * b),
-        "chg1": lambda s: H.change(s, 1 * b),
+        "pct365": lambda s: H.pct_rank(s, int(365 * b), int(180 * b)),
+        "pct180": lambda s: H.pct_rank(s, int(180 * b), int(90 * b)),
+        "pct90": lambda s: H.pct_rank(s, int(90 * b), int(45 * b)),
+        "z90": lambda s: H.zscore(s, int(90 * b), int(60 * b)),
+        "z30": lambda s: H.zscore(s, int(30 * b), int(20 * b)),
+        "chg1": lambda s: H.change(s, max(1, int(1 * b))),
         "chg4b": lambda s: H.change(s, 4),
-        "chg5": lambda s: H.change(s, 5 * b),
-        "chg7": lambda s: H.change(s, 7 * b),
-        "pchg3": lambda s: H.pct_change(s, 3 * b),
-        "pchg7": lambda s: H.pct_change(s, 7 * b),
+        "chg5": lambda s: H.change(s, max(1, int(5 * b))),
+        "chg7": lambda s: H.change(s, max(1, int(7 * b))),
+        "pchg3": lambda s: H.pct_change(s, max(1, int(3 * b))),
+        "pchg7": lambda s: H.pct_change(s, max(1, int(7 * b))),
         "pchg24b": lambda s: H.pct_change(s, 24),
     }
     return table[name](series)
@@ -84,16 +84,21 @@ def clusters(index, h, freq):
     if len(index) == 0:
         return 0
     pos = np.array(sorted(index))
-    unit = np.timedelta64(1, "D") if freq == "1d" else np.timedelta64(1, "h")
+    unit = {"1d": np.timedelta64(1, "D"), "3d": np.timedelta64(3, "D"), "1h": np.timedelta64(1, "h"), "4h": np.timedelta64(4, "h")}[freq]
     gaps = (np.diff(pos) / unit).astype(float) if len(pos) > 1 else np.array([])
     return 1 + int((gaps > h).sum())
 
 
-def score_flag(flag, fwd, carry_h, cost, h, freq, abs_target=False):
+def score_flag(flag, fwd, carry_h, cost, h, freq, abs_target=False, valid=None):
+    """valid: bars where the signal itself is defined. The comparison set (all bars, unflagged bars, the period mean) is
+    restricted to those bars, so a series that starts in 2021 is not measured against a 2019-2021 baseline it never saw.
+    Fix of 2026-11-19 (pass-3 refutation found the old all-bars baseline inflated train 'excess' for late-starting series)."""
     rows = {}
     for pname in periods_for(freq):
         f, y, c = slice_period(flag, pname, freq), slice_period(fwd, pname, freq), slice_period(carry_h, pname, freq)
         m = y.notna() & f.notna()
+        if valid is not None:
+            m &= slice_period(valid, pname, freq).fillna(False).astype(bool)
         f, y, c = f[m], y[m], c[m]
         if f.sum() < 3 or (~f).sum() < 10:
             rows[pname] = {"n_flag": int(f.sum()), "n_ind": 0, "spread": None, "excess": None, "t_nw": None}
@@ -112,14 +117,14 @@ def score_flag(flag, fwd, carry_h, cost, h, freq, abs_target=False):
     return rows
 
 
-def verdict2(rows, parent=None, bar=2.5):
+def verdict2(rows, parent=None, bar=2.5, episode_bar=30):
     tr, va, te = rows.get("train", {}), rows.get("validation", {}), rows.get("test", {})
     ex = [r.get("excess") for r in (tr, va, te)]
     if any(e is None for e in ex):
         return "insufficient: a period has fewer than 3 flagged bars"
     n_ind = (tr.get("n_ind") or 0) + (va.get("n_ind") or 0)
-    if n_ind < 30:
-        return f"insufficient: {n_ind} independent episodes in train+validation (bar 30)"
+    if n_ind < episode_bar:
+        return f"insufficient: {n_ind} independent episodes in train+validation (bar {episode_bar})"
     if len({np.sign(e) for e in ex}) != 1:
         return "rejected: excess sign differs across periods"
     tv = va.get("t_nw")
@@ -138,7 +143,7 @@ def verdict2(rows, parent=None, bar=2.5):
     return "PASS: excess same sign in all periods, validation |t|>=2.5, net>0" + (", conditioned lift positive in train and validation" if parent else "") + "; candidate for confirmation, not a signal"
 
 
-def event_test2(df, primary, asset, horizons=(1, 3, 5, 10, 20), freq="1d", lag=1, cond=None, abs_target=False, bar=2.5):
+def event_test2(df, primary, asset, horizons=(1, 3, 5, 10, 20), freq="1d", lag=1, cond=None, abs_target=False, bar=2.5, episode_bar=30):
     """primary/cond = (series, transform(s), side, threshold). asset: 'btc' | 'eth' | an alt symbol.
 
     Returns per-horizon rows for the conditioned cell and, when cond is given, the parent cell and the lift.
@@ -148,24 +153,26 @@ def event_test2(df, primary, asset, horizons=(1, 3, 5, 10, 20), freq="1d", lag=1
     cost = H.COST_RT["btc" if asset == "btc" else "eth" if asset == "eth" else "alt"]
     flag_p, sig_p = make_flag(df, primary, freq, lag)
     flag = flag_p
+    valid = sig_p.notna()
     if cond is not None:
-        flag_c, _ = make_flag(df, cond, freq, lag)
+        flag_c, sig_c = make_flag(df, cond, freq, lag)
         flag = flag_p & flag_c
+        valid = valid & sig_c.notna()
     out = {"primary": list(map(str, primary)), "cond": list(map(str, cond)) if cond else None, "asset": asset,
-           "freq": freq, "lag": lag, "abs_target": abs_target, "horizons": {}}
+           "freq": freq, "lag": lag, "abs_target": abs_target, "baseline": "bars where the signal is defined", "horizons": {}}
     b = BARS_PER_DAY[freq]
     for h in horizons:
         fwd = px.shift(-h) / px - 1
         settlements = 3 * h / b  # 8h funding settlements during a hold of h bars
         carry_h = fund.rolling(h).mean().shift(-h) * settlements if freq == "1d" else fund.rolling(h).mean().shift(-h) * settlements
-        rows = score_flag(flag, fwd, carry_h, cost, h, freq, abs_target)
-        parent = score_flag(flag_p, fwd, carry_h, cost, h, freq, abs_target) if cond is not None else None
+        rows = score_flag(flag, fwd, carry_h, cost, h, freq, abs_target, valid)
+        parent = score_flag(flag_p, fwd, carry_h, cost, h, freq, abs_target, valid) if cond is not None else None
         entry = {"cell": rows}
         if parent is not None:
             entry["parent"] = parent
             entry["lift"] = {p: (rows[p]["excess"] - parent[p]["excess"]) if rows[p].get("excess") is not None and parent[p].get("excess") is not None else None
                              for p in rows}
-        entry["verdict"] = verdict2(rows, parent, bar)
+        entry["verdict"] = verdict2(rows, parent, bar, episode_bar)
         out["horizons"][h] = entry
     return out
 
@@ -213,26 +220,28 @@ def auc(score, event):
     return float((ranks[e].sum() - n1 * (n1 + 1) / 2) / (n1 * n0))
 
 
-def risk_test(df, primary, asset, windows=(10, 20, 30), freq="1d", lag=1, cond=None, crash=-0.10):
+def risk_test(df, primary, asset, windows=(10, 20, 30), freq="1d", lag=1, cond=None, crash=-0.10, episode_bar=20):
     """Score a flag against forward drawdown, crash probability, forward vol and missed upside."""
     px = H.price(df, asset)
     flag_p, sig = make_flag(df, primary, freq, lag)
     flag = flag_p
+    valid = sig.notna()
     if cond is not None:
-        flag_c, _ = make_flag(df, cond, freq, lag)
+        flag_c, sig_c = make_flag(df, cond, freq, lag)
         flag = flag_p & flag_c
+        valid = valid & sig_c.notna()
     out = {"primary": list(map(str, primary)), "cond": list(map(str, cond)) if cond else None, "asset": asset,
-           "freq": freq, "lag": lag, "crash": crash, "windows": {}}
+           "freq": freq, "lag": lag, "crash": crash, "baseline": "bars where the signal is defined", "windows": {}}
     b = BARS_PER_DAY[freq]
-    fwd20 = px.shift(-20 * b) / px - 1
+    fwd20 = px.shift(-max(1, int(round(20 * b)))) / px - 1
     for W in windows:
-        Wb = W * b
+        Wb = max(1, int(round(W * b)))
         mdd = forward_mdd(px, Wb)
         rv = forward_rv(px, Wb, b)
         rows = {}
         for pname in periods_for(freq):
             f, d, v, r20, s = (slice_period(x, pname, freq) for x in (flag, mdd, rv, fwd20, sig))
-            m = d.notna() & f.notna()
+            m = d.notna() & f.notna() & slice_period(valid, pname, freq).fillna(False).astype(bool)
             f, d, v, r20, s = f[m], d[m], v[m], r20[m], s[m]
             if f.sum() < 3:
                 rows[pname] = {"n_flag": int(f.sum()), "n_ind": 0, "mdd_diff": None}
@@ -255,7 +264,7 @@ def risk_test(df, primary, asset, windows=(10, 20, 30), freq="1d", lag=1, cond=N
                 "missed_mean20": float(r20[f].mean()) if r20[f].notna().any() else None,
                 "false_alarm": float((r20[f] > 0).mean()) if r20[f].notna().any() else None,
             }
-        out["windows"][W] = {"cell": rows, "verdict": risk_verdict(rows, W)}
+        out["windows"][W] = {"cell": rows, "verdict": risk_verdict(rows, W, episode_bar=episode_bar)}
     return out
 
 

@@ -33,3 +33,10 @@ Findings that matter for the research direction:
    not a direction read. A one-year test period cannot confirm what validation suggests.
 4. 1-3 day alt reversal has a real rank correlation (+0.04, t 3) that two legs of costs more than remove, and it
    went negative in 2026 in every variant.
+
+## Pass 3, 2026-11-19
+PREREG3.md (pre-registered, two dated amendments) and PASS3_2026-11-19.md. Harness additions: harness/harness3.py
+(TD Sequential on closes, days-in-state, exit flags, 3D/4H bars), harness/score3.py (families R1-R5), harness/base_rates.py
+(builds base_rates.json for the dashboard State tab). harness/harness2.py now benchmarks a flag against the bars where
+its signal exists (fix of 2026-11-19; see PASS3 report). Results and the refutation scripts: results/outside_2026-11-19/.
+Nothing passed and survived refutation; the deliverable is the State tab and the method notes.

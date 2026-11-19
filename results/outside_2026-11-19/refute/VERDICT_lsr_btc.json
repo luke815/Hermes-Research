@@ -1,0 +1,22 @@
+{
+ "finding": "lsr_BTC pct365 top quintile/decile -> below-average 30-90d returns and deeper drawdowns in all three periods",
+ "refuted": true,
+ "confidence": "high",
+ "verdict_basis": [
+  "train result is a 2021 level-shift artifact: lsr mean 1.35 (2020) -> 2.11 (2021); pct365 flags 66% of 2021H1 days; 54% (0.8) / 65% (0.9) of train flags are 2021; train ex-2021 (2022-01..2024-06) excess thr0.8 -0.5/+0.7/+1.3%, thr0.9 +4.9/+7.4/+8.6%, mdd ~0 or shallower",
+  "validation at 60/90d is one cluster (2025-08-21..2025-12-31, 63-64% of flagged days, contrib -18.4pp of -9.7%); the other two validation clusters have POSITIVE 90d excess (+33.8%, +12.3%)",
+  "test at 90d is one cluster (2026-01-01..2026-03-30); test flips positive at thresholds 0.7/0.75/0.95 and under z90 detrending (+18.5% at 90d, mdd +7.6)",
+  "episode-level (first day, equal weight): no period x horizon reaches sign-test p<0.1; train equal-weight means are POSITIVE at 60/90d for both thresholds",
+  "circular-shift placebo: returns never reach two-sided p<0.25 in any period; only validation W=90 mdd (one cluster) and train W=60 mdd (2021) reach p2<0.1",
+  "confound: corr(lsr pct, trailing 30d return) -0.64/-0.66 (Spearman -0.70) in validation/test; 90%/81% of flagged days have negative trailing 30d return; price-only control (r30 pct365<=0.2) gives the same sign and magnitude in train and validation at 30d (-5.6/-4.1% vs -4.2/-4.2%) with more episodes",
+  "ETH train is positive; ETH validation/test rest on 1-3 episodes"
+ ],
+ "files": [
+  "results3/refute/refute_lsr_btc.py",
+  "results3/refute/lsr_btc_refute.txt",
+  "results3/refute/lsr_btc_refute.json",
+  "results3/refute/refute_lsr_btc_part2.py",
+  "results3/refute/lsr_btc_refute_part2.txt",
+  "results3/refute/lsr_btc_refute_part2.json"
+ ]
+}

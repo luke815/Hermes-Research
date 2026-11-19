@@ -1,0 +1,923 @@
+/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/harness3.py:121: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  df[f"{series}_hi_exit{m}"] = exit_after(hiflag, m)
+/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/harness3.py:122: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  df[f"{series}_lo_exit{m}"] = exit_after(loflag, m)
+/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/score3.py:87: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"{s}_hyst_run"] = H3.days_in_state(onf)
+/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/score3.py:88: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"{s}_hyst_exit20"] = H3.exit_after(onf, 20)
+/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/score3.py:89: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  d[f"{s}_hyst_exit10"] = H3.exit_after(onf, 10)
+daily panel 2019-01-01..2026-11-17 rows 2878
+hourly 2024-11-01 00:00:00..2026-11-18 13:00:00 rows 17942; 4h rows 4486
+
+==== R4. TD Sequential ====
+note: daily/3D 'perfected' uses closes (no highs/lows in the panel): close of bar 8 or 9 at/below closes of bars 6 and 7
+[R4 1D] btc buy9: 31 completions, hypothesis +
+[R4 1D] btc ('td_buy9_btc', 'raw', 'top', 1) (1d)
+h=1: tra ex +1.65% t=1.9 n=21 net=+1.54% | val ex -1.52% t=-2.7 n=6 net=+1.43% | tes ex +0.81% t=1.7 n=4 net=+0.71% -> insufficient: 27 independent episodes in train+validation (bar 30)
+h=3: tra ex +1.19% t=0.9 n=21 net=+1.04% | val ex -0.76% t=-0.6 n=6 net=+0.68% | tes ex +1.63% t=2.1 n=4 net=+1.52% -> insufficient: 27 independent episodes in train+validation (bar 30)
+h=5: tra ex +2.30% t=1.7 n=21 net=+2.10% | val ex +0.95% t=0.8 n=6 net=+0.81% | tes ex -0.12% t=-0.1 n=3 net=+0.03% -> insufficient: 27 independent episodes in train+validation (bar 30)
+h=10: tra ex -0.61% t=-0.3 n=21 net=+0.72% | val ex +1.59% t=0.9 n=6 net=+1.41% | tes ex +2.53% t=0.8 n=3 net=+2.40% -> insufficient: 27 independent episodes in train+validation (bar 30)
+h=20: tra ex -2.37% t=-0.9 n=21 net=+2.67% | val ex -0.81% t=-0.3 n=6 net=+0.86% | tes ex +5.64% t=0.9 n=3 net=+5.41% -> insufficient: 27 independent episodes in train+validation (bar 30)
+[R4 1D] RISK btc ('td_buy9_btc', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +2.1% t=1.9 crash x0.58 (2/21) fa=0.38 n=21 | val mdd +0.8% t=0.9 crash x0.00 (0/6) fa=0.50 n=6 | tes mdd +2.6% t=2.0 crash x0.00 (0/3) fa=0.33 n=3 -> rejected: validation t 0.86 on mdd below 2.5
+W=20: tra mdd +2.0% t=1.5 crash x0.65 (4/21) fa=0.38 n=21 | val mdd -0.3% t=-0.2 crash x0.96 (1/6) fa=0.50 n=6 | tes mdd +3.2% t=1.6 crash x0.00 (0/3) fa=0.33 n=3 -> rejected: drawdown effect changes sign across periods
+W=30: tra mdd -1.2% t=-0.6 crash x1.02 (8/21) fa=0.38 n=16 | val mdd -1.2% t=-0.5 crash x1.46 (2/6) fa=0.50 n=4 | tes mdd +4.5% t=1.8 crash x0.00 (0/3) fa=0.33 n=3 -> rejected: drawdown effect changes sign across periods
+   W=10 fwd rv flag/all: tra 0.60/0.60 | val 0.33/0.42 | tes 0.30/0.40
+   W=20 fwd rv flag/all: tra 0.57/0.62 | val 0.43/0.43 | tes 0.43/0.42
+   W=30 fwd rv flag/all: tra 0.62/0.63 | val 0.45/0.43 | tes 0.43/0.42
+[R4 1D] btc sell9: 43 completions, hypothesis -
+[R4 1D] btc ('td_sell9_btc', 'raw', 'top', 1) (1d)
+h=1: tra ex -0.23% t=-0.5 n=32 net=+0.20% | val ex -0.76% t=-1.9 n=8 net=+0.68% | tes ex +1.18% t=5.3 n=3 net=+1.07% -> rejected: excess sign differs across periods
+h=3: tra ex +0.95% t=0.8 n=32 net=+0.64% | val ex -0.99% t=-1.7 n=8 net=+0.95% | tes ex -0.90% t=-1.0 n=3 net=+0.83% -> rejected: excess sign differs across periods
+h=5: tra ex +3.63% t=2.0 n=32 net=+3.19% | val ex -1.71% t=-1.9 n=8 net=+1.72% | tes ex +0.38% t=0.5 n=3 net=+0.23% -> rejected: excess sign differs across periods
+h=10: tra ex +3.86% t=2.3 n=32 net=+3.15% | val ex -1.00% t=-0.6 n=8 net=+1.12% | tes ex -2.75% t=-1.4 n=3 net=+2.74% -> rejected: excess sign differs across periods
+h=20: tra ex +7.53% t=2.4 n=24 net=+6.19% | val ex -3.55% t=-1.4 n=8 net=+3.91% | tes ex -0.37% t=-0.1 n=3 net=+0.49% -> rejected: excess sign differs across periods
+[R4 1D] RISK btc ('td_sell9_btc', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +1.6% t=2.0 crash x0.38 (2/32) fa=0.81 n=32 | val mdd +0.3% t=0.4 crash x0.00 (0/8) fa=0.38 n=8 | tes mdd -0.2% t=-0.2 crash x0.00 (0/3) fa=0.33 n=3 -> rejected: drawdown effect changes sign across periods
+W=20: tra mdd +3.1% t=2.9 crash x0.32 (3/32) fa=0.81 n=24 | val mdd -2.5% t=-1.4 crash x1.44 (2/8) fa=0.38 n=8 | tes mdd +1.2% t=0.7 crash x0.00 (0/3) fa=0.33 n=3 -> rejected: drawdown effect changes sign across periods
+W=30: tra mdd +3.1% t=2.0 crash x0.25 (3/32) fa=0.81 n=21 | val mdd -2.1% t=-1.0 crash x1.10 (2/8) fa=0.38 n=6 | tes mdd +3.1% t=1.2 crash x0.00 (0/3) fa=0.33 n=3 -> rejected: drawdown effect changes sign across periods
+   W=10 fwd rv flag/all: tra 0.63/0.60 | val 0.37/0.42 | tes 0.39/0.40
+   W=20 fwd rv flag/all: tra 0.63/0.62 | val 0.42/0.43 | tes 0.36/0.42
+   W=30 fwd rv flag/all: tra 0.67/0.63 | val 0.42/0.43 | tes 0.39/0.42
+[R4 1D] btc buy9p: 20 completions, hypothesis +
+[R4 1D] btc ('td_buy9p_btc', 'raw', 'top', 1) (1d)
+h=1: tra ex +1.87% t=1.6 n=13 net=+1.77% | val ex -1.09% t=-1.9 n=3 net=+1.00% | tes ex +0.81% t=1.7 n=4 net=+0.71% -> insufficient: 16 independent episodes in train+validation (bar 30)
+h=3: tra ex +0.61% t=0.3 n=13 net=+0.47% | val ex -0.66% t=-1.8 n=3 net=+0.59% | tes ex +1.63% t=2.1 n=4 net=+1.52% -> insufficient: 16 independent episodes in train+validation (bar 30)
+h=5: tra ex +2.03% t=1.2 n=13 net=+1.84% | val ex -0.22% t=-0.5 n=3 net=+0.17% | tes ex -0.12% t=-0.1 n=3 net=+0.03% -> insufficient: 16 independent episodes in train+validation (bar 30)
+h=10: tra ex -0.68% t=-0.2 n=13 net=+0.80% | val ex +2.11% t=1.8 n=3 net=+1.88% | tes ex +2.53% t=0.8 n=3 net=+2.40% -> insufficient: 16 independent episodes in train+validation (bar 30)
+h=20: tra ex -3.12% t=-0.9 n=13 net=+3.45% | val ex -0.63% t=-0.2 n=3 net=+0.76% | tes ex +5.64% t=0.9 n=3 net=+5.41% -> insufficient: 16 independent episodes in train+validation (bar 30)
+[R4 1D] RISK btc ('td_buy9p_btc', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +1.7% t=1.3 crash x0.47 (1/13) fa=0.31 n=13 | val mdd +1.8% t=3.5 crash x0.00 (0/3) fa=0.67 n=3 | tes mdd +2.6% t=2.0 crash x0.00 (0/3) fa=0.33 n=3 -> insufficient: 16 independent episodes in train+validation (bar 20)
+W=20: tra mdd +1.5% t=0.9 crash x0.53 (2/13) fa=0.31 n=13 | val mdd -0.2% t=-0.1 crash x1.93 (1/3) fa=0.67 n=3 | tes mdd +3.2% t=1.6 crash x0.00 (0/3) fa=0.33 n=3 -> insufficient: 16 independent episodes in train+validation (bar 20)
+W=30: tra mdd -1.8% t=-0.7 crash x1.03 (5/13) fa=0.31 n=11 | val mdd -1.2% t=-0.3 crash x1.46 (1/3) fa=0.67 n=3 | tes mdd +4.5% t=1.8 crash x0.00 (0/3) fa=0.33 n=3 -> insufficient: 14 independent episodes in train+validation (bar 20)
+   W=10 fwd rv flag/all: tra 0.63/0.60 | val 0.25/0.42 | tes 0.30/0.40
+   W=20 fwd rv flag/all: tra 0.60/0.62 | val 0.40/0.43 | tes 0.43/0.42
+   W=30 fwd rv flag/all: tra 0.66/0.63 | val 0.45/0.43 | tes 0.43/0.42
+[R4 1D] btc sell9p: 32 completions, hypothesis -
+[R4 1D] btc ('td_sell9p_btc', 'raw', 'top', 1) (1d)
+h=1: tra ex -0.20% t=-0.4 n=26 net=+0.18% | val ex -0.48% t=-0.8 n=5 net=+0.40% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +0.42% t=0.4 n=26 net=+0.07% | val ex -1.40% t=-2.0 n=5 net=+1.38% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +3.11% t=1.6 n=26 net=+2.60% | val ex -2.12% t=-1.7 n=5 net=+2.14% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +2.45% t=1.3 n=26 net=+1.61% | val ex -1.34% t=-0.9 n=5 net=+1.51% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +6.56% t=2.0 n=22 net=+5.04% | val ex -3.04% t=-1.0 n=5 net=+3.48% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 1D] RISK btc ('td_sell9p_btc', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +1.3% t=1.4 crash x0.47 (2/26) fa=0.77 n=26 | val mdd +0.4% t=0.7 crash x0.00 (0/5) fa=0.40 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +2.5% t=2.1 crash x0.39 (3/26) fa=0.77 n=22 | val mdd -2.7% t=-1.1 crash x1.16 (1/5) fa=0.40 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +2.3% t=1.2 crash x0.31 (3/26) fa=0.77 n=20 | val mdd -1.5% t=-0.6 crash x0.88 (1/5) fa=0.40 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.63/0.60 | val 0.37/0.42
+   W=20 fwd rv flag/all: tra 0.64/0.62 | val 0.47/0.43
+   W=30 fwd rv flag/all: tra 0.69/0.63 | val 0.45/0.43
+[R4 1D] btc buy13: 20 completions, hypothesis +
+[R4 1D] btc ('td_buy13_btc', 'raw', 'top', 1) (1d)
+h=1: tra ex -1.62% t=-1.4 n=14 net=+1.51% | val ex -0.63% t=-1.0 n=5 net=+0.55% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -2.58% t=-1.9 n=14 net=+2.49% | val ex -2.85% t=-3.1 n=5 net=+2.79% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -4.04% t=-1.6 n=14 net=+3.96% | val ex -4.53% t=-1.7 n=5 net=+4.50% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -3.02% t=-0.8 n=14 net=+2.99% | val ex -0.00% t=-0.0 n=5 net=+0.03% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -6.94% t=-1.6 n=14 net=+7.00% | val ex +4.82% t=1.7 n=5 net=+4.45% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 1D] RISK btc ('td_buy13_btc', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd -4.6% t=-2.0 crash x2.16 (5/14) fa=0.36 n=14 | val mdd -2.1% t=-1.0 crash x2.29 (1/5) fa=0.80 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd -5.3% t=-2.1 crash x1.71 (7/14) fa=0.36 n=14 | val mdd -0.2% t=-0.1 crash x1.16 (1/5) fa=0.80 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -4.1% t=-1.7 crash x1.53 (8/14) fa=0.36 n=13 | val mdd +1.0% t=0.5 crash x0.88 (1/5) fa=0.80 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.76/0.60 | val 0.45/0.42
+   W=20 fwd rv flag/all: tra 0.73/0.62 | val 0.40/0.43
+   W=30 fwd rv flag/all: tra 0.67/0.63 | val 0.41/0.43
+[R4 1D] btc sell13: 29 completions, hypothesis -
+[R4 1D] btc ('td_sell13_btc', 'raw', 'top', 1) (1d)
+h=1: tra ex +0.42% t=0.4 n=23 net=+0.26% | val ex +4.19% t=1.7 n=3 net=+4.06% | tes ex +1.91% t=1.4 n=3 net=+1.81% -> insufficient: 26 independent episodes in train+validation (bar 30)
+h=3: tra ex -0.21% t=-0.2 n=23 net=+0.29% | val ex +4.70% t=1.3 n=3 net=+4.47% | tes ex +2.00% t=1.0 n=3 net=+1.90% -> insufficient: 26 independent episodes in train+validation (bar 30)
+h=5: tra ex +0.90% t=0.5 n=23 net=+0.46% | val ex +4.62% t=1.4 n=3 net=+4.34% | tes ex +2.22% t=0.8 n=3 net=+2.13% -> insufficient: 26 independent episodes in train+validation (bar 30)
+h=10: tra ex +1.43% t=0.6 n=23 net=+0.72% | val ex +6.76% t=1.7 n=3 net=+6.32% | tes ex +3.01% t=0.9 n=3 net=+2.90% -> insufficient: 26 independent episodes in train+validation (bar 30)
+h=20: tra ex +2.51% t=0.6 n=23 net=+1.29% | val ex +2.78% t=0.5 n=3 net=+2.06% | tes ex +3.63% t=0.9 n=3 net=+3.46% -> insufficient: 26 independent episodes in train+validation (bar 30)
+[R4 1D] RISK btc ('td_sell13_btc', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd -1.0% t=-0.7 crash x1.58 (6/23) fa=0.57 n=23 | val mdd +5.3% t=1.8 crash x0.00 (0/3) fa=0.67 n=3 | tes mdd +3.9% t=1.9 crash x0.00 (0/3) fa=0.67 n=3 -> rejected: drawdown effect changes sign across periods
+W=20: tra mdd -1.5% t=-0.9 crash x1.48 (10/23) fa=0.57 n=23 | val mdd +5.1% t=1.4 crash x0.00 (0/3) fa=0.67 n=3 | tes mdd +5.3% t=1.9 crash x0.00 (0/3) fa=0.67 n=3 -> rejected: drawdown effect changes sign across periods
+W=30: tra mdd -0.5% t=-0.2 crash x1.39 (12/23) fa=0.57 n=18 | val mdd +5.9% t=1.6 crash x0.00 (0/3) fa=0.67 n=2 | tes mdd +7.2% t=2.1 crash x0.00 (0/3) fa=0.67 n=3 -> rejected: drawdown effect changes sign across periods
+   W=10 fwd rv flag/all: tra 0.69/0.60 | val 0.50/0.42 | tes 0.30/0.40
+   W=20 fwd rv flag/all: tra 0.70/0.62 | val 0.48/0.43 | tes 0.28/0.42
+   W=30 fwd rv flag/all: tra 0.69/0.63 | val 0.45/0.43 | tes 0.26/0.42
+[R4 1D] eth buy9: 29 completions, hypothesis +
+[R4 1D] eth ('td_buy9_eth', 'raw', 'top', 1) (1d)
+h=1: tra ex -0.34% t=-0.4 n=21 net=+0.24% | val ex +4.45% t=3.2 n=4 net=+4.34% | tes ex +0.21% t=0.2 n=4 net=+0.11% -> insufficient: 25 independent episodes in train+validation (bar 30)
+h=3: tra ex +1.90% t=1.7 n=21 net=+1.78% | val ex +6.08% t=6.7 n=4 net=+5.94% | tes ex +0.65% t=0.2 n=4 net=+0.57% -> insufficient: 25 independent episodes in train+validation (bar 30)
+h=5: tra ex +2.46% t=1.2 n=21 net=+2.31% | val ex +4.78% t=3.0 n=4 net=+4.64% | tes ex -0.19% t=-0.1 n=3 net=+0.07% -> insufficient: 25 independent episodes in train+validation (bar 30)
+h=10: tra ex +3.76% t=1.6 n=21 net=+3.52% | val ex +8.23% t=2.2 n=4 net=+8.05% | tes ex +1.34% t=0.2 n=3 net=+1.26% -> insufficient: 25 independent episodes in train+validation (bar 30)
+h=20: tra ex +7.79% t=1.9 n=19 net=+7.36% | val ex +2.35% t=0.3 n=4 net=+2.07% | tes ex -8.80% t=-1.6 n=2 net=+8.65% -> insufficient: 23 independent episodes in train+validation (bar 30)
+[R4 1D] RISK eth ('td_buy9_eth', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val mdd +9.2% t=4.9 crash x0.00 (0/4) fa=0.50 n=4 | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial
+W=20: tra mdd +4.0% t=3.3 crash x0.52 (4/21) fa=0.62 n=19 | val mdd +5.0% t=1.2 crash x0.58 (1/4) fa=0.50 n=4 | tes mdd -4.0% t=-0.8 crash x2.01 (2/3) fa=0.00 n=2 -> rejected: drawdown effect changes sign across periods
+W=30: tra mdd +3.0% t=1.5 crash x0.54 (5/21) fa=0.62 n=17 | val mdd +2.7% t=0.4 crash x0.92 (2/4) fa=0.50 n=4 | tes mdd -1.5% t=-0.3 crash x1.66 (2/3) fa=0.00 n=2 -> rejected: drawdown effect changes sign across periods
+   W=10 fwd rv flag/all: tra 0.73/0.76 | val 0.52/0.67 | tes 0.51/0.55
+   W=20 fwd rv flag/all: tra 0.67/0.78 | val 0.81/0.69 | tes 0.65/0.56
+   W=30 fwd rv flag/all: tra 0.73/0.79 | val 0.74/0.70 | tes 0.62/0.57
+[R4 1D] eth sell9: 42 completions, hypothesis -
+[R4 1D] eth ('td_sell9_eth', 'raw', 'top', 1) (1d)
+h=1: tra ex +0.30% t=0.5 n=33 net=+0.11% | val ex -0.39% t=-0.4 n=6 net=+0.32% | tes ex -1.23% t=-1.1 n=3 net=+1.13% -> rejected: excess sign differs across periods
+h=3: tra ex +2.03% t=1.7 n=33 net=+1.73% | val ex -1.67% t=-0.7 n=6 net=+1.66% | tes ex -3.21% t=-2.2 n=3 net=+3.10% -> rejected: excess sign differs across periods
+h=5: tra ex +3.28% t=2.4 n=33 net=+2.78% | val ex -1.59% t=-0.5 n=6 net=+1.62% | tes ex -1.53% t=-0.9 n=3 net=+1.41% -> rejected: excess sign differs across periods
+h=10: tra ex +4.34% t=2.0 n=33 net=+3.42% | val ex +1.20% t=0.5 n=6 net=+0.85% | tes ex -2.00% t=-0.9 n=3 net=+1.86% -> rejected: excess sign differs across periods
+h=20: tra ex +5.41% t=1.4 n=28 net=+3.76% | val ex -7.61% t=-1.3 n=6 net=+7.94% | tes ex -1.35% t=-0.3 n=3 net=+1.23% -> rejected: excess sign differs across periods
+[R4 1D] RISK eth ('td_sell9_eth', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +2.0% t=1.5 crash x0.51 (4/33) fa=0.58 n=33 | val mdd -0.4% t=-0.2 crash x1.22 (2/6) fa=0.50 n=6 | tes mdd -0.4% t=-0.3 crash x0.00 (0/3) fa=0.67 n=3 -> rejected: drawdown effect changes sign across periods
+W=20: tra mdd +1.7% t=1.1 crash x0.75 (9/33) fa=0.58 n=28 | val mdd -4.1% t=-1.1 crash x1.54 (4/6) fa=0.50 n=6 | tes mdd +0.2% t=0.1 crash x1.00 (1/3) fa=0.67 n=3 -> rejected: drawdown effect changes sign across periods
+W=30: tra mdd +3.4% t=1.9 crash x0.62 (9/33) fa=0.58 n=22 | val mdd -1.3% t=-0.4 crash x1.22 (4/6) fa=0.50 n=5 | tes mdd -7.7% t=-0.8 crash x0.83 (1/3) fa=0.67 n=2 -> rejected: drawdown effect changes sign across periods
+   W=10 fwd rv flag/all: tra 0.80/0.76 | val 0.61/0.67 | tes 0.50/0.55
+   W=20 fwd rv flag/all: tra 0.83/0.78 | val 0.69/0.69 | tes 0.50/0.56
+   W=30 fwd rv flag/all: tra 0.80/0.79 | val 0.69/0.70 | tes 0.60/0.57
+[R4 1D] eth buy9p: 23 completions, hypothesis +
+[R4 1D] eth ('td_buy9p_eth', 'raw', 'top', 1) (1d)
+h=1: tra ex -0.00% t=-0.0 n=17 net=-0.08% | val ex +4.20% t=2.3 n=3 net=+4.09% | tes ex -0.00% t=-0.0 n=3 net=-0.10% -> insufficient: 20 independent episodes in train+validation (bar 30)
+h=3: tra ex +1.42% t=1.3 n=17 net=+1.29% | val ex +6.57% t=6.6 n=3 net=+6.44% | tes ex +3.12% t=1.5 n=3 net=+3.01% -> insufficient: 20 independent episodes in train+validation (bar 30)
+h=5: tra ex +1.28% t=0.6 n=17 net=+1.10% | val ex +5.73% t=3.4 n=3 net=+5.60% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +2.29% t=0.9 n=17 net=+1.99% | val ex +10.44% t=2.5 n=3 net=+10.28% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +8.00% t=1.6 n=16 net=+7.50% | val ex +9.38% t=1.1 n=3 net=+9.13% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 1D] RISK eth ('td_buy9p_eth', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +1.5% t=1.2 crash x0.75 (3/17) fa=0.59 n=17 | val mdd +9.4% t=4.0 crash x0.00 (0/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +3.4% t=2.5 crash x0.64 (4/17) fa=0.59 n=16 | val mdd +9.3% t=2.7 crash x0.00 (0/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +2.0% t=0.8 crash x0.67 (5/17) fa=0.59 n=15 | val mdd +9.0% t=1.8 crash x0.61 (1/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.72/0.76 | val 0.52/0.67
+   W=20 fwd rv flag/all: tra 0.66/0.78 | val 0.71/0.69
+   W=30 fwd rv flag/all: tra 0.73/0.79 | val 0.64/0.70
+[R4 1D] eth sell9p: 28 completions, hypothesis -
+[R4 1D] eth ('td_sell9p_eth', 'raw', 'top', 1) (1d)
+h=1: tra ex +0.86% t=1.1 n=22 net=+0.65% | val ex -1.36% t=-1.1 n=4 net=+1.30% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +3.28% t=2.4 n=22 net=+2.92% | val ex -3.72% t=-1.1 n=4 net=+3.72% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +4.71% t=3.0 n=22 net=+4.12% | val ex -4.54% t=-1.2 n=4 net=+4.60% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +7.42% t=2.6 n=22 net=+6.32% | val ex +1.41% t=0.5 n=4 net=+1.01% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +8.76% t=1.6 n=20 net=+6.83% | val ex -2.84% t=-0.5 n=4 net=+3.22% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 1D] RISK eth ('td_sell9p_eth', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +2.7% t=1.6 crash x0.39 (2/22) fa=0.68 n=22 | val mdd -2.1% t=-0.7 crash x1.83 (2/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd +1.6% t=0.7 crash x0.75 (6/22) fa=0.68 n=20 | val mdd -2.3% t=-0.8 crash x1.73 (3/4) fa=0.50 n=4 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.4% t=1.5 crash x0.62 (6/22) fa=0.68 n=17 | val mdd +0.4% t=0.1 crash x1.38 (3/4) fa=0.50 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.86/0.76 | val 0.66/0.67
+   W=20 fwd rv flag/all: tra 0.91/0.78 | val 0.72/0.69
+   W=30 fwd rv flag/all: tra 0.87/0.79 | val 0.69/0.70
+[R4 1D] eth buy13: 15 completions, hypothesis +
+[R4 1D] eth ('td_buy13_eth', 'raw', 'top', 1) (1d)
+h=1: tra ex -2.62% t=-1.6 n=10 net=+2.53% | val ex +0.89% t=0.6 n=3 net=+0.77% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -6.12% t=-2.2 n=10 net=+6.05% | val ex -1.86% t=-1.4 n=3 net=+1.81% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -4.03% t=-1.9 n=10 net=+3.99% | val ex -9.07% t=-2.5 n=3 net=+9.04% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -3.54% t=-0.7 n=10 net=+3.61% | val ex -7.05% t=-2.2 n=3 net=+7.07% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +1.55% t=0.2 n=10 net=+0.94% | val ex -6.26% t=-1.1 n=3 net=+6.35% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 1D] RISK eth ('td_buy13_eth', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd -6.2% t=-2.0 crash x2.12 (5/10) fa=0.60 n=10 | val mdd -3.8% t=-1.3 crash x1.22 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd -4.3% t=-1.1 crash x1.37 (5/10) fa=0.60 n=10 | val mdd -4.7% t=-1.9 crash x1.54 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -3.9% t=-1.1 crash x1.37 (6/10) fa=0.60 n=10 | val mdd -5.1% t=-1.4 crash x1.22 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.90/0.76 | val 0.65/0.67
+   W=20 fwd rv flag/all: tra 0.83/0.78 | val 0.66/0.69
+   W=30 fwd rv flag/all: tra 0.84/0.79 | val 0.63/0.70
+[R4 1D] eth sell13: 33 completions, hypothesis -
+[R4 1D] eth ('td_sell13_eth', 'raw', 'top', 1) (1d)
+h=1: tra ex +0.61% t=0.7 n=26 net=+0.44% | val ex +2.53% t=1.8 n=5 net=+2.40% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -0.00% t=-0.0 n=26 net=+0.14% | val ex +3.86% t=1.4 n=5 net=+3.67% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +0.98% t=0.5 n=26 net=+0.51% | val ex +4.44% t=1.3 n=5 net=+4.20% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +2.78% t=1.1 n=26 net=+1.92% | val ex +4.30% t=1.1 n=5 net=+3.93% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +3.14% t=0.7 n=25 net=+1.57% | val ex +3.96% t=0.9 n=5 net=+3.35% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 1D] RISK eth ('td_sell13_eth', 'raw', 'top', 1) (1d, crash -10%)
+W=10: tra mdd +0.9% t=0.7 crash x1.14 (7/26) fa=0.62 n=26 | val mdd +5.1% t=3.7 crash x0.00 (0/5) fa=0.40 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd -0.5% t=-0.2 crash x1.16 (11/26) fa=0.62 n=25 | val mdd +2.6% t=1.1 crash x0.92 (2/5) fa=0.40 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -0.3% t=-0.2 crash x1.05 (12/26) fa=0.62 n=22 | val mdd +4.4% t=1.5 crash x0.73 (2/5) fa=0.40 n=5 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=10 fwd rv flag/all: tra 0.75/0.76 | val 0.66/0.67
+   W=20 fwd rv flag/all: tra 0.88/0.78 | val 0.73/0.69
+   W=30 fwd rv flag/all: tra 0.88/0.79 | val 0.71/0.70
+[R4 1D] share of cell-horizons whose excess sign matches the DeMark hypothesis:
+                   cells  consistent  mean_t_signed
+flag   period                                      
+buy13  train          10           1      -1.349095
+       validation     10           2      -1.061544
+buy9   test           10           7       0.434517
+       train          10           7       0.942177
+       validation     10           7       1.352538
+buy9p  test            7           5       0.996818
+       train          10           7       0.644533
+       validation     10           6       1.331917
+sell13 test            5           0       0.984401
+       train          10           2       0.492080
+       validation     10           0       1.300181
+sell9  test           10           8      -0.211322
+       train          10           1       1.505621
+       validation     10           9      -0.989344
+sell9p train          10           1       1.561914
+       validation     10           9      -0.984229
+[R4 1D] mean hypothesis-signed t by period: train -0.55 (n=60), validation +0.38 (n=60), test +0.27 (n=32)
+[R4 3D-a0] btc buy9: 15 completions, hypothesis +
+[R4 3D-a0] btc ('td_buy9_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.36% t=0.6 n=9 net=+1.22% | val ex +3.27% t=0.8 n=3 net=+3.18% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -1.76% t=-0.4 n=9 net=+1.76% | val ex +4.11% t=0.8 n=3 net=+3.98% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +0.13% t=0.0 n=9 net=-0.10% | val ex +3.74% t=0.8 n=3 net=+3.51% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -5.34% t=-1.1 n=9 net=+5.47% | val ex -2.94% t=-1.0 n=3 net=+3.19% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -6.75% t=-0.6 n=8 net=+7.08% | val ex +3.53% t=0.4 n=3 net=+2.96% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK btc ('td_buy9_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -0.9% t=-0.3 crash x1.13 (2/9) fa=0.44 n=9 | val mdd +4.5% t=1.1 crash x0.00 (0/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -0.2% t=-0.1 crash x1.68 (5/9) fa=0.44 n=9 | val mdd -1.3% t=-0.8 crash x0.00 (0/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.72/0.58 | val 0.52/0.43
+   W=30 fwd rv flag/all: tra 0.64/0.61 | val 0.60/0.44
+[R4 3D-a0] btc sell9: 19 completions, hypothesis -
+[R4 3D-a0] btc ('td_sell9_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.58% t=-1.6 n=14 net=+1.63% | val ex +4.20% t=1.0 n=3 net=+3.93% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -3.43% t=-1.5 n=14 net=+3.76% | val ex +3.82% t=0.7 n=3 net=+3.38% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +2.89% t=0.9 n=14 net=+1.83% | val ex +7.59% t=1.0 n=3 net=+6.96% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +2.32% t=0.5 n=14 net=+0.49% | val ex +4.86% t=0.6 n=3 net=+3.91% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +8.62% t=1.1 n=12 net=+5.45% | val ex +3.63% t=0.5 n=3 net=+2.13% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK btc ('td_sell9_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -1.0% t=-0.7 crash x0.73 (2/14) fa=0.57 n=14 | val mdd +6.6% t=1.4 crash x0.00 (0/3) fa=1.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -0.7% t=-0.4 crash x0.87 (4/14) fa=0.57 n=14 | val mdd +8.4% t=1.7 crash x0.00 (0/3) fa=1.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.57/0.58 | val 0.33/0.43
+   W=30 fwd rv flag/all: tra 0.61/0.61 | val 0.33/0.44
+[R4 3D-a0] btc buy9p: 10 completions, hypothesis +
+[R4 3D-a0] btc ('td_buy9p_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.73% t=0.6 n=7 net=+1.60% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -1.24% t=-0.2 n=7 net=+1.24% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +2.68% t=0.5 n=7 net=+2.47% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -3.29% t=-0.6 n=7 net=+3.43% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -7.60% t=-0.5 n=6 net=+7.99% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK btc ('td_buy9p_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +0.4% t=0.1 crash x0.73 (1/7) fa=0.57 n=7 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +0.9% t=0.2 crash x1.30 (3/7) fa=0.57 n=7 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] btc sell9p: 14 completions, hypothesis -
+[R4 3D-a0] btc ('td_sell9p_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.15% t=-1.0 n=10 net=+1.18% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -3.21% t=-1.1 n=10 net=+3.60% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +3.44% t=0.9 n=10 net=+2.23% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +4.68% t=0.9 n=10 net=+2.53% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +16.56% t=1.6 n=9 net=+12.87% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK btc ('td_sell9p_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -0.4% t=-0.3 crash x0.51 (1/10) fa=0.70 n=10 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +0.3% t=0.1 crash x0.91 (3/10) fa=0.70 n=10 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] btc buy13: 5 completions, hypothesis +
+[R4 3D-a0] btc sell13: 15 completions, hypothesis -
+[R4 3D-a0] btc ('td_sell13_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.37% t=1.0 n=11 net=+1.09% | val ex -2.39% t=-0.7 n=3 net=+2.35% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +4.58% t=1.4 n=11 net=+3.97% | val ex -6.52% t=-1.8 n=3 net=+6.59% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +6.40% t=1.0 n=11 net=+5.39% | val ex -4.31% t=-1.3 n=3 net=+4.51% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +4.04% t=0.8 n=11 net=+2.16% | val ex -6.33% t=-1.2 n=3 net=+6.86% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +7.06% t=0.6 n=10 net=+3.32% | val ex -15.00% t=-1.9 n=3 net=+16.03% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK btc ('td_sell13_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +2.3% t=1.1 crash x0.46 (1/11) fa=0.64 n=11 | val mdd -2.3% t=-0.7 crash x2.54 (1/3) fa=0.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +4.7% t=2.0 crash x0.28 (1/11) fa=0.64 n=11 | val mdd -2.3% t=-0.6 crash x1.56 (1/3) fa=0.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.59/0.58 | val 0.42/0.43
+   W=30 fwd rv flag/all: tra 0.57/0.61 | val 0.38/0.44
+[R4 3D-a0] eth buy9: 12 completions, hypothesis +
+[R4 3D-a0] eth ('td_buy9_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.69% t=-0.5 n=6 net=+1.60% | val ex -3.98% t=-2.1 n=3 net=+3.91% | tes ex -1.80% t=-0.8 n=3 net=+1.70% -> insufficient: 9 independent episodes in train+validation (bar 30)
+h=3: tra ex -0.92% t=-0.2 n=6 net=+0.80% | val ex -0.37% t=-0.1 n=3 net=+0.38% | tes ex -8.33% t=-1.4 n=3 net=+8.24% -> insufficient: 9 independent episodes in train+validation (bar 30)
+h=5: tra ex +7.41% t=0.8 n=6 net=+7.29% | val ex -4.74% t=-0.4 n=3 net=+4.79% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -8.06% t=-0.9 n=6 net=+8.10% | val ex -14.52% t=-2.4 n=3 net=+14.70% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -5.92% t=-0.4 n=5 net=+6.22% | val ex -3.53% t=-0.3 n=3 net=+3.92% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK eth ('td_buy9_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -2.2% t=-0.5 crash x1.28 (2/6) fa=0.67 n=6 | val mdd -6.3% t=-0.9 crash x1.09 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -2.2% t=-0.4 crash x0.86 (2/6) fa=0.67 n=6 | val mdd -8.8% t=-1.7 crash x1.34 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.76/0.71 | val 0.81/0.67
+   W=30 fwd rv flag/all: tra 0.89/0.75 | val 0.87/0.69
+[R4 3D-a0] eth sell9: 19 completions, hypothesis -
+[R4 3D-a0] eth ('td_sell9_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +0.33% t=0.3 n=14 net=+0.01% | val ex +2.21% t=0.6 n=3 net=+2.02% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +1.83% t=0.5 n=14 net=+1.11% | val ex +8.08% t=2.7 n=3 net=+7.75% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +8.73% t=1.9 n=14 net=+7.31% | val ex +6.60% t=1.3 n=3 net=+6.13% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +1.63% t=0.3 n=14 net=-0.89% | val ex +3.50% t=0.5 n=3 net=+2.74% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -2.48% t=-0.3 n=12 net=+6.79% | val ex +8.21% t=0.7 n=3 net=+6.98% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK eth ('td_sell9_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +3.1% t=1.8 crash x0.55 (2/14) fa=0.57 n=14 | val mdd +4.9% t=2.3 crash x0.00 (0/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.9% t=0.9 crash x0.55 (3/14) fa=0.57 n=14 | val mdd +6.7% t=2.1 crash x0.00 (0/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.67/0.71 | val 0.69/0.67
+   W=30 fwd rv flag/all: tra 0.83/0.75 | val 0.71/0.69
+[R4 3D-a0] eth buy9p: 10 completions, hypothesis +
+[R4 3D-a0] eth ('td_buy9p_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.69% t=-0.5 n=6 net=+1.60% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -0.92% t=-0.2 n=6 net=+0.80% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +7.41% t=0.8 n=6 net=+7.29% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -8.06% t=-0.9 n=6 net=+8.10% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -5.92% t=-0.4 n=5 net=+6.22% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK eth ('td_buy9p_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -2.2% t=-0.5 crash x1.28 (2/6) fa=0.67 n=6 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -2.2% t=-0.4 crash x0.86 (2/6) fa=0.67 n=6 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] eth sell9p: 15 completions, hypothesis -
+[R4 3D-a0] eth ('td_sell9p_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -0.68% t=-0.5 n=10 net=+0.86% | val ex +2.21% t=0.6 n=3 net=+2.02% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +0.37% t=0.1 n=10 net=-0.44% | val ex +8.08% t=2.7 n=3 net=+7.75% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +7.22% t=2.2 n=10 net=+5.52% | val ex +6.60% t=1.3 n=3 net=+6.13% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +3.26% t=0.5 n=10 net=+0.23% | val ex +3.50% t=0.5 n=3 net=+2.74% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -2.90% t=-0.3 n=9 net=+7.77% | val ex +8.21% t=0.7 n=3 net=+6.98% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK eth ('td_sell9p_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +3.3% t=1.8 crash x0.38 (1/10) fa=0.50 n=10 | val mdd +4.9% t=2.3 crash x0.00 (0/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.7% t=1.7 crash x0.26 (1/10) fa=0.50 n=10 | val mdd +6.7% t=2.1 crash x0.00 (0/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.70/0.71 | val 0.69/0.67
+   W=30 fwd rv flag/all: tra 0.77/0.75 | val 0.71/0.69
+[R4 3D-a0] eth buy13: 6 completions, hypothesis +
+[R4 3D-a0] eth ('td_buy13_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.41% t=1.3 n=3 net=+1.34% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -3.51% t=-3.4 n=3 net=+3.31% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -6.32% t=-3.6 n=3 net=+6.13% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -13.36% t=-0.8 n=3 net=+13.15% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -14.59% t=-0.7 n=3 net=+14.63% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK eth ('td_buy13_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +0.9% t=1.0 crash x0.00 (0/3) fa=0.00 n=3 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -10.6% t=-1.5 crash x1.72 (2/3) fa=0.00 n=3 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] eth sell13: 13 completions, hypothesis -
+[R4 3D-a0] eth ('td_sell13_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +0.78% t=0.6 n=10 net=+0.50% | val ex +4.95% t=1.9 n=3 net=+4.81% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -2.06% t=-0.8 n=10 net=+2.36% | val ex -1.66% t=-0.5 n=3 net=+1.68% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +4.33% t=0.8 n=10 net=+3.50% | val ex -0.64% t=-0.1 n=3 net=+0.74% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +2.14% t=0.3 n=10 net=+0.43% | val ex -5.78% t=-0.8 n=3 net=+6.09% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +25.99% t=1.6 n=10 net=+22.31% | val ex +8.31% t=0.8 n=3 net=+7.46% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a0] RISK eth ('td_sell13_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +1.0% t=0.4 crash x0.77 (2/10) fa=0.60 n=10 | val mdd +1.7% t=0.5 crash x0.00 (0/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.2% t=0.4 crash x0.52 (2/10) fa=0.60 n=10 | val mdd -4.2% t=-1.0 crash x1.34 (2/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.55/0.71 | val 0.63/0.67
+   W=30 fwd rv flag/all: tra 0.67/0.75 | val 0.82/0.69
+[R4 3D-a1] btc buy9: 9 completions, hypothesis +
+[R4 3D-a1] btc ('td_buy9_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.38% t=-0.3 n=4 net=+1.26% | val - | tes ex +1.71% t=1.1 n=3 net=+1.59% -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -4.02% t=-0.5 n=4 net=+4.00% | val - | tes ex -2.57% t=-1.2 n=3 net=+2.55% -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -4.76% t=-0.5 n=4 net=+4.81% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -8.81% t=-0.9 n=4 net=+9.03% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -3.26% t=-0.1 n=4 net=+3.91% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK btc ('td_buy9_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -1.1% t=-0.2 crash x1.22 (1/4) fa=0.25 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -1.1% t=-0.1 crash x1.48 (2/4) fa=0.25 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] btc sell9: 16 completions, hypothesis -
+[R4 3D-a1] btc ('td_sell9_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.02% t=0.7 n=12 net=+0.81% | val ex +3.58% t=1.0 n=3 net=+3.38% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +0.96% t=0.3 n=12 net=+0.43% | val ex +3.58% t=0.8 n=3 net=+3.20% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +3.17% t=0.8 n=12 net=+2.32% | val ex +4.81% t=1.3 n=3 net=+4.26% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +3.33% t=0.6 n=12 net=+1.88% | val ex +4.25% t=0.8 n=3 net=+3.33% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +6.00% t=0.7 n=10 net=+3.80% | val ex +1.09% t=0.2 n=3 net=-0.38% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK btc ('td_sell9_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +2.0% t=0.8 crash x0.81 (2/12) fa=0.58 n=12 | val mdd +5.9% t=1.4 crash x0.00 (0/3) fa=1.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +2.1% t=0.7 crash x1.23 (5/12) fa=0.58 n=12 | val mdd +7.5% t=1.7 crash x0.00 (0/3) fa=1.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.41/0.56 | val 0.41/0.42
+   W=30 fwd rv flag/all: tra 0.55/0.59 | val 0.41/0.43
+[R4 3D-a1] btc buy9p: 6 completions, hypothesis +
+[R4 3D-a1] btc ('td_buy9p_btc', 'raw', 'top', 1) (3d)
+h=1: tra - | val - | tes ex +1.71% t=1.1 n=3 net=+1.59% -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra - | val - | tes ex -2.57% t=-1.2 n=3 net=+2.55% -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra - | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra - | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra - | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK btc ('td_buy9p_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra - | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra - | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] btc sell9p: 11 completions, hypothesis -
+[R4 3D-a1] btc ('td_sell9p_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex +0.81% t=0.4 n=8 net=+0.58% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +1.41% t=0.4 n=8 net=+0.79% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +2.91% t=0.6 n=8 net=+1.89% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +3.31% t=0.6 n=8 net=+1.57% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +8.91% t=0.7 n=8 net=+6.36% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK btc ('td_sell9p_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +2.9% t=0.9 crash x0.61 (1/8) fa=0.62 n=8 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.2% t=1.0 crash x0.74 (2/8) fa=0.62 n=8 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] btc buy13: 6 completions, hypothesis +
+[R4 3D-a1] btc ('td_buy13_btc', 'raw', 'top', 1) (3d)
+h=1: tra - | val - | tes ex +5.10% t=1.5 n=3 net=+4.99% -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra - | val - | tes ex +8.81% t=1.6 n=3 net=+8.66% -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra - | val - | tes ex +6.05% t=1.1 n=3 net=+5.82% -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra - | val - | tes ex +2.69% t=0.5 n=3 net=+2.31% -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra - | val - | tes ex -0.80% t=-0.1 n=3 net=+1.13% -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK btc ('td_buy13_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra - | val - | tes mdd +6.7% t=1.6 crash x0.00 (0/3) fa=0.33 n=3 -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra - | val - | tes mdd +6.9% t=1.4 crash x0.00 (0/3) fa=0.33 n=3 -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] btc sell13: 12 completions, hypothesis -
+[R4 3D-a1] btc ('td_sell13_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.88% t=1.8 n=9 net=+1.69% | val ex +0.47% t=0.4 n=3 net=+0.30% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +4.60% t=1.3 n=9 net=+4.20% | val ex -0.45% t=-0.1 n=3 net=+0.56% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +4.12% t=1.1 n=9 net=+3.49% | val ex -5.99% t=-1.8 n=3 net=+6.22% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +14.21% t=1.1 n=9 net=+12.51% | val ex -5.36% t=-1.0 n=3 net=+5.85% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +18.77% t=1.1 n=8 net=+15.05% | val ex -16.91% t=-2.8 n=3 net=+17.86% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK btc ('td_sell13_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +4.0% t=3.1 crash x0.00 (0/9) fa=0.56 n=9 | val mdd -1.9% t=-0.7 crash x2.65 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.8% t=1.6 crash x0.33 (1/9) fa=0.56 n=9 | val mdd -3.4% t=-0.8 crash x1.69 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.40/0.56 | val 0.44/0.42
+   W=30 fwd rv flag/all: tra 0.41/0.59 | val 0.40/0.43
+[R4 3D-a1] eth buy9: 12 completions, hypothesis +
+[R4 3D-a1] eth ('td_buy9_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.37% t=-0.7 n=7 net=+1.30% | val - | tes ex +1.46% t=2.7 n=3 net=+1.32% -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +2.38% t=0.4 n=7 net=+2.22% | val - | tes ex +0.02% t=0.0 n=3 net=-0.11% -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +4.38% t=0.6 n=7 net=+4.14% | val - | tes ex -3.40% t=-0.6 n=3 net=+3.31% -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +4.45% t=0.5 n=7 net=+4.04% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +12.53% t=0.8 n=7 net=+11.58% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK eth ('td_buy9_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +0.7% t=0.2 crash x1.07 (2/7) fa=0.57 n=7 | val - | tes mdd -2.4% t=-0.5 crash x1.42 (1/3) fa=0.33 n=3 -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.7% t=0.4 crash x0.71 (2/7) fa=0.57 n=7 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] eth sell9: 17 completions, hypothesis -
+[R4 3D-a1] eth ('td_sell9_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.00% t=0.5 n=14 net=+0.69% | val ex -1.71% t=-0.6 n=3 net=+1.70% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +4.23% t=1.1 n=14 net=+3.48% | val ex +0.75% t=0.5 n=3 net=+0.41% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +5.46% t=1.2 n=14 net=+4.12% | val ex +1.90% t=0.2 n=3 net=+1.41% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +0.47% t=0.1 n=14 net=-1.81% | val ex +0.34% t=0.0 n=3 net=-0.40% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -3.03% t=-0.3 n=13 net=+6.69% | val ex +5.30% t=0.4 n=3 net=+4.05% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK eth ('td_sell9_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +2.0% t=0.8 crash x0.53 (2/14) fa=0.71 n=14 | val mdd -2.2% t=-1.3 crash x1.09 (1/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.7% t=0.6 crash x0.71 (4/14) fa=0.71 n=14 | val mdd +0.5% t=0.2 crash x0.75 (1/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.77/0.72 | val 0.83/0.66
+   W=30 fwd rv flag/all: tra 0.88/0.76 | val 0.86/0.69
+[R4 3D-a1] eth buy9p: 9 completions, hypothesis +
+[R4 3D-a1] eth ('td_buy9p_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.37% t=-0.6 n=5 net=+1.29% | val - | tes ex +1.46% t=2.7 n=3 net=+1.32% -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -0.67% t=-0.1 n=5 net=+0.60% | val - | tes ex +0.02% t=0.0 n=3 net=-0.11% -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -2.38% t=-0.3 n=5 net=+2.39% | val - | tes ex -3.40% t=-0.6 n=3 net=+3.31% -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -7.43% t=-1.0 n=5 net=+7.58% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -1.68% t=-0.1 n=5 net=+2.30% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK eth ('td_buy9p_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -0.9% t=-0.2 crash x1.49 (2/5) fa=0.40 n=5 | val - | tes mdd -2.4% t=-0.5 crash x1.42 (1/3) fa=0.33 n=3 -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -1.0% t=-0.2 crash x0.99 (2/5) fa=0.40 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] eth sell9p: 12 completions, hypothesis -
+[R4 3D-a1] eth ('td_sell9p_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +0.20% t=0.1 n=10 net=-0.11% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +0.32% t=0.1 n=10 net=-0.40% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -0.48% t=-0.1 n=10 net=+1.53% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +2.01% t=0.3 n=10 net=-0.29% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -2.52% t=-0.2 n=9 net=+6.36% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK eth ('td_sell9p_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -0.8% t=-0.3 crash x0.75 (2/10) fa=0.60 n=10 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +0.0% t=0.0 crash x0.74 (3/10) fa=0.60 n=10 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] eth buy13: 7 completions, hypothesis +
+[R4 3D-a1] eth ('td_buy13_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -3.27% t=-3.2 n=3 net=+3.17% | val - | tes ex +4.00% t=0.6 n=3 net=+3.87% -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -8.86% t=-3.4 n=3 net=+8.66% | val - | tes ex +7.73% t=0.8 n=3 net=+7.55% -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -8.13% t=-4.1 n=3 net=+8.00% | val - | tes ex +3.30% t=0.4 n=3 net=+3.07% -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -7.18% t=-0.5 n=3 net=+7.26% | val - | tes ex +3.57% t=0.4 n=3 net=+3.43% -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -20.10% t=-0.8 n=3 net=+20.72% | val - | tes ex +4.70% t=0.5 n=3 net=+4.38% -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK eth ('td_buy13_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -4.0% t=-2.6 crash x1.25 (1/3) fa=0.33 n=3 | val - | tes mdd +6.5% t=0.8 crash x1.42 (1/3) fa=0.33 n=3 -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -9.9% t=-1.5 crash x1.65 (2/3) fa=0.33 n=3 | val - | tes mdd +4.1% t=0.4 crash x1.62 (2/3) fa=0.33 n=3 -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] eth sell13: 14 completions, hypothesis -
+[R4 3D-a1] eth ('td_sell13_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -0.42% t=-0.2 n=11 net=+0.56% | val ex +3.44% t=0.6 n=3 net=+3.33% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -1.25% t=-0.3 n=11 net=+1.97% | val ex -5.73% t=-0.6 n=3 net=+5.73% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -0.53% t=-0.1 n=11 net=+1.71% | val ex -5.35% t=-0.5 n=3 net=+5.46% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +4.55% t=0.7 n=11 net=+1.99% | val ex -0.92% t=-0.0 n=3 net=+1.25% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +3.34% t=0.4 n=11 net=-1.12% | val ex -8.95% t=-0.4 n=3 net=+9.53% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a1] RISK eth ('td_sell13_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -0.7% t=-0.2 crash x1.36 (4/11) fa=0.64 n=11 | val mdd -1.9% t=-0.2 crash x2.18 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +2.0% t=0.6 crash x0.90 (4/11) fa=0.64 n=11 | val mdd -6.2% t=-0.5 crash x1.51 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.77/0.72 | val 0.80/0.66
+   W=30 fwd rv flag/all: tra 0.85/0.76 | val 0.77/0.69
+[R4 3D-a2] btc buy9: 13 completions, hypothesis +
+[R4 3D-a2] btc ('td_buy9_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.96% t=-1.4 n=7 net=+1.88% | val ex -0.40% t=-0.2 n=3 net=+0.34% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -2.12% t=-0.6 n=7 net=+2.04% | val ex -1.66% t=-0.4 n=3 net=+1.70% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -4.01% t=-1.0 n=7 net=+3.98% | val ex -0.52% t=-0.1 n=3 net=+0.60% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -4.34% t=-0.9 n=6 net=+4.37% | val ex -5.79% t=-1.6 n=3 net=+6.10% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +5.35% t=0.5 n=6 net=+4.70% | val ex -5.61% t=-1.0 n=3 net=+6.10% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK btc ('td_buy9_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -1.9% t=-0.7 crash x1.46 (2/7) fa=0.57 n=7 | val mdd -2.2% t=-0.8 crash x2.77 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +0.8% t=0.3 crash x0.85 (2/7) fa=0.57 n=6 | val mdd -0.5% t=-0.2 crash x1.65 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.55/0.55 | val 0.35/0.39
+   W=30 fwd rv flag/all: tra 0.48/0.59 | val 0.42/0.41
+[R4 3D-a2] btc sell9: 16 completions, hypothesis -
+[R4 3D-a2] btc ('td_sell9_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex +0.73% t=0.7 n=13 net=+0.43% | val ex -0.72% t=-1.1 n=3 net=+0.70% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +0.68% t=0.3 n=13 net=-0.13% | val ex +3.68% t=2.1 n=3 net=+3.35% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +2.13% t=0.7 n=13 net=+0.95% | val ex -0.14% t=-0.1 n=3 net=+0.45% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +1.80% t=0.4 n=13 net=-0.12% | val ex +1.47% t=0.4 n=3 net=+0.49% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +4.02% t=0.6 n=12 net=+1.02% | val ex +1.21% t=0.2 n=3 net=-0.36% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK btc ('td_sell9_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +1.8% t=1.0 crash x0.79 (2/13) fa=0.69 n=13 | val mdd +1.1% t=1.1 crash x0.00 (0/3) fa=1.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +1.6% t=0.8 crash x0.69 (3/13) fa=0.69 n=13 | val mdd +3.2% t=2.4 crash x0.00 (0/3) fa=1.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.45/0.55 | val 0.37/0.39
+   W=30 fwd rv flag/all: tra 0.55/0.59 | val 0.34/0.41
+[R4 3D-a2] btc buy9p: 9 completions, hypothesis +
+[R4 3D-a2] btc ('td_buy9p_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex -1.99% t=-1.8 n=5 net=+1.89% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +1.13% t=0.3 n=5 net=+1.04% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -0.25% t=-0.1 n=5 net=+0.19% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -0.22% t=-0.0 n=4 net=+0.19% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +16.17% t=1.6 n=4 net=+15.43% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK btc ('td_buy9p_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +0.6% t=0.3 crash x1.02 (1/5) fa=0.80 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.2% t=1.4 crash x0.60 (1/5) fa=0.80 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] btc sell9p: 12 completions, hypothesis -
+[R4 3D-a2] btc ('td_sell9p_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex -0.39% t=-0.4 n=9 net=+0.47% | val ex -0.72% t=-1.1 n=3 net=+0.70% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -1.44% t=-0.7 n=9 net=+2.04% | val ex +3.68% t=2.1 n=3 net=+3.35% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -1.22% t=-0.5 n=9 net=+2.10% | val ex -0.14% t=-0.1 n=3 net=+0.45% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +1.59% t=0.3 n=9 net=-0.16% | val ex +1.47% t=0.4 n=3 net=+0.49% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +1.61% t=0.2 n=8 net=-1.14% | val ex +1.21% t=0.2 n=3 net=-0.36% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK btc ('td_sell9p_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +0.1% t=0.1 crash x1.13 (2/9) fa=0.67 n=9 | val mdd +1.1% t=1.1 crash x0.00 (0/3) fa=1.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -0.2% t=-0.1 crash x1.00 (3/9) fa=0.67 n=9 | val mdd +3.2% t=2.4 crash x0.00 (0/3) fa=1.00 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.42/0.55 | val 0.37/0.39
+   W=30 fwd rv flag/all: tra 0.53/0.59 | val 0.34/0.41
+[R4 3D-a2] btc buy13: 6 completions, hypothesis +
+[R4 3D-a2] btc ('td_buy13_btc', 'raw', 'top', 1) (3d)
+h=1: tra - | val - | tes ex +6.34% t=1.1 n=3 net=+6.18% -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra - | val - | tes ex +3.07% t=0.4 n=3 net=+2.88% -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra - | val - | tes ex +2.75% t=0.4 n=3 net=+2.50% -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra - | val - | tes ex +1.35% t=0.2 n=3 net=+1.03% -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra - | val - | tes ex +4.53% t=0.6 n=3 net=+3.98% -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK btc ('td_buy13_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra - | val - | tes mdd +4.3% t=0.5 crash x2.43 (1/3) fa=0.33 n=3 -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra - | val - | tes mdd +5.8% t=0.7 crash x1.35 (1/3) fa=0.33 n=3 -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] btc sell13: 13 completions, hypothesis -
+[R4 3D-a2] btc ('td_sell13_btc', 'raw', 'top', 1) (3d)
+h=1: tra ex -0.02% t=-0.0 n=10 net=+0.14% | val ex -2.60% t=-1.4 n=3 net=+2.54% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +1.89% t=0.9 n=10 net=+1.28% | val ex -2.25% t=-0.5 n=3 net=+2.28% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -0.73% t=-0.2 n=10 net=+1.46% | val ex -1.29% t=-0.3 n=3 net=+1.46% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -2.76% t=-0.7 n=10 net=+4.42% | val ex -7.31% t=-1.5 n=3 net=+7.77% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -4.83% t=-0.5 n=10 net=+8.37% | val ex -18.74% t=-2.7 n=3 net=+19.64% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK btc ('td_sell13_btc', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -0.2% t=-0.1 crash x0.51 (1/10) fa=0.60 n=10 | val mdd -0.7% t=-0.2 crash x2.77 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +0.8% t=0.4 crash x0.60 (2/10) fa=0.60 n=10 | val mdd -1.6% t=-0.4 crash x1.65 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.55/0.55 | val 0.26/0.39
+   W=30 fwd rv flag/all: tra 0.51/0.59 | val 0.31/0.41
+[R4 3D-a2] eth buy9: 12 completions, hypothesis +
+[R4 3D-a2] eth ('td_buy9_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.20% t=0.5 n=6 net=+1.07% | val ex +0.04% t=0.0 n=3 net=-0.10% | tes ex -1.76% t=-0.7 n=3 net=+1.67% -> insufficient: 9 independent episodes in train+validation (bar 30)
+h=3: tra ex +2.62% t=0.4 n=6 net=+2.45% | val ex +0.87% t=0.3 n=3 net=+0.66% | tes ex -3.04% t=-0.5 n=3 net=+2.97% -> insufficient: 9 independent episodes in train+validation (bar 30)
+h=5: tra ex +8.17% t=0.9 n=6 net=+7.95% | val ex -1.87% t=-0.2 n=3 net=+1.91% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -4.33% t=-0.5 n=6 net=+4.50% | val ex -10.16% t=-1.9 n=3 net=+10.45% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -4.13% t=-0.3 n=6 net=+4.71% | val ex -0.07% t=-0.0 n=3 net=+0.65% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK eth ('td_buy9_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +2.6% t=0.5 crash x0.61 (1/6) fa=0.50 n=6 | val mdd -1.2% t=-0.2 crash x0.97 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.5% t=0.6 crash x0.43 (1/6) fa=0.50 n=6 | val mdd -2.6% t=-0.6 crash x0.65 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.62/0.70 | val 0.59/0.67
+   W=30 fwd rv flag/all: tra 0.75/0.73 | val 0.71/0.71
+[R4 3D-a2] eth sell9: 19 completions, hypothesis -
+[R4 3D-a2] eth ('td_sell9_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +1.91% t=2.1 n=15 net=+1.55% | val ex -2.00% t=-0.5 n=3 net=+2.01% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +3.36% t=1.2 n=15 net=+2.60% | val ex +2.01% t=1.2 n=3 net=+1.65% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +4.43% t=1.1 n=15 net=+3.13% | val ex +2.45% t=0.4 n=3 net=+1.93% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +3.84% t=0.8 n=15 net=+1.81% | val ex +1.79% t=0.3 n=3 net=+0.97% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -4.14% t=-0.5 n=13 net=+7.39% | val ex -1.05% t=-0.1 n=3 net=+2.07% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK eth ('td_sell9_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +2.9% t=1.6 crash x0.49 (2/15) fa=0.47 n=15 | val mdd -0.3% t=-0.1 crash x0.97 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +3.1% t=1.5 crash x0.86 (5/15) fa=0.47 n=15 | val mdd +2.4% t=0.7 crash x1.30 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.72/0.70 | val 0.75/0.67
+   W=30 fwd rv flag/all: tra 0.84/0.73 | val 0.65/0.71
+[R4 3D-a2] eth buy9p: 9 completions, hypothesis +
+[R4 3D-a2] eth ('td_buy9p_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +3.24% t=1.5 n=5 net=+3.12% | val - | tes ex -1.76% t=-0.7 n=3 net=+1.67% -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +8.63% t=2.7 n=5 net=+8.49% | val - | tes ex -3.04% t=-0.5 n=3 net=+2.97% -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +16.32% t=2.6 n=5 net=+16.13% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +3.31% t=0.5 n=5 net=+2.96% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +10.05% t=0.9 n=5 net=+9.18% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK eth ('td_buy9p_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +7.8% t=4.4 crash x0.00 (0/5) fa=0.60 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +9.3% t=3.6 crash x0.00 (0/5) fa=0.60 n=5 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] eth sell9p: 12 completions, hypothesis -
+[R4 3D-a2] eth ('td_sell9p_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex +2.90% t=2.5 n=9 net=+2.48% | val ex -2.00% t=-0.5 n=3 net=+2.01% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex +3.46% t=1.8 n=9 net=+2.59% | val ex +2.01% t=1.2 n=3 net=+1.65% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +0.41% t=0.1 n=9 net=-0.84% | val ex +2.45% t=0.4 n=3 net=+1.93% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +3.46% t=0.5 n=9 net=+1.10% | val ex +1.79% t=0.3 n=3 net=+0.97% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -7.98% t=-1.0 n=9 net=+11.53% | val ex -1.05% t=-0.1 n=3 net=+2.07% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK eth ('td_sell9p_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +3.8% t=1.6 crash x0.41 (1/9) fa=0.44 n=9 | val mdd -0.3% t=-0.1 crash x0.97 (1/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +5.1% t=2.0 crash x0.57 (2/9) fa=0.44 n=9 | val mdd +2.4% t=0.7 crash x1.30 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.72/0.70 | val 0.75/0.67
+   W=30 fwd rv flag/all: tra 0.77/0.73 | val 0.65/0.71
+[R4 3D-a2] eth buy13: 7 completions, hypothesis +
+[R4 3D-a2] eth ('td_buy13_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -2.04% t=-1.2 n=4 net=+1.93% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -1.49% t=-0.3 n=4 net=+1.48% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex -7.13% t=-0.9 n=4 net=+7.19% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex -4.97% t=-0.3 n=4 net=+5.21% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +0.45% t=0.0 n=3 net=-0.28% | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK eth ('td_buy13_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd -4.1% t=-0.8 crash x0.91 (1/4) fa=0.50 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -6.2% t=-0.9 crash x1.29 (2/4) fa=0.50 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] eth sell13: 15 completions, hypothesis -
+[R4 3D-a2] eth ('td_sell13_eth', 'raw', 'top', 1) (3d)
+h=1: tra ex -0.96% t=-0.7 n=11 net=+1.07% | val ex -2.97% t=-0.6 n=3 net=+2.90% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=3: tra ex -1.50% t=-0.8 n=11 net=+1.87% | val ex -6.29% t=-1.1 n=3 net=+6.32% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=5: tra ex +4.02% t=0.9 n=11 net=+3.16% | val ex -12.73% t=-4.1 n=3 net=+12.83% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=10: tra ex +6.16% t=1.6 n=11 net=+4.58% | val ex -10.40% t=-0.8 n=3 net=+10.70% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex +22.56% t=1.5 n=11 net=+19.06% | val ex -18.68% t=-1.3 n=3 net=+19.30% | tes - -> insufficient: a period has fewer than 3 flagged bars
+[R4 3D-a2] RISK eth ('td_sell13_eth', 'raw', 'top', 1) (3d, crash -10%)
+W=15: tra mdd +1.9% t=1.0 crash x0.66 (2/11) fa=0.82 n=11 | val mdd -5.4% t=-1.9 crash x1.94 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd +4.8% t=2.4 crash x0.47 (2/11) fa=0.82 n=11 | val mdd -8.6% t=-1.6 crash x1.30 (2/3) fa=0.33 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   W=15 fwd rv flag/all: tra 0.56/0.70 | val 0.91/0.67
+   W=30 fwd rv flag/all: tra 0.68/0.73 | val 0.76/0.71
+[R4 3D-] share of cell-horizons whose excess sign matches the DeMark hypothesis:
+                   cells  consistent  mean_t_signed
+flag   period                                      
+buy13  test           15          14       0.661725
+       train          15           2      -1.455077
+buy9   test            9           3      -0.151792
+       train          30          11      -0.195257
+       validation     20           6      -0.425660
+buy9p  test            7           3       0.127793
+       train          25          10       0.186991
+sell13 train          30          10       0.550048
+       validation     30          26      -0.868568
+sell9  train          30           5       0.506318
+       validation     30           5       0.570743
+sell9p train          30          10       0.311960
+       validation     15           4       0.572507
+[R4 3D-] mean hypothesis-signed t by period: train -0.40 (n=160), validation -0.09 (n=95), test +0.30 (n=31)
+[R4 4H] btc buy9: 52 completions, hypothesis +
+[R4 4H] btc ('td_buy9_btc', 'raw', 'top', 1) (4h)
+h=4: tra ex -0.56% t=-0.9 n=11 net=+0.46% | val ex -0.26% t=-0.6 n=13 net=+0.16% | tes ex +0.74% t=1.4 n=27 net=+0.63% -> insufficient: 24 independent episodes in train+validation (bar 30)
+h=12: tra ex -0.84% t=-0.7 n=12 net=+0.74% | val ex +0.51% t=1.2 n=13 net=+0.40% | tes ex +0.14% t=0.2 n=25 net=+0.02% -> insufficient: 25 independent episodes in train+validation (bar 30)
+h=24: tra ex +0.43% t=0.4 n=11 net=+0.33% | val ex -0.28% t=-0.4 n=10 net=+0.22% | tes ex +0.04% t=0.1 n=22 net=-0.09% -> insufficient: 21 independent episodes in train+validation (bar 30)
+h=72: tra ex -2.64% t=-1.5 n=8 net=+2.54% | val ex +2.42% t=1.2 n=7 net=+2.23% | tes ex -2.34% t=-1.5 n=9 net=+2.34% -> insufficient: 15 independent episodes in train+validation (bar 30)
+[R4 4H] RISK btc ('td_buy9_btc', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -0.6% t=-0.6 crash x1.72 (1/12) fa=0.50 n=11 | val mdd +0.4% t=0.7 crash x0.00 (0/12) fa=0.33 n=10 | tes mdd +0.2% t=0.4 crash x0.87 (1/26) fa=0.50 n=22 -> rejected: drawdown effect changes sign across periods
+W=12: tra mdd -1.2% t=-1.1 crash x1.84 (3/12) fa=0.50 n=8 | val mdd +0.3% t=0.2 crash x1.06 (2/13) fa=0.38 n=7 | tes mdd -1.3% t=-1.0 crash x1.44 (5/25) fa=0.52 n=9 -> insufficient: 15 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.45/0.45 | val 0.34/0.37 | tes 0.40/0.39
+   W=12 fwd rv flag/all: tra 0.53/0.44 | val 0.37/0.38 | tes 0.43/0.40
+[R4 4H] btc sell9: 60 completions, hypothesis -
+[R4 4H] btc ('td_sell9_btc', 'raw', 'top', 1) (4h)
+h=4: tra ex +1.24% t=1.5 n=16 net=+1.14% | val ex +0.19% t=0.7 n=17 net=+0.09% | tes ex -0.01% t=-0.0 n=26 net=-0.08% -> rejected: excess sign differs across periods
+h=12: tra ex +0.18% t=0.2 n=16 net=+0.08% | val ex +0.04% t=0.1 n=17 net=-0.07% | tes ex -0.32% t=-0.6 n=25 net=+0.24% -> rejected: excess sign differs across periods
+h=24: tra ex -0.41% t=-0.3 n=13 net=+0.31% | val ex +0.17% t=0.2 n=13 net=+0.04% | tes ex +0.11% t=0.1 n=24 net=-0.03% -> insufficient: 26 independent episodes in train+validation (bar 30)
+h=72: tra ex +0.33% t=0.2 n=8 net=+0.23% | val ex -2.03% t=-2.2 n=8 net=+2.02% | tes ex +0.59% t=0.5 n=9 net=+0.37% -> insufficient: 16 independent episodes in train+validation (bar 30)
+[R4 4H] RISK btc ('td_sell9_btc', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd +0.1% t=0.1 crash x2.57 (2/16) fa=0.56 n=13 | val mdd +0.2% t=0.3 crash x0.00 (0/17) fa=0.29 n=13 | tes mdd -0.1% t=-0.2 crash x0.00 (0/26) fa=0.38 n=24 -> rejected: drawdown effect changes sign across periods
+W=12: tra mdd -0.2% t=-0.1 crash x1.84 (4/16) fa=0.56 n=8 | val mdd -0.4% t=-0.5 crash x0.81 (2/17) fa=0.29 n=8 | tes mdd +0.9% t=0.8 crash x0.55 (2/26) fa=0.38 n=9 -> insufficient: 16 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.50/0.45 | val 0.34/0.37 | tes 0.38/0.39
+   W=12 fwd rv flag/all: tra 0.48/0.44 | val 0.37/0.38 | tes 0.38/0.40
+[R4 4H] btc buy9p: 37 completions, hypothesis +
+[R4 4H] btc ('td_buy9p_btc', 'raw', 'top', 1) (4h)
+h=4: tra ex -0.14% t=-0.2 n=7 net=+0.04% | val ex -0.39% t=-0.8 n=10 net=+0.30% | tes ex +0.39% t=0.6 n=19 net=+0.29% -> insufficient: 17 independent episodes in train+validation (bar 30)
+h=12: tra ex -0.49% t=-0.4 n=8 net=+0.39% | val ex +0.73% t=1.7 n=10 net=+0.61% | tes ex -0.26% t=-0.4 n=18 net=+0.18% -> insufficient: 18 independent episodes in train+validation (bar 30)
+h=24: tra ex +0.36% t=0.2 n=8 net=+0.26% | val ex -0.86% t=-1.0 n=8 net=+0.80% | tes ex -0.64% t=-0.6 n=16 net=+0.57% -> insufficient: 16 independent episodes in train+validation (bar 30)
+h=72: tra ex -2.46% t=-1.1 n=8 net=+2.36% | val ex +0.87% t=0.4 n=7 net=+0.65% | tes ex -2.00% t=-1.1 n=8 net=+1.99% -> insufficient: 15 independent episodes in train+validation (bar 30)
+[R4 4H] RISK btc ('td_buy9p_btc', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -0.2% t=-0.2 crash x0.00 (0/8) fa=0.50 n=8 | val mdd +0.1% t=0.2 crash x0.00 (0/9) fa=0.22 n=8 | tes mdd -0.3% t=-0.4 crash x1.26 (1/18) fa=0.50 n=16 -> insufficient: 16 independent episodes in train+validation (bar 20)
+W=12: tra mdd -1.2% t=-0.8 crash x0.92 (1/8) fa=0.50 n=8 | val mdd -0.6% t=-0.4 crash x1.38 (2/10) fa=0.30 n=7 | tes mdd -1.3% t=-0.9 crash x1.27 (3/17) fa=0.53 n=8 -> insufficient: 15 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.43/0.45 | val 0.37/0.37 | tes 0.38/0.39
+   W=12 fwd rv flag/all: tra 0.46/0.44 | val 0.40/0.38 | tes 0.42/0.40
+[R4 4H] btc sell9p: 38 completions, hypothesis -
+[R4 4H] btc ('td_sell9p_btc', 'raw', 'top', 1) (4h)
+h=4: tra ex +1.32% t=1.1 n=11 net=+1.22% | val ex +0.48% t=1.4 n=8 net=+0.37% | tes ex +0.29% t=0.7 n=18 net=+0.19% -> insufficient: 19 independent episodes in train+validation (bar 30)
+h=12: tra ex -0.23% t=-0.2 n=11 net=+0.13% | val ex +1.47% t=2.1 n=8 net=+1.36% | tes ex +0.42% t=0.7 n=17 net=+0.30% -> insufficient: 19 independent episodes in train+validation (bar 30)
+h=24: tra ex -0.83% t=-0.5 n=10 net=+0.73% | val ex +2.55% t=2.2 n=7 net=+2.42% | tes ex +0.92% t=0.9 n=16 net=+0.78% -> insufficient: 17 independent episodes in train+validation (bar 30)
+h=72: tra ex -1.90% t=-0.9 n=8 net=+1.80% | val ex -0.47% t=-0.3 n=6 net=+0.44% | tes ex +0.99% t=0.6 n=9 net=+0.77% -> insufficient: 14 independent episodes in train+validation (bar 30)
+[R4 4H] RISK btc ('td_sell9p_btc', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -0.6% t=-0.4 crash x3.74 (2/11) fa=0.55 n=10 | val mdd +1.5% t=2.6 crash x0.00 (0/8) fa=0.25 n=7 | tes mdd +0.3% t=0.5 crash x0.00 (0/18) fa=0.33 n=16 -> insufficient: 17 independent episodes in train+validation (bar 20)
+W=12: tra mdd -0.7% t=-0.4 crash x2.01 (3/11) fa=0.55 n=8 | val mdd +1.1% t=1.1 crash x0.00 (0/8) fa=0.25 n=6 | tes mdd +1.5% t=1.4 crash x0.40 (1/18) fa=0.33 n=9 -> insufficient: 14 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.49/0.45 | val 0.31/0.37 | tes 0.38/0.39
+   W=12 fwd rv flag/all: tra 0.46/0.44 | val 0.38/0.38 | tes 0.37/0.40
+[R4 4H] btc buy13: 31 completions, hypothesis +
+[R4 4H] btc ('td_buy13_btc', 'raw', 'top', 1) (4h)
+h=4: tra ex -0.54% t=-1.2 n=6 net=+0.44% | val ex +0.59% t=1.2 n=7 net=+0.48% | tes ex +0.26% t=0.6 n=17 net=+0.16% -> insufficient: 13 independent episodes in train+validation (bar 30)
+h=12: tra ex -0.93% t=-1.0 n=6 net=+0.83% | val ex +1.09% t=1.7 n=7 net=+0.97% | tes ex -1.26% t=-1.9 n=17 net=+1.18% -> insufficient: 13 independent episodes in train+validation (bar 30)
+h=24: tra ex -0.03% t=-0.0 n=6 net=-0.07% | val ex +1.17% t=0.7 n=6 net=+1.03% | tes ex -1.36% t=-1.2 n=15 net=+1.29% -> insufficient: 12 independent episodes in train+validation (bar 30)
+h=72: tra ex -1.01% t=-0.4 n=5 net=+0.91% | val ex +1.29% t=0.5 n=5 net=+1.06% | tes ex -4.84% t=-2.0 n=8 net=+4.82% -> insufficient: 10 independent episodes in train+validation (bar 30)
+[R4 4H] RISK btc ('td_buy13_btc', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -0.2% t=-0.3 crash x0.00 (0/6) fa=0.67 n=6 | val mdd +0.3% t=0.3 crash x0.00 (0/7) fa=0.57 n=6 | tes mdd -1.7% t=-1.5 crash x4.00 (3/17) fa=0.35 n=15 -> insufficient: 12 independent episodes in train+validation (bar 20)
+W=12: tra mdd +0.2% t=0.1 crash x1.23 (1/6) fa=0.67 n=5 | val mdd -0.3% t=-0.2 crash x1.98 (2/7) fa=0.57 n=5 | tes mdd -4.4% t=-2.1 crash x2.54 (6/17) fa=0.35 n=8 -> insufficient: 10 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.38/0.45 | val 0.41/0.37 | tes 0.45/0.39
+   W=12 fwd rv flag/all: tra 0.37/0.44 | val 0.41/0.38 | tes 0.46/0.40
+[R4 4H] btc sell13: 45 completions, hypothesis -
+[R4 4H] btc ('td_sell13_btc', 'raw', 'top', 1) (4h)
+h=4: tra ex +0.38% t=0.6 n=13 net=+0.28% | val ex -0.07% t=-0.2 n=11 net=-0.03% | tes ex -0.37% t=-1.1 n=19 net=+0.28% -> insufficient: 24 independent episodes in train+validation (bar 30)
+h=12: tra ex +1.25% t=1.1 n=13 net=+1.15% | val ex +0.45% t=1.1 n=11 net=+0.34% | tes ex -0.58% t=-1.0 n=19 net=+0.50% -> insufficient: 24 independent episodes in train+validation (bar 30)
+h=24: tra ex +1.23% t=0.9 n=13 net=+1.13% | val ex -0.49% t=-0.6 n=10 net=+0.41% | tes ex -0.98% t=-1.6 n=18 net=+0.92% -> insufficient: 23 independent episodes in train+validation (bar 30)
+h=72: tra ex +0.30% t=0.2 n=6 net=+0.20% | val ex -1.90% t=-1.0 n=6 net=+1.85% | tes ex +0.79% t=0.5 n=10 net=+0.56% -> insufficient: 12 independent episodes in train+validation (bar 30)
+[R4 4H] RISK btc ('td_sell13_btc', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd +0.3% t=0.4 crash x0.00 (0/13) fa=0.62 n=13 | val mdd +0.1% t=0.2 crash x0.00 (0/11) fa=0.09 n=10 | tes mdd -0.0% t=-0.0 crash x0.00 (0/19) fa=0.37 n=18 -> rejected: drawdown effect changes sign across periods
+W=12: tra mdd +0.1% t=0.1 crash x1.84 (3/12) fa=0.58 n=6 | val mdd -0.9% t=-0.7 crash x1.26 (2/11) fa=0.09 n=6 | tes mdd +0.8% t=0.8 crash x0.38 (1/19) fa=0.37 n=10 -> insufficient: 12 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.51/0.45 | val 0.32/0.37 | tes 0.37/0.39
+   W=12 fwd rv flag/all: tra 0.44/0.44 | val 0.35/0.38 | tes 0.37/0.40
+[R4 4H] eth buy9: 47 completions, hypothesis +
+[R4 4H] eth ('td_buy9_eth', 'raw', 'top', 1) (4h)
+h=4: tra ex -0.90% t=-0.6 n=10 net=+0.80% | val ex -1.19% t=-0.7 n=9 net=+1.09% | tes ex +0.06% t=0.1 n=28 net=-0.04% -> insufficient: 19 independent episodes in train+validation (bar 30)
+h=12: tra ex -1.65% t=-1.2 n=10 net=+1.55% | val ex -0.30% t=-0.2 n=9 net=+0.21% | tes ex -0.67% t=-0.7 n=26 net=+0.58% -> insufficient: 19 independent episodes in train+validation (bar 30)
+h=24: tra ex -2.03% t=-1.0 n=10 net=+1.93% | val ex -0.70% t=-0.5 n=8 net=+0.63% | tes ex -1.00% t=-0.8 n=23 net=+0.92% -> insufficient: 18 independent episodes in train+validation (bar 30)
+h=72: tra ex -4.00% t=-1.3 n=8 net=+3.90% | val ex +0.56% t=0.1 n=5 net=+0.39% | tes ex -3.19% t=-1.3 n=10 net=+3.11% -> insufficient: 13 independent episodes in train+validation (bar 30)
+[R4 4H] RISK eth ('td_buy9_eth', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -1.5% t=-1.0 crash x2.09 (3/10) fa=0.40 n=10 | val mdd +0.1% t=0.1 crash x1.01 (1/9) fa=0.44 n=8 | tes mdd -0.7% t=-0.7 crash x1.99 (4/27) fa=0.44 n=23 -> insufficient: 18 independent episodes in train+validation (bar 20)
+W=12: tra mdd -2.5% t=-1.5 crash x1.63 (6/10) fa=0.40 n=8 | val mdd -0.7% t=-0.3 crash x1.31 (4/9) fa=0.44 n=5 | tes mdd -3.0% t=-1.5 crash x1.39 (8/26) fa=0.46 n=10 -> insufficient: 13 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.69/0.70 | val 0.65/0.63 | tes 0.56/0.52
+   W=12 fwd rv flag/all: tra 0.75/0.71 | val 0.64/0.64 | tes 0.60/0.54
+[R4 4H] eth sell9: 54 completions, hypothesis -
+[R4 4H] eth ('td_sell9_eth', 'raw', 'top', 1) (4h)
+h=4: tra ex -0.19% t=-0.3 n=18 net=+0.09% | val ex -0.49% t=-0.9 n=14 net=+0.39% | tes ex -0.21% t=-0.5 n=22 net=+0.12% -> rejected: validation t -0.89 below 2.5
+h=12: tra ex -2.01% t=-1.8 n=17 net=+1.91% | val ex +1.30% t=0.9 n=14 net=+1.20% | tes ex -1.20% t=-1.8 n=22 net=+1.12% -> rejected: excess sign differs across periods
+h=24: tra ex -1.08% t=-0.6 n=16 net=+0.98% | val ex +2.79% t=1.5 n=11 net=+2.68% | tes ex -0.37% t=-0.4 n=19 net=+0.31% -> insufficient: 27 independent episodes in train+validation (bar 30)
+h=72: tra ex -4.04% t=-1.4 n=8 net=+3.94% | val ex +1.32% t=0.4 n=5 net=+1.18% | tes ex -0.03% t=-0.0 n=13 net=+0.03% -> insufficient: 13 independent episodes in train+validation (bar 30)
+[R4 4H] RISK eth ('td_sell9_eth', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -0.6% t=-0.5 crash x1.55 (4/18) fa=0.33 n=16 | val mdd +1.0% t=1.0 crash x0.65 (1/14) fa=0.50 n=11 | tes mdd -0.2% t=-0.3 crash x0.61 (1/22) fa=0.36 n=19 -> rejected: drawdown effect changes sign across periods
+W=12: tra mdd -3.0% t=-1.5 crash x1.36 (8/16) fa=0.25 n=8 | val mdd +0.0% t=0.0 crash x1.05 (5/14) fa=0.50 n=5 | tes mdd +0.6% t=0.4 crash x1.23 (6/22) fa=0.36 n=13 -> insufficient: 13 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.68/0.70 | val 0.59/0.63 | tes 0.50/0.52
+   W=12 fwd rv flag/all: tra 0.81/0.71 | val 0.66/0.64 | tes 0.51/0.54
+[R4 4H] eth buy9p: 30 completions, hypothesis +
+[R4 4H] eth ('td_buy9p_eth', 'raw', 'top', 1) (4h)
+h=4: tra ex -1.48% t=-1.0 n=8 net=+1.38% | val ex +0.22% t=0.1 n=5 net=+0.12% | tes ex +0.29% t=0.4 n=17 net=+0.19% -> insufficient: 13 independent episodes in train+validation (bar 30)
+h=12: tra ex -2.40% t=-2.1 n=8 net=+2.30% | val ex +0.79% t=0.4 n=5 net=+0.68% | tes ex -1.56% t=-1.1 n=17 net=+1.47% -> insufficient: 13 independent episodes in train+validation (bar 30)
+h=24: tra ex -3.31% t=-1.5 n=8 net=+3.21% | val ex -0.62% t=-0.4 n=5 net=+0.55% | tes ex -1.28% t=-0.7 n=15 net=+1.19% -> insufficient: 13 independent episodes in train+validation (bar 30)
+h=72: tra ex -4.45% t=-1.4 n=7 net=+4.35% | val ex +4.22% t=0.7 n=5 net=+4.03% | tes ex -0.59% t=-0.2 n=7 net=+0.51% -> insufficient: 12 independent episodes in train+validation (bar 30)
+[R4 4H] RISK eth ('td_buy9p_eth', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -2.3% t=-1.4 crash x2.61 (3/8) fa=0.38 n=8 | val mdd +0.1% t=0.0 crash x0.00 (0/5) fa=0.40 n=5 | tes mdd -1.4% t=-0.9 crash x2.37 (3/17) fa=0.47 n=15 -> insufficient: 13 independent episodes in train+validation (bar 20)
+W=12: tra mdd -2.2% t=-1.5 crash x1.70 (5/8) fa=0.38 n=7 | val mdd -0.9% t=-0.3 crash x1.18 (2/5) fa=0.40 n=5 | tes mdd -1.6% t=-0.8 crash x1.13 (4/16) fa=0.50 n=7 -> insufficient: 12 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.74/0.70 | val 0.69/0.63 | tes 0.58/0.52
+   W=12 fwd rv flag/all: tra 0.69/0.71 | val 0.69/0.64 | tes 0.58/0.54
+[R4 4H] eth sell9p: 37 completions, hypothesis -
+[R4 4H] eth ('td_sell9p_eth', 'raw', 'top', 1) (4h)
+h=4: tra ex -0.45% t=-0.5 n=10 net=+0.35% | val ex -0.57% t=-1.0 n=12 net=+0.47% | tes ex +0.33% t=0.6 n=15 net=+0.22% -> insufficient: 22 independent episodes in train+validation (bar 30)
+h=12: tra ex -2.92% t=-1.8 n=9 net=+2.82% | val ex +1.74% t=1.0 n=12 net=+1.64% | tes ex -0.50% t=-0.7 n=15 net=+0.42% -> insufficient: 21 independent episodes in train+validation (bar 30)
+h=24: tra ex -3.43% t=-1.4 n=9 net=+3.33% | val ex +3.84% t=1.9 n=9 net=+3.72% | tes ex +1.30% t=1.1 n=13 net=+1.15% -> insufficient: 18 independent episodes in train+validation (bar 30)
+h=72: tra ex -9.69% t=-2.3 n=4 net=+9.59% | val ex +3.93% t=1.0 n=4 net=+3.80% | tes ex +1.21% t=0.6 n=9 net=+0.98% -> insufficient: 8 independent episodes in train+validation (bar 30)
+[R4 4H] RISK eth ('td_sell9p_eth', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -1.5% t=-0.9 crash x2.09 (3/10) fa=0.20 n=9 | val mdd +1.4% t=1.6 crash x0.00 (0/12) fa=0.58 n=9 | tes mdd +0.8% t=1.1 crash x0.00 (0/15) fa=0.47 n=13 -> insufficient: 18 independent episodes in train+validation (bar 20)
+W=12: tra mdd -6.4% t=-2.0 crash x1.81 (6/9) fa=0.11 n=4 | val mdd +1.2% t=0.7 crash x0.98 (4/12) fa=0.58 n=4 | tes mdd +1.6% t=1.0 crash x1.21 (4/15) fa=0.47 n=9 -> insufficient: 8 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.71/0.70 | val 0.60/0.63 | tes 0.48/0.52
+   W=12 fwd rv flag/all: tra 0.75/0.71 | val 0.66/0.64 | tes 0.50/0.54
+[R4 4H] eth buy13: 29 completions, hypothesis +
+[R4 4H] eth ('td_buy13_eth', 'raw', 'top', 1) (4h)
+h=4: tra ex +1.02% t=1.0 n=6 net=+0.92% | val ex -1.69% t=-2.8 n=6 net=+1.59% | tes ex -0.59% t=-1.0 n=17 net=+0.48% -> insufficient: 12 independent episodes in train+validation (bar 30)
+h=12: tra ex +0.08% t=0.0 n=6 net=-0.02% | val ex -3.70% t=-1.6 n=6 net=+3.62% | tes ex -1.92% t=-1.5 n=17 net=+1.82% -> insufficient: 12 independent episodes in train+validation (bar 30)
+h=24: tra ex +1.20% t=0.6 n=6 net=+1.10% | val ex -4.89% t=-2.5 n=6 net=+4.83% | tes ex -1.44% t=-1.1 n=17 net=+1.34% -> insufficient: 12 independent episodes in train+validation (bar 30)
+h=72: tra ex -1.24% t=-0.4 n=6 net=+1.14% | val ex -7.67% t=-2.1 n=4 net=+7.68% | tes ex -3.73% t=-1.2 n=8 net=+3.64% -> insufficient: 10 independent episodes in train+validation (bar 30)
+[R4 4H] RISK eth ('td_buy13_eth', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd +0.1% t=0.1 crash x0.00 (0/6) fa=0.17 n=6 | val mdd -2.7% t=-1.3 crash x3.02 (2/6) fa=0.17 n=6 | tes mdd -1.9% t=-1.6 crash x2.37 (3/17) fa=0.29 n=17 -> insufficient: 12 independent episodes in train+validation (bar 20)
+W=12: tra mdd +2.2% t=1.1 crash x0.45 (1/6) fa=0.17 n=6 | val mdd -3.1% t=-1.4 crash x1.96 (4/6) fa=0.17 n=4 | tes mdd -3.3% t=-1.4 crash x1.60 (6/17) fa=0.29 n=8 -> insufficient: 10 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.57/0.70 | val 0.68/0.63 | tes 0.62/0.52
+   W=12 fwd rv flag/all: tra 0.63/0.71 | val 0.66/0.64 | tes 0.60/0.54
+[R4 4H] eth sell13: 34 completions, hypothesis -
+[R4 4H] eth ('td_sell13_eth', 'raw', 'top', 1) (4h)
+h=4: tra ex -1.20% t=-1.4 n=11 net=+1.10% | val ex -0.80% t=-0.9 n=9 net=+0.70% | tes ex +0.50% t=1.0 n=14 net=+0.39% -> insufficient: 20 independent episodes in train+validation (bar 30)
+h=12: tra ex -0.14% t=-0.1 n=11 net=+0.04% | val ex +0.36% t=0.2 n=8 net=+0.25% | tes ex -0.79% t=-0.7 n=14 net=+0.71% -> insufficient: 19 independent episodes in train+validation (bar 30)
+h=24: tra ex -0.92% t=-0.6 n=11 net=+0.82% | val ex -0.53% t=-0.2 n=9 net=+0.45% | tes ex -0.09% t=-0.1 n=14 net=+0.03% -> insufficient: 20 independent episodes in train+validation (bar 30)
+h=72: tra ex -0.86% t=-0.2 n=8 net=+0.76% | val ex -1.90% t=-0.6 n=5 net=+1.84% | tes ex -0.10% t=-0.0 n=11 net=+0.11% -> insufficient: 13 independent episodes in train+validation (bar 30)
+[R4 4H] RISK eth ('td_sell13_eth', 'raw', 'top', 1) (4h, crash -10%)
+W=4: tra mdd -0.2% t=-0.1 crash x1.27 (2/11) fa=0.55 n=11 | val mdd +0.3% t=0.2 crash x2.01 (2/9) fa=0.56 n=9 | tes mdd +0.2% t=0.3 crash x0.96 (1/14) fa=0.43 n=14 -> rejected: drawdown effect changes sign across periods
+W=12: tra mdd +0.4% t=0.2 crash x0.82 (3/10) fa=0.50 n=8 | val mdd -1.4% t=-0.8 crash x0.98 (3/9) fa=0.56 n=5 | tes mdd +0.9% t=0.5 crash x0.65 (2/14) fa=0.43 n=11 -> insufficient: 13 independent episodes in train+validation (bar 20)
+   W=4 fwd rv flag/all: tra 0.77/0.70 | val 0.61/0.63 | tes 0.50/0.52
+   W=12 fwd rv flag/all: tra 0.71/0.71 | val 0.70/0.64 | tes 0.51/0.54
+[R4 4H] share of cell-horizons whose excess sign matches the DeMark hypothesis:
+                   cells  consistent  mean_t_signed
+flag   period                                      
+buy13  test            8           1      -1.165789
+       train           8           3      -0.182700
+       validation      8           4      -0.600544
+buy9   test            8           4      -0.320409
+       train           8           1      -0.871486
+       validation      8           3       0.008264
+buy9p  test            8           2      -0.389839
+       train           8           1      -0.933316
+       validation      8           5       0.130618
+sell13 test            8           6      -0.376745
+       train           8           4       0.054050
+       validation      8           6      -0.273822
+sell9  test            8           6      -0.341134
+       train           8           5      -0.321488
+       validation      8           2       0.075683
+sell9p test            8           1       0.562711
+       train           8           7      -0.800177
+       validation      8           2       1.042189
+[R4 4H] mean hypothesis-signed t by period: train -0.15 (n=48), validation -0.22 (n=48), test -0.29 (n=48)
+[R4 1H] btc buy9: 207 completions, hypothesis +
+[R4 1H] btc ('td_buy9_btc', 'raw', 'top', 1) (1h)
+h=4: tra ex -0.07% t=-0.5 n=42 net=-0.03% | val ex +0.13% t=1.2 n=54 net=+0.02% | tes ex -0.20% t=-1.9 n=95 net=+0.10% -> rejected: excess sign differs across periods
+h=12: tra ex -0.03% t=-0.1 n=43 net=-0.07% | val ex +0.00% t=0.0 n=52 net=-0.10% | tes ex -0.39% t=-2.6 n=92 net=+0.30% -> rejected: excess sign differs across periods
+h=24: tra ex +0.22% t=0.6 n=35 net=+0.12% | val ex +0.02% t=0.1 n=46 net=-0.08% | tes ex -0.31% t=-1.3 n=77 net=+0.22% -> rejected: excess sign differs across periods
+h=72: tra ex -0.03% t=-0.0 n=24 net=-0.07% | val ex -0.16% t=-0.4 n=24 net=+0.08% | tes ex -0.33% t=-0.9 n=48 net=+0.25% -> rejected: validation t -0.44 below 2.5
+[R4 1H] RISK btc ('td_buy9_btc', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd -0.1% t=-0.3 crash x0.00 (0/43) fa=0.60 n=35 | val mdd -0.1% t=-0.3 crash x0.00 (0/54) fa=0.41 n=46 | tes mdd -0.5% t=-2.7 crash x4.76 (1/95) fa=0.40 n=77 -> rejected: validation t -0.33 on mdd below 2.5
+W=3: tra mdd -0.3% t=-0.9 crash x2.06 (2/43) fa=0.60 n=24 | val mdd -0.2% t=-0.7 crash x1.22 (1/54) fa=0.41 n=24 | tes mdd -0.6% t=-2.0 crash x2.05 (6/94) fa=0.40 n=48 -> rejected: validation t -0.7 on mdd below 2.5
+   W=1 fwd rv flag/all: tra 0.43/0.40 | val 0.40/0.36 | tes 0.44/0.38
+   W=3 fwd rv flag/all: tra 0.41/0.40 | val 0.40/0.37 | tes 0.43/0.39
+[R4 1H] btc sell9: 218 completions, hypothesis -
+[R4 1H] btc ('td_sell9_btc', 'raw', 'top', 1) (1h)
+h=4: tra ex +0.04% t=0.4 n=49 net=-0.06% | val ex -0.27% t=-2.5 n=60 net=+0.17% | tes ex -0.02% t=-0.3 n=95 net=-0.08% -> rejected: excess sign differs across periods
+h=12: tra ex +0.23% t=1.2 n=49 net=+0.13% | val ex -0.52% t=-2.7 n=57 net=+0.42% | tes ex -0.04% t=-0.4 n=94 net=-0.05% -> rejected: excess sign differs across periods
+h=24: tra ex -0.26% t=-0.8 n=44 net=+0.16% | val ex -0.63% t=-2.5 n=51 net=+0.54% | tes ex +0.05% t=0.3 n=81 net=-0.06% -> rejected: excess sign differs across periods
+h=72: tra ex +0.19% t=0.4 n=22 net=+0.09% | val ex -0.31% t=-0.8 n=24 net=+0.24% | tes ex +0.00% t=0.0 n=37 net=-0.12% -> rejected: excess sign differs across periods
+[R4 1H] RISK btc ('td_sell9_btc', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd -0.0% t=-0.2 crash x0.00 (0/51) fa=0.65 n=44 | val mdd -0.4% t=-2.5 crash x0.00 (0/60) fa=0.33 n=51 | tes mdd +0.2% t=1.6 crash x0.00 (0/95) fa=0.46 n=81 -> rejected: drawdown effect changes sign across periods
+W=3: tra mdd +0.5% t=1.8 crash x0.90 (1/49) fa=0.67 n=22 | val mdd -0.3% t=-1.2 crash x1.10 (1/60) fa=0.33 n=24 | tes mdd +0.1% t=0.4 crash x0.68 (2/95) fa=0.46 n=37 -> rejected: drawdown effect changes sign across periods
+   W=1 fwd rv flag/all: tra 0.41/0.40 | val 0.34/0.36 | tes 0.35/0.38
+   W=3 fwd rv flag/all: tra 0.39/0.40 | val 0.36/0.37 | tes 0.38/0.39
+[R4 1H] btc buy9p: 153 completions, hypothesis +
+[R4 1H] btc ('td_buy9p_btc', 'raw', 'top', 1) (1h)
+h=4: tra ex -0.15% t=-0.9 n=31 net=+0.05% | val ex +0.12% t=0.9 n=40 net=+0.02% | tes ex -0.14% t=-1.2 n=71 net=+0.04% -> rejected: excess sign differs across periods
+h=12: tra ex -0.09% t=-0.3 n=32 net=-0.01% | val ex -0.05% t=-0.2 n=39 net=-0.05% | tes ex -0.32% t=-1.8 n=70 net=+0.23% -> rejected: validation t -0.22 below 2.5
+h=24: tra ex +0.09% t=0.2 n=27 net=-0.01% | val ex -0.20% t=-0.7 n=37 net=+0.11% | tes ex -0.40% t=-1.4 n=63 net=+0.31% -> rejected: excess sign differs across periods
+h=72: tra ex -0.25% t=-0.3 n=18 net=+0.15% | val ex -0.33% t=-0.7 n=24 net=+0.25% | tes ex -0.32% t=-0.8 n=41 net=+0.25% -> rejected: validation t -0.69 below 2.5
+[R4 1H] RISK btc ('td_buy9p_btc', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd -0.2% t=-0.8 crash x0.00 (0/34) fa=0.65 n=27 | val mdd -0.1% t=-0.7 crash x0.00 (0/40) fa=0.42 n=37 | tes mdd -0.5% t=-2.0 crash x6.37 (1/71) fa=0.38 n=63 -> rejected: validation t -0.65 on mdd below 2.5
+W=3: tra mdd -0.3% t=-0.7 crash x1.38 (1/32) fa=0.69 n=18 | val mdd -0.3% t=-0.8 crash x0.00 (0/40) fa=0.42 n=24 | tes mdd -0.5% t=-1.4 crash x1.84 (4/70) fa=0.39 n=41 -> rejected: validation t -0.78 on mdd below 2.5
+   W=1 fwd rv flag/all: tra 0.44/0.40 | val 0.41/0.36 | tes 0.43/0.38
+   W=3 fwd rv flag/all: tra 0.41/0.40 | val 0.41/0.37 | tes 0.42/0.39
+[R4 1H] btc sell9p: 168 completions, hypothesis -
+[R4 1H] btc ('td_sell9p_btc', 'raw', 'top', 1) (1h)
+h=4: tra ex +0.00% t=0.0 n=37 net=-0.10% | val ex -0.17% t=-2.0 n=47 net=+0.07% | tes ex -0.01% t=-0.1 n=71 net=-0.09% -> rejected: excess sign differs across periods
+h=12: tra ex +0.19% t=0.8 n=39 net=+0.09% | val ex -0.49% t=-2.1 n=44 net=+0.40% | tes ex +0.04% t=0.3 n=71 net=-0.06% -> rejected: excess sign differs across periods
+h=24: tra ex -0.23% t=-0.8 n=35 net=+0.13% | val ex -0.71% t=-2.4 n=40 net=+0.62% | tes ex +0.16% t=0.8 n=65 net=+0.05% -> rejected: excess sign differs across periods
+h=72: tra ex +0.39% t=0.9 n=19 net=+0.29% | val ex -0.35% t=-0.8 n=27 net=+0.28% | tes ex +0.22% t=0.5 n=42 net=+0.09% -> rejected: excess sign differs across periods
+[R4 1H] RISK btc ('td_sell9p_btc', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd +0.1% t=0.3 crash x0.00 (0/39) fa=0.62 n=35 | val mdd -0.4% t=-1.8 crash x0.00 (0/47) fa=0.28 n=40 | tes mdd +0.3% t=2.3 crash x0.00 (0/71) fa=0.46 n=65 -> rejected: drawdown effect changes sign across periods
+W=3: tra mdd +0.6% t=2.1 crash x0.00 (0/38) fa=0.63 n=19 | val mdd -0.3% t=-0.9 crash x1.40 (1/47) fa=0.28 n=27 | tes mdd +0.2% t=0.8 crash x0.45 (1/71) fa=0.46 n=42 -> rejected: drawdown effect changes sign across periods
+   W=1 fwd rv flag/all: tra 0.40/0.40 | val 0.33/0.36 | tes 0.35/0.38
+   W=3 fwd rv flag/all: tra 0.37/0.40 | val 0.36/0.37 | tes 0.39/0.39
+[R4 1H] btc buy13: 123 completions, hypothesis +
+[R4 1H] btc ('td_buy13_btc', 'raw', 'top', 1) (1h)
+h=4: tra ex +0.29% t=1.6 n=21 net=+0.19% | val ex +0.35% t=1.6 n=32 net=+0.25% | tes ex -0.10% t=-0.8 n=62 net=-0.00% -> rejected: excess sign differs across periods
+h=12: tra ex +0.03% t=0.1 n=18 net=-0.07% | val ex +0.15% t=0.5 n=32 net=+0.05% | tes ex -0.08% t=-0.4 n=62 net=-0.02% -> rejected: excess sign differs across periods
+h=24: tra ex +0.17% t=0.3 n=19 net=+0.07% | val ex -0.06% t=-0.2 n=30 net=-0.03% | tes ex -0.18% t=-0.7 n=62 net=+0.08% -> rejected: excess sign differs across periods
+h=72: tra ex +0.24% t=0.3 n=18 net=+0.14% | val ex -0.75% t=-1.4 n=23 net=+0.67% | tes ex -0.23% t=-0.5 n=42 net=+0.16% -> rejected: excess sign differs across periods
+[R4 1H] RISK btc ('td_buy13_btc', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd +0.3% t=1.0 crash x0.00 (0/20) fa=0.65 n=19 | val mdd -0.3% t=-1.0 crash x0.00 (0/31) fa=0.39 n=30 | tes mdd -0.1% t=-0.7 crash x0.00 (0/62) fa=0.42 n=62 -> rejected: drawdown effect changes sign across periods
+W=3: tra mdd +0.1% t=0.2 crash x2.11 (1/21) fa=0.62 n=18 | val mdd -0.5% t=-1.1 crash x2.06 (1/32) fa=0.41 n=23 | tes mdd -0.1% t=-0.3 crash x1.07 (2/60) fa=0.43 n=42 -> rejected: drawdown effect changes sign across periods
+   W=1 fwd rv flag/all: tra 0.40/0.40 | val 0.43/0.36 | tes 0.38/0.38
+   W=3 fwd rv flag/all: tra 0.40/0.40 | val 0.40/0.37 | tes 0.39/0.39
+[R4 1H] btc sell13: 137 completions, hypothesis -
+[R4 1H] btc ('td_sell13_btc', 'raw', 'top', 1) (1h)
+h=4: tra ex +0.08% t=0.6 n=32 net=-0.02% | val ex +0.15% t=0.9 n=31 net=+0.05% | tes ex -0.21% t=-1.9 n=64 net=+0.12% -> rejected: excess sign differs across periods
+h=12: tra ex -0.11% t=-0.5 n=34 net=+0.01% | val ex -0.18% t=-0.9 n=31 net=+0.09% | tes ex -0.32% t=-1.9 n=64 net=+0.23% -> rejected: validation t -0.86 below 2.5
+h=24: tra ex +0.46% t=1.0 n=30 net=+0.36% | val ex +0.12% t=0.5 n=31 net=+0.02% | tes ex -0.06% t=-0.2 n=63 net=-0.03% -> rejected: excess sign differs across periods
+h=72: tra ex -0.64% t=-1.2 n=21 net=+0.54% | val ex +0.28% t=0.6 n=22 net=+0.15% | tes ex -0.16% t=-0.3 n=42 net=+0.08% -> rejected: excess sign differs across periods
+[R4 1H] RISK btc ('td_sell13_btc', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd +0.4% t=2.1 crash x0.00 (0/31) fa=0.61 n=30 | val mdd +0.2% t=0.8 crash x0.00 (0/31) fa=0.29 n=31 | tes mdd -0.1% t=-0.7 crash x0.00 (0/64) fa=0.47 n=63 -> rejected: drawdown effect changes sign across periods
+W=3: tra mdd +0.1% t=0.4 crash x1.38 (1/32) fa=0.56 n=21 | val mdd +0.2% t=0.5 crash x0.00 (0/30) fa=0.27 n=22 | tes mdd -0.4% t=-1.4 crash x1.00 (2/64) fa=0.47 n=42 -> rejected: drawdown effect changes sign across periods
+   W=1 fwd rv flag/all: tra 0.40/0.40 | val 0.33/0.36 | tes 0.39/0.38
+   W=3 fwd rv flag/all: tra 0.37/0.40 | val 0.36/0.37 | tes 0.40/0.39
+[R4 1H] eth buy9: 187 completions, hypothesis +
+[R4 1H] eth ('td_buy9_eth', 'raw', 'top', 1) (1h)
+h=4: tra ex -0.49% t=-2.0 n=41 net=+0.39% | val ex +0.17% t=1.4 n=44 net=+0.07% | tes ex -0.08% t=-0.7 n=87 net=-0.02% -> rejected: excess sign differs across periods
+h=12: tra ex -0.23% t=-0.5 n=38 net=+0.13% | val ex -0.01% t=-0.0 n=44 net=-0.09% | tes ex -0.31% t=-1.5 n=85 net=+0.21% -> rejected: validation t -0.04 below 2.5
+h=24: tra ex +0.03% t=0.0 n=37 net=-0.07% | val ex +0.11% t=0.2 n=38 net=-0.00% | tes ex -0.25% t=-0.9 n=77 net=+0.15% -> rejected: excess sign differs across periods
+h=72: tra ex +1.20% t=1.2 n=23 net=+1.10% | val ex +0.08% t=0.1 n=26 net=-0.04% | tes ex +0.14% t=0.2 n=46 net=+0.03% -> rejected: validation t 0.09 below 2.5
+[R4 1H] RISK eth ('td_buy9_eth', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd -1.0% t=-1.5 crash x3.71 (3/40) fa=0.53 n=37 | val mdd +0.0% t=0.2 crash x0.00 (0/44) fa=0.50 n=38 | tes mdd -0.2% t=-1.1 crash x1.70 (1/87) fa=0.46 n=77 -> rejected: drawdown effect changes sign across periods
+W=3: tra mdd -0.0% t=-0.1 crash x1.11 (4/38) fa=0.53 n=23 | val mdd -0.3% t=-0.6 crash x0.62 (2/44) fa=0.50 n=26 | tes mdd -0.3% t=-0.8 crash x1.25 (7/87) fa=0.46 n=46 -> rejected: validation t -0.62 on mdd below 2.5
+   W=1 fwd rv flag/all: tra 0.77/0.66 | val 0.67/0.61 | tes 0.55/0.50
+   W=3 fwd rv flag/all: tra 0.71/0.69 | val 0.66/0.63 | tes 0.55/0.53
+[R4 1H] eth sell9: 220 completions, hypothesis -
+[R4 1H] eth ('td_sell9_eth', 'raw', 'top', 1) (1h)
+h=4: tra ex +0.05% t=0.3 n=50 net=-0.05% | val ex -0.30% t=-1.8 n=63 net=+0.20% | tes ex +0.02% t=0.2 n=92 net=-0.08% -> rejected: excess sign differs across periods
+h=12: tra ex -0.03% t=-0.1 n=55 net=-0.07% | val ex +0.13% t=0.4 n=62 net=+0.03% | tes ex +0.08% t=0.5 n=86 net=-0.02% -> rejected: excess sign differs across periods
+h=24: tra ex -0.02% t=-0.0 n=47 net=-0.08% | val ex +0.18% t=0.5 n=52 net=+0.07% | tes ex +0.27% t=1.0 n=74 net=+0.16% -> rejected: excess sign differs across periods
+h=72: tra ex +1.59% t=1.5 n=22 net=+1.49% | val ex +0.02% t=0.0 n=23 net=-0.10% | tes ex +0.02% t=0.0 n=38 net=-0.11% -> rejected: validation t 0.03 below 2.5
+[R4 1H] RISK eth ('td_sell9_eth', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd -0.0% t=-0.0 crash x0.90 (1/55) fa=0.53 n=47 | val mdd +0.0% t=0.1 crash x0.00 (0/63) fa=0.46 n=52 | tes mdd +0.3% t=1.6 crash x0.00 (0/92) fa=0.47 n=74 -> rejected: drawdown effect changes sign across periods
+W=3: tra mdd +0.4% t=0.8 crash x0.40 (2/53) fa=0.55 n=22 | val mdd +0.4% t=1.0 crash x0.65 (3/63) fa=0.46 n=23 | tes mdd +0.2% t=0.5 crash x0.51 (3/92) fa=0.47 n=38 -> rejected: validation t 0.98 on mdd below 2.5
+   W=1 fwd rv flag/all: tra 0.69/0.66 | val 0.57/0.61 | tes 0.47/0.50
+   W=3 fwd rv flag/all: tra 0.73/0.69 | val 0.58/0.63 | tes 0.51/0.53
+[R4 1H] eth buy9p: 135 completions, hypothesis +
+[R4 1H] eth ('td_buy9p_eth', 'raw', 'top', 1) (1h)
+h=4: tra ex -0.46% t=-1.5 n=31 net=+0.36% | val ex +0.20% t=1.3 n=30 net=+0.10% | tes ex +0.00% t=0.0 n=61 net=-0.10% -> rejected: excess sign differs across periods
+h=12: tra ex -0.50% t=-0.9 n=29 net=+0.40% | val ex +0.05% t=0.1 n=30 net=-0.06% | tes ex -0.23% t=-0.9 n=60 net=+0.13% -> rejected: excess sign differs across periods
+h=24: tra ex -0.87% t=-0.8 n=28 net=+0.77% | val ex +0.13% t=0.2 n=29 net=+0.02% | tes ex -0.21% t=-0.5 n=55 net=+0.11% -> rejected: excess sign differs across periods
+h=72: tra ex +1.23% t=0.9 n=22 net=+1.13% | val ex -0.08% t=-0.1 n=21 net=-0.00% | tes ex +0.22% t=0.3 n=38 net=+0.11% -> rejected: excess sign differs across periods
+[R4 1H] RISK eth ('td_buy9p_eth', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd -1.4% t=-1.6 crash x4.95 (3/30) fa=0.50 n=28 | val mdd -0.1% t=-0.5 crash x0.00 (0/30) fa=0.50 n=29 | tes mdd -0.2% t=-0.6 crash x2.43 (1/61) fa=0.49 n=55 -> rejected: validation t -0.48 on mdd below 2.5
+W=3: tra mdd -0.1% t=-0.1 crash x1.46 (4/29) fa=0.48 n=22 | val mdd -0.5% t=-1.0 crash x0.46 (1/30) fa=0.50 n=21 | tes mdd -0.4% t=-0.7 crash x1.53 (6/61) fa=0.49 n=38 -> rejected: validation t -0.99 on mdd below 2.5
+   W=1 fwd rv flag/all: tra 0.78/0.66 | val 0.71/0.61 | tes 0.53/0.50
+   W=3 fwd rv flag/all: tra 0.69/0.69 | val 0.69/0.63 | tes 0.53/0.53
+[R4 1H] eth sell9p: 152 completions, hypothesis -
+[R4 1H] eth ('td_sell9p_eth', 'raw', 'top', 1) (1h)
+h=4: tra ex +0.21% t=0.8 n=32 net=+0.11% | val ex -0.43% t=-2.1 n=44 net=+0.33% | tes ex +0.08% t=0.6 n=66 net=-0.02% -> rejected: excess sign differs across periods
+h=12: tra ex -0.03% t=-0.1 n=36 net=-0.07% | val ex +0.08% t=0.2 n=44 net=-0.02% | tes ex +0.20% t=0.9 n=63 net=+0.10% -> rejected: excess sign differs across periods
+h=24: tra ex -0.32% t=-0.6 n=33 net=+0.22% | val ex -0.06% t=-0.1 n=37 net=-0.03% | tes ex +0.40% t=1.1 n=56 net=+0.29% -> rejected: excess sign differs across periods
+h=72: tra ex +0.54% t=0.5 n=18 net=+0.44% | val ex -0.72% t=-1.0 n=23 net=+0.63% | tes ex -0.23% t=-0.4 n=37 net=+0.16% -> rejected: excess sign differs across periods
+[R4 1H] RISK eth ('td_sell9p_eth', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd +0.0% t=0.0 crash x1.41 (1/35) fa=0.57 n=33 | val mdd -0.1% t=-0.4 crash x0.00 (0/44) fa=0.41 n=37 | tes mdd +0.3% t=1.2 crash x0.00 (0/66) fa=0.44 n=56 -> rejected: drawdown effect changes sign across periods
+W=3: tra mdd +0.2% t=0.4 crash x0.32 (1/33) fa=0.61 n=18 | val mdd -0.1% t=-0.1 crash x0.93 (3/44) fa=0.41 n=23 | tes mdd +0.0% t=0.0 crash x0.71 (3/66) fa=0.44 n=37 -> rejected: drawdown effect changes sign across periods
+   W=1 fwd rv flag/all: tra 0.68/0.66 | val 0.59/0.61 | tes 0.48/0.50
+   W=3 fwd rv flag/all: tra 0.74/0.69 | val 0.61/0.63 | tes 0.52/0.53
+[R4 1H] eth buy13: 121 completions, hypothesis +
+[R4 1H] eth ('td_buy13_eth', 'raw', 'top', 1) (1h)
+h=4: tra ex -0.45% t=-1.3 n=22 net=+0.35% | val ex +0.21% t=0.8 n=28 net=+0.11% | tes ex -0.44% t=-2.6 n=62 net=+0.34% -> rejected: excess sign differs across periods
+h=12: tra ex -0.53% t=-0.9 n=22 net=+0.43% | val ex -0.69% t=-1.4 n=28 net=+0.60% | tes ex -0.41% t=-1.5 n=62 net=+0.31% -> rejected: validation t -1.36 below 2.5
+h=24: tra ex -0.20% t=-0.3 n=21 net=+0.10% | val ex -0.34% t=-0.5 n=25 net=+0.24% | tes ex -0.13% t=-0.3 n=61 net=+0.04% -> rejected: validation t -0.47 below 2.5
+h=72: tra ex -0.38% t=-0.3 n=19 net=+0.28% | val ex +0.47% t=0.5 n=21 net=+0.36% | tes ex -0.87% t=-1.4 n=42 net=+0.78% -> rejected: excess sign differs across periods
+[R4 1H] RISK eth ('td_buy13_eth', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd -0.2% t=-0.4 crash x0.00 (0/22) fa=0.50 n=21 | val mdd -0.9% t=-1.8 crash x0.00 (0/27) fa=0.48 n=25 | tes mdd -0.5% t=-1.7 crash x4.77 (2/62) fa=0.40 n=61 -> rejected: validation t -1.78 on mdd below 2.5
+W=3: tra mdd -0.0% t=-0.0 crash x0.85 (2/25) fa=0.44 n=19 | val mdd -0.4% t=-0.7 crash x0.49 (1/28) fa=0.50 n=21 | tes mdd -0.7% t=-1.4 crash x2.04 (8/61) fa=0.41 n=42 -> rejected: validation t -0.72 on mdd below 2.5
+   W=1 fwd rv flag/all: tra 0.64/0.66 | val 0.72/0.61 | tes 0.55/0.50
+   W=3 fwd rv flag/all: tra 0.70/0.69 | val 0.68/0.63 | tes 0.55/0.53
+[R4 1H] eth sell13: 135 completions, hypothesis -
+[R4 1H] eth ('td_sell13_eth', 'raw', 'top', 1) (1h)
+h=4: tra ex +0.33% t=1.2 n=27 net=+0.23% | val ex +0.32% t=1.1 n=42 net=+0.22% | tes ex +0.01% t=0.0 n=56 net=-0.10% -> rejected: validation t 1.07 below 2.5
+h=12: tra ex +0.71% t=1.4 n=30 net=+0.61% | val ex -0.06% t=-0.1 n=42 net=-0.04% | tes ex +0.03% t=0.1 n=56 net=-0.07% -> rejected: excess sign differs across periods
+h=24: tra ex +0.93% t=1.4 n=22 net=+0.83% | val ex +0.34% t=0.7 n=41 net=+0.24% | tes ex +0.15% t=0.3 n=53 net=+0.04% -> rejected: validation t 0.71 below 2.5
+h=72: tra ex +0.16% t=0.2 n=16 net=+0.06% | val ex +0.30% t=0.4 n=24 net=+0.18% | tes ex -0.53% t=-0.8 n=35 net=+0.45% -> rejected: excess sign differs across periods
+[R4 1H] RISK eth ('td_sell13_eth', 'raw', 'top', 1) (1h, crash -10%)
+W=1: tra mdd +0.5% t=1.4 crash x0.00 (0/25) fa=0.64 n=22 | val mdd +0.2% t=0.5 crash x0.00 (0/42) fa=0.38 n=41 | tes mdd -0.2% t=-0.6 crash x0.00 (0/56) fa=0.39 n=53 -> rejected: drawdown effect changes sign across periods
+W=3: tra mdd +0.9% t=1.6 crash x0.41 (1/26) fa=0.62 n=16 | val mdd +0.2% t=0.4 crash x1.00 (3/41) fa=0.37 n=24 | tes mdd -0.6% t=-1.4 crash x1.39 (5/56) fa=0.39 n=35 -> rejected: drawdown effect changes sign across periods
+   W=1 fwd rv flag/all: tra 0.70/0.66 | val 0.59/0.61 | tes 0.55/0.50
+   W=3 fwd rv flag/all: tra 0.70/0.69 | val 0.60/0.63 | tes 0.56/0.53
+[R4 1H] share of cell-horizons whose excess sign matches the DeMark hypothesis:
+                   cells  consistent  mean_t_signed
+flag   period                                      
+buy13  test            8           0      -1.039617
+       train           8           4      -0.053135
+       validation      8           4      -0.004030
+buy9   test            8           1      -1.180182
+       train           8           3      -0.167380
+       validation      8           6       0.319251
+buy9p  test            8           2      -0.786278
+       train           8           2      -0.441155
+       validation      8           4       0.116716
+sell13 test            8           5      -0.584748
+       train           8           2       0.516985
+       validation      8           2       0.396153
+sell9  test            8           2       0.161443
+       train           8           3       0.335986
+       validation      8           5      -1.187002
+sell9p test            8           2       0.460484
+       train           8           3       0.200189
+       validation      8           7      -1.296621
+[R4 1H] mean hypothesis-signed t by period: train -0.29 (n=48), validation +0.42 (n=48), test -0.51 (n=48)
+[R4 info] daily forward 10-day excess return by TD setup count (train+validation pooled, lag 1)
+   btc: -9:-0.1%(27) -8:+1.6%(40) -7:+0.7%(52) -6:+0.8%(70) -5:+0.5%(109) -4:+0.5%(152) -3:-0.4%(171) -2:-0.7%(212) -1:-0.3%(308) +1:-0.7%(309) +2:-1.0%(226) +3:-0.8%(183) +4:-0.7%(155) +5:-0.3%(106) +6:+0.2%(83) +7:+1.4%(71) +8:+2.9%(53) +9:+2.9%(40)
+   eth: -9:+4.6%(25) -8:+3.9%(38) -7:+2.3%(51) -6:-0.2%(72) -5:-1.0%(101) -4:-1.2%(149) -3:-1.1%(170) -2:-1.8%(214) -1:-1.0%(314) +1:-1.2%(315) +2:-0.1%(231) +3:+0.6%(184) +4:+0.7%(160) +5:+1.4%(107) +6:+1.8%(83) +7:+2.2%(65) +8:+3.0%(50) +9:+4.0%(39)
+
+==== PASSES (any verdict starting with PASS) ====
+R4 1D RISK eth ('td_buy9_eth', 'raw', 'top', 1) risk 10: PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial

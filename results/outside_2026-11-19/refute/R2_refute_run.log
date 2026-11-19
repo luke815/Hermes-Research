@@ -1,0 +1,410 @@
+==== (1) Reproduce score3.duration_table for ETH futures_oi (W=30) ====
+[repro] eth futures_oi [consecutive] -> insufficient: only 4 independent episodes in the longest-duration bucket
+   tra: 1-10: n=126/7 mdd +3.6 (t 2.1) lift 0.92 | 11-30: n=110/5 mdd +5.2 (t 2.9) lift 0.50 | 31-60: n=79/3 mdd +0.3 (t 0.1) lift 1.36 | 61-inf: n=85/1 mdd +0.6 (t 0.2) lift 1.26
+   val: 1-10: n=67/4 mdd +3.3 (t 1.1) lift 0.69 | 11-30: n=90/3 mdd +1.6 (t 0.6) lift 0.94 | 31-60: n=61/3 mdd -0.9 (t -0.4) lift 1.35 | 61-inf: n=55/3 mdd -7.5 (t -2.9) lift 1.60
+   tes: 1-10: n=2 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   local re-implementation max |mdd_diff| discrepancy vs score3: 0.00e+00
+[repro] eth futures_oi [hysteresis] -> insufficient: only 7 independent episodes in the longest-duration bucket
+   tra: 1-10: n=68/6 mdd +2.7 (t 1.1) lift 0.91 | 11-30: n=90/5 mdd +5.2 (t 2.7) lift 0.63 | 31-60: n=95/4 mdd +2.3 (t 1.1) lift 0.91 | 61-inf: n=227/3 mdd -0.8 (t -0.3) lift 1.31
+   val: 1-10: n=30/3 mdd +6.9 (t 3.5) lift 0.24 | 11-30: n=60/3 mdd +5.8 (t 1.9) lift 0.77 | 31-60: n=90/3 mdd +2.5 (t 1.0) lift 1.12 | 61-inf: n=175/4 mdd -8.1 (t -4.7) lift 1.48
+   tes: 1-10: n=10/1 mdd -2.8 (t -0.8) lift 2.49 | 11-30: n=11/1 mdd -4.5 (t -1.3) lift 2.26 | 31-60: n=0 | 61-inf: n=0
+   local re-implementation max |mdd_diff| discrepancy vs score3: 0.00e+00
+[repro] btc futures_oi [consecutive] -> insufficient: only 6 independent episodes in the longest-duration bucket
+   tra: 1-10: n=114/6 mdd +4.5 (t 2.5) lift 0.54 | 11-30: n=137/4 mdd +2.7 (t 1.5) lift 0.49 | 31-60: n=124/5 mdd -2.7 (t -1.6) lift 1.66 | 61-inf: n=89/3 mdd -0.5 (t -0.2) lift 1.29
+   val: 1-10: n=75/5 mdd -0.8 (t -0.5) lift 1.17 | 11-30: n=79/4 mdd +1.1 (t 0.7) lift 0.56 | 31-60: n=60/2 mdd +2.9 (t 2.4) lift 0.00 | 61-inf: n=63/3 mdd -0.5 (t -0.3) lift 1.19
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   local re-implementation max |mdd_diff| discrepancy vs score3: 0.00e+00
+[repro] btc futures_oi [hysteresis] -> insufficient: only 7 independent episodes in the longest-duration bucket
+   tra: 1-10: n=50/4 mdd -0.3 (t -0.1) lift 1.07 | 11-30: n=73/4 mdd +2.1 (t 1.2) lift 0.88 | 31-60: n=90/3 mdd -1.1 (t -0.3) lift 1.01 | 61-inf: n=287/3 mdd +1.8 (t 1.2) lift 0.93
+   val: 1-10: n=36/3 mdd +1.0 (t 0.8) lift 0.00 | 11-30: n=60/3 mdd +2.2 (t 1.4) lift 0.07 | 31-60: n=90/3 mdd +4.6 (t 3.8) lift 0.00 | 61-inf: n=197/4 mdd -2.8 (t -2.4) lift 1.72
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   local re-implementation max |mdd_diff| discrepancy vs score3: 0.00e+00
+
+==== (2) Calendar episodes making up the >60 bucket (lagged run >= 61), ETH and BTC ====
+[episodes] eth consecutive train: 1 spans
+   bucket days 2024-04-07..2024-06-30 (n=85), run 2024-02-07..2024-07-07 peak 153d, mean mdd30 -10.5% min -23.0%, px 3456->3437
+[episodes] eth consecutive validation: 3 spans
+   bucket days 2024-07-01..2024-07-08 (n=8), run 2024-02-07..2024-07-07 peak 153d, mean mdd30 -14.5% min -22.4%, px 3440->3018
+   bucket days 2025-01-07..2025-02-05 (n=30), run 2024-11-08..2025-02-04 peak 90d, mean mdd30 -23.1% min -32.8%, px 3379->2787
+   bucket days 2025-09-25..2025-10-11 (n=17), run 2025-07-27..2025-10-10 peak 77d, mean mdd30 -16.2% min -29.8%, px 3873->3745
+[episodes] eth hysteresis train: 3 spans
+   bucket days 2021-12-03..2022-01-08 (n=37), run 2021-10-04..2022-01-07 peak 97d, mean mdd30 -27.8% min -41.4%, px 4214->3080
+   bucket days 2023-06-05..2023-06-17 (n=13), run 2023-04-06..2023-06-16 peak 73d, mean mdd30 -5.4% min -12.4%, px 1810->1727
+   bucket days 2024-01-06..2024-06-30 (n=177), run 2023-11-07..2024-08-05 peak 274d, mean mdd30 -9.0% min -23.0%, px 2240->3437
+[episodes] eth hysteresis validation: 4 spans
+   bucket days 2024-07-01..2024-08-06 (n=37), run 2023-11-07..2024-08-05 peak 274d, mean mdd30 -23.7% min -33.8%, px 3440->2460
+   bucket days 2024-12-21..2025-03-01 (n=71), run 2024-10-22..2025-02-28 peak 131d, mean mdd30 -21.9% min -33.9%, px 3338->2217
+   bucket days 2025-07-11..2025-07-25 (n=15), run 2025-05-12..2025-07-24 peak 75d, mean mdd30 -3.4% min -9.8%, px 2957->3724
+   bucket days 2025-09-25..2025-11-15 (n=52), run 2025-07-27..2025-11-14 peak 112d, mean mdd30 -20.9% min -33.5%, px 3873->3167
+[episodes] btc consecutive train: 3 spans
+   bucket days 2023-08-16..2023-08-18 (n=3), run 2023-06-17..2023-08-17 peak 63d, mean mdd30 -7.1% min -12.4%, px 28714->26042
+   bucket days 2024-01-23..2024-01-23 (n=1), run 2023-11-24..2024-01-23 peak 61d, mean mdd30 +0.2% min +0.2%, px 39890->39890
+   bucket days 2024-04-07..2024-06-30 (n=85), run 2024-02-07..2024-07-04 peak 150d, mean mdd30 -9.7% min -20.4%, px 69363->62766
+[episodes] btc consecutive validation: 3 spans
+   bucket days 2024-07-01..2024-07-05 (n=5), run 2024-02-07..2024-07-04 peak 150d, mean mdd30 -6.4% min -11.2%, px 62884->56605
+   bucket days 2024-12-12..2025-02-05 (n=56), run 2024-10-13..2025-02-04 peak 116d, mean mdd30 -7.4% min -19.6%, px 99982->96553
+   bucket days 2025-09-25..2025-09-26 (n=2), run 2025-07-27..2025-09-25 peak 62d, mean mdd30 -2.6% min -2.9%, px 108934->109588
+[episodes] btc hysteresis train: 3 spans
+   bucket days 2021-12-05..2021-12-05 (n=1), run 2021-10-06..2021-12-05 peak 61d, mean mdd30 -7.2% min -7.2%, px 49377->49377
+   bucket days 2023-05-18..2023-08-19 (n=94), run 2023-03-19..2023-08-18 peak 154d, mean mdd30 -6.8% min -14.5%, px 26809->26088
+   bucket days 2023-12-22..2024-06-30 (n=192), run 2023-10-23..2024-08-05 peak 289d, mean mdd30 -7.5% min -20.4%, px 43999->62766
+[episodes] btc hysteresis validation: 4 spans
+   bucket days 2024-07-01..2024-08-06 (n=37), run 2023-10-23..2024-08-05 peak 289d, mean mdd30 -12.2% min -20.8%, px 62884->55991
+   bucket days 2024-11-22..2025-03-30 (n=129), run 2024-09-23..2025-03-29 peak 189d, mean mdd30 -9.0% min -20.0%, px 98921->82353
+   bucket days 2025-07-12..2025-07-25 (n=14), run 2025-05-13..2025-07-24 peak 74d, mean mdd30 -4.9% min -6.3%, px 117389->117584
+   bucket days 2025-09-25..2025-10-11 (n=17), run 2025-07-27..2025-10-10 peak 77d, mean mdd30 -10.6% min -18.6%, px 108934->110579
+
+[episodes] NaN inside futures_oi on 2021-06-03/04, 2023-10-17, 2025-07-25 reset days_in_state. Forward-filled variant:
+[ffill] eth consecutive
+   tra: 1-10: n=126/7 mdd +3.6 (t 2.1) lift 0.92 | 11-30: n=110/5 mdd +5.2 (t 2.9) lift 0.50 | 31-60: n=79/3 mdd +0.3 (t 0.1) lift 1.36 | 61-inf: n=85/1 mdd +0.6 (t 0.2) lift 1.26
+   val: 1-10: n=57/4 mdd +2.7 (t 0.8) lift 0.68 | 11-30: n=75/3 mdd +0.1 (t 0.0) lift 1.08 | 31-60: n=61/3 mdd +3.1 (t 1.2) lift 0.84 | 61-inf: n=81/3 mdd -5.5 (t -2.3) lift 1.61
+   tes: 1-10: n=2 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train spans: 2024-04-07..2024-06-30 (n=85, peak 153, mdd -10.5)
+   validation spans: 2024-07-01..2024-07-08 (n=8, peak 153, mdd -14.5); 2025-01-07..2025-02-05 (n=30, peak 90, mdd -23.1); 2025-08-30..2025-10-11 (n=43, peak 103, mdd -14.6)
+[ffill] eth hysteresis
+   tra: 1-10: n=68/6 mdd +2.7 (t 1.1) lift 0.91 | 11-30: n=90/5 mdd +5.2 (t 2.7) lift 0.63 | 31-60: n=95/4 mdd +2.3 (t 1.1) lift 0.91 | 61-inf: n=227/3 mdd -0.8 (t -0.3) lift 1.31
+   val: 1-10: n=20/2 mdd +6.7 (t 3.5) lift 0.00 | 11-30: n=40/2 mdd +5.2 (t 1.2) lift 0.87 | 31-60: n=60/2 mdd +4.4 (t 1.4) lift 0.86 | 61-inf: n=236/3 mdd -5.3 (t -3.1) lift 1.38
+   tes: 1-10: n=10/1 mdd -2.8 (t -0.8) lift 2.49 | 11-30: n=11/1 mdd -4.5 (t -1.3) lift 2.26 | 31-60: n=0 | 61-inf: n=0
+   train spans: 2021-12-03..2022-01-08 (n=37, peak 97, mdd -27.8); 2023-06-05..2023-06-17 (n=13, peak 73, mdd -5.4); 2024-01-06..2024-06-30 (n=177, peak 274, mdd -9.0)
+   validation spans: 2024-07-01..2024-08-06 (n=37, peak 274, mdd -23.7); 2024-12-21..2025-03-01 (n=71, peak 131, mdd -21.9); 2025-07-11..2025-11-15 (n=128, peak 188, mdd -13.4)
+[ffill] btc consecutive
+   tra: 1-10: n=114/6 mdd +4.5 (t 2.5) lift 0.54 | 11-30: n=137/4 mdd +2.7 (t 1.5) lift 0.49 | 31-60: n=124/5 mdd -2.7 (t -1.6) lift 1.66 | 61-inf: n=89/3 mdd -0.5 (t -0.2) lift 1.29
+   val: 1-10: n=65/5 mdd -1.1 (t -0.6) lift 1.42 | 11-30: n=66/4 mdd +1.6 (t 0.9) lift 0.53 | 31-60: n=60/2 mdd +2.2 (t 1.6) lift 0.07 | 61-inf: n=86/3 mdd +0.1 (t 0.0) lift 0.87
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train spans: 2023-08-16..2023-08-18 (n=3, peak 63, mdd -7.1); 2024-01-23..2024-01-23 (n=1, peak 61, mdd +0.2); 2024-04-07..2024-06-30 (n=85, peak 150, mdd -9.7)
+   validation spans: 2024-07-01..2024-07-05 (n=5, peak 150, mdd -6.4); 2024-12-12..2025-02-05 (n=56, peak 116, mdd -7.4); 2025-09-02..2025-09-26 (n=25, peak 85, mdd -4.8)
+[ffill] btc hysteresis
+   tra: 1-10: n=50/4 mdd -0.3 (t -0.1) lift 1.07 | 11-30: n=73/4 mdd +2.1 (t 1.2) lift 0.88 | 31-60: n=90/3 mdd -1.1 (t -0.3) lift 1.01 | 61-inf: n=287/3 mdd +1.8 (t 1.2) lift 0.93
+   val: 1-10: n=26/2 mdd +1.1 (t 0.8) lift 0.00 | 11-30: n=40/2 mdd +3.5 (t 2.1) lift 0.00 | 31-60: n=60/2 mdd +5.7 (t 5.0) lift 0.00 | 61-inf: n=258/3 mdd -1.9 (t -1.8) lift 1.33
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train spans: 2021-12-05..2021-12-05 (n=1, peak 61, mdd -7.2); 2023-05-18..2023-08-19 (n=94, peak 154, mdd -6.8); 2023-12-22..2024-06-30 (n=192, peak 289, mdd -7.5)
+   validation spans: 2024-07-01..2024-08-06 (n=37, peak 289, mdd -12.2); 2024-11-22..2025-03-30 (n=129, peak 189, mdd -9.0); 2025-07-12..2025-10-11 (n=92, peak 152, mdd -6.3)
+
+==== (3) Bucket edges shifted and the 'late' threshold swept (ETH futures_oi, W=30) ====
+[edges] eth consecutive base 10/30/60
+   tra: 1-10: n=126/7 mdd +3.6 (t 2.1) lift 0.92 | 11-30: n=110/5 mdd +5.2 (t 2.9) lift 0.50 | 31-60: n=79/3 mdd +0.3 (t 0.1) lift 1.36 | 61-inf: n=85/1 mdd +0.6 (t 0.2) lift 1.26
+   val: 1-10: n=67/4 mdd +3.3 (t 1.1) lift 0.69 | 11-30: n=90/3 mdd +1.6 (t 0.6) lift 0.94 | 31-60: n=61/3 mdd -0.9 (t -0.4) lift 1.35 | 61-inf: n=55/3 mdd -7.5 (t -2.9) lift 1.60
+   tes: 1-10: n=2 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[edges] eth consecutive -10: 1-5/6-20/21-50/>50
+   tra: 1-5: n=81/7 mdd +3.0 (t 1.5) lift 0.96 | 6-20: n=110/5 mdd +5.7 (t 3.4) lift 0.52 | 21-50: n=105/4 mdd +1.5 (t 0.6) lift 1.11 | 51-inf: n=104/3 mdd +0.7 (t 0.3) lift 1.29
+   val: 1-5: n=39/4 mdd +2.9 (t 1.1) lift 0.71 | 6-20: n=78/3 mdd +2.7 (t 0.7) lift 0.78 | 21-50: n=81/3 mdd +0.5 (t 0.3) lift 1.22 | 51-inf: n=75/3 mdd -6.1 (t -2.6) lift 1.52
+   tes: 1-5: n=2 | 6-20: n=0 | 21-50: n=0 | 51-inf: n=0
+[edges] eth consecutive +10: 1-20/21-40/41-70/>70
+   tra: 1-20: n=191/7 mdd +4.6 (t 2.9) lift 0.70 | 21-40: n=75/4 mdd +1.9 (t 0.7) lift 1.03 | 41-70: n=59/3 mdd +0.5 (t 0.2) lift 1.35 | 71-inf: n=75/1 mdd +0.8 (t 0.3) lift 1.25
+   val: 1-20: n=117/4 mdd +2.8 (t 0.9) lift 0.75 | 21-40: n=61/3 mdd +0.2 (t 0.1) lift 1.26 | 41-70: n=60/2 mdd -1.6 (t -0.7) lift 1.25 | 71-inf: n=35/3 mdd -9.7 (t -3.6) lift 1.73
+   tes: 1-20: n=2 | 21-40: n=0 | 41-70: n=0 | 71-inf: n=0
+[edges] eth consecutive 20/40/60/80
+   tra: 1-20: n=191/7 mdd +4.6 (t 2.9) lift 0.70 | 21-40: n=75/4 mdd +1.9 (t 0.7) lift 1.03 | 41-60: n=49/3 mdd +0.7 (t 0.3) lift 1.35 | 61-80: n=20/1 mdd +1.2 (t 0.8) lift 0.80 | 81-inf: n=65/1 mdd +0.5 (t 0.1) lift 1.40
+   val: 1-20: n=117/4 mdd +2.8 (t 0.9) lift 0.75 | 21-40: n=61/3 mdd +0.2 (t 0.1) lift 1.26 | 41-60: n=40/2 mdd -0.6 (t -0.3) lift 1.19 | 61-80: n=37/2 mdd -6.6 (t -2.8) lift 1.59 | 81-inf: n=18/2 mdd -9.2 (t -2.1) lift 1.63
+   tes: 1-20: n=2 | 21-40: n=0 | 41-60: n=0 | 61-80: n=0 | 81-inf: n=0
+[sweep] eth consecutive: late bucket = lagged run > T
+   T= 30 tra n=164/3 mdd +0.5 (t 0.2) | val n=116/4 mdd -4.0 (t -2.0)
+   T= 40 tra n=134/3 mdd +0.7 (t 0.3) | val n=95/3 mdd -4.6 (t -2.0)
+   T= 50 tra n=104/3 mdd +0.7 (t 0.3) | val n=75/3 mdd -6.1 (t -2.6)
+   T= 60 tra n=85/1 mdd +0.6 (t 0.2) | val n=55/3 mdd -7.5 (t -2.9)
+   T= 70 tra n=75/1 mdd +0.8 (t 0.3) | val n=35/3 mdd -9.7 (t -3.6)
+   T= 80 tra n=65/1 mdd +0.5 (t 0.1) | val n=18/2 mdd -9.2 (t -2.1)
+   T= 90 tra n=55/1 mdd -0.1 (t -0.0) | val n=8/1 mdd -2.3 (t -1.1)
+   T=100 tra n=45/1 mdd -2.3 (t -1.0) | val n=8/1 mdd -2.3 (t -1.1)
+   T=120 tra n=25/1 mdd -5.5 (t -3.7) | val n=8/1 mdd -2.3 (t -1.1)
+[edges] eth hysteresis base 10/30/60
+   tra: 1-10: n=68/6 mdd +2.7 (t 1.1) lift 0.91 | 11-30: n=90/5 mdd +5.2 (t 2.7) lift 0.63 | 31-60: n=95/4 mdd +2.3 (t 1.1) lift 0.91 | 61-inf: n=227/3 mdd -0.8 (t -0.3) lift 1.31
+   val: 1-10: n=30/3 mdd +6.9 (t 3.5) lift 0.24 | 11-30: n=60/3 mdd +5.8 (t 1.9) lift 0.77 | 31-60: n=90/3 mdd +2.5 (t 1.0) lift 1.12 | 61-inf: n=175/4 mdd -8.1 (t -4.7) lift 1.48
+   tes: 1-10: n=10/1 mdd -2.8 (t -0.8) lift 2.49 | 11-30: n=11/1 mdd -4.5 (t -1.3) lift 2.26 | 31-60: n=0 | 61-inf: n=0
+[edges] eth hysteresis -10: 1-5/6-20/21-50/>50
+   tra: 1-5: n=35/6 mdd +3.3 (t 1.4) lift 0.78 | 6-20: n=83/6 mdd +4.1 (t 2.1) lift 0.77 | 21-50: n=105/4 mdd +3.8 (t 1.9) lift 0.74 | 51-inf: n=257/3 mdd -0.6 (t -0.2) lift 1.30
+   val: 1-5: n=15/3 mdd +5.1 (t 2.2) lift 0.49 | 6-20: n=45/3 mdd +7.2 (t 2.7) lift 0.53 | 21-50: n=90/3 mdd +3.4 (t 1.7) lift 1.02 | 51-inf: n=205/4 mdd -6.6 (t -3.6) lift 1.42
+   tes: 1-5: n=5/1 mdd -1.4 (t -0.4) lift 2.49 | 6-20: n=15/1 mdd -4.2 (t -1.2) lift 2.32 | 21-50: n=1 | 51-inf: n=0
+[edges] eth hysteresis +10: 1-20/21-40/41-70/>70
+   tra: 1-20: n=118/5 mdd +3.9 (t 2.1) lift 0.77 | 21-40: n=75/4 mdd +4.0 (t 1.9) lift 0.76 | 41-70: n=90/3 mdd +1.0 (t 0.4) lift 1.11 | 71-inf: n=197/3 mdd -0.7 (t -0.2) lift 1.29
+   val: 1-20: n=60/3 mdd +6.7 (t 3.0) lift 0.52 | 21-40: n=60/3 mdd +3.6 (t 1.4) lift 0.98 | 41-70: n=90/3 mdd +3.6 (t 1.2) lift 0.86 | 71-inf: n=145/4 mdd -11.0 (t -8.4) lift 1.70
+   tes: 1-20: n=20/1 mdd -3.5 (t -1.0) lift 2.36 | 21-40: n=1 | 41-70: n=0 | 71-inf: n=0
+[edges] eth hysteresis 20/40/60/80
+   tra: 1-20: n=118/5 mdd +3.9 (t 2.1) lift 0.77 | 21-40: n=75/4 mdd +4.0 (t 1.9) lift 0.76 | 41-60: n=60/3 mdd +2.0 (t 0.8) lift 0.95 | 61-80: n=53/3 mdd -1.4 (t -0.4) lift 1.46 | 81-inf: n=174/2 mdd -0.6 (t -0.2) lift 1.26
+   val: 1-20: n=60/3 mdd +6.7 (t 3.0) lift 0.52 | 21-40: n=60/3 mdd +3.6 (t 1.4) lift 0.98 | 41-60: n=60/3 mdd +2.6 (t 0.7) lift 1.07 | 61-80: n=55/3 mdd +0.5 (t 0.2) lift 0.83 | 81-inf: n=120/3 mdd -12.1 (t -8.7) lift 1.77
+   tes: 1-20: n=20/1 mdd -3.5 (t -1.0) lift 2.36 | 21-40: n=1 | 41-60: n=0 | 61-80: n=0 | 81-inf: n=0
+[sweep] eth hysteresis: late bucket = lagged run > T
+   T= 30 tra n=322/4 mdd +0.2 (t 0.1) | val n=265/4 mdd -4.5 (t -2.9)
+   T= 40 tra n=287/3 mdd -0.2 (t -0.1) | val n=235/4 mdd -5.4 (t -3.0)
+   T= 50 tra n=257/3 mdd -0.6 (t -0.2) | val n=205/4 mdd -6.6 (t -3.6)
+   T= 60 tra n=227/3 mdd -0.8 (t -0.3) | val n=175/4 mdd -8.1 (t -4.7)
+   T= 70 tra n=197/3 mdd -0.7 (t -0.2) | val n=145/4 mdd -11.0 (t -8.4)
+   T= 80 tra n=174/2 mdd -0.6 (t -0.2) | val n=120/3 mdd -12.1 (t -8.7)
+   T= 90 tra n=154/2 mdd +0.4 (t 0.2) | val n=100/3 mdd -12.4 (t -8.1)
+   T=100 tra n=137/1 mdd +0.5 (t 0.3) | val n=80/3 mdd -12.0 (t -5.9)
+   T=120 tra n=117/1 mdd -0.7 (t -0.3) | val n=48/2 mdd -12.0 (t -5.8)
+[edges] btc consecutive base 10/30/60
+   tra: 1-10: n=114/6 mdd +4.5 (t 2.5) lift 0.54 | 11-30: n=137/4 mdd +2.7 (t 1.5) lift 0.49 | 31-60: n=124/5 mdd -2.7 (t -1.6) lift 1.66 | 61-inf: n=89/3 mdd -0.5 (t -0.2) lift 1.29
+   val: 1-10: n=75/5 mdd -0.8 (t -0.5) lift 1.17 | 11-30: n=79/4 mdd +1.1 (t 0.7) lift 0.56 | 31-60: n=60/2 mdd +2.9 (t 2.4) lift 0.00 | 61-inf: n=63/3 mdd -0.5 (t -0.3) lift 1.19
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[edges] btc consecutive -10: 1-5/6-20/21-50/>50
+   tra: 1-5: n=67/6 mdd +4.9 (t 2.4) lift 0.36 | 6-20: n=130/5 mdd +3.8 (t 2.7) lift 0.55 | 21-50: n=145/4 mdd -1.6 (t -0.7) lift 1.25 | 51-inf: n=122/4 mdd -0.8 (t -0.4) lift 1.40
+   val: 1-5: n=42/5 mdd -0.2 (t -0.2) lift 1.05 | 6-20: n=84/5 mdd -0.8 (t -0.5) lift 1.05 | 21-50: n=68/3 mdd +4.0 (t 3.0) lift 0.00 | 51-inf: n=83/3 mdd -0.3 (t -0.2) lift 0.90
+   tes: 1-5: n=0 | 6-20: n=0 | 21-50: n=0 | 51-inf: n=0
+[edges] btc consecutive +10: 1-20/21-40/41-70/>70
+   tra: 1-20: n=197/5 mdd +4.2 (t 2.9) lift 0.49 | 21-40: n=104/4 mdd -0.9 (t -0.3) lift 1.00 | 41-70: n=88/5 mdd -2.4 (t -1.8) lift 1.76 | 71-inf: n=75/1 mdd -0.2 (t -0.1) lift 1.25
+   val: 1-20: n=126/4 mdd -0.6 (t -0.4) lift 1.05 | 21-40: n=48/3 mdd +4.4 (t 2.7) lift 0.00 | 41-70: n=52/2 mdd +1.1 (t 0.9) lift 0.25 | 71-inf: n=51/2 mdd -0.4 (t -0.2) lift 1.21
+   tes: 1-20: n=0 | 21-40: n=0 | 41-70: n=0 | 71-inf: n=0
+[edges] btc consecutive 20/40/60/80
+   tra: 1-20: n=197/5 mdd +4.2 (t 2.9) lift 0.49 | 21-40: n=104/4 mdd -0.9 (t -0.3) lift 1.00 | 41-60: n=74/5 mdd -2.5 (t -1.7) lift 1.80 | 61-80: n=24/3 mdd -1.3 (t -0.9) lift 1.33 | 81-inf: n=65/1 mdd -0.2 (t -0.1) lift 1.27
+   val: 1-20: n=126/4 mdd -0.6 (t -0.4) lift 1.05 | 21-40: n=48/3 mdd +4.4 (t 2.7) lift 0.00 | 41-60: n=40/2 mdd +1.7 (t 1.4) lift 0.00 | 61-80: n=22/2 mdd +1.2 (t 0.8) lift 0.60 | 81-inf: n=41/2 mdd -1.5 (t -0.7) lift 1.50
+   tes: 1-20: n=0 | 21-40: n=0 | 41-60: n=0 | 61-80: n=0 | 81-inf: n=0
+[sweep] btc consecutive: late bucket = lagged run > T
+   T= 30 tra n=213/5 mdd -1.8 (t -1.2) | val n=123/3 mdd +1.2 (t 0.9)
+   T= 40 tra n=163/5 mdd -1.4 (t -0.9) | val n=103/3 mdd +0.3 (t 0.3)
+   T= 50 tra n=122/4 mdd -0.8 (t -0.4) | val n=83/3 mdd -0.3 (t -0.2)
+   T= 60 tra n=89/3 mdd -0.5 (t -0.2) | val n=63/3 mdd -0.5 (t -0.3)
+   T= 70 tra n=75/1 mdd -0.2 (t -0.1) | val n=51/2 mdd -0.4 (t -0.2)
+   T= 80 tra n=65/1 mdd -0.2 (t -0.1) | val n=41/2 mdd -1.5 (t -0.7)
+   T= 90 tra n=55/1 mdd -1.1 (t -0.4) | val n=31/2 mdd -2.8 (t -1.4)
+   T=100 tra n=45/1 mdd -3.3 (t -1.9) | val n=21/2 mdd -5.6 (t -2.6)
+   T=120 tra n=25/1 mdd -5.2 (t -2.8) | val n=5/1 mdd +0.2 (t 0.2)
+[edges] btc hysteresis base 10/30/60
+   tra: 1-10: n=50/4 mdd -0.3 (t -0.1) lift 1.07 | 11-30: n=73/4 mdd +2.1 (t 1.2) lift 0.88 | 31-60: n=90/3 mdd -1.1 (t -0.3) lift 1.01 | 61-inf: n=287/3 mdd +1.8 (t 1.2) lift 0.93
+   val: 1-10: n=36/3 mdd +1.0 (t 0.8) lift 0.00 | 11-30: n=60/3 mdd +2.2 (t 1.4) lift 0.07 | 31-60: n=90/3 mdd +4.6 (t 3.8) lift 0.00 | 61-inf: n=197/4 mdd -2.8 (t -2.4) lift 1.72
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+[edges] btc hysteresis -10: 1-5/6-20/21-50/>50
+   tra: 1-5: n=25/4 mdd -0.7 (t -0.1) lift 1.07 | 6-20: n=66/4 mdd +1.6 (t 0.6) lift 0.81 | 21-50: n=92/3 mdd -0.7 (t -0.2) lift 1.13 | 51-inf: n=317/3 mdd +1.7 (t 1.2) lift 0.92
+   val: 1-5: n=20/3 mdd +0.6 (t 0.4) lift 0.00 | 6-20: n=46/3 mdd +1.5 (t 1.0) lift 0.10 | 21-50: n=90/3 mdd +4.3 (t 3.8) lift 0.00 | 51-inf: n=227/4 mdd -2.0 (t -1.8) lift 1.49
+   tes: 1-5: n=0 | 6-20: n=0 | 21-50: n=0 | 51-inf: n=0
+[edges] btc hysteresis +10: 1-20/21-40/41-70/>70
+   tra: 1-20: n=91/4 mdd +1.0 (t 0.3) lift 0.88 | 21-40: n=62/3 mdd +0.1 (t 0.0) lift 1.12 | 41-70: n=81/3 mdd -0.1 (t -0.0) lift 0.72 | 71-inf: n=266/2 mdd +1.8 (t 1.1) lift 1.00
+   val: 1-20: n=66/3 mdd +1.2 (t 0.9) lift 0.07 | 21-40: n=60/3 mdd +3.5 (t 2.9) lift 0.00 | 41-70: n=90/3 mdd +3.7 (t 2.8) lift 0.20 | 71-inf: n=167/4 mdd -3.6 (t -2.7) lift 1.92
+   tes: 1-20: n=0 | 21-40: n=0 | 41-70: n=0 | 71-inf: n=0
+[edges] btc hysteresis 20/40/60/80
+   tra: 1-20: n=91/4 mdd +1.0 (t 0.3) lift 0.88 | 21-40: n=62/3 mdd +0.1 (t 0.0) lift 1.12 | 41-60: n=60/3 mdd -0.8 (t -0.2) lift 0.98 | 61-80: n=41/3 mdd +0.9 (t 0.7) lift 0.52 | 81-inf: n=246/2 mdd +2.0 (t 1.2) lift 1.00
+   val: 1-20: n=66/3 mdd +1.2 (t 0.9) lift 0.07 | 21-40: n=60/3 mdd +3.5 (t 2.9) lift 0.00 | 41-60: n=60/3 mdd +4.9 (t 3.1) lift 0.00 | 61-80: n=51/3 mdd -0.0 (t -0.0) lift 0.86 | 81-inf: n=146/2 mdd -3.8 (t -2.5) lift 2.02
+   tes: 1-20: n=0 | 21-40: n=0 | 41-60: n=0 | 61-80: n=0 | 81-inf: n=0
+[sweep] btc hysteresis: late bucket = lagged run > T
+   T= 30 tra n=377/3 mdd +1.1 (t 0.8) | val n=287/4 mdd -0.5 (t -0.5)
+   T= 40 tra n=347/3 mdd +1.3 (t 1.0) | val n=257/4 mdd -1.0 (t -1.0)
+   T= 50 tra n=317/3 mdd +1.7 (t 1.2) | val n=227/4 mdd -2.0 (t -1.8)
+   T= 60 tra n=287/3 mdd +1.8 (t 1.2) | val n=197/4 mdd -2.8 (t -2.4)
+   T= 70 tra n=266/2 mdd +1.8 (t 1.1) | val n=167/4 mdd -3.6 (t -2.7)
+   T= 80 tra n=246/2 mdd +2.0 (t 1.2) | val n=146/2 mdd -3.8 (t -2.5)
+   T= 90 tra n=226/2 mdd +1.8 (t 1.0) | val n=136/2 mdd -4.0 (t -2.4)
+   T=100 tra n=206/2 mdd +1.1 (t 0.6) | val n=126/2 mdd -4.6 (t -3.1)
+   T=120 tra n=166/2 mdd -0.3 (t -0.2) | val n=106/2 mdd -6.0 (t -4.3)
+
+==== (4) Controls: price-duration, coin-denominated OI, and OI>60 excess stratified by price-duration ====
+[control price-run] eth consecutive: days-in-state of PRICE pct365>=0.8
+   tra: 1-10: n=132/8 mdd +0.4 (t 0.1) lift 0.69 | 11-30: n=190/8 mdd +2.3 (t 0.9) lift 0.70 | 31-60: n=144/7 mdd -1.6 (t -0.7) lift 1.50 | 61-inf: n=453/4 mdd +0.4 (t 0.2) lift 1.05
+   val: 1-10: n=42/4 mdd -5.8 (t -1.9) lift 1.27 | 11-30: n=32/2 mdd +3.2 (t 0.8) lift 1.03 | 31-60: n=30/1 mdd +1.6 (t 0.7) lift 1.29 | 61-inf: n=26/1 mdd -3.6 (t -1.6) lift 1.41
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train >60 spans: 2020-09-03..2021-06-21 (n=292, mdd -10.6); 2021-09-23..2021-09-28 (n=6, mdd -5.0); 2021-11-29..2021-12-28 (n=30, mdd -25.1); 2024-01-05..2024-05-08 (n=125, mdd -7.9)
+   validation >60 spans: 2025-09-15..2025-10-10 (n=26, mdd -15.9)
+[control coin-OI run] eth consecutive: days-in-state of (futures_oi/eth price) pct365>=0.8
+   tra: 1-10: n=164/4 mdd -0.4 (t -0.1) lift 0.93 | 11-30: n=65/3 mdd -10.8 (t -1.4) lift 1.47 | 31-60: n=42/3 mdd -4.8 (t -1.2) lift 1.36 | 61-inf: n=123/1 mdd -3.5 (t -1.2) lift 1.54
+   val: 1-10: n=75/5 mdd +2.9 (t 1.4) lift 0.76 | 11-30: n=94/4 mdd +2.3 (t 0.7) lift 0.88 | 31-60: n=140/5 mdd +2.8 (t 1.2) lift 0.94 | 61-inf: n=120/5 mdd -5.6 (t -2.1) lift 1.24
+   tes: 1-10: n=33/1 mdd +6.4 (t 2.2) lift 0.60 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train >60 spans: 2022-07-05..2022-11-04 (n=123, mdd -14.6)
+   validation >60 spans: 2024-07-21..2024-08-06 (n=17, mdd -24.3); 2024-12-15..2025-03-02 (n=78, mdd -21.5); 2025-05-03..2025-05-08 (n=6, mdd +4.3); 2025-07-11..2025-07-25 (n=15, mdd -3.4); 2025-09-25..2025-09-28 (n=4, mdd -6.7)
+[stratified] eth consecutive train: OI>60 days n=85; price-run buckets of those days {'0': np.int64(8), '1-10': np.int64(12), '11-30': np.int64(20), '31-60': np.int64(13), '>60': np.int64(32)}; share also price>60 0.38; raw excess mdd +0.6 -> price-bucket-stratified +0.2; partial NW t(OI>60 | price buckets) 0.1
+      price>60 all days mdd +0.4% | OI>60 & not price>60 (n=53) mdd -0.4% | price>60 & not OI>60 (n=421) mdd +0.2%
+[stratified] eth consecutive validation: OI>60 days n=55; price-run buckets of those days {'0': np.int64(35), '1-10': np.int64(4), '>60': np.int64(16)}; share also price>60 0.29; raw excess mdd -7.5 -> price-bucket-stratified -6.3; partial NW t(OI>60 | price buckets) -2.6
+      price>60 all days mdd -3.6% | OI>60 & not price>60 (n=39) mdd -8.8% | price>60 & not OI>60 (n=10) mdd -2.7%
+[control price-run] eth hysteresis: days-in-state of PRICE pct365>=0.8
+   tra: 1-10: n=50/5 mdd -7.4 (t -1.1) lift 1.00 | 11-30: n=100/5 mdd -6.3 (t -0.9) lift 1.05 | 31-60: n=111/5 mdd +3.7 (t 1.3) lift 0.49 | 61-inf: n=784/3 mdd +0.5 (t 0.4) lift 1.13
+   val: 1-10: n=20/2 mdd +2.3 (t 1.0) lift 0.64 | 11-30: n=40/2 mdd +3.5 (t 1.1) lift 0.92 | 31-60: n=43/2 mdd +0.0 (t 0.0) lift 1.24 | 61-inf: n=84/2 mdd -10.1 (t -3.8) lift 1.66
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train >60 spans: 2020-07-30..2022-01-07 (n=527, mdd -11.6); 2023-05-31..2023-08-17 (n=79, mdd -7.6); 2024-01-05..2024-06-30 (n=178, mdd -9.0)
+   validation >60 spans: 2024-07-01..2024-08-02 (n=33, mdd -25.3); 2025-09-15..2025-11-04 (n=51, mdd -20.4)
+[control coin-OI run] eth hysteresis: days-in-state of (futures_oi/eth price) pct365>=0.8
+   tra: 1-10: n=125/4 mdd -2.1 (t -0.6) lift 1.19 | 11-30: n=87/4 mdd -4.4 (t -1.0) lift 1.39 | 31-60: n=40/2 mdd -25.7 (t -3.5) lift 2.28 | 61-inf: n=216/1 mdd +0.3 (t 0.1) lift 1.06
+   val: 1-10: n=20/2 mdd +4.1 (t 1.5) lift 0.92 | 11-30: n=40/2 mdd +7.6 (t 3.7) lift 0.41 | 31-60: n=80/3 mdd -0.9 (t -0.3) lift 1.17 | 61-inf: n=310/3 mdd -0.6 (t -0.4) lift 1.01
+   tes: 1-10: n=45/1 mdd +1.8 (t 0.5) lift 1.16 | 11-30: n=31/2 mdd +4.8 (t 1.1) lift 0.80 | 31-60: n=5/1 mdd +16.0 (t 4.7) lift 0.00 | 61-inf: n=0
+   train >60 spans: 2022-06-14..2023-01-15 (n=216, mdd -10.8)
+   validation >60 spans: 2024-07-21..2024-08-08 (n=19, mdd -22.9); 2024-10-25..2025-07-25 (n=274, mdd -11.9); 2025-09-25..2025-10-11 (n=17, mdd -16.2)
+[stratified] eth hysteresis train: OI>60 days n=227; price-run buckets of those days {'0': np.int64(1), '>60': np.int64(226)}; share also price>60 1.00; raw excess mdd -0.8 -> price-bucket-stratified -1.3; partial NW t(OI>60 | price buckets) -0.5
+      price>60 all days mdd +0.5% | OI>60 & not price>60 (n=1) mdd - | price>60 & not OI>60 (n=558) mdd +1.0%
+[stratified] eth hysteresis validation: OI>60 days n=175; price-run buckets of those days {'0': np.int64(72), '1-10': np.int64(9), '11-30': np.int64(7), '31-60': np.int64(13), '>60': np.int64(74)}; share also price>60 0.42; raw excess mdd -8.1 -> price-bucket-stratified -4.9; partial NW t(OI>60 | price buckets) -3.0
+      price>60 all days mdd -10.1% | OI>60 & not price>60 (n=101) mdd -6.0% | price>60 & not OI>60 (n=10) mdd -2.7%
+[control price-run] btc consecutive: days-in-state of PRICE pct365>=0.8
+   tra: 1-10: n=108/10 mdd -2.2 (t -0.9) lift 1.16 | 11-30: n=105/6 mdd +0.9 (t 0.5) lift 1.14 | 31-60: n=125/5 mdd -0.2 (t -0.1) lift 1.32 | 61-inf: n=412/2 mdd +1.0 (t 0.5) lift 0.93
+   val: 1-10: n=61/5 mdd -2.4 (t -1.0) lift 2.02 | 11-30: n=43/3 mdd +3.1 (t 1.9) lift 0.20 | 31-60: n=60/2 mdd +2.5 (t 1.6) lift 0.22 | 61-inf: n=137/2 mdd -0.3 (t -0.2) lift 0.83
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train >60 spans: 2020-09-25..2021-05-12 (n=230, mdd -8.7); 2023-12-20..2024-06-18 (n=182, mdd -7.2)
+   validation >60 spans: 2024-12-26..2025-02-18 (n=55, mdd -9.9); 2025-07-06..2025-09-25 (n=82, mdd -4.9)
+[control coin-OI run] btc consecutive: days-in-state of (futures_oi/btc price) pct365>=0.8
+   tra: 1-10: n=130/6 mdd -3.0 (t -1.6) lift 1.58 | 11-30: n=32/4 mdd -11.4 (t -2.8) lift 2.25 | 31-60: n=30/1 mdd -19.6 (t -4.4) lift 2.22 | 61-inf: n=162/1 mdd -2.6 (t -1.2) lift 1.32
+   val: 1-10: n=124/4 mdd +1.0 (t 0.7) lift 0.81 | 11-30: n=56/2 mdd +2.9 (t 2.4) lift 0.00 | 31-60: n=27/2 mdd +1.0 (t 0.7) lift 0.49 | 61-inf: n=0
+   tes: 1-10: n=11/4 mdd +7.2 (t 2.5) lift 0.00 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train >60 spans: 2022-06-06..2022-11-14 (n=162, mdd -11.7)
+   validation >60 spans: 
+[stratified] btc consecutive train: OI>60 days n=89; price-run buckets of those days {'0': np.int64(14), '31-60': np.int64(1), '>60': np.int64(74)}; share also price>60 0.83; raw excess mdd -0.5 -> price-bucket-stratified -1.3; partial NW t(OI>60 | price buckets) -0.5
+      price>60 all days mdd +1.0% | OI>60 & not price>60 (n=15) mdd -0.9% | price>60 & not OI>60 (n=338) mdd +1.3%
+[stratified] btc consecutive validation: OI>60 days n=63; price-run buckets of those days {'0': np.int64(6), '31-60': np.int64(14), '>60': np.int64(43)}; share also price>60 0.68; raw excess mdd -0.5 -> price-bucket-stratified -0.8; partial NW t(OI>60 | price buckets) -0.7
+      price>60 all days mdd -0.3% | OI>60 & not price>60 (n=20) mdd -0.3% | price>60 & not OI>60 (n=94) mdd -0.1%
+[control price-run] btc hysteresis: days-in-state of PRICE pct365>=0.8
+   tra: 1-10: n=80/7 mdd -2.5 (t -0.5) lift 0.93 | 11-30: n=115/6 mdd -2.4 (t -1.0) lift 1.46 | 31-60: n=150/5 mdd -0.3 (t -0.1) lift 1.00 | 61-inf: n=559/4 mdd +0.0 (t 0.0) lift 1.09
+   val: 1-10: n=20/2 mdd +5.6 (t 4.8) lift 0.00 | 11-30: n=40/2 mdd +4.3 (t 2.4) lift 0.00 | 31-60: n=60/2 mdd +3.0 (t 2.5) lift 0.00 | 61-inf: n=275/3 mdd -2.8 (t -3.5) lift 1.65
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train >60 spans: 2019-08-29..2019-09-25 (n=28, mdd -21.7); 2020-09-25..2021-06-08 (n=257, mdd -9.5); 2023-05-31..2023-08-18 (n=80, mdd -6.8); 2023-12-20..2024-06-30 (n=194, mdd -7.4)
+   validation >60 spans: 2024-07-01..2024-08-04 (n=35, mdd -13.0); 2024-12-15..2025-04-06 (n=113, mdd -9.8); 2025-07-01..2025-11-04 (n=127, mdd -8.2)
+[control coin-OI run] btc hysteresis: days-in-state of (futures_oi/btc price) pct365>=0.8
+   tra: 1-10: n=118/6 mdd -5.2 (t -2.3) lift 1.95 | 11-30: n=84/5 mdd -5.5 (t -1.8) lift 1.81 | 31-60: n=30/1 mdd -19.6 (t -4.4) lift 2.22 | 61-inf: n=216/1 mdd -0.3 (t -0.1) lift 0.99
+   val: 1-10: n=76/4 mdd -1.0 (t -0.6) lift 0.98 | 11-30: n=56/3 mdd +0.7 (t 0.3) lift 0.86 | 31-60: n=64/3 mdd +4.3 (t 3.0) lift 0.00 | 61-inf: n=63/2 mdd +2.1 (t 1.6) lift 0.28
+   tes: 1-10: n=18/4 mdd +5.6 (t 2.0) lift 0.00 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   train >60 spans: 2022-06-06..2023-01-07 (n=216, mdd -9.3)
+   validation >60 spans: 2024-11-20..2025-01-14 (n=56, mdd -4.5); 2025-09-25..2025-10-01 (n=7, mdd -5.3)
+[stratified] btc hysteresis train: OI>60 days n=287; price-run buckets of those days {'0': np.int64(2), '31-60': np.int64(13), '>60': np.int64(272)}; share also price>60 0.95; raw excess mdd +1.8 -> price-bucket-stratified +1.8; partial NW t(OI>60 | price buckets) 1.0
+      price>60 all days mdd +0.0% | OI>60 & not price>60 (n=15) mdd +2.2% | price>60 & not OI>60 (n=287) mdd -1.6%
+[stratified] btc hysteresis validation: OI>60 days n=197; price-run buckets of those days {'0': np.int64(2), '31-60': np.int64(23), '>60': np.int64(172)}; share also price>60 0.87; raw excess mdd -2.8 -> price-bucket-stratified -0.7; partial NW t(OI>60 | price buckets) -0.8
+      price>60 all days mdd -2.8% | OI>60 & not price>60 (n=25) mdd +2.1% | price>60 & not OI>60 (n=103) mdd -1.6%
+
+==== (5) Episode level: one observation per run that passes 60 days (W=30) ====
+[episode] eth consecutive oi: runs>60d in train+val n=3; late<early in 2/3 (p=1.000, mean -9.5%); late<period-mean in 2/3 (p=1.000, mean -0.8%)
+      run 2024-02-07..2024-07-08 peak 153 [train] late 2024-04-07: mdd_late -14.0% mdd_early -0.2% base -11.1%
+      run 2024-11-08..2025-02-05 peak 90 [validation] late 2025-01-07: mdd_late -20.5% mdd_early +3.3% base -12.2%
+      run 2025-07-27..2025-10-11 peak 77 [validation] late 2025-09-25: mdd_late -3.3% mdd_early -12.4% base -12.2%
+[episode] eth consecutive oi_ffill: runs>60d in train+val n=3; late<early in 3/3 (p=0.250, mean -17.8%); late<period-mean in 2/3 (p=1.000, mean -3.5%)
+      run 2024-02-07..2024-07-08 peak 153 [train] late 2024-04-07: mdd_late -14.0% mdd_early -0.2% base -11.1%
+      run 2024-11-08..2025-02-05 peak 90 [validation] late 2025-01-07: mdd_late -20.5% mdd_early +3.3% base -12.2%
+      run 2025-07-01..2025-10-11 peak 103 [validation] late 2025-08-30: mdd_late -11.4% mdd_early +4.3% base -12.2%
+[episode] eth consecutive price: runs>60d in train+val n=5; late<early in 5/5 (p=0.062, mean -15.2%); late<period-mean in 3/5 (p=1.000, mean -1.6%)
+      run 2020-07-05..2021-06-21 peak 352 [train] late 2020-09-03: mdd_late -16.0% mdd_early +2.2% base -11.1%
+      run 2021-07-25..2021-09-28 peak 66 [train] late 2021-09-23: mdd_late -11.0% mdd_early +1.8% base -11.1%
+      run 2021-09-30..2021-12-28 peak 90 [train] late 2021-11-29: mdd_late -18.4% mdd_early +10.3% base -11.1%
+      run 2023-11-06..2024-05-08 peak 185 [train] late 2024-01-05: mdd_late -2.2% mdd_early -0.8% base -11.1%
+      run 2025-07-17..2025-10-10 peak 86 [validation] late 2025-09-15: mdd_late -17.2% mdd_early -2.4% base -12.2%
+[episode] eth consecutive coin_oi: runs>60d in train+val n=6; late<early in 2/6 (p=0.688, mean +2.7%); late<period-mean in 2/6 (p=0.688, mean +0.7%)
+      run 2022-05-06..2022-11-04 peak 183 [train] late 2022-07-05: mdd_late -8.3% mdd_early -35.9% base -11.1%
+      run 2024-05-22..2024-08-06 peak 77 [validation] late 2024-07-21: mdd_late -33.8% mdd_early -7.2% base -12.2%
+      run 2024-10-16..2025-03-02 peak 138 [validation] late 2024-12-15: mdd_late -20.8% mdd_early -8.2% base -12.2%
+      run 2025-03-04..2025-05-08 peak 66 [validation] late 2025-05-03: mdd_late -1.3% mdd_early -17.3% base -12.2%
+      run 2025-05-12..2025-07-25 peak 75 [validation] late 2025-07-11: mdd_late -0.5% mdd_early -3.3% base -12.2%
+      run 2025-07-27..2025-09-28 peak 64 [validation] late 2025-09-25: mdd_late -3.3% mdd_early -12.4% base -12.2%
+[episode] eth hysteresis oi: runs>60d in train+val n=6; late<early in 3/6 (p=1.000, mean -1.4%); late<period-mean in 1/6 (p=0.219, mean +6.1%)
+      run 2021-10-04..2022-01-08 peak 97 [train] late 2021-12-03: mdd_late -13.9% mdd_early +0.9% base -11.1%
+      run 2023-04-06..2023-06-17 peak 73 [train] late 2023-06-05: mdd_late -8.8% mdd_early -2.2% base -11.1%
+      run 2023-11-07..2024-08-06 peak 274 [train] late 2024-01-06: mdd_late -1.0% mdd_early +0.1% base -11.1%
+      run 2024-10-22..2025-03-01 peak 131 [validation] late 2024-12-21: mdd_late -6.0% mdd_early -8.6% base -12.2%
+      run 2025-05-12..2025-07-25 peak 75 [validation] late 2025-07-11: mdd_late -0.5% mdd_early -3.3% base -12.2%
+      run 2025-07-27..2025-11-15 peak 112 [validation] late 2025-09-25: mdd_late -3.3% mdd_early -12.4% base -12.2%
+[episode] eth hysteresis oi_ffill: runs>60d in train+val n=5; late<early in 3/5 (p=1.000, mean -3.4%); late<period-mean in 1/5 (p=0.375, mean +5.5%)
+      run 2021-10-04..2022-01-08 peak 97 [train] late 2021-12-03: mdd_late -13.9% mdd_early +0.9% base -11.1%
+      run 2023-04-06..2023-06-17 peak 73 [train] late 2023-06-05: mdd_late -8.8% mdd_early -2.2% base -11.1%
+      run 2023-11-07..2024-08-06 peak 274 [train] late 2024-01-06: mdd_late -1.0% mdd_early +0.1% base -11.1%
+      run 2024-10-22..2025-03-01 peak 131 [validation] late 2024-12-21: mdd_late -6.0% mdd_early -8.6% base -12.2%
+      run 2025-05-12..2025-11-15 peak 188 [validation] late 2025-07-11: mdd_late -0.5% mdd_early -3.3% base -12.2%
+[episode] eth hysteresis price: runs>60d in train+val n=4; late<early in 3/4 (p=0.625, mean -4.7%); late<period-mean in 2/4 (p=1.000, mean +4.4%)
+      run 2020-05-31..2022-01-07 peak 587 [train] late 2020-07-30: mdd_late +3.3% mdd_early -4.6% base -11.1%
+      run 2023-04-01..2023-08-17 peak 139 [train] late 2023-05-31: mdd_late -11.9% mdd_early -1.4% base -11.1%
+      run 2023-11-06..2024-08-02 peak 271 [train] late 2024-01-05: mdd_late -2.2% mdd_early -0.8% base -11.1%
+      run 2025-07-17..2025-11-04 peak 111 [validation] late 2025-09-15: mdd_late -17.2% mdd_early -2.4% base -12.2%
+[episode] eth hysteresis coin_oi: runs>60d in train+val n=4; late<early in 1/4 (p=0.625, mean +3.9%); late<period-mean in 2/4 (p=1.000, mean -2.2%)
+      run 2022-04-15..2023-01-15 peak 276 [train] late 2022-06-14: mdd_late -17.7% mdd_early -35.5% base -11.1%
+      run 2024-05-22..2024-08-08 peak 79 [validation] late 2024-07-21: mdd_late -33.8% mdd_early -7.2% base -12.2%
+      run 2024-08-26..2025-07-25 peak 334 [validation] late 2024-10-25: mdd_late -1.8% mdd_early -17.0% base -12.2%
+      run 2025-07-27..2025-10-11 peak 77 [validation] late 2025-09-25: mdd_late -3.3% mdd_early -12.4% base -12.2%
+[episode] btc consecutive oi: runs>60d in train+val n=5; late<early in 3/5 (p=1.000, mean -7.1%); late<period-mean in 3/5 (p=1.000, mean +0.5%)
+      run 2023-06-17..2023-08-18 peak 63 [train] late 2023-08-16: mdd_late -12.4% mdd_early -0.7% base -9.0%
+      run 2023-11-24..2024-01-23 peak 61 [train] late 2024-01-23: mdd_late +0.2% mdd_early -1.3% base -9.0%
+      run 2024-02-07..2024-07-05 peak 150 [train] late 2024-04-07: mdd_late -15.9% mdd_early +2.1% base -9.0%
+      run 2024-10-13..2025-02-05 peak 116 [validation] late 2024-12-12: mdd_late -7.5% mdd_early +5.1% base -6.6%
+      run 2025-07-27..2025-09-26 peak 62 [validation] late 2025-09-25: mdd_late -2.3% mdd_early -7.8% base -6.6%
+[episode] btc consecutive oi_ffill: runs>60d in train+val n=5; late<early in 4/5 (p=0.375, mean -8.6%); late<period-mean in 3/5 (p=1.000, mean +0.5%)
+      run 2023-06-17..2023-08-18 peak 63 [train] late 2023-08-16: mdd_late -12.4% mdd_early -0.7% base -9.0%
+      run 2023-11-24..2024-01-23 peak 61 [train] late 2024-01-23: mdd_late +0.2% mdd_early -1.3% base -9.0%
+      run 2024-02-07..2024-07-05 peak 150 [train] late 2024-04-07: mdd_late -15.9% mdd_early +2.1% base -9.0%
+      run 2024-10-13..2025-02-05 peak 116 [validation] late 2024-12-12: mdd_late -7.5% mdd_early +5.1% base -6.6%
+      run 2025-07-04..2025-09-26 peak 85 [validation] late 2025-09-02: mdd_late -2.0% mdd_early +0.2% base -6.6%
+[episode] btc consecutive price: runs>60d in train+val n=4; late<early in 4/4 (p=0.125, mean -3.6%); late<period-mean in 0/4 (p=0.125, mean +5.1%)
+      run 2020-07-27..2021-05-12 peak 290 [train] late 2020-09-25: mdd_late -1.4% mdd_early -1.2% base -9.0%
+      run 2023-10-21..2024-06-18 peak 242 [train] late 2023-12-20: mdd_late -5.5% mdd_early +0.3% base -9.0%
+      run 2024-10-27..2025-02-18 peak 115 [validation] late 2024-12-26: mdd_late -3.4% mdd_early -0.2% base -6.6%
+      run 2025-05-07..2025-09-25 peak 142 [validation] late 2025-07-06: mdd_late -0.9% mdd_early +4.6% base -6.6%
+[episode] btc consecutive coin_oi: runs>60d in train+val n=1; late<early in 1/1 (p=1.000, mean -21.2%); late<period-mean in 1/1 (p=1.000, mean -30.5%)
+      run 2022-04-07..2022-11-14 peak 222 [train] late 2022-06-06: mdd_late -39.5% mdd_early -18.3% base -9.0%
+[episode] btc hysteresis oi: runs>60d in train+val n=6; late<early in 5/6 (p=0.219, mean -2.4%); late<period-mean in 1/6 (p=0.219, mean +2.3%)
+      run 2021-10-06..2021-12-05 peak 61 [train] late 2021-12-05: mdd_late -7.2% mdd_early -2.7% base -9.0%
+      run 2023-03-19..2023-08-19 peak 154 [train] late 2023-05-18: mdd_late -6.3% mdd_early -3.0% base -9.0%
+      run 2023-10-23..2024-08-06 peak 289 [train] late 2023-12-22: mdd_late -6.1% mdd_early +2.5% base -9.0%
+      run 2024-09-23..2025-03-30 peak 189 [validation] late 2024-11-22: mdd_late -7.0% mdd_early -4.8% base -6.6%
+      run 2025-05-13..2025-07-25 peak 74 [validation] late 2025-07-12: mdd_late -4.2% mdd_early -2.5% base -6.6%
+      run 2025-07-27..2025-10-11 peak 77 [validation] late 2025-09-25: mdd_late -2.3% mdd_early -7.8% base -6.6%
+[episode] btc hysteresis oi_ffill: runs>60d in train+val n=5; late<early in 5/5 (p=0.062, mean -4.0%); late<period-mean in 1/5 (p=0.375, mean +1.9%)
+      run 2021-10-06..2021-12-05 peak 61 [train] late 2021-12-05: mdd_late -7.2% mdd_early -2.7% base -9.0%
+      run 2023-03-19..2023-08-19 peak 154 [train] late 2023-05-18: mdd_late -6.3% mdd_early -3.0% base -9.0%
+      run 2023-10-23..2024-08-06 peak 289 [train] late 2023-12-22: mdd_late -6.1% mdd_early +2.5% base -9.0%
+      run 2024-09-23..2025-03-30 peak 189 [validation] late 2024-11-22: mdd_late -7.0% mdd_early -4.8% base -6.6%
+      run 2025-05-13..2025-10-11 peak 152 [validation] late 2025-07-12: mdd_late -4.2% mdd_early -2.5% base -6.6%
+[episode] btc hysteresis price: runs>60d in train+val n=6; late<early in 4/6 (p=0.688, mean -1.8%); late<period-mean in 2/6 (p=0.688, mean +1.4%)
+      run 2019-06-30..2019-09-25 peak 88 [train] late 2019-08-29: mdd_late -17.0% mdd_early -20.6% base -9.0%
+      run 2020-07-27..2021-06-08 peak 317 [train] late 2020-09-25: mdd_late -1.4% mdd_early -1.2% base -9.0%
+      run 2023-04-01..2023-08-18 peak 140 [train] late 2023-05-31: mdd_late -7.7% mdd_early -4.2% base -9.0%
+      run 2023-10-21..2024-08-04 peak 289 [train] late 2023-12-20: mdd_late -5.5% mdd_early +0.3% base -9.0%
+      run 2024-10-16..2025-04-06 peak 173 [validation] late 2024-12-15: mdd_late -11.4% mdd_early -1.4% base -6.6%
+      run 2025-05-02..2025-11-04 peak 187 [validation] late 2025-07-01: mdd_late +2.2% mdd_early -2.7% base -6.6%
+[episode] btc hysteresis coin_oi: runs>60d in train+val n=3; late<early in 1/3 (p=1.000, mean -4.5%); late<period-mean in 1/3 (p=1.000, mean -7.3%)
+      run 2022-04-07..2023-01-07 peak 276 [train] late 2022-06-06: mdd_late -39.5% mdd_early -18.3% base -9.0%
+      run 2024-09-21..2025-01-14 peak 116 [validation] late 2024-11-20: mdd_late -2.4% mdd_early -4.8% base -6.6%
+      run 2025-07-27..2025-10-01 peak 67 [validation] late 2025-09-25: mdd_late -2.3% mdd_early -7.8% base -6.6%
+
+==== (6) BTC vs ETH agreement on '>60 worse than 1-10' (W=30), per period ====
+   consecutive train: (>60 minus 1-10) mdd_diff eth -3.0% btc -5.0%
+   consecutive validation: (>60 minus 1-10) mdd_diff eth -10.8% btc +0.3%
+   hysteresis train: (>60 minus 1-10) mdd_diff eth -3.5% btc +2.1%
+   hysteresis validation: (>60 minus 1-10) mdd_diff eth -15.0% btc -3.8%
+
+==== (7) Forward 60-day drawdown version (crash -20%) ====
+[W60] eth consecutive oi
+   tra: 1-10: n=126/5 mdd +5.0 (t 2.0) lift 0.16 | 11-30: n=110/4 mdd +6.2 (t 2.0) lift 0.43 | 31-60: n=79/3 mdd -3.9 (t -0.6) lift 1.40 | 61-inf: n=85/1 mdd -2.7 (t -0.5) lift 1.70
+   val: 1-10: n=67/4 mdd +8.5 (t 2.0) lift 0.37 | 11-30: n=90/3 mdd +4.9 (t 1.2) lift 0.57 | 31-60: n=61/3 mdd -8.2 (t -2.4) lift 1.83 | 61-inf: n=55/3 mdd -18.3 (t -5.1) lift 2.23
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 3/3 (p=0.250), late<base 3/3 (p=0.250)
+[W60] eth consecutive price
+   tra: 1-10: n=132/7 mdd +0.8 (t 0.2) lift 0.84 | 11-30: n=190/7 mdd +1.7 (t 0.5) lift 0.71 | 31-60: n=144/6 mdd -3.8 (t -1.0) lift 1.42 | 61-inf: n=453/4 mdd +2.4 (t 0.8) lift 0.82
+   val: 1-10: n=42/4 mdd -5.4 (t -1.3) lift 1.38 | 11-30: n=32/2 mdd +2.8 (t 0.4) lift 0.91 | 31-60: n=30/1 mdd +0.2 (t 0.0) lift 0.97 | 61-inf: n=26/1 mdd -15.3 (t -4.2) lift 2.23
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 5/5 (p=0.062), late<base 3/5 (p=1.000)
+[W60] eth consecutive coin_oi
+   tra: 1-10: n=164/4 mdd -5.4 (t -0.8) lift 1.37 | 11-30: n=65/3 mdd -11.2 (t -1.3) lift 2.07 | 31-60: n=42/3 mdd -4.6 (t -1.0) lift 1.44 | 61-inf: n=123/1 mdd -4.9 (t -1.8) lift 1.61
+   val: 1-10: n=75/3 mdd +7.1 (t 2.1) lift 0.45 | 11-30: n=94/2 mdd +7.6 (t 1.8) lift 0.50 | 31-60: n=140/3 mdd +4.7 (t 1.2) lift 0.81 | 61-inf: n=120/5 mdd -11.5 (t -2.6) lift 1.79
+   tes: 1-10: n=28/1 mdd +9.5 (t 2.9) lift 0.40 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 3/6 (p=1.000), late<base 3/6 (p=1.000)
+[W60] eth hysteresis oi
+   tra: 1-10: n=68/5 mdd +1.3 (t 0.3) lift 0.44 | 11-30: n=90/4 mdd +5.7 (t 1.9) lift 0.15 | 31-60: n=95/4 mdd -0.5 (t -0.1) lift 0.99 | 61-inf: n=227/3 mdd -1.8 (t -0.4) lift 1.36
+   val: 1-10: n=30/3 mdd +11.4 (t 2.8) lift 0.00 | 11-30: n=60/2 mdd +10.1 (t 2.2) lift 0.19 | 31-60: n=90/2 mdd +2.2 (t 0.5) lift 0.92 | 61-inf: n=175/4 mdd -11.9 (t -4.3) lift 1.87
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 5/6 (p=0.219), late<base 3/6 (p=1.000)
+[W60] eth hysteresis price
+   tra: 1-10: n=50/5 mdd -7.9 (t -0.9) lift 1.34 | 11-30: n=100/5 mdd -5.1 (t -0.7) lift 1.41 | 31-60: n=111/5 mdd +6.9 (t 2.0) lift 0.55 | 61-inf: n=784/3 mdd +1.0 (t 0.4) lift 0.93
+   val: 1-10: n=20/2 mdd +5.2 (t 1.1) lift 0.45 | 11-30: n=40/2 mdd +1.2 (t 0.2) lift 1.17 | 31-60: n=43/2 mdd -5.3 (t -1.1) lift 1.35 | 61-inf: n=84/2 mdd -12.2 (t -3.4) lift 2.21
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 3/4 (p=0.625), late<base 1/4 (p=0.625)
+[W60] eth hysteresis coin_oi
+   tra: 1-10: n=125/4 mdd -5.1 (t -1.0) lift 1.45 | 11-30: n=87/3 mdd -16.1 (t -2.0) lift 2.40 | 31-60: n=40/2 mdd -26.5 (t -7.0) lift 3.28 | 61-inf: n=216/1 mdd +1.2 (t 0.3) lift 0.96
+   val: 1-10: n=20/2 mdd +11.1 (t 2.7) lift 0.00 | 11-30: n=40/2 mdd +10.8 (t 2.5) lift 0.22 | 31-60: n=80/3 mdd +0.2 (t 0.0) lift 1.12 | 61-inf: n=310/3 mdd -0.6 (t -0.2) lift 1.07
+   tes: 1-10: n=34/1 mdd +3.1 (t 0.7) lift 1.06 | 11-30: n=20/1 mdd +13.4 (t 3.3) lift 0.00 | 31-60: n=5/1 mdd +19.5 (t 4.4) lift 0.00 | 61-inf: n=0
+   episode-level W60: late<early 2/4 (p=1.000), late<base 3/4 (p=0.625)
+[W60] btc consecutive oi
+   tra: 1-10: n=114/4 mdd +4.3 (t 1.6) lift 0.49 | 11-30: n=137/3 mdd +1.9 (t 0.6) lift 0.66 | 31-60: n=124/3 mdd -3.0 (t -0.8) lift 0.84 | 61-inf: n=89/3 mdd -0.5 (t -0.2) lift 0.48
+   val: 1-10: n=75/3 mdd +0.2 (t 0.1) lift 0.90 | 11-30: n=79/3 mdd +3.7 (t 1.7) lift 0.24 | 31-60: n=60/2 mdd +2.5 (t 0.9) lift 0.56 | 61-inf: n=63/3 mdd -5.1 (t -2.0) lift 1.61
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 4/5 (p=0.375), late<base 2/5 (p=1.000)
+[W60] btc consecutive price
+   tra: 1-10: n=108/7 mdd -3.9 (t -1.5) lift 1.16 | 11-30: n=105/5 mdd -0.4 (t -0.1) lift 0.99 | 31-60: n=125/5 mdd -1.0 (t -0.2) lift 1.24 | 61-inf: n=412/2 mdd +1.5 (t 0.4) lift 0.78
+   val: 1-10: n=61/5 mdd -2.4 (t -0.6) lift 1.89 | 11-30: n=43/3 mdd +5.6 (t 2.7) lift 0.34 | 31-60: n=60/2 mdd +5.9 (t 2.6) lift 0.00 | 61-inf: n=137/2 mdd -2.8 (t -1.0) lift 1.37
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 3/4 (p=0.625), late<base 0/4 (p=0.125)
+[W60] btc consecutive coin_oi
+   tra: 1-10: n=130/4 mdd -4.6 (t -1.4) lift 1.69 | 11-30: n=32/4 mdd -23.0 (t -2.3) lift 2.70 | 31-60: n=30/1 mdd -24.0 (t -14.1) lift 4.32 | 61-inf: n=162/1 mdd -2.9 (t -1.4) lift 1.28
+   val: 1-10: n=124/2 mdd +3.1 (t 1.5) lift 0.35 | 11-30: n=56/2 mdd +3.1 (t 1.2) lift 0.43 | 31-60: n=27/2 mdd -0.1 (t -0.1) lift 0.36 | 61-inf: n=0
+   tes: 1-10: n=10/3 mdd +10.2 (t 3.5) lift 0.00 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 1/1 (p=1.000), late<base 1/1 (p=1.000)
+[W60] btc hysteresis oi
+   tra: 1-10: n=50/4 mdd -1.7 (t -0.3) lift 0.95 | 11-30: n=73/4 mdd +0.6 (t 0.1) lift 1.24 | 31-60: n=90/3 mdd -3.5 (t -0.5) lift 1.44 | 61-inf: n=287/3 mdd +2.6 (t 1.1) lift 0.20
+   val: 1-10: n=36/3 mdd +4.3 (t 2.1) lift 0.00 | 11-30: n=60/2 mdd +5.6 (t 2.5) lift 0.00 | 31-60: n=90/2 mdd +5.5 (t 2.4) lift 0.37 | 61-inf: n=197/4 mdd -3.8 (t -2.3) lift 1.42
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 6/6 (p=0.031), late<base 2/6 (p=0.688)
+[W60] btc hysteresis price
+   tra: 1-10: n=80/6 mdd -2.1 (t -0.4) lift 0.86 | 11-30: n=115/6 mdd -2.1 (t -0.7) lift 1.13 | 31-60: n=150/5 mdd -2.6 (t -0.6) lift 1.67 | 61-inf: n=559/4 mdd +0.2 (t 0.1) lift 0.90
+   val: 1-10: n=20/2 mdd +9.1 (t 4.3) lift 0.00 | 11-30: n=40/2 mdd +7.8 (t 3.0) lift 0.00 | 31-60: n=60/2 mdd +6.4 (t 3.2) lift 0.00 | 61-inf: n=275/3 mdd -3.8 (t -2.4) lift 1.54
+   tes: 1-10: n=0 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 4/6 (p=0.688), late<base 2/6 (p=0.688)
+[W60] btc hysteresis coin_oi
+   tra: 1-10: n=118/4 mdd -7.7 (t -2.8) lift 2.08 | 11-30: n=84/3 mdd -12.1 (t -1.7) lift 2.11 | 31-60: n=30/1 mdd -24.0 (t -14.1) lift 4.32 | 61-inf: n=216/1 mdd +0.5 (t 0.2) lift 0.96
+   val: 1-10: n=76/3 mdd +1.1 (t 0.5) lift 0.51 | 11-30: n=56/2 mdd +3.7 (t 1.4) lift 0.17 | 31-60: n=64/3 mdd +4.2 (t 1.4) lift 0.53 | 61-inf: n=63/2 mdd -0.0 (t -0.0) lift 0.54
+   tes: 1-10: n=17/3 mdd +8.4 (t 2.8) lift 0.00 | 11-30: n=0 | 31-60: n=0 | 61-inf: n=0
+   episode-level W60: late<early 2/3 (p=1.000), late<base 2/3 (p=1.000)

@@ -1,0 +1,332 @@
+{
+ "buy13_nan_mode_mechanism": {
+  "setup_start": "2024-12-02 11:00:00",
+  "ind_13": "2024-12-05 05:00:00",
+  "h3_13": "2024-12-08 09:00:00",
+  "bars_skipped_by_h3_but_countdown_eligible": [
+   {
+    "ts": "2024-12-03 08:00:00",
+    "close": 95537.94,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 7
+   },
+   {
+    "ts": "2024-12-04 03:00:00",
+    "close": 95782.94,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 10
+   },
+   {
+    "ts": "2024-12-04 12:00:00",
+    "close": 95975.33,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 11
+   },
+   {
+    "ts": "2024-12-05 05:00:00",
+    "close": 102479.94,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 13
+   },
+   {
+    "ts": "2024-12-05 18:00:00",
+    "close": 100168.5,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 0
+   },
+   {
+    "ts": "2024-12-06 03:00:00",
+    "close": 97732.39,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 0
+   },
+   {
+    "ts": "2024-12-06 12:00:00",
+    "close": 97623.23,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 0
+   },
+   {
+    "ts": "2024-12-06 23:00:00",
+    "close": 99738.55,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 0
+   },
+   {
+    "ts": "2024-12-07 13:00:00",
+    "close": 99387.03,
+    "close_m2_nan": false,
+    "close_m4_nan": true,
+    "countdown_cond": true,
+    "h3_skips_bar": true,
+    "ind_cd": 0
+   }
+  ],
+  "n_such_bars_whole_series": 373
+ },
+ "gap_ground_truth_tolerance": {
+  "skip": {
+   "buy9": {
+    "truth": 69,
+    "mode": 54,
+    "unmatched_tol0": 19,
+    "missed_tol0": 34,
+    "unmatched_tol2": 17,
+    "missed_tol2": 32,
+    "unmatched_tol6": 8,
+    "missed_tol6": 23,
+    "unmatched_tol12": 5,
+    "missed_tol12": 19
+   },
+   "sell9": {
+    "truth": 74,
+    "mode": 56,
+    "unmatched_tol0": 17,
+    "missed_tol0": 35,
+    "unmatched_tol2": 14,
+    "missed_tol2": 32,
+    "unmatched_tol6": 6,
+    "missed_tol6": 24,
+    "unmatched_tol12": 4,
+    "missed_tol12": 21
+   }
+  },
+  "nan_reset": {
+   "buy9": {
+    "truth": 69,
+    "mode": 34,
+    "unmatched_tol0": 0,
+    "missed_tol0": 35,
+    "unmatched_tol2": 0,
+    "missed_tol2": 35,
+    "unmatched_tol6": 0,
+    "missed_tol6": 35,
+    "unmatched_tol12": 0,
+    "missed_tol12": 35
+   },
+   "sell9": {
+    "truth": 74,
+    "mode": 37,
+    "unmatched_tol0": 0,
+    "missed_tol0": 37,
+    "unmatched_tol2": 0,
+    "missed_tol2": 37,
+    "unmatched_tol6": 0,
+    "missed_tol6": 37,
+    "unmatched_tol12": 0,
+    "missed_tol12": 37
+   }
+  },
+  "ffill": {
+   "buy9": {
+    "truth": 69,
+    "mode": 70,
+    "unmatched_tol0": 20,
+    "missed_tol0": 19,
+    "unmatched_tol2": 17,
+    "missed_tol2": 16,
+    "unmatched_tol6": 13,
+    "missed_tol6": 12,
+    "unmatched_tol12": 9,
+    "missed_tol12": 10
+   },
+   "sell9": {
+    "truth": 74,
+    "mode": 68,
+    "unmatched_tol0": 25,
+    "missed_tol0": 31,
+    "unmatched_tol2": 16,
+    "missed_tol2": 22,
+    "unmatched_tol6": 12,
+    "missed_tol6": 18,
+    "unmatched_tol12": 10,
+    "missed_tol12": 16
+   }
+  },
+  "rates": {
+   "truth_buy9_per_1000": 12.392241379310345,
+   "skip_buy9_per_1000_available": 12.170385395537526,
+   "truth_sell9_per_1000": 13.290229885057471,
+   "skip_sell9_per_1000_available": 12.621140410187063,
+   "L": 5568,
+   "n_avail": 4437
+  },
+  "fwd12_skip_matched": {
+   "mean": -0.009578423214507342,
+   "n": 37
+  },
+  "fwd12_skip_unmatched": {
+   "mean": -0.004604543737215063,
+   "n": 17
+  },
+  "fwd12_truth_all": {
+   "mean": -0.005288731947561191,
+   "n": 68
+  },
+  "fwd12_all_bars": {
+   "mean": -0.0009865195264771175,
+   "n": 5556
+  }
+ },
+ "h4": {
+  "btc": {
+   "buy9": {
+    "n_h3": 52,
+    "n_ind": 52,
+    "n_diff_bars": 0
+   },
+   "sell9": {
+    "n_h3": 60,
+    "n_ind": 60,
+    "n_diff_bars": 0
+   },
+   "buy9p": {
+    "n_h3": 37,
+    "n_ind": 37,
+    "n_diff_bars": 0
+   },
+   "sell9p": {
+    "n_h3": 38,
+    "n_ind": 38,
+    "n_diff_bars": 0
+   },
+   "buy13": {
+    "n_h3": 31,
+    "n_ind": 31,
+    "n_diff_bars": 0
+   },
+   "sell13": {
+    "n_h3": 45,
+    "n_ind": 45,
+    "n_diff_bars": 0
+   }
+  },
+  "eth": {
+   "buy9": {
+    "n_h3": 47,
+    "n_ind": 47,
+    "n_diff_bars": 0
+   },
+   "sell9": {
+    "n_h3": 54,
+    "n_ind": 54,
+    "n_diff_bars": 0
+   },
+   "buy9p": {
+    "n_h3": 30,
+    "n_ind": 30,
+    "n_diff_bars": 0
+   },
+   "sell9p": {
+    "n_h3": 37,
+    "n_ind": 37,
+    "n_diff_bars": 0
+   },
+   "buy13": {
+    "n_h3": 29,
+    "n_ind": 29,
+    "n_diff_bars": 0
+   },
+   "sell13": {
+    "n_h3": 34,
+    "n_ind": 34,
+    "n_diff_bars": 0
+   }
+  }
+ },
+ "h1_eth": {
+  "buy9": {
+   "n_h3": 187,
+   "n_ind": 187,
+   "n_diff_bars": 0
+  },
+  "sell9": {
+   "n_h3": 220,
+   "n_ind": 220,
+   "n_diff_bars": 0
+  },
+  "buy9p": {
+   "n_h3": 135,
+   "n_ind": 135,
+   "n_diff_bars": 0
+  },
+  "sell9p": {
+   "n_h3": 152,
+   "n_ind": 152,
+   "n_diff_bars": 0
+  },
+  "buy13": {
+   "n_h3": 121,
+   "n_ind": 121,
+   "n_diff_bars": 0
+  },
+  "sell13": {
+   "n_h3": 135,
+   "n_ind": 135,
+   "n_diff_bars": 0
+  }
+ },
+ "h1_flags_by_period": {
+  "buy9": {
+   "train": 58,
+   "validation": 54,
+   "test": 95,
+   "train_in_gapped_dec24_mar25": 29
+  },
+  "sell9": {
+   "train": 63,
+   "validation": 60,
+   "test": 95,
+   "train_in_gapped_dec24_mar25": 26
+  },
+  "buy9p": {
+   "train": 42,
+   "validation": 40,
+   "test": 71,
+   "train_in_gapped_dec24_mar25": 20
+  },
+  "sell9p": {
+   "train": 50,
+   "validation": 47,
+   "test": 71,
+   "train_in_gapped_dec24_mar25": 23
+  },
+  "buy13": {
+   "train": 29,
+   "validation": 32,
+   "test": 62,
+   "train_in_gapped_dec24_mar25": 14
+  },
+  "sell13": {
+   "train": 41,
+   "validation": 31,
+   "test": 64,
+   "train_in_gapped_dec24_mar25": 16
+  }
+ },
+ "nan_share_gapped_window": 0.36272127733425896
+}

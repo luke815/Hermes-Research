@@ -1,0 +1,80 @@
+====================================================================================================
+REFUTATION: ETH daily TD9 BUY setup completion -> shallower 10-day drawdown (R4 1d :eth:buy9, W=10)
+====================================================================================================
+
+(1) REPRODUCE  lag=1, W=10, crash -10%, episode bar 20
+W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val mdd +9.2% t=4.9 crash x0.00 (0/4) fa=0.50 n=4 | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial
+W=20: tra mdd +4.0% t=3.3 crash x0.52 (4/21) fa=0.62 n=19 | val mdd +5.0% t=1.2 crash x0.58 (1/4) fa=0.50 n=4 | tes mdd -4.0% t=-0.8 crash x2.01 (2/3) fa=0.00 n=2 -> rejected: drawdown effect changes sign across periods
+W=30: tra mdd +3.0% t=1.5 crash x0.54 (5/21) fa=0.62 n=17 | val mdd +2.7% t=0.4 crash x0.92 (2/4) fa=0.50 n=4 | tes mdd -1.5% t=-0.3 crash x1.66 (2/3) fa=0.00 n=2 -> rejected: drawdown effect changes sign across periods
+   matches results3/R4_td_sequential.json to 1e-12: True
+
+(2) LAG 2 (enter two bars after the 9th bar)
+W=10: tra mdd +3.1% t=2.1 crash x1.01 (5/21) fa=0.67 n=21 | val mdd +4.7% t=5.2 crash x0.00 (0/4) fa=0.25 n=4 | tes mdd +3.1% t=1.1 crash x0.00 (0/3) fa=0.33 n=3 -> rejected (risk-on): crash lift validation 0.0, test 0.0 not low enough, or 20d mean not positive
+    lag 0 (enter at the close of the 9th bar, for reference, not a tradable spec):
+W=10: tra mdd +4.0% t=3.2 crash x0.20 (1/21) fa=0.71 n=21 | val mdd +1.9% t=1.7 crash x0.00 (0/4) fa=0.25 n=4 | tes mdd -2.5% t=-1.4 crash x2.03 (1/3) fa=0.00 n=3 -> rejected: drawdown effect changes sign across periods
+
+(3) THE VALIDATION EPISODES (lag 1: completion date t, entry at t+1, forward 10-day mdd and return from the entry bar)
+   completion 2024-08-08 entry 2024-08-09  close 2598  mdd10 -1.7%  fwd10 +1.4%  fwd20 -2.8%  trailing 9d -18.2%  perfected=1  count on entry day=1
+   completion 2025-02-10 entry 2025-02-11  close 2601  mdd10 +2.3%  fwd10 +2.3%  fwd20 -17.4%  trailing 9d -14.6%  perfected=0  count on entry day=-10
+   completion 2025-06-21 entry 2025-06-22  close 2226  mdd10 +8.0%  fwd10 +15.4%  fwd20 +32.1%  trailing 9d -13.1%  perfected=1  count on entry day=-10
+   completion 2025-09-24 entry 2025-09-25  close 3873  mdd10 +3.7%  fwd10 +16.5%  fwd20 +2.9%  trailing 9d -8.2%  perfected=1  count on entry day=-10
+   validation all-bar mean mdd10 -6.08%, median -4.73%, share of bars with mdd10 >= 0 (no close below entry in 10 days): 0.186
+   leave-out on validation (best episode = largest mdd10; also drop each one in turn, then best 2, then best 3):
+   [drop 2024-08-08] W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val mdd +10.7% t=6.9 crash x0.00 (0/3) fa=0.67 n=3 | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial
+   [drop 2025-02-10] W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val mdd +9.4% t=4.0 crash x0.00 (0/3) fa=0.67 n=3 | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial
+   [drop 2025-06-21] W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val mdd +7.5% t=4.9 crash x0.00 (0/3) fa=0.33 n=3 | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> rejected (risk-on): crash lift validation 0.0, test 0.0 not low enough, or 20d mean not positive
+   [drop 2025-09-24] W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val mdd +8.9% t=3.7 crash x0.00 (0/3) fa=0.33 n=3 | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial
+   [drop best 2 (2025-06-21, 2025-09-24)] W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val - | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> insufficient: a period has fewer than 3 flagged bars
+   [drop best 3 (leaves 1 bar: insufficient by construction)] W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val - | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> insufficient: a period has fewer than 3 flagged bars
+
+(4) PERFECTED (td_buy9p_eth, closes-based) vs NON-PERFECTED (buy9 & ~buy9p) at W=10, lag 1
+   perfected:     W=10: tra mdd +1.5% t=1.2 crash x0.75 (3/17) fa=0.59 n=17 | val mdd +9.4% t=4.0 crash x0.00 (0/3) fa=0.67 n=3 | tes - -> insufficient: a period has fewer than 3 flagged bars
+   non-perfected: W=10: tra mdd +4.0% t=3.2 crash x0.00 (0/4) fa=0.75 n=4 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+   counts: buy9 29, perfected 23, non-perfected 6
+
+(5) PLACEBO: random entry dates matched on count per period (train 21 / validation 4 / test 3), 500 draws, seed 20261119
+   validation t distribution over 500 draws (n_flag=4): mean +0.26, sd 1.85, p95 +3.70, p99 +5.66, max +8.30
+   val_t_ge_4p9                       12/500  = 0.024
+   val_t_ge_2p5                       57/500  = 0.114
+   all_pos                            76/500  = 0.152
+   val_t_ge_4p9_and_all_pos            4/500  = 0.008
+   val_t_ge_2p5_and_all_pos           19/500  = 0.038
+   full_pass_rule                     14/500  = 0.028
+   val_diff_ge_real                    1/500  = 0.002
+   val_all4_nonneg                     2/500  = 0.004
+   real: validation mdd_diff +9.15 t 4.92; signs train/val/test all positive
+   placebo B: random dates matched on count AND on trailing 9-day return <= the 75th percentile of the real completions' trailing returns (same draws, 500)
+   trailing-9d return of real completions: median -14.6%, p75 -9.0%
+   eligible bars per period: train 294, validation 111, test 37
+   B val_t_ge_4p9                     50/500  = 0.100
+   B val_t_ge_2p5_and_all_pos         23/500  = 0.046
+   B all_pos                          54/500  = 0.108
+   B val_diff_ge_real                  0/500  = 0.000
+
+(6) FLAG = k-th BAR OF THE BUY SETUP (td_setup_eth == -k on day t, entry t+1), W=10. 9 is the original cell; 10+ = count ran past 9
+   count 5: n=114  W=10: tra mdd -0.4% t=-0.4 crash x1.06 (19/76) fa=0.58 n=66 | val mdd -0.4% t=-0.3 crash x1.17 (8/25) fa=0.60 n=18 | tes mdd -2.3% t=-1.2 crash x2.03 (4/12) fa=0.25 n=9 -> rejected: validation t -0.27 on mdd below 2.5
+   count 6: n=82  W=10: tra mdd -1.0% t=-0.8 crash x1.06 (14/56) fa=0.61 n=51 | val mdd -0.0% t=-0.0 crash x0.91 (4/16) fa=0.56 n=14 | tes mdd -1.0% t=-0.4 crash x1.36 (2/9) fa=0.22 n=7 -> rejected: validation t -0.02 on mdd below 2.5
+   count 7: n=57  W=10: tra mdd +0.3% t=0.3 crash x0.81 (8/42) fa=0.60 n=40 | val mdd +4.6% t=2.7 crash x0.00 (0/9) fa=0.67 n=9 | tes mdd -4.6% t=-1.4 crash x2.44 (2/5) fa=0.00 n=5 -> rejected: drawdown effect changes sign across periods
+   count 8: n=42  W=10: tra mdd +3.4% t=3.2 crash x0.27 (2/32) fa=0.66 n=31 | val mdd +1.5% t=1.5 crash x0.00 (0/6) fa=0.17 n=6 | tes mdd -2.5% t=-1.4 crash x2.03 (1/3) fa=0.00 n=3 -> rejected: drawdown effect changes sign across periods
+   count 9: n=29  W=10: tra mdd +2.0% t=1.8 crash x0.61 (3/21) fa=0.62 n=21 | val mdd +9.2% t=4.9 crash x0.00 (0/4) fa=0.50 n=4 | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial
+   count >=10: n=54  W=10: tra mdd +3.2% t=2.8 crash x0.56 (5/38) fa=0.63 n=17 | val mdd +5.5% t=5.6 crash x0.00 (0/7) fa=0.29 n=3 | tes mdd +2.8% t=1.5 crash x0.00 (0/5) fa=0.20 n=2 -> PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial
+   any count >= 7 (state, not event): n=182  W=10: tra mdd +2.2% t=3.2 crash x0.57 (18/133) fa=0.62 n=40 | val mdd +4.8% t=5.4 crash x0.00 (0/26) fa=0.42 n=9 | tes mdd -0.9% t=-0.6 crash x1.14 (3/16) fa=0.06 n=5 -> rejected: drawdown effect changes sign across periods
+   (diagnostic, uses next-day info) 8th bar that did NOT go on to a 9: n=13  W=10: tra mdd +2.2% t=1.4 crash x0.39 (1/11) fa=0.55 n=11 | val - | tes - -> insufficient: a period has fewer than 3 flagged bars
+
+(7) RETURN CHECK: 10-day forward return on flagged entry bars (lag 1) per period, raw mean, period mean, excess, hit rate; also 20-day
+h=10: tra ex +3.76% t=1.6 n=21 net=+3.52% | val ex +8.23% t=2.2 n=4 net=+8.05% | tes ex +1.34% t=0.2 n=3 net=+1.26% -> insufficient: 25 independent episodes in train+validation (bar 30)
+h=20: tra ex +7.79% t=1.9 n=19 net=+7.36% | val ex +2.35% t=0.3 n=4 net=+2.07% | tes ex -8.80% t=-1.6 n=2 net=+8.65% -> insufficient: 23 independent episodes in train+validation (bar 30)
+   h=10 train      n=21 ind=21 mean_flag +6.28%  mean_all +2.52%  excess +3.76%  hit 0.67  t +1.62
+   h=10 validation n= 4 ind= 4 mean_flag +8.91%  mean_all +0.68%  excess +8.23%  hit 1.00  t +2.23
+   h=10 test       n= 3 ind= 3 mean_flag +0.37%  mean_all -0.97%  excess +1.34%  hit 0.33  t +0.25
+   h=20 train      n=21 ind=19 mean_flag +13.13%  mean_all +5.35%  excess +7.79%  hit 0.62  t +1.86
+   h=20 validation n= 4 ind= 4 mean_flag +3.71%  mean_all +1.36%  excess +2.35%  hit 0.50  t +0.28
+   h=20 test       n= 3 ind= 2 mean_flag -10.32%  mean_all -1.53%  excess -8.80%  hit 0.00  t -1.63
+
+(8) SIMPLER CONTROL: bars whose trailing 9-day return is <= the real completions' p75 but that are NOT TD9 completions (state flag), W=10, lag 1
+   decline-not-TD9: n=448  W=10: tra mdd -0.5% t=-0.6 crash x1.01 (70/294) fa=0.48 n=43 | val mdd +1.6% t=1.7 crash x0.63 (19/111) fa=0.44 n=17 | tes mdd -3.3% t=-1.1 crash x1.98 (12/37) fa=0.35 n=8 -> rejected: drawdown effect changes sign across periods
+   trailing 9d return bottom decile (pct365): W=10: tra mdd -0.8% t=-0.8 crash x1.15 (49/181) fa=0.52 n=34 | val mdd +2.3% t=2.1 crash x0.49 (10/74) fa=0.43 n=15 | tes mdd -1.9% t=-0.7 crash x1.74 (6/21) fa=0.24 n=3 -> rejected: drawdown effect changes sign across periods
+
+(9) FOR THE RECORD: BTC buy9 W=10 lag 1; ETH train ex-2020
+   btc buy9: W=10: tra mdd +2.1% t=1.9 crash x0.58 (2/21) fa=0.38 n=21 | val mdd +0.8% t=0.9 crash x0.00 (0/6) fa=0.50 n=6 | tes mdd +2.6% t=2.0 crash x0.00 (0/3) fa=0.33 n=3 -> rejected: validation t 0.86 on mdd below 2.5
+   eth buy9 ex-2020: W=10: tra mdd +2.2% t=2.0 crash x0.42 (2/19) fa=0.63 n=19 | val mdd +9.2% t=4.9 crash x0.00 (0/4) fa=0.50 n=4 | tes mdd +0.9% t=0.5 crash x0.00 (0/3) fa=0.00 n=3 -> PASS risk-on: shallower drawdowns in all periods, validation |t|>=2.5, crash lift low; candidate for the dial

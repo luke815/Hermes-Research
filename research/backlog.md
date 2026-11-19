@@ -50,6 +50,33 @@ An instruction is written here as numbered items at the top, each with a done-wh
 - L5. Every series into the library with metadata and the lookahead test, then re-enumerate. Done 2026-11-17: library 1.2.0, 132 measures, up from 128. Added basis_level, basis_chg_7, ls_ratio_level and ls_ratio_chg_7 from the Laevitas perpetual store, which already held both series. data/panel_xs_laevitas rebuilt, 5,056 files, both columns on every file, none missing. Lookahead holds: tests.test_indicators 9 passed, and a perturbation of 12 real files left both measures unchanged. Cells went from 3,688,000 to 3,803,200, of which 825,640 are testable and none are duplicates. Positioning is 230,400 cells, 74,880 testable. open_interest_coin and yield were left out: one restates oi_usd, the other restates funding. results/2026-11-17_l5_library.json.
 - L6. Sweep work-list fix, derivatives panel, positioning cross-section, C5, R1 to R6. Unblocked 2026-11-17: per-name funding and open interest are in data/panel_xs_laevitas, 5,056 files from 2021-03-26, and the C5 and R1 inputs are market-level series on disk to 2026-11-16. The earlier block was wrong. Not done: the sweep work-list fix and the scoring remain.
 
+## Outside research pass 3, 2026-11-19: data items and the next pre-registration
+
+From research/outside/PASS3_2026-11-19.md. Nothing passed; two data items need Hermes, and PREREG4 is proposed, not scored.
+
+- D1. Liquidation coverage break. liq_BTC / oi_BTC yearly medians 0.0018 (2022), 0.0019 (2023), 0.0024 (2024), 0.0013 (2025),
+  0.0028 (2026) while realized vol fell; liq_BTC median doubled 2025 -> 2026 as oi_BTC fell. Find the venue or field change in
+  the liquidation puller, document it in data/COVERAGE or the health table, and mark every liq-based result (F4 and later) as
+  void until the series is consistent. Done when the cause is written down with the date of the break and the dashboard health
+  table shows a note on liq_*.
+- D2. Funding units in one place. Dashboard funding columns are percent per 8h (0.01 = 1 bp); the Laevitas perp_funding pull is
+  the same scale on daily bars and x100 on hourly bars. Add a units line to data/COVERAGE and an assertion in the puller that
+  the daily median sits between 0.001 and 0.05. Done when the assertion exists and a test covers it.
+- D3. Hourly price gaps 2024-11..2025-07 (633 gaps, 36% of hours in Dec-2024..Mar-2025) in the Laevitas hourly perp price.
+  Backfill from the exchange store or mask the window in any hourly test. Done when hourly.pkl (or its successor) has no gap
+  longer than 1 hour in that window, or the harness masks it and says so.
+- H1 (harness, if Hermes's confirm.py shares the pattern). When a signal series starts later than the price series, the
+  comparison set for 'excess' and for the unflagged mean must be the bars where the signal is defined, not every bar of the
+  period. Check regime_tester/confirm.py and sweep.py for the same flaw; fix and re-run any admitted-or-near result on a
+  late-starting series. Done when a test shows a 2021-start series scored against a 2019 price panel gives the same excess as
+  the same series scored on a 2021-start panel.
+- P4. PREREG4 candidates (write the pre-registration first, then score; episode counts estimated in PASS3 report):
+  A1 hazard of observable de-leveraging events after crowded funding (control: trailing 20-day realized vol);
+  A2 price x coin-OI 7-day quadrants on 10-20 day return and drawdown (control: price return alone, conditioned lift rule);
+  A3 crowded funding with coin OI building vs leaving; A5 funding-state 7-day transition matrix per regime as a base rate;
+  A6 funding reset while price holds vs with a drop. Done when PREREG4.md is committed before any cell is scored and the
+  results are written by write_result.
+
 ## Outside research confirmations, 2026-11-18, after A2 to A6 and before A7
 
 From research/outside/SIGNAL_PASS_2026-11-18.md and OPTIONS_RISK_PASS_2026-11-18.md. Each is a pre-registered
