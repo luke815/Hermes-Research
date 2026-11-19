@@ -39,6 +39,38 @@ class BookLiveTests(unittest.TestCase):
             self.assertEqual(live_daemon.book_live({"PEPE": 0.5}), {})
 
 
+class RsStaleRecordTests(unittest.TestCase):
+    def test_cycle_records_the_reading_it_would_otherwise_lose(self):
+        # The payload is force-pushed, so the previous health.rs_stale is gone
+        # after the next cycle. A cycle that does not write the log leaves A5
+        # with one reading and a span of zero, forever.
+        with tempfile.TemporaryDirectory() as tmp:
+            saved = {name: getattr(live_daemon, name)
+                     for name in ("LOG", "append", "pull_5m", "board", "push",
+                                  "hourly_closes", "TOP", "time")}
+            live_daemon.LOG = os.path.join(tmp, "rs_stale_log.jsonl")
+            recorded = []
+            live_daemon.append = lambda path, ts, stale, age: recorded.append(
+                (path, ts, stale, age)) or True
+            try:
+                live_daemon.pull_5m = lambda names, now: (0, now, {})
+                live_daemon.board = lambda names: {"as_of": "2026-11-19T14:00:00Z"}
+                live_daemon.push = lambda payload: True
+                live_daemon.hourly_closes = lambda: {}
+                live_daemon.time = type("T", (), {"time": staticmethod(lambda: 1795096800)})()
+                live_daemon.TOP = os.path.join(tmp, "top.json")
+                open(live_daemon.TOP, "w").write(json.dumps({"rows": []}))
+                live_daemon.cycle({})
+                self.assertEqual(len(recorded), 1)
+                path, ts, stale, age = recorded[0]
+                self.assertEqual(path, live_daemon.LOG)
+                self.assertFalse(stale)
+                self.assertRegex(ts, r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
+            finally:
+                for name, value in saved.items():
+                    setattr(live_daemon, name, value)
+
+
 class BoardStampTests(unittest.TestCase):
     def test_board_stamps_the_last_closed_bar(self):
         # The refill already dropped the bar still forming, so the board reads
