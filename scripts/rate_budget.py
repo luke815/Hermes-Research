@@ -47,27 +47,35 @@ def _take(now, allowance):
     return wait
 
 
-def acquire(allowance="shared"):
+def acquire(allowance="shared", wait=True):
     """Block until the named allowance has a token.
 
     The live daemon draws from its own reserved allowance. Every other pull
     draws from the shared one. The two never compete, so a busy research pull
     cannot starve the live board and the board cannot trip a research pull.
+    A caller that passes wait=False gets the seconds to wait, or 0 when a
+    token is free, so a job that shares the scheduler can stop and let the
+    next slot retry instead of holding the loop.
     """
     while True:
-        wait = _take(time.time(), allowance)
-        if wait <= 0:
-            return
-        time.sleep(wait)
+        delay = _take(time.time(), allowance)
+        if delay <= 0:
+            return 0.0
+        if not wait:
+            return delay
+        time.sleep(delay)
 
 
-def get(url, headers=None, timeout=90, allowance="shared"):
+def get(url, headers=None, timeout=90, allowance="shared", wait=True):
     """One GET. Returns the response body, or raises BudgetStop on a second 429.
 
     allowance names the bucket: "shared" for every pull but the live daemon,
-    "live" for the daemon's reserved allowance.
+    "live" for the daemon's reserved allowance. wait=False raises BudgetStop
+    at once when the bucket is full, instead of sleeping until a token frees.
     """
-    acquire(allowance)
+    delay = acquire(allowance, wait=wait)
+    if delay:
+        raise BudgetStop(f"{allowance} allowance full, retry in {delay:.0f}s")
     req = urllib.request.Request(url, headers=headers or {"User-Agent": "hermes"})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
