@@ -73,6 +73,8 @@ def main():
             written += 1
         print(f"batch {i // 20 + 1}: {written} appended", flush=True)
     print(f"appended {written} bars for {yesterday}")
+    import data_guard
+    data_guard.record_write("data/panel_xs", written, "append_panel_xs: yesterday's bar")
 
 
 if __name__ == "__main__":

@@ -187,6 +187,8 @@ def cycle(ctx):
                 print(f"skip {exchange} {symbol}: {exc}", flush=True)
         return {"exchange": exchange, "saved": saved, "skipped": skipped,
                 "remaining": max(0, len(todo) - saved - skipped)}
+    import data_guard
+    data_guard.record_write("data/panel_xs", 0, "listed_pull: batch written")
     return {"remaining": 0}
 
 
