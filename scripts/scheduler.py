@@ -68,11 +68,20 @@ def due(job, now):
 
 
 def already_ran(job, now):
+    """True only when today's slot finished cleanly.
+
+    A script that exits non-zero, times out or is missing still writes a
+    record, and treating that record as done blocks the slot for the rest of
+    the day. The next cycle then retries it instead of waiting until tomorrow.
+    """
     path = os.path.join(RESULTS, f"{now.strftime('%Y-%m-%d')}_{job['name']}.json")
     if not os.path.exists(path):
         return False
     record = json.loads(open(path).read())
-    return record.get("slot") == slot_key(job, now)
+    if record.get("slot") != slot_key(job, now):
+        return False
+    result = record.get("result", {})
+    return result.get("ok") is True and result.get("exit") == 0
 
 
 def record(job, now, result):
