@@ -21,9 +21,11 @@ if _SITE not in sys.path:
 
 import pandas as pd
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
+
 import rate_budget
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
 
 
