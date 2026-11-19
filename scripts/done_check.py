@@ -292,6 +292,12 @@ def audit(root=ROOT, backlog=BACKLOG, records=RECORDS):
             for rel in cited:
                 full = os.path.join(root, rel)
                 bad = verify_result(full, root) if os.path.exists(full) else ["does not exist"]
+                # A line that says the file does not exist is reporting the block,
+                # not citing a result. Flagging it makes the health check post
+                # every hour for a slot that has not fired yet.
+                if bad == ["does not exist"] and re.search(
+                        r"does not exist|has not happened|has not fired|no \w[\w_]* results file", text):
+                    continue
                 if bad:
                     add(f"{item}: cites {rel}, which {bad[0]}")
             if verdict and not mark and not cited:

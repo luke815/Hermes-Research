@@ -347,6 +347,13 @@ class DoneCheck(unittest.TestCase):
         self.assertNotIn("S2", joined)
         self.assertNotIn("A7", joined)
 
+    def test_a_citation_the_line_says_is_missing_is_not_a_violation(self):
+        write(self.backlog, read(self.backlog).replace(
+            "- B2. No clause here at all.",
+            "- B2. Blocked 2026-11-19: the slot has not fired. results/2026-11-19_b2_slot.json does not exist yet.\n"))
+        joined = " | ".join(self.aud())
+        self.assertNotIn("b2_slot", joined)
+
 
 class DataGuard(unittest.TestCase):
     def setUp(self):
