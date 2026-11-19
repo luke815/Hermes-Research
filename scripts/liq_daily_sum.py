@@ -197,6 +197,8 @@ def write_status(today, root=ROOT):
                              "first": min(summed) if summed else None,
                              "last": max(summed) if summed else None,
                              "events": sum(row["events"] for row in summed.values()),
+                             "long_usd": round(sum(row["long"] for row in summed.values()), 2),
+                             "short_usd": round(sum(row["short"] for row in summed.values()), 2),
                              "total_usd": round(sum(row["total"] for row in summed.values()), 2)}
     payload["remaining"] = 0 if pending(today) is None else 1
     return write_result("l8_sum", payload, inputs=["data/laevitas/liquidations_sum"], root=root)
