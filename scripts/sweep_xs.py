@@ -121,7 +121,9 @@ def scored_ids(names=None):
     for name in sorted(os.listdir(OUT)):
         if not name.endswith("_xs_vec.csv"):
             continue
-        frame = pd.read_csv(os.path.join(OUT, name), usecols=["id", "names"])
+        frame = pd.read_csv(os.path.join(OUT, name))
+        if "id" not in frame.columns:
+            continue
         if names is not None and "names" in frame.columns:
             frame = frame[frame["names"] == names]
         done.update(frame["id"])
@@ -434,14 +436,20 @@ def append_rows(rows, already=None):
         if prior["id"].duplicated().any():
             raise RuntimeError("append would write a duplicate cell id")
         # The caller reports what it read. An id already in today's file that
-        # the caller did not name was written after that read, so skipping it
-        # would hide a second writer. An id the caller did name is the cell it
-        # already counted as saved.
+        # the caller did not name, and that no other day's file holds either,
+        # was written after that read, so skipping it would hide a second
+        # writer. An id the caller did name, or one an older file holds under
+        # another universe, is the same cell counted twice, not a second writer.
         surprise = set(prior["id"]) - set(already or [])
+        known = scored_ids()
+        surprise -= known
         if surprise and prior["id"].isin(fresh["id"]).any() and fresh["id"].isin(surprise).any():
             raise RuntimeError("append would write a duplicate cell id")
-        fresh = fresh[~fresh["id"].isin(set(prior["id"]))]
-        fresh = pd.concat([prior, fresh], ignore_index=True)
+        # A row in today's file from another universe is the same cell id with
+        # a different name count. Dropping it would throw away the new score.
+        other = set(prior.loc[prior["id"].isin(known - set(already or [])), "id"])
+        kept = prior[~prior["id"].isin(other)]
+        fresh = pd.concat([kept, fresh[~fresh["id"].isin(set(kept["id"]))]], ignore_index=True)
     tmp = path + ".tmp"
     fresh.to_csv(tmp, index=False)
     os.replace(tmp, path)
