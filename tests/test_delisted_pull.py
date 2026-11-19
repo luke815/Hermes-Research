@@ -23,7 +23,7 @@ class Walk(unittest.TestCase):
         spans = os.path.join(self.tmp.name, "data")
         os.makedirs(spans)
         open(os.path.join(spans, "binance_span.csv"), "w").write(
-            "symbol,first,last,days\nLUNAUSDT,2021-01-01,2022-05-12,400\nBTCUSDT,2020-01-01,2026-11-18,2000\n")
+            "symbol,first,last,days\nLUNAUSDT,2021-01-01,2022-05-12,400\nBTCUSDT,2020-01-01,2026-11-01,2000\n")
         open(os.path.join(spans, "bybit_span.csv"), "w").write(
             "symbol,first,last,days,stopped\nFTTUSDT,2021-01-01,2022-11-14,600,1\n")
         open(os.path.join(spans, "okx_span.csv"), "w").write(

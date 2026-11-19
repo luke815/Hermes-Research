@@ -45,16 +45,26 @@ def key():
 
 
 def dead_names(today):
-    """Names whose last span file is more than 14 days before today."""
-    cutoff = datetime.strptime(today, "%Y-%m-%d").date() - timedelta(days=DEAD_AFTER_DAYS)
-    out = []
+    """Names whose last span file is before that venue's newest file.
+
+    The span files stop on the day they were pulled, so every name shares a
+    date weeks behind today. Comparing against today marks the live names dead
+    too. A name is dead when its own venue has a newer file than it does.
+    """
+    rows = []
     for span, market, instrument_of in VENUES:
         for row in csv.DictReader(open(os.path.join(ROOT, span))):
-            last = row.get("last")
-            if not last or datetime.strptime(last, "%Y-%m-%d").date() >= cutoff:
-                continue
-            out.append({"market": market, "symbol": row["symbol"],
-                        "instrument": instrument_of(row["symbol"]), "last": last})
+            if row.get("last"):
+                rows.append((span, market, instrument_of, row))
+    newest = {}
+    for span, _market, _instrument_of, row in rows:
+        newest[span] = max(newest.get(span, row["last"]), row["last"])
+    out = []
+    for span, market, instrument_of, row in rows:
+        if row["last"] >= newest[span]:
+            continue
+        out.append({"market": market, "symbol": row["symbol"],
+                    "instrument": instrument_of(row["symbol"]), "last": row["last"]})
     return out
 
 
