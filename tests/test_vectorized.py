@@ -98,3 +98,13 @@ def test_early_bars_stay_empty():
         got = transform_matrix(close, name)
         assert got.iloc[:first].isna().all().all(), name
         assert got.iloc[first:].notna().any().any(), name
+
+
+def test_divergence_aligns_a_measure_narrower_than_price():
+    # The close matrix covers every name. A measure that only some names carry
+    # is narrower, and the comparison has to follow the measure, not the price.
+    close = _close(seed=4, names=6, days=80)
+    measure = close.iloc[:, :3].copy()
+    measure.attrs["close"] = close
+    got = transform_matrix(measure, "divergence_20")
+    assert list(got.columns) == list(measure.columns)
