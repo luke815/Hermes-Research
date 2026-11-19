@@ -427,7 +427,8 @@ def append_rows(rows, already=None):
         already = scored_ids()
     fresh = frame[~frame["id"].isin(already)]
     if fresh["id"].duplicated().any():
-        raise RuntimeError("append would write a duplicate cell id")
+        clash = fresh.loc[fresh["id"].duplicated(), "id"].iloc[0]
+        raise RuntimeError(f"append would write a duplicate cell id: {clash}")
     if os.path.exists(path):
         prior = pd.read_csv(path)
         if prior["id"].duplicated().any():
