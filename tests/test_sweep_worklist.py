@@ -62,6 +62,10 @@ class WorkList(unittest.TestCase):
             written = pd.read_csv(path)
             self.assertEqual(list(written["id"]), [missing])
             self.assertEqual(total, 1)
+            # The caller named the saved id, and today's file already holds it.
+            # That is the cell it counted, so the write skips it.
+            again, total = sweep_xs.append_rows(rows, already={saved, missing})
+            self.assertEqual(total, 1)
             with self.assertRaises(RuntimeError):
                 sweep_xs.append_rows(
                     [{"id": missing, "measure": "obv"}, {"id": missing, "measure": "obv"}],

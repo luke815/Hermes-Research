@@ -430,8 +430,16 @@ def append_rows(rows, already=None):
         raise RuntimeError("append would write a duplicate cell id")
     if os.path.exists(path):
         prior = pd.read_csv(path)
-        if prior["id"].isin(fresh["id"]).any() or prior["id"].duplicated().any():
+        if prior["id"].duplicated().any():
             raise RuntimeError("append would write a duplicate cell id")
+        # The caller reports what it read. An id already in today's file that
+        # the caller did not name was written after that read, so skipping it
+        # would hide a second writer. An id the caller did name is the cell it
+        # already counted as saved.
+        surprise = set(prior["id"]) - set(already or [])
+        if surprise and prior["id"].isin(fresh["id"]).any() and fresh["id"].isin(surprise).any():
+            raise RuntimeError("append would write a duplicate cell id")
+        fresh = fresh[~fresh["id"].isin(set(prior["id"]))]
         fresh = pd.concat([prior, fresh], ignore_index=True)
     tmp = path + ".tmp"
     fresh.to_csv(tmp, index=False)
