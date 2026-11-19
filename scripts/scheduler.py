@@ -260,6 +260,14 @@ def cycle(ctx):
             result = health(now)
             if result["problems"]:
                 result["post"] = post("health: " + "; ".join(result["problems"]))
+            # The stall line is the health check's record that it ran. The
+            # hourly job reads the results file and does not run the script, so
+            # the line is written here, where the slot actually fires.
+            try:
+                import hourly_health
+                result["stall"] = hourly_health.stall_check()[:60]
+            except Exception as exc:  # noqa: BLE001
+                result["stall_error"] = str(exc)
         else:
             result = run_script(job["script"], job.get("timeout", 600))
         record(job, now, result)

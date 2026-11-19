@@ -53,6 +53,28 @@ class FailedJob(unittest.TestCase):
         self.assertTrue(os.path.exists(
             os.path.join(self.tmp.name, "2026-11-19T01_intraday_backfill.json")))
 
+    def test_the_health_slot_writes_the_stall_line(self):
+        # The health slot is the only thing that fires every hour. The stall
+        # line has to be written there, or the health log never shows the check.
+        now = datetime(2026, 11, 19, 6, 5, tzinfo=timezone.utc)
+        called = []
+        import sys as _sys
+        stub = type("H", (), {"stall_check": staticmethod(
+            lambda: called.append("ran") or "- A1. blocked")})()
+        _sys.modules["hourly_health"] = stub
+        self.addCleanup(lambda: _sys.modules.pop("hourly_health", None))
+        scheduler.record = lambda job, n, result: called.append(result.get("stall"))
+        scheduler.already_ran = lambda job, n: False
+        scheduler.due = lambda job, n: job["name"] == "health"
+        scheduler.JOBS = [{"name": "health", "at": ":05", "script": None}]
+        try:
+            scheduler.cycle(None)
+        finally:
+            import importlib
+            importlib.reload(scheduler)
+        self.assertIn("ran", called)
+        self.assertTrue(any(c and "A1" in c for c in called))
+
 
 if __name__ == "__main__":
     unittest.main()
