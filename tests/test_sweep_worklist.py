@@ -88,6 +88,17 @@ class WorkList(unittest.TestCase):
                 ["binance_AAAUSDT", "bybit_AAAUSDT", "binance_THINUSDT"])
             self.assertEqual(kept, ["bybit_AAAUSDT"])
 
+    def test_a_row_from_another_universe_does_not_close_the_cell(self):
+        import pandas as pd
+        with tempfile.TemporaryDirectory() as tmp:
+            sweep_xs.OUT = tmp
+            pd.DataFrame({"id": ["obv|raw|above|80|ret_1|pit_cross_section|none|daily"],
+                          "names": [1024]}).to_csv(os.path.join(tmp, "2026-11-17_xs_vec.csv"), index=False)
+            self.assertEqual(sweep_xs.scored_ids(names=219), set())
+            self.assertEqual(
+                sweep_xs.scored_ids(names=1024),
+                {"obv|raw|above|80|ret_1|pit_cross_section|none|daily"})
+
     def test_status_line_names_the_count_and_the_rate(self):
         line = sweep_xs.status_line(set(), set(), names=321, rows_this_hour=5400)
         self.assertIn("names 321", line)

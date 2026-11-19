@@ -109,12 +109,21 @@ def work_list():
     return set(json.load(open(WORK)))
 
 
-def scored_ids():
-    """Cell ids already written by this scorer, read across every day's file."""
+def scored_ids(names=None):
+    """Cell ids already written by this scorer, read across every day's file.
+
+    A row scored on a different name count was scored on a different universe,
+    so it does not count. The liquidity floor changed the universe, and a cell
+    saved before that would otherwise close the measure forever.
+    """
     done = set()
     for name in sorted(os.listdir(OUT)):
-        if name.endswith("_xs_vec.csv"):
-            done.update(pd.read_csv(os.path.join(OUT, name), usecols=["id"])["id"])
+        if not name.endswith("_xs_vec.csv"):
+            continue
+        frame = pd.read_csv(os.path.join(OUT, name), usecols=["id", "names"])
+        if names is not None and "names" in frame.columns:
+            frame = frame[frame["names"] == names]
+        done.update(frame["id"])
     return done
 
 
@@ -509,7 +518,7 @@ def cycle(ctx):
     # The enumerator rewrites the work list while this daemon runs. Reading it
     # once at the start scores the list as it was then and never sees the rest.
     ctx["work"] = work_list()
-    done = scored_ids()
+    done = scored_ids(names=int(close.shape[1]))
     line = status_line(done, ctx["work"], names=int(close.shape[1]),
                        rows_this_hour=cells_this_hour())
     # Conditioned cells are a different test and are not counted as pending.
