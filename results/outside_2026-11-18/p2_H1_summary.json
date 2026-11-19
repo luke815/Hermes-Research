@@ -1,0 +1,2400 @@
+{
+ "return": [
+  {
+   "cell": "p2_H1_skew_slope_top_btc",
+   "asset": "btc",
+   "primary": [
+    "skew_slope_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew_slope_top_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.16% t=0.6 n=82 net=+0.03% hit=0.53 nflag=151",
+     "validation": "ex -0.13% t=-0.2 n=3 net=+0.04% hit=0.50 nflag=6",
+     "test": "ex -0.43% t=-1.4 n=10 net=+0.34% hit=0.31 nflag=13",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.1807783479509136,
+     "n_ind_trval": 85,
+     "excess": [
+      0.0015663449661240986,
+      -0.0012732401507350058,
+      -0.004258804681735798
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex +0.66% t=1.4 n=49 net=+0.49% hit=0.65 nflag=151",
+     "validation": "ex -0.39% t=-0.5 n=3 net=+0.33% hit=0.50 nflag=6",
+     "test": "ex -0.32% t=-0.5 n=8 net=+0.26% hit=0.25 nflag=12",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.5201564626983768,
+     "n_ind_trval": 52,
+     "excess": [
+      0.006591390665882092,
+      -0.003890850274948644,
+      -0.0031893951259172946
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +1.75% t=2.6 n=42 net=+1.52% hit=0.71 nflag=151",
+     "validation": "ex +0.59% t=0.7 n=3 net=+0.41% hit=0.67 nflag=6",
+     "test": "ex -1.26% t=-0.9 n=7 net=+1.22% hit=0.33 nflag=12",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.7104711019824768,
+     "n_ind_trval": 45,
+     "excess": [
+      0.01754720724877921,
+      0.005923813234276797,
+      -0.012568941306795972
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex +3.11% t=2.6 n=25 net=+2.70% hit=0.69 nflag=151",
+     "validation": "ex -2.03% t=-0.9 n=2 net=+2.11% hit=0.33 nflag=6",
+     "test": "ex -2.27% t=-1.3 n=6 net=+2.29% hit=0.27 nflag=11",
+     "verdict": "insufficient: 27 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -0.9403157074456504,
+     "n_ind_trval": 27,
+     "excess": [
+      0.031074731509701022,
+      -0.020296216447698988,
+      -0.02267720206582497
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex +6.10% t=2.5 n=16 net=+5.30% hit=0.75 nflag=151",
+     "validation": "ex -6.37% t=-4.0 n=2 net=+6.64% hit=0.00 nflag=6",
+     "test": "ex -1.22% t=-0.4 n=4 net=+1.40% hit=0.22 nflag=9",
+     "verdict": "insufficient: 18 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -3.9539070847538014,
+     "n_ind_trval": 18,
+     "excess": [
+      0.06099071803830479,
+      -0.06370136918108774,
+      -0.012199043148204943
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.16% t=0.6 n=82 net=+0.03% | val ex -0.13% t=-0.2 n=3 net=+0.04% | tes ex -0.43% t=-1.4 n=10 net=+0.34% -> rejected: excess sign differs across periods\nh=3: tra ex +0.66% t=1.4 n=49 net=+0.49% | val ex -0.39% t=-0.5 n=3 net=+0.33% | tes ex -0.32% t=-0.5 n=8 net=+0.26% -> rejected: excess sign differs across periods\nh=5: tra ex +1.75% t=2.6 n=42 net=+1.52% | val ex +0.59% t=0.7 n=3 net=+0.41% | tes ex -1.26% t=-0.9 n=7 net=+1.22% -> rejected: excess sign differs across periods\nh=10: tra ex +3.11% t=2.6 n=25 net=+2.70% | val ex -2.03% t=-0.9 n=2 net=+2.11% | tes ex -2.27% t=-1.3 n=6 net=+2.29% -> insufficient: 27 independent episodes in train+validation (bar 30)\nh=20: tra ex +6.10% t=2.5 n=16 net=+5.30% | val ex -6.37% t=-4.0 n=2 net=+6.64% | tes ex -1.22% t=-0.4 n=4 net=+1.40% -> insufficient: 18 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_skew_slope_bottom_btc",
+   "asset": "btc",
+   "primary": [
+    "skew_slope_btc",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "abs_target": false,
+   "hyp": -1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew_slope_bottom_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex -0.06% t=-0.3 n=115 net=+0.01% hit=0.52 nflag=298",
+     "validation": "ex -0.04% t=-0.2 n=42 net=-0.04% hit=0.50 nflag=105",
+     "test": "ex -0.00% t=-0.0 n=33 net=-0.09% hit=0.45 nflag=80",
+     "verdict": "rejected: validation t -0.2 below 2.5",
+     "sign_as_hypothesised": true,
+     "val_t": -0.203992130920872,
+     "n_ind_trval": 157,
+     "excess": [
+      -0.0006487579679516076,
+      -0.0003822012009391168,
+      -1.573156390177646e-05
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -0.20% t=-0.5 n=73 net=+0.23% hit=0.54 nflag=298",
+     "validation": "ex +0.26% t=0.6 n=29 net=+0.10% hit=0.56 nflag=105",
+     "test": "ex +0.19% t=0.5 n=18 net=+0.06% hit=0.49 nflag=80",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.6253917083651037,
+     "n_ind_trval": 102,
+     "excess": [
+      -0.0020211843808608694,
+      0.0025801188742284134,
+      0.0018960880004932057
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex -0.50% t=-0.8 n=55 net=+0.61% hit=0.54 nflag=298",
+     "validation": "ex -0.30% t=-0.5 n=25 net=+0.29% hit=0.50 nflag=105",
+     "test": "ex +0.60% t=1.0 n=16 net=+0.45% hit=0.45 nflag=80",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.5396432271977042,
+     "n_ind_trval": 80,
+     "excess": [
+      -0.00496699866023785,
+      -0.00300147836049122,
+      0.005973495896341374
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -0.57% t=-0.5 n=36 net=+0.88% hit=0.55 nflag=298",
+     "validation": "ex -1.73% t=-2.1 n=15 net=+1.81% hit=0.42 nflag=105",
+     "test": "ex +1.00% t=1.1 n=9 net=+0.80% hit=0.50 nflag=80",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -2.053905728443485,
+     "n_ind_trval": 51,
+     "excess": [
+      -0.00567687987724729,
+      -0.017318650025104257,
+      0.010042264990359248
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -2.38% t=-1.1 n=21 net=+3.12% hit=0.51 nflag=298",
+     "validation": "ex -1.51% t=-0.9 n=7 net=+1.77% hit=0.42 nflag=105",
+     "test": "ex +0.44% t=0.3 n=3 net=+0.12% hit=0.42 nflag=79",
+     "verdict": "insufficient: 28 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -0.9396228476611037,
+     "n_ind_trval": 28,
+     "excess": [
+      -0.02375073837373963,
+      -0.015085898630890859,
+      0.004438467288196699
+     ]
+    }
+   ],
+   "line": "h=1: tra ex -0.06% t=-0.3 n=115 net=+0.01% | val ex -0.04% t=-0.2 n=42 net=-0.04% | tes ex -0.00% t=-0.0 n=33 net=-0.09% -> rejected: validation t -0.2 below 2.5\nh=3: tra ex -0.20% t=-0.5 n=73 net=+0.23% | val ex +0.26% t=0.6 n=29 net=+0.10% | tes ex +0.19% t=0.5 n=18 net=+0.06% -> rejected: excess sign differs across periods\nh=5: tra ex -0.50% t=-0.8 n=55 net=+0.61% | val ex -0.30% t=-0.5 n=25 net=+0.29% | tes ex +0.60% t=1.0 n=16 net=+0.45% -> rejected: excess sign differs across periods\nh=10: tra ex -0.57% t=-0.5 n=36 net=+0.88% | val ex -1.73% t=-2.1 n=15 net=+1.81% | tes ex +1.00% t=1.1 n=9 net=+0.80% -> rejected: excess sign differs across periods\nh=20: tra ex -2.38% t=-1.1 n=21 net=+3.12% | val ex -1.51% t=-0.9 n=7 net=+1.77% | tes ex +0.44% t=0.3 n=3 net=+0.12% -> insufficient: 28 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_atm_slope_top_btc",
+   "asset": "btc",
+   "primary": [
+    "atm_slope_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_slope_top_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.15% t=0.4 n=49 net=-0.00% hit=0.50 nflag=125",
+     "validation": "ex -0.27% t=-0.5 n=8 net=+0.18% hit=0.44 nflag=18",
+     "test": "ex -0.37% t=-0.7 n=13 net=+0.27% hit=0.42 nflag=36",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.48187533517741865,
+     "n_ind_trval": 57,
+     "excess": [
+      0.0014755337942491992,
+      -0.002711942885520943,
+      -0.003655226394086814
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -0.27% t=-0.3 n=34 net=+0.33% hit=0.49 nflag=125",
+     "validation": "ex -0.73% t=-0.6 n=5 net=+0.66% hit=0.56 nflag=18",
+     "test": "ex -0.51% t=-0.6 n=9 net=+0.40% hit=0.49 nflag=35",
+     "verdict": "rejected: validation t -0.61 below 2.5",
+     "sign_as_hypothesised": false,
+     "val_t": -0.6069696911884436,
+     "n_ind_trval": 39,
+     "excess": [
+      -0.002661602909407386,
+      -0.0072708118287845395,
+      -0.00507761557213178
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex -0.96% t=-0.9 n=29 net=+1.12% hit=0.47 nflag=125",
+     "validation": "ex -0.69% t=-0.6 n=5 net=+0.64% hit=0.56 nflag=18",
+     "test": "ex -0.06% t=-0.1 n=8 net=-0.04% hit=0.43 nflag=35",
+     "verdict": "rejected: validation t -0.58 below 2.5",
+     "sign_as_hypothesised": false,
+     "val_t": -0.5802301359114825,
+     "n_ind_trval": 34,
+     "excess": [
+      -0.009615697169465573,
+      -0.006925253203624563,
+      -0.0006459581348132125
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -1.35% t=-0.9 n=19 net=+1.74% hit=0.46 nflag=125",
+     "validation": "ex -1.72% t=-0.9 n=3 net=+1.72% hit=0.33 nflag=18",
+     "test": "ex -0.10% t=-0.1 n=8 net=+0.00% hit=0.46 nflag=35",
+     "verdict": "insufficient: 22 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -0.9350693529102697,
+     "n_ind_trval": 22,
+     "excess": [
+      -0.013496089869760548,
+      -0.01717705699858305,
+      -0.0010395246310558803
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -0.47% t=-0.2 n=12 net=+1.33% hit=0.63 nflag=125",
+     "validation": "ex -2.81% t=-1.5 n=2 net=+2.96% hit=0.33 nflag=18",
+     "test": "ex -1.33% t=-0.6 n=4 net=+1.24% hit=0.30 nflag=33",
+     "verdict": "insufficient: 14 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -1.54120543098925,
+     "n_ind_trval": 14,
+     "excess": [
+      -0.004730209136317998,
+      -0.028147158243015898,
+      -0.013326027684066622
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.15% t=0.4 n=49 net=-0.00% | val ex -0.27% t=-0.5 n=8 net=+0.18% | tes ex -0.37% t=-0.7 n=13 net=+0.27% -> rejected: excess sign differs across periods\nh=3: tra ex -0.27% t=-0.3 n=34 net=+0.33% | val ex -0.73% t=-0.6 n=5 net=+0.66% | tes ex -0.51% t=-0.6 n=9 net=+0.40% -> rejected: validation t -0.61 below 2.5\nh=5: tra ex -0.96% t=-0.9 n=29 net=+1.12% | val ex -0.69% t=-0.6 n=5 net=+0.64% | tes ex -0.06% t=-0.1 n=8 net=-0.04% -> rejected: validation t -0.58 below 2.5\nh=10: tra ex -1.35% t=-0.9 n=19 net=+1.74% | val ex -1.72% t=-0.9 n=3 net=+1.72% | tes ex -0.10% t=-0.1 n=8 net=+0.00% -> insufficient: 22 independent episodes in train+validation (bar 30)\nh=20: tra ex -0.47% t=-0.2 n=12 net=+1.33% | val ex -2.81% t=-1.5 n=2 net=+2.96% | tes ex -1.33% t=-0.6 n=4 net=+1.24% -> insufficient: 14 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_atm_inv_btc",
+   "asset": "btc",
+   "primary": [
+    "atm_inv_btc",
+    "raw",
+    "top",
+    "0.5"
+   ],
+   "abs_target": false,
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_inv_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.04% t=0.2 n=129 net=-0.10% hit=0.50 nflag=416",
+     "validation": "ex +0.27% t=1.1 n=28 net=+0.15% hit=0.52 nflag=91",
+     "test": "ex +0.00% t=0.0 n=26 net=-0.10% hit=0.49 nflag=108",
+     "verdict": "rejected: validation t 1.06 below 2.5",
+     "sign_as_hypothesised": true,
+     "val_t": 1.0567316513138505,
+     "n_ind_trval": 157,
+     "excess": [
+      0.00042271493286116834,
+      0.0026689879568720285,
+      8.66937024695852e-06
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -0.01% t=-0.0 n=75 net=+0.02% hit=0.51 nflag=416",
+     "validation": "ex +0.06% t=0.1 n=22 net=-0.10% hit=0.56 nflag=91",
+     "test": "ex -0.09% t=-0.2 n=14 net=+0.00% hit=0.50 nflag=107",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.09898194835554289,
+     "n_ind_trval": 97,
+     "excess": [
+      -5.611191394108098e-05,
+      0.0005580552405643506,
+      -0.0009277769566019092
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex -0.10% t=-0.2 n=52 net=+0.18% hit=0.54 nflag=416",
+     "validation": "ex +0.23% t=0.3 n=16 net=+0.04% hit=0.56 nflag=91",
+     "test": "ex +0.33% t=0.5 n=9 net=+0.22% hit=0.48 nflag=107",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.25382436567833183,
+     "n_ind_trval": 68,
+     "excess": [
+      -0.0009803248988140695,
+      0.0022541352676862803,
+      0.003344302336034382
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -0.80% t=-1.0 n=36 net=+1.04% hit=0.51 nflag=416",
+     "validation": "ex +2.02% t=1.2 n=10 net=+1.74% hit=0.58 nflag=91",
+     "test": "ex +0.68% t=0.6 n=7 net=+0.55% hit=0.56 nflag=104",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 1.1857625676407715,
+     "n_ind_trval": 46,
+     "excess": [
+      -0.007963374978330676,
+      0.020227879333110696,
+      0.0068005165462415446
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -0.57% t=-0.4 n=24 net=+1.13% hit=0.60 nflag=416",
+     "validation": "ex +3.57% t=1.4 n=6 net=+3.13% hit=0.57 nflag=91",
+     "test": "ex +2.17% t=1.1 n=3 net=+2.03% hit=0.53 nflag=96",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 1.430263612434725,
+     "n_ind_trval": 30,
+     "excess": [
+      -0.005701748747247833,
+      0.035720224247790804,
+      0.021705022382130876
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.04% t=0.2 n=129 net=-0.10% | val ex +0.27% t=1.1 n=28 net=+0.15% | tes ex +0.00% t=0.0 n=26 net=-0.10% -> rejected: validation t 1.06 below 2.5\nh=3: tra ex -0.01% t=-0.0 n=75 net=+0.02% | val ex +0.06% t=0.1 n=22 net=-0.10% | tes ex -0.09% t=-0.2 n=14 net=+0.00% -> rejected: excess sign differs across periods\nh=5: tra ex -0.10% t=-0.2 n=52 net=+0.18% | val ex +0.23% t=0.3 n=16 net=+0.04% | tes ex +0.33% t=0.5 n=9 net=+0.22% -> rejected: excess sign differs across periods\nh=10: tra ex -0.80% t=-1.0 n=36 net=+1.04% | val ex +2.02% t=1.2 n=10 net=+1.74% | tes ex +0.68% t=0.6 n=7 net=+0.55% -> rejected: excess sign differs across periods\nh=20: tra ex -0.57% t=-0.4 n=24 net=+1.13% | val ex +3.57% t=1.4 n=6 net=+3.13% | tes ex +2.17% t=1.1 n=3 net=+2.03% -> rejected: excess sign differs across periods"
+  },
+  {
+   "cell": "p2_H1_bf30_top_abs_btc",
+   "asset": "btc",
+   "primary": [
+    "bf_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": true,
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_bf30_top_abs_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.22% t=0.9 n=50 net=-0.02% hit=0.56 nflag=127",
+     "validation": "ex +0.89% t=1.2 n=6 net=+0.68% hit=0.67 nflag=6",
+     "test": "ex +0.59% t=2.0 n=16 net=+0.38% hit=0.41 nflag=27",
+     "verdict": "rejected: validation t 1.23 below 2.5",
+     "sign_as_hypothesised": true,
+     "val_t": 1.230872278012812,
+     "n_ind_trval": 56,
+     "excess": [
+      0.002231448702478791,
+      0.008922302326046953,
+      0.005858696031845093
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex +0.22% t=0.5 n=25 net=-0.10% hit=0.59 nflag=127",
+     "validation": "ex -0.33% t=-0.3 n=6 net=+0.16% hit=0.67 nflag=6",
+     "test": "ex +1.64% t=2.1 n=11 net=+1.44% hit=0.48 nflag=27",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.31951757956990373,
+     "n_ind_trval": 31,
+     "excess": [
+      0.0022324158765612626,
+      -0.003348369402216538,
+      0.01644315365412655
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex -0.14% t=-0.2 n=22 net=+0.15% hit=0.61 nflag=127",
+     "validation": "ex -2.01% t=-3.1 n=5 net=+1.86% hit=0.50 nflag=6",
+     "test": "ex +0.39% t=0.5 n=10 net=+0.18% hit=0.41 nflag=27",
+     "verdict": "insufficient: 27 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -3.1315655662924033,
+     "n_ind_trval": 27,
+     "excess": [
+      -0.0014445698183121608,
+      -0.020120026883163427,
+      0.003905186271047266
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -0.81% t=-0.7 n=17 net=+1.00% hit=0.57 nflag=127",
+     "validation": "ex -1.66% t=-1.6 n=4 net=+1.56% hit=0.50 nflag=6",
+     "test": "ex -0.11% t=-0.1 n=7 net=-0.08% hit=0.56 nflag=27",
+     "verdict": "insufficient: 21 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -1.5788930047649794,
+     "n_ind_trval": 21,
+     "excess": [
+      -0.008075413907479526,
+      -0.01655198344192927,
+      -0.001060448175054518
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex +0.53% t=0.2 n=10 net=-0.52% hit=0.76 nflag=127",
+     "validation": "ex -3.62% t=-3.0 n=3 net=+3.70% hit=0.50 nflag=6",
+     "test": "ex -1.97% t=-1.5 n=5 net=+1.79% hit=0.58 nflag=26",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -2.983154151746452,
+     "n_ind_trval": 13,
+     "excess": [
+      0.005302078340381489,
+      -0.0362413482871182,
+      -0.01965277638811505
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.22% t=0.9 n=50 net=-0.02% | val ex +0.89% t=1.2 n=6 net=+0.68% | tes ex +0.59% t=2.0 n=16 net=+0.38% -> rejected: validation t 1.23 below 2.5\nh=3: tra ex +0.22% t=0.5 n=25 net=-0.10% | val ex -0.33% t=-0.3 n=6 net=+0.16% | tes ex +1.64% t=2.1 n=11 net=+1.44% -> rejected: excess sign differs across periods\nh=5: tra ex -0.14% t=-0.2 n=22 net=+0.15% | val ex -2.01% t=-3.1 n=5 net=+1.86% | tes ex +0.39% t=0.5 n=10 net=+0.18% -> insufficient: 27 independent episodes in train+validation (bar 30)\nh=10: tra ex -0.81% t=-0.7 n=17 net=+1.00% | val ex -1.66% t=-1.6 n=4 net=+1.56% | tes ex -0.11% t=-0.1 n=7 net=-0.08% -> insufficient: 21 independent episodes in train+validation (bar 30)\nh=20: tra ex +0.53% t=0.2 n=10 net=-0.52% | val ex -3.62% t=-3.0 n=3 net=+3.70% | tes ex -1.97% t=-1.5 n=5 net=+1.79% -> insufficient: 13 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_bf30_top_signed_btc",
+   "asset": "btc",
+   "primary": [
+    "bf_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_bf30_top_signed_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.17% t=0.6 n=50 net=+0.04% hit=0.56 nflag=127",
+     "validation": "ex +1.25% t=1.1 n=6 net=+1.14% hit=0.67 nflag=6",
+     "test": "ex -0.04% t=-0.1 n=16 net=-0.05% hit=0.41 nflag=27",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": 1.0788473494266495,
+     "n_ind_trval": 56,
+     "excess": [
+      0.0017485746120348487,
+      0.01245139167249108,
+      -0.000421341092582439
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex +0.76% t=1.2 n=25 net=+0.54% hit=0.59 nflag=127",
+     "validation": "ex +0.18% t=0.1 n=6 net=+0.06% hit=0.67 nflag=6",
+     "test": "ex -1.01% t=-0.8 n=11 net=+0.92% hit=0.48 nflag=27",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": 0.12016640883273765,
+     "n_ind_trval": 31,
+     "excess": [
+      0.00762549486595873,
+      0.0018256720426426628,
+      -0.010115643578203678
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +0.75% t=0.8 n=22 net=+0.45% hit=0.61 nflag=127",
+     "validation": "ex -0.22% t=-0.2 n=5 net=+0.16% hit=0.50 nflag=6",
+     "test": "ex -0.60% t=-0.5 n=10 net=+0.52% hit=0.41 nflag=27",
+     "verdict": "insufficient: 27 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.2296214577544596,
+     "n_ind_trval": 27,
+     "excess": [
+      0.00754836481079095,
+      -0.002205494971397868,
+      -0.006045981247638773
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex +0.95% t=0.6 n=17 net=+0.46% hit=0.57 nflag=127",
+     "validation": "ex -0.62% t=-0.4 n=4 net=+0.62% hit=0.50 nflag=6",
+     "test": "ex +0.19% t=0.1 n=7 net=+0.07% hit=0.56 nflag=27",
+     "verdict": "insufficient: 21 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.38289870865799347,
+     "n_ind_trval": 21,
+     "excess": [
+      0.009502744358527802,
+      -0.006156759935398457,
+      0.001889376027299943
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex +5.90% t=2.0 n=10 net=+4.95% hit=0.76 nflag=127",
+     "validation": "ex -2.72% t=-1.1 n=3 net=+2.90% hit=0.50 nflag=6",
+     "test": "ex +1.71% t=0.6 n=5 net=+1.59% hit=0.58 nflag=26",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -1.066508153521853,
+     "n_ind_trval": 13,
+     "excess": [
+      0.05901633924063389,
+      -0.02722576180008533,
+      0.017132650036170476
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.17% t=0.6 n=50 net=+0.04% | val ex +1.25% t=1.1 n=6 net=+1.14% | tes ex -0.04% t=-0.1 n=16 net=-0.05% -> rejected: excess sign differs across periods\nh=3: tra ex +0.76% t=1.2 n=25 net=+0.54% | val ex +0.18% t=0.1 n=6 net=+0.06% | tes ex -1.01% t=-0.8 n=11 net=+0.92% -> rejected: excess sign differs across periods\nh=5: tra ex +0.75% t=0.8 n=22 net=+0.45% | val ex -0.22% t=-0.2 n=5 net=+0.16% | tes ex -0.60% t=-0.5 n=10 net=+0.52% -> insufficient: 27 independent episodes in train+validation (bar 30)\nh=10: tra ex +0.95% t=0.6 n=17 net=+0.46% | val ex -0.62% t=-0.4 n=4 net=+0.62% | tes ex +0.19% t=0.1 n=7 net=+0.07% -> insufficient: 21 independent episodes in train+validation (bar 30)\nh=20: tra ex +5.90% t=2.0 n=10 net=+4.95% | val ex -2.72% t=-1.1 n=3 net=+2.90% | tes ex +1.71% t=0.6 n=5 net=+1.59% -> insufficient: 13 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_skew7_top_btc",
+   "asset": "btc",
+   "primary": [
+    "skew_7_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew7_top_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex -0.26% t=-1.0 n=52 net=+0.17% hit=0.54 nflag=151",
+     "validation": "ex -0.17% t=-0.5 n=19 net=+0.08% hit=0.52 nflag=42",
+     "test": "ex +0.05% t=0.2 n=21 net=-0.05% hit=0.47 nflag=64",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -0.5208516364159328,
+     "n_ind_trval": 71,
+     "excess": [
+      -0.0025769187617041877,
+      -0.001674813625462339,
+      0.0005188887688214551
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -0.11% t=-0.2 n=38 net=+0.05% hit=0.59 nflag=151",
+     "validation": "ex +0.09% t=0.2 n=8 net=-0.05% hit=0.64 nflag=42",
+     "test": "ex +0.06% t=0.1 n=12 net=-0.06% hit=0.48 nflag=63",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": 0.15242158610187123,
+     "n_ind_trval": 46,
+     "excess": [
+      -0.0011238787562269665,
+      0.0008947392972861764,
+      0.000554620308612089
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +0.04% t=0.1 n=33 net=-0.12% hit=0.60 nflag=151",
+     "validation": "ex -0.14% t=-0.2 n=5 net=+0.12% hit=0.60 nflag=42",
+     "test": "ex -0.11% t=-0.1 n=10 net=+0.04% hit=0.46 nflag=63",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -0.17734682635395596,
+     "n_ind_trval": 38,
+     "excess": [
+      0.00041910029918263564,
+      -0.0014369894780050614,
+      -0.0011402433340948286
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex +0.04% t=0.0 n=21 net=-0.23% hit=0.57 nflag=151",
+     "validation": "ex -0.31% t=-0.2 n=3 net=+0.37% hit=0.55 nflag=42",
+     "test": "ex -0.13% t=-0.1 n=6 net=+0.10% hit=0.51 nflag=63",
+     "verdict": "insufficient: 24 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.22386710950796673,
+     "n_ind_trval": 24,
+     "excess": [
+      0.00040563254298657883,
+      -0.0031416545812747903,
+      -0.0013498666085876472
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -0.01% t=-0.0 n=13 net=+0.31% hit=0.68 nflag=151",
+     "validation": "ex -5.08% t=-2.4 n=1 net=+5.27% hit=0.29 nflag=42",
+     "test": "ex -0.04% t=-0.0 n=3 net=+0.05% hit=0.49 nflag=61",
+     "verdict": "insufficient: 14 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -2.3538335075560184,
+     "n_ind_trval": 14,
+     "excess": [
+      -0.00014122351690232238,
+      -0.05075609576163824,
+      -0.00040354863787650345
+     ]
+    }
+   ],
+   "line": "h=1: tra ex -0.26% t=-1.0 n=52 net=+0.17% | val ex -0.17% t=-0.5 n=19 net=+0.08% | tes ex +0.05% t=0.2 n=21 net=-0.05% -> rejected: excess sign differs across periods\nh=3: tra ex -0.11% t=-0.2 n=38 net=+0.05% | val ex +0.09% t=0.2 n=8 net=-0.05% | tes ex +0.06% t=0.1 n=12 net=-0.06% -> rejected: excess sign differs across periods\nh=5: tra ex +0.04% t=0.1 n=33 net=-0.12% | val ex -0.14% t=-0.2 n=5 net=+0.12% | tes ex -0.11% t=-0.1 n=10 net=+0.04% -> rejected: excess sign differs across periods\nh=10: tra ex +0.04% t=0.0 n=21 net=-0.23% | val ex -0.31% t=-0.2 n=3 net=+0.37% | tes ex -0.13% t=-0.1 n=6 net=+0.10% -> insufficient: 24 independent episodes in train+validation (bar 30)\nh=20: tra ex -0.01% t=-0.0 n=13 net=+0.31% | val ex -5.08% t=-2.4 n=1 net=+5.27% | tes ex -0.04% t=-0.0 n=3 net=+0.05% -> insufficient: 14 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_skew90_top_btc",
+   "asset": "btc",
+   "primary": [
+    "skew_90_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew90_top_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex -0.06% t=-0.2 n=32 net=-0.03% hit=0.52 nflag=187",
+     "validation": "ex -0.19% t=-1.1 n=8 net=+0.11% hit=0.48 nflag=110",
+     "test": "ex +0.12% t=0.6 n=16 net=+0.01% hit=0.48 nflag=110",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -1.0893796557695228,
+     "n_ind_trval": 40,
+     "excess": [
+      -0.000585900468176069,
+      -0.0019128737631230767,
+      0.001159107778196659
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -0.00% t=-0.0 n=19 net=-0.07% hit=0.58 nflag=187",
+     "validation": "ex -0.54% t=-1.2 n=4 net=+0.48% hit=0.54 nflag=110",
+     "test": "ex +0.10% t=0.2 n=7 net=-0.01% hit=0.57 nflag=109",
+     "verdict": "insufficient: 23 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -1.2153939399066558,
+     "n_ind_trval": 23,
+     "excess": [
+      -4.9494251852440566e-05,
+      -0.005387996420028762,
+      0.0009957935644657806
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +0.04% t=0.0 n=14 net=-0.11% hit=0.58 nflag=187",
+     "validation": "ex -0.81% t=-1.2 n=4 net=+0.79% hit=0.51 nflag=110",
+     "test": "ex +0.20% t=0.3 n=4 net=+0.08% hit=0.52 nflag=109",
+     "verdict": "insufficient: 18 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -1.1558343794930428,
+     "n_ind_trval": 18,
+     "excess": [
+      0.0003922406557002496,
+      -0.00813171524329202,
+      0.002026294002537906
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -1.19% t=-0.6 n=9 net=+1.21% hit=0.53 nflag=187",
+     "validation": "ex -1.76% t=-1.4 n=2 net=+1.82% hit=0.43 nflag=110",
+     "test": "ex +0.43% t=0.4 n=4 net=+0.29% hit=0.55 nflag=109",
+     "verdict": "insufficient: 11 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -1.379010849372092,
+     "n_ind_trval": 11,
+     "excess": [
+      -0.011902189081588422,
+      -0.017610623159465672,
+      0.004312529840377853
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -3.18% t=-0.8 n=7 net=+3.33% hit=0.59 nflag=187",
+     "validation": "ex -4.98% t=-2.4 n=1 net=+5.18% hit=0.33 nflag=110",
+     "test": "ex +1.35% t=0.7 n=2 net=+1.17% hit=0.54 nflag=109",
+     "verdict": "insufficient: 8 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -2.392689555102569,
+     "n_ind_trval": 8,
+     "excess": [
+      -0.03176433900809249,
+      -0.04979736832129662,
+      0.013525742547401416
+     ]
+    }
+   ],
+   "line": "h=1: tra ex -0.06% t=-0.2 n=32 net=-0.03% | val ex -0.19% t=-1.1 n=8 net=+0.11% | tes ex +0.12% t=0.6 n=16 net=+0.01% -> rejected: excess sign differs across periods\nh=3: tra ex -0.00% t=-0.0 n=19 net=-0.07% | val ex -0.54% t=-1.2 n=4 net=+0.48% | tes ex +0.10% t=0.2 n=7 net=-0.01% -> insufficient: 23 independent episodes in train+validation (bar 30)\nh=5: tra ex +0.04% t=0.0 n=14 net=-0.11% | val ex -0.81% t=-1.2 n=4 net=+0.79% | tes ex +0.20% t=0.3 n=4 net=+0.08% -> insufficient: 18 independent episodes in train+validation (bar 30)\nh=10: tra ex -1.19% t=-0.6 n=9 net=+1.21% | val ex -1.76% t=-1.4 n=2 net=+1.82% | tes ex +0.43% t=0.4 n=4 net=+0.29% -> insufficient: 11 independent episodes in train+validation (bar 30)\nh=20: tra ex -3.18% t=-0.8 n=7 net=+3.33% | val ex -4.98% t=-2.4 n=1 net=+5.18% | tes ex +1.35% t=0.7 n=2 net=+1.17% -> insufficient: 8 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_skew_slope_top_eth",
+   "asset": "eth",
+   "primary": [
+    "skew_slope_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew_slope_top_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex -0.01% t=-0.0 n=66 net=-0.07% hit=0.53 nflag=129",
+     "validation": "ex -0.23% t=-0.3 n=3 net=+0.15% hit=0.50 nflag=6",
+     "test": "ex -0.50% t=-0.9 n=21 net=+0.41% hit=0.52 nflag=31",
+     "verdict": "rejected: validation t -0.27 below 2.5",
+     "sign_as_hypothesised": false,
+     "val_t": -0.26734037370420477,
+     "n_ind_trval": 69,
+     "excess": [
+      -0.00013725207724079235,
+      -0.002330747094933881,
+      -0.0049959925025674125
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -0.14% t=-0.2 n=45 net=+0.11% hit=0.57 nflag=129",
+     "validation": "ex -1.42% t=-0.8 n=3 net=+1.37% hit=0.33 nflag=6",
+     "test": "ex +0.01% t=0.0 n=16 net=-0.12% hit=0.37 nflag=30",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.7906515992914386,
+     "n_ind_trval": 48,
+     "excess": [
+      -0.0013722985400365286,
+      -0.014237222761255424,
+      9.337066242258137e-05
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +0.73% t=0.7 n=34 net=+0.51% hit=0.60 nflag=129",
+     "validation": "ex -2.40% t=-1.8 n=1 net=+2.37% hit=0.00 nflag=6",
+     "test": "ex -1.02% t=-0.8 n=10 net=+0.95% hit=0.21 nflag=29",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -1.7569392463199351,
+     "n_ind_trval": 35,
+     "excess": [
+      0.007295048839078538,
+      -0.023980603941875112,
+      -0.010179261931859961
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex +0.49% t=0.3 n=28 net=+0.12% hit=0.60 nflag=129",
+     "validation": "ex -3.02% t=-1.5 n=1 net=+3.06% hit=0.33 nflag=6",
+     "test": "ex -2.83% t=-1.1 n=7 net=+2.81% hit=0.25 nflag=28",
+     "verdict": "insufficient: 29 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -1.5397366786292694,
+     "n_ind_trval": 29,
+     "excess": [
+      0.004879277814629483,
+      -0.03018769074343114,
+      -0.028340928896938816
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex +3.24% t=1.2 n=18 net=+2.52% hit=0.69 nflag=129",
+     "validation": "ex -13.94% t=-4.8 n=1 net=+14.08% hit=0.00 nflag=6",
+     "test": "ex -1.22% t=-0.4 n=4 net=+1.26% hit=0.36 nflag=22",
+     "verdict": "insufficient: 19 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -4.785902943978464,
+     "n_ind_trval": 19,
+     "excess": [
+      0.03235096070722833,
+      -0.13936593917375464,
+      -0.012246359467403994
+     ]
+    }
+   ],
+   "line": "h=1: tra ex -0.01% t=-0.0 n=66 net=-0.07% | val ex -0.23% t=-0.3 n=3 net=+0.15% | tes ex -0.50% t=-0.9 n=21 net=+0.41% -> rejected: validation t -0.27 below 2.5\nh=3: tra ex -0.14% t=-0.2 n=45 net=+0.11% | val ex -1.42% t=-0.8 n=3 net=+1.37% | tes ex +0.01% t=0.0 n=16 net=-0.12% -> rejected: excess sign differs across periods\nh=5: tra ex +0.73% t=0.7 n=34 net=+0.51% | val ex -2.40% t=-1.8 n=1 net=+2.37% | tes ex -1.02% t=-0.8 n=10 net=+0.95% -> rejected: excess sign differs across periods\nh=10: tra ex +0.49% t=0.3 n=28 net=+0.12% | val ex -3.02% t=-1.5 n=1 net=+3.06% | tes ex -2.83% t=-1.1 n=7 net=+2.81% -> insufficient: 29 independent episodes in train+validation (bar 30)\nh=20: tra ex +3.24% t=1.2 n=18 net=+2.52% | val ex -13.94% t=-4.8 n=1 net=+14.08% | tes ex -1.22% t=-0.4 n=4 net=+1.26% -> insufficient: 19 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_skew_slope_bottom_eth",
+   "asset": "eth",
+   "primary": [
+    "skew_slope_eth",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "abs_target": false,
+   "hyp": -1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew_slope_bottom_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex -0.10% t=-0.4 n=141 net=+0.05% hit=0.54 nflag=288",
+     "validation": "ex +0.16% t=0.5 n=42 net=+0.04% hit=0.53 nflag=99",
+     "test": "ex -0.11% t=-0.4 n=26 net=+0.02% hit=0.47 nflag=68",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.5413739062206494,
+     "n_ind_trval": 183,
+     "excess": [
+      -0.0010031684770779432,
+      0.001632019599661405,
+      -0.0010988118175901378
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex +0.04% t=0.1 n=98 net=-0.21% hit=0.59 nflag=288",
+     "validation": "ex +0.72% t=1.0 n=28 net=+0.55% hit=0.57 nflag=99",
+     "test": "ex -0.43% t=-0.8 n=14 net=+0.35% hit=0.40 nflag=68",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 1.0399112698872557,
+     "n_ind_trval": 126,
+     "excess": [
+      0.00040869047141970944,
+      0.007159294944147376,
+      -0.004263069358843315
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +0.06% t=0.1 n=69 net=-0.30% hit=0.58 nflag=288",
+     "validation": "ex +0.34% t=0.4 n=22 net=+0.13% hit=0.54 nflag=99",
+     "test": "ex -0.14% t=-0.2 n=11 net=+0.09% hit=0.32 nflag=68",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.35850915065711053,
+     "n_ind_trval": 91,
+     "excess": [
+      0.0006193789999699335,
+      0.0033664592945482764,
+      -0.0013735418244778027
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex +0.22% t=0.2 n=45 net=-0.41% hit=0.54 nflag=288",
+     "validation": "ex -0.38% t=-0.3 n=13 net=+0.50% hit=0.42 nflag=99",
+     "test": "ex -0.02% t=-0.0 n=7 net=+0.02% hit=0.40 nflag=68",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.3030885586004107,
+     "n_ind_trval": 58,
+     "excess": [
+      0.0021550516629357773,
+      -0.003796243271396115,
+      -0.0002268487382841751
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -0.30% t=-0.1 n=23 net=+1.24% hit=0.53 nflag=288",
+     "validation": "ex +2.08% t=0.7 n=6 net=+1.54% hit=0.57 nflag=99",
+     "test": "ex -2.75% t=-1.3 n=4 net=+2.83% hit=0.37 nflag=68",
+     "verdict": "insufficient: 29 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.7222334498571027,
+     "n_ind_trval": 29,
+     "excess": [
+      -0.0030408549949580282,
+      0.020756308453206126,
+      -0.02747779908567815
+     ]
+    }
+   ],
+   "line": "h=1: tra ex -0.10% t=-0.4 n=141 net=+0.05% | val ex +0.16% t=0.5 n=42 net=+0.04% | tes ex -0.11% t=-0.4 n=26 net=+0.02% -> rejected: excess sign differs across periods\nh=3: tra ex +0.04% t=0.1 n=98 net=-0.21% | val ex +0.72% t=1.0 n=28 net=+0.55% | tes ex -0.43% t=-0.8 n=14 net=+0.35% -> rejected: excess sign differs across periods\nh=5: tra ex +0.06% t=0.1 n=69 net=-0.30% | val ex +0.34% t=0.4 n=22 net=+0.13% | tes ex -0.14% t=-0.2 n=11 net=+0.09% -> rejected: excess sign differs across periods\nh=10: tra ex +0.22% t=0.2 n=45 net=-0.41% | val ex -0.38% t=-0.3 n=13 net=+0.50% | tes ex -0.02% t=-0.0 n=7 net=+0.02% -> rejected: excess sign differs across periods\nh=20: tra ex -0.30% t=-0.1 n=23 net=+1.24% | val ex +2.08% t=0.7 n=6 net=+1.54% | tes ex -2.75% t=-1.3 n=4 net=+2.83% -> insufficient: 29 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_atm_slope_top_eth",
+   "asset": "eth",
+   "primary": [
+    "atm_slope_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_slope_top_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.15% t=0.3 n=38 net=-0.02% hit=0.52 nflag=113",
+     "validation": "ex +1.05% t=0.8 n=5 net=+0.94% hit=0.67 nflag=6",
+     "test": "ex -0.18% t=-0.2 n=11 net=+0.07% hit=0.53 nflag=17",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.8181091106600202,
+     "n_ind_trval": 43,
+     "excess": [
+      0.0014624504765193406,
+      0.01046831883405493,
+      -0.0017584057856264174
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -0.18% t=-0.1 n=26 net=+0.26% hit=0.51 nflag=113",
+     "validation": "ex +0.78% t=0.2 n=4 net=+0.66% hit=0.67 nflag=6",
+     "test": "ex -1.41% t=-0.8 n=6 net=+1.30% hit=0.50 nflag=16",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.2231597835815415,
+     "n_ind_trval": 30,
+     "excess": [
+      -0.0017629996741519568,
+      0.00783598119963454,
+      -0.014124355025795215
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex -0.47% t=-0.3 n=24 net=+0.66% hit=0.50 nflag=113",
+     "validation": "ex +0.11% t=0.0 n=3 net=-0.03% hit=0.67 nflag=6",
+     "test": "ex -1.06% t=-0.9 n=6 net=+0.95% hit=0.19 nflag=16",
+     "verdict": "insufficient: 27 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.03469896056267948,
+     "n_ind_trval": 27,
+     "excess": [
+      -0.004674477616574784,
+      0.001105213027876539,
+      -0.010629989295142991
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -1.03% t=-0.6 n=17 net=+1.52% hit=0.58 nflag=113",
+     "validation": "ex +0.22% t=0.1 n=3 net=+0.03% hit=0.50 nflag=6",
+     "test": "ex -1.30% t=-0.7 n=5 net=+1.18% hit=0.40 nflag=15",
+     "verdict": "insufficient: 20 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.056964605189525494,
+     "n_ind_trval": 20,
+     "excess": [
+      -0.0102670103232181,
+      0.0021723272789656396,
+      -0.01302409010200158
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -0.06% t=-0.0 n=15 net=+1.21% hit=0.55 nflag=113",
+     "validation": "ex -0.35% t=-0.1 n=2 net=+0.45% hit=0.67 nflag=6",
+     "test": "ex -2.13% t=-0.7 n=4 net=+1.97% hit=0.29 nflag=14",
+     "verdict": "insufficient: 17 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -0.08215201936562312,
+     "n_ind_trval": 17,
+     "excess": [
+      -0.0005862321704531992,
+      -0.0034766773177631414,
+      -0.021343594207444347
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.15% t=0.3 n=38 net=-0.02% | val ex +1.05% t=0.8 n=5 net=+0.94% | tes ex -0.18% t=-0.2 n=11 net=+0.07% -> rejected: excess sign differs across periods\nh=3: tra ex -0.18% t=-0.1 n=26 net=+0.26% | val ex +0.78% t=0.2 n=4 net=+0.66% | tes ex -1.41% t=-0.8 n=6 net=+1.30% -> rejected: excess sign differs across periods\nh=5: tra ex -0.47% t=-0.3 n=24 net=+0.66% | val ex +0.11% t=0.0 n=3 net=-0.03% | tes ex -1.06% t=-0.9 n=6 net=+0.95% -> insufficient: 27 independent episodes in train+validation (bar 30)\nh=10: tra ex -1.03% t=-0.6 n=17 net=+1.52% | val ex +0.22% t=0.1 n=3 net=+0.03% | tes ex -1.30% t=-0.7 n=5 net=+1.18% -> insufficient: 20 independent episodes in train+validation (bar 30)\nh=20: tra ex -0.06% t=-0.0 n=15 net=+1.21% | val ex -0.35% t=-0.1 n=2 net=+0.45% | tes ex -2.13% t=-0.7 n=4 net=+1.97% -> insufficient: 17 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_atm_inv_eth",
+   "asset": "eth",
+   "primary": [
+    "atm_inv_eth",
+    "raw",
+    "top",
+    "0.5"
+   ],
+   "abs_target": false,
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_inv_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex -0.22% t=-1.1 n=132 net=+0.16% hit=0.51 nflag=458",
+     "validation": "ex -0.09% t=-0.5 n=52 net=+0.01% hit=0.47 nflag=233",
+     "test": "ex -0.32% t=-0.9 n=23 net=+0.22% hit=0.50 nflag=78",
+     "verdict": "rejected: validation t -0.49 below 2.5",
+     "sign_as_hypothesised": false,
+     "val_t": -0.491894893353895,
+     "n_ind_trval": 184,
+     "excess": [
+      -0.002184747892570289,
+      -0.0009249301792596783,
+      -0.0031609736305235905
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex +0.13% t=0.3 n=89 net=-0.10% hit=0.53 nflag=458",
+     "validation": "ex -0.05% t=-0.1 n=29 net=-0.00% hit=0.49 nflag=233",
+     "test": "ex -0.44% t=-0.6 n=16 net=+0.34% hit=0.49 nflag=77",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.105077110527218,
+     "n_ind_trval": 118,
+     "excess": [
+      0.001262857762360626,
+      -0.00046663951899459885,
+      -0.004391726726101247
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +0.07% t=0.1 n=65 net=-0.23% hit=0.55 nflag=458",
+     "validation": "ex +0.06% t=0.1 n=19 net=-0.13% hit=0.48 nflag=233",
+     "test": "ex -0.11% t=-0.1 n=11 net=+0.00% hit=0.39 nflag=77",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.08469164105323604,
+     "n_ind_trval": 84,
+     "excess": [
+      0.0006932640001945448,
+      0.0005696932616509401,
+      -0.0010563045700850548
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -0.09% t=-0.1 n=41 net=+0.40% hit=0.57 nflag=458",
+     "validation": "ex +0.68% t=0.6 n=7 net=+0.40% hit=0.53 nflag=233",
+     "test": "ex +0.23% t=0.1 n=6 net=+0.14% hit=0.47 nflag=74",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.6291008546022389,
+     "n_ind_trval": 48,
+     "excess": [
+      -0.0009184156096215743,
+      0.006781202908660452,
+      0.0023262349622042156
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -0.09% t=-0.0 n=22 net=+0.81% hit=0.55 nflag=458",
+     "validation": "ex +0.39% t=0.3 n=2 net=-0.04% hit=0.43 nflag=233",
+     "test": "ex +2.32% t=0.8 n=3 net=+2.26% hit=0.60 nflag=67",
+     "verdict": "insufficient: 24 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.2501380434835657,
+     "n_ind_trval": 24,
+     "excess": [
+      -0.000925886831743411,
+      0.0038978890386945717,
+      0.023228077003572274
+     ]
+    }
+   ],
+   "line": "h=1: tra ex -0.22% t=-1.1 n=132 net=+0.16% | val ex -0.09% t=-0.5 n=52 net=+0.01% | tes ex -0.32% t=-0.9 n=23 net=+0.22% -> rejected: validation t -0.49 below 2.5\nh=3: tra ex +0.13% t=0.3 n=89 net=-0.10% | val ex -0.05% t=-0.1 n=29 net=-0.00% | tes ex -0.44% t=-0.6 n=16 net=+0.34% -> rejected: excess sign differs across periods\nh=5: tra ex +0.07% t=0.1 n=65 net=-0.23% | val ex +0.06% t=0.1 n=19 net=-0.13% | tes ex -0.11% t=-0.1 n=11 net=+0.00% -> rejected: excess sign differs across periods\nh=10: tra ex -0.09% t=-0.1 n=41 net=+0.40% | val ex +0.68% t=0.6 n=7 net=+0.40% | tes ex +0.23% t=0.1 n=6 net=+0.14% -> rejected: excess sign differs across periods\nh=20: tra ex -0.09% t=-0.0 n=22 net=+0.81% | val ex +0.39% t=0.3 n=2 net=-0.04% | tes ex +2.32% t=0.8 n=3 net=+2.26% -> insufficient: 24 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_bf30_top_abs_eth",
+   "asset": "eth",
+   "primary": [
+    "bf_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": true,
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_bf30_top_abs_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.43% t=1.6 n=70 net=+0.15% hit=0.56 nflag=142",
+     "validation": "ex -0.71% t=-1.0 n=4 net=+0.53% hit=0.55 nflag=11",
+     "test": "ex +1.39% t=2.2 n=14 net=+1.19% hit=0.27 nflag=22",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -1.0300338279795966,
+     "n_ind_trval": 74,
+     "excess": [
+      0.0042859789747297615,
+      -0.0070778252045097315,
+      0.013948102135662426
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex +0.39% t=0.8 n=44 net=-0.06% hit=0.58 nflag=142",
+     "validation": "ex +0.81% t=0.8 n=4 net=+0.55% hit=0.36 nflag=11",
+     "test": "ex +0.59% t=1.0 n=9 net=+0.39% hit=0.55 nflag=22",
+     "verdict": "rejected: validation t 0.76 below 2.5",
+     "sign_as_hypothesised": true,
+     "val_t": 0.7639235791151667,
+     "n_ind_trval": 48,
+     "excess": [
+      0.003923064442292672,
+      0.008069130840047331,
+      0.005887945301966201
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +0.07% t=0.1 n=30 net=-0.54% hit=0.59 nflag=142",
+     "validation": "ex -1.39% t=-1.4 n=3 net=+1.27% hit=0.27 nflag=11",
+     "test": "ex +0.11% t=0.1 n=8 net=-0.09% hit=0.33 nflag=21",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -1.3909166291799349,
+     "n_ind_trval": 33,
+     "excess": [
+      0.0007245760618881658,
+      -0.01387776080373953,
+      0.001103768994526827
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex +0.10% t=0.1 n=19 net=-0.93% hit=0.68 nflag=142",
+     "validation": "ex -4.29% t=-4.1 n=2 net=+4.24% hit=0.45 nflag=11",
+     "test": "ex -2.26% t=-1.9 n=6 net=+2.07% hit=0.55 nflag=20",
+     "verdict": "insufficient: 21 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -4.108618447060692,
+     "n_ind_trval": 21,
+     "excess": [
+      0.0009734766747947488,
+      -0.042858684409201896,
+      -0.02257462304933295
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex +0.94% t=0.4 n=12 net=-0.91% hit=0.73 nflag=142",
+     "validation": "ex -6.71% t=-3.3 n=1 net=+6.77% hit=0.18 nflag=11",
+     "test": "ex -3.40% t=-1.3 n=3 net=+3.22% hit=0.61 nflag=18",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "val_t": -3.3127419312875652,
+     "n_ind_trval": 13,
+     "excess": [
+      0.009389772115269535,
+      -0.0671211248948233,
+      -0.03403785948721608
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.43% t=1.6 n=70 net=+0.15% | val ex -0.71% t=-1.0 n=4 net=+0.53% | tes ex +1.39% t=2.2 n=14 net=+1.19% -> rejected: excess sign differs across periods\nh=3: tra ex +0.39% t=0.8 n=44 net=-0.06% | val ex +0.81% t=0.8 n=4 net=+0.55% | tes ex +0.59% t=1.0 n=9 net=+0.39% -> rejected: validation t 0.76 below 2.5\nh=5: tra ex +0.07% t=0.1 n=30 net=-0.54% | val ex -1.39% t=-1.4 n=3 net=+1.27% | tes ex +0.11% t=0.1 n=8 net=-0.09% -> rejected: excess sign differs across periods\nh=10: tra ex +0.10% t=0.1 n=19 net=-0.93% | val ex -4.29% t=-4.1 n=2 net=+4.24% | tes ex -2.26% t=-1.9 n=6 net=+2.07% -> insufficient: 21 independent episodes in train+validation (bar 30)\nh=20: tra ex +0.94% t=0.4 n=12 net=-0.91% | val ex -6.71% t=-3.3 n=1 net=+6.77% | tes ex -3.40% t=-1.3 n=3 net=+3.22% -> insufficient: 13 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_bf30_top_signed_eth",
+   "asset": "eth",
+   "primary": [
+    "bf_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_bf30_top_signed_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.28% t=0.7 n=70 net=+0.10% hit=0.56 nflag=142",
+     "validation": "ex +0.94% t=1.2 n=4 net=+0.82% hit=0.55 nflag=11",
+     "test": "ex -1.16% t=-1.2 n=14 net=+1.06% hit=0.27 nflag=22",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": 1.1563817216673895,
+     "n_ind_trval": 74,
+     "excess": [
+      0.0028153890904139144,
+      0.009407946670433872,
+      -0.01164404616002747
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex +1.25% t=1.8 n=44 net=+0.90% hit=0.58 nflag=142",
+     "validation": "ex -0.89% t=-0.4 n=4 net=+0.85% hit=0.36 nflag=11",
+     "test": "ex -0.71% t=-0.7 n=9 net=+0.61% hit=0.55 nflag=22",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -0.41102821972390174,
+     "n_ind_trval": 48,
+     "excess": [
+      0.012516339471892679,
+      -0.008921028515520783,
+      -0.007099965045342229
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +2.14% t=2.3 n=30 net=+1.63% hit=0.59 nflag=142",
+     "validation": "ex -3.62% t=-2.6 n=3 net=+3.60% hit=0.27 nflag=11",
+     "test": "ex +0.50% t=0.4 n=8 net=+0.40% hit=0.33 nflag=21",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -2.6063362825972853,
+     "n_ind_trval": 33,
+     "excess": [
+      0.021427113938304425,
+      -0.03615436305196449,
+      0.00503243261561889
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex +4.64% t=2.4 n=19 net=+3.71% hit=0.68 nflag=142",
+     "validation": "ex -1.14% t=-0.4 n=2 net=+1.19% hit=0.45 nflag=11",
+     "test": "ex +1.70% t=0.9 n=6 net=+1.59% hit=0.55 nflag=20",
+     "verdict": "insufficient: 21 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.3995155282189818,
+     "n_ind_trval": 21,
+     "excess": [
+      0.046414712335071204,
+      -0.011364045269088966,
+      0.01702508212814829
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex +7.02% t=2.2 n=12 net=+5.27% hit=0.73 nflag=142",
+     "validation": "ex -6.94% t=-2.3 n=1 net=+7.11% hit=0.18 nflag=11",
+     "test": "ex +4.95% t=1.1 n=3 net=+4.83% hit=0.61 nflag=18",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -2.3008531853964582,
+     "n_ind_trval": 13,
+     "excess": [
+      0.07018934285022375,
+      -0.06943814609826904,
+      0.04945050749560705
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.28% t=0.7 n=70 net=+0.10% | val ex +0.94% t=1.2 n=4 net=+0.82% | tes ex -1.16% t=-1.2 n=14 net=+1.06% -> rejected: excess sign differs across periods\nh=3: tra ex +1.25% t=1.8 n=44 net=+0.90% | val ex -0.89% t=-0.4 n=4 net=+0.85% | tes ex -0.71% t=-0.7 n=9 net=+0.61% -> rejected: excess sign differs across periods\nh=5: tra ex +2.14% t=2.3 n=30 net=+1.63% | val ex -3.62% t=-2.6 n=3 net=+3.60% | tes ex +0.50% t=0.4 n=8 net=+0.40% -> rejected: excess sign differs across periods\nh=10: tra ex +4.64% t=2.4 n=19 net=+3.71% | val ex -1.14% t=-0.4 n=2 net=+1.19% | tes ex +1.70% t=0.9 n=6 net=+1.59% -> insufficient: 21 independent episodes in train+validation (bar 30)\nh=20: tra ex +7.02% t=2.2 n=12 net=+5.27% | val ex -6.94% t=-2.3 n=1 net=+7.11% | tes ex +4.95% t=1.1 n=3 net=+4.83% -> insufficient: 13 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_skew7_top_eth",
+   "asset": "eth",
+   "primary": [
+    "skew_7_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew7_top_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex +0.18% t=0.5 n=63 net=+0.07% hit=0.55 nflag=170",
+     "validation": "ex -0.16% t=-0.2 n=13 net=+0.08% hit=0.50 nflag=22",
+     "test": "ex +0.12% t=0.3 n=15 net=+0.02% hit=0.51 nflag=63",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -0.23020664246135983,
+     "n_ind_trval": 76,
+     "excess": [
+      0.001770273937397405,
+      -0.001649681915816117,
+      0.0011833005333350805
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -0.03% t=-0.0 n=38 net=-0.03% hit=0.55 nflag=170",
+     "validation": "ex +0.01% t=0.0 n=9 net=-0.13% hit=0.55 nflag=22",
+     "test": "ex -0.20% t=-0.2 n=9 net=+0.10% hit=0.48 nflag=63",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": 0.00975317666116628,
+     "n_ind_trval": 47,
+     "excess": [
+      -0.0003092389702188331,
+      0.00013925458772823533,
+      -0.0020138711081587636
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex +0.07% t=0.1 n=25 net=-0.09% hit=0.56 nflag=170",
+     "validation": "ex -0.52% t=-0.4 n=7 net=+0.49% hit=0.41 nflag=22",
+     "test": "ex -1.23% t=-0.8 n=7 net=+1.13% hit=0.32 nflag=62",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -0.383053094043587,
+     "n_ind_trval": 32,
+     "excess": [
+      0.0007256569114359405,
+      -0.00524716238853081,
+      -0.012306671187519698
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -0.81% t=-0.4 n=18 net=+0.86% hit=0.56 nflag=170",
+     "validation": "ex -1.90% t=-1.0 n=4 net=+1.93% hit=0.32 nflag=22",
+     "test": "ex -2.23% t=-0.8 n=5 net=+2.13% hit=0.44 nflag=62",
+     "verdict": "insufficient: 22 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.9862406649658298,
+     "n_ind_trval": 22,
+     "excess": [
+      -0.008114748884531144,
+      -0.019048399627337405,
+      -0.022266494354981063
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -0.47% t=-0.1 n=14 net=+0.73% hit=0.59 nflag=170",
+     "validation": "ex -5.42% t=-1.2 n=2 net=+5.57% hit=0.36 nflag=22",
+     "test": "ex -0.93% t=-0.2 n=3 net=+0.83% hit=0.50 nflag=58",
+     "verdict": "insufficient: 16 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -1.170895028161372,
+     "n_ind_trval": 16,
+     "excess": [
+      -0.004655064262339227,
+      -0.05419913411629516,
+      -0.009270214250801443
+     ]
+    }
+   ],
+   "line": "h=1: tra ex +0.18% t=0.5 n=63 net=+0.07% | val ex -0.16% t=-0.2 n=13 net=+0.08% | tes ex +0.12% t=0.3 n=15 net=+0.02% -> rejected: excess sign differs across periods\nh=3: tra ex -0.03% t=-0.0 n=38 net=-0.03% | val ex +0.01% t=0.0 n=9 net=-0.13% | tes ex -0.20% t=-0.2 n=9 net=+0.10% -> rejected: excess sign differs across periods\nh=5: tra ex +0.07% t=0.1 n=25 net=-0.09% | val ex -0.52% t=-0.4 n=7 net=+0.49% | tes ex -1.23% t=-0.8 n=7 net=+1.13% -> rejected: excess sign differs across periods\nh=10: tra ex -0.81% t=-0.4 n=18 net=+0.86% | val ex -1.90% t=-1.0 n=4 net=+1.93% | tes ex -2.23% t=-0.8 n=5 net=+2.13% -> insufficient: 22 independent episodes in train+validation (bar 30)\nh=20: tra ex -0.47% t=-0.1 n=14 net=+0.73% | val ex -5.42% t=-1.2 n=2 net=+5.57% | tes ex -0.93% t=-0.2 n=3 net=+0.83% -> insufficient: 16 independent episodes in train+validation (bar 30)"
+  },
+  {
+   "cell": "p2_H1_skew90_top_eth",
+   "asset": "eth",
+   "primary": [
+    "skew_90_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "abs_target": false,
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew90_top_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "ex -0.75% t=-2.5 n=39 net=+0.66% hit=0.47 nflag=237",
+     "validation": "ex -0.27% t=-0.6 n=11 net=+0.18% hit=0.52 nflag=63",
+     "test": "ex -0.01% t=-0.1 n=20 net=-0.08% hit=0.48 nflag=104",
+     "verdict": "rejected: validation t -0.62 below 2.5",
+     "sign_as_hypothesised": null,
+     "val_t": -0.6241411638646385,
+     "n_ind_trval": 50,
+     "excess": [
+      -0.007498049502888638,
+      -0.002697764895171273,
+      -0.0001404171145894923
+     ]
+    },
+    {
+     "h": 3,
+     "train": "ex -1.29% t=-1.8 n=19 net=+1.22% hit=0.50 nflag=237",
+     "validation": "ex -0.75% t=-0.8 n=3 net=+0.69% hit=0.52 nflag=63",
+     "test": "ex -0.33% t=-0.6 n=6 net=+0.24% hit=0.46 nflag=103",
+     "verdict": "insufficient: 22 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.769709829562754,
+     "n_ind_trval": 22,
+     "excess": [
+      -0.012858340752779186,
+      -0.007516282419590263,
+      -0.0033473087503116915
+     ]
+    },
+    {
+     "h": 5,
+     "train": "ex -1.85% t=-1.7 n=16 net=+1.82% hit=0.47 nflag=237",
+     "validation": "ex -1.07% t=-0.9 n=2 net=+1.03% hit=0.49 nflag=63",
+     "test": "ex -0.63% t=-0.7 n=6 net=+0.54% hit=0.40 nflag=103",
+     "verdict": "insufficient: 18 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.8520365637757027,
+     "n_ind_trval": 18,
+     "excess": [
+      -0.01851592978089358,
+      -0.010680277000560715,
+      -0.0062656864993989
+     ]
+    },
+    {
+     "h": 10,
+     "train": "ex -3.70% t=-1.8 n=10 net=+3.75% hit=0.48 nflag=237",
+     "validation": "ex -1.50% t=-0.6 n=2 net=+1.52% hit=0.46 nflag=63",
+     "test": "ex -2.84% t=-1.6 n=3 net=+2.76% hit=0.42 nflag=103",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.6433855798729007,
+     "n_ind_trval": 12,
+     "excess": [
+      -0.03703320861589189,
+      -0.015021453227426665,
+      -0.028402287012677448
+     ]
+    },
+    {
+     "h": 20,
+     "train": "ex -6.71% t=-1.7 n=8 net=+6.91% hit=0.46 nflag=237",
+     "validation": "ex -3.28% t=-0.8 n=2 net=+3.41% hit=0.44 nflag=63",
+     "test": "ex -5.06% t=-1.4 n=2 net=+4.97% hit=0.41 nflag=103",
+     "verdict": "insufficient: 10 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.8146618937541047,
+     "n_ind_trval": 10,
+     "excess": [
+      -0.06708822086960868,
+      -0.03276593039705694,
+      -0.050586664167173175
+     ]
+    }
+   ],
+   "line": "h=1: tra ex -0.75% t=-2.5 n=39 net=+0.66% | val ex -0.27% t=-0.6 n=11 net=+0.18% | tes ex -0.01% t=-0.1 n=20 net=-0.08% -> rejected: validation t -0.62 below 2.5\nh=3: tra ex -1.29% t=-1.8 n=19 net=+1.22% | val ex -0.75% t=-0.8 n=3 net=+0.69% | tes ex -0.33% t=-0.6 n=6 net=+0.24% -> insufficient: 22 independent episodes in train+validation (bar 30)\nh=5: tra ex -1.85% t=-1.7 n=16 net=+1.82% | val ex -1.07% t=-0.9 n=2 net=+1.03% | tes ex -0.63% t=-0.7 n=6 net=+0.54% -> insufficient: 18 independent episodes in train+validation (bar 30)\nh=10: tra ex -3.70% t=-1.8 n=10 net=+3.75% | val ex -1.50% t=-0.6 n=2 net=+1.52% | tes ex -2.84% t=-1.6 n=3 net=+2.76% -> insufficient: 12 independent episodes in train+validation (bar 30)\nh=20: tra ex -6.71% t=-1.7 n=8 net=+6.91% | val ex -3.28% t=-0.8 n=2 net=+3.41% | tes ex -5.06% t=-1.4 n=2 net=+4.97% -> insufficient: 10 independent episodes in train+validation (bar 30)"
+  }
+ ],
+ "risk": [
+  {
+   "cell": "p2_H1_skew_slope_top_btc_q80_risk",
+   "asset": "btc",
+   "primary": [
+    "skew_slope_btc",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "threshold_label": "q80",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew_slope_top_btc_q80_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd +1.5% t=2.9 crash x0.47 (22/283) fa=0.72 n=32 auc=0.43 rv 0.55 vs 0.6 q05 -12.0% vs -20.8% missed20 9.25%",
+     "validation": "mdd -0.6% t=-0.6 crash x0.69 (2/33) fa=0.39 n=9 auc=0.43 rv 0.5 vs 0.42 q05 -9.0% vs -12.7% missed20 0.48%",
+     "test": "mdd -0.7% t=-0.6 crash x0.53 (1/19) fa=0.21 n=6 auc=0.69 rv 0.37 vs 0.4 q05 -8.8% vs -21.4% missed20 -1.97%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.6275213947433925,
+     "n_ind_trval": 41,
+     "crash_lift_val": 0.6931818181818182,
+     "crash_lift_test": 0.5280135823429541,
+     "mdd_diff": [
+      0.01494764363172113,
+      -0.00611373351286109,
+      -0.006644913400408729
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd +2.7% t=3.7 crash x0.42 (35/283) fa=0.72 n=17 auc=0.39 rv 0.55 vs 0.62 q05 -12.0% vs -20.8% missed20 9.25%",
+     "validation": "mdd -1.2% t=-1.6 crash x0.53 (3/33) fa=0.39 n=6 auc=0.45 rv 0.47 vs 0.43 q05 -9.0% vs -12.7% missed20 0.48%",
+     "test": "mdd +0.4% t=0.3 crash x0.00 (0/16) fa=0.25 n=4 auc=0.61 rv 0.35 vs 0.42 q05 -8.8% vs -21.4% missed20 -1.97%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -1.5613917205370287,
+     "n_ind_trval": 23,
+     "crash_lift_val": 0.5253588516746412,
+     "crash_lift_test": 0.0,
+     "mdd_diff": [
+      0.02722421059801495,
+      -0.012340681855106485,
+      0.0044575653584909836
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd +3.5% t=3.1 crash x0.44 (47/283) fa=0.72 n=8 auc=0.36 rv 0.55 vs 0.63 q05 -12.0% vs -20.8% missed20 9.25%",
+     "validation": "mdd -2.7% t=-1.7 crash x1.46 (11/33) fa=0.39 n=4 auc=0.5 rv 0.45 vs 0.43 q05 -9.0% vs -12.7% missed20 0.48%",
+     "test": "mdd -0.3% t=-0.1 crash x0.77 (3/14) fa=0.29 n=4 auc=0.5 rv 0.36 vs 0.42 q05 -7.5% vs -21.5% missed20 -0.97%",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": -1.6924790911238796,
+     "n_ind_trval": 12,
+     "crash_lift_val": 1.464,
+     "crash_lift_test": 0.7698412698412698,
+     "mdd_diff": [
+      0.03518441969941985,
+      -0.02683630030916509,
+      -0.002944355473866095
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd +1.5% t=2.9 crash x0.47 (22/283) fa=0.72 n=32 | val mdd -0.6% t=-0.6 crash x0.69 (2/33) fa=0.39 n=9 | tes mdd -0.7% t=-0.6 crash x0.53 (1/19) fa=0.21 n=6 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd +2.7% t=3.7 crash x0.42 (35/283) fa=0.72 n=17 | val mdd -1.2% t=-1.6 crash x0.53 (3/33) fa=0.39 n=6 | tes mdd +0.4% t=0.3 crash x0.00 (0/16) fa=0.25 n=4 -> rejected: drawdown effect changes sign across periods\nW=30: tra mdd +3.5% t=3.1 crash x0.44 (47/283) fa=0.72 n=8 | val mdd -2.7% t=-1.7 crash x1.46 (11/33) fa=0.39 n=4 | tes mdd -0.3% t=-0.1 crash x0.77 (3/14) fa=0.29 n=4 -> insufficient: 12 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_skew_slope_top_btc_q90_risk",
+   "asset": "btc",
+   "primary": [
+    "skew_slope_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "threshold_label": "q90",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew_slope_top_btc_q90_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd +2.4% t=4.6 crash x0.40 (10/151) fa=0.75 n=25 auc=0.43 rv 0.51 vs 0.6 q05 -6.8% vs -20.8% missed20 10.27%",
+     "validation": "mdd +0.7% t=0.5 crash x0.00 (0/6) fa=0.00 n=2 auc=0.43 rv 0.38 vs 0.42 q05 -6.1% vs -12.7% missed20 -4.32%",
+     "test": "mdd -0.5% t=-0.3 crash x0.91 (1/11) fa=0.18 n=6 auc=0.69 rv 0.38 vs 0.4 q05 -8.2% vs -21.4% missed20 -2.09%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.4541796703137747,
+     "n_ind_trval": 27,
+     "crash_lift_val": 0.0,
+     "crash_lift_test": 0.9120234604105572,
+     "mdd_diff": [
+      0.023707199239662313,
+      0.006622663824696184,
+      -0.004770677741908841
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd +4.0% t=5.4 crash x0.32 (14/151) fa=0.75 n=16 auc=0.39 rv 0.5 vs 0.62 q05 -6.8% vs -20.8% missed20 10.27%",
+     "validation": "mdd -0.8% t=-1.0 crash x0.00 (0/6) fa=0.00 n=2 auc=0.45 rv 0.37 vs 0.43 q05 -6.1% vs -12.7% missed20 -4.32%",
+     "test": "mdd +0.6% t=0.3 crash x0.00 (0/9) fa=0.22 n=4 auc=0.61 rv 0.37 vs 0.42 q05 -8.2% vs -21.4% missed20 -2.09%",
+     "verdict": "insufficient: 18 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": -1.0005714266239372,
+     "n_ind_trval": 18,
+     "crash_lift_val": 0.0,
+     "crash_lift_test": 0.0,
+     "mdd_diff": [
+      0.039793121104532585,
+      -0.008185206284453496,
+      0.006174114369714177
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd +4.8% t=4.2 crash x0.37 (21/151) fa=0.75 n=9 auc=0.36 rv 0.51 vs 0.63 q05 -6.8% vs -20.8% missed20 10.27%",
+     "validation": "mdd -2.6% t=-1.2 crash x1.46 (2/6) fa=0.00 n=2 auc=0.5 rv 0.35 vs 0.43 q05 -6.1% vs -12.7% missed20 -4.32%",
+     "test": "mdd -1.8% t=-0.4 crash x1.35 (3/8) fa=0.25 n=4 auc=0.5 rv 0.39 vs 0.42 q05 -7.5% vs -21.5% missed20 -1.27%",
+     "verdict": "insufficient: 11 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": -1.1873456852338367,
+     "n_ind_trval": 11,
+     "crash_lift_val": 1.464,
+     "crash_lift_test": 1.347222222222222,
+     "mdd_diff": [
+      0.04764738943467547,
+      -0.02634120322083454,
+      -0.017635032295235498
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd +2.4% t=4.6 crash x0.40 (10/151) fa=0.75 n=25 | val mdd +0.7% t=0.5 crash x0.00 (0/6) fa=0.00 n=2 | tes mdd -0.5% t=-0.3 crash x0.91 (1/11) fa=0.18 n=6 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd +4.0% t=5.4 crash x0.32 (14/151) fa=0.75 n=16 | val mdd -0.8% t=-1.0 crash x0.00 (0/6) fa=0.00 n=2 | tes mdd +0.6% t=0.3 crash x0.00 (0/9) fa=0.22 n=4 -> insufficient: 18 independent episodes in train+validation (bar 20)\nW=30: tra mdd +4.8% t=4.2 crash x0.37 (21/151) fa=0.75 n=9 | val mdd -2.6% t=-1.2 crash x1.46 (2/6) fa=0.00 n=2 | tes mdd -1.8% t=-0.4 crash x1.35 (3/8) fa=0.25 n=4 -> insufficient: 11 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_atm_slope_top_btc_q80_risk",
+   "asset": "btc",
+   "primary": [
+    "atm_slope_btc",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "threshold_label": "q80",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_slope_top_btc_q80_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd -1.4% t=-1.9 crash x1.39 (65/282) fa=0.65 n=28 auc=0.59 rv 0.74 vs 0.6 q05 -25.0% vs -20.8% missed20 4.75%",
+     "validation": "mdd -1.7% t=-2.1 crash x1.35 (6/51) fa=0.39 n=5 auc=0.49 rv 0.45 vs 0.42 q05 -10.5% vs -12.7% missed20 0.09%",
+     "test": "mdd -0.6% t=-0.8 crash x1.29 (10/78) fa=0.40 n=7 auc=0.57 rv 0.48 vs 0.4 q05 -13.2% vs -21.4% missed20 -0.58%",
+     "verdict": "rejected: validation t -2.06 on mdd below 2.5",
+     "sign_as_hypothesised": false,
+     "val_t": -2.0640676819276584,
+     "n_ind_trval": 33,
+     "crash_lift_val": 1.3455882352941175,
+     "crash_lift_test": 1.2861869313482215,
+     "mdd_diff": [
+      -0.013659037385661495,
+      -0.016943054932543812,
+      -0.0064298830995979245
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd -1.1% t=-1.1 crash x1.09 (90/282) fa=0.65 n=22 auc=0.53 rv 0.71 vs 0.62 q05 -25.0% vs -20.8% missed20 4.75%",
+     "validation": "mdd -0.8% t=-0.9 crash x1.02 (9/51) fa=0.39 n=3 auc=0.46 rv 0.41 vs 0.43 q05 -10.5% vs -12.7% missed20 0.09%",
+     "test": "mdd +0.8% t=0.6 crash x0.49 (7/72) fa=0.43 n=3 auc=0.46 rv 0.47 vs 0.42 q05 -13.2% vs -21.4% missed20 -0.58%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.9381233406014391,
+     "n_ind_trval": 25,
+     "crash_lift_val": 1.0198142414860683,
+     "crash_lift_test": 0.4877314814814815,
+     "mdd_diff": [
+      -0.01116069090784598,
+      -0.008126268668560331,
+      0.007828936239712675
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd -0.6% t=-0.4 crash x1.01 (107/282) fa=0.65 n=16 auc=0.52 rv 0.7 vs 0.63 q05 -25.0% vs -20.8% missed20 4.75%",
+     "validation": "mdd -1.0% t=-0.7 crash x1.12 (13/51) fa=0.39 n=3 auc=0.51 rv 0.4 vs 0.43 q05 -10.5% vs -12.7% missed20 0.09%",
+     "test": "mdd +1.2% t=0.7 crash x0.55 (11/72) fa=0.43 n=3 auc=0.42 rv 0.47 vs 0.42 q05 -13.2% vs -21.5% missed20 -0.58%",
+     "verdict": "insufficient: 19 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": -0.729053058537377,
+     "n_ind_trval": 19,
+     "crash_lift_val": 1.1195294117647059,
+     "crash_lift_test": 0.5488683127572017,
+     "mdd_diff": [
+      -0.005916285480158934,
+      -0.010074739722417195,
+      0.012149864912547964
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd -1.4% t=-1.9 crash x1.39 (65/282) fa=0.65 n=28 | val mdd -1.7% t=-2.1 crash x1.35 (6/51) fa=0.39 n=5 | tes mdd -0.6% t=-0.8 crash x1.29 (10/78) fa=0.40 n=7 -> rejected: validation t -2.06 on mdd below 2.5\nW=20: tra mdd -1.1% t=-1.1 crash x1.09 (90/282) fa=0.65 n=22 | val mdd -0.8% t=-0.9 crash x1.02 (9/51) fa=0.39 n=3 | tes mdd +0.8% t=0.6 crash x0.49 (7/72) fa=0.43 n=3 -> rejected: drawdown effect changes sign across periods\nW=30: tra mdd -0.6% t=-0.4 crash x1.01 (107/282) fa=0.65 n=16 | val mdd -1.0% t=-0.7 crash x1.12 (13/51) fa=0.39 n=3 | tes mdd +1.2% t=0.7 crash x0.55 (11/72) fa=0.43 n=3 -> insufficient: 19 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_atm_slope_top_btc_q90_risk",
+   "asset": "btc",
+   "primary": [
+    "atm_slope_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "threshold_label": "q90",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_slope_top_btc_q90_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd -1.6% t=-1.7 crash x1.55 (32/125) fa=0.63 n=19 auc=0.59 rv 0.75 vs 0.6 q05 -20.6% vs -20.8% missed20 3.7%",
+     "validation": "mdd -0.6% t=-0.7 crash x0.00 (0/18) fa=0.33 n=3 auc=0.49 rv 0.39 vs 0.42 q05 -7.0% vs -12.7% missed20 -0.77%",
+     "test": "mdd -0.4% t=-0.4 crash x1.15 (4/35) fa=0.29 n=8 auc=0.57 rv 0.49 vs 0.4 q05 -14.3% vs -21.4% missed20 -2.2%",
+     "verdict": "rejected: validation t -0.74 on mdd below 2.5",
+     "sign_as_hypothesised": false,
+     "val_t": -0.7361305884647021,
+     "n_ind_trval": 22,
+     "crash_lift_val": 0.0,
+     "crash_lift_test": 1.1465437788018433,
+     "mdd_diff": [
+      -0.016305930803084054,
+      -0.006094407640645734,
+      -0.0038684108843483195
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd -0.9% t=-0.6 crash x1.12 (41/125) fa=0.63 n=12 auc=0.53 rv 0.7 vs 0.62 q05 -20.6% vs -20.8% missed20 3.7%",
+     "validation": "mdd +0.1% t=0.1 crash x0.32 (1/18) fa=0.33 n=2 auc=0.46 rv 0.36 vs 0.43 q05 -7.0% vs -12.7% missed20 -0.77%",
+     "test": "mdd +0.1% t=0.1 crash x0.61 (4/33) fa=0.30 n=4 auc=0.46 rv 0.5 vs 0.42 q05 -14.3% vs -21.4% missed20 -2.2%",
+     "verdict": "insufficient: 14 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.0952794252904441,
+     "n_ind_trval": 14,
+     "crash_lift_val": 0.32105263157894737,
+     "crash_lift_test": 0.6080808080808081,
+     "mdd_diff": [
+      -0.008573555470456781,
+      0.0009606873362757382,
+      0.0008222488152532792
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd -0.0% t=-0.0 crash x1.00 (47/125) fa=0.63 n=11 auc=0.52 rv 0.68 vs 0.63 q05 -20.6% vs -20.8% missed20 3.7%",
+     "validation": "mdd +0.9% t=0.8 crash x0.49 (2/18) fa=0.33 n=1 auc=0.51 rv 0.35 vs 0.43 q05 -7.0% vs -12.7% missed20 -0.77%",
+     "test": "mdd +1.6% t=0.8 crash x0.44 (4/33) fa=0.30 n=3 auc=0.42 rv 0.49 vs 0.42 q05 -14.3% vs -21.5% missed20 -2.2%",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.79471838334425,
+     "n_ind_trval": 12,
+     "crash_lift_val": 0.488,
+     "crash_lift_test": 0.43546576879910215,
+     "mdd_diff": [
+      -6.64307117186208e-05,
+      0.009250072158426534,
+      0.016157308278050522
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd -1.6% t=-1.7 crash x1.55 (32/125) fa=0.63 n=19 | val mdd -0.6% t=-0.7 crash x0.00 (0/18) fa=0.33 n=3 | tes mdd -0.4% t=-0.4 crash x1.15 (4/35) fa=0.29 n=8 -> rejected: validation t -0.74 on mdd below 2.5\nW=20: tra mdd -0.9% t=-0.6 crash x1.12 (41/125) fa=0.63 n=12 | val mdd +0.1% t=0.1 crash x0.32 (1/18) fa=0.33 n=2 | tes mdd +0.1% t=0.1 crash x0.61 (4/33) fa=0.30 n=4 -> insufficient: 14 independent episodes in train+validation (bar 20)\nW=30: tra mdd -0.0% t=-0.0 crash x1.00 (47/125) fa=0.63 n=11 | val mdd +0.9% t=0.8 crash x0.49 (2/18) fa=0.33 n=1 | tes mdd +1.6% t=0.8 crash x0.44 (4/33) fa=0.30 n=3 -> insufficient: 12 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_atm_inv_btc_raw05_risk",
+   "asset": "btc",
+   "primary": [
+    "atm_inv_btc",
+    "raw",
+    "top",
+    "0.5"
+   ],
+   "threshold_label": "raw05",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_inv_btc_raw05_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd -1.0% t=-1.9 crash x1.35 (93/416) fa=0.60 n=36 auc=0.54 rv 0.71 vs 0.6 q05 -20.9% vs -20.8% missed20 3.6%",
+     "validation": "mdd -0.2% t=-0.4 crash x0.88 (7/91) fa=0.57 n=10 auc=0.49 rv 0.5 vs 0.42 q05 -7.9% vs -12.7% missed20 5.62%",
+     "test": "mdd +0.1% t=0.2 crash x0.96 (10/104) fa=0.49 n=7 auc=0.49 rv 0.46 vs 0.4 q05 -12.9% vs -21.4% missed20 1.3%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -0.3508645586923411,
+     "n_ind_trval": 46,
+     "crash_lift_val": 0.8798076923076924,
+     "crash_lift_test": 0.9646401985111662,
+     "mdd_diff": [
+      -0.009846830850111558,
+      -0.0022424044262909226,
+      0.001427308097331166
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd -0.7% t=-0.9 crash x1.07 (130/416) fa=0.60 n=24 auc=0.5 rv 0.69 vs 0.62 q05 -20.9% vs -20.8% missed20 3.6%",
+     "validation": "mdd +0.8% t=1.1 crash x0.57 (9/91) fa=0.57 n=6 auc=0.46 rv 0.47 vs 0.43 q05 -7.9% vs -12.7% missed20 5.62%",
+     "test": "mdd +1.7% t=1.6 crash x0.47 (9/96) fa=0.53 n=3 auc=0.39 rv 0.44 vs 0.42 q05 -12.9% vs -21.4% missed20 1.3%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 1.1324688097320457,
+     "n_ind_trval": 30,
+     "crash_lift_val": 0.5715442452284558,
+     "crash_lift_test": 0.4703125,
+     "mdd_diff": [
+      -0.006654227821011036,
+      0.008406130105132248,
+      0.017062206617758736
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd -0.3% t=-0.3 crash x1.05 (164/416) fa=0.60 n=14 auc=0.5 rv 0.69 vs 0.63 q05 -20.9% vs -20.8% missed20 3.6%",
+     "validation": "mdd +0.9% t=1.0 crash x0.77 (16/91) fa=0.57 n=5 auc=0.47 rv 0.46 vs 0.43 q05 -7.9% vs -12.7% missed20 5.62%",
+     "test": "mdd +2.6% t=1.8 crash x0.45 (12/96) fa=0.53 n=2 auc=0.37 rv 0.44 vs 0.42 q05 -12.9% vs -21.5% missed20 1.3%",
+     "verdict": "insufficient: 19 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.9992897951208487,
+     "n_ind_trval": 19,
+     "crash_lift_val": 0.7722197802197803,
+     "crash_lift_test": 0.44907407407407407,
+     "mdd_diff": [
+      -0.00289727327511817,
+      0.009446124619837133,
+      0.02644128012765875
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd -1.0% t=-1.9 crash x1.35 (93/416) fa=0.60 n=36 | val mdd -0.2% t=-0.4 crash x0.88 (7/91) fa=0.57 n=10 | tes mdd +0.1% t=0.2 crash x0.96 (10/104) fa=0.49 n=7 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd -0.7% t=-0.9 crash x1.07 (130/416) fa=0.60 n=24 | val mdd +0.8% t=1.1 crash x0.57 (9/91) fa=0.57 n=6 | tes mdd +1.7% t=1.6 crash x0.47 (9/96) fa=0.53 n=3 -> rejected: drawdown effect changes sign across periods\nW=30: tra mdd -0.3% t=-0.3 crash x1.05 (164/416) fa=0.60 n=14 | val mdd +0.9% t=1.0 crash x0.77 (16/91) fa=0.57 n=5 | tes mdd +2.6% t=1.8 crash x0.45 (12/96) fa=0.53 n=2 -> insufficient: 19 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_bf30_top_btc_q80_risk",
+   "asset": "btc",
+   "primary": [
+    "bf_30_btc",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "threshold_label": "q80",
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_bf30_top_btc_q80_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd +1.2% t=2.1 crash x0.67 (32/290) fa=0.69 n=28 auc=0.46 rv 0.58 vs 0.6 q05 -17.2% vs -20.8% missed20 7.6%",
+     "validation": "mdd -0.2% t=-0.3 crash x0.99 (2/23) fa=0.39 n=3 auc=0.52 rv 0.42 vs 0.42 q05 -11.1% vs -12.7% missed20 0.47%",
+     "test": "mdd -0.2% t=-0.3 crash x0.89 (4/45) fa=0.51 n=7 auc=0.55 rv 0.49 vs 0.4 q05 -13.9% vs -21.4% missed20 0.52%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -0.25625826923259815,
+     "n_ind_trval": 31,
+     "crash_lift_val": 0.9945652173913043,
+     "crash_lift_test": 0.8917562724014337,
+     "mdd_diff": [
+      0.01158459980809684,
+      -0.0019998958981849377,
+      -0.0023591261097441057
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd +1.8% t=2.1 crash x0.59 (50/290) fa=0.69 n=15 auc=0.42 rv 0.6 vs 0.62 q05 -17.2% vs -20.8% missed20 7.6%",
+     "validation": "mdd -0.3% t=-0.2 crash x1.01 (4/23) fa=0.39 n=3 auc=0.46 rv 0.4 vs 0.43 q05 -11.1% vs -12.7% missed20 0.47%",
+     "test": "mdd +1.2% t=0.8 crash x0.47 (4/43) fa=0.53 n=4 auc=0.42 rv 0.47 vs 0.42 q05 -13.9% vs -21.4% missed20 0.52%",
+     "verdict": "insufficient: 18 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.23321902538017708,
+     "n_ind_trval": 18,
+     "crash_lift_val": 1.0050343249427918,
+     "crash_lift_test": 0.4666666666666667,
+     "mdd_diff": [
+      0.01765711166757284,
+      -0.0032196386452276113,
+      0.012141741909857118
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd +2.3% t=1.9 crash x0.57 (62/290) fa=0.69 n=9 auc=0.41 rv 0.62 vs 0.63 q05 -17.2% vs -20.8% missed20 7.6%",
+     "validation": "mdd -0.4% t=-0.2 crash x1.34 (7/23) fa=0.39 n=3 auc=0.51 rv 0.38 vs 0.43 q05 -11.1% vs -12.7% missed20 0.47%",
+     "test": "mdd +2.3% t=1.3 crash x0.50 (6/43) fa=0.53 n=3 auc=0.43 rv 0.46 vs 0.42 q05 -13.9% vs -21.5% missed20 0.52%",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.21554033241255688,
+     "n_ind_trval": 12,
+     "crash_lift_val": 1.336695652173913,
+     "crash_lift_test": 0.5012919896640826,
+     "mdd_diff": [
+      0.022711824005299724,
+      -0.004291451485504499,
+      0.02338113845608672
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd +1.2% t=2.1 crash x0.67 (32/290) fa=0.69 n=28 | val mdd -0.2% t=-0.3 crash x0.99 (2/23) fa=0.39 n=3 | tes mdd -0.2% t=-0.3 crash x0.89 (4/45) fa=0.51 n=7 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd +1.8% t=2.1 crash x0.59 (50/290) fa=0.69 n=15 | val mdd -0.3% t=-0.2 crash x1.01 (4/23) fa=0.39 n=3 | tes mdd +1.2% t=0.8 crash x0.47 (4/43) fa=0.53 n=4 -> insufficient: 18 independent episodes in train+validation (bar 20)\nW=30: tra mdd +2.3% t=1.9 crash x0.57 (62/290) fa=0.69 n=9 | val mdd -0.4% t=-0.2 crash x1.34 (7/23) fa=0.39 n=3 | tes mdd +2.3% t=1.3 crash x0.50 (6/43) fa=0.53 n=3 -> insufficient: 12 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_bf30_top_btc_q90_risk",
+   "asset": "btc",
+   "primary": [
+    "bf_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "threshold_label": "q90",
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_bf30_top_btc_q90_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd +0.3% t=0.3 crash x1.14 (24/127) fa=0.76 n=17 auc=0.46 rv 0.65 vs 0.6 q05 -10.0% vs -20.8% missed20 10.07%",
+     "validation": "mdd +1.2% t=1.1 crash x0.00 (0/6) fa=0.50 n=4 auc=0.52 rv 0.37 vs 0.42 q05 -5.8% vs -12.7% missed20 -0.68%",
+     "test": "mdd -1.0% t=-0.8 crash x1.49 (4/27) fa=0.56 n=7 auc=0.55 rv 0.55 vs 0.4 q05 -13.7% vs -21.4% missed20 0.85%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": null,
+     "val_t": 1.054374503277519,
+     "n_ind_trval": 21,
+     "crash_lift_val": 0.0,
+     "crash_lift_test": 1.4862604540023894,
+     "mdd_diff": [
+      0.003003037594318768,
+      0.011501243996095634,
+      -0.009903450425286835
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd +1.9% t=1.2 crash x0.70 (26/127) fa=0.76 n=10 auc=0.42 rv 0.64 vs 0.62 q05 -10.0% vs -20.8% missed20 10.07%",
+     "validation": "mdd +1.2% t=1.1 crash x0.00 (0/6) fa=0.50 n=3 auc=0.46 rv 0.37 vs 0.43 q05 -5.8% vs -12.7% missed20 -0.68%",
+     "test": "mdd +1.1% t=0.7 crash x0.58 (3/26) fa=0.58 n=5 auc=0.42 rv 0.5 vs 0.42 q05 -13.7% vs -21.4% missed20 0.85%",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": null,
+     "val_t": 1.0755444134469978,
+     "n_ind_trval": 13,
+     "crash_lift_val": 0.0,
+     "crash_lift_test": 0.5788461538461539,
+     "mdd_diff": [
+      0.019311688065558656,
+      0.012332706451336738,
+      0.011250799080444907
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd +3.1% t=1.7 crash x0.61 (29/127) fa=0.76 n=10 auc=0.41 rv 0.65 vs 0.63 q05 -10.0% vs -20.8% missed20 10.07%",
+     "validation": "mdd +0.1% t=0.0 crash x1.46 (2/6) fa=0.50 n=3 auc=0.51 rv 0.35 vs 0.43 q05 -5.8% vs -12.7% missed20 -0.68%",
+     "test": "mdd +2.3% t=1.1 crash x0.55 (4/26) fa=0.58 n=3 auc=0.43 rv 0.49 vs 0.42 q05 -13.7% vs -21.5% missed20 0.85%",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": null,
+     "val_t": 0.04234076997713449,
+     "n_ind_trval": 13,
+     "crash_lift_val": 1.464,
+     "crash_lift_test": 0.5527065527065527,
+     "mdd_diff": [
+      0.03142668842261821,
+      0.0011060572539569047,
+      0.022652494912135668
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd +0.3% t=0.3 crash x1.14 (24/127) fa=0.76 n=17 | val mdd +1.2% t=1.1 crash x0.00 (0/6) fa=0.50 n=4 | tes mdd -1.0% t=-0.8 crash x1.49 (4/27) fa=0.56 n=7 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd +1.9% t=1.2 crash x0.70 (26/127) fa=0.76 n=10 | val mdd +1.2% t=1.1 crash x0.00 (0/6) fa=0.50 n=3 | tes mdd +1.1% t=0.7 crash x0.58 (3/26) fa=0.58 n=5 -> insufficient: 13 independent episodes in train+validation (bar 20)\nW=30: tra mdd +3.1% t=1.7 crash x0.61 (29/127) fa=0.76 n=10 | val mdd +0.1% t=0.0 crash x1.46 (2/6) fa=0.50 n=3 | tes mdd +2.3% t=1.1 crash x0.55 (4/26) fa=0.58 n=3 -> insufficient: 13 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_skew_slope_top_eth_q80_risk",
+   "asset": "eth",
+   "primary": [
+    "skew_slope_eth",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "threshold_label": "q80",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew_slope_top_eth_q80_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd +1.3% t=1.6 crash x0.64 (42/280) fa=0.67 n=36 auc=0.43 rv 0.74 vs 0.76 q05 -17.4% vs -26.2% missed20 8.45%",
+     "validation": "mdd -2.0% t=-1.2 crash x1.26 (10/29) fa=0.31 n=6 auc=0.55 rv 0.8 vs 0.67 q05 -21.3% vs -22.1% missed20 -3.81%",
+     "test": "mdd -1.9% t=-1.2 crash x1.20 (10/51) fa=0.39 n=8 auc=0.52 rv 0.57 vs 0.55 q05 -25.6% vs -28.4% missed20 -2.78%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -1.2127622483164118,
+     "n_ind_trval": 42,
+     "crash_lift_val": 1.2620689655172412,
+     "crash_lift_test": 1.1956939638600539,
+     "mdd_diff": [
+      0.01267890981407449,
+      -0.020310782821794583,
+      -0.018650142940488286
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd +2.5% t=2.2 crash x0.63 (64/280) fa=0.67 n=17 auc=0.41 rv 0.72 vs 0.78 q05 -17.4% vs -26.2% missed20 8.45%",
+     "validation": "mdd -3.5% t=-1.9 crash x1.67 (21/29) fa=0.31 n=5 auc=0.57 rv 0.78 vs 0.69 q05 -21.3% vs -22.1% missed20 -3.81%",
+     "test": "mdd -1.9% t=-0.9 crash x1.20 (18/45) fa=0.44 n=5 auc=0.5 rv 0.6 vs 0.56 q05 -25.6% vs -28.4% missed20 -2.78%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": -1.8769523307883285,
+     "n_ind_trval": 22,
+     "crash_lift_val": 1.6703853955375252,
+     "crash_lift_test": 1.204,
+     "mdd_diff": [
+      0.024936690646635742,
+      -0.034938295587016804,
+      -0.019321929232875235
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd +3.7% t=2.8 crash x0.62 (76/280) fa=0.67 n=8 auc=0.41 rv 0.72 vs 0.79 q05 -17.4% vs -26.2% missed20 8.45%",
+     "validation": "mdd -4.3% t=-1.3 crash x1.33 (21/29) fa=0.31 n=4 auc=0.56 rv 0.75 vs 0.7 q05 -21.3% vs -22.1% missed20 -3.81%",
+     "test": "mdd +0.3% t=0.1 crash x0.99 (16/40) fa=0.50 n=5 auc=0.46 rv 0.59 vs 0.57 q05 -26.3% vs -28.9% missed20 -0.82%",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": -1.3373186010501457,
+     "n_ind_trval": 12,
+     "crash_lift_val": 1.3296044285549533,
+     "crash_lift_test": 0.9948717948717949,
+     "mdd_diff": [
+      0.03667072231082462,
+      -0.04348402060640143,
+      0.002529372594332377
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd +1.3% t=1.6 crash x0.64 (42/280) fa=0.67 n=36 | val mdd -2.0% t=-1.2 crash x1.26 (10/29) fa=0.31 n=6 | tes mdd -1.9% t=-1.2 crash x1.20 (10/51) fa=0.39 n=8 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd +2.5% t=2.2 crash x0.63 (64/280) fa=0.67 n=17 | val mdd -3.5% t=-1.9 crash x1.67 (21/29) fa=0.31 n=5 | tes mdd -1.9% t=-0.9 crash x1.20 (18/45) fa=0.44 n=5 -> rejected: drawdown effect changes sign across periods\nW=30: tra mdd +3.7% t=2.8 crash x0.62 (76/280) fa=0.67 n=8 | val mdd -4.3% t=-1.3 crash x1.33 (21/29) fa=0.31 n=4 | tes mdd +0.3% t=0.1 crash x0.99 (16/40) fa=0.50 n=5 -> insufficient: 12 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_skew_slope_top_eth_q90_risk",
+   "asset": "eth",
+   "primary": [
+    "skew_slope_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "threshold_label": "q90",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_skew_slope_top_eth_q90_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd +1.7% t=1.7 crash x0.53 (16/129) fa=0.69 n=28 auc=0.43 rv 0.65 vs 0.76 q05 -11.4% vs -26.2% missed20 8.58%",
+     "validation": "mdd +1.0% t=0.9 crash x0.61 (1/6) fa=0.00 n=1 auc=0.55 rv 0.5 vs 0.67 q05 -17.1% vs -22.1% missed20 -12.57%",
+     "test": "mdd -1.9% t=-1.1 crash x1.52 (7/28) fa=0.29 n=7 auc=0.52 rv 0.56 vs 0.55 q05 -21.0% vs -28.4% missed20 -2.75%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.9240385949961014,
+     "n_ind_trval": 29,
+     "crash_lift_val": 0.6099999999999999,
+     "crash_lift_test": 1.5245098039215685,
+     "mdd_diff": [
+      0.01650923647142255,
+      0.01022454275185173,
+      -0.01933462171103175
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd +3.2% t=2.3 crash x0.57 (27/129) fa=0.69 n=18 auc=0.41 rv 0.64 vs 0.78 q05 -11.4% vs -26.2% missed20 8.58%",
+     "validation": "mdd -5.9% t=-4.2 crash x2.31 (6/6) fa=0.00 n=1 auc=0.57 rv 0.67 vs 0.69 q05 -17.1% vs -22.1% missed20 -12.57%",
+     "test": "mdd -1.7% t=-0.9 crash x1.37 (10/22) fa=0.36 n=4 auc=0.5 rv 0.58 vs 0.56 q05 -21.0% vs -28.4% missed20 -2.75%",
+     "verdict": "insufficient: 19 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": -4.205127757702765,
+     "n_ind_trval": 19,
+     "crash_lift_val": 2.30672268907563,
+     "crash_lift_test": 1.3681818181818182,
+     "mdd_diff": [
+      0.031733372334291715,
+      -0.0593698789601958,
+      -0.01691266398153278
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd +4.3% t=2.8 crash x0.57 (32/129) fa=0.69 n=14 auc=0.41 rv 0.66 vs 0.79 q05 -11.4% vs -26.2% missed20 8.58%",
+     "validation": "mdd -11.3% t=-5.7 crash x1.84 (6/6) fa=0.00 n=1 auc=0.56 rv 0.66 vs 0.7 q05 -17.1% vs -22.1% missed20 -12.57%",
+     "test": "mdd +0.2% t=0.1 crash x1.18 (9/19) fa=0.42 n=4 auc=0.46 rv 0.57 vs 0.57 q05 -21.2% vs -28.9% missed20 -0.79%",
+     "verdict": "insufficient: 15 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": -5.713209908474955,
+     "n_ind_trval": 15,
+     "crash_lift_val": 1.8361204013377925,
+     "crash_lift_test": 1.1781376518218623,
+     "mdd_diff": [
+      0.04348837009926183,
+      -0.11317825482491838,
+      0.0021568376696779745
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd +1.7% t=1.7 crash x0.53 (16/129) fa=0.69 n=28 | val mdd +1.0% t=0.9 crash x0.61 (1/6) fa=0.00 n=1 | tes mdd -1.9% t=-1.1 crash x1.52 (7/28) fa=0.29 n=7 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd +3.2% t=2.3 crash x0.57 (27/129) fa=0.69 n=18 | val mdd -5.9% t=-4.2 crash x2.31 (6/6) fa=0.00 n=1 | tes mdd -1.7% t=-0.9 crash x1.37 (10/22) fa=0.36 n=4 -> insufficient: 19 independent episodes in train+validation (bar 20)\nW=30: tra mdd +4.3% t=2.8 crash x0.57 (32/129) fa=0.69 n=14 | val mdd -11.3% t=-5.7 crash x1.84 (6/6) fa=0.00 n=1 | tes mdd +0.2% t=0.1 crash x1.18 (9/19) fa=0.42 n=4 -> insufficient: 15 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_atm_slope_top_eth_q80_risk",
+   "asset": "eth",
+   "primary": [
+    "atm_slope_eth",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "threshold_label": "q80",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_slope_top_eth_q80_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd -1.9% t=-2.2 crash x1.34 (81/257) fa=0.58 n=36 auc=0.59 rv 0.97 vs 0.76 q05 -32.1% vs -26.2% missed20 5.13%",
+     "validation": "mdd -1.1% t=-0.7 crash x1.37 (15/40) fa=0.53 n=11 auc=0.44 rv 0.72 vs 0.67 q05 -14.1% vs -22.1% missed20 2.31%",
+     "test": "mdd -0.9% t=-0.5 crash x1.37 (9/40) fa=0.35 n=8 auc=0.41 rv 0.63 vs 0.55 q05 -14.9% vs -28.4% missed20 -0.71%",
+     "verdict": "rejected: validation t -0.7 on mdd below 2.5",
+     "sign_as_hypothesised": false,
+     "val_t": -0.696516135535334,
+     "n_ind_trval": 47,
+     "crash_lift_val": 1.3724999999999998,
+     "crash_lift_test": 1.3720588235294118,
+     "mdd_diff": [
+      -0.01906525248123278,
+      -0.010857082626357865,
+      -0.00851836618020848
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd -1.9% t=-1.3 crash x1.12 (105/257) fa=0.58 n=19 auc=0.53 rv 0.93 vs 0.78 q05 -32.1% vs -26.2% missed20 5.13%",
+     "validation": "mdd +1.6% t=1.1 crash x0.92 (16/40) fa=0.53 n=7 auc=0.45 rv 0.67 vs 0.69 q05 -14.1% vs -22.1% missed20 2.31%",
+     "test": "mdd +2.7% t=1.3 crash x0.73 (8/33) fa=0.42 n=4 auc=0.31 rv 0.57 vs 0.56 q05 -14.9% vs -28.4% missed20 -0.71%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 1.119603654128089,
+     "n_ind_trval": 26,
+     "crash_lift_val": 0.9226890756302522,
+     "crash_lift_test": 0.7296969696969697,
+     "mdd_diff": [
+      -0.019338102343655877,
+      0.015565030079617445,
+      0.026793347352023808
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd -2.3% t=-1.1 crash x1.06 (119/257) fa=0.58 n=16 auc=0.52 rv 0.92 vs 0.79 q05 -32.1% vs -26.2% missed20 5.13%",
+     "validation": "mdd +1.3% t=0.5 crash x0.87 (19/40) fa=0.53 n=3 auc=0.49 rv 0.73 vs 0.7 q05 -14.1% vs -22.1% missed20 2.31%",
+     "test": "mdd +5.0% t=1.7 crash x0.60 (8/33) fa=0.42 n=4 auc=0.25 rv 0.58 vs 0.57 q05 -14.9% vs -28.9% missed20 -0.71%",
+     "verdict": "insufficient: 19 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.5284015277074154,
+     "n_ind_trval": 19,
+     "crash_lift_val": 0.8721571906354515,
+     "crash_lift_test": 0.602952602952603,
+     "mdd_diff": [
+      -0.023214008289464932,
+      0.012534190107652901,
+      0.049791609695165925
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd -1.9% t=-2.2 crash x1.34 (81/257) fa=0.58 n=36 | val mdd -1.1% t=-0.7 crash x1.37 (15/40) fa=0.53 n=11 | tes mdd -0.9% t=-0.5 crash x1.37 (9/40) fa=0.35 n=8 -> rejected: validation t -0.7 on mdd below 2.5\nW=20: tra mdd -1.9% t=-1.3 crash x1.12 (105/257) fa=0.58 n=19 | val mdd +1.6% t=1.1 crash x0.92 (16/40) fa=0.53 n=7 | tes mdd +2.7% t=1.3 crash x0.73 (8/33) fa=0.42 n=4 -> rejected: drawdown effect changes sign across periods\nW=30: tra mdd -2.3% t=-1.1 crash x1.06 (119/257) fa=0.58 n=16 | val mdd +1.3% t=0.5 crash x0.87 (19/40) fa=0.53 n=3 | tes mdd +5.0% t=1.7 crash x0.60 (8/33) fa=0.42 n=4 -> insufficient: 19 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_atm_slope_top_eth_q90_risk",
+   "asset": "eth",
+   "primary": [
+    "atm_slope_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "threshold_label": "q90",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_slope_top_eth_q90_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd -2.5% t=-1.8 crash x1.58 (42/113) fa=0.55 n=17 auc=0.59 rv 1.06 vs 0.76 q05 -29.6% vs -26.2% missed20 5.29%",
+     "validation": "mdd +0.6% t=0.3 crash x1.22 (2/6) fa=0.67 n=3 auc=0.44 rv 0.66 vs 0.67 q05 -8.5% vs -22.1% missed20 1.01%",
+     "test": "mdd -0.2% t=-0.1 crash x0.81 (2/15) fa=0.27 n=5 auc=0.41 rv 0.68 vs 0.55 q05 -16.7% vs -28.4% missed20 -3.66%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.3265158401184422,
+     "n_ind_trval": 20,
+     "crash_lift_val": 1.2199999999999998,
+     "crash_lift_test": 0.8130718954248366,
+     "mdd_diff": [
+      -0.02475198504546834,
+      0.0059935188979654,
+      -0.0018474981688931524
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd -2.0% t=-1.1 crash x1.31 (54/113) fa=0.55 n=15 auc=0.53 rv 0.98 vs 0.78 q05 -29.6% vs -26.2% missed20 5.29%",
+     "validation": "mdd +2.4% t=0.9 crash x1.15 (3/6) fa=0.67 n=2 auc=0.45 rv 0.64 vs 0.69 q05 -8.5% vs -22.1% missed20 1.01%",
+     "test": "mdd +0.9% t=0.4 crash x1.07 (5/14) fa=0.29 n=4 auc=0.31 rv 0.63 vs 0.56 q05 -16.7% vs -28.4% missed20 -3.66%",
+     "verdict": "insufficient: 17 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.897224840705715,
+     "n_ind_trval": 17,
+     "crash_lift_val": 1.153361344537815,
+     "crash_lift_test": 1.075,
+     "mdd_diff": [
+      -0.01991215657322931,
+      0.023807257440618762,
+      0.008967995241065965
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd -3.2% t=-1.1 crash x1.25 (62/113) fa=0.55 n=12 auc=0.52 rv 0.96 vs 0.79 q05 -29.6% vs -26.2% missed20 5.29%",
+     "validation": "mdd +3.1% t=0.8 crash x0.92 (3/6) fa=0.67 n=1 auc=0.49 rv 0.64 vs 0.7 q05 -8.5% vs -22.1% missed20 1.01%",
+     "test": "mdd +3.4% t=1.1 crash x0.89 (5/14) fa=0.29 n=3 auc=0.25 rv 0.64 vs 0.57 q05 -16.7% vs -28.9% missed20 -3.66%",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.7744331138784321,
+     "n_ind_trval": 13,
+     "crash_lift_val": 0.9180602006688963,
+     "crash_lift_test": 0.8882783882783882,
+     "mdd_diff": [
+      -0.03194844260113383,
+      0.03061649320678425,
+      0.034144643335038694
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd -2.5% t=-1.8 crash x1.58 (42/113) fa=0.55 n=17 | val mdd +0.6% t=0.3 crash x1.22 (2/6) fa=0.67 n=3 | tes mdd -0.2% t=-0.1 crash x0.81 (2/15) fa=0.27 n=5 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd -2.0% t=-1.1 crash x1.31 (54/113) fa=0.55 n=15 | val mdd +2.4% t=0.9 crash x1.15 (3/6) fa=0.67 n=2 | tes mdd +0.9% t=0.4 crash x1.07 (5/14) fa=0.29 n=4 -> insufficient: 17 independent episodes in train+validation (bar 20)\nW=30: tra mdd -3.2% t=-1.1 crash x1.25 (62/113) fa=0.55 n=12 | val mdd +3.1% t=0.8 crash x0.92 (3/6) fa=0.67 n=1 | tes mdd +3.4% t=1.1 crash x0.89 (5/14) fa=0.29 n=3 -> insufficient: 13 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_atm_inv_eth_raw05_risk",
+   "asset": "eth",
+   "primary": [
+    "atm_inv_eth",
+    "raw",
+    "top",
+    "0.5"
+   ],
+   "threshold_label": "raw05",
+   "hyp": 1,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_atm_inv_eth_raw05_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd -0.8% t=-1.3 crash x1.13 (122/458) fa=0.55 n=41 auc=0.52 rv 0.87 vs 0.76 q05 -29.8% vs -26.2% missed20 5.25%",
+     "validation": "mdd +0.4% t=0.7 crash x0.83 (53/233) fa=0.43 n=7 auc=0.44 rv 0.69 vs 0.67 q05 -19.7% vs -22.1% missed20 1.75%",
+     "test": "mdd +0.0% t=0.0 crash x0.99 (12/74) fa=0.54 n=6 auc=0.5 rv 0.59 vs 0.55 q05 -12.7% vs -28.4% missed20 0.79%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.7013769587852376,
+     "n_ind_trval": 48,
+     "crash_lift_val": 0.8325321888412016,
+     "crash_lift_test": 0.9888712241653419,
+     "mdd_diff": [
+      -0.007500610038805852,
+      0.004086553536347376,
+      4.473798879735952e-05
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd -0.9% t=-1.0 crash x1.02 (170/458) fa=0.55 n=22 auc=0.5 rv 0.87 vs 0.78 q05 -29.8% vs -26.2% missed20 5.25%",
+     "validation": "mdd +0.6% t=0.8 crash x0.98 (99/233) fa=0.43 n=2 auc=0.5 rv 0.7 vs 0.69 q05 -19.7% vs -22.1% missed20 1.75%",
+     "test": "mdd +3.1% t=1.8 crash x0.49 (11/67) fa=0.60 n=3 auc=0.42 rv 0.56 vs 0.56 q05 -12.7% vs -28.4% missed20 0.79%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "val_t": 0.8080497153273422,
+     "n_ind_trval": 24,
+     "crash_lift_val": 0.9801096404226926,
+     "crash_lift_test": 0.49417910447761193,
+     "mdd_diff": [
+      -0.009010244235037074,
+      0.006246128751327629,
+      0.03140523864020335
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd -1.3% t=-0.9 crash x1.03 (206/458) fa=0.55 n=13 auc=0.5 rv 0.88 vs 0.79 q05 -29.8% vs -26.2% missed20 5.25%",
+     "validation": "mdd +0.4% t=0.4 crash x1.02 (130/233) fa=0.43 n=2 auc=0.52 rv 0.72 vs 0.7 q05 -19.7% vs -22.1% missed20 1.75%",
+     "test": "mdd +5.2% t=1.9 crash x0.52 (14/67) fa=0.60 n=3 auc=0.41 rv 0.55 vs 0.57 q05 -12.7% vs -28.9% missed20 0.79%",
+     "verdict": "insufficient: 15 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "val_t": 0.43174759797773343,
+     "n_ind_trval": 15,
+     "crash_lift_val": 1.0244448591155064,
+     "crash_lift_test": 0.5197091465748181,
+     "mdd_diff": [
+      -0.012567222071144274,
+      0.00431973459829918,
+      0.05166450320372047
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd -0.8% t=-1.3 crash x1.13 (122/458) fa=0.55 n=41 | val mdd +0.4% t=0.7 crash x0.83 (53/233) fa=0.43 n=7 | tes mdd +0.0% t=0.0 crash x0.99 (12/74) fa=0.54 n=6 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd -0.9% t=-1.0 crash x1.02 (170/458) fa=0.55 n=22 | val mdd +0.6% t=0.8 crash x0.98 (99/233) fa=0.43 n=2 | tes mdd +3.1% t=1.8 crash x0.49 (11/67) fa=0.60 n=3 -> rejected: drawdown effect changes sign across periods\nW=30: tra mdd -1.3% t=-0.9 crash x1.03 (206/458) fa=0.55 n=13 | val mdd +0.4% t=0.4 crash x1.02 (130/233) fa=0.43 n=2 | tes mdd +5.2% t=1.9 crash x0.52 (14/67) fa=0.60 n=3 -> insufficient: 15 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_bf30_top_eth_q80_risk",
+   "asset": "eth",
+   "primary": [
+    "bf_30_eth",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "threshold_label": "q80",
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_bf30_top_eth_q80_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd +0.6% t=0.8 crash x0.80 (54/285) fa=0.62 n=24 auc=0.46 rv 0.84 vs 0.76 q05 -27.0% vs -26.2% missed20 8.05%",
+     "validation": "mdd +0.7% t=0.5 crash x1.02 (12/43) fa=0.51 n=7 auc=0.49 rv 0.65 vs 0.67 q05 -11.6% vs -22.1% missed20 4.19%",
+     "test": "mdd +1.6% t=1.5 crash x0.31 (2/39) fa=0.59 n=7 auc=0.32 rv 0.6 vs 0.55 q05 -11.2% vs -28.4% missed20 2.14%",
+     "verdict": "rejected: validation t 0.53 on mdd below 2.5",
+     "sign_as_hypothesised": null,
+     "val_t": 0.5285760074194731,
+     "n_ind_trval": 31,
+     "crash_lift_val": 1.0213953488372092,
+     "crash_lift_test": 0.3127199597787833,
+     "mdd_diff": [
+      0.006414183422347702,
+      0.007050059271190054,
+      0.0161164271770358
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd +0.7% t=0.5 crash x0.79 (82/285) fa=0.62 n=13 auc=0.44 rv 0.86 vs 0.78 q05 -27.0% vs -26.2% missed20 8.05%",
+     "validation": "mdd +1.5% t=0.8 crash x1.02 (19/43) fa=0.51 n=5 auc=0.5 rv 0.67 vs 0.69 q05 -11.6% vs -22.1% missed20 4.19%",
+     "test": "mdd +3.4% t=1.7 crash x0.41 (5/37) fa=0.62 n=4 auc=0.3 rv 0.57 vs 0.56 q05 -11.2% vs -28.4% missed20 2.14%",
+     "verdict": "insufficient: 18 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": null,
+     "val_t": 0.8376899352238387,
+     "n_ind_trval": 18,
+     "crash_lift_val": 1.019249560289232,
+     "crash_lift_test": 0.40675675675675677,
+     "mdd_diff": [
+      0.006641070905109167,
+      0.01486383695471434,
+      0.03449901463803868
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd +0.2% t=0.1 crash x0.82 (102/285) fa=0.62 n=9 auc=0.44 rv 0.89 vs 0.79 q05 -27.0% vs -26.2% missed20 8.05%",
+     "validation": "mdd +2.6% t=1.3 crash x1.07 (25/43) fa=0.51 n=4 auc=0.52 rv 0.67 vs 0.7 q05 -11.6% vs -22.1% missed20 4.19%",
+     "test": "mdd +5.6% t=1.9 crash x0.35 (5/36) fa=0.64 n=3 auc=0.29 rv 0.56 vs 0.57 q05 -8.7% vs -28.9% missed20 2.83%",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": null,
+     "val_t": 1.3324631022874822,
+     "n_ind_trval": 13,
+     "crash_lift_val": 1.0675118612429026,
+     "crash_lift_test": 0.3454415954415954,
+     "mdd_diff": [
+      0.001530820293594748,
+      0.02563160850470622,
+      0.056105357976026754
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd +0.6% t=0.8 crash x0.80 (54/285) fa=0.62 n=24 | val mdd +0.7% t=0.5 crash x1.02 (12/43) fa=0.51 n=7 | tes mdd +1.6% t=1.5 crash x0.31 (2/39) fa=0.59 n=7 -> rejected: validation t 0.53 on mdd below 2.5\nW=20: tra mdd +0.7% t=0.5 crash x0.79 (82/285) fa=0.62 n=13 | val mdd +1.5% t=0.8 crash x1.02 (19/43) fa=0.51 n=5 | tes mdd +3.4% t=1.7 crash x0.41 (5/37) fa=0.62 n=4 -> insufficient: 18 independent episodes in train+validation (bar 20)\nW=30: tra mdd +0.2% t=0.1 crash x0.82 (102/285) fa=0.62 n=9 | val mdd +2.6% t=1.3 crash x1.07 (25/43) fa=0.51 n=4 | tes mdd +5.6% t=1.9 crash x0.35 (5/36) fa=0.64 n=3 -> insufficient: 13 independent episodes in train+validation (bar 20)"
+  },
+  {
+   "cell": "p2_H1_bf30_top_eth_q90_risk",
+   "asset": "eth",
+   "primary": [
+    "bf_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "threshold_label": "q90",
+   "hyp": null,
+   "results_file": "/private/tmp/claude-501/-Users-biggucci-Library-Application-Support-Claude-scratch-workspaces-0ce23b70-34e4-4508-8903-f93599b339fb-7453e5ce-def2-496e-a6ed-b03b1c832b47-scratch-2026-11-17-da2bed/3dba4e51-4497-4a26-8449-ca1c3f49915f/scratchpad/research/results/p2_H1_bf30_top_eth_q90_risk.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "mdd +1.6% t=1.9 crash x0.78 (26/142) fa=0.73 n=19 auc=0.46 rv 0.86 vs 0.76 q05 -15.8% vs -26.2% missed20 12.36%",
+     "validation": "mdd -0.4% t=-0.2 crash x1.00 (3/11) fa=0.18 n=2 auc=0.49 rv 0.65 vs 0.67 q05 -13.2% vs -22.1% missed20 -5.58%",
+     "test": "mdd +0.8% t=0.6 crash x0.61 (2/20) fa=0.55 n=6 auc=0.32 rv 0.66 vs 0.55 q05 -9.7% vs -28.4% missed20 3.42%",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": null,
+     "val_t": -0.24283547018515222,
+     "n_ind_trval": 21,
+     "crash_lift_val": 0.9981818181818181,
+     "crash_lift_test": 0.6098039215686275,
+     "mdd_diff": [
+      0.015967808034360993,
+      -0.0035215285095152246,
+      0.008309483403225168
+     ]
+    },
+    {
+     "h": 20,
+     "train": "mdd +3.1% t=2.7 crash x0.67 (35/142) fa=0.73 n=12 auc=0.44 rv 0.84 vs 0.78 q05 -15.8% vs -26.2% missed20 12.36%",
+     "validation": "mdd -2.5% t=-1.4 crash x1.68 (8/11) fa=0.18 n=1 auc=0.5 rv 0.63 vs 0.69 q05 -13.2% vs -22.1% missed20 -5.58%",
+     "test": "mdd +3.9% t=1.9 crash x0.33 (2/18) fa=0.61 n=3 auc=0.3 rv 0.58 vs 0.56 q05 -9.7% vs -28.4% missed20 3.42%",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": null,
+     "val_t": -1.4458105866160378,
+     "n_ind_trval": 13,
+     "crash_lift_val": 1.677616501145913,
+     "crash_lift_test": 0.33444444444444443,
+     "mdd_diff": [
+      0.030530617357099103,
+      -0.02462450930968517,
+      0.03896578994863136
+     ]
+    },
+    {
+     "h": 30,
+     "train": "mdd +2.6% t=1.2 crash x0.71 (44/142) fa=0.73 n=8 auc=0.44 rv 0.85 vs 0.79 q05 -15.8% vs -26.2% missed20 12.36%",
+     "validation": "mdd -0.6% t=-0.3 crash x1.67 (10/11) fa=0.18 n=1 auc=0.52 rv 0.63 vs 0.7 q05 -13.2% vs -22.1% missed20 -5.58%",
+     "test": "mdd +6.4% t=2.1 crash x0.28 (2/18) fa=0.61 n=3 auc=0.29 rv 0.58 vs 0.57 q05 -9.7% vs -28.9% missed20 3.42%",
+     "verdict": "insufficient: 9 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": null,
+     "val_t": -0.3118548170366591,
+     "n_ind_trval": 9,
+     "crash_lift_val": 1.6692003648525386,
+     "crash_lift_test": 0.27635327635327633,
+     "mdd_diff": [
+      0.02608802218216559,
+      -0.006360200790260853,
+      0.06409127266480272
+     ]
+    }
+   ],
+   "line": "W=10: tra mdd +1.6% t=1.9 crash x0.78 (26/142) fa=0.73 n=19 | val mdd -0.4% t=-0.2 crash x1.00 (3/11) fa=0.18 n=2 | tes mdd +0.8% t=0.6 crash x0.61 (2/20) fa=0.55 n=6 -> rejected: drawdown effect changes sign across periods\nW=20: tra mdd +3.1% t=2.7 crash x0.67 (35/142) fa=0.73 n=12 | val mdd -2.5% t=-1.4 crash x1.68 (8/11) fa=0.18 n=1 | tes mdd +3.9% t=1.9 crash x0.33 (2/18) fa=0.61 n=3 -> insufficient: 13 independent episodes in train+validation (bar 20)\nW=30: tra mdd +2.6% t=1.2 crash x0.71 (44/142) fa=0.73 n=8 | val mdd -0.6% t=-0.3 crash x1.67 (10/11) fa=0.18 n=1 | tes mdd +6.4% t=2.1 crash x0.28 (2/18) fa=0.61 n=3 -> insufficient: 9 independent episodes in train+validation (bar 20)"
+  }
+ ]
+}

@@ -1,0 +1,185 @@
+{
+ "name": "p2_h5_funding_bottom_eth",
+ "written_at": "2026-11-18T14:31:09Z",
+ "primary": [
+  "eth_funding",
+  "pct90",
+  "bottom",
+  "0.1"
+ ],
+ "cond": null,
+ "asset": "eth",
+ "freq": "1h",
+ "lag": 1,
+ "abs_target": false,
+ "horizons": {
+  "4": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 132,
+     "n_ind": 28,
+     "n_bars": 4365,
+     "mean_flag": 0.0024662000370534462,
+     "mean_all": 0.0002472937581968415,
+     "spread": 0.0022880996709683625,
+     "excess": 0.0022189062788566046,
+     "hit": 0.5833333333333334,
+     "t_nw": 1.401169942646157,
+     "net": 0.0012149112883263016,
+     "carry": 3.994990530303029e-06
+    },
+    "test": {
+     "n_flag": 918,
+     "n_ind": 100,
+     "n_bars": 7714,
+     "mean_flag": -0.0002360372654023191,
+     "mean_all": -0.00018841075384374366,
+     "spread": -5.4059874950390126e-05,
+     "excess": -4.762651155857544e-05,
+     "hit": 0.5206971677559913,
+     "t_nw": -0.06478639293765137,
+     "net": -0.0009828434094653897,
+     "carry": 3.0469921023965125e-05
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "12": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 132,
+     "n_ind": 19,
+     "n_bars": 4357,
+     "mean_flag": 0.004552275371152367,
+     "mean_all": 0.0007613566670809508,
+     "spread": 0.003909356874234121,
+     "excess": 0.0037909187040714165,
+     "hit": 0.6060606060606061,
+     "t_nw": 1.2932332701617018,
+     "net": 0.002753645418086568,
+     "carry": 3.727328598484849e-05
+    },
+    "test": {
+     "n_flag": 918,
+     "n_ind": 66,
+     "n_bars": 7706,
+     "mean_flag": -0.0015270448454025112,
+     "mean_all": -0.0005577917847388145,
+     "spread": -0.0011003335423503896,
+     "excess": -0.0009692530606636967,
+     "hit": 0.4880174291938998,
+     "t_nw": -0.5470092287964723,
+     "net": -9.329849707050811e-05,
+     "carry": 6.255155773420481e-05
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "24": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 132,
+     "n_ind": 15,
+     "n_bars": 4345,
+     "mean_flag": 0.00931627791380855,
+     "mean_all": 0.0016224115137217037,
+     "spread": 0.007934927488340219,
+     "excess": 0.007693866400086845,
+     "hit": 0.6742424242424242,
+     "t_nw": 1.84025614051037,
+     "net": 0.006602094932283815,
+     "carry": 9.177146780303031e-05
+    },
+    "test": {
+     "n_flag": 916,
+     "n_ind": 46,
+     "n_bars": 7694,
+     "mean_flag": -0.0027609309983112236,
+     "mean_all": -0.0011109246451923656,
+     "spread": -0.0018729933433013417,
+     "excess": -0.001650006353118858,
+     "hit": 0.5109170305676856,
+     "t_nw": -0.49300221464377175,
+     "net": 0.0005595649229878536,
+     "carry": 9.044143013100438e-05
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "72": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 132,
+     "n_ind": 4,
+     "n_bars": 4345,
+     "mean_flag": 0.00937518009348576,
+     "mean_all": 0.004821321835929685,
+     "spread": 0.004696537889646605,
+     "excess": 0.004553858257556075,
+     "hit": 0.5454545454545454,
+     "t_nw": 0.35141935139412595,
+     "net": 0.003237968636343953,
+     "carry": 0.0003158896212121212
+    },
+    "test": {
+     "n_flag": 896,
+     "n_ind": 23,
+     "n_bars": 7646,
+     "mean_flag": -0.008157219322497453,
+     "mean_all": -0.0034746346786170643,
+     "spread": -0.005304154398090288,
+     "excess": -0.004682584643880388,
+     "hit": 0.4966517857142857,
+     "t_nw": -0.5024652792478308,
+     "net": 0.003538614636904942,
+     "carry": 0.00014397000697544644
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  }
+ },
+ "family": "H5 hourly (exploratory)",
+ "hypothesis": "UP",
+ "hypothesis_horizons": [
+  24,
+  72
+ ],
+ "coverage": {
+  "first": "2025-09-28 08:00:00",
+  "last": "2026-11-18 13:00:00",
+  "nonnull_per_period": {
+   "train": 0,
+   "validation": 2239,
+   "test": 7713
+  }
+ },
+ "note": "exploratory: hourly periods are short (train ~8 months, ~6.5 months after the 45-day percentile warm-up; validation 6 months; test ~10.5 months)"
+}

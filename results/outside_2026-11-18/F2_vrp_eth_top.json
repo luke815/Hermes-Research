@@ -1,0 +1,123 @@
+{
+ "name": "F2_vrp_eth_top",
+ "written_at": "2026-11-18T12:26:37Z",
+ "series": "vrp_eth",
+ "transform": "pct365",
+ "side": "top",
+ "threshold": 0.9,
+ "asset": "eth",
+ "lag": 0,
+ "horizons": {
+  "1": {
+   "train": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "validation": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "test": {
+    "n_flag": 27,
+    "n_ind": 8,
+    "n_days": 320,
+    "mean_flag": 0.011603513121045177,
+    "mean_rest": -0.0022120078687169194,
+    "spread": 0.013815520989762096,
+    "hit": 0.7037037037037037,
+    "t_nw": 1.9072915114930704,
+    "net": 0.008410187656428762,
+    "carry": 0.004405333333333333
+   },
+   "verdict": "insufficient: a period has no flagged or no unflagged days"
+  },
+  "3": {
+   "train": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "validation": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "test": {
+    "n_flag": 27,
+    "n_ind": 6,
+    "n_days": 318,
+    "mean_flag": 0.017571173355058364,
+    "mean_rest": -0.005357273007622732,
+    "spread": 0.022928446362681095,
+    "hit": 0.7407407407407407,
+    "t_nw": 1.6469767874387393,
+    "net": 0.017523001918237184,
+    "carry": 0.0044054444444439084
+   },
+   "verdict": "insufficient: a period has no flagged or no unflagged days"
+  },
+  "5": {
+   "train": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "validation": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "test": {
+    "n_flag": 27,
+    "n_ind": 5,
+    "n_days": 316,
+    "mean_flag": 0.016739547544956705,
+    "mean_rest": -0.00797539448545171,
+    "spread": 0.024714942030408416,
+    "hit": 0.6296296296296297,
+    "t_nw": 1.2551096025757298,
+    "net": 0.030007719808186208,
+    "carry": -0.006292777777777793
+   },
+   "verdict": "insufficient: a period has no flagged or no unflagged days"
+  },
+  "10": {
+   "train": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "validation": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "test": {
+    "n_flag": 27,
+    "n_ind": 4,
+    "n_days": 311,
+    "mean_flag": 0.014815793439480411,
+    "mean_rest": -0.012054016344859737,
+    "spread": 0.02686980978434015,
+    "hit": 0.5925925925925926,
+    "t_nw": 0.9924039492081747,
+    "net": 0.04121580978433997,
+    "carry": -0.015345999999999816
+   },
+   "verdict": "insufficient: a period has no flagged or no unflagged days"
+  }
+ },
+ "family": "F2",
+ "cell": "vrp_eth_top",
+ "expected_sign": "+"
+}

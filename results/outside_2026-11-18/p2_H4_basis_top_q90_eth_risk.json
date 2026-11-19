@@ -1,0 +1,152 @@
+{
+ "name": "p2_H4_basis_top_q90_eth_risk",
+ "written_at": "2026-11-18T14:32:54Z",
+ "primary": [
+  "basis_eth",
+  "pct365",
+  "top",
+  "0.9"
+ ],
+ "cond": null,
+ "asset": "eth",
+ "freq": "1d",
+ "lag": 1,
+ "crash": -0.1,
+ "windows": {
+  "10": {
+   "cell": {
+    "train": {
+     "n_flag": 173,
+     "n_ind": 3,
+     "n_bars": 2008,
+     "mdd_flag": -0.045971350998865824,
+     "mdd_all": -0.05920455156357095,
+     "mdd_diff": 0.013233200564705123,
+     "t_nw": 1.3036890588263963,
+     "crash_rate_flag": 0.18497109826589594,
+     "crash_rate_all": 0.2355577689243028,
+     "crash_lift": 0.7852472839702305,
+     "crash_n": 32,
+     "auc": 0.33066329654077187,
+     "rv_flag": 0.571277817269096,
+     "rv_all": 0.7594384834026537,
+     "q05_flag": -0.1288523347745109,
+     "q05_all": -0.2615758611417121,
+     "missed_mean20": 0.006213971507665174,
+     "false_alarm": 0.45664739884393063
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    },
+    "test": {
+     "n_flag": 8,
+     "n_ind": 1,
+     "n_bars": 311,
+     "mdd_flag": -0.05965214388374826,
+     "mdd_all": -0.05501941388514966,
+     "mdd_diff": -0.004632729998598602,
+     "t_nw": -0.38662353785692444,
+     "crash_rate_flag": 0.0,
+     "crash_rate_all": 0.1639871382636656,
+     "crash_lift": 0.0,
+     "crash_n": 0,
+     "auc": 0.3597662141779789,
+     "rv_flag": 0.32676836130090126,
+     "rv_all": 0.5458241426995509,
+     "q05_flag": -0.17764256290001867,
+     "q05_all": -0.28393868438248737,
+     "missed_mean20": -0.12860933663461865,
+     "false_alarm": 0.0
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "20": {
+   "cell": {
+    "train": {
+     "n_flag": 173,
+     "n_ind": 3,
+     "n_bars": 2008,
+     "mdd_flag": -0.06429382522544444,
+     "mdd_all": -0.09012057413366038,
+     "mdd_diff": 0.025826748908215943,
+     "t_nw": 1.693283975698834,
+     "crash_rate_flag": 0.3236994219653179,
+     "crash_rate_all": 0.3655378486055777,
+     "crash_lift": 0.8855428328424501,
+     "crash_n": 56,
+     "auc": 0.3376375355367955,
+     "rv_flag": 0.5654479142383946,
+     "rv_all": 0.7807419948308623,
+     "q05_flag": -0.1288523347745109,
+     "q05_all": -0.2615758611417121,
+     "missed_mean20": 0.006213971507665174,
+     "false_alarm": 0.45664739884393063
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    },
+    "test": {
+     "n_flag": 8,
+     "n_ind": 1,
+     "n_bars": 301,
+     "mdd_flag": -0.12928109255113526,
+     "mdd_all": -0.0892203804066979,
+     "mdd_diff": -0.04006071214443736,
+     "t_nw": -1.637824776970756,
+     "crash_rate_flag": 0.75,
+     "crash_rate_all": 0.33222591362126247,
+     "crash_lift": 2.2575,
+     "crash_n": 6,
+     "auc": 0.45313432835820894,
+     "rv_flag": 0.5586105485586628,
+     "rv_all": 0.5643523184601866,
+     "q05_flag": -0.17764256290001867,
+     "q05_all": -0.28393868438248737,
+     "missed_mean20": -0.12860933663461865,
+     "false_alarm": 0.0
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "30": {
+   "cell": {
+    "train": {
+     "n_flag": 173,
+     "n_ind": 2,
+     "n_bars": 2008,
+     "mdd_flag": -0.07439823854927065,
+     "mdd_all": -0.11106735077607857,
+     "mdd_diff": 0.03666911222680792,
+     "t_nw": 1.7942669170315981,
+     "crash_rate_flag": 0.3988439306358382,
+     "crash_rate_all": 0.4387450199203187,
+     "crash_lift": 0.9090563140939422,
+     "crash_n": 69,
+     "auc": 0.3514087638450966,
+     "rv_flag": 0.5548299398715509,
+     "rv_all": 0.7923429112955094,
+     "q05_flag": -0.1288523347745109,
+     "q05_all": -0.2615758611417121,
+     "missed_mean20": 0.006213971507665174,
+     "false_alarm": 0.45664739884393063
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    },
+    "test": {
+     "n_flag": 2,
+     "n_ind": 0,
+     "mdd_diff": null
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  }
+ }
+}

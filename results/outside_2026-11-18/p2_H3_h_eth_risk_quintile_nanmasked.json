@@ -1,0 +1,127 @@
+{
+ "name": "p2_H3_h_eth_risk_quintile_nanmasked",
+ "written_at": "2026-11-18T14:32:51Z",
+ "primary": [
+  "pc_ratio_eth__pctclean",
+  "raw",
+  "bottom",
+  "0.2"
+ ],
+ "cond": [
+  "dvol_lv_eth__pctclean",
+  "raw",
+  "bottom",
+  "0.2"
+ ],
+ "asset": "eth",
+ "freq": "1d",
+ "lag": 1,
+ "crash": -0.1,
+ "windows": {
+  "10": {
+   "cell": {
+    "train": {
+     "n_flag": 122,
+     "n_ind": 4,
+     "n_bars": 2008,
+     "mdd_flag": -0.06303443821967995,
+     "mdd_all": -0.05920455156357095,
+     "mdd_diff": -0.003829886656109005,
+     "t_nw": -0.22753500686633607,
+     "crash_rate_flag": 0.2786885245901639,
+     "crash_rate_all": 0.2355577689243028,
+     "crash_lift": 1.1831005441375246,
+     "crash_n": 34,
+     "auc": 0.6202048297372906,
+     "rv_flag": 0.7055837632427763,
+     "rv_all": 0.7594384834026537,
+     "q05_flag": -0.2409146712951704,
+     "q05_all": -0.2615758611417121,
+     "missed_mean20": 0.03709539217211736,
+     "false_alarm": 0.5
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    },
+    "test": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "20": {
+   "cell": {
+    "train": {
+     "n_flag": 122,
+     "n_ind": 4,
+     "n_bars": 2008,
+     "mdd_flag": -0.10597772364211881,
+     "mdd_all": -0.09012057413366038,
+     "mdd_diff": -0.01585714950845843,
+     "t_nw": -0.553560768751652,
+     "crash_rate_flag": 0.4344262295081967,
+     "crash_rate_all": 0.3655378486055777,
+     "crash_lift": 1.188457586992451,
+     "crash_n": 53,
+     "auc": 0.5740934939464352,
+     "rv_flag": 0.7684049997700214,
+     "rv_all": 0.7807419948308623,
+     "q05_flag": -0.2409146712951704,
+     "q05_all": -0.2615758611417121,
+     "missed_mean20": 0.03709539217211736,
+     "false_alarm": 0.5
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    },
+    "test": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "30": {
+   "cell": {
+    "train": {
+     "n_flag": 122,
+     "n_ind": 4,
+     "n_bars": 2008,
+     "mdd_flag": -0.12580719572602347,
+     "mdd_all": -0.11106735077607857,
+     "mdd_diff": -0.014739844949944902,
+     "t_nw": -0.3913861453425881,
+     "crash_rate_flag": 0.47540983606557374,
+     "crash_rate_all": 0.4387450199203187,
+     "crash_lift": 1.0835674810665972,
+     "crash_n": 58,
+     "auc": 0.5817518837537236,
+     "rv_flag": 0.7806687248753831,
+     "rv_all": 0.7923429112955094,
+     "q05_flag": -0.2409146712951704,
+     "q05_all": -0.2615758611417121,
+     "missed_mean20": 0.03709539217211736,
+     "false_alarm": 0.5
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    },
+    "test": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "mdd_diff": null
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  }
+ }
+}

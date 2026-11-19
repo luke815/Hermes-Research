@@ -1,0 +1,3834 @@
+{
+ "return": [
+  {
+   "cell": "skew30_pct365_top_btc",
+   "slice": "full",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_skew30_pct365_top_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.04% t=0.1 n=30 net=-0.06%",
+     "validation": "val ex +0.04% t=0.2 n=20 net=-0.08%",
+     "test": "tes ex +0.29% t=1.3 n=19 net=+0.18%",
+     "verdict": "rejected: validation t 0.19 below 2.5",
+     "sign_as_hypothesised": false,
+     "signs": "+++",
+     "t_val": 0.19,
+     "n_ind_trva": 50,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.11% t=0.2 n=21 net=-0.01%",
+     "validation": "val ex +0.13% t=0.3 n=9 net=-0.01%",
+     "test": "tes ex +0.25% t=0.6 n=10 net=+0.14%",
+     "verdict": "rejected: validation t 0.3 below 2.5",
+     "sign_as_hypothesised": false,
+     "signs": "+++",
+     "t_val": 0.3,
+     "n_ind_trva": 30,
+     "near_miss": true
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.57% t=0.6 n=18 net=+0.42%",
+     "validation": "val ex +0.14% t=0.2 n=5 net=-0.04%",
+     "test": "tes ex +0.47% t=0.7 n=6 net=+0.35%",
+     "verdict": "insufficient: 23 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "+++",
+     "t_val": 0.2,
+     "n_ind_trva": 23,
+     "near_miss": true
+    },
+    {
+     "h": 10,
+     "train": "tra ex -0.49% t=-0.3 n=13 net=+0.51%",
+     "validation": "val ex -0.55% t=-0.5 n=2 net=+0.62%",
+     "test": "tes ex +1.01% t=0.9 n=2 net=+0.87%",
+     "verdict": "insufficient: 15 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "--+",
+     "t_val": -0.46,
+     "n_ind_trva": 15,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +0.03% t=0.0 n=11 net=-0.35%",
+     "validation": "val ex -4.19% t=-2.3 n=1 net=+4.41%",
+     "test": "tes ex +1.40% t=0.7 n=2 net=+1.22%",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -2.29,
+     "n_ind_trva": 12,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_top_btc",
+   "slice": "2019slice",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_skew30_pct365_top_btc_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_top_btc",
+   "slice": "2026slice",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_skew30_pct365_top_btc_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.09% t=2.4 n=4 net=+0.97%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +2.26% t=1.1 n=2 net=+2.10%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +4.20% t=2.8 n=2 net=+3.99%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +4.84% t=2.6 n=1 net=+4.54%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +6.08% t=2.0 n=1 net=+5.63%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_top_eth",
+   "slice": "full",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_skew30_pct365_top_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex -0.11% t=-0.3 n=51 net=+0.03%",
+     "validation": "val ex -0.47% t=-0.9 n=14 net=+0.39%",
+     "test": "tes ex +0.17% t=0.5 n=16 net=+0.07%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "--+",
+     "t_val": -0.95,
+     "n_ind_trva": 65,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex -0.11% t=-0.1 n=32 net=+0.06%",
+     "validation": "val ex -1.29% t=-1.2 n=9 net=+1.23%",
+     "test": "tes ex +0.25% t=0.4 n=11 net=+0.15%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "--+",
+     "t_val": -1.19,
+     "n_ind_trva": 41,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -0.37% t=-0.3 n=25 net=+0.35%",
+     "validation": "val ex -1.38% t=-1.1 n=6 net=+1.34%",
+     "test": "tes ex +0.01% t=0.0 n=7 net=-0.09%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "--+",
+     "t_val": -1.11,
+     "n_ind_trva": 31,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex -1.99% t=-1.0 n=19 net=+2.05%",
+     "validation": "val ex -3.88% t=-1.8 n=4 net=+3.90%",
+     "test": "tes ex -0.28% t=-0.2 n=5 net=+0.19%",
+     "verdict": "insufficient: 23 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": true,
+     "signs": "---",
+     "t_val": -1.77,
+     "n_ind_trva": 23,
+     "near_miss": true
+    },
+    {
+     "h": 20,
+     "train": "tra ex -3.57% t=-0.8 n=14 net=+3.83%",
+     "validation": "val ex -5.88% t=-1.2 n=3 net=+6.02%",
+     "test": "tes ex +0.94% t=0.3 n=2 net=+0.82%",
+     "verdict": "insufficient: 17 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "--+",
+     "t_val": -1.25,
+     "n_ind_trva": 17,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_top_eth",
+   "slice": "2019slice",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_skew30_pct365_top_eth_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_top_eth",
+   "slice": "2026slice",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_skew30_pct365_top_eth_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.31% t=2.2 n=4 net=+1.20%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +5.66% t=3.8 n=2 net=+5.52%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +3.49% t=1.4 n=2 net=+3.31%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.57% t=0.3 n=2 net=+1.32%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +15.42% t=4.4 n=1 net=+15.05%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_bottom_btc",
+   "slice": "full",
+   "asset": "btc",
+   "primary": [
+    "rr_30_btc",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_rr30_pct365_bottom_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.16% t=0.7 n=63 net=+0.04%",
+     "validation": "val ex -0.06% t=-0.4 n=39 net=-0.02%",
+     "test": "tes ex +0.38% t=1.5 n=20 net=+0.27%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.43,
+     "n_ind_trva": 102,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.61% t=1.4 n=37 net=+0.46%",
+     "validation": "val ex +0.17% t=0.5 n=22 net=+0.03%",
+     "test": "tes ex +0.49% t=0.9 n=9 net=+0.38%",
+     "verdict": "rejected: validation t 0.51 below 2.5",
+     "sign_as_hypothesised": false,
+     "signs": "+++",
+     "t_val": 0.51,
+     "n_ind_trva": 59,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.95% t=1.5 n=31 net=+0.75%",
+     "validation": "val ex +0.42% t=0.9 n=16 net=+0.25%",
+     "test": "tes ex +0.82% t=1.2 n=7 net=+0.71%",
+     "verdict": "rejected: validation t 0.9 below 2.5",
+     "sign_as_hypothesised": false,
+     "signs": "+++",
+     "t_val": 0.9,
+     "n_ind_trva": 47,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +1.27% t=1.1 n=24 net=+0.95%",
+     "validation": "val ex +0.66% t=0.8 n=11 net=+0.41%",
+     "test": "tes ex +1.60% t=1.3 n=5 net=+1.48%",
+     "verdict": "rejected: validation t 0.82 below 2.5",
+     "sign_as_hypothesised": false,
+     "signs": "+++",
+     "t_val": 0.82,
+     "n_ind_trva": 35,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +2.74% t=1.1 n=15 net=+2.14%",
+     "validation": "val ex -0.44% t=-0.3 n=7 net=+0.64%",
+     "test": "tes ex +2.84% t=1.3 n=4 net=+2.71%",
+     "verdict": "insufficient: 22 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.32,
+     "n_ind_trva": 22,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_bottom_btc",
+   "slice": "2019slice",
+   "asset": "btc",
+   "primary": [
+    "rr_30_btc",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_rr30_pct365_bottom_btc_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.09% t=0.2 n=12 net=-0.01%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 12,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.23% t=0.2 n=7 net=+0.13%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 7,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.49% t=0.3 n=5 net=+0.39%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +1.03% t=0.4 n=3 net=+0.93%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 3,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +1.20% t=0.3 n=2 net=+1.10%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 2,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_bottom_btc",
+   "slice": "2026slice",
+   "asset": "btc",
+   "primary": [
+    "rr_30_btc",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_rr30_pct365_bottom_btc_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.64% t=1.2 n=4 net=+0.52%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.41% t=0.6 n=3 net=+1.26%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +2.83% t=1.1 n=3 net=+2.63%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +2.96% t=0.9 n=3 net=+2.65%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.91% t=0.4 n=3 net=+1.40%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_bottom_eth",
+   "slice": "full",
+   "asset": "eth",
+   "primary": [
+    "rr_30_eth",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_rr30_pct365_bottom_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.01% t=0.1 n=66 net=-0.11%",
+     "validation": "val ex -0.02% t=-0.1 n=26 net=-0.06%",
+     "test": "tes ex -0.02% t=-0.0 n=16 net=-0.08%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+--",
+     "t_val": -0.06,
+     "n_ind_trva": 92,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.51% t=1.0 n=40 net=+0.33%",
+     "validation": "val ex -0.65% t=-0.8 n=19 net=+0.59%",
+     "test": "tes ex +0.48% t=0.6 n=11 net=+0.38%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.85,
+     "n_ind_trva": 59,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.38% t=0.5 n=31 net=+0.14%",
+     "validation": "val ex -0.76% t=-0.7 n=16 net=+0.74%",
+     "test": "tes ex +1.52% t=1.5 n=10 net=+1.43%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.73,
+     "n_ind_trva": 47,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +0.06% t=0.0 n=25 net=-0.33%",
+     "validation": "val ex -2.27% t=-1.4 n=12 net=+2.31%",
+     "test": "tes ex +2.06% t=1.2 n=6 net=+1.97%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -1.38,
+     "n_ind_trva": 37,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +0.35% t=0.1 n=15 net=-0.36%",
+     "validation": "val ex -2.57% t=-0.8 n=8 net=+2.75%",
+     "test": "tes ex +3.62% t=1.2 n=4 net=+3.54%",
+     "verdict": "insufficient: 23 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.84,
+     "n_ind_trva": 23,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_bottom_eth",
+   "slice": "2019slice",
+   "asset": "eth",
+   "primary": [
+    "rr_30_eth",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_rr30_pct365_bottom_eth_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex -0.34% t=-0.7 n=12 net=+0.24%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 12,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex -0.16% t=-0.2 n=6 net=+0.06%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -0.75% t=-0.5 n=4 net=+0.65%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 4,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +0.05% t=0.0 n=3 net=-0.05%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 3,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +0.37% t=0.1 n=2 net=+0.27%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 2,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_bottom_eth",
+   "slice": "2026slice",
+   "asset": "eth",
+   "primary": [
+    "rr_30_eth",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_rr30_pct365_bottom_eth_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.86% t=1.5 n=6 net=+0.75%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +3.45% t=1.6 n=4 net=+3.31%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +2.56% t=1.0 n=4 net=+2.38%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.43% t=0.1 n=3 net=+0.20%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +6.65% t=0.9 n=3 net=+6.28%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_bottom_btc",
+   "slice": "full",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_skew30_pct365_bottom_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.10% t=0.6 n=87 net=-0.06%",
+     "validation": "val ex +0.34% t=1.3 n=16 net=+0.21%",
+     "test": "tes ex +0.02% t=0.1 n=6 net=-0.09%",
+     "verdict": "rejected: validation t 1.3 below 2.5",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 1.3,
+     "n_ind_trva": 103,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.21% t=0.7 n=42 net=-0.05%",
+     "validation": "val ex +1.24% t=1.8 n=10 net=+1.05%",
+     "test": "tes ex +0.19% t=0.4 n=4 net=+0.04%",
+     "verdict": "rejected: validation t 1.8 below 2.5",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 1.8,
+     "n_ind_trva": 52,
+     "near_miss": true
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.25% t=0.5 n=33 net=-0.12%",
+     "validation": "val ex +1.70% t=2.1 n=8 net=+1.46%",
+     "test": "tes ex +0.67% t=0.8 n=3 net=+0.50%",
+     "verdict": "rejected: validation t 2.08 below 2.5",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 2.08,
+     "n_ind_trva": 41,
+     "near_miss": true
+    },
+    {
+     "h": 10,
+     "train": "tra ex +1.17% t=1.1 n=26 net=+0.53%",
+     "validation": "val ex +1.24% t=1.1 n=5 net=+0.86%",
+     "test": "tes ex +1.31% t=0.8 n=3 net=+1.07%",
+     "verdict": "rejected: validation t 1.11 below 2.5",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 1.11,
+     "n_ind_trva": 31,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +3.11% t=1.3 n=14 net=+1.87%",
+     "validation": "val ex +0.82% t=0.3 n=5 net=+0.20%",
+     "test": "tes ex +2.35% t=0.8 n=2 net=+1.98%",
+     "verdict": "insufficient: 19 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 0.3,
+     "n_ind_trva": 19,
+     "near_miss": true
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_bottom_btc",
+   "slice": "2019slice",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_skew30_pct365_bottom_btc_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex -1.05% t=-1.9 n=8 net=+0.95%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 8,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex -1.81% t=-1.5 n=6 net=+1.71%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -2.19% t=-1.3 n=5 net=+2.09%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex -4.67% t=-1.9 n=4 net=+4.57%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 4,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -12.13% t=-2.8 n=1 net=+12.03%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 1,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_bottom_btc",
+   "slice": "2026slice",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_skew30_pct365_bottom_btc_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.07% t=0.3 n=10 net=-0.05%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.18% t=0.4 n=6 net=+0.03%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.73% t=1.0 n=3 net=+0.55%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.35% t=0.9 n=3 net=+1.10%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +2.77% t=0.9 n=2 net=+2.38%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_bottom_eth",
+   "slice": "full",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_skew30_pct365_bottom_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.11% t=0.5 n=81 net=-0.06%",
+     "validation": "val ex +0.17% t=0.4 n=13 net=+0.04%",
+     "test": "tes ex -0.01% t=-0.0 n=6 net=-0.08%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "++-",
+     "t_val": 0.43,
+     "n_ind_trva": 94,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.24% t=0.6 n=50 net=-0.07%",
+     "validation": "val ex +0.96% t=0.9 n=10 net=+0.77%",
+     "test": "tes ex +0.45% t=0.7 n=4 net=+0.32%",
+     "verdict": "rejected: validation t 0.89 below 2.5",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 0.89,
+     "n_ind_trva": 60,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.21% t=0.3 n=37 net=-0.23%",
+     "validation": "val ex +1.15% t=0.8 n=10 net=+0.91%",
+     "test": "tes ex +1.21% t=1.2 n=4 net=+1.05%",
+     "verdict": "rejected: validation t 0.81 below 2.5",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 0.81,
+     "n_ind_trva": 47,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +1.15% t=1.0 n=26 net=+0.37%",
+     "validation": "val ex -1.47% t=-0.8 n=7 net=+1.64%",
+     "test": "tes ex +1.91% t=0.9 n=3 net=+1.70%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.77,
+     "n_ind_trva": 33,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +4.21% t=1.7 n=16 net=+2.69%",
+     "validation": "val ex -1.62% t=-0.3 n=6 net=+2.03%",
+     "test": "tes ex +2.07% t=0.5 n=2 net=+1.76%",
+     "verdict": "insufficient: 22 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.29,
+     "n_ind_trva": 22,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_bottom_eth",
+   "slice": "2019slice",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_skew30_pct365_bottom_eth_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex -0.86% t=-0.5 n=4 net=+0.76%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 4,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex -3.33% t=-1.2 n=3 net=+3.23%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 3,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -5.76% t=-1.2 n=2 net=+5.66%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 2,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex -3.88% t=-0.8 n=2 net=+3.78%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 2,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -9.57% t=-1.8 n=2 net=+9.47%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 2,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_pct365_bottom_eth",
+   "slice": "2026slice",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.1",
+   "results_file": "results/p2_H2_skew30_pct365_bottom_eth_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.22% t=0.7 n=7 net=+0.11%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.67% t=1.1 n=4 net=+0.53%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.16% t=1.2 n=4 net=+1.01%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +2.27% t=1.2 n=3 net=+2.06%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +2.74% t=0.7 n=2 net=+2.43%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_top_btc",
+   "slice": "full",
+   "asset": "btc",
+   "primary": [
+    "rr_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_rr30_pct365_top_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.16% t=0.9 n=52 net=+0.01%",
+     "validation": "val -",
+     "test": "tes ex +0.02% t=0.1 n=4 net=-0.09%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "+.+",
+     "t_val": null,
+     "n_ind_trva": 52,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.23% t=0.5 n=25 net=-0.02%",
+     "validation": "val -",
+     "test": "tes ex +0.39% t=0.8 n=1 net=+0.24%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "+.+",
+     "t_val": null,
+     "n_ind_trva": 25,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.16% t=0.3 n=18 net=-0.18%",
+     "validation": "val -",
+     "test": "tes ex +0.79% t=1.0 n=1 net=+0.61%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "+.+",
+     "t_val": null,
+     "n_ind_trva": 18,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +1.82% t=1.3 n=11 net=+1.23%",
+     "validation": "val -",
+     "test": "tes ex +1.44% t=0.9 n=1 net=+1.20%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "+.+",
+     "t_val": null,
+     "n_ind_trva": 11,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +5.89% t=2.0 n=7 net=+4.71%",
+     "validation": "val -",
+     "test": "tes ex +2.60% t=0.9 n=1 net=+2.23%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "+.+",
+     "t_val": null,
+     "n_ind_trva": 7,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_top_btc",
+   "slice": "2019slice",
+   "asset": "btc",
+   "primary": [
+    "rr_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_rr30_pct365_top_btc_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_top_btc",
+   "slice": "2026slice",
+   "asset": "btc",
+   "primary": [
+    "rr_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_rr30_pct365_top_btc_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.07% t=0.3 n=7 net=-0.04%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.33% t=0.6 n=3 net=+0.18%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.82% t=1.0 n=2 net=+0.65%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.53% t=0.9 n=2 net=+1.29%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +3.13% t=1.0 n=2 net=+2.75%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_top_eth",
+   "slice": "full",
+   "asset": "eth",
+   "primary": [
+    "rr_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_rr30_pct365_top_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.24% t=1.0 n=51 net=+0.06%",
+     "validation": "val ex -0.82% t=-0.8 n=3 net=+0.74%",
+     "test": "tes ex +0.02% t=0.1 n=5 net=-0.09%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.83,
+     "n_ind_trva": 54,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.22% t=0.4 n=29 net=-0.13%",
+     "validation": "val ex +1.14% t=1.3 n=2 net=+0.97%",
+     "test": "tes ex +0.63% t=1.0 n=3 net=+0.50%",
+     "verdict": "rejected: validation t 1.33 below 2.5",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 1.33,
+     "n_ind_trva": 31,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.34% t=0.4 n=23 net=-0.16%",
+     "validation": "val ex +0.05% t=0.0 n=2 net=-0.17%",
+     "test": "tes ex +1.37% t=1.4 n=3 net=+1.22%",
+     "verdict": "insufficient: 25 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 0.02,
+     "n_ind_trva": 25,
+     "near_miss": true
+    },
+    {
+     "h": 10,
+     "train": "tra ex +1.53% t=1.1 n=18 net=+0.63%",
+     "validation": "val ex +0.77% t=0.2 n=2 net=+0.47%",
+     "test": "tes ex +2.05% t=1.0 n=2 net=+1.85%",
+     "verdict": "insufficient: 20 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 0.16,
+     "n_ind_trva": 20,
+     "near_miss": true
+    },
+    {
+     "h": 20,
+     "train": "tra ex +4.17% t=1.4 n=11 net=+2.43%",
+     "validation": "val ex +8.61% t=1.2 n=2 net=+8.11%",
+     "test": "tes ex +2.47% t=0.6 n=2 net=+2.16%",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": true,
+     "signs": "+++",
+     "t_val": 1.25,
+     "n_ind_trva": 13,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_top_eth",
+   "slice": "2019slice",
+   "asset": "eth",
+   "primary": [
+    "rr_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_rr30_pct365_top_eth_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_pct365_top_eth",
+   "slice": "2026slice",
+   "asset": "eth",
+   "primary": [
+    "rr_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "UP",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_rr30_pct365_top_eth_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.20% t=0.7 n=7 net=+0.09%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.68% t=1.1 n=5 net=+0.55%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.15% t=1.2 n=4 net=+0.99%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +3.19% t=1.9 n=1 net=+2.98%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +4.71% t=1.4 n=1 net=+4.40%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "dvol_pct365_top_btc",
+   "slice": "full",
+   "asset": "btc",
+   "primary": [
+    "dvol_lv_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_dvol_pct365_top_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex -0.12% t=-0.3 n=9 net=+0.08%",
+     "validation": "val -",
+     "test": "tes ex +0.13% t=0.3 n=8 net=+0.04%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-.+",
+     "t_val": null,
+     "n_ind_trva": 9,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex -0.52% t=-0.7 n=6 net=+0.60%",
+     "validation": "val -",
+     "test": "tes ex +0.22% t=0.3 n=6 net=+0.14%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-.+",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -1.04% t=-1.0 n=6 net=+1.22%",
+     "validation": "val -",
+     "test": "tes ex +0.45% t=0.4 n=4 net=+0.37%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-.+",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex -3.28% t=-2.3 n=5 net=+3.68%",
+     "validation": "val -",
+     "test": "tes ex +0.62% t=0.4 n=1 net=+0.55%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-.+",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -6.69% t=-3.3 n=5 net=+7.44%",
+     "validation": "val -",
+     "test": "tes ex +2.09% t=0.9 n=1 net=+2.02%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-.+",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "dvol_pct365_top_btc",
+   "slice": "2019slice",
+   "asset": "btc",
+   "primary": [
+    "dvol_lv_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": null,
+   "not_run": "dvol_lv_btc has no observations before 2020-01-21 (starts 2021-03-25)",
+   "rows": []
+  },
+  {
+   "cell": "dvol_pct365_top_btc",
+   "slice": "2026slice",
+   "asset": "btc",
+   "primary": [
+    "dvol_lv_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_dvol_pct365_top_btc_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "dvol_pct365_top_eth",
+   "slice": "full",
+   "asset": "eth",
+   "primary": [
+    "dvol_lv_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_dvol_pct365_top_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex -0.08% t=-0.2 n=22 net=+0.02%",
+     "validation": "val ex +0.33% t=0.6 n=22 net=+0.22%",
+     "test": "tes ex -0.31% t=-0.5 n=4 net=+0.20%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "-+-",
+     "t_val": 0.56,
+     "n_ind_trva": 44,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex -0.29% t=-0.3 n=12 net=+0.31%",
+     "validation": "val ex -0.31% t=-0.3 n=16 net=+0.25%",
+     "test": "tes ex -0.36% t=-0.2 n=3 net=+0.24%",
+     "verdict": "insufficient: 28 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": true,
+     "signs": "---",
+     "t_val": -0.29,
+     "n_ind_trva": 28,
+     "near_miss": true
+    },
+    {
+     "h": 5,
+     "train": "tra ex -1.05% t=-0.8 n=10 net=+1.12%",
+     "validation": "val ex -0.70% t=-0.6 n=14 net=+0.65%",
+     "test": "tes ex -0.44% t=-0.2 n=2 net=+0.31%",
+     "verdict": "insufficient: 24 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": true,
+     "signs": "---",
+     "t_val": -0.56,
+     "n_ind_trva": 24,
+     "near_miss": true
+    },
+    {
+     "h": 10,
+     "train": "tra ex -3.04% t=-1.8 n=8 net=+3.25%",
+     "validation": "val ex +0.81% t=0.5 n=12 net=+0.59%",
+     "test": "tes ex -0.63% t=-0.2 n=2 net=+0.46%",
+     "verdict": "insufficient: 20 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "-+-",
+     "t_val": 0.47,
+     "n_ind_trva": 20,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -6.47% t=-1.9 n=6 net=+6.90%",
+     "validation": "val ex +2.50% t=0.9 n=9 net=+2.19%",
+     "test": "tes ex +1.69% t=0.5 n=2 net=+1.70%",
+     "verdict": "insufficient: 15 independent episodes in train+validation (bar 30)",
+     "sign_as_hypothesised": false,
+     "signs": "-++",
+     "t_val": 0.89,
+     "n_ind_trva": 15,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "dvol_pct365_top_eth",
+   "slice": "2019slice",
+   "asset": "eth",
+   "primary": [
+    "dvol_lv_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": null,
+   "not_run": "dvol_lv_eth has no observations before 2020-01-21 (starts 2021-03-25)",
+   "rows": []
+  },
+  {
+   "cell": "dvol_pct365_top_eth",
+   "slice": "2026slice",
+   "asset": "eth",
+   "primary": [
+    "dvol_lv_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "DOWN",
+   "threshold_label": "decile 0.9",
+   "results_file": "results/p2_H2_dvol_pct365_top_eth_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": null,
+     "signs": "...",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_top_btc",
+   "slice": "full",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "['chg1', 'z30']",
+    "top",
+    "2"
+   ],
+   "expected": "DOWN (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 >= 2",
+   "results_file": "results/p2_H2_skew30_chg1z30_top_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +1.00% t=1.3 n=38 net=+0.88%",
+     "validation": "val ex +0.59% t=1.1 n=12 net=+0.47%",
+     "test": "tes ex -0.50% t=-1.1 n=14 net=+0.41%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "++-",
+     "t_val": 1.07,
+     "n_ind_trva": 50,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.58% t=0.5 n=37 net=+0.41%",
+     "validation": "val ex -0.73% t=-1.0 n=12 net=+0.70%",
+     "test": "tes ex -2.86% t=-2.0 n=11 net=+2.78%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+--",
+     "t_val": -0.98,
+     "n_ind_trva": 49,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.01% t=0.0 n=34 net=-0.20%",
+     "validation": "val ex -1.42% t=-0.9 n=11 net=+1.44%",
+     "test": "tes ex -2.76% t=-2.3 n=9 net=+2.69%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+--",
+     "t_val": -0.9,
+     "n_ind_trva": 45,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +0.77% t=0.5 n=32 net=+0.43%",
+     "validation": "val ex +0.65% t=0.4 n=10 net=+0.29%",
+     "test": "tes ex -5.11% t=-2.2 n=8 net=+5.07%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "++-",
+     "t_val": 0.39,
+     "n_ind_trva": 42,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +2.06% t=0.6 n=23 net=+1.53%",
+     "validation": "val ex -2.66% t=-1.1 n=9 net=+3.05%",
+     "test": "tes ex -8.62% t=-2.8 n=5 net=+8.62%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+--",
+     "t_val": -1.09,
+     "n_ind_trva": 32,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_top_btc",
+   "slice": "2019slice",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "['chg1', 'z30']",
+    "top",
+    "2"
+   ],
+   "expected": "DOWN (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 >= 2",
+   "results_file": "results/p2_H2_skew30_chg1z30_top_btc_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +1.27% t=0.8 n=7 net=+1.17%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 7,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +1.94% t=0.7 n=7 net=+1.84%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 7,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.24% t=0.1 n=5 net=+0.14%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +1.57% t=0.4 n=5 net=+1.47%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +7.55% t=0.7 n=5 net=+7.45%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_top_btc",
+   "slice": "2026slice",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "['chg1', 'z30']",
+    "top",
+    "2"
+   ],
+   "expected": "DOWN (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 >= 2",
+   "results_file": "results/p2_H2_skew30_chg1z30_top_btc_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -0.50% t=-1.1 n=14 net=+0.41%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -2.86% t=-2.0 n=11 net=+2.78%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -2.76% t=-2.3 n=9 net=+2.69%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -5.11% t=-2.2 n=8 net=+5.07%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -8.62% t=-2.8 n=5 net=+8.62%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_top_eth",
+   "slice": "full",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "['chg1', 'z30']",
+    "top",
+    "2"
+   ],
+   "expected": "DOWN (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 >= 2",
+   "results_file": "results/p2_H2_skew30_chg1z30_top_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.16% t=0.2 n=36 net=+0.03%",
+     "validation": "val ex -0.14% t=-0.1 n=8 net=+0.06%",
+     "test": "tes ex +0.99% t=0.8 n=11 net=+0.88%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.06,
+     "n_ind_trva": 44,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +1.49% t=1.1 n=35 net=+1.32%",
+     "validation": "val ex -2.73% t=-1.1 n=8 net=+2.66%",
+     "test": "tes ex +1.07% t=0.8 n=10 net=+0.96%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -1.09,
+     "n_ind_trva": 43,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.72% t=0.5 n=34 net=+0.51%",
+     "validation": "val ex -5.23% t=-2.1 n=8 net=+5.20%",
+     "test": "tes ex +0.88% t=0.5 n=9 net=+0.76%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -2.15,
+     "n_ind_trva": 42,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +0.16% t=0.1 n=32 net=-0.16%",
+     "validation": "val ex -4.65% t=-1.2 n=6 net=+4.69%",
+     "test": "tes ex -1.33% t=-0.5 n=8 net=+1.26%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+--",
+     "t_val": -1.23,
+     "n_ind_trva": 38,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -1.92% t=-0.6 n=26 net=+2.31%",
+     "validation": "val ex -9.54% t=-2.3 n=5 net=+9.72%",
+     "test": "tes ex -2.67% t=-0.7 n=4 net=+2.58%",
+     "verdict": "rejected: validation t -2.27 below 2.5",
+     "sign_as_hypothesised": true,
+     "signs": "---",
+     "t_val": -2.27,
+     "n_ind_trva": 31,
+     "near_miss": true
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_top_eth",
+   "slice": "2019slice",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "['chg1', 'z30']",
+    "top",
+    "2"
+   ],
+   "expected": "DOWN (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 >= 2",
+   "results_file": "results/p2_H2_skew30_chg1z30_top_eth_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex -0.48% t=-0.3 n=8 net=+0.38%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 8,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +5.61% t=1.6 n=8 net=+5.51%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 8,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex +0.40% t=0.1 n=8 net=+0.30%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 8,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex +2.10% t=0.6 n=7 net=+2.00%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 7,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex +7.47% t=1.2 n=6 net=+7.37%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_top_eth",
+   "slice": "2026slice",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "['chg1', 'z30']",
+    "top",
+    "2"
+   ],
+   "expected": "DOWN (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 >= 2",
+   "results_file": "results/p2_H2_skew30_chg1z30_top_eth_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.06% t=0.7 n=10 net=+0.96%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.61% t=1.1 n=9 net=+1.49%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.66% t=0.4 n=8 net=+0.55%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.75% t=0.3 n=7 net=+0.62%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +0.67% t=0.2 n=3 net=+0.54%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_bottom_btc",
+   "slice": "full",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "['chg1', 'z30']",
+    "bottom",
+    "-2"
+   ],
+   "expected": "UP (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 <= -2",
+   "results_file": "results/p2_H2_skew30_chg1z30_bottom_btc.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex -0.03% t=-0.1 n=49 net=-0.03%",
+     "validation": "val ex -0.30% t=-0.6 n=10 net=+0.22%",
+     "test": "tes ex -0.98% t=-0.8 n=6 net=+0.90%",
+     "verdict": "rejected: validation t -0.59 below 2.5",
+     "sign_as_hypothesised": false,
+     "signs": "---",
+     "t_val": -0.59,
+     "n_ind_trva": 59,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex -0.27% t=-0.3 n=48 net=+0.28%",
+     "validation": "val ex +0.59% t=0.6 n=8 net=+0.44%",
+     "test": "tes ex -1.65% t=-0.8 n=6 net=+1.58%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "-+-",
+     "t_val": 0.55,
+     "n_ind_trva": 56,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -1.47% t=-1.5 n=46 net=+1.56%",
+     "validation": "val ex +0.57% t=0.4 n=8 net=+0.39%",
+     "test": "tes ex -3.08% t=-1.2 n=6 net=+3.03%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "-+-",
+     "t_val": 0.44,
+     "n_ind_trva": 54,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex -2.17% t=-1.5 n=40 net=+2.40%",
+     "validation": "val ex +0.79% t=0.5 n=7 net=+0.54%",
+     "test": "tes ex -2.99% t=-1.4 n=6 net=+3.00%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "-+-",
+     "t_val": 0.5,
+     "n_ind_trva": 47,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -3.32% t=-1.6 n=33 net=+3.80%",
+     "validation": "val ex +2.24% t=0.5 n=7 net=+1.85%",
+     "test": "tes ex -1.62% t=-0.5 n=3 net=+1.73%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "-+-",
+     "t_val": 0.52,
+     "n_ind_trva": 40,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_bottom_btc",
+   "slice": "2019slice",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "['chg1', 'z30']",
+    "bottom",
+    "-2"
+   ],
+   "expected": "UP (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 <= -2",
+   "results_file": "results/p2_H2_skew30_chg1z30_bottom_btc_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +2.32% t=1.1 n=6 net=+2.22%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +1.30% t=0.3 n=6 net=+1.20%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -4.09% t=-1.4 n=6 net=+3.99%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex -2.31% t=-0.9 n=5 net=+2.21%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -5.89% t=-1.2 n=5 net=+5.79%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_bottom_btc",
+   "slice": "2026slice",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "['chg1', 'z30']",
+    "bottom",
+    "-2"
+   ],
+   "expected": "UP (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 <= -2",
+   "results_file": "results/p2_H2_skew30_chg1z30_bottom_btc_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -1.58% t=-1.3 n=7 net=+1.49%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -3.07% t=-1.4 n=7 net=+3.00%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -4.28% t=-1.8 n=7 net=+4.22%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -5.69% t=-1.9 n=6 net=+5.67%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -4.75% t=-1.1 n=3 net=+4.81%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_bottom_eth",
+   "slice": "full",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "['chg1', 'z30']",
+    "bottom",
+    "-2"
+   ],
+   "expected": "UP (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 <= -2",
+   "results_file": "results/p2_H2_skew30_chg1z30_bottom_eth.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.20% t=0.4 n=52 net=+0.06%",
+     "validation": "val ex -0.93% t=-1.0 n=13 net=+0.85%",
+     "test": "tes ex +1.43% t=1.3 n=10 net=+1.31%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+-+",
+     "t_val": -0.99,
+     "n_ind_trva": 65,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex +0.06% t=0.1 n=49 net=-0.17%",
+     "validation": "val ex -1.53% t=-1.2 n=12 net=+1.49%",
+     "test": "tes ex -1.74% t=-0.8 n=9 net=+1.66%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "+--",
+     "t_val": -1.19,
+     "n_ind_trva": 61,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -0.40% t=-0.3 n=44 net=+0.52%",
+     "validation": "val ex +0.27% t=0.1 n=11 net=+0.08%",
+     "test": "tes ex -2.27% t=-0.8 n=8 net=+2.20%",
+     "verdict": "rejected: excess sign differs across periods",
+     "sign_as_hypothesised": false,
+     "signs": "-+-",
+     "t_val": 0.13,
+     "n_ind_trva": 55,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex -0.19% t=-0.1 n=35 net=+0.49%",
+     "validation": "val ex -2.73% t=-0.9 n=9 net=+2.83%",
+     "test": "tes ex -3.83% t=-1.3 n=8 net=+3.76%",
+     "verdict": "rejected: validation t -0.88 below 2.5",
+     "sign_as_hypothesised": false,
+     "signs": "---",
+     "t_val": -0.88,
+     "n_ind_trva": 44,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -0.04% t=-0.0 n=29 net=+0.80%",
+     "validation": "val ex -0.36% t=-0.1 n=8 net=+0.65%",
+     "test": "tes ex -2.69% t=-0.7 n=4 net=+2.63%",
+     "verdict": "rejected: validation t -0.07 below 2.5",
+     "sign_as_hypothesised": false,
+     "signs": "---",
+     "t_val": -0.07,
+     "n_ind_trva": 37,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_bottom_eth",
+   "slice": "2019slice",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "['chg1', 'z30']",
+    "bottom",
+    "-2"
+   ],
+   "expected": "UP (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 <= -2",
+   "results_file": "results/p2_H2_skew30_chg1z30_bottom_eth_2019slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra ex +0.46% t=0.3 n=6 net=+0.36%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "+..",
+     "t_val": null,
+     "n_ind_trva": 6,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra ex -3.99% t=-1.9 n=5 net=+3.89%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra ex -6.14% t=-1.9 n=5 net=+6.04%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 5,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra ex -6.68% t=-2.2 n=4 net=+6.58%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 4,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra ex -9.42% t=-1.3 n=4 net=+9.32%",
+     "validation": "val -",
+     "test": "tes -",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "-..",
+     "t_val": null,
+     "n_ind_trva": 4,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_bottom_eth",
+   "slice": "2026slice",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "['chg1', 'z30']",
+    "bottom",
+    "-2"
+   ],
+   "expected": "UP (hypothesis stated for 1-5d)",
+   "threshold_label": "z30 <= -2",
+   "results_file": "results/p2_H2_skew30_chg1z30_bottom_eth_2026slice.json",
+   "rows": [
+    {
+     "h": 1,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex +1.43% t=1.3 n=10 net=+1.31%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": true,
+     "signs": "..+",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 3,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -1.74% t=-0.8 n=9 net=+1.66%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 5,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -2.27% t=-0.8 n=8 net=+2.20%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 10,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -3.83% t=-1.3 n=8 net=+3.76%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra -",
+     "validation": "val -",
+     "test": "tes ex -2.69% t=-0.7 n=4 net=+2.63%",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "signs": "..-",
+     "t_val": null,
+     "n_ind_trva": 0,
+     "near_miss": false
+    }
+   ]
+  }
+ ],
+ "risk": [
+  {
+   "cell": "skew30_top_btc",
+   "threshold_label": "quintile (top 0.8)",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_skew30_top_btc_risk_quintile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -0.5% t=-0.7 crash x1.03 (61/357) fa=0.60 n=17",
+     "validation": "val mdd -0.4% t=-0.5 crash x1.03 (14/155) fa=0.46 n=6",
+     "test": "tes mdd -0.3% t=-0.6 crash x1.18 (15/128) fa=0.52 n=3",
+     "verdict": "rejected: validation t -0.55 on mdd below 2.5",
+     "sign_as_hypothesised": true,
+     "n_ind_trva": 23,
+     "crash_lift_val": 1.03,
+     "crash_lift_test": 1.18,
+     "t_val": -0.55,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -0.4% t=-0.3 crash x0.98 (102/357) fa=0.60 n=11",
+     "validation": "val mdd -0.4% t=-0.4 crash x0.97 (26/155) fa=0.46 n=3",
+     "test": "tes mdd +0.1% t=0.1 crash x0.98 (25/128) fa=0.52 n=1",
+     "verdict": "insufficient: 14 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 14,
+     "crash_lift_val": 0.97,
+     "crash_lift_test": 0.98,
+     "t_val": -0.39,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -0.2% t=-0.1 crash x0.93 (124/357) fa=0.60 n=10",
+     "validation": "val mdd -0.7% t=-0.4 crash x1.02 (36/155) fa=0.46 n=2",
+     "test": "tes mdd +1.7% t=1.1 crash x0.70 (25/128) fa=0.52 n=1",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 12,
+     "crash_lift_val": 1.02,
+     "crash_lift_test": 0.7,
+     "t_val": -0.44,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_top_btc",
+   "threshold_label": "decile (top 0.9)",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_skew30_top_btc_risk_decile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -0.3% t=-0.3 crash x0.91 (24/159) fa=0.65 n=13",
+     "validation": "val mdd +0.6% t=0.9 crash x0.14 (1/80) fa=0.35 n=2",
+     "test": "tes mdd +0.4% t=0.7 crash x0.68 (6/89) fa=0.54 n=2",
+     "verdict": "insufficient: 15 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 15,
+     "crash_lift_val": 0.14,
+     "crash_lift_test": 0.68,
+     "t_val": 0.87,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -0.8% t=-0.4 crash x0.99 (46/159) fa=0.65 n=11",
+     "validation": "val mdd -0.1% t=-0.1 crash x0.65 (9/80) fa=0.35 n=1",
+     "test": "tes mdd +0.8% t=0.7 crash x0.62 (11/89) fa=0.54 n=2",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 12,
+     "crash_lift_val": 0.65,
+     "crash_lift_test": 0.62,
+     "t_val": -0.08,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -1.4% t=-0.4 crash x0.97 (58/159) fa=0.65 n=8",
+     "validation": "val mdd -0.6% t=-0.3 crash x0.88 (16/80) fa=0.35 n=1",
+     "test": "tes mdd +2.6% t=1.5 crash x0.44 (11/89) fa=0.54 n=2",
+     "verdict": "insufficient: 9 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 9,
+     "crash_lift_val": 0.88,
+     "crash_lift_test": 0.44,
+     "t_val": -0.32,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_top_eth",
+   "threshold_label": "quintile (top 0.8)",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_skew30_top_eth_risk_quintile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -1.2% t=-1.1 crash x1.31 (108/351) fa=0.57 n=18",
+     "validation": "val mdd -0.2% t=-0.2 crash x1.06 (29/100) fa=0.39 n=5",
+     "test": "tes mdd -1.0% t=-1.0 crash x1.30 (26/122) fa=0.57 n=5",
+     "verdict": "rejected: validation t -0.2 on mdd below 2.5",
+     "sign_as_hypothesised": true,
+     "n_ind_trva": 23,
+     "crash_lift_val": 1.06,
+     "crash_lift_test": 1.3,
+     "t_val": -0.2,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -1.6% t=-0.8 crash x1.04 (133/351) fa=0.57 n=14",
+     "validation": "val mdd -0.4% t=-0.2 crash x1.06 (46/100) fa=0.39 n=2",
+     "test": "tes mdd -0.9% t=-0.6 crash x0.96 (38/119) fa=0.58 n=1",
+     "verdict": "insufficient: 16 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": true,
+     "n_ind_trva": 16,
+     "crash_lift_val": 1.06,
+     "crash_lift_test": 0.96,
+     "t_val": -0.19,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -1.6% t=-0.6 crash x0.94 (144/351) fa=0.57 n=11",
+     "validation": "val mdd +0.7% t=0.3 crash x0.86 (47/100) fa=0.39 n=2",
+     "test": "tes mdd +1.1% t=0.5 crash x0.86 (41/119) fa=0.58 n=1",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 13,
+     "crash_lift_val": 0.86,
+     "crash_lift_test": 0.86,
+     "t_val": 0.26,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_top_eth",
+   "threshold_label": "decile (top 0.9)",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_skew30_top_eth_risk_decile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -2.0% t=-1.4 crash x1.46 (74/215) fa=0.56 n=19",
+     "validation": "val mdd -1.2% t=-0.8 crash x1.11 (14/46) fa=0.37 n=4",
+     "test": "tes mdd -0.7% t=-0.6 crash x1.15 (14/74) fa=0.57 n=5",
+     "verdict": "rejected: validation t -0.85 on mdd below 2.5",
+     "sign_as_hypothesised": true,
+     "n_ind_trva": 23,
+     "crash_lift_val": 1.11,
+     "crash_lift_test": 1.15,
+     "t_val": -0.85,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -3.0% t=-1.2 crash x1.15 (90/215) fa=0.56 n=14",
+     "validation": "val mdd -2.5% t=-0.8 crash x1.30 (26/46) fa=0.37 n=3",
+     "test": "tes mdd -0.5% t=-0.2 crash x1.00 (24/72) fa=0.58 n=2",
+     "verdict": "insufficient: 17 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": true,
+     "n_ind_trva": 17,
+     "crash_lift_val": 1.3,
+     "crash_lift_test": 1.0,
+     "t_val": -0.84,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -3.7% t=-1.0 crash x1.02 (96/215) fa=0.56 n=12",
+     "validation": "val mdd -1.7% t=-0.4 crash x1.04 (26/46) fa=0.37 n=2",
+     "test": "tes mdd +1.8% t=0.8 crash x0.83 (24/72) fa=0.58 n=2",
+     "verdict": "insufficient: 14 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 14,
+     "crash_lift_val": 1.04,
+     "crash_lift_test": 0.83,
+     "t_val": -0.41,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_bottom_btc",
+   "threshold_label": "quintile (bottom 0.2)",
+   "asset": "btc",
+   "primary": [
+    "rr_30_btc",
+    "pct365",
+    "bottom",
+    "0.2"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_rr30_bottom_btc_risk_quintile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -0.2% t=-0.4 crash x0.89 (70/478) fa=0.63 n=27",
+     "validation": "val mdd +0.2% t=0.4 crash x0.90 (20/254) fa=0.52 n=9",
+     "test": "tes mdd +0.2% t=0.3 crash x0.66 (7/107) fa=0.56 n=5",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 36,
+     "crash_lift_val": 0.9,
+     "crash_lift_test": 0.66,
+     "t_val": 0.42,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd +0.0% t=0.0 crash x0.93 (130/478) fa=0.63 n=17",
+     "validation": "val mdd -0.2% t=-0.4 crash x1.09 (48/254) fa=0.52 n=5",
+     "test": "tes mdd +0.8% t=0.8 crash x0.61 (13/107) fa=0.56 n=3",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 22,
+     "crash_lift_val": 1.09,
+     "crash_lift_test": 0.61,
+     "t_val": -0.4,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd +0.1% t=0.1 crash x0.91 (163/478) fa=0.63 n=12",
+     "validation": "val mdd -0.6% t=-0.8 crash x1.14 (66/254) fa=0.52 n=4",
+     "test": "tes mdd +2.6% t=1.6 crash x0.44 (13/106) fa=0.57 n=1",
+     "verdict": "insufficient: 16 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 16,
+     "crash_lift_val": 1.14,
+     "crash_lift_test": 0.44,
+     "t_val": -0.77,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_bottom_btc",
+   "threshold_label": "decile (bottom 0.1)",
+   "asset": "btc",
+   "primary": [
+    "rr_30_btc",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_rr30_bottom_btc_risk_decile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd +0.3% t=0.5 crash x0.75 (38/305) fa=0.66 n=24",
+     "validation": "val mdd +0.5% t=1.2 crash x0.62 (9/167) fa=0.50 n=11",
+     "test": "tes mdd +0.8% t=1.0 crash x0.41 (3/74) fa=0.59 n=5",
+     "verdict": "rejected: validation t 1.19 on mdd below 2.5",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 35,
+     "crash_lift_val": 0.62,
+     "crash_lift_test": 0.41,
+     "t_val": 1.19,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd +0.2% t=0.2 crash x0.92 (82/305) fa=0.66 n=15",
+     "validation": "val mdd -0.2% t=-0.3 crash x1.11 (32/167) fa=0.50 n=7",
+     "test": "tes mdd +1.7% t=1.4 crash x0.41 (6/74) fa=0.59 n=4",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 22,
+     "crash_lift_val": 1.11,
+     "crash_lift_test": 0.41,
+     "t_val": -0.31,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -0.3% t=-0.2 crash x0.97 (111/305) fa=0.66 n=11",
+     "validation": "val mdd -0.7% t=-0.7 crash x1.16 (44/167) fa=0.50 n=5",
+     "test": "tes mdd +3.6% t=1.9 crash x0.30 (6/73) fa=0.60 n=2",
+     "verdict": "insufficient: 16 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 16,
+     "crash_lift_val": 1.16,
+     "crash_lift_test": 0.3,
+     "t_val": -0.69,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_bottom_eth",
+   "threshold_label": "quintile (bottom 0.2)",
+   "asset": "eth",
+   "primary": [
+    "rr_30_eth",
+    "pct365",
+    "bottom",
+    "0.2"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_rr30_bottom_eth_risk_quintile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -0.4% t=-0.5 crash x1.22 (138/480) fa=0.59 n=27",
+     "validation": "val mdd +0.5% t=0.6 crash x0.86 (41/175) fa=0.45 n=9",
+     "test": "tes mdd +0.2% t=0.3 crash x0.87 (14/98) fa=0.61 n=6",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 36,
+     "crash_lift_val": 0.86,
+     "crash_lift_test": 0.87,
+     "t_val": 0.6,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -0.4% t=-0.3 crash x1.06 (186/480) fa=0.59 n=17",
+     "validation": "val mdd +0.4% t=0.3 crash x0.96 (73/175) fa=0.45 n=7",
+     "test": "tes mdd +1.1% t=0.7 crash x0.78 (25/96) fa=0.62 n=3",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 24,
+     "crash_lift_val": 0.96,
+     "crash_lift_test": 0.78,
+     "t_val": 0.33,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -0.4% t=-0.2 crash x0.99 (208/480) fa=0.59 n=14",
+     "validation": "val mdd +0.7% t=0.4 crash x0.90 (86/175) fa=0.45 n=5",
+     "test": "tes mdd +3.4% t=1.5 crash x0.65 (25/95) fa=0.63 n=1",
+     "verdict": "insufficient: 19 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 19,
+     "crash_lift_val": 0.9,
+     "crash_lift_test": 0.65,
+     "t_val": 0.44,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "rr30_bottom_eth",
+   "threshold_label": "decile (bottom 0.1)",
+   "asset": "eth",
+   "primary": [
+    "rr_30_eth",
+    "pct365",
+    "bottom",
+    "0.1"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_rr30_bottom_eth_risk_decile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -0.4% t=-0.4 crash x1.18 (90/323) fa=0.59 n=25",
+     "validation": "val mdd -0.5% t=-0.5 crash x1.07 (29/99) fa=0.41 n=12",
+     "test": "tes mdd +1.2% t=1.1 crash x0.67 (6/55) fa=0.58 n=6",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 37,
+     "crash_lift_val": 1.07,
+     "crash_lift_test": 0.67,
+     "t_val": -0.47,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -0.9% t=-0.5 crash x1.05 (124/323) fa=0.59 n=15",
+     "validation": "val mdd -1.1% t=-0.7 crash x1.14 (49/99) fa=0.41 n=8",
+     "test": "tes mdd +2.4% t=1.4 crash x0.74 (13/53) fa=0.60 n=4",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 23,
+     "crash_lift_val": 1.14,
+     "crash_lift_test": 0.74,
+     "t_val": -0.69,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -1.3% t=-0.6 crash x0.99 (140/323) fa=0.59 n=14",
+     "validation": "val mdd -1.0% t=-0.5 crash x1.04 (56/99) fa=0.41 n=6",
+     "test": "tes mdd +5.0% t=2.0 crash x0.57 (12/52) fa=0.62 n=2",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 20,
+     "crash_lift_val": 1.04,
+     "crash_lift_test": 0.57,
+     "t_val": -0.5,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "dvol_top_btc",
+   "threshold_label": "quintile (top 0.8)",
+   "asset": "btc",
+   "primary": [
+    "dvol_lv_btc",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_dvol_top_btc_risk_quintile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -0.5% t=-0.7 crash x1.05 (20/115) fa=0.46 n=6",
+     "validation": "val mdd +0.3% t=0.3 crash x1.35 (2/17) fa=0.29 n=7",
+     "test": "tes mdd +0.6% t=0.6 crash x0.18 (1/56) fa=0.62 n=1",
+     "verdict": "insufficient: 13 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 13,
+     "crash_lift_val": 1.35,
+     "crash_lift_test": 0.18,
+     "t_val": 0.27,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd +0.0% t=0.0 crash x0.98 (33/115) fa=0.46 n=6",
+     "validation": "val mdd -1.8% t=-0.7 crash x1.70 (5/17) fa=0.29 n=5",
+     "test": "tes mdd +2.1% t=1.2 crash x0.18 (2/56) fa=0.62 n=1",
+     "verdict": "insufficient: 11 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 11,
+     "crash_lift_val": 1.7,
+     "crash_lift_test": 0.18,
+     "t_val": -0.71,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -0.2% t=-0.2 crash x1.02 (44/115) fa=0.46 n=5",
+     "validation": "val mdd -1.3% t=-0.5 crash x1.29 (5/17) fa=0.29 n=5",
+     "test": "tes mdd +4.0% t=1.7 crash x0.13 (2/56) fa=0.62 n=1",
+     "verdict": "insufficient: 10 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 10,
+     "crash_lift_val": 1.29,
+     "crash_lift_test": 0.13,
+     "t_val": -0.51,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "dvol_top_btc",
+   "threshold_label": "decile (top 0.9)",
+   "asset": "btc",
+   "primary": [
+    "dvol_lv_btc",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_dvol_top_btc_risk_decile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -1.4% t=-1.6 crash x1.38 (18/79) fa=0.39 n=5",
+     "validation": "val -",
+     "test": "tes mdd +0.6% t=0.6 crash x0.00 (0/30) fa=0.53 n=1",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 5,
+     "crash_lift_val": null,
+     "crash_lift_test": 0.0,
+     "t_val": null,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -1.2% t=-1.2 crash x1.25 (29/79) fa=0.39 n=5",
+     "validation": "val -",
+     "test": "tes mdd +1.6% t=1.0 crash x0.00 (0/30) fa=0.53 n=1",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 5,
+     "crash_lift_val": null,
+     "crash_lift_test": 0.0,
+     "t_val": null,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -0.8% t=-0.6 crash x1.25 (37/79) fa=0.39 n=5",
+     "validation": "val -",
+     "test": "tes mdd +3.5% t=1.5 crash x0.00 (0/30) fa=0.53 n=1",
+     "verdict": "insufficient: a period has fewer than 3 flagged bars",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 5,
+     "crash_lift_val": null,
+     "crash_lift_test": 0.0,
+     "t_val": null,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "dvol_top_eth",
+   "threshold_label": "quintile (top 0.8)",
+   "asset": "eth",
+   "primary": [
+    "dvol_lv_eth",
+    "pct365",
+    "top",
+    "0.8"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_dvol_top_eth_risk_quintile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -1.1% t=-1.0 crash x1.20 (46/163) fa=0.39 n=6",
+     "validation": "val mdd +0.9% t=1.0 crash x0.75 (25/122) fa=0.40 n=11",
+     "test": "tes mdd +1.1% t=0.8 crash x0.34 (2/36) fa=0.69 n=2",
+     "verdict": "insufficient: 17 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 17,
+     "crash_lift_val": 0.75,
+     "crash_lift_test": 0.34,
+     "t_val": 1.0,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -1.2% t=-0.8 crash x1.28 (76/163) fa=0.39 n=5",
+     "validation": "val mdd +1.4% t=1.2 crash x0.85 (45/122) fa=0.40 n=7",
+     "test": "tes mdd +2.9% t=1.3 crash x0.50 (6/36) fa=0.69 n=1",
+     "verdict": "insufficient: 12 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 12,
+     "crash_lift_val": 0.85,
+     "crash_lift_test": 0.5,
+     "t_val": 1.17,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -0.9% t=-0.5 crash x1.27 (91/163) fa=0.39 n=5",
+     "validation": "val mdd +0.8% t=0.5 crash x1.01 (67/122) fa=0.40 n=5",
+     "test": "tes mdd +5.4% t=1.7 crash x0.41 (6/36) fa=0.69 n=1",
+     "verdict": "insufficient: 10 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 10,
+     "crash_lift_val": 1.01,
+     "crash_lift_test": 0.41,
+     "t_val": 0.54,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "dvol_top_eth",
+   "threshold_label": "decile (top 0.9)",
+   "asset": "eth",
+   "primary": [
+    "dvol_lv_eth",
+    "pct365",
+    "top",
+    "0.9"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_dvol_top_eth_risk_decile.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd -1.2% t=-1.0 crash x1.22 (32/111) fa=0.33 n=8",
+     "validation": "val mdd +1.2% t=1.0 crash x0.75 (9/44) fa=0.64 n=12",
+     "test": "tes mdd +0.3% t=0.2 crash x0.61 (2/20) fa=0.60 n=2",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 20,
+     "crash_lift_val": 0.75,
+     "crash_lift_test": 0.61,
+     "t_val": 1.02,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd -1.6% t=-1.0 crash x1.40 (57/111) fa=0.33 n=6",
+     "validation": "val mdd +2.8% t=1.8 crash x0.79 (15/44) fa=0.64 n=9",
+     "test": "tes mdd +1.8% t=0.8 crash x0.90 (6/20) fa=0.60 n=2",
+     "verdict": "insufficient: 15 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 15,
+     "crash_lift_val": 0.79,
+     "crash_lift_test": 0.9,
+     "t_val": 1.75,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -1.1% t=-0.6 crash x1.31 (64/111) fa=0.33 n=5",
+     "validation": "val mdd +3.0% t=1.4 crash x0.83 (20/44) fa=0.64 n=5",
+     "test": "tes mdd +4.3% t=1.3 crash x0.75 (6/20) fa=0.60 n=1",
+     "verdict": "insufficient: 10 independent episodes in train+validation (bar 20)",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 10,
+     "crash_lift_val": 0.83,
+     "crash_lift_test": 0.75,
+     "t_val": 1.44,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_top_btc",
+   "threshold_label": "z2 (top 2)",
+   "asset": "btc",
+   "primary": [
+    "skew_30_btc",
+    "['chg1', 'z30']",
+    "top",
+    "2"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_skew30_chg1z30_top_btc_risk_z2.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd +1.0% t=0.9 crash x0.95 (6/38) fa=0.61 n=32",
+     "validation": "val mdd -0.2% t=-0.1 crash x0.95 (1/12) fa=0.50 n=10",
+     "test": "tes mdd -4.1% t=-1.8 crash x3.09 (4/13) fa=0.23 n=8",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 42,
+     "crash_lift_val": 0.95,
+     "crash_lift_test": 3.09,
+     "t_val": -0.15,
+     "near_miss": false
+    },
+    {
+     "h": 20,
+     "train": "tra mdd +0.9% t=0.5 crash x0.90 (10/38) fa=0.61 n=23",
+     "validation": "val mdd -0.4% t=-0.2 crash x0.96 (2/12) fa=0.50 n=9",
+     "test": "tes mdd -6.9% t=-2.5 crash x2.51 (6/12) fa=0.25 n=5",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 32,
+     "crash_lift_val": 0.96,
+     "crash_lift_test": 2.51,
+     "t_val": -0.24,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd +0.7% t=0.4 crash x0.84 (12/38) fa=0.61 n=22",
+     "validation": "val mdd -0.2% t=-0.1 crash x1.10 (3/12) fa=0.50 n=8",
+     "test": "tes mdd -5.2% t=-2.2 crash x1.63 (5/11) fa=0.27 n=3",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 30,
+     "crash_lift_val": 1.1,
+     "crash_lift_test": 1.63,
+     "t_val": -0.13,
+     "near_miss": false
+    }
+   ]
+  },
+  {
+   "cell": "skew30_chg1z30_top_eth",
+   "threshold_label": "z2 (top 2)",
+   "asset": "eth",
+   "primary": [
+    "skew_30_eth",
+    "['chg1', 'z30']",
+    "top",
+    "2"
+   ],
+   "expected": "RISK-OFF (mdd_diff < 0)",
+   "results_file": "results/p2_H2_skew30_chg1z30_top_eth_risk_z2.json",
+   "rows": [
+    {
+     "h": 10,
+     "train": "tra mdd +0.8% t=0.8 crash x0.78 (7/38) fa=0.37 n=32",
+     "validation": "val mdd -4.2% t=-1.5 crash x1.83 (4/8) fa=0.25 n=6",
+     "test": "tes mdd -0.5% t=-0.2 crash x1.66 (3/11) fa=0.55 n=8",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 38,
+     "crash_lift_val": 1.83,
+     "crash_lift_test": 1.66,
+     "t_val": -1.5,
+     "near_miss": true
+    },
+    {
+     "h": 20,
+     "train": "tra mdd +0.2% t=0.1 crash x1.22 (17/38) fa=0.37 n=26",
+     "validation": "val mdd -3.3% t=-1.0 crash x1.15 (4/8) fa=0.25 n=5",
+     "test": "tes mdd -0.9% t=-0.3 crash x1.20 (4/10) fa=0.60 n=4",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 31,
+     "crash_lift_val": 1.15,
+     "crash_lift_test": 1.2,
+     "t_val": -1.03,
+     "near_miss": false
+    },
+    {
+     "h": 30,
+     "train": "tra mdd -1.1% t=-0.6 crash x1.20 (20/38) fa=0.37 n=21",
+     "validation": "val mdd -4.7% t=-1.5 crash x1.38 (6/8) fa=0.25 n=5",
+     "test": "tes mdd +0.3% t=0.1 crash x0.99 (4/10) fa=0.60 n=3",
+     "verdict": "rejected: drawdown effect changes sign across periods",
+     "sign_as_hypothesised": false,
+     "n_ind_trva": 26,
+     "crash_lift_val": 1.38,
+     "crash_lift_test": 0.99,
+     "t_val": -1.55,
+     "near_miss": false
+    }
+   ]
+  }
+ ]
+}

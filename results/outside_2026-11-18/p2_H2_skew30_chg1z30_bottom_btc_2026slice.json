@@ -1,0 +1,177 @@
+{
+ "name": "p2_H2_skew30_chg1z30_bottom_btc_2026slice",
+ "written_at": "2026-11-18T14:32:09Z",
+ "primary": [
+  "skew_30_btc",
+  "['chg1', 'z30']",
+  "bottom",
+  "-2"
+ ],
+ "cond": null,
+ "asset": "btc",
+ "freq": "1d",
+ "lag": 1,
+ "abs_target": false,
+ "horizons": {
+  "1": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "test": {
+     "n_flag": 7,
+     "n_ind": 7,
+     "n_bars": 320,
+     "mean_flag": -0.016492582406383786,
+     "mean_all": -0.0007009260742363337,
+     "spread": -0.016144824365134775,
+     "excess": -0.015791656332147453,
+     "hit": 0.42857142857142855,
+     "t_nw": -1.3075102283368691,
+     "net": 0.014927920617861738,
+     "carry": -0.0001362642857142857
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "3": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "test": {
+     "n_flag": 7,
+     "n_ind": 7,
+     "n_bars": 318,
+     "mean_flag": -0.03290693821358115,
+     "mean_all": -0.0022132508277820126,
+     "spread": -0.03138454208580105,
+     "excess": -0.030693687385799136,
+     "hit": 0.42857142857142855,
+     "t_nw": -1.4248032532805237,
+     "net": 0.029984168814370563,
+     "carry": -0.0002904814285714287
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "5": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "test": {
+     "n_flag": 7,
+     "n_ind": 7,
+     "n_bars": 316,
+     "mean_flag": -0.046610716865390374,
+     "mean_all": -0.0037979140949815303,
+     "spread": -0.043782672088832346,
+     "excess": -0.042812802770408845,
+     "hit": 0.2857142857142857,
+     "t_nw": -1.819835774371987,
+     "net": 0.042244142770408846,
+     "carry": -0.0004313400000000002
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "10": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "test": {
+     "n_flag": 7,
+     "n_ind": 6,
+     "n_bars": 311,
+     "mean_flag": -0.06253809136230358,
+     "mean_all": -0.005654314270468021,
+     "spread": -0.05819360090645019,
+     "excess": -0.056883777091835556,
+     "hit": 0.2857142857142857,
+     "t_nw": -1.947036817711031,
+     "net": 0.05669794709183556,
+     "carry": -0.0008141700000000002
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  },
+  "20": {
+   "cell": {
+    "train": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "validation": {
+     "n_flag": 0,
+     "n_ind": 0,
+     "spread": null,
+     "excess": null,
+     "t_nw": null
+    },
+    "test": {
+     "n_flag": 7,
+     "n_ind": 3,
+     "n_bars": 301,
+     "mean_flag": -0.05622455525765803,
+     "mean_all": -0.008679102748626316,
+     "spread": -0.04867748709258009,
+     "excess": -0.047545452509031715,
+     "hit": 0.2857142857142857,
+     "t_nw": -1.1442708627587779,
+     "net": 0.048133536794746,
+     "carry": -0.001588084285714286
+    }
+   },
+   "verdict": "insufficient: a period has fewer than 3 flagged bars"
+  }
+ }
+}

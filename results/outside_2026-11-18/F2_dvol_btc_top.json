@@ -1,0 +1,147 @@
+{
+ "name": "F2_dvol_btc_top",
+ "written_at": "2026-11-18T12:26:37Z",
+ "series": "dvol_btc",
+ "transform": "pct365",
+ "side": "top",
+ "threshold": 0.9,
+ "asset": "btc",
+ "lag": 0,
+ "horizons": {
+  "1": {
+   "train": {
+    "n_flag": 79,
+    "n_ind": 9,
+    "n_days": 1623,
+    "mean_flag": 0.0009205528465131338,
+    "mean_rest": 0.0018888216041621742,
+    "spread": -0.0009682687576490404,
+    "hit": 0.5569620253164557,
+    "t_nw": -0.26709799647236676,
+    "net": 0.06439759787157306,
+    "carry": -0.06442932911392403
+   },
+   "validation": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "test": {
+    "n_flag": 30,
+    "n_ind": 8,
+    "n_days": 320,
+    "mean_flag": 0.007578273397511455,
+    "mean_rest": -0.0015573949851067947,
+    "spread": 0.00913566838261825,
+    "hit": 0.5,
+    "t_nw": 1.507707692401679,
+    "net": 0.015397768382618245,
+    "carry": -0.007262099999999998
+   },
+   "verdict": "insufficient: a period has no flagged or no unflagged days"
+  },
+  "3": {
+   "train": {
+    "n_flag": 79,
+    "n_ind": 6,
+    "n_days": 1623,
+    "mean_flag": 0.0002267404648642725,
+    "mean_rest": 0.005649042576906104,
+    "spread": -0.005422302112041831,
+    "hit": 0.5189873417721519,
+    "t_nw": -0.6769253714249037,
+    "net": 0.18995916287153555,
+    "carry": -0.18553686075949372
+   },
+   "validation": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "test": {
+    "n_flag": 30,
+    "n_ind": 6,
+    "n_days": 318,
+    "mean_flag": 0.010846695553221146,
+    "mean_rest": -0.003573661909136508,
+    "spread": 0.014420357462357654,
+    "hit": 0.6666666666666666,
+    "t_nw": 1.582589412342432,
+    "net": 0.031169857462357557,
+    "carry": -0.017749499999999904
+   },
+   "verdict": "insufficient: a period has no flagged or no unflagged days"
+  },
+  "5": {
+   "train": {
+    "n_flag": 79,
+    "n_ind": 6,
+    "n_days": 1623,
+    "mean_flag": 0.0004890817935630221,
+    "mean_rest": 0.009413826424768732,
+    "spread": -0.008924744631205711,
+    "hit": 0.5189873417721519,
+    "t_nw": -0.8013066608235556,
+    "net": 0.3042430231122185,
+    "carry": -0.29631827848101283
+   },
+   "validation": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "test": {
+    "n_flag": 30,
+    "n_ind": 4,
+    "n_days": 316,
+    "mean_flag": 0.00608177887920129,
+    "mean_rest": -0.004834245525839869,
+    "spread": 0.01091602440504116,
+    "hit": 0.5666666666666667,
+    "t_nw": 1.0512343077679878,
+    "net": 0.03480832440504106,
+    "carry": -0.0248922999999999
+   },
+   "verdict": "insufficient: a period has no flagged or no unflagged days"
+  },
+  "10": {
+   "train": {
+    "n_flag": 79,
+    "n_ind": 5,
+    "n_days": 1623,
+    "mean_flag": -0.011443239348606435,
+    "mean_rest": 0.01943665535412899,
+    "spread": -0.030879894702735423,
+    "hit": 0.35443037974683544,
+    "t_nw": -1.9524477400112679,
+    "net": 0.5528737301457735,
+    "carry": -0.522993835443038
+   },
+   "validation": {
+    "n_flag": 0,
+    "n_ind": 0,
+    "spread": null,
+    "t_nw": null
+   },
+   "test": {
+    "n_flag": 30,
+    "n_ind": 1,
+    "n_days": 311,
+    "mean_flag": 0.010025926709259647,
+    "mean_rest": -0.007328361350154249,
+    "spread": 0.017354288059413896,
+    "hit": 0.5,
+    "t_nw": 0.9954397024752015,
+    "net": 0.047547688059413895,
+    "carry": -0.031193400000000003
+   },
+   "verdict": "insufficient: a period has no flagged or no unflagged days"
+  }
+ },
+ "family": "F2",
+ "cell": "dvol_btc_top",
+ "expected_sign": "+"
+}

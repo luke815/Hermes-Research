@@ -50,6 +50,44 @@ An instruction is written here as numbered items at the top, each with a done-wh
 - L5. Every series into the library with metadata and the lookahead test, then re-enumerate. Done 2026-11-17: library 1.2.0, 132 measures, up from 128. Added basis_level, basis_chg_7, ls_ratio_level and ls_ratio_chg_7 from the Laevitas perpetual store, which already held both series. data/panel_xs_laevitas rebuilt, 5,056 files, both columns on every file, none missing. Lookahead holds: tests.test_indicators 9 passed, and a perturbation of 12 real files left both measures unchanged. Cells went from 3,688,000 to 3,803,200, of which 825,640 are testable and none are duplicates. Positioning is 230,400 cells, 74,880 testable. open_interest_coin and yield were left out: one restates oi_usd, the other restates funding. results/2026-11-17_l5_library.json.
 - L6. Sweep work-list fix, derivatives panel, positioning cross-section, C5, R1 to R6. Unblocked 2026-11-17: per-name funding and open interest are in data/panel_xs_laevitas, 5,056 files from 2021-03-26, and the C5 and R1 inputs are market-level series on disk to 2026-11-16. The earlier block was wrong. Not done: the sweep work-list fix and the scoring remain.
 
+## Outside research confirmations, 2026-11-18, after A2 to A6 and before A7
+
+From research/outside/SIGNAL_PASS_2026-11-18.md and OPTIONS_RISK_PASS_2026-11-18.md. Each is a pre-registered
+confirmation on the full universe of a lead the outside passes could not settle on 2 assets or 18 alts. lag=1 (the
+position is taken the bar after the signal), three periods, HAC errors, costs per leg, carry by side, results written
+by write_result. The risk targets are defined in research/outside/harness/harness2.py (forward max drawdown over W
+days, crash lift = P(-10% within W | flag) / P(-10% within W), false-alarm rate = share of flagged bars whose 20-day
+return was positive). A cell that reaches none of its bars is insufficient, not rejected.
+
+- Q1. Long/short ratio top quintile -> deeper drawdowns. ls_ratio_level pct365 >= 0.8 on every coin and venue in
+  data/panel_xs_laevitas, windows 10, 20, 30; drawdown effect, crash lift and false-alarm rate per period; episodes
+  >= 20 across train and validation. Done when results/<date>_q1_lsr_drawdown.json carries the three targets per
+  window and period for BTC, ETH and the pooled panel, with a verdict per window; and the dashboard watch card reads
+  its numbers from that file instead of the 2-asset base rate.
+- Q2. Skew elevated without vol -> weakness. skew_30 pct365 >= 0.9 AND dvol pct365 <= 0.2, BTC and ETH, horizons
+  5, 10, 20 and drawdown windows 10, 20; a new hypothesis, so its sign is confirmed only on 2019-03..2020-01 and
+  2026, with 2020-2025 reported but not used for the verdict. Done when results/<date>_q2_skew_no_vol.json shows
+  the two fresh windows separately and the pre-registration commit precedes the scoring commit.
+- Q3. IV/RV bottom -> down and deeper drawdowns: is the 2026 reversal the rule on a broader universe or the
+  exception. lv_iv_30 / lv_rv_30 pct365 <= 0.1 on BTC and ETH from 2019, and the same ratio where Laevitas serves
+  per-coin IV; horizons 10, 20 and windows 10, 20. Done when results/<date>_q3_ivrv.json reports each period with
+  episodes and the 2026 rows beside 2020-2025.
+- Q4. Put/call pairs, after L9 extends options_oi_pc_ratio past 2025-06: pc_ratio top AND skew_30 top; pc_ratio
+  bottom AND dvol bottom; rr_30 bottom AND pc_ratio top; BTC and ETH; parent cells reported beside each pair with
+  the lift. Done when results/<date>_q4_pcratio_pairs.json exists and every pair shows its parent and lift.
+- Q5. Crowded shorts as a family, with a drift control: funding (Binance, OI-weighted cross-venue, z30 <= -2) in
+  its bottom decile -> long, BTC, ETH and the alt cross-section, horizons 3 and 5, excess over the same-period mean,
+  BTC's return subtracted for alts. Done when results/<date>_q5_crowded_shorts.json reports every member of the
+  family in one table with excess spreads and episodes.
+- Q6. 14-day cross-sectional momentum on the survivor-free universe, horizon 5, weekly rebalance, costs per leg,
+  the rank-IC reported beside the top/bottom spread. Done when results/<date>_q6_xs_momentum.json shows both the
+  spread and the IC per period with their signs compared.
+- Not to be retried on daily data (each failed out of sample in the outside passes; see the reports for the numbers):
+  contrarian skew / butterfly "panic is a bottom"; funding, OI or basis highs as a sell signal or risk-off input;
+  DVOL-bottom "complacency" as a sell signal; single-threshold skew or risk-reversal direction reads; liquidation
+  spikes as a bounce without the long/short split; 1-3 day alt reversal and its conditioned variants; calm-regime
+  momentum; hourly funding and OI (no history).
+
 ## Pair trading, after the Laevitas items
 
 - P3. The pair-rule backtest through strategy.py, three periods, per year, net of costs and carry. After L6. Done when the result file shows the admission verdict and bt_sharpe is written for an admitted pair type.
