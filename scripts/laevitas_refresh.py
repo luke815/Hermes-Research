@@ -5,6 +5,9 @@ is missing, including one deleted after the last run, is requested again and
 written back. No model action is involved.
 
 The routes are the v1 history endpoints from data/laevitas/INVENTORY.md.
+The result goes through write_result under a name the scheduler does not use,
+because the scheduler writes its own record at results/<date>_laevitas_refresh.json
+and that write used to erase the one this script had just made.
 """
 
 import json
@@ -12,8 +15,10 @@ import os
 import sys
 from datetime import datetime, timedelta, timezone
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import rate_budget  # noqa: E402
+from regime_tester.results_io import write_result  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STORE = os.path.join(ROOT, "data", "raw")
@@ -113,12 +118,27 @@ def refill(today, getter=None):
     return filled
 
 
+def record(today, filled, writer=None):
+    """Write the refill result where the scheduler cannot overwrite it.
+
+    The name is l10_refresh, not laevitas_refresh: the scheduler writes its
+    own record at results/<date>_laevitas_refresh.json and used to erase this
+    one. writer is the results writer; the test passes its own so it can fail
+    when the name or the payload is wrong.
+    """
+    writer = writer or write_result
+    return writer(
+        "l10_refresh",
+        {"date": today, "filled": filled, "refilled": sorted(k for k, v in filled.items() if v)},
+        inputs=["data/raw"],
+    )
+
+
 def main():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     result = refill(today)
-    out = os.path.join(ROOT, "results", f"{today}_laevitas_refresh.json")
-    json.dump({"date": today, "filled": result}, open(out, "w"), indent=1)
-    print(json.dumps({"date": today, "gaps": {k: v for k, v in result.items() if v}}))
+    path = record(today, result)
+    print(json.dumps({"date": today, "gaps": {k: v for k, v in result.items() if v}, "wrote": path}))
 
 
 if __name__ == "__main__":
