@@ -25,9 +25,9 @@ class Walk(unittest.TestCase):
         open(os.path.join(spans, "binance_span.csv"), "w").write(
             "symbol,first,last,days\nLUNAUSDT,2021-01-01,2022-05-12,400\nBTCUSDT,2020-01-01,2026-11-01,2000\n")
         open(os.path.join(spans, "bybit_span.csv"), "w").write(
-            "symbol,first,last,days,stopped\nFTTUSDT,2021-01-01,2022-11-14,600,1\n")
+            "symbol,first,last,days,stopped\nFTTUSDT,2021-01-01,2022-11-14,600,1\nBTCUSDT,2020-01-01,2026-11-01,2000,0\n")
         open(os.path.join(spans, "okx_span.csv"), "w").write(
-            "symbol,first,last,days,stopped\nSRM,2021-01-01,2022-12-12,700,1\n")
+            "symbol,first,last,days,stopped\nSRM,2021-01-01,2022-12-12,700,1\nBTC,2020-01-01,2026-11-01,2000,0\n")
         pull.VENUES = (
             ("data/binance_span.csv", "BINANCE", lambda symbol: symbol),
             ("data/bybit_span.csv", "BYBIT", lambda symbol: symbol),
