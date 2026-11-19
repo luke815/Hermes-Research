@@ -84,7 +84,10 @@ def correlation(left, right):
     mask = np.isfinite(left) & np.isfinite(right)
     if int(mask.sum()) < 10:
         return None
-    value = np.corrcoef(left[mask], right[mask])[0, 1]
+    a, b = left[mask], right[mask]
+    if float(a.std()) == 0 or float(b.std()) == 0:
+        return None
+    value = np.corrcoef(a, b)[0, 1]
     return float(value) if np.isfinite(value) else None
 
 
