@@ -16,6 +16,10 @@ directory only by moving the old one aside.
         list files removed, shrunk or rewritten in place since the last
         manifest; exit 1 if any. Files that grew (a puller appended) are fine.
 
+    python3 scripts/data_guard.py record-write data/panel_xs --reason "funding_sum_daemon: 40 names" a.csv b.csv
+        a registered writer declares the files it rewrote; only those manifest entries are
+        refreshed, so the next check does not read a narrower or re-sorted file as a loss.
+
     python3 scripts/data_guard.py swap --src data/panel_xs_new --dst data/panel_xs \\
         --reason "A1: sorted, funded, future bars dropped" [--allow-removed N] [--allow-shrunk N]
         compare the two, refuse if files would disappear or shrink unless the
@@ -167,6 +171,59 @@ def check(rel, root=ROOT, manifests=MANIFESTS):
     return problems
 
 
+def record_write(rel, files, reason, root=ROOT, manifests=MANIFESTS):
+    """A registered writer declares the files it just wrote, so the next check does not read them as a loss.
+
+    Daily pullers rewrite panel files in place (sorted, re-funded), and a narrower funding
+    column makes a file smaller. Those are not hand edits. The writer calls this right after
+    its batch, naming the files and itself; only those manifest entries are refreshed, and the
+    write is logged. Files the writer did not name stay as they were, so a deletion elsewhere
+    in the directory is still caught.
+
+        from data_guard import record_write
+        record_write("data/panel_xs", written_names, "pull_listed_history: 25 names refreshed")
+    """
+    if len((reason or "").strip()) < 10:
+        raise SystemExit("record_write needs a reason naming the writer and what it wrote")
+    previous = _load_manifest(rel, manifests)
+    if previous is None:
+        raise SystemExit(f"{rel}: no manifest; run data_guard.py snapshot {rel} first")
+    path = os.path.join(root, rel)
+    entries = previous["entries"]
+    shrunk = rewritten = grown = added = 0
+    for name in files:
+        name = str(name).replace(os.sep, "/")
+        full = os.path.join(path, name)
+        if not os.path.isfile(full):
+            raise SystemExit(f"record_write: {name} is not a file under {rel}; a writer may not declare a deletion")
+        stat = os.stat(full)
+        entry = {"bytes": stat.st_size, "mtime": int(stat.st_mtime)}
+        if stat.st_size <= HASH_LIMIT:
+            entry["sha256"] = _sha256(full)
+        before = entries.get(name)
+        if before is None:
+            added += 1
+        elif entry["bytes"] < before["bytes"]:
+            shrunk += 1
+        elif entry["bytes"] > before["bytes"]:
+            grown += 1
+        elif entry.get("sha256") != before.get("sha256"):
+            rewritten += 1
+        entries[name] = entry
+    previous["entries"] = entries
+    previous["files"] = len(entries)
+    previous["bytes"] = sum(e["bytes"] for e in entries.values())
+    previous["note"] = f"record_write: {reason}"
+    out = _manifest_path(rel, manifests)
+    tmp = f"{out}.{os.getpid()}.tmp"
+    with open(tmp, "w") as handle:
+        json.dump(previous, handle)
+    os.replace(tmp, out)
+    counts = {"declared": len(files), "added": added, "grown": grown, "shrunk": shrunk, "rewritten": rewritten}
+    _append_change(manifests, {"op": "record_write", "dir": rel, "reason": reason, **counts})
+    return counts
+
+
 def recent_losses(manifests=MANIFESTS, hours=24, now=None):
     """changes.jsonl lines from the last `hours` that recorded removed, shrunk or rewritten files."""
     path = os.path.join(manifests, "changes.jsonl")
@@ -181,6 +238,8 @@ def recent_losses(manifests=MANIFESTS, hours=24, now=None):
                 when = datetime.strptime(row["at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp()
             except (ValueError, KeyError, TypeError):
                 continue
+            if row.get("op") == "record_write":
+                continue  # a declared write by a registered writer is not a loss
             if when >= cutoff and any(row.get(k) for k in ("removed", "shrunk", "rewritten")):
                 out.append(f"{row['at']} {row.get('op')} {row.get('dir')}: removed {row.get('removed', 0)}, "
                            f"shrunk {row.get('shrunk', 0)}, rewritten {row.get('rewritten', 0)}; {row.get('reason', '')}")
@@ -233,7 +292,7 @@ def swap(src, dst, reason, allow_removed=0, allow_shrunk=0, root=ROOT, manifests
                  accept_shrunk=len(d2["shrunk"]), accept_changed=len(d2["rewritten"]))
     else:
         snapshot(dst, root, manifests, note=f"after swap: {reason}")
-    _append_change(manifests, {"op": "swap", **record["swap"], **{k: record["diff_counts"][k] for k in ("removed", "shrunk", "rewritten", "added")}})
+    _append_change(manifests, {"op": "swap", "dir": dst, **record["swap"], **{k: record["diff_counts"][k] for k in ("removed", "shrunk", "rewritten", "added")}})
     return record
 
 
@@ -244,6 +303,8 @@ def main(argv):
     s.add_argument("--accept-removed", type=int, default=0); s.add_argument("--accept-shrunk", type=int, default=0)
     s.add_argument("--accept-changed", type=int, default=0)
     c = sub.add_parser("check"); c.add_argument("dir")
+    rw = sub.add_parser("record-write"); rw.add_argument("dir"); rw.add_argument("--reason", required=True)
+    rw.add_argument("files", nargs="+")
     w = sub.add_parser("swap"); w.add_argument("--src", required=True); w.add_argument("--dst", required=True)
     w.add_argument("--reason", required=True); w.add_argument("--allow-removed", type=int, default=0)
     w.add_argument("--allow-shrunk", type=int, default=0)
@@ -252,6 +313,9 @@ def main(argv):
         rec = snapshot(args.dir, note=args.reason, accept_removed=args.accept_removed, accept_shrunk=args.accept_shrunk,
                        accept_changed=args.accept_changed)
         print(json.dumps({k: v for k, v in rec.items() if k != "entries"}))
+        return 0
+    if args.op == "record-write":
+        print(json.dumps(record_write(args.dir, args.files, args.reason)))
         return 0
     if args.op == "check":
         problems = check(args.dir)

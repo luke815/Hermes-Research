@@ -397,6 +397,23 @@ class DataGuard(unittest.TestCase):
         self.assertIn("removed 1", losses[0])
         self.assertTrue(any(n.endswith(".prev") for n in os.listdir(self.manifests)))
 
+    def test_record_write_clears_a_declared_rewrite_but_not_a_deletion(self):
+        data_guard.snapshot("data/panel", self.root, self.manifests)
+        write(os.path.join(self.panel, "a.csv"), "date,close\n2026-01-01,1\n")  # narrower: shrank
+        write(os.path.join(self.panel, "b.csv"), "date,close\n2026-01-02,2\n2026-01-01,1\n")  # re-sorted: rewritten
+        self.assertEqual(len(data_guard.check("data/panel", self.root, self.manifests)), 2)
+        with self.assertRaises(SystemExit):
+            data_guard.record_write("data/panel", ["a.csv"], "x", self.root, self.manifests)
+        counts = data_guard.record_write("data/panel", ["a.csv", "b.csv"], "pull_listed_history: 2 names refreshed",
+                                         self.root, self.manifests)
+        self.assertEqual((counts["shrunk"], counts["rewritten"]), (1, 1))
+        self.assertEqual(data_guard.check("data/panel", self.root, self.manifests), [])
+        self.assertEqual(data_guard.recent_losses(self.manifests), [])  # a declared write is not a loss
+        os.remove(os.path.join(self.panel, "c.csv"))
+        with self.assertRaises(SystemExit):  # a writer may not declare a deletion
+            data_guard.record_write("data/panel", ["c.csv"], "pull_listed_history: c gone", self.root, self.manifests)
+        self.assertEqual(len(data_guard.check("data/panel", self.root, self.manifests)), 1)
+
     def test_swap_refuses_removals_shrinkage_empty_source_nesting_and_keeps_previous(self):
         new = os.path.join(self.root, "data", "panel_new")
         for name in ("a.csv", "b.csv", "sub/d.csv"):
