@@ -33,19 +33,23 @@ def pending():
 def cycle(ctx):
     left = pending()
     if not left:
-        return {"remaining": 0}
+        # A finished walk still wrote the sums. Record it, or the health check
+        # keeps reporting the panel as rewritten by a puller that did nothing.
+        return _record(0, {"remaining": 0})
     exchange, symbol = left[0]
     try:
         path, rows = funding_sum.write_sum(exchange, symbol)
     except Exception as exc:  # noqa: BLE001
         print(f"skip {exchange} {symbol}: {exc}", flush=True)
         return {"skipped": 1, "remaining": len(left) - 1}
-    return {"exchange": exchange, "symbol": symbol, "rows": rows, "remaining": len(left) - 1} and _record(1) or {"exchange": exchange, "symbol": symbol, "rows": rows, "remaining": len(left) - 1}
+    return _record(1, {"exchange": exchange, "symbol": symbol, "rows": rows,
+                       "remaining": len(left) - 1})
 
 
-def _record(written):
+def _record(written, result):
     import data_guard
     data_guard.record_write("data/panel_xs", written, "funding_sum: daily funding sum")
+    return result
 
 
 if __name__ == "__main__":
