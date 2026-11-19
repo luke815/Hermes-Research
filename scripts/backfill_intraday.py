@@ -47,7 +47,7 @@ def fetch(base, start, end, now):
     url = ("https://fapi.binance.com/fapi/v1/klines?symbol=" + quote(base + "USDT", safe="")
            + f"&interval=1h&startTime={start * 1000}&endTime={end * 1000}&limit=200")
     try:
-        raw = rate_budget.get(url, timeout=30, allowance="shared")
+        raw = rate_budget.get(url, timeout=30, allowance="intraday")
     except BudgetStop:
         raise
     except Exception as exc:  # noqa: BLE001 — a bad name is skipped, not fatal

@@ -31,7 +31,8 @@ def _take(now, allowance):
         except json.JSONDecodeError:
             state = {}
         stamps = state.setdefault(allowance, [])
-        cap = {"live": RESERVED_PER_MINUTE, "laevitas": LAEVITAS_PER_MINUTE}.get(
+        cap = {"live": RESERVED_PER_MINUTE, "laevitas": LAEVITAS_PER_MINUTE,
+               "intraday": RESERVED_PER_MINUTE}.get(
             allowance, BUDGET_PER_MINUTE)
         window = [t for t in stamps if now - t < 60]
         wait = 0.0
