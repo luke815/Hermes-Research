@@ -1,0 +1,66 @@
+A: share of days on 0.63; on today: True; runs of on-days: 61
+B: share of days on 0.16; on today: False; runs of on-days: 80
+froth: share of days on 0.07; on today: False; runs of on-days: 27
+
+== BTC return cells (excess vs all days with a reading) ==
+[A alt OI > BTC OI]
+h=10: tra ex +0.09% t=0.2 n=8 net=-0.34% | val ex -0.83% t=-1.5 n=6 net=+0.93% | tes ex -0.30% t=-0.4 n=4 net=+0.26% -> insufficient: 14 independent episodes in train+validation (bar 20)
+h=20: tra ex +0.59% t=0.5 n=5 net=-0.17% | val ex -1.75% t=-1.8 n=4 net=+2.05% | tes ex -1.07% t=-0.6 n=3 net=+1.08% -> insufficient: 9 independent episodes in train+validation (bar 20)
+h=30: tra ex +1.41% t=0.9 n=4 net=+0.32% | val ex -3.01% t=-2.0 n=4 net=+3.48% | tes ex -1.16% t=-0.5 n=2 net=+1.20% -> insufficient: 8 independent episodes in train+validation (bar 20)
+W=10: tra mdd -0.4% t=-1.6 crash x1.11 (36/421) fa=0.58 n=8 | val mdd +0.0% t=0.1 crash x0.80 (23/327) fa=0.46 n=6 | tes mdd -0.1% t=-0.2 crash x1.04 (21/203) fa=0.41 n=4 -> insufficient: 14 independent episodes in train+validation (bar 20)
+W=20: tra mdd -0.5% t=-1.4 crash x1.14 (84/421) fa=0.58 n=5 | val mdd -0.0% t=-0.0 crash x0.88 (50/327) fa=0.46 n=4 | tes mdd -0.2% t=-0.2 crash x0.94 (36/193) fa=0.44 n=3 -> insufficient: 9 independent episodes in train+validation (bar 20)
+W=30: tra mdd -0.5% t=-0.9 crash x1.08 (114/421) fa=0.58 n=4 | val mdd -0.1% t=-0.2 crash x0.98 (73/327) fa=0.46 n=4 | tes mdd -0.4% t=-0.2 crash x0.98 (50/183) fa=0.46 n=2 -> insufficient: 8 independent episodes in train+validation (bar 20)
+[B bigalt funding > 1bp]
+h=10: tra ex -0.55% t=-0.4 n=17 net=+1.53% | val ex +3.27% t=2.8 n=1 net=+2.72% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -2.83% t=-1.3 n=11 net=+4.71% | val ex +1.45% t=0.5 n=1 net=+0.52% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -4.48% t=-1.4 n=9 net=+7.11% | val ex +0.23% t=0.1 n=1 net=-1.00% | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=10: tra mdd -1.4% t=-1.9 crash x1.55 (96/373) fa=0.49 n=17 | val mdd +2.0% t=3.4 crash x0.00 (0/22) fa=0.59 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd -2.6% t=-2.1 crash x1.38 (153/373) fa=0.49 n=11 | val mdd +3.2% t=3.4 crash x0.00 (0/22) fa=0.59 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -3.6% t=-2.0 crash x1.38 (196/373) fa=0.49 n=9 | val mdd +3.3% t=2.5 crash x0.00 (0/22) fa=0.59 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+[froth A and B]
+h=10: tra ex +1.42% t=0.7 n=7 net=+0.62% | val ex +3.27% t=2.8 n=1 net=+2.72% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=20: tra ex -0.91% t=-0.3 n=5 net=+2.12% | val ex +1.45% t=0.5 n=1 net=+0.52% | tes - -> insufficient: a period has fewer than 3 flagged bars
+h=30: tra ex -3.73% t=-1.0 n=5 net=+5.38% | val ex +0.23% t=0.1 n=1 net=-1.00% | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=10: tra mdd -0.6% t=-0.6 crash x1.45 (10/89) fa=0.52 n=7 | val mdd +2.0% t=3.4 crash x0.00 (0/22) fa=0.59 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=20: tra mdd -0.8% t=-0.7 crash x1.34 (21/89) fa=0.52 n=5 | val mdd +3.2% t=3.4 crash x0.00 (0/22) fa=0.59 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+W=30: tra mdd -1.3% t=-0.8 crash x1.39 (31/89) fa=0.52 n=5 | val mdd +3.3% t=2.5 crash x0.00 (0/22) fa=0.59 n=1 | tes - -> insufficient: a period has fewer than 3 flagged bars
+[alt_oi_ratio top quintile]
+h=10: tra ex +0.30% t=0.2 n=4 net=-0.40% | val ex -1.28% t=-1.2 n=3 net=+1.42% | tes ex -1.61% t=-1.2 n=3 net=+1.59% -> insufficient: 7 independent episodes in train+validation (bar 20)
+h=20: tra ex -2.12% t=-0.8 n=3 net=+3.02% | val ex -3.09% t=-1.8 n=2 net=+3.41% | tes ex -4.02% t=-1.7 n=3 net=+4.13% -> insufficient: 5 independent episodes in train+validation (bar 20)
+h=30: tra ex -1.23% t=-0.2 n=2 net=+2.56% | val ex -5.21% t=-2.1 n=2 net=+5.70% | tes ex -7.54% t=-2.4 n=3 net=+7.86% -> insufficient: 4 independent episodes in train+validation (bar 20)
+W=10: tra mdd -0.8% t=-1.0 crash x1.49 (9/94) fa=0.47 n=4 | val mdd +0.2% t=0.3 crash x0.47 (5/122) fa=0.39 n=3 | tes mdd +1.0% t=1.0 crash x0.50 (1/20) fa=0.00 n=3 -> insufficient: 7 independent episodes in train+validation (bar 20)
+W=20: tra mdd -1.3% t=-1.4 crash x1.41 (21/94) fa=0.47 n=3 | val mdd +0.3% t=0.3 crash x0.52 (11/122) fa=0.39 n=2 | tes mdd +1.1% t=0.7 crash x0.50 (2/20) fa=0.00 n=3 -> insufficient: 5 independent episodes in train+validation (bar 20)
+W=30: tra mdd -2.5% t=-1.8 crash x1.75 (38/94) fa=0.47 n=2 | val mdd +0.5% t=0.5 crash x0.47 (13/122) fa=0.39 n=2 | tes mdd -1.1% t=-0.5 crash x1.08 (6/20) fa=0.00 n=3 -> insufficient: 4 independent episodes in train+validation (bar 20)
+[bigalt_funding top quintile]
+h=10: tra ex +0.14% t=0.1 n=20 net=-0.70% | val ex +0.03% t=0.0 n=7 net=-0.32% | tes ex -0.47% t=-0.3 n=8 net=+0.52% -> rejected: excess sign differs across periods
+h=20: tra ex +0.34% t=0.2 n=13 net=-1.14% | val ex -0.41% t=-0.3 n=5 net=+0.79% | tes ex +1.94% t=0.8 n=5 net=+1.57% -> insufficient: 18 independent episodes in train+validation (bar 20)
+h=30: tra ex +1.34% t=0.5 n=8 net=-0.77% | val ex -1.49% t=-0.6 n=3 net=+2.07% | tes ex +3.16% t=1.2 n=3 net=+2.65% -> insufficient: 11 independent episodes in train+validation (bar 20)
+W=10: tra mdd +0.1% t=0.2 crash x1.12 (84/448) fa=0.57 n=20 | val mdd +1.3% t=2.3 crash x0.31 (2/73) fa=0.56 n=7 | tes mdd +0.3% t=0.3 crash x0.82 (5/61) fa=0.38 n=8 -> rejected: validation t 2.28 on mdd below 2.5
+W=20: tra mdd +0.2% t=0.2 crash x1.02 (139/448) fa=0.57 n=13 | val mdd +1.9% t=2.3 crash x0.16 (2/73) fa=0.56 n=5 | tes mdd +2.0% t=1.5 crash x0.48 (5/52) fa=0.44 n=5 -> insufficient: 18 independent episodes in train+validation (bar 20)
+W=30: tra mdd +0.8% t=0.8 crash x0.97 (171/448) fa=0.57 n=8 | val mdd +2.3% t=2.2 crash x0.12 (2/73) fa=0.56 n=3 | tes mdd +2.5% t=2.0 crash x0.51 (7/49) fa=0.47 n=3 -> insufficient: 11 independent episodes in train+validation (bar 20)
+
+== froth AND funding top quintile (both conditions as the owner described) ==
+h=10: tra ex +1.42% t=1.5 n=8 net=+0.88% lift +1.33 | val ex -0.01% t=-0.0 n=6 net=+0.18% lift +0.82 | tes ex -2.22% t=-1.3 n=9 net=+2.26% lift -1.93 -> insufficient: 14 independent episodes in train+validation (bar 20)
+h=20: tra ex +2.26% t=1.2 n=6 net=+1.28% lift +1.66 | val ex -0.87% t=-0.5 n=5 net=+1.29% lift +0.88 | tes ex -2.23% t=-1.0 n=5 net=+2.35% lift -1.16 -> insufficient: 11 independent episodes in train+validation (bar 20)
+h=30: tra ex +3.16% t=1.1 n=5 net=+1.76% lift +1.75 | val ex -2.01% t=-0.8 n=3 net=+2.63% lift +1.01 | tes ex -0.66% t=-0.2 n=4 net=+0.89% lift +0.50 -> insufficient: 8 independent episodes in train+validation (bar 20)
+W=10: tra mdd +0.1% t=0.2 crash x1.00 (19/247) fa=0.64 n=8 | val mdd +1.2% t=2.0 crash x0.35 (2/66) fa=0.55 n=6 | tes mdd -0.3% t=-0.2 crash x1.14 (5/44) fa=0.25 n=9 -> insufficient: 14 independent episodes in train+validation (bar 20)
+W=20: tra mdd +0.1% t=0.2 crash x1.01 (44/247) fa=0.64 n=6 | val mdd +1.8% t=2.0 crash x0.18 (2/66) fa=0.55 n=5 | tes mdd +1.0% t=0.6 crash x0.72 (5/35) fa=0.31 n=5 -> insufficient: 11 independent episodes in train+validation (bar 20)
+W=30: tra mdd +0.3% t=0.3 crash x0.97 (60/247) fa=0.64 n=5 | val mdd +2.1% t=2.0 crash x0.13 (2/66) fa=0.55 n=3 | tes mdd +1.8% t=1.2 crash x0.56 (5/32) fa=0.34 n=4 -> insufficient: 8 independent episodes in train+validation (bar 20)
+
+== alts vs BTC (alt basket / BTC, forward relative return; excess vs all days) ==
+[A] alts vs BTC
+h=10: tra ex -0.62% t=-1.4 n=8 | val ex -0.16% t=-0.3 n=6 | tes ex -0.11% t=-0.2 n=4
+h=20: tra ex -1.26% t=-1.6 n=5 | val ex -0.20% t=-0.2 n=4 | tes ex -0.30% t=-0.4 n=3
+h=30: tra ex -1.19% t=-1.1 n=4 | val ex -0.73% t=-0.6 n=4 | tes ex -0.26% t=-0.2 n=2
+[B] alts vs BTC
+h=10: tra ex +4.42% t=3.5 n=17 | val ex +6.93% t=1.0 n=1 | tes -
+h=20: tra ex +8.34% t=2.7 n=11 | val ex +6.94% t=0.6 n=1 | tes -
+h=30: tra ex +12.27% t=2.2 n=9 | val ex +2.33% t=0.4 n=1 | tes -
+[froth] alts vs BTC
+h=10: tra ex -0.73% t=-0.6 n=7 | val ex +6.93% t=1.0 n=1 | tes -
+h=20: tra ex +0.20% t=0.1 n=5 | val ex +6.94% t=0.6 n=1 | tes -
+h=30: tra ex -1.46% t=-0.5 n=5 | val ex +2.33% t=0.4 n=1 | tes -
+[A and funding top quintile] alts vs BTC
+h=10: tra ex +0.11% t=0.2 n=8 | val ex +1.51% t=0.8 n=6 | tes ex -0.26% t=-0.4 n=9
+h=20: tra ex -0.07% t=-0.1 n=6 | val ex +2.11% t=0.7 n=5 | tes ex +1.38% t=0.7 n=5
+h=30: tra ex +0.04% t=0.0 n=5 | val ex +1.50% t=0.6 n=3 | tes ex +3.11% t=0.7 n=4
