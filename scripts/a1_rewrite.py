@@ -29,6 +29,7 @@ import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from regime_tester.panel_integrity import base_of, clean_frame  # noqa: E402
+from regime_tester.results_io import write_result  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
@@ -107,9 +108,11 @@ def main():
                  "settlements. A name with no sum file has its funding column removed "
                  "rather than keeping the last print. Today's open bar is dropped."),
     }
-    dest = os.path.join(ROOT, "results", f"{TODAY}_a1_integrity.json")
-    json.dump(out, open(dest, "w"), indent=1)
+    # The name list is the proof of which files were funded. It is also large,
+    # and the provenance stamp hashes the whole payload, so it stays in the file.
+    path = write_result("a1_integrity", out, inputs=["data/panel_xs", "data/funding_sum"])
     print(json.dumps({k: v for k, v in out.items() if k != "funded_names"}))
+    print(path)
 
 
 if __name__ == "__main__":
