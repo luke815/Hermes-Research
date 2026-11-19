@@ -42,6 +42,15 @@ class OneVenuePerCoin(unittest.TestCase):
             self.assertEqual(kept["SOL"], "bybit_SOLUSDT")
             self.assertEqual(len([c for c in kept if c == "SOL"]), 1)
 
+    def test_the_page_prints_the_universe_count_from_the_key(self):
+        page = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            "dashboard", "index.html")
+        text = open(page).read()
+        # The lead line is what the calculator shows. It counts the names in
+        # the key, so a key with the universe count is what the page displays.
+        self.assertIn("syms.length + ' names from the '", text)
+        self.assertIn("d.pair_inputs", text)
+
     def test_a_coin_below_the_floor_is_absent_and_btc_is_kept(self):
         import tempfile
         with tempfile.TemporaryDirectory() as panel:
