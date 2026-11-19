@@ -238,6 +238,28 @@ def health(now):
     return {"problems": problems}
 
 
+def post_if_changed(text, min_gap_sec=6 * 3600):
+    """Post a health text only when it differs from the last post, or after min_gap_sec.
+
+    The same unchanged list of audit violations posted every hour trains the reader
+    to ignore the channel. ops/health_last.json remembers what was posted and when.
+    """
+    import hashlib
+    state_path = os.path.join(ROOT, "ops", "health_last.json")
+    digest = hashlib.sha256(text.encode()).hexdigest()
+    try:
+        last = json.load(open(state_path))
+    except (OSError, json.JSONDecodeError):
+        last = {}
+    now = time.time()
+    if last.get("digest") == digest and now - float(last.get("ts", 0)) < min_gap_sec:
+        return {"posted": False, "reason": "unchanged since last post"}
+    result = post(text)
+    with open(state_path, "w") as handle:
+        json.dump({"digest": digest, "ts": now, "text": text[:2000]}, handle)
+    return result
+
+
 def post(text):
     env = dict(line.split("=", 1) for line in open("/opt/data/.env") if "=" in line)
     token = env.get("TELEGRAM_BOT_TOKEN", "").strip().strip('"')
@@ -258,8 +280,12 @@ def cycle(ctx):
             continue
         if job["name"] == "health":
             result = health(now)
+            # The health check is a report, not a script: it has run cleanly whenever it
+            # returned. Without ok/exit, already_ran() treated every health slot as failed
+            # and re-fired it every minute (2026-11-19: the same post 20 times an hour).
+            result["ok"], result["exit"] = True, 0
             if result["problems"]:
-                result["post"] = post("health: " + "; ".join(result["problems"]))
+                result["post"] = post_if_changed("health: " + "; ".join(result["problems"]))
             # The stall line is the health check's record that it ran. The
             # hourly job reads the results file and does not run the script, so
             # the line is written here, where the slot actually fires.
