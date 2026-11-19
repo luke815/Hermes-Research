@@ -113,6 +113,8 @@ def build(panel, sectors):
             break
     if dates is None:
         raise SystemExit("BTC and ETH are both absent from the panel")
+    if len(dates) > WINDOW:
+        raise SystemExit(f"the date list is {len(dates)}, above the {WINDOW} day window")
     names = {}
     for coin in sorted(venues):
         frame = frames[coin]
