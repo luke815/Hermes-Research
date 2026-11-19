@@ -87,7 +87,10 @@ def done(path, today):
         gap = (datetime.strptime(today, "%Y-%m-%d").date()
                - datetime.strptime(seen, "%Y-%m-%d").date()).days
         return gap < RETRY_AFTER_DAYS
-    return bool(body.get("items"))
+    # A name the venue has no history for comes back with zero items and a page
+    # count. That is a saved answer, not a missing file, so it is done. Treating
+    # an empty list as unsaved refetches the same name on every cycle.
+    return "items" in body
 
 
 def pending(today):

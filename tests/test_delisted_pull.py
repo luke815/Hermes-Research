@@ -65,6 +65,14 @@ class Walk(unittest.TestCase):
         self.assertEqual(pull.pending("2026-11-19")[0]["symbol"], "FTTUSDT")
         self.assertTrue(any(row["symbol"] == "LUNAUSDT" for row in pull.pending("2026-11-26")))
 
+    def test_a_saved_empty_history_is_not_fetched_again(self):
+        def empty(url, headers, timeout, allowance):
+            return {"meta": {"total_pages": 1, "items": 0}, "items": []}
+
+        first = pull.cycle(None, empty)
+        self.assertEqual(first["rows"], 0)
+        self.assertNotIn("LUNAUSDT", [row["symbol"] for row in pull.pending("2026-11-19")])
+
 
 if __name__ == "__main__":
     unittest.main()
