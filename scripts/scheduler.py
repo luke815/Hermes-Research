@@ -67,14 +67,28 @@ def due(job, now):
     return now.strftime("%H") == hour and now.strftime("%M") >= minute
 
 
+def record_path(job, now):
+    """The results file for this slot.
+
+    An hourly job fires once an hour, so its record is named by the hour.
+    One file per day would make the 01:15 run count as the 02:15 run, and the
+    board the live flag reads would then sit an hour behind until tomorrow.
+    """
+    if job["at"].startswith(":"):
+        return os.path.join(RESULTS, f"{now.strftime('%Y-%m-%dT%H')}_{job['name']}.json")
+    return os.path.join(RESULTS, f"{now.strftime('%Y-%m-%d')}_{job['name']}.json")
+
+
 def already_ran(job, now):
-    """True only when today's slot finished cleanly.
+    """True only when this slot finished cleanly.
 
     A script that exits non-zero, times out or is missing still writes a
     record, and treating that record as done blocks the slot for the rest of
     the day. The next cycle then retries it instead of waiting until tomorrow.
+    An hourly job's record is read from its own hour, so a clean run at
+    01:15 does not close 02:15.
     """
-    path = os.path.join(RESULTS, f"{now.strftime('%Y-%m-%d')}_{job['name']}.json")
+    path = record_path(job, now)
     if not os.path.exists(path):
         return False
     record = json.loads(open(path).read())
@@ -85,7 +99,7 @@ def already_ran(job, now):
 
 
 def record(job, now, result):
-    path = os.path.join(RESULTS, f"{now.strftime('%Y-%m-%d')}_{job['name']}.json")
+    path = record_path(job, now)
     payload = {"job": job["name"], "slot": slot_key(job, now),
                "ran_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "result": result}
     tmp = path + ".tmp"
@@ -109,7 +123,7 @@ def failed_jobs(now):
     for job in JOBS:
         if job["script"] is None:
             continue
-        path = os.path.join(RESULTS, f"{now.strftime('%Y-%m-%d')}_{job['name']}.json")
+        path = record_path(job, now)
         try:
             record_ = json.loads(open(path).read())
             ran_at = datetime.fromisoformat(record_["ran_at"].replace("Z", "+00:00"))

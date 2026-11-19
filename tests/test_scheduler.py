@@ -43,6 +43,16 @@ class FailedJob(unittest.TestCase):
         saved = json.load(open(os.path.join(self.tmp.name, "2026-11-18_laevitas_refresh.json")))
         self.assertEqual(saved["result"]["exit"], 0)
 
+    def test_an_hourly_run_does_not_close_the_next_hour(self):
+        job = {"name": "intraday_backfill", "at": ":15", "script": "scripts/backfill_intraday.py"}
+        first = datetime(2026, 11, 19, 1, 15, tzinfo=timezone.utc)
+        scheduler.record(job, first, {"exit": 0, "ok": True, "tail": ""})
+        nxt = datetime(2026, 11, 19, 2, 15, tzinfo=timezone.utc)
+        self.assertTrue(scheduler.already_ran(job, first))
+        self.assertFalse(scheduler.already_ran(job, nxt))
+        self.assertTrue(os.path.exists(
+            os.path.join(self.tmp.name, "2026-11-19T01_intraday_backfill.json")))
+
 
 if __name__ == "__main__":
     unittest.main()
