@@ -63,7 +63,7 @@ def assert_daily_funding_scale(values) -> float:
     if not DAILY_MEDIAN_LOW <= median <= DAILY_MEDIAN_HIGH:
         raise ValueError(
             f"daily funding median {median} is outside "
-            f"{DAILY_MEDIAN_LOW} to {DAILY_MEDIAN_HIGH}")
+            f"{DAILY_MEDIAN_LOW}..{DAILY_MEDIAN_HIGH}")
     return median
 
 
