@@ -131,6 +131,25 @@ class WorkList(unittest.TestCase):
         self.assertIn("cells per hour 5400", line)
         self.assertIn("cells scored", line)
 
+    def test_hourly_rate_reads_row_stamps_not_the_file_mtime(self):
+        # A file last touched yesterday can hold rows written this hour, and a
+        # file touched today holds yesterday's rows. The mtime counts neither
+        # correctly. The stamp on the row is the clock.
+        import pandas as pd
+        with tempfile.TemporaryDirectory() as tmp:
+            sweep_xs.OUT = tmp
+            now = 1_700_000_000.0
+            rows = [
+                {"id": "a", "written_at": now - 100},
+                {"id": "b", "written_at": now - 7200},
+                {"id": "c", "written_at": ""},
+            ]
+            pd.DataFrame(rows).to_csv(
+                os.path.join(tmp, "2026-11-19_xs_vec.csv"), index=False)
+            old = now - 90000
+            os.utime(os.path.join(tmp, "2026-11-19_xs_vec.csv"), (old, old))
+            self.assertEqual(sweep_xs.cells_this_hour(now=now), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

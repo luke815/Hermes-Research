@@ -20,6 +20,7 @@ Usage: python3 scripts/sweep_xs.py
 
 import hashlib
 import json
+import csv
 import os
 import sys
 import time
@@ -450,6 +451,14 @@ def append_rows(rows, already=None):
         other = set(prior.loc[prior["id"].isin(known - set(already or [])), "id"])
         kept = prior[~prior["id"].isin(other)]
         fresh = pd.concat([kept, fresh[~fresh["id"].isin(set(kept["id"]))]], ignore_index=True)
+    # Stamp the rows this call is adding. Rows already on disk keep the stamp
+    # they were written with, so a rewrite of the file does not make yesterday's
+    # cells look like this hour's work.
+    fresh = fresh.copy()
+    if "written_at" not in fresh.columns:
+        fresh["written_at"] = pd.NA
+    added = ~fresh["id"].isin(set(already or []))
+    fresh.loc[added, "written_at"] = time.time()
     tmp = path + ".tmp"
     fresh.to_csv(tmp, index=False)
     os.replace(tmp, path)
@@ -486,22 +495,32 @@ def panel_spans(columns):
     return {column: spans[column] for column in columns if column in spans}
 
 
-def cells_this_hour():
-    """Cells written to this sweep's files in the last hour, from file mtimes.
+def cells_this_hour(now=None):
+    """Cells written to this sweep's files in the last hour, from row stamps.
 
     Counting from the process's own memory reads zero after every restart, so
-    the rate is read from the files instead.
+    the rate is read from the files instead. The file's own mtime is the wrong
+    clock: a file last touched yesterday still holds rows written in the last
+    hour, and counting every row of a file touched today counts yesterday's
+    work as this hour's. Each row is stamped when it is written, and only rows
+    whose stamp is inside the window count.
     """
-    cutoff = time.time() - 3600
+    cutoff = (now if now is not None else time.time()) - 3600
     total = 0
     for name in os.listdir(OUT):
         if not name.endswith("_xs_vec.csv"):
             continue
-        path = os.path.join(OUT, name)
-        if os.path.getmtime(path) < cutoff:
-            continue
-        with open(path) as handle:
-            total += max(sum(1 for _ in handle) - 1, 0)
+        with open(os.path.join(OUT, name)) as handle:
+            reader = csv.DictReader(handle)
+            if "written_at" not in (reader.fieldnames or []):
+                continue
+            for row in reader:
+                try:
+                    stamped = float(row["written_at"])
+                except (TypeError, ValueError):
+                    continue
+                if stamped >= cutoff:
+                    total += 1
     return total
 
 
