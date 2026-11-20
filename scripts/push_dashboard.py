@@ -37,7 +37,7 @@ def token() -> str:
 def main() -> None:
     message = os.environ["COMMIT_MSG"]
     secret = token()
-    authed = f"https://x-access-token:{secret}@github.com/luke815/Hermes-Dashboard-1.git"
+    authed = "https://x-access-token:" + secret + "@github.com/luke815/Hermes-Dashboard-1.git"
     git("-c", "user.name=Hermes", "-c", "user.email=hermes@local", "add", "--", "data.json")
     staged = git("diff", "--cached", "--name-only").stdout.strip().splitlines()
     if staged != ["data.json"]:
