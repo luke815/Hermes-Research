@@ -103,7 +103,7 @@ def score_name(close, funding, oi, flag, horizon):
 
 def cell_stats(flag, net, horizon):
     """Flagged-minus-rest spread per period, with the independent t-stat."""
-    frame = pd.DataFrame({"flag": flag, "net": net}).dropna()
+    frame = pd.DataFrame({"flag": flag.astype(bool), "net": net}).dropna()
     frame["period"] = assign_period(frame.index)
     frame = frame.dropna(subset=["period"])
     out = {}
@@ -129,7 +129,7 @@ def cell_stats(flag, net, horizon):
 
 
 def year_split(flag, net, horizon):
-    frame = pd.DataFrame({"flag": flag, "net": net}).dropna()
+    frame = pd.DataFrame({"flag": flag.astype(bool), "net": net}).dropna()
     out = {}
     for year, part in frame.groupby(frame.index.year):
         stride = part.iloc[::horizon]
