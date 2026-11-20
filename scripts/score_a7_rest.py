@@ -256,6 +256,15 @@ def score_crowding():
     label = top_event(basket, 30, 0.20).where(candidate_mask(basket, "top"))
     per_name = {}
     flags = {}
+    store = os.path.join(ROOT, "data", "laevitas", "market")
+    missing = [name for name in ALT_NAMES
+               if not any(f.startswith(f"derivs_summary_{name}_")
+                          for f in os.listdir(store))]
+    if missing:
+        return {"blocked": "data/laevitas/market has no derivs_summary for "
+                + ", ".join(missing)
+                + "; the market_backfill daemon has not pulled them",
+                "per_name": per_name, "pooled": {}, "survivor_biased": True}
     for name in ALT_NAMES:
         summary = market(f"derivs_summary_{name}_")
         oi = summary["open_interest"].astype(float)
@@ -384,7 +393,7 @@ def main():
         "lookahead_passed": payload["lookahead_passed"],
         "a7_2_cells": len(derivatives),
         "a7_2_kept": len(kept),
-        "a7_3": {k: v["verdict"] for k, v in crowding["pooled"].items()},
+        "a7_3": crowding.get("blocked") or {k: v["verdict"] for k, v in crowding["pooled"].items()},
         "a7_4": [c["verdict"] for c in funding],
     }))
 
