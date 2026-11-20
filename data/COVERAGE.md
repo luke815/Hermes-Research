@@ -7,3 +7,5 @@ The cause is not a code change and not a venue change. The Coinalyze file holds 
 What remains open is whether the vendor widened what it counts as a liquidation during 2026. The file cannot show that, because it holds one symbol and no venue field. The F4 results rest on this series and are marked void until that is settled.
 
 Computed by scripts/liq_break.py, scripts/liq_break_month.py, scripts/liq_sides.py, scripts/liq_source.py and scripts/liq_step.py.
+
+Funding units. Dashboard funding columns are percent per 8h, where 0.01 is 1 bp. The Laevitas perp_funding pull is the same scale on daily bars and one hundredth of it on hourly bars: the saved daily median is 0.00704 and the saved hourly median is 0.0000386. scripts/fetch_laevitas.py refuses a daily pull whose median is outside 0.001 to 0.05.
