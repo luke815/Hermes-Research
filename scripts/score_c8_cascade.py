@@ -249,7 +249,7 @@ def main():
                         "periods": stats, "years": year_split(aligned, net, horizon),
                     })
                 per_name[pct].append(pd.DataFrame({
-                    "flag": aligned, "net": net, "asset": asset}))
+                    "flag": aligned.astype(bool), "net": net, "asset": asset}))
     pooled = {}
     for pct, rows in per_name.items():
         for horizon in HORIZONS:
