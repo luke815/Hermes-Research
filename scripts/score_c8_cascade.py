@@ -82,6 +82,11 @@ def cascade_flag(long_side, short_side, pct):
     return trailing.gt(bar) & ready
 
 
+def as_flag(flag):
+    """A missing flag is not a fire. astype(bool) turns NaN into True."""
+    return flag.fillna(False).astype(bool)
+
+
 def indep_t(flagged, rest):
     """Unequal-variance t on the independent sample. Empty sides stay absent."""
     flagged = flagged.dropna()
@@ -103,7 +108,7 @@ def score_name(close, funding, oi, flag, horizon):
 
 def cell_stats(flag, net, horizon):
     """Flagged-minus-rest spread per period, with the independent t-stat."""
-    frame = pd.DataFrame({"flag": flag.astype(bool), "net": net}).dropna()
+    frame = pd.DataFrame({"flag": as_flag(flag), "net": net}).dropna()
     frame["period"] = assign_period(frame.index)
     frame = frame.dropna(subset=["period"])
     out = {}
@@ -129,7 +134,7 @@ def cell_stats(flag, net, horizon):
 
 
 def year_split(flag, net, horizon):
-    frame = pd.DataFrame({"flag": flag.astype(bool), "net": net}).dropna()
+    frame = pd.DataFrame({"flag": as_flag(flag), "net": net}).dropna()
     out = {}
     for year, part in frame.groupby(frame.index.year):
         stride = part.iloc[::horizon]
@@ -233,11 +238,11 @@ def main():
     funding = load(FUNDING, ("c",))
     passed = lookahead_holds(liquidations)
     cells = []
-    per_name = {pct: [] for pct in (PRIMARY,) + NEIGHBOURS}
+    per_name = {}
     for asset, liq in liquidations.items():
         close = closes[asset]["c"]
-        fund = funding.get(asset, pd.DataFrame({"c": []}))["c"] if asset in funding else None
-        book = oi.get(asset, pd.DataFrame({"c": []}))["c"] if asset in oi else None
+        fund = funding[asset]["c"] if asset in funding else None
+        book = oi[asset]["c"] if asset in oi else None
         for pct in (PRIMARY,) + NEIGHBOURS:
             flag = cascade_flag(liq["l"], liq["s"], pct)
             for horizon in HORIZONS:
@@ -248,12 +253,9 @@ def main():
                         "asset": "BTC", "pct": pct, "horizon": horizon,
                         "periods": stats, "years": year_split(aligned, net, horizon),
                     })
-                per_name[pct].append(pd.DataFrame({
-                    "flag": aligned.astype(bool), "net": net, "asset": asset}))
-    pooled = {}
-    for pct, rows in per_name.items():
-        for horizon in HORIZONS:
-            pooled[(pct, horizon)] = pooled_day(rows, horizon)
+                per_name.setdefault((pct, horizon), []).append(pd.DataFrame({
+                    "flag": as_flag(aligned), "net": net, "asset": asset}))
+    pooled = {key: pooled_day(rows, key[1]) for key, rows in per_name.items()}
     btc_primary = [c for c in cells if c["pct"] == PRIMARY]
     verdict, reason = verdict_of(btc_primary, pooled[(PRIMARY, 1)])
     payload = {

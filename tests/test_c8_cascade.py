@@ -11,6 +11,14 @@ from scripts.score_c8_cascade import cascade_flag  # noqa: E402
 
 
 class CascadeFlag(unittest.TestCase):
+    def test_a_missing_flag_is_not_a_fire(self):
+        index = pd.date_range("2024-01-01", periods=5, freq="D", tz="UTC")
+        flag = pd.Series([True, float("nan"), False, float("nan"), True], index=index)
+        from scripts.score_c8_cascade import as_flag
+        cast = as_flag(flag)
+        self.assertEqual(int(cast.sum()), 2)
+        self.assertFalse(bool(cast.iloc[1]))
+
     def test_a_missing_side_leaves_the_day_out(self):
         index = pd.date_range("2024-01-01", periods=40, freq="D", tz="UTC")
         long_side = pd.Series(1.0, index=index)
