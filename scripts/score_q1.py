@@ -77,10 +77,12 @@ def load_pooled():
     """Close and long/short ratio, one column per base coin.
 
     The longest file wins for a coin. A name is present on a date only when
-    its file has a close that date. Nothing is filled forward.
+    its file has a close that date. Nothing is filled forward. Dates stay as
+    strings until every file is read, because parsing each file on its own
+    does not finish inside a research run.
     """
-    best = {}
-    lengths = {}
+    frames = []
+    coins = []
     for path in sorted(Path(PANEL).glob("*.csv")):
         symbol = path.name.split("_", 1)[1][:-4]
         header = path.read_text(encoding="utf-8").split("\n", 1)[0].split(",")
@@ -88,29 +90,30 @@ def load_pooled():
             continue
         frame = pd.read_csv(path, usecols=["date", "close", "long_short_ratio"])
         frame = frame.dropna(subset=["close"])
-        if frame.empty:
-            continue
-        frame["date"] = pd.to_datetime(frame["date"], utc=True).dt.normalize()
-        frame = frame.drop_duplicates("date").set_index("date").sort_index()
         frame = frame[frame["close"].astype(float) > 0]
         if frame.empty:
             continue
-        key = base_of(symbol)
-        if len(frame) > lengths.get(key, -1):
-            best[key] = frame
-            lengths[key] = len(frame)
-    if "BTC" not in best:
+        frame["date"] = frame["date"].astype(str).str.slice(0, 10)
+        frame = frame.drop_duplicates("date")
+        frame["coin"] = base_of(symbol)
+        frames.append(frame)
+        coins.append(frame["coin"].iloc[0])
+    stacked = pd.concat(frames, ignore_index=True)
+    counts = stacked.groupby("coin")["date"].transform("size")
+    stacked = stacked.assign(_n=counts).sort_values("_n")
+    stacked = stacked.drop_duplicates(["coin", "date"], keep="last")
+    if "BTC" not in set(stacked["coin"]):
         raise SystemExit("BTC is not in the panel")
-    dates = pd.DatetimeIndex(sorted(set().union(*(f.index for f in best.values()))))
-    pos = {d: i for i, d in enumerate(dates)}
-    names = sorted(best)
+    dates = pd.DatetimeIndex(pd.to_datetime(sorted(stacked["date"].unique()), utc=True))
+    names = sorted(stacked["coin"].unique())
+    pos = {d: i for i, d in enumerate(dates.strftime("%Y-%m-%d"))}
+    col = {name: j for j, name in enumerate(names)}
     close_a = np.full((len(dates), len(names)), np.nan)
     ratio_a = np.full((len(dates), len(names)), np.nan)
-    for j, name in enumerate(names):
-        frame = best[name]
-        rows = np.fromiter((pos[d] for d in frame.index), dtype=int, count=len(frame))
-        close_a[rows, j] = frame["close"].to_numpy(dtype=float)
-        ratio_a[rows, j] = frame["long_short_ratio"].to_numpy(dtype=float)
+    rows = np.fromiter((pos[d] for d in stacked["date"]), dtype=int, count=len(stacked))
+    cols = np.fromiter((col[c] for c in stacked["coin"]), dtype=int, count=len(stacked))
+    close_a[rows, cols] = stacked["close"].to_numpy(dtype=float)
+    ratio_a[rows, cols] = stacked["long_short_ratio"].to_numpy(dtype=float)
     close = pd.DataFrame(close_a, index=dates, columns=names)
     ratio = pd.DataFrame(ratio_a, index=dates, columns=names)
     return close, ratio
@@ -121,23 +124,23 @@ def trailing_percentile(series):
 
     A trailing window cannot see the bar it ranks, and a history shorter than
     the minimum stays empty. The same rule applies to one series and to a
-    panel of them.
+    panel of them. Each date is ranked as one matrix operation.
     """
     values = series.to_numpy(dtype=float)
-    if values.ndim == 1:
+    single = np.ndim(values) == 1
+    if single:
         values = values.reshape(-1, 1)
     length, columns = values.shape
-    out = np.full(values.shape, np.nan)
+    out = np.full((length, columns), np.nan)
     for i in range(PERCENTILE_MIN, length):
         history = values[max(0, i - PERCENTILE_WINDOW):i]
         current = values[i]
-        known = ~np.isnan(history)
-        count = known.sum(axis=0)
-        below = (known & (history <= current)).sum(axis=0)
+        count = np.sum(~np.isnan(history), axis=0)
+        below = np.sum(history <= current, axis=0)
         present = ~np.isnan(current) & (count >= PERCENTILE_MIN)
         out[i, present] = below[present] / count[present]
-    out = out[:, 0] if series.ndim == 1 else out
-    return pd.Series(out, index=series.index) if series.ndim == 1 else pd.DataFrame(
+    out = out[:, 0] if single else out
+    return pd.Series(out, index=series.index) if single else pd.DataFrame(
         out, index=series.index, columns=series.columns)
 
 
