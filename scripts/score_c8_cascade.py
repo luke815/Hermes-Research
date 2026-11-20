@@ -154,14 +154,12 @@ def year_split(flag, net, horizon):
 
 def pooled_day(rows, horizon):
     """One observation per date: the mean net of the names flagged that day, minus the rest."""
-    frame = pd.concat(rows)
-    frame = frame.dropna(subset=["flag", "net"])
-    by_day = frame.groupby(frame.index).apply(
-        lambda g: pd.Series({
-            "flagged": g.loc[g["flag"], "net"].mean(),
-            "rest": g.loc[~g["flag"], "net"].mean(),
-            "n_flagged": int(g["flag"].sum()),
-        }), include_groups=False)
+    frame = pd.concat(rows).dropna(subset=["flag", "net"])
+    frame["flag"] = frame["flag"].astype(bool)
+    flagged = frame[frame["flag"]].groupby(level=0)["net"].mean()
+    rest = frame[~frame["flag"]].groupby(level=0)["net"].mean()
+    counts = frame.groupby(level=0)["flag"].sum()
+    by_day = pd.DataFrame({"flagged": flagged, "rest": rest, "n_flagged": counts})
     by_day["period"] = assign_period(by_day.index)
     out = {}
     for period in ("train", "validation", "test"):
