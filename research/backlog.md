@@ -83,7 +83,7 @@ by write_result. The risk targets are defined in research/outside/harness/harnes
 days, crash lift = P(-10% within W | flag) / P(-10% within W), false-alarm rate = share of flagged bars whose 20-day
 return was positive). A cell that reaches none of its bars is insufficient, not rejected.
 
-- Q1. Long/short ratio top quintile -> deeper drawdowns. ls_ratio_level pct365 >= 0.8 on every coin and venue in Read 2026-11-20 11:00 UTC: results/2026-11-20_q1_lsr_drawdown.json scores BTC and ETH, 6 of 6 windows kept their sign, lookahead passed, pre-registration e32d7d7a1e. The BTC 20-day window's validation drawdown effect is -0.009765. The pooled panel is not scored. Not a verdict.
+- Q1. Long/short ratio top quintile -> deeper drawdowns. ls_ratio_level pct365 >= 0.8 on every coin and venue in Read 2026-11-20 11:00 UTC: results/2026-11-20_q1_lsr_drawdown.json scores BTC and ETH, 6 of 6 windows kept their sign, lookahead passed, pre-registration e32d7d7a1e. The BTC 20-day window's validation drawdown effect is -0.009765.  Scored 2026-11-20 14:11 UTC: results/2026-11-20_q1_lsr_drawdown.json scores the pooled panel, 3781 names, lookahead passed, pre-registration e32d7d7a1e. The pooled 10-day window has 1 validation episode against a bar of 20, and its drawdown effect is 0.001852 in validation and 0.435412 in test, so the sign flips. The 20-day and 30-day windows flip the same way. Not a verdict.
   data/panel_xs_laevitas, windows 10, 20, 30; drawdown effect, crash lift and false-alarm rate per period; episodes
   >= 20 across train and validation. Done when results/<date>_q1_lsr_drawdown.json carries the three targets per
   window and period for BTC, ETH and the pooled panel, with a verdict per window; and the dashboard watch card reads
