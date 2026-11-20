@@ -62,7 +62,7 @@ From research/outside/PASS3_2026-11-19.md. Nothing passed; two data items need H
   the daily median sits between 0.001 and 0.05. Done when the assertion exists and a test covers it.
 - D3. Hourly price gaps 2024-11..2025-07 (633 gaps, 36% of hours in Dec-2024..Mar-2025) in the Laevitas hourly perp price.
   Backfill from the exchange store or mask the window in any hourly test. Done when hourly.pkl (or its successor) has no gap
-  longer than 1 hour in that window, or the harness masks it and says so.
+  longer than 1 hour in that window, or the harness masks it and says so. Rechecked 2026-11-20 09:00 UTC: research/outside/data/hourly.pkl is absent and research/outside/data/laevitas holds 0 hourly CSVs, so there is nothing to mask and nothing to backfill from. The Laevitas hourly store is a pull, and a research run does not pull. Blocked on the hourly files. Unblocks when hourly.pkl exists or the harness masks the window and says so.
 - H1 (harness, if Hermes's confirm.py shares the pattern). When a signal series starts later than the price series, the
   comparison set for 'excess' and for the unflagged mean must be the bars where the signal is defined, not every bar of the
   period. Check regime_tester/confirm.py and sweep.py for the same flaw; fix and re-run any admitted-or-near result on a
