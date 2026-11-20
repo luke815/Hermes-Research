@@ -64,7 +64,10 @@ def load(path, fields):
         index = pd.to_datetime(frame["t"], unit="s", utc=True).dt.normalize()
         taken = frame.loc[:, list(fields)].apply(pd.to_numeric, errors="coerce")
         taken.index = index
-        out[names[entry["symbol"]]] = taken[~taken.index.duplicated(keep="last")].sort_index()
+        asset = names.get(entry["symbol"])
+        if asset is None:
+            continue
+        out[asset] = taken[~taken.index.duplicated(keep="last")].sort_index()
     return out
 
 
