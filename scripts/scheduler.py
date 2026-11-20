@@ -140,11 +140,24 @@ def failed_jobs(now):
 
 
 def sweep_status():
-    """Mirror the shared counter into the status line, so both cite one file."""
+    """Mirror the shared counter into the status line, so both cite one file.
+
+    The sweep appends its name count and hourly rate to the same line. Replacing
+    the whole line drops both, and the rate the clause reads then disappears
+    between sweep cycles. Keep the suffix the sweep wrote.
+    """
     if not os.path.exists(COUNTER):
         return {"wrote": False}
     payload = json.load(open(COUNTER))
-    line = status_text(payload) + "\n"
+    base = status_text(payload)
+    suffix = ""
+    if os.path.exists(STATUS):
+        current = open(STATUS).read().strip()
+        cuts = [current.find(marker) for marker in (", names ", ", cells per hour ")]
+        cuts = [at for at in cuts if at != -1]
+        if cuts:
+            suffix = current[min(cuts):]
+    line = base + suffix + "\n"
     tmp = STATUS + ".tmp"
     open(tmp, "w").write(line)
     os.replace(tmp, STATUS)
