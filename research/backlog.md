@@ -56,11 +56,7 @@ An instruction is written here as numbered items at the top, each with a done-wh
 
 From research/outside/PASS3_2026-11-19.md. Nothing passed; two data items need Hermes, and PREREG4 is proposed, not scored.
 
-- D1. Liquidation coverage break. liq_BTC / oi_BTC yearly medians 0.0018 (2022), 0.0019 (2023), 0.0024 (2024), 0.0013 (2025),
-  0.0028 (2026) while realized vol fell; liq_BTC median doubled 2025 -> 2026 as oi_BTC fell. Find the venue or field change in
-  the liquidation puller, document it in data/COVERAGE or the health table, and mark every liq-based result (F4 and later) as
-  void until the series is consistent. Done when the cause is written down with the date of the break and the dashboard health
-  table shows a note on liq_*.
+- D1. Liquidation coverage break. Done when the cause is written down with the date of the break and the dashboard health table shows a note on liq_*. liq_BTC / oi_BTC yearly medians 0.0018 (2022), 0.0019 (2023), 0.0024 (2024), 0.0013 (2025), 0.0028 (2026) while realized vol fell; liq_BTC median doubled 2025 to 2026 as oi_BTC fell. Find the venue or field change in the liquidation puller, document it in data/COVERAGE or the health table, and mark every liq-based result (F4 and later) as void until the series is consistent.
 - D2. Funding units in one place. Dashboard funding columns are percent per 8h (0.01 = 1 bp); the Laevitas perp_funding pull is
   the same scale on daily bars and x100 on hourly bars. Add a units line to data/COVERAGE and an assertion in the puller that
   the daily median sits between 0.001 and 0.05. Done when the assertion exists and a test covers it.
