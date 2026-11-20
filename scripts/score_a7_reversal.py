@@ -67,9 +67,11 @@ def load_matrices():
     written into one array: aligning thousands of frames one at a time does
     not finish.
     """
+    import time
+    started = time.time()
     best = {}
     lengths = {}
-    for path in sorted(PANEL.glob("*.csv")):
+    for n, path in enumerate(sorted(PANEL.glob("*.csv")), 1):
         symbol = path.name.split("_", 1)[1][:-4]
         header = path.read_text(encoding="utf-8").split("\n", 1)[0].split(",")
         if "close" not in header or "oi_usd" not in header:
@@ -89,8 +91,11 @@ def load_matrices():
         if len(frame) > prior:
             best[key] = frame
             lengths[key] = len(frame)
+        if n % 1000 == 0:
+            print(f"read {n} {round(time.time() - started, 1)}s kept {len(best)}", flush=True)
     if "BTC" not in best:
         raise SystemExit("BTC is not in the panel")
+    print(f"read done {round(time.time() - started, 1)}s kept {len(best)}", flush=True)
     dates = pd.DatetimeIndex(sorted(set().union(*(f.index for f in best.values()))))
     pos = {d: i for i, d in enumerate(dates)}
     names = sorted(best)
@@ -108,6 +113,7 @@ def load_matrices():
     close = pd.DataFrame(close_a, index=dates, columns=names)
     oi = pd.DataFrame(oi_a, index=dates, columns=names).shift(1)
     funding = pd.DataFrame(fund_a, index=dates, columns=names)
+    print(f"aligned {close.shape} {round(time.time() - started, 1)}s", flush=True)
     return close, oi, funding
 
 
@@ -287,6 +293,7 @@ def lookahead_ok(close):
 def main():
     close, oi, funding = load_matrices()
     held, mid = lookahead_ok(close)
+    print(f"lookahead {held} at {mid}", flush=True)
     if not held:
         raise SystemExit(f"lookahead failed at {mid}")
     btc = close["BTC"]
@@ -309,6 +316,7 @@ def main():
                     "summary": summary,
                     "verdict": verdict_of(summary) if floor == PRIMARY_FLOOR else "neighbour",
                 })
+                print(f"cell w{window} h{horizon} floor {floor} kept {coverage['dates_kept']}", flush=True)
     primary = [c for c in cells if c["primary"]]
     verdicts = {f"w{c['window']}_h{c['horizon']}": c["verdict"] for c in primary}
     if all(v == "admitted" for v in verdicts.values()):
