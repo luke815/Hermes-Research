@@ -177,6 +177,18 @@ def _laevitas_span(stem):
     return newest, count
 
 
+# The Coinalyze liquidation file is one symbol with no venue field, so a jump
+# in liq/oi cannot be split into coverage and price. F4 rests on that series.
+# Written here, not typed into data.json, so a rebuild cannot drop the note.
+LIQ_NOTE = (
+    "liq/oi yearly median rises in 2026 (0.0013 in 2025, 0.0029 in 2026) while "
+    "realized vol fell. Not a code or venue change: one symbol, BTCUSDT_PERP.A, "
+    "continuous from 2022-09-09, and the daily total drifts rather than steps. "
+    "Whether the vendor widened what it counts in 2026 is open. F4 results on "
+    "this series are void until that is settled. data/COVERAGE.md, checked 2026-11-19."
+)
+
+
 def data_health(dates):
     last = dates[-1]
     rows = []
@@ -210,7 +222,7 @@ def data_health(dates):
             "last": day,
             "rows": count,
             "status": "ok" if day == last else "lag",
-            "note": "",
+            "note": LIQ_NOTE if name == "Liquidations" else "",
         })
     return rows
 
