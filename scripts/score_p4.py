@@ -304,11 +304,11 @@ def _hazard_verdict(block):
         if val is None or test is None:
             continue
         held.append(np.sign(val) == np.sign(test) and np.sign(val) != 0)
-    # The control passes only when the sign holds in every quintile that has
-    # both periods. One quintile agreeing is the one the search found.
+    # One quintile agreeing is the one the search found, and one asset agreeing
+    # is the asset the search found. The caller joins the two assets.
     if len(held) < 2 or not all(held):
         return "insufficient"
-    return "recorded"
+    return "recorded_pending_other_asset"
 
 
 def score_a2(frame):
@@ -437,6 +437,12 @@ def main():
         cells[f"A3_{asset}"] = score_a3(frame)
         cells[f"A5_{asset}"] = score_a5(frame)
         cells[f"A6_{asset}"] = score_a6(frame)
+    for asset in ("btc", "eth"):
+        other = "eth" if asset == "btc" else "btc"
+        if cells[f"A1_{asset}"]["verdict"] == "recorded_pending_other_asset":
+            cells[f"A1_{asset}"]["verdict"] = (
+                "recorded" if cells[f"A1_{other}"]["verdict"]
+                == "recorded_pending_other_asset" else "insufficient")
     payload = {"item": "P4", "prereg": PREREG, "prereg_commit": commit,
                "cells": cells}
     path = write_result("p4_cells", payload, inputs=[
