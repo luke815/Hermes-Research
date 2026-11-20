@@ -1,0 +1,320 @@
+{
+ "prereg_commit": "35cec2d6733a05ee9523e0e5facfa6194213c556",
+ "lookahead_passed": {
+  "BTC": true,
+  "ETH": true
+ },
+ "cells": [
+  {
+   "asset": "BTC",
+   "target": "return",
+   "horizon": 5,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 315,
+     "flagged": 7,
+     "effect": -0.032522,
+     "episodes": 5,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1401,
+    "flagged": 79,
+    "effect": 0.009983,
+    "episodes": 23
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "BTC",
+   "target": "return",
+   "horizon": 10,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 310,
+     "flagged": 7,
+     "effect": -0.050639,
+     "episodes": 5,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1401,
+    "flagged": 79,
+    "effect": 0.006692,
+    "episodes": 23
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "BTC",
+   "target": "return",
+   "horizon": 20,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 300,
+     "flagged": 7,
+     "effect": -0.060183,
+     "episodes": 5,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1401,
+    "flagged": 79,
+    "effect": -3.8e-05,
+    "episodes": 23
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "BTC",
+   "target": "drawdown",
+   "horizon": 10,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 310,
+     "flagged": 7,
+     "effect": -0.032789,
+     "episodes": 5,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1401,
+    "flagged": 79,
+    "effect": 0.002764,
+    "episodes": 23
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "BTC",
+   "target": "drawdown",
+   "horizon": 20,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 300,
+     "flagged": 7,
+     "effect": -0.028773,
+     "episodes": 5,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1401,
+    "flagged": 79,
+    "effect": 0.008058,
+    "episodes": 23
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "ETH",
+   "target": "return",
+   "horizon": 5,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 315,
+     "flagged": 33,
+     "effect": -0.028914,
+     "episodes": 10,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1402,
+    "flagged": 49,
+    "effect": -0.007808,
+    "episodes": 22
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "ETH",
+   "target": "return",
+   "horizon": 10,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 310,
+     "flagged": 33,
+     "effect": -0.038381,
+     "episodes": 10,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1402,
+    "flagged": 49,
+    "effect": -0.031009,
+    "episodes": 22
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "ETH",
+   "target": "return",
+   "horizon": 20,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 300,
+     "flagged": 33,
+     "effect": -0.044796,
+     "episodes": 10,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1402,
+    "flagged": 49,
+    "effect": -0.060305,
+    "episodes": 22
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "ETH",
+   "target": "drawdown",
+   "horizon": 10,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 310,
+     "flagged": 33,
+     "effect": -0.037756,
+     "episodes": 10,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1402,
+    "flagged": 49,
+    "effect": -0.026933,
+    "episodes": 22
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "asset": "ETH",
+   "target": "drawdown",
+   "horizon": 20,
+   "fresh": [
+    {
+     "n": 0,
+     "flagged": 0,
+     "episodes": 0,
+     "window": "2019-03 to 2020-01"
+    },
+    {
+     "n": 300,
+     "flagged": 33,
+     "effect": -0.055362,
+     "episodes": 10,
+     "window": "2026"
+    }
+   ],
+   "reported_2020_2025": {
+    "n": 1402,
+    "flagged": 49,
+    "effect": -0.036952,
+    "episodes": 22
+   },
+   "verdict": "insufficient"
+  }
+ ],
+ "provenance": {
+  "script": "scripts/score_q2.py",
+  "script_blob": "6c4d912e2bbe98abbb25221321c7dc9327af330e",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_q2.py"
+  ],
+  "commit": "28bb40f5e6dcd7dba9bdfcf25fa1abd63eb9da00",
+  "written_at": "2026-11-20T14:17:17Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   },
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413218,
+    "mtime_ns": 1795153394081037963,
+    "sha256": "6fce531712aa74309690b8e84d3a187cf3c9c3a34c914246813a6a3e656d4e9b"
+   },
+   {
+    "path": "research/outside/PREREG_Q2.md",
+    "kind": "file",
+    "bytes": 1743,
+    "mtime_ns": 1795184105990221053,
+    "sha256": "4e478e4785d76c62e062396b656aa0c7a907f860c5aa2792cfbc2865e1519669"
+   }
+  ],
+  "payload_sha256": "fb00d7910e09539fa773ac15d8db825530140569f412a36853e21483b61dd780"
+ }
+}
