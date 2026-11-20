@@ -1232,3 +1232,9 @@ Panel rows before the rebuild: 2494, ending 2026-11-18. After: 2495, ending 2026
 Candidate: a7_rest. Hypothesis and rule: research/outside/PREREG_A7.md, committed as 2e19fd4914e122b23e733c3cc2122481bff0166a before this scoring. A7(1) was not scored: its panel has a bad close and a research run does not rewrite it. A7(3) was not scored: data/laevitas/market has no derivs_summary for ADA, SOL, LINK, XRP or AVAX.
 
 Verdict: insufficient for A7(2), 36 cells rejected and 44 insufficient of 80, none kept on both assets. The closest was the ETH basis 30-day tenor at its trailing 365-day bottom quintile, 1-day horizon, which cleared the bar on ETH and not on BTC: basis percentile bottom eth 1d insufficient: validation 0.008547 (t=2.387341, n=175); test 0.008098 (t=2.250513, n=152). A7(4) is insufficient at 1 day, t-stat 1.354197 in validation and 2.39817 in test on 2 names, and rejected at 3 days, where the sign flips in validation. Lookahead passed. results/2026-11-20_a7_rest.json.
+
+## 2026-11-20, verdict: C8 liquidation cascade
+
+Pre-registered in research/generated.md item 19, commit df7329347c99, before this scoring. The earlier file carried no stamp, so the rule was scored again by scripts/score_c8_cascade.py and written through write_result.
+
+Verdict: rejected. On the pooled names at 1 day the spread is -0.000182 in train (261 dates), 0.003137 in validation (243 dates, t 1.354054) and -0.001343 in test (125 dates, t -0.420076). The validation t did not reach 2, and the test is a null, not a flip. At 3 days the pooled spread is 0.004511, 0.010486 and -0.002631. At 5 days it is 0.006830, 0.016318 and -0.002069. BTC at 1 day is 0.006935, 0.005255 and -0.000352, with 48, 32 and 23 flagged days. The one cell that keeps its sign is BTC at 5 days, and its test rests on 2 independent flagged days, below 30, so it is not quoted. Lookahead passed. results/2026-11-20_c8_cascade.json.
