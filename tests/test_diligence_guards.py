@@ -414,6 +414,31 @@ class DataGuard(unittest.TestCase):
             data_guard.record_write("data/panel", ["c.csv"], "pull_listed_history: c gone", self.root, self.manifests)
         self.assertEqual(len(data_guard.check("data/panel", self.root, self.manifests)), 1)
 
+    def test_the_append_declares_file_names_not_a_count(self):
+        # The old call passed the number of files. record_write iterates that
+        # and raises, which is what restarted the job. The function the script
+        # now calls must hand over names.
+        import inspect
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "scripts"))
+        import append_panel_xs
+        seen = {}
+
+        def fake(rel, files, reason, root=None, manifests=None):
+            seen["files"] = list(files)
+            return {"declared": len(files)}
+
+        data_guard_record = data_guard.record_write
+        data_guard.record_write = fake
+        try:
+            append_panel_xs.declare_appended(["BTCUSDT", "ETHUSDT"])
+        finally:
+            data_guard.record_write = data_guard_record
+        self.assertEqual(seen["files"], ["binance_BTCUSDT.csv", "binance_ETHUSDT.csv"])
+        data_guard.snapshot("data/panel", self.root, self.manifests)
+        with self.assertRaises(TypeError):
+            data_guard.record_write("data/panel", 3, "append_panel_xs: yesterday's bar",
+                                    self.root, self.manifests)
+
     def test_swap_refuses_removals_shrinkage_empty_source_nesting_and_keeps_previous(self):
         new = os.path.join(self.root, "data", "panel_new")
         for name in ("a.csv", "b.csv", "sub/d.csv"):
