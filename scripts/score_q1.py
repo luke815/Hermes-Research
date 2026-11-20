@@ -269,7 +269,8 @@ def main():
     pooled_rank = trailing_percentile(pooled_ratio.shift(1))
     pooled_flag = pooled_rank.ge(CUT).where(pooled_rank.notna())
     defined = pooled_rank.notna()
-    breadth = pooled_flag.fillna(False).astype(bool).mean(axis=1).where(defined.any(axis=1))
+    flagged = pooled_flag.fillna(False).astype(bool) & defined
+    breadth = (flagged.sum(axis=1) / defined.sum(axis=1)).where(defined.any(axis=1))
     pooled_flagged = breadth.ge(0.5).where(breadth.notna())
     pooled_counts = episodes(pooled_flagged)
     passed["pooled"] = lookahead(pooled_ratio["BTC"])

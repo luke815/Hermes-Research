@@ -42,7 +42,13 @@ class PooledRank(unittest.TestCase):
         self.assertTrue(np.allclose(rank["a"], alone, equal_nan=True))
         self.assertGreater(rank["a"].iloc[-1], rank["b"].iloc[-1])
 
-    def test_the_pooled_mean_drops_a_name_whose_signal_is_empty(self):
+    def test_the_breadth_counts_only_names_whose_signal_is_defined(self):
+        defined = pd.DataFrame({"a": [True, True], "b": [False, False]})
+        flagged = pd.DataFrame({"a": [True, False], "b": [False, False]})
+        breadth = (flagged.sum(axis=1) / defined.sum(axis=1)).where(defined.any(axis=1))
+        self.assertAlmostEqual(breadth.iloc[0], 1.0)
+        wrong = flagged.astype(bool).mean(axis=1)
+        self.assertLess(wrong.iloc[0], breadth.iloc[0])
         index = pd.date_range("2024-01-01", periods=3, freq="D", tz="UTC")
         frame = pd.DataFrame({"a": [1.0, 2.0, 3.0], "b": [9.0, 9.0, 9.0]}, index=index)
         defined = pd.DataFrame({"a": [True, True, True], "b": [False, False, False]},
