@@ -8,13 +8,12 @@ named there. No pull, no confirmation.
 The signal at date t is the negative of the return over the window ending
 yesterday, so bar t uses closes through t-1. A name is in on a date only when
 its file has a close that date and its prior-bar open interest clears the
-floor. Perturbing every value after t cannot move the signal or the vol scale
-at t, and the lookahead check below asserts that.
+floor. The book is built as matrix operations, one pass over the files.
+Perturbing every value after t cannot move the signal or the vol scale at t,
+and the lookahead check below asserts that.
 """
 
 import json
-import os
-import subprocess
 import sys
 from pathlib import Path
 
@@ -22,7 +21,9 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from regime_tester.costs import apply_costs  # noqa: E402
+from regime_tester.costs import (  # noqa: E402
+    FUNDING_PERCENT_PER_SETTLEMENT, LIQUID_OI_USD, round_trip,
+)
 from regime_tester.results_io import write_result  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -38,6 +39,8 @@ MIN_NAMES = 20
 MIN_LEG = 5
 T_BAR = 2.0
 N_BAR = 40
+THIN = round_trip(None)
+LIQUID = round_trip(LIQUID_OI_USD)
 
 PERIODS = (
     ("train", None, "2024-06-30"),
@@ -56,13 +59,13 @@ def base_of(symbol):
     return stem
 
 
-def load_frames():
-    """Close, open interest and funding per base, longest history wins.
+def load_matrices():
+    """Close, prior-bar open interest and funding, one column per base coin.
 
-    A name is present on a date only when its file has a close that date.
-    Open interest and funding are never filled forward and never set to zero.
+    The longest file wins for a coin. A name is present on a date only when
+    its file has a close that date. Nothing is filled forward.
     """
-    candidates = {}
+    best = {}
     for path in sorted(PANEL.glob("*.csv")):
         symbol = path.name.split("_", 1)[1][:-4]
         header = path.read_text(encoding="utf-8").split("\n", 1)[0].split(",")
@@ -75,17 +78,27 @@ def load_frames():
             continue
         frame["date"] = pd.to_datetime(frame["date"], utc=True).dt.normalize()
         frame = frame.drop_duplicates("date").set_index("date").sort_index()
-        frame["close"] = frame["close"].astype(float)
-        frame = frame[frame["close"] > 0]
+        frame = frame[frame["close"].astype(float) > 0]
         if frame.empty:
             continue
         key = base_of(symbol)
-        prior = candidates.get(key)
-        if prior is None or len(frame) > len(prior[1]):
-            candidates[key] = (symbol, frame)
-    if "BTC" not in candidates:
+        prior = best.get(key)
+        if prior is None or len(frame) > len(prior):
+            best[key] = frame
+    if "BTC" not in best:
         raise SystemExit("BTC is not in the panel")
-    return candidates["BTC"][1]["close"], candidates
+    names = sorted(best)
+    close = pd.DataFrame({n: best[n]["close"].astype(float) for n in names})
+    oi = pd.DataFrame({
+        n: best[n]["oi_usd"].astype(float).shift(1) if "oi_usd" in best[n].columns else np.nan
+        for n in names
+    })
+    funding = pd.DataFrame({
+        n: (best[n]["funding_rate"].astype(float) if "funding_rate" in best[n].columns
+            else pd.Series(np.nan, index=best[n].index))
+        for n in names
+    })
+    return close.sort_index(), oi.reindex(close.index), funding.reindex(close.index)
 
 
 def loser_signal(close, window):
@@ -94,85 +107,84 @@ def loser_signal(close, window):
 
 
 def vol_scale(close):
-    """Inverse of the trailing 30-day realized vol, known at t-1.
-
-    The last return inside the window ends yesterday, so today's close never
-    enters the scale. A name with fewer than 30 returns is left out.
-    """
-    ret = close.pct_change()
-    vol = ret.rolling(VOL_WINDOW, min_periods=VOL_WINDOW).std().shift(1)
+    """Inverse trailing 30-day vol, known at t-1. Short histories stay empty."""
+    vol = close.pct_change().rolling(VOL_WINDOW, min_periods=VOL_WINDOW).std().shift(1)
     return 1.0 / vol.where(vol > 0)
 
 
-def build(btc, frames, window, horizon):
-    """Signal, prior-bar open interest, vol scale and net forward return."""
-    btc_forward = btc.shift(-horizon) / btc - 1
-    rows = []
-    for name, (_, frame) in frames.items():
-        signal = loser_signal(frame["close"], window)
-        scale = vol_scale(frame["close"])
-        funding = frame["funding_rate"] if "funding_rate" in frame.columns else None
-        costs = apply_costs(frame["close"], horizon, side=1,
-                            funding=funding, oi_usd=frame["oi_usd"])
-        relative = costs["gross"] - btc_forward.reindex(frame.index)
-        out = pd.DataFrame({
-            "signal": signal,
-            "oi": frame["oi_usd"].astype(float).shift(1),
-            "scale": scale,
-            "gross": costs["gross"],
-            "net": costs["net"],
-            "relative_net": relative - costs["round_trip"] - costs["carry"],
-        }).dropna(subset=["signal", "oi", "scale", "net"])
-        if out.empty:
-            continue
-        out["name"] = name
-        rows.append(out)
-    if not rows:
-        return pd.DataFrame()
-    stacked = pd.concat(rows)
-    stacked.index.name = "date"
-    return stacked
+def window_sum(values, horizon):
+    """Sum of values[i : i + horizon] at each i. A missing day leaves it empty."""
+    arr = values.to_numpy(dtype=float)
+    filled = np.where(np.isnan(arr), 0.0, arr)
+    csum = np.vstack([np.zeros((1, arr.shape[1])), np.cumsum(filled, axis=0)])
+    valid = np.vstack([np.zeros((1, arr.shape[1]), dtype=int),
+                       np.cumsum(np.isnan(arr).astype(int), axis=0)])
+    end = np.arange(horizon - 1, len(arr))
+    start = end - (horizon - 1)
+    total = csum[end + 1] - csum[start]
+    missing = valid[end + 1] - valid[start]
+    out = np.full(arr.shape, np.nan)
+    out[end] = np.where(missing == 0, total, np.nan)
+    return pd.DataFrame(out, index=values.index, columns=values.columns)
 
 
-def daily_stats(stacked, floor):
-    """Decile spread inside the open-interest floor, vol-scaled."""
-    if stacked.empty:
-        return pd.DataFrame(), {"dates_seen": 0, "dates_kept": 0}
-    rows = []
-    seen = 0
-    for date, group in stacked.groupby(level=0, sort=True):
-        seen += 1
-        liquid = group[group["oi"] >= floor]
-        if len(liquid) < MIN_NAMES:
-            continue
-        signal = liquid["signal"]
-        if signal.nunique() < 2:
-            continue
-        ranks = signal.rank(pct=True)
-        top = liquid[ranks >= 0.9]
-        bottom = liquid[ranks <= 0.1]
-        if len(top) < MIN_LEG or len(bottom) < MIN_LEG:
-            continue
-        # Long the losers (top of the negated signal), short the winners.
-        long_w = top["scale"] / top["scale"].sum()
-        short_w = bottom["scale"] / bottom["scale"].sum()
-        long_net = float((top["net"] * long_w).sum())
-        short_net = float((bottom["net"] * short_w).sum())
-        long_gross = float((top["gross"] * long_w).sum())
-        short_gross = float((bottom["gross"] * short_w).sum())
-        rows.append({
-            "date": date,
-            "names": int(len(liquid)),
-            "spread_net": (long_net - short_net) * 100,
-            "spread_gross": (long_gross - short_gross) * 100,
-            "long_net": long_net * 100,
-            "short_net": short_net * 100,
-            "hit": float(long_net > short_net),
-        })
-    stats = pd.DataFrame(rows)
-    if not stats.empty:
-        stats = stats.set_index("date")
-    return stats, {"dates_seen": int(seen), "dates_kept": int(len(stats))}
+def net_return(close, funding, oi, horizon):
+    """Gross and net forward return. A missing carry leaves the net missing."""
+    gross = close.shift(-horizon) / close - 1
+    cost = pd.DataFrame(np.where(oi.shift(0).to_numpy() >= LIQUID_OI_USD, LIQUID, THIN),
+                        index=close.index, columns=close.columns)
+    # The tier uses the prior bar, which `oi` already is. A missing tier takes
+    # the thin rate, matching costs.round_trip.
+    cost = cost.where(oi.notna(), THIN)
+    carry = window_sum(funding / FUNDING_PERCENT_PER_SETTLEMENT, horizon)
+    return gross, gross - cost - carry
+
+
+def daily_stats(signal, scale, oi, gross, net, floor):
+    """Vol-scaled decile spread on names clearing the floor that day.
+
+    Ranks are one matrix operation. A date with fewer than 20 names above the
+    floor is skipped, and a leg shorter than 5 names is skipped.
+    """
+    sig = signal.to_numpy(dtype=float)
+    sc = scale.to_numpy(dtype=float)
+    gr = gross.to_numpy(dtype=float)
+    nt = net.to_numpy(dtype=float)
+    oi_v = oi.to_numpy(dtype=float)
+    ok = (np.isfinite(sig) & np.isfinite(sc) & np.isfinite(gr) & np.isfinite(nt)
+          & np.isfinite(oi_v) & (oi_v >= floor))
+    ranked = pd.DataFrame(np.where(ok, sig, np.nan), index=signal.index).rank(
+        axis=1, pct=True, method="average")
+    pct = ranked.to_numpy(dtype=float)
+    long_m = ok & (pct >= 0.9)
+    short_m = ok & (pct <= 0.1)
+    count = ok.sum(axis=1)
+    long_n = long_m.sum(axis=1)
+    short_n = short_m.sum(axis=1)
+    keep = (count >= MIN_NAMES) & (long_n >= MIN_LEG) & (short_n >= MIN_LEG)
+
+    def weighted(values, mask):
+        w = np.where(mask, sc, 0.0)
+        total = w.sum(axis=1)
+        total = np.where(total > 0, total, np.nan)
+        return (np.where(mask, values, 0.0) * w).sum(axis=1) / total
+
+    ln = weighted(nt, long_m)
+    sn = weighted(nt, short_m)
+    lg = weighted(gr, long_m)
+    sg = weighted(gr, short_m)
+    good = keep & np.isfinite(ln) & np.isfinite(sn)
+    idx = signal.index[good]
+    stats = pd.DataFrame({
+        "names": count[good],
+        "spread_net": (ln[good] - sn[good]) * 100,
+        "spread_gross": (lg[good] - sg[good]) * 100,
+        "long_net": ln[good] * 100,
+        "short_net": sn[good] * 100,
+        "hit": (ln[good] > sn[good]).astype(float),
+    }, index=idx)
+    stats.index.name = "date"
+    return stats, {"dates_seen": int(sig.shape[0]), "dates_kept": int(good.sum())}
 
 
 def t_of_mean(values):
@@ -184,16 +196,16 @@ def t_of_mean(values):
     return float(values.mean() / (values.std(ddof=1) / np.sqrt(len(values))))
 
 
-def period_of(index):
+def period_mask(index):
     dates = index.tz_convert("UTC")
-    out = pd.Series(pd.NA, index=index, dtype="object")
+    out = {}
     for name, start, end in PERIODS:
         mask = pd.Series(True, index=index)
         if start is not None:
             mask &= dates >= pd.Timestamp(start, tz="UTC")
         if end is not None:
             mask &= dates <= pd.Timestamp(end, tz="UTC")
-        out[mask] = name
+        out[name] = mask
     return out
 
 
@@ -206,19 +218,19 @@ def summarise(stats, horizon):
         out["by_year"] = []
         return out
     stride = stats.iloc[::horizon]
-    periods = period_of(stride.index)
+    masks = period_mask(stride.index)
     out["n_dates"] = int(len(stride))
     out["names_median"] = float(stride["names"].median())
     for name, _, _ in PERIODS:
-        part = stride[periods == name]
+        part = stride[masks[name]]
         out[name] = {
             "n": int(len(part)),
-            "spread_net": float(part["spread_net"].mean()) if len(part) else None,
-            "spread_gross": float(part["spread_gross"].mean()) if len(part) else None,
-            "spread_t": t_of_mean(part["spread_net"]) if len(part) else None,
-            "long_net": float(part["long_net"].mean()) if len(part) else None,
-            "short_net": float(part["short_net"].mean()) if len(part) else None,
-            "hit": float(part["hit"].mean()) if len(part) else None,
+            "spread_net": None if part.empty else float(part["spread_net"].mean()),
+            "spread_gross": None if part.empty else float(part["spread_gross"].mean()),
+            "spread_t": None if part.empty else t_of_mean(part["spread_net"]),
+            "long_net": None if part.empty else float(part["long_net"].mean()),
+            "short_net": None if part.empty else float(part["short_net"].mean()),
+            "hit": None if part.empty else float(part["hit"].mean()),
         }
     by_year = []
     for year, part in stride.groupby(stride.index.year):
@@ -240,41 +252,43 @@ def verdict_of(summary):
         if part["n"] < N_BAR or part["spread_t"] is None:
             return "insufficient"
         held.append(part)
-    signs = [part["spread_net"] > 0 for part in held]
-    if signs[0] != signs[1]:
+    if (held[0]["spread_net"] > 0) != (held[1]["spread_net"] > 0):
         return "rejected"
     if any(abs(part["spread_t"]) < T_BAR for part in held):
         return "insufficient"
     return "admitted"
 
 
-def lookahead_ok(frames):
-    """Perturb every close after a mid date and rebuild. The signal at and
-    before that date must not move. A failing check exits rather than scoring."""
-    name, (_, frame) = next(iter(frames.items()))
-    mid = frame.index[len(frame) // 2]
-    shifted = frame.copy()
-    shifted.loc[shifted.index > mid, "close"] = shifted.loc[shifted.index > mid, "close"] * 1.5
-    before = loser_signal(frame["close"], 1)
-    after = loser_signal(shifted["close"], 1)
-    scale_before = vol_scale(frame["close"])
-    scale_after = vol_scale(shifted["close"])
+def lookahead_ok(close):
+    """Perturb every close after a mid date and rebuild. The signal and the
+    vol scale at and before that date must not move."""
+    mid = close.index[len(close) // 2]
+    shifted = close.copy()
+    shifted.loc[shifted.index > mid] = shifted.loc[shifted.index > mid] * 1.5
+    before = loser_signal(close, 1)
+    after = loser_signal(shifted, 1)
+    scale_before = vol_scale(close)
+    scale_after = vol_scale(shifted)
     same_signal = before.loc[:mid].equals(after.loc[:mid])
     same_scale = scale_before.loc[:mid].equals(scale_after.loc[:mid])
-    return bool(same_signal and same_scale), str(mid.date()), name
+    return bool(same_signal and same_scale), str(mid.date())
 
 
 def main():
-    btc, frames = load_frames()
-    held, mid, checked = lookahead_ok(frames)
+    close, oi, funding = load_matrices()
+    held, mid = lookahead_ok(close)
     if not held:
-        raise SystemExit(f"lookahead failed on {checked} at {mid}")
+        raise SystemExit(f"lookahead failed at {mid}")
+    btc = close["BTC"]
+    scale = vol_scale(close)
     cells = []
     for window in WINDOWS:
+        signal = loser_signal(close, window)
         for horizon in HORIZONS:
-            stacked = build(btc, frames, window, horizon)
+            gross, net = net_return(close, funding, oi, horizon)
+            excess = gross.sub(btc.shift(-horizon) / btc - 1, axis=0)
             for floor in FLOORS:
-                stats, coverage = daily_stats(stacked, floor)
+                stats, coverage = daily_stats(signal, scale, oi, excess, net, floor)
                 summary = summarise(stats, horizon)
                 cells.append({
                     "window": window,
@@ -297,14 +311,15 @@ def main():
         "candidate": "a7_reversal",
         "panel": "data/panel_xs_laevitas",
         "prereg_commit": PREREG_COMMIT,
-        "names": len(frames),
-        "lookahead": {"passed": held, "cut": mid, "name": checked},
+        "names": int(close.shape[1]),
+        "rows": int(close.shape[0]),
+        "lookahead": {"passed": held, "cut": mid},
         "cells": cells,
         "verdicts": verdicts,
         "verdict": overall,
     }
     path = write_result("a7_reversal", payload, inputs=["data/panel_xs_laevitas"])
-    print(json.dumps({"names": len(frames), "verdicts": verdicts, "verdict": overall}))
+    print(json.dumps({"names": int(close.shape[1]), "verdicts": verdicts, "verdict": overall}))
     print(path)
 
 
