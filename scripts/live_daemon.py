@@ -19,9 +19,11 @@ import time
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import intraday_store  # noqa: E402
 import rate_budget  # noqa: E402
 from rate_budget import BudgetStop  # noqa: E402
+from regime_tester.rs_stale_log import LOG, append  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOP = os.path.join(ROOT, "data", "universe_top100.json")
@@ -225,9 +227,13 @@ def cycle(ctx):
     if rs_stale:
         note = (note + "; " if note else "") + (
             f"relative strength board is {round(rs_age / 3600)}h old" if rs_age else "no relative strength board")
+    heartbeat = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    # A5 needs the flag false for a full day. This payload is force-pushed, so
+    # the previous reading is gone unless this cycle writes it down itself.
+    append(LOG, heartbeat, rs_stale, rs_age)
     payload = {
         "as_of": as_of or built["as_of"], "interval_sec": INTERVAL,
-        "health": {"daemon_heartbeat": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "health": {"daemon_heartbeat": heartbeat,
                    "api_calls_last_hour": sum(c for _, c in ctx["calls_this_hour"]),
                    "stale": as_of is None or rs_stale, "marks_stale": as_of is None,
                    "rs_stale": rs_stale, "rs_age_sec": rs_age, "note": note},

@@ -177,6 +177,20 @@ def _laevitas_span(stem):
     return newest, count
 
 
+def liq_note():
+    """The coverage note, read from data/COVERAGE.md so the page and the file agree.
+
+    A missing file or a file that does not mention the series yields an empty
+    note, which the test rejects.
+    """
+    path = ROOT / "data" / "COVERAGE.md"
+    try:
+        text = path.read_text().strip()
+    except OSError:
+        return ""
+    return text if "liq_BTC" in text else ""
+
+
 def data_health(dates):
     last = dates[-1]
     rows = []
@@ -210,7 +224,7 @@ def data_health(dates):
             "last": day,
             "rows": count,
             "status": "ok" if day == last else "lag",
-            "note": "",
+            "note": liq_note() if name == "Liquidations" else "",
         })
     return rows
 

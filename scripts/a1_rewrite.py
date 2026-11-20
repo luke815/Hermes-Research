@@ -68,8 +68,16 @@ def rewrite():
     """Write every panel file to DEST, funded from the sum where one exists."""
     os.makedirs(DEST, exist_ok=True)
     funded, unfunded, future_dropped = [], [], 0
+    # A timed-out run leaves a partial destination. A file already written is
+    # kept, so the next run finishes the rest instead of starting over. The
+    # caller removes the destination when the source panel has changed.
     for path in sorted(glob(os.path.join(PANEL, "*.csv"))):
         name = os.path.basename(path)
+        done = os.path.join(DEST, name)
+        if os.path.exists(done) and os.path.getsize(done) > 40:
+            frame = pd.read_csv(done, usecols=lambda c: c == "funding_rate")
+            (funded if "funding_rate" in frame.columns else unfunded).append(name)
+            continue
         exchange, symbol = name.split("_", 1)
         symbol = symbol[:-4]
         frame = pd.read_csv(path)

@@ -22,6 +22,7 @@ class CounterTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         counter.COUNTER = os.path.join(self.tmp.name, "counter.json")
         counter.SWEEPS = self.tmp.name
+        counter.SPACE = os.path.join(self.tmp.name, "space.json")
 
     def tearDown(self):
         self.tmp.cleanup()
@@ -36,6 +37,7 @@ class CounterTests(unittest.TestCase):
         text = digest_counter.line()
         self.assertEqual(text, counter.status_text(payload))
         self.assertIn(str(payload["scored"]), text)
+        self.assertIn(str(payload["testable"]), text)
         self.assertIn(payload["file"], text)
         self.assertEqual(payload["scored"], 2)
 

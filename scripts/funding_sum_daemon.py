@@ -40,12 +40,8 @@ def cycle(ctx):
     except Exception as exc:  # noqa: BLE001
         print(f"skip {exchange} {symbol}: {exc}", flush=True)
         return {"skipped": 1, "remaining": len(left) - 1}
-    return {"exchange": exchange, "symbol": symbol, "rows": rows, "remaining": len(left) - 1} and _record(1) or {"exchange": exchange, "symbol": symbol, "rows": rows, "remaining": len(left) - 1}
-
-
-def _record(written):
-    import data_guard
-    data_guard.record_write("data/panel_xs", written, "funding_sum: daily funding sum")
+    return {"exchange": exchange, "symbol": symbol, "rows": rows,
+            "remaining": len(left) - 1}
 
 
 if __name__ == "__main__":

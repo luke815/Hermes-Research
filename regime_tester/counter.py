@@ -19,6 +19,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COUNTER = os.path.join(ROOT, "results", "sweeps", "counter.json")
 STATUS = os.path.join(ROOT, "ops", "sweep_status")
 SWEEPS = os.path.join(ROOT, "results", "sweeps")
+SPACE = os.path.join(ROOT, "results", "sweeps", "space.json")
 
 # The last admission was the costs table on 2026-10-31 (research/log.md).
 # Every scored cell since that date counts.
@@ -57,11 +58,25 @@ def scored_cell_ids(sweeps_dir=None, since=LAST_ADMISSION):
     return ids, files
 
 
-def write_counter(sweeps_dir=None, since=LAST_ADMISSION):
+def testable_count(space_path=None):
+    """The enumerator's testable count, which is the denominator.
+
+    A missing file is an absent count, not a guessed one. The two readers
+    then print the same absence instead of two different numbers.
+    """
+    path = space_path or SPACE
+    if not os.path.exists(path):
+        return None
+    with open(path) as handle:
+        return json.load(handle).get("testable")
+
+
+def write_counter(sweeps_dir=None, since=LAST_ADMISSION, space_path=None):
     """Recount from the files and record the number both readers cite."""
     ids, files = scored_cell_ids(sweeps_dir, since)
     payload = {
         "scored": len(ids),
+        "testable": testable_count(space_path),
         "since": since,
         "files": files,
         "file": _cited(COUNTER),
@@ -85,5 +100,6 @@ def read_counter():
 def status_text(payload=None):
     """The one line the digest and ops/sweep_status both print."""
     payload = payload or read_counter()
-    return (f"cells scored {payload['scored']} since {payload.get('since')}, "
-            f"from {payload['file']}")
+    text = (f"cells scored {payload['scored']} of {payload.get('testable')} "
+            f"testable since {payload.get('since')}, from {payload['file']}")
+    return text

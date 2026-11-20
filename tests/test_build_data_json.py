@@ -2,6 +2,7 @@
 
 import os
 import sys
+import unittest
 
 import pandas as pd
 
@@ -135,3 +136,18 @@ def test_zscores_put_components_on_one_scale():
     za, zb = u.zscores(rows, "a"), u.zscores(rows, "b")
     for r in rows:
         assert abs(za[id(r)] - zb[id(r)]) < 1e-9
+
+
+class CoverageNote(unittest.TestCase):
+    def test_liquidation_row_carries_the_coverage_note(self):
+        # An empty note on Liquidations hides the break the page is supposed
+        # to show. The note has to name liq and say the F4 results are void,
+        # and it has to come from the builder, not a hand edit of data.json.
+        rows = b.data_health(["2026-11-18"])
+        liq = next(r for r in rows if r["series"] == "Liquidations")
+        self.assertIn("liq", liq["note"])
+        self.assertIn("void", liq["note"])
+        self.assertIn("2026", liq["note"])
+        others = [r for r in rows if r["series"] != "Liquidations"]
+        self.assertTrue(others)
+        self.assertTrue(all(r["note"] == "" for r in others))

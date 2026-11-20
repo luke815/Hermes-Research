@@ -41,10 +41,11 @@ class WorkList(unittest.TestCase):
             from regime_tester import counter
             counter.COUNTER = os.path.join(tmp, "counter.json")
             counter.SWEEPS = tmp
+            counter.SPACE = os.path.join(tmp, "space.json")
             open(os.path.join(tmp, "2026-11-05.csv"), "w").write("id\na|raw\n")
             line = sweep_xs.status_line(set(), set())
             self.assertEqual(line, counter.status_text())
-            self.assertIn("cells scored 1 since 2026-10-31, from ", line)
+            self.assertIn("cells scored 1 of None testable since 2026-10-31, from ", line)
             self.assertTrue(line.endswith("counter.json"))
             self.assertEqual(open(sweep_xs.STATUS).read().strip(), line)
 
@@ -102,6 +103,27 @@ class WorkList(unittest.TestCase):
             self.assertEqual(
                 sweep_xs.scored_ids(names=1024),
                 {"obv|raw|above|80|ret_1|pit_cross_section|none|daily"})
+
+    def test_a_row_from_another_universe_is_not_a_second_writer(self):
+        # scored_ids drops a row from a different universe, so the caller
+        # never names it. Today's file still holds it. That is the same cell
+        # on an old universe, not a writer the caller did not see, and
+        # refusing the write leaves the measure pending forever.
+        import pandas as pd
+        with tempfile.TemporaryDirectory() as tmp:
+            sweep_xs.OUT = tmp
+            cell = "obv|raw|above|80|ret_1|pit_cross_section|none|daily"
+            pd.DataFrame({"id": [cell], "names": [1024]}).to_csv(
+                os.path.join(tmp, "2026-11-17_xs_vec.csv"), index=False)
+            pd.DataFrame({"id": [cell], "names": [219]}).to_csv(
+                os.path.join(tmp, "2026-11-19_xs_vec.csv"), index=False)
+            path, total = sweep_xs.append_rows(
+                [{"id": cell, "measure": "obv", "names": 234}], already=set())
+            written = pd.read_csv(path)
+            self.assertEqual(list(written["names"]), [234])
+            self.assertEqual(total, 1)
+            self.assertEqual(list(pd.read_csv(
+                os.path.join(tmp, "2026-11-17_xs_vec.csv"))["names"]), [1024])
 
     def test_status_line_names_the_count_and_the_rate(self):
         line = sweep_xs.status_line(set(), set(), names=321, rows_this_hour=5400)

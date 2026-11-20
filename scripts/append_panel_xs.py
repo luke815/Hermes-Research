@@ -73,8 +73,19 @@ def main():
             written += 1
         print(f"batch {i // 20 + 1}: {written} appended", flush=True)
     print(f"appended {written} bars for {yesterday}")
+    declare_appended(names)
+
+
+def declare_appended(names):
+    """Tell the guard which files this run wrote, by name.
+
+    A count is not a list of names. Passing one makes the guard iterate the
+    digits, the job exits with an error, and the supervisor restarts it.
+    """
     import data_guard
-    data_guard.record_write("data/panel_xs", written, "append_panel_xs: yesterday's bar")
+    return data_guard.record_write(
+        "data/panel_xs", [f"binance_{symbol}.csv" for symbol in names],
+        "append_panel_xs: yesterday's bar")
 
 
 if __name__ == "__main__":
