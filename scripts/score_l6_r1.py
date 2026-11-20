@@ -8,6 +8,10 @@ computes the same reading and stamps it as r1 and as r2. It does not pull.
 import os
 import sys
 
+_SITE = "/opt/data/.local/lib/python3.14/site-packages"
+if _SITE not in sys.path:
+    sys.path.insert(0, _SITE)
+
 import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
