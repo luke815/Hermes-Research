@@ -1218,3 +1218,17 @@ Panel rows before the rebuild: 2492, ending 2026-11-16. After: 2493, ending 2026
 Pre-registered in research/generated.md before scoring. The 3-day sum of long plus short liquidations, lagged one bar, above its own trailing 90-day 95th percentile, also lagged, with at least 30 days of history. Neighbours at the 90th and the 99th. Scored on the 20 names in data/raw/coinalyze_liquidation-history.json, joined to Binance prices and to Laevitas funding, which covers 1,495 of 1,504 BTC days. A missing carry leaves the net missing. Every name clears the liquid open-interest tier on the days it has one.
 
 Verdict: rejected. On the pooled names at 1 day the spread is 0.000007 in train (245 dates), 0.002381 in validation (251 dates, t 1.0077) and -0.000159 in test (125 dates, t -0.0461). At 3 days it is 0.003137, 0.010129 and -0.003323. At 5 days it is 0.007444, 0.016070 and -0.006493, and the validation t of 2.4086 on 50 independent dates does not survive the test period. BTC at 1 day is 0.004941, 0.004817 and -0.000493, with 51, 33 and 24 flagged days. The one cell that keeps its sign is BTC at 5 days, and its test rests on 2 independent flagged days, below 30, so it is not quoted. The 90th percentile neighbour flips the same way. The year split shows 2024 carrying the positive years and 2026 negative. The score is unchanged. results/2026-11-18_c8_cascade.json.
+
+## 2026-11-19 daily refresh row count
+
+Panel rows before the rebuild: 2493, ending 2026-11-17. After: 2494, ending 2026-11-18. Change +1. Date added: 2026-11-18. Dates removed: none. The loader drops a day missing price or funding; 2026-11-18 had both. No source failed this run. verify_panel.py PASS, panel_end 2026-11-18, age 1d. results/2026-11-19_regime-daily-refresh.json.
+
+## 2026-11-20 daily refresh row count
+
+Panel rows before the rebuild: 2494, ending 2026-11-18. After: 2495, ending 2026-11-19. Change +1. Date added: 2026-11-19. Dates removed: none. The loader drops a day missing price or funding; 2026-11-19 had both. No source failed this run. verify_panel.py PASS, panel_end 2026-11-19, age 1d. results/2026-11-20_regime-daily-refresh.json.
+
+## 2026-11-20, pre-registered before any computation: A7(2) and A7(4)
+
+Candidate: a7_rest. Hypothesis and rule: research/outside/PREREG_A7.md, committed as 2e19fd4914e122b23e733c3cc2122481bff0166a before this scoring. A7(1) was not scored: its panel has a bad close and a research run does not rewrite it. A7(3) was not scored: data/laevitas/market has no derivs_summary for ADA, SOL, LINK, XRP or AVAX.
+
+Verdict: insufficient for A7(2), 36 cells rejected and 44 insufficient of 80, none kept on both assets. The closest was the ETH basis 30-day tenor at its trailing 365-day bottom quintile, 1-day horizon, which cleared the bar on ETH and not on BTC: basis percentile bottom eth 1d insufficient: validation 0.008547 (t=2.387341, n=175); test 0.008098 (t=2.250513, n=152). A7(4) is insufficient at 1 day, t-stat 1.354197 in validation and 2.39817 in test on 2 names, and rejected at 3 days, where the sign flips in validation. Lookahead passed. results/2026-11-20_a7_rest.json.
