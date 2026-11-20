@@ -77,46 +77,62 @@ def load_pooled():
     """Close and long/short ratio, one column per base coin.
 
     The longest file wins for a coin. A name is present on a date only when
-    its file has a close that date. Nothing is filled forward. Dates stay as
-    strings until every file is read, because parsing each file on its own
+    its file has a close that date. Nothing is filled forward. The files are
+    read as text and parsed once, because parsing each file through pandas
     does not finish inside a research run.
     """
-    frames = []
+    dates = []
+    closes = []
+    ratios = []
     coins = []
     for path in sorted(Path(PANEL).glob("*.csv")):
-        symbol = path.name.split("_", 1)[1][:-4]
-        header = path.read_text(encoding="utf-8").split("\n", 1)[0].split(",")
+        text = path.read_text(encoding="utf-8")
+        lines = text.split("\n")
+        header = lines[0].split(",")
         if "close" not in header or "long_short_ratio" not in header:
             continue
-        frame = pd.read_csv(path, usecols=["date", "close", "long_short_ratio"])
-        frame = frame.dropna(subset=["close"])
-        frame = frame[frame["close"].astype(float) > 0]
-        if frame.empty:
-            continue
-        frame["date"] = frame["date"].astype(str).str.slice(0, 10)
-        frame = frame.drop_duplicates("date")
-        frame["coin"] = base_of(symbol)
-        frames.append(frame)
-        coins.append(frame["coin"].iloc[0])
-    stacked = pd.concat(frames, ignore_index=True)
+        di, ci, ri = (header.index("date"), header.index("close"),
+                      header.index("long_short_ratio"))
+        coin = base_of(path.name.split("_", 1)[1][:-4])
+        seen = set()
+        for line in lines[1:]:
+            if not line:
+                continue
+            parts = line.split(",")
+            close = parts[ci]
+            if not close:
+                continue
+            value = float(close)
+            if value <= 0:
+                continue
+            day = parts[di][:10]
+            if day in seen:
+                continue
+            seen.add(day)
+            dates.append(day)
+            closes.append(value)
+            ratio = parts[ri]
+            ratios.append(float(ratio) if ratio else np.nan)
+            coins.append(coin)
+    stacked = pd.DataFrame({"date": dates, "close": closes,
+                            "long_short_ratio": ratios, "coin": coins})
     counts = stacked.groupby("coin")["date"].transform("size")
     stacked = stacked.assign(_n=counts).sort_values("_n")
     stacked = stacked.drop_duplicates(["coin", "date"], keep="last")
     if "BTC" not in set(stacked["coin"]):
         raise SystemExit("BTC is not in the panel")
-    dates = pd.DatetimeIndex(pd.to_datetime(sorted(stacked["date"].unique()), utc=True))
+    index = pd.DatetimeIndex(pd.to_datetime(sorted(stacked["date"].unique()), utc=True))
     names = sorted(stacked["coin"].unique())
-    pos = {d: i for i, d in enumerate(dates.strftime("%Y-%m-%d"))}
+    pos = {d: i for i, d in enumerate(index.strftime("%Y-%m-%d"))}
     col = {name: j for j, name in enumerate(names)}
-    close_a = np.full((len(dates), len(names)), np.nan)
-    ratio_a = np.full((len(dates), len(names)), np.nan)
+    close_a = np.full((len(index), len(names)), np.nan)
+    ratio_a = np.full((len(index), len(names)), np.nan)
     rows = np.fromiter((pos[d] for d in stacked["date"]), dtype=int, count=len(stacked))
     cols = np.fromiter((col[c] for c in stacked["coin"]), dtype=int, count=len(stacked))
     close_a[rows, cols] = stacked["close"].to_numpy(dtype=float)
     ratio_a[rows, cols] = stacked["long_short_ratio"].to_numpy(dtype=float)
-    close = pd.DataFrame(close_a, index=dates, columns=names)
-    ratio = pd.DataFrame(ratio_a, index=dates, columns=names)
-    return close, ratio
+    return (pd.DataFrame(close_a, index=index, columns=names),
+            pd.DataFrame(ratio_a, index=index, columns=names))
 
 
 def trailing_percentile(series):
