@@ -180,6 +180,23 @@ def verdict_of(stats):
     return "kept"
 
 
+def both_assets(cells):
+    """A cell that passes on one asset only is insufficient, per the pre-registration."""
+    groups = {}
+    for cell in cells:
+        if cell.get("neighbour"):
+            continue
+        key = (cell["feature"], cell["transform"], cell["side"], cell["horizon"])
+        groups.setdefault(key, {})[cell["asset"]] = cell
+    for key, by_asset in groups.items():
+        verdicts = {asset: cell["verdict"] for asset, cell in by_asset.items()}
+        if "kept" in verdicts.values() and set(verdicts.values()) != {"kept"}:
+            for cell in by_asset.values():
+                if cell["verdict"] == "kept":
+                    cell["verdict"] = "insufficient"
+                    cell["reason"] = "the other asset does not keep it"
+
+
 def _round(value):
     if value is None or (isinstance(value, float) and (np.isnan(value) or np.isinf(value))):
         return None
@@ -374,6 +391,7 @@ def main():
     panel = pd.read_csv(os.path.join(ROOT, "data", "panel.csv"), index_col=0)
     panel.index = pd.to_datetime(panel.index, utc=True)
     derivatives = score_derivatives(panel)
+    both_assets(derivatives)
     crowding = score_crowding()
     funding = score_funding(panel)
     payload = {
