@@ -1,0 +1,57 @@
+{
+ "item": "R2",
+ "as_of": "2026-11-19",
+ "state": "risk_off_trend_down",
+ "dial": 0.26,
+ "days_in_state": 8,
+ "changed_on": "2026-11-12",
+ "rules_fired": [
+  "below the 200-day by 14.7 percent",
+  "weekly band below"
+ ],
+ "vol_scalar": 1.3,
+ "emergency_cut": false,
+ "state_changes": 153,
+ "states_seen": [
+  "neutral",
+  "risk_off_trend_down",
+  "risk_on_early",
+  "risk_on_trend"
+ ],
+ "verdict": "recorded",
+ "reason": "the dial is the state machine's reading; it is not an admission",
+ "provenance": {
+  "script": "scripts/score_l6_r1.py",
+  "script_blob": "d9adbd90e4a906cccc62415a9721f711236cbcb2",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_l6_r1.py"
+  ],
+  "commit": "10b67c00dcb0098f2c37c7379eaa6e31d8016254",
+  "written_at": "2026-11-20T23:04:44Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413218,
+    "mtime_ns": 1795153394081037963,
+    "sha256": "6fce531712aa74309690b8e84d3a187cf3c9c3a34c914246813a6a3e656d4e9b"
+   },
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "a7932d6e83fa2ede8b9d04827ac85389170a49d8b96813bec99a69181bd9be1d"
+ }
+}

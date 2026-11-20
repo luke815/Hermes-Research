@@ -1,0 +1,199 @@
+{
+ "item": "R1",
+ "as_of": "2026-11-19",
+ "panel_rows": 2495,
+ "reading_rows": 2495,
+ "inputs": [
+  {
+   "name": "btc_vs_200d",
+   "value": -14.73,
+   "pct": null,
+   "flag": "below",
+   "effect": "risk_off",
+   "available": true
+  },
+  {
+   "name": "weekly_band",
+   "value": "below",
+   "pct": null,
+   "flag": "below",
+   "effect": "risk_off",
+   "available": true
+  },
+  {
+   "name": "sma50_vs_200d",
+   "value": 7.62,
+   "pct": null,
+   "flag": "above",
+   "effect": "risk_on",
+   "available": true
+  },
+  {
+   "name": "alt_vs_200d",
+   "value": -15.55,
+   "pct": null,
+   "flag": "below",
+   "effect": "risk_off",
+   "available": true
+  },
+  {
+   "name": "eth_btc_30d",
+   "value": -3.88,
+   "pct": null,
+   "flag": "narrowing",
+   "effect": "neutral",
+   "available": true
+  },
+  {
+   "name": "btc_rv30_pct",
+   "value": 43.54,
+   "pct": 0.6685,
+   "flag": "rising",
+   "effect": "neutral",
+   "available": true
+  },
+  {
+   "name": "dvol_pct",
+   "value": 45.7,
+   "pct": 0.7163,
+   "flag": "mid",
+   "effect": "neutral",
+   "available": true
+  },
+  {
+   "name": "funding_pct",
+   "value": 0.005076,
+   "pct": 0.6593,
+   "flag": "mid",
+   "effect": "neutral",
+   "available": true
+  },
+  {
+   "name": "oi_flush",
+   "value": null,
+   "pct": null,
+   "flag": "unavailable",
+   "effect": "none",
+   "available": false
+  },
+  {
+   "name": "liq_cascade",
+   "value": null,
+   "pct": null,
+   "flag": "unavailable",
+   "effect": "none",
+   "available": false
+  },
+  {
+   "name": "basis_pct",
+   "value": 5.4,
+   "pct": 0.9695,
+   "flag": "steep",
+   "effect": "neutral",
+   "available": true
+  },
+  {
+   "name": "breadth_above_50d",
+   "value": null,
+   "pct": null,
+   "flag": "unavailable",
+   "effect": "none",
+   "available": false
+  },
+  {
+   "name": "drawdown_90d",
+   "value": -28.44,
+   "pct": null,
+   "flag": "drawdown",
+   "effect": "risk_off",
+   "available": true
+  },
+  {
+   "name": "stablecoin_supply_30d",
+   "value": null,
+   "pct": null,
+   "flag": "unavailable",
+   "effect": "none",
+   "available": false
+  },
+  {
+   "name": "etf_flows_20d",
+   "value": null,
+   "pct": null,
+   "flag": "unavailable",
+   "effect": "none",
+   "available": false
+  },
+  {
+   "name": "dxy_30d",
+   "value": null,
+   "pct": null,
+   "flag": "unavailable",
+   "effect": "none",
+   "available": false
+  },
+  {
+   "name": "us10y_30d",
+   "value": null,
+   "pct": null,
+   "flag": "unavailable",
+   "effect": "none",
+   "available": false
+  },
+  {
+   "name": "btc_ndx_corr_60d",
+   "value": null,
+   "pct": null,
+   "flag": "unavailable",
+   "effect": "none",
+   "available": false
+  }
+ ],
+ "n_inputs": 18,
+ "unavailable": [
+  "oi_flush",
+  "liq_cascade",
+  "breadth_above_50d",
+  "stablecoin_supply_30d",
+  "etf_flows_20d",
+  "dxy_30d",
+  "us10y_30d",
+  "btc_ndx_corr_60d"
+ ],
+ "verdict": "recorded",
+ "reason": "the inputs are computed; several series are not on disk and stay unavailable",
+ "provenance": {
+  "script": "scripts/score_l6_r1.py",
+  "script_blob": "d9adbd90e4a906cccc62415a9721f711236cbcb2",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_l6_r1.py"
+  ],
+  "commit": "10b67c00dcb0098f2c37c7379eaa6e31d8016254",
+  "written_at": "2026-11-20T23:04:43Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413218,
+    "mtime_ns": 1795153394081037963,
+    "sha256": "6fce531712aa74309690b8e84d3a187cf3c9c3a34c914246813a6a3e656d4e9b"
+   },
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "05469213470343707237269effb46f3a79b74cb05d544b23636ae24a591fcc65"
+ }
+}

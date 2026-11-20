@@ -1,0 +1,161 @@
+{
+ "item": "R5",
+ "as_of": "2026-11-19",
+ "state": "risk_off_trend_down",
+ "analogs": [
+  {
+   "date": "2026-11-18",
+   "state": "risk_off_trend_down",
+   "fwd_10": null,
+   "fwd_30": null
+  },
+  {
+   "date": "2026-11-17",
+   "state": "risk_off_trend_down",
+   "fwd_10": null,
+   "fwd_30": null
+  },
+  {
+   "date": "2026-11-16",
+   "state": "risk_off_trend_down",
+   "fwd_10": null,
+   "fwd_30": null
+  },
+  {
+   "date": "2026-11-15",
+   "state": "risk_off_trend_down",
+   "fwd_10": null,
+   "fwd_30": null
+  },
+  {
+   "date": "2026-11-14",
+   "state": "risk_off_trend_down",
+   "fwd_10": null,
+   "fwd_30": null
+  },
+  {
+   "date": "2026-11-13",
+   "state": "risk_off_trend_down",
+   "fwd_10": null,
+   "fwd_30": null
+  },
+  {
+   "date": "2026-11-12",
+   "state": "risk_off_trend_down",
+   "fwd_10": null,
+   "fwd_30": null
+  },
+  {
+   "date": "2026-08-18",
+   "state": "risk_off_trend_down",
+   "fwd_10": 0.202676,
+   "fwd_30": 0.180726
+  },
+  {
+   "date": "2026-08-17",
+   "state": "risk_off_trend_down",
+   "fwd_10": 0.24347,
+   "fwd_30": 0.180926
+  },
+  {
+   "date": "2026-08-16",
+   "state": "risk_off_trend_down",
+   "fwd_10": 0.256273,
+   "fwd_30": 0.202365
+  }
+ ],
+ "n_analogs": 10,
+ "transitions": [
+  {
+   "date": "2026-09-17",
+   "from": "risk_on_trend",
+   "to": "neutral"
+  },
+  {
+   "date": "2026-09-23",
+   "from": "neutral",
+   "to": "risk_on_trend"
+  },
+  {
+   "date": "2026-10-01",
+   "from": "risk_on_trend",
+   "to": "neutral"
+  },
+  {
+   "date": "2026-10-06",
+   "from": "neutral",
+   "to": "risk_on_trend"
+  },
+  {
+   "date": "2026-10-17",
+   "from": "risk_on_trend",
+   "to": "neutral"
+  },
+  {
+   "date": "2026-10-22",
+   "from": "neutral",
+   "to": "risk_on_trend"
+  },
+  {
+   "date": "2026-10-27",
+   "from": "risk_on_trend",
+   "to": "neutral"
+  },
+  {
+   "date": "2026-11-02",
+   "from": "neutral",
+   "to": "risk_on_early"
+  },
+  {
+   "date": "2026-11-07",
+   "from": "risk_on_early",
+   "to": "neutral"
+  },
+  {
+   "date": "2026-11-12",
+   "from": "neutral",
+   "to": "risk_off_trend_down"
+  }
+ ],
+ "paper": {
+  "since": "2026-11-19",
+  "return": 0.0,
+  "hold_return": 0.0
+ },
+ "verdict": "recorded",
+ "reason": "analogs are the last ten dates in the current state; the paper track starts today",
+ "provenance": {
+  "script": "scripts/score_l6_r5.py",
+  "script_blob": "af4a6582201cdaaef46b3c1ddb4cdaa891af6b7e",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_l6_r5.py"
+  ],
+  "commit": "10b67c00dcb0098f2c37c7379eaa6e31d8016254",
+  "written_at": "2026-11-20T23:04:48Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413218,
+    "mtime_ns": 1795153394081037963,
+    "sha256": "6fce531712aa74309690b8e84d3a187cf3c9c3a34c914246813a6a3e656d4e9b"
+   },
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "f44998d1c15da1c5447dfd96fe67a1379f939407680e4ee4f21b0486561e8486"
+ }
+}

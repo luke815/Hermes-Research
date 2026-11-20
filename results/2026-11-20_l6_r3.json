@@ -1,0 +1,48 @@
+{
+ "item": "R3",
+ "as_of": "2026-11-19",
+ "panel_rows": 2495,
+ "cost_per_unit_change": 0.003,
+ "carry": "dropped: the panel has no funding column, so carry is not treated as zero",
+ "variants": [
+  "full_dial",
+  "trend_200d",
+  "buy_and_hold"
+ ],
+ "verdict": "recorded",
+ "reason": "the harness runs the dial as exposure times the next day's return, net of costs on changes",
+ "provenance": {
+  "script": "scripts/score_l6_r4.py",
+  "script_blob": "cca892ae2ea7b699cbbafecb9f1f94e1697c6858",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_l6_r4.py"
+  ],
+  "commit": "10b67c00dcb0098f2c37c7379eaa6e31d8016254",
+  "written_at": "2026-11-20T23:04:46Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413218,
+    "mtime_ns": 1795153394081037963,
+    "sha256": "6fce531712aa74309690b8e84d3a187cf3c9c3a34c914246813a6a3e656d4e9b"
+   },
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "ccb1406cb01d97b3f8076d43dea35017bc40faab8ad2b109299f3e2ceee73d44"
+ }
+}

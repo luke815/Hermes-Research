@@ -1,0 +1,102 @@
+{
+ "item": "L6",
+ "panel": "data/panel_xs_laevitas",
+ "names": 234,
+ "panel_digest": "91ee884150ff50aa",
+ "sources": [
+  "2026-11-19_xs_vec.csv"
+ ],
+ "measures": [
+  "funding_persist_high",
+  "oi_on_down_days",
+  "basis_level",
+  "ls_ratio_level"
+ ],
+ "missing_measures": [],
+ "cells": 1728,
+ "usable": 1190,
+ "kept_ids": [
+  "basis_level|raw|above|80|ret_1|pit_cross_section|none|daily",
+  "basis_level|raw|above|90|ret_1|pit_cross_section|none|daily",
+  "basis_level|raw|above|95|ret_1|pit_cross_section|none|daily",
+  "basis_level|raw|above|80|rel_1|pit_cross_section|none|daily",
+  "basis_level|raw|above|90|rel_1|pit_cross_section|none|daily",
+  "basis_level|raw|above|95|rel_1|pit_cross_section|none|daily",
+  "basis_level|raw|above|80|ret_3|pit_cross_section|none|daily",
+  "basis_level|raw|above|90|ret_3|pit_cross_section|none|daily",
+  "basis_level|raw|above|95|ret_3|pit_cross_section|none|daily",
+  "basis_level|raw|above|80|rel_3|pit_cross_section|none|daily",
+  "basis_level|raw|above|90|rel_3|pit_cross_section|none|daily",
+  "basis_level|raw|above|95|rel_3|pit_cross_section|none|daily",
+  "basis_level|raw|above|80|ret_10|pit_cross_section|none|daily",
+  "basis_level|raw|above|90|ret_10|pit_cross_section|none|daily",
+  "basis_level|raw|above|95|ret_10|pit_cross_section|none|daily",
+  "basis_level|raw|above|80|rel_10|pit_cross_section|none|daily",
+  "basis_level|raw|above|90|rel_10|pit_cross_section|none|daily",
+  "basis_level|raw|above|95|rel_10|pit_cross_section|none|daily",
+  "basis_level|raw|below|20|ret_1|pit_cross_section|none|daily",
+  "basis_level|raw|below|10|ret_1|pit_cross_section|none|daily"
+ ],
+ "by_measure": {
+  "funding_persist_high": {
+   "cells": 432,
+   "usable": 186,
+   "best_abs_t": 3.7479577685127374
+  },
+  "oi_on_down_days": {
+   "cells": 432,
+   "usable": 338,
+   "best_abs_t": 3.012942052508825
+  },
+  "basis_level": {
+   "cells": 432,
+   "usable": 330,
+   "best_abs_t": 2.9216055714266247
+  },
+  "ls_ratio_level": {
+   "cells": 432,
+   "usable": 336,
+   "best_abs_t": 4.325065297976421
+  }
+ },
+ "verdict": "recorded",
+ "reason": "the cells with 40 independent observations are recorded; admission waits on validation and test, which this script does not read",
+ "train_end": "2024-06-30",
+ "min_independent": 40,
+ "provenance": {
+  "script": "scripts/score_l6_positioning.py",
+  "script_blob": "0443962ce69bab33739d0216f3d5590a5a25f654",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_l6_positioning.py"
+  ],
+  "commit": "dec67e5bcf0ba45aaf3c10a55963d68187572781",
+  "written_at": "2026-11-20T23:03:04Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 194597289,
+    "listing_sha256": "ad863b60cf8342ce8211eb497a980863426b0d7b4ab9b7e58817cc31657d210c",
+    "content_sha256": "d7f465f79fb6ff41426bf084d43121ac558489957758aad97599733609612f17",
+    "content_partial": false
+   },
+   {
+    "path": "results/sweeps",
+    "kind": "dir",
+    "files": 17,
+    "bytes": 35675405,
+    "listing_sha256": "4c96980cfaa7148b39ef3d88e72a6ac0f518196c5aef3b285c58bbdb5958ee26",
+    "content_sha256": "e12c05d57a3b281d9ca1da24d0369b221ad450ccf86c86c1518cbf82bb0f254d",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "3a565f41d9a27df70e08e558dfbac1cbb3104033f20a8ed1407e108caf28645b"
+ }
+}

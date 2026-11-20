@@ -1,0 +1,256 @@
+{
+ "item": "R4",
+ "panel_rows": 2495,
+ "as_of": "2026-11-19",
+ "cost_per_unit_change": 0.003,
+ "carry": "dropped: the panel has no funding column, so carry is not treated as zero",
+ "variants": {
+  "full_dial": {
+   "by_period": {
+    "train": {
+     "days": 1623,
+     "cagr": 0.5016987784013436,
+     "max_drawdown": -0.6770785045214756,
+     "calmar": 0.7409757879640835
+    },
+    "validation": {
+     "days": 549,
+     "cagr": 0.18549987477352348,
+     "max_drawdown": -0.3106000044170617,
+     "calmar": 0.5972307538168654
+    },
+    "test": {
+     "days": 322,
+     "cagr": -0.1891018029706817,
+     "max_drawdown": -0.2270404140636565,
+     "calmar": -0.8328993045161653
+    }
+   },
+   "by_year": {
+    "2020": {
+     "days": 346,
+     "cagr": 2.414380152288785,
+     "max_drawdown": -0.40757026565938526,
+     "calmar": 5.923837815751092
+    },
+    "2021": {
+     "days": 365,
+     "cagr": -0.051975437482573494,
+     "max_drawdown": -0.5057571013872175,
+     "calmar": -0.10276758811692904
+    },
+    "2022": {
+     "days": 365,
+     "cagr": -0.3476419715384831,
+     "max_drawdown": -0.36502227222807426,
+     "calmar": -0.9523856432554023
+    },
+    "2023": {
+     "days": 365,
+     "cagr": 0.9390894841903483,
+     "max_drawdown": -0.2796514132500759,
+     "calmar": 3.358071655266678
+    },
+    "2024": {
+     "days": 366,
+     "cagr": 1.0130130164009845,
+     "max_drawdown": -0.35464607164627415,
+     "calmar": 2.8564055755603266
+    },
+    "2025": {
+     "days": 365,
+     "cagr": 0.016744647835704507,
+     "max_drawdown": -0.30565902721365734,
+     "calmar": 0.054782114529206775
+    },
+    "2026": {
+     "days": 322,
+     "cagr": -0.1891018029706817,
+     "max_drawdown": -0.2270404140636565,
+     "calmar": -0.8328993045161653
+    }
+   }
+  },
+  "trend_200d": {
+   "by_period": {
+    "train": {
+     "days": 1623,
+     "cagr": 0.4622254496291973,
+     "max_drawdown": -0.6541055434611006,
+     "calmar": 0.7066527019223858
+    },
+    "validation": {
+     "days": 549,
+     "cagr": -0.02649200261515372,
+     "max_drawdown": -0.32949195154613886,
+     "calmar": -0.08040257885159309
+    },
+    "test": {
+     "days": 322,
+     "cagr": 0.027698519513543296,
+     "max_drawdown": -0.17752253036832355,
+     "calmar": 0.15602819234310394
+    }
+   },
+   "by_year": {
+    "2020": {
+     "days": 346,
+     "cagr": 1.6539147389690894,
+     "max_drawdown": -0.17637253355407256,
+     "calmar": 9.377394005977862
+    },
+    "2021": {
+     "days": 365,
+     "cagr": -0.2495496547958791,
+     "max_drawdown": -0.6541055434611005,
+     "calmar": -0.38151282662339914
+    },
+    "2022": {
+     "days": 365,
+     "cagr": 0.0,
+     "max_drawdown": 0.0,
+     "calmar": null
+    },
+    "2023": {
+     "days": 365,
+     "cagr": 1.0127350792200533,
+     "max_drawdown": -0.18952188942410275,
+     "calmar": 5.343631188447075
+    },
+    "2024": {
+     "days": 366,
+     "cagr": 0.7190451125025115,
+     "max_drawdown": -0.2705045711946237,
+     "calmar": 2.6581625194983123
+    },
+    "2025": {
+     "days": 365,
+     "cagr": -0.20686345269890827,
+     "max_drawdown": -0.32949195154613886,
+     "calmar": -0.6278255105419203
+    },
+    "2026": {
+     "days": 322,
+     "cagr": 0.027698519513543296,
+     "max_drawdown": -0.17752253036832355,
+     "calmar": 0.15602819234310394
+    }
+   }
+  },
+  "buy_and_hold": {
+   "by_period": {
+    "train": {
+     "days": 1623,
+     "cagr": 0.5585160588455478,
+     "max_drawdown": -0.7666956183209543,
+     "calmar": 0.728471697893207
+    },
+    "validation": {
+     "days": 549,
+     "cagr": 0.257894009239533,
+     "max_drawdown": -0.32046522264169075,
+     "calmar": 0.8047488183386499
+    },
+    "test": {
+     "days": 322,
+     "cagr": -0.33416157034712246,
+     "max_drawdown": -0.395246414379012,
+     "calmar": -0.8454512379881739
+    }
+   },
+   "by_year": {
+    "2020": {
+     "days": 346,
+     "cagr": 2.586398483677966,
+     "max_drawdown": -0.5399504867324142,
+     "calmar": 4.79006602870185
+    },
+    "2021": {
+     "days": 365,
+     "cagr": 0.6260725305380603,
+     "max_drawdown": -0.532191112889595,
+     "calmar": 1.1764054591943955
+    },
+    "2022": {
+     "days": 365,
+     "cagr": -0.6518074347517577,
+     "max_drawdown": -0.667366112382298,
+     "calmar": -0.9766864434051041
+    },
+    "2023": {
+     "days": 365,
+     "cagr": 1.6628176492899023,
+     "max_drawdown": -0.20009414249229518,
+     "calmar": 8.310176542793753
+    },
+    "2024": {
+     "days": 366,
+     "cagr": 1.133942282887261,
+     "max_drawdown": -0.2625533998107429,
+     "calmar": 4.318901540428133
+    },
+    "2025": {
+     "days": 365,
+     "cagr": -0.06112122003491105,
+     "max_drawdown": -0.32046522264169075,
+     "calmar": -0.19072653042058835
+    },
+    "2026": {
+     "days": 322,
+     "cagr": -0.33416157034712246,
+     "max_drawdown": -0.395246414379012,
+     "calmar": -0.8454512379881739
+    }
+   }
+  }
+ },
+ "beats": {
+  "validation": {
+   "drawdown_vs_hold": true,
+   "calmar_vs_hold": false,
+   "calmar_vs_200d": true
+  },
+  "test": {
+   "drawdown_vs_hold": true,
+   "calmar_vs_hold": true,
+   "calmar_vs_200d": false
+  }
+ },
+ "state_changes": 153,
+ "verdict": "rejected",
+ "reason": "the full dial does not beat both benchmarks in both held-out periods",
+ "provenance": {
+  "script": "scripts/score_l6_r4.py",
+  "script_blob": "cca892ae2ea7b699cbbafecb9f1f94e1697c6858",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_l6_r4.py"
+  ],
+  "commit": "10b67c00dcb0098f2c37c7379eaa6e31d8016254",
+  "written_at": "2026-11-20T23:04:46Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413218,
+    "mtime_ns": 1795153394081037963,
+    "sha256": "6fce531712aa74309690b8e84d3a187cf3c9c3a34c914246813a6a3e656d4e9b"
+   },
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "3d74e2ffc9a392f390b947cefdb6d993405c577685ca5b53f842b37aff2ec344"
+ }
+}
