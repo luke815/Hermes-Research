@@ -63,9 +63,12 @@ def load_matrices():
     """Close, prior-bar open interest and funding, one column per base coin.
 
     The longest file wins for a coin. A name is present on a date only when
-    its file has a close that date. Nothing is filled forward.
+    its file has a close that date. Nothing is filled forward. The columns are
+    written into one array: aligning thousands of frames one at a time does
+    not finish.
     """
     best = {}
+    lengths = {}
     for path in sorted(PANEL.glob("*.csv")):
         symbol = path.name.split("_", 1)[1][:-4]
         header = path.read_text(encoding="utf-8").split("\n", 1)[0].split(",")
@@ -82,23 +85,30 @@ def load_matrices():
         if frame.empty:
             continue
         key = base_of(symbol)
-        prior = best.get(key)
-        if prior is None or len(frame) > len(prior):
+        prior = lengths.get(key, -1)
+        if len(frame) > prior:
             best[key] = frame
+            lengths[key] = len(frame)
     if "BTC" not in best:
         raise SystemExit("BTC is not in the panel")
+    dates = pd.DatetimeIndex(sorted(set().union(*(f.index for f in best.values()))))
+    pos = {d: i for i, d in enumerate(dates)}
     names = sorted(best)
-    close = pd.DataFrame({n: best[n]["close"].astype(float) for n in names})
-    oi = pd.DataFrame({
-        n: best[n]["oi_usd"].astype(float).shift(1) if "oi_usd" in best[n].columns else np.nan
-        for n in names
-    })
-    funding = pd.DataFrame({
-        n: (best[n]["funding_rate"].astype(float) if "funding_rate" in best[n].columns
-            else pd.Series(np.nan, index=best[n].index))
-        for n in names
-    })
-    return close.sort_index(), oi.reindex(close.index), funding.reindex(close.index)
+    n_dates, n_names = len(dates), len(names)
+    close_a = np.full((n_dates, n_names), np.nan)
+    oi_a = np.full((n_dates, n_names), np.nan)
+    fund_a = np.full((n_dates, n_names), np.nan)
+    for j, name in enumerate(names):
+        frame = best[name]
+        rows = np.fromiter((pos[d] for d in frame.index), dtype=int, count=len(frame))
+        close_a[rows, j] = frame["close"].to_numpy(dtype=float)
+        oi_a[rows, j] = frame["oi_usd"].to_numpy(dtype=float)
+        if "funding_rate" in frame.columns:
+            fund_a[rows, j] = frame["funding_rate"].to_numpy(dtype=float)
+    close = pd.DataFrame(close_a, index=dates, columns=names)
+    oi = pd.DataFrame(oi_a, index=dates, columns=names).shift(1)
+    funding = pd.DataFrame(fund_a, index=dates, columns=names)
+    return close, oi, funding
 
 
 def loser_signal(close, window):
