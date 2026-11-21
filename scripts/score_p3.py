@@ -206,10 +206,10 @@ def _verdict(summary):
         return "insufficient"
     if summary["validation"]["n"] < MIN_N:
         return "insufficient"
-    if summary["validation"]["t"] is None or abs(summary["validation"]["t"]) < MIN_T:
+    t_stat = summary["validation"]["t"]
+    if t_stat is None or t_stat < MIN_T:
         return "insufficient"
-    signs = {np.sign(m) for m in means}
-    if len(signs) > 1:
+    if any(m <= 0 for m in means):
         return "rejected"
     return "admitted"
 
