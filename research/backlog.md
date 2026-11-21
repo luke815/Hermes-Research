@@ -110,7 +110,7 @@ return was positive). A cell that reaches none of its bars is insufficient, not 
 
 ## Pair trading, after the Laevitas items
 
-- P3. The pair-rule backtest through strategy.py, three periods, per year, net of costs and carry. After L6. Done when the result file shows the admission verdict and bt_sharpe is written for an admitted pair type.
+- P3. The pair-rule backtest through strategy.py, three periods, per year, net of costs and carry. After L6. Done when the result file shows the admission verdict and bt_sharpe is written for an admitted pair type. Done when a committed script scores the pre-registered reversion rule and the relative-strength rule on the point-in-time panel, three periods, per year, net of costs on both legs and funding carry; the results file is written by that script through write_result and carries an admission verdict; bt_sharpe is written into pairs_board for a pair type that is admitted and left null otherwise.
 
 ## Next ten
 
