@@ -107,7 +107,8 @@ def main():
     if marker in text:
         raise SystemExit("note already present")
     line = next(ln for ln in text.splitlines() if ln.startswith("- A7. "))
-    anchor = "A research run does not rewrite the panel and does not pull."
+    anchor = ("A research run does not rewrite the panel and does not pull. "
+              "The pre-registration is commit 2d78832.")
     if line.count(anchor) != 1:
         raise SystemExit(f"anchor count {line.count(anchor)}")
     note = (
@@ -126,7 +127,7 @@ def main():
         f"Unblocks when that close is corrected in data/panel_xs_laevitas and "
         f"derivs_summary has a file for ADA, SOL, LINK, XRP and AVAX. A "
         f"research run does not rewrite the panel and does not pull.")
-    updated = line.replace(anchor, anchor + note, 1)
+    updated = line.replace(anchor, note + anchor, 1)
     open(BACKLOG, "w").write(text.replace(line, updated, 1))
     print("noted")
 
