@@ -52,7 +52,7 @@ An instruction is written here as numbered items at the top, each with a done-wh
 
 ## Outside research pass 3, 2026-11-19: data items and the next pre-registration
 
-- H1. Baseline flaw. Reopened 2026-11-20: the note stands, the done_check record does not. Was closed 2026-11-19: confirm.py _signal returns -1 where the rank is NaN and sweep.py sets those bars to NaN before scoring, so a late-starting measure is never benchmarked against bars before it exists. No test, as instructed. Done when a test shows a 2021-start series scored against a 2019 price panel gives the same excess as the same series scored on a 2021-start panel.
+- H1. Baseline flaw. Reopened 2026-11-20: the note stands, the done_check record does not. Was closed 2026-11-19: confirm.py _signal returns -1 where the rank is NaN and sweep.py sets those bars to NaN before scoring, so a late-starting measure is never benchmarked against bars before it exists. No test, as instructed. Done when a test shows a 2021-start series scored against a 2019 price panel gives the same excess as the same series scored on a 2021-start panel. Done 2026-11-21. done_check 59c0d266c1.
 
 From research/outside/PASS3_2026-11-19.md. Nothing passed; two data items need Hermes, and PREREG4 is proposed, not scored.
 
