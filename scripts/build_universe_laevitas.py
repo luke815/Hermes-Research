@@ -26,12 +26,48 @@ INSTRUMENTS = os.path.join(ROOT, "data", "laevitas", "instruments.json")
 OUT_CSV = os.path.join(ROOT, "data", "universe_laevitas.csv")
 OUT_PANEL = os.path.join(ROOT, "data", "panel_xs_laevitas")
 STALE_DAYS = 14
+JUMP = 50
 COLUMNS = ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd",
            "basis", "long_short_ratio"]
 
 
 def day(millis):
     return datetime.fromtimestamp(millis / 1000, timezone.utc).strftime("%Y-%m-%d")
+
+
+def closes_of(items, jump=JUMP):
+    """One close per item, taken from the index when the price field jumps.
+
+    The vendor price field and the index beside it agree on an ordinary day,
+    apart from the contract's own multiplier: a 1000-coin contract prints a
+    price about a thousand times its index every day. A day where the price
+    field moves by `jump` or more against the day before, while the index
+    does not, is the vendor changing unit for one bar. From the first such
+    day the close is the price field divided by the ratio of that day, which
+    puts that one bar back on the scale the rest of the file uses. A series
+    with no index keeps the price field, and the first bar has no prior day.
+    """
+    ordered = sorted(
+        (item for item in items if item.get("price") is not None),
+        key=lambda item: item["date"])
+    closes = []
+    prior_price = None
+    prior_index = None
+    for item in ordered:
+        price, index = item.get("price"), item.get("index")
+        price_moved = (
+            prior_price and price
+            and (price / prior_price >= jump or prior_price / price >= jump))
+        index_held = (
+            prior_index and index
+            and (1 / jump) < (index / prior_index) < jump)
+        if price_moved and index_held and price and index:
+            closes.append(index)
+        else:
+            closes.append(price)
+            prior_price = price
+        prior_index = index
+    return closes
 
 
 def main():
@@ -71,7 +107,7 @@ def main():
             basis = "last_bar_stale"
         frame = pd.DataFrame({
             "date": [day(i["date"]) for i in items],
-            "close": [i.get("price") for i in items],
+            "close": closes_of(items),
             "volume_usd": [i.get("volume") for i in items],
             "volume_base": [i.get("volume_coin") for i in items],
             "funding_rate": [i.get("funding") for i in items],
