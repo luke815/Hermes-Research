@@ -74,7 +74,8 @@ def load():
 
 
 def period_of(index):
-    dates = pd.Series(pd.to_datetime(index).strftime("%Y-%m-%d").to_numpy(), index=index)
+    stamps = pd.to_datetime(index)
+    dates = pd.Series([stamp.strftime("%Y-%m-%d") for stamp in stamps], index=index)
     names = pd.Series("", index=index)
     for name, start, end in PERIODS:
         mask = pd.Series(True, index=index)
