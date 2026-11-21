@@ -129,6 +129,23 @@ def verdict_of(fresh):
     return "kept"
 
 
+def item_verdict(cells):
+    """One word for the item, from the cells, in the order a reader expects.
+
+    A cell that reaches none of its bars is insufficient, not rejected, and
+    one insufficient cell means the item is not settled. A sign that flips
+    between the two fresh windows is rejected. Kept is only every cell kept.
+    """
+    verdicts = [cell["verdict"] for cell in cells]
+    if any(verdict == "insufficient" for verdict in verdicts):
+        return "insufficient"
+    if any(verdict == "rejected" for verdict in verdicts):
+        return "rejected"
+    if verdicts and all(verdict == "kept" for verdict in verdicts):
+        return "kept"
+    raise ValueError(f"no verdict among {verdicts}")
+
+
 def lookahead(series):
     rank = trailing_percentile(series.shift(1))
     cut = rank.index[len(rank) // 2]
@@ -188,6 +205,7 @@ def main():
         "prereg_commit": commit,
         "lookahead_passed": passed,
         "cells": cells,
+        "verdict": item_verdict(cells),
     }
     path = write_result("q2_skew_no_vol", payload,
                         inputs=["data/laevitas/market", "data/panel.csv", PREREG])
