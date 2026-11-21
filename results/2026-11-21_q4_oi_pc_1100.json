@@ -1,26 +1,26 @@
 {
  "item": "Q4",
  "today": "2026-11-21",
- "read_at": "2026-11-21T11:09:01Z",
+ "read_at": "2026-11-21T11:10:27Z",
  "slot": "11:00",
  "oi_pc_ratio": {
   "BTC": {
    "files": 15,
-   "empty": 0,
-   "last_bar": null
+   "empty": 8,
+   "last_bar": "2023-03-23"
   },
   "ETH": {
    "files": 13,
-   "empty": 0,
-   "last_bar": null
+   "empty": 7,
+   "last_bar": "2023-09-21"
   }
  },
  "market_backfill_remaining": 0,
- "market_backfill_cycles": 1095,
+ "market_backfill_cycles": 1098,
  "market_backfill_phase": "idle",
  "provenance": {
   "script": "scripts/record_q4_oi_pc_1100.py",
-  "script_blob": "9eec092ed4f09b1c831a283f443a8b9d9136f72d",
+  "script_blob": "60ce7cc7c438ffb512df9273d554f73d27b5cb7b",
   "script_tracked": true,
   "script_dirty": false,
   "argv": [],
@@ -28,8 +28,8 @@
    "python3",
    "scripts/record_q4_oi_pc_1100.py"
   ],
-  "commit": "0224b43f1331c79d9d6ccc480cc647aa3e2d4a37",
-  "written_at": "2026-11-21T11:09:01Z",
+  "commit": "246671c218dcfc7c679dff7e65f70cbb7a6b6030",
+  "written_at": "2026-11-21T11:10:27Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [
@@ -43,6 +43,6 @@
     "content_partial": false
    }
   ],
-  "payload_sha256": "228c8eeb122bc128722768902320c27ef7a75d08140f82b1f72e9934e7a83b35"
+  "payload_sha256": "580c6f414aaa3ed825481ccccdad24319d8be9fab45ac69b7c3dcf1f2eb921c9"
  }
 }
