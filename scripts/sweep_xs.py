@@ -212,13 +212,14 @@ def pending_measures(work, done, known):
 def load_panel(names_kept):
     """Every column the panel has, for the names that pass the history bar.
 
-    High and low are not stored, so a measure that needs them is absent rather
-    than filled. A name is absent on a date it has no value. Volume is stored
-    as quote units for most names and as base units for the stopped Binance
-    names; either one is volume, and a name that has both keeps the quote one.
+    A measure that needs a column the file does not have is absent rather than
+    filled. High and low are read when the file carries them and absent when it
+    does not. A name is absent on a date it has no value. Volume is stored as
+    quote units for most names and as base units for the stopped Binance names;
+    either one is volume, and a name that has both keeps the quote one.
     """
     wanted = ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd",
-              "basis", "long_short_ratio"]
+              "basis", "long_short_ratio", "high", "low"]
     frames = {}
     for name in names_kept:
         path = os.path.join(PANEL, name + ".csv")
