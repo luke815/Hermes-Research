@@ -9,6 +9,7 @@ the 90 days before entry and held fixed. A missing carry drops the trade.
 Usage: python3 scripts/score_p3.py
 """
 
+import json
 import os
 import sys
 
@@ -38,6 +39,8 @@ MIN_T = 2.0
 MIN_N = 40
 PREREG = "c9c0c759f5aff896dab8a0a03bbd366f1525c53d"
 ANCHORS = ("BTC", "ETH")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+UNIVERSE = os.path.join(ROOT, "results", "sweeps", "liquid_universe.json")
 
 
 def _load(names):
@@ -265,10 +268,8 @@ def _relative_strength(long_close, short_close, vol):
 
 
 def main():
-    close, _ = load_close_matrix(PANEL)
-    train = close[close.index <= "2024-06-30"]
-    enough = train.columns[train.notna().sum() >= 60]
-    universe = liquid_names(enough)
+    names = json.load(open(UNIVERSE))["names"]
+    universe = [n for n in names if not n.startswith("Unnamed")]
     frames = _load(universe)
     trades = []
     for anchor in ANCHORS:
