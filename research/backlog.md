@@ -155,7 +155,8 @@ Book, from research/LONG_SHORT_BOOK.md section 11. These sit immediately after t
 
 - B4. strategy.py book backtest, six variants, three periods, per year. Two runs. Rechecked 2026-11-21 15:00 UTC: results/2026-11-21_b4_inputs_1500.json shows data/raw/top100_daily.json last bar 2026-11-05 (16 days behind) and data/book_universe.json as_of 2026-11-05 (16 days behind, 150 rows). Both are past the two-day freshness limit, and no registered daemon refreshes them. regime_tester/strategy.py is absent. A backtest built from stale inputs would not be a result, and a research run does not pull. Blocked on the Coinalyze inputs. Unblocks when those two files are current.
 
-- B5. The 4-hour entry timing recorded alongside the simple entry. One run.
+- B5. The 4-hour entry timing recorded alongside the simple entry. One run. Rechecked 2026-11-21 15:00 UTC: results/2026-11-21_b5_inputs_1500.json shows the hourly store newest bar 2026-11-21 (0 days behind), 1 of 100 files past the two-day freshness limit and 99 current. signals/book.csv has 2 rows and no book-legs file exists, so there is no leg list to time. No registered daemon refreshes the hourly store. A timing rule built from stale bars would not be a result, and a research run does not pull. Blocked on the hourly store. Unblocks when the hourly files are current.
+
 
 Risk regime, from research/RISK_REGIME.md section 6. These follow the bottom scorecard because they share the episode counter and the inputs.
 
@@ -218,6 +219,11 @@ Then the cross-sectional items resume.
 10. Four-hour panel for the top 30 by open interest, and the 1 to 3 day versions of the capitulation and short-squeeze setups.
 11. Cross-venue and Hyperliquid funding divergence as a confirmation feature.
 12. Learned weights for the composite by rolling walk-forward, against equal weights.
+
+
+- G21. xs_bb_pct_xs_rank_below_20_ret_10. Pre-registered 2026-11-21 in research/generated.md, item 21. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+
+- G22. xs_bb_width_xs_rank_above_95_rel_1. Pre-registered 2026-11-21 in research/generated.md, item 22. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
 
 ## A7(1) pre-registration
 
