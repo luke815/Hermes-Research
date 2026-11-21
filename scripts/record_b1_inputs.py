@@ -51,8 +51,12 @@ def main():
         }
     out["hourly"]["last_bar"] = last_date(os.path.join(ROOT, FILES["hourly"]), "t")
     out["daily"]["last_bar"] = last_date(os.path.join(ROOT, FILES["daily"]), "t")
-    out["snapshot"]["as_of"] = json.load(
-        open(os.path.join(ROOT, FILES["snapshot"]))).get("as_of")
+    updates = [row["update"] for row in json.load(
+        open(os.path.join(ROOT, FILES["snapshot"]))) if row.get("update")]
+    newest = max(updates)
+    out["snapshot"]["newest_update"] = datetime.fromtimestamp(
+        newest / 1000 if newest > 10 ** 12 else newest, timezone.utc
+    ).strftime("%Y-%m-%dT%H:%M:%SZ")
     path = write_result("b1_inputs", out, inputs=list(FILES.values()))
     print(path)
     text = open(BACKLOG).read()
@@ -67,7 +71,7 @@ def main():
         " Rechecked 2026-11-21 07:00 UTC: results/2026-11-21_b1_inputs.json "
         f"shows the hourly store last bar {out['hourly']['last_bar']}, the "
         f"daily bars last bar {out['daily']['last_bar']} and the open-interest "
-        f"snapshot as of {out['snapshot']['as_of']}. All three are older than "
+        f"snapshot newest update {out['snapshot']['newest_update']}. All three "
         "two days, and no registered daemon refreshes them. A book built from "
         "them would be stale, and a research run does not pull. Blocked on "
         "the Coinalyze inputs. Unblocks when those three files are current."
