@@ -30,7 +30,8 @@ def main():
     variants = load(f"{today}_r4_variants.json")
     live = load(f"{today}_r5_live.json")
     inputs = load(f"{today}_r1_inputs.json")
-    week = [row for row in live.get("transitions", [])
+    key = json.loads(open(os.path.join(ROOT, "dashboard", "keys", "risk.json")).read())
+    week = [row for row in key.get("transitions", [])
             if isinstance(row, dict) and row.get("date", "") >= "2026-11-15"]
     unavailable = inputs.get("unavailable", [])
     lines = [
