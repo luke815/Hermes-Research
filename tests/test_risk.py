@@ -41,6 +41,18 @@ class WeeklyBand(unittest.TestCase):
         pd.testing.assert_series_equal(before.iloc[:-1], after.iloc[:-1])
 
 
+class Lookahead(unittest.TestCase):
+    def test_a_later_price_does_not_move_an_earlier_reading(self):
+        close = _close(500, 0.001)
+        panel = pd.DataFrame({"btc_price": close, "eth_price": close * 0.05,
+                               "alt_price": close * 0.3, "basis_btc": 1.0})
+        before = readings(panel, pd.DataFrame(index=close.index))
+        bumped = panel.copy()
+        bumped.loc[bumped.index[-1], ["btc_price", "eth_price", "alt_price"]] *= 3
+        after = readings(bumped, pd.DataFrame(index=close.index))
+        pd.testing.assert_frame_equal(before.iloc[:-1], after.iloc[:-1])
+
+
 class Inputs(unittest.TestCase):
     def test_a_missing_series_is_unavailable(self):
         got = inputs_on({"btc_vs_200d": 1.2})
