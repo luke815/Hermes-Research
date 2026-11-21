@@ -49,8 +49,15 @@ def prereg_commit():
 
 
 def load_panel():
-    """One frame per coin, the venue with the most funding bars."""
+    """One frame per coin, the venue with the most funding bars.
+
+    A return past -95% or +500% in one horizon is a contract rescale or a
+    bad print, not a move, and one of those dominates a pooled mean. Such a
+    name is dropped from the pool rather than clipped, so the mean is of
+    names whose prices are usable.
+    """
     frames = {}
+    dropped = []
     for name in sorted(os.listdir(PANEL_XS)):
         if not name.endswith(".csv"):
             continue
@@ -66,10 +73,16 @@ def load_panel():
         frame["date"] = pd.to_datetime(frame["date"], utc=True)
         frame = frame.set_index("date").sort_index()
         frame = frame[~frame.index.duplicated(keep="last")]
+        close = frame["close"].astype(float)
+        move = close.pct_change()
+        if ((move < -0.95) | (move > 5)).any():
+            dropped.append(name)
+            continue
         prior = frames.get(coin)
         if prior is None or len(frame) > prior[0]:
             frames[coin] = (len(frame), venue, frame)
-    return {coin: (venue, frame) for coin, (length, venue, frame) in frames.items()}
+    return ({coin: (venue, frame) for coin, (length, venue, frame) in frames.items()},
+            dropped)
 
 
 def trailing_percentile(series):
@@ -231,7 +244,7 @@ def alt_pool(panels, btc_price):
 
 def main():
     commit = prereg_commit()
-    panels = load_panel()
+    panels, dropped = load_panel()
     btc_venue, btc = panels["BTC"]
     eth_venue, eth = panels["ETH"]
     rows = []
@@ -249,6 +262,7 @@ def main():
         "btc_venue": btc_venue,
         "eth_venue": eth_venue,
         "alt_names": sum(1 for coin in panels if coin not in ("BTC", "ETH")),
+        "dropped_rescales": len(dropped),
         "members": list(MEMBERS),
         "cells": rows,
     }
