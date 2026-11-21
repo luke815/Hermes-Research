@@ -83,14 +83,21 @@ def complete(path, today):
 RETRY_AFTER_DAYS = 7
 
 
-def body_complete(body, today):
-    """Current only when the last bar is the last closed day.
+# The vendor's newest daily bar lands two days behind the calendar, and a
+# rule that demands yesterday refetches the same name every cycle while the
+# rest of the family waits. Three days covers that lag. A file older than
+# that, or one that stopped short of its page count, is still pending.
+VENDOR_LAG_DAYS = 3
 
-    A file that fetched every page is still pending once that bar ages past
-    yesterday, so a name stays in the queue and gets extended. A file with no
-    bars is not current. A 400 or 404 is current only for the 7 days after it
-    was recorded; after that the name is fetched again. An error with no day
-    is the old mark-forever file, and it is pending so it gets a date.
+
+def body_complete(body, today):
+    """Current when the last bar is within the vendor's lag of the last closed day.
+
+    A file that fetched every page and whose last bar is older than the lag
+    stays pending, so a name that stopped gets extended. A file with no bars
+    is not current. A 400 or 404 is current only for the 7 days after it was
+    recorded; after that the name is fetched again. An error with no day is
+    the old mark-forever file, and it is pending so it gets a date.
     """
     if body.get("error"):
         seen = body.get("error_on")
@@ -104,7 +111,7 @@ def body_complete(body, today):
         return False
     last = datetime.fromtimestamp(max(dates) / 1000, timezone.utc).date()
     closed = datetime.strptime(today, "%Y-%m-%d").date().toordinal() - 1
-    return last.toordinal() >= closed
+    return last.toordinal() >= closed - (VENDOR_LAG_DAYS - 1)
 
 
 def defer(row):
