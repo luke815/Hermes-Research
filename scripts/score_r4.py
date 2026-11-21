@@ -117,8 +117,10 @@ def _prices(panel):
 def _events(panel, walked):
     """What the dial read before each episode, and what it did after."""
     rows = []
-    for name, finder in (("top", top_event), ("bottom", bottom_event)):
-        flags = finder(panel["btc_price"].astype(float), 30, 0.20)
+    for name, finder, args in (
+            ("top", top_event, (30, 0.20)),
+            ("bottom", bottom_event, (30, 0.20, 0.07))):
+        flags = finder(panel["btc_price"].astype(float), *args)
         starts = flags.index[flags.fillna(False).to_numpy()]
         for stamp in starts:
             if stamp not in walked.index:
