@@ -62,9 +62,12 @@ def main():
         "status": "provisional",
     })
     write_key(KEY, key)
+    scheduler = open(os.path.join(ROOT, "scripts", "scheduler.py")).read()
+    slot = '"name": "risk_state", "at": "06:50", "script": "scripts/score_r2.py"'
     payload = {
         "item": "R2",
         "as_of": key["as_of"],
+        "scheduler_slot": slot in scheduler,
         "state": key["state"],
         "dial": key["dial"],
         "days_in_state": key["days_in_state"],
