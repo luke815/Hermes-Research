@@ -113,9 +113,12 @@ def row_inputs(row):
             })
             continue
         source = known.get(name) or known.get(column)
+        value_out = value
+        if name == "weekly_band" and source is not None:
+            value_out = row.get("weekly_distance")
         ordered.append({
             "name": name,
-            "value": value,
+            "value": value_out,
             "pct": None if source is None else source.get("pct"),
             "flag": "computed" if source is None else source.get("flag"),
             "effect": "none" if source is None else source.get("effect"),
