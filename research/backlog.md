@@ -200,7 +200,8 @@ Cycle layer, from research/RESEARCH_PROGRAM_CYCLE.md. These come before the cros
 - C5. Options family: DVOL, skew, risk reversal, implied minus realized vol. Verdict 2026-11-10: insufficient. 16 cells. results/2026-11-10_c5_options.json.
 - C6. Breadth family on the 2022-09 universe. Verdict 2026-11-10: insufficient, and survivor-biased. 6 cells, 16 names. results/2026-11-10_c6_breadth.json.
 - C7. On-chain, sentiment and flows. Verdict 2026-11-10: insufficient. Fear and Greed, MVRV and stablecoin supply tested; Farside answered with HTML and was not parsed. 8 cells. results/2026-11-10_c7_onchain_flows.json.
-- C10. Weekly cycle layer, with its sample size stated plainly. Done when a committed script scores the weekly cycle layer at horizons of 12 and 26 weeks; results/<date>_c10_weekly.json is written by that script through write_result and states the weekly sample size beside each cell; a cell below 30 episodes across train and validation is insufficient.
+- C10. Weekly cycle layer, with its sample size stated plainly. Done when a committed script scores the weekly cycle layer at horizons of 12 and 26 weeks; results/<date>_c10_weekly.json is written by that script through write_result and states the weekly sample size beside each cell; a cell below 30 episodes across train and validation is insufficient. Verdict 2026-11-21: insufficient. results/2026-11-21_c10_weekly.json scores 8 cells on 356 weekly bars, and the largest train-plus-validation count is 12 against a bar of 30. The top flag never reaches the bar on either asset, and the bottom flag does not either. The pre-registration commit 4bfd2d7966 precedes the scoring commit 452a36aba7.
+
 
 
 Then the cross-sectional items resume.
