@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.join(ROOT, "research", "outside", "harness"))
 sys.path.insert(0, ROOT)
 
 import harness2  # noqa: E402
-from regime_tester.sweep import score_signal  # noqa: E402
+from regime_tester.sweep import comparison_set, score_signal  # noqa: E402
 
 
 def _panel():
@@ -57,6 +57,16 @@ class LateStart(unittest.TestCase):
         early = forward.index < "2021-01-01"
         self.assertGreater(int(early.sum()), 0)
         self.assertLess(scored["train"]["n_bars"], int((forward.index <= "2024-06-30").sum()))
+
+    def test_the_comparison_set_excludes_bars_before_the_signal(self):
+        dates = pd.date_range("2019-01-01", periods=800, freq="D", tz="UTC")
+        forward = np.zeros(len(dates))
+        signal = np.full(len(dates), -1.0)
+        signal[400:] = 0.0
+        kept = comparison_set(signal, forward)
+        self.assertEqual(int(kept.sum()), 400)
+        self.assertFalse(bool(kept[:400].any()))
+        self.assertTrue(bool(kept[400:].all()))
 
     def test_the_house_scorer_drops_bars_before_the_signal(self):
         dates = pd.date_range("2019-01-01", periods=800, freq="D", tz="UTC")

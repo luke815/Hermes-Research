@@ -171,9 +171,20 @@ def newey_west_t(x, lag):
     return float(mean / se) if se else np.nan
 
 
+def comparison_set(signal, forward):
+    """Bars where the signal is defined and the forward return is known.
+
+    A bar before the signal exists is not part of the set. Scoring a
+    2021-start series against the whole 2019 panel would count those bars in
+    the unflagged mean, and the excess would move when the panel's start
+    moved. signal < 0 is the scorer's mark for an undefined bar.
+    """
+    return (~np.isnan(forward)) & (np.asarray(signal) >= 0)
+
+
 def score_signal(signal, forward, horizon, years):
     """Signalled minus unsignalled, on all bars and on every h-th bar."""
-    valid = (~np.isnan(forward)) & (signal >= 0)
+    valid = comparison_set(signal, forward)
     if valid.sum() < MIN_INDEPENDENT:
         return None
     sig = valid & (signal == 1)
