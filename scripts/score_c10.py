@@ -70,8 +70,9 @@ def weekly_close(daily):
     frame.index = pd.to_datetime(frame.index)
     sunday = frame.index.to_series().dt.to_period("W-SUN").dt.end_time.dt.normalize()
     grouped = frame.groupby(sunday)
-    last_day = grouped.apply(lambda part: part.index.max())
-    kept = last_day[last_day == last_day.index]
+    last_day = grouped.apply(lambda part: part.index.max()).dt.tz_convert("UTC")
+    boundary = pd.DatetimeIndex(last_day.index).tz_localize("UTC")
+    kept = last_day[last_day == boundary]
     return grouped.last().loc[kept.index]
 
 
