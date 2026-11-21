@@ -155,7 +155,9 @@ def _net(frames, long_name, short_name, entry, exit_date, sign):
     oi_short = short["oi_usd"].shift(1).loc[entry] if "oi_usd" in short else np.nan
     cost = round_trip(None if pd.isna(oi_long) else float(oi_long))
     cost += round_trip(None if pd.isna(oi_short) else float(oi_short))
-    held = long.loc[entry:exit_date].index
+    held = long.loc[entry:exit_date].index.intersection(short.index)
+    if len(held) == 0:
+        return None
     if "funding_rate" not in long or "funding_rate" not in short:
         return None
     carry_long = long.loc[held, "funding_rate"].astype(float)
