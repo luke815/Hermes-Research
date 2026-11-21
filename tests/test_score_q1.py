@@ -87,6 +87,7 @@ class PooledRank(unittest.TestCase):
         # It now reads d.q1, which the assembler copies from the results file.
         self.assertIn("d.q1", text)
         self.assertIn("Q.windows", text)
+        self.assertIn("w.drawdown_effect", text)
         self.assertNotIn("weaker returns that followed high readings", text)
 
     def test_the_drawdown_ignores_a_bar_after_the_window(self):

@@ -1,0 +1,34 @@
+{
+ "item": "D3",
+ "today": "2026-11-21",
+ "hourly_pkl": false,
+ "laevitas_dir": false,
+ "hourly_csvs": 0,
+ "provenance": {
+  "script": "scripts/record_d3_hourly.py",
+  "script_blob": "2718c663584cce4bd32cd9be56dcd192daa53c2b",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_d3_hourly.py"
+  ],
+  "commit": "77feeae8361bb63dd6da7f4cd7dd96368722dc50",
+  "written_at": "2026-11-21T09:12:43Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "research/outside",
+    "kind": "dir",
+    "files": 20,
+    "bytes": 200890,
+    "listing_sha256": "48a1daf63222d15405e4be9c7d1991329103a106dba084e0af9a12a427f08e36",
+    "content_sha256": "1c08e9b810b96075f968fc763819cb692ab96fe37b7ddb1944b29c8840d54368",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "720f6f3f46b6df25ca4e48bdaac4489c6bdb1dc339478d4fadf1583616766c23"
+ }
+}

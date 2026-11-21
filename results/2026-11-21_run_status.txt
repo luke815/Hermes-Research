@@ -1,1 +1,1 @@
-STATUS OK research-run panel_end=2026-11-16 age=5d top=L11 runs=23 files=research/backlog.md,results/2026-11-21_p3_pairs.json
+STATUS OK research-run panel_end=2026-11-20 age=1d top=A7 runs=3 files=research/backlog.md,results/2026-11-21_a7_block.json,results/2026-11-21_x1_status.json,results/2026-11-21_l2_status.json,results/2026-11-21_d3_hourly.json,results/2026-11-21_q1_lsr_drawdown.json,results/2026-11-21_q1_page.json
