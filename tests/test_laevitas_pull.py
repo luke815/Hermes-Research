@@ -66,6 +66,22 @@ class PullOrder(unittest.TestCase):
         body["items"] = [{"date": _day_ms(older.strftime("%Y-%m-%d"))}]
         self.assertFalse(pull.body_complete(body, today.strftime("%Y-%m-%d")))
 
+    def test_a_refetch_that_reaches_no_later_bar_closes_the_name(self):
+        """A dead name refetched to the same last bar is done for the day.
+
+        Refetching it again keeps the family behind it from ever starting.
+        A refetch that returns no bars does not close a file that had some.
+        """
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        saved = {"items": [{"date": _day_ms("2026-11-17")}]}
+        self.assertTrue(pull.same_end(saved, {"items": [{"date": _day_ms("2026-11-17")}]}))
+        self.assertFalse(pull.same_end(saved, {"items": [{"date": _day_ms("2026-11-18")}]}))
+        self.assertFalse(pull.same_end(saved, {"items": []}))
+        marked = {"items": [{"date": _day_ms("2026-11-17")}], "checked_on": today}
+        self.assertTrue(pull.body_complete(marked, today))
+        self.assertFalse(pull.body_complete(
+            {"items": [{"date": _day_ms("2026-11-17")}], "checked_on": "2026-11-20"}, today))
+
     def test_a_400_recorded_8_days_ago_is_pending_again(self):
         """A 400 is done for 7 days, then the name is fetched again."""
         today = datetime.now(timezone.utc).date()

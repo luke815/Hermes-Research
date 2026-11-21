@@ -99,6 +99,8 @@ def body_complete(body, today):
     recorded; after that the name is fetched again. An error with no day is
     the old mark-forever file, and it is pending so it gets a date.
     """
+    if body.get("checked_on") == today:
+        return True
     if body.get("error"):
         seen = body.get("error_on")
         if not seen:
@@ -112,6 +114,24 @@ def body_complete(body, today):
     last = datetime.fromtimestamp(max(dates) / 1000, timezone.utc).date()
     closed = datetime.strptime(today, "%Y-%m-%d").date().toordinal() - 1
     return last.toordinal() >= closed - (VENDOR_LAG_DAYS - 1)
+
+
+def last_bar(body):
+    """The newest bar date in a saved body, or None when there is no bar."""
+    dates = [item.get("date") for item in (body or {}).get("items", []) if item.get("date")]
+    return max(dates) if dates else None
+
+
+def same_end(saved, fetched):
+    """True when a refetch reached no later bar than the file already holds.
+
+    A name whose vendor history stops short of the lag gets refetched every
+    cycle otherwise, and the family behind it never starts. A refetch that
+    returns nothing where the file had bars is not the same end.
+    """
+    old = last_bar(saved)
+    new = last_bar(fetched)
+    return old is not None and new is not None and new <= old
 
 
 def defer(row):
@@ -383,9 +403,13 @@ def cycle(ctx):
         defer(row)
         return {"deferred": 1, "remaining": len(left)}
     path = os.path.join(store, f"{row['market']}_{row['instrument']}.json")
+    saved = _load(path, {})
+    if same_end(saved, body):
+        body["checked_on"] = end
     json.dump(body, open(path, "w"))
     return {"market": row["market"], "instrument": row["instrument"],
-            "rows": len(body.get("items", [])), "remaining": len(left) - 1}
+            "rows": len(body.get("items", [])), "unchanged": "checked_on" in body,
+            "remaining": len(left) - 1}
 
 
 if __name__ == "__main__":
