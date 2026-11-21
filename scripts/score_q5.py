@@ -109,7 +109,8 @@ def episodes(flag, start, end):
 def effect(flag, target, start, end):
     mask = window_of(flag.index, start, end) & flag.notna() & target.notna()
     flagged = flag[mask].fillna(False).astype(bool)
-    values = target[mask]
+    values = target[mask].replace([np.inf, -np.inf], np.nan).dropna()
+    flagged = flagged.reindex(values.index).fillna(False).astype(bool)
     row = {"n": int(len(values)), "flagged": int(flagged.sum())}
     if flagged.sum() >= 3:
         row["excess"] = round(float(values[flagged].mean() - values.mean()), 6)
@@ -200,6 +201,7 @@ def alt_pool(panels, btc_price):
             mask = window_of(flag_frame.index, start, end)
             flagged = flag_frame[mask].to_numpy(dtype=float)
             values = target[mask].to_numpy(dtype=float)
+            values[~np.isfinite(values)] = np.nan
             defined = ~np.isnan(flagged) & ~np.isnan(values)
             fired = defined & (flagged == 1)
             row = {"n": int(defined.sum()), "flagged": int(fired.sum())}
