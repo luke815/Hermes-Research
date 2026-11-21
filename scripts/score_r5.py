@@ -85,9 +85,12 @@ def main():
     key["transitions"] = changes[-10:]
     key["paper"] = {"since": since, "return": paper_return, "hold_return": hold_return}
     write_key(KEY, key)
+    posted = [row for row in changes if row["date"] > (since or "")]
     payload = {
         "item": "R5",
         "as_of": key.get("as_of"),
+        "state_changes_since_key": len(posted),
+        "post_pending": len(posted) == 0,
         "state": state,
         "analogs": found,
         "analog_count": len(found),
