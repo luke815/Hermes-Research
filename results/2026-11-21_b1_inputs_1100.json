@@ -1,0 +1,64 @@
+{
+ "item": "B1",
+ "today": "2026-11-21",
+ "slot": "11:00",
+ "hourly": {
+  "path": "data/raw/coinalyze_ohlcv_1h.json",
+  "mtime": "2026-11-03T16:18:41Z",
+  "bytes": 191760097,
+  "last_bar": "2026-11-03",
+  "age_days": 18
+ },
+ "snapshot": {
+  "path": "data/raw/oi_snapshot.json",
+  "mtime": "2026-11-03T17:50:51Z",
+  "bytes": 154141,
+  "newest_update": "2026-11-03T17:50:50Z",
+  "age_days": 18
+ },
+ "daily": {
+  "path": "data/raw/top100_daily.json",
+  "mtime": "2026-11-05T12:11:21Z",
+  "bytes": 2213940,
+  "last_bar": "2026-11-04",
+  "age_days": 17
+ },
+ "provenance": {
+  "script": "scripts/record_b1_inputs_1100.py",
+  "script_blob": "0df4783a28219402cdd58f8bd24cc0e641e58454",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_b1_inputs_1100.py"
+  ],
+  "commit": "88ad017bb480cd92394aa8775bc5d6e1095e7a37",
+  "written_at": "2026-11-21T11:12:05Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/raw/coinalyze_ohlcv_1h.json",
+    "kind": "file",
+    "bytes": 191760097,
+    "mtime_ns": 1793722721299042396
+   },
+   {
+    "path": "data/raw/oi_snapshot.json",
+    "kind": "file",
+    "bytes": 154141,
+    "mtime_ns": 1793728251398711641,
+    "sha256": "371119be905e0f87819edf7f9240013e7adbc7a7f9b3ea072bce71c7f5568e9d"
+   },
+   {
+    "path": "data/raw/top100_daily.json",
+    "kind": "file",
+    "bytes": 2213940,
+    "mtime_ns": 1793880681734728686,
+    "sha256": "e0d0b695955818b954fcf344e803af7b98014728a30236c66b63024eaad54f4d"
+   }
+  ],
+  "payload_sha256": "1b9f119182c10c7e75c35745ca7f643bb1cf399031dc2f67ee4cef6b87eada39"
+ }
+}
