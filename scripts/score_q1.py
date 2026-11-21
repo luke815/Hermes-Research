@@ -225,13 +225,21 @@ def score_window(flag, drawdown, ret20):
 
 
 def verdict_of(rows, counts):
+    """The pre-registered bar, applied before the sign is read.
+
+    A window with fewer than 20 episodes across train and validation is
+    insufficient even when both held-out effects have a sign. The hypothesis
+    is a deeper drawdown, so a positive effect is the wrong sign and is
+    rejected, as is a sign that flips between validation and test. A missing
+    effect is insufficient, not a zero.
+    """
     held = [rows.get(name, {}) for name in ("validation", "test")]
     if any("drawdown_effect" not in row for row in held):
         return "insufficient"
     if counts["train"] + counts["validation"] < EPISODE_BAR:
         return "insufficient"
     signs = [row["drawdown_effect"] < 0 for row in held]
-    if signs[0] != signs[1]:
+    if signs[0] != signs[1] or not all(signs):
         return "rejected"
     return "kept"
 

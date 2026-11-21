@@ -10,7 +10,9 @@ sys.path.insert(0, "/opt/data/.local/lib/python3.14/site-packages")
 import numpy as np
 import pandas as pd
 
-from scripts.score_q1 import forward_drawdown, pooled_mean, trailing_percentile
+from scripts.score_q1 import (
+    EPISODE_BAR, forward_drawdown, pooled_mean, trailing_percentile, verdict_of,
+)
 
 
 class PooledRank(unittest.TestCase):
@@ -55,6 +57,37 @@ class PooledRank(unittest.TestCase):
                                index=index)
         pooled = pooled_mean(frame, defined)
         self.assertTrue(np.allclose(pooled.to_numpy(), [1.0, 2.0, 3.0]))
+
+    def test_a_sign_flip_below_the_episode_bar_is_insufficient(self):
+        # A window that never reaches 20 episodes across train and validation
+        # is insufficient, even when both held-out effects have a sign. The
+        # pooled panel clears that bar and flips, so the same effects are
+        # rejected once the count is large enough.
+        rows = {
+            "validation": {"drawdown_effect": 0.001852},
+            "test": {"drawdown_effect": 0.435412},
+        }
+        short = {"train": 10, "validation": 1, "test": 7}
+        self.assertLess(short["train"] + short["validation"], EPISODE_BAR)
+        self.assertEqual(verdict_of(rows, short), "insufficient")
+        long = {"train": 47, "validation": 1, "test": 7}
+        self.assertGreaterEqual(long["train"] + long["validation"], EPISODE_BAR)
+        self.assertEqual(verdict_of(rows, long), "rejected")
+        deeper = {
+            "validation": {"drawdown_effect": -0.003853},
+            "test": {"drawdown_effect": -0.034315},
+        }
+        self.assertEqual(verdict_of(deeper, long), "kept")
+
+    def test_the_watch_card_reads_the_q1_key(self):
+        page = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            "dashboard", "index.html")
+        text = open(page).read()
+        # The card used to print the two-asset base rate in its own words.
+        # It now reads d.q1, which the assembler copies from the results file.
+        self.assertIn("d.q1", text)
+        self.assertIn("Q.windows", text)
+        self.assertNotIn("weaker returns that followed high readings", text)
 
     def test_the_drawdown_ignores_a_bar_after_the_window(self):
         index = pd.date_range("2024-01-01", periods=6, freq="D", tz="UTC")
