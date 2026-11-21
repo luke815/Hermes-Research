@@ -59,7 +59,7 @@ def main():
     if marker in text:
         raise SystemExit("note already present")
     line = next(ln for ln in text.splitlines() if ln.startswith("- A7. "))
-    anchor = "scripts/score_a7_reversal.py is rerun."
+    anchor = "Unblocks when that close is corrected and the score is rerun."
     if anchor not in line:
         raise SystemExit("anchor missing from the A7 line")
     note = (
