@@ -32,8 +32,8 @@ TRAIN_END = "2024-06-30"
 VAL_END = "2025-12-31"
 HORIZONS = (12, 26)
 WINDOW = 52
-TOP_GAP = 0.05
-BOTTOM_GAP = 0.40
+TOP_GAP = 0.95
+BOTTOM_GAP = 0.60
 TOP_DRAWDOWN = 0.25
 BOTTOM_RALLY = 0.30
 BOTTOM_GIVEBACK = 0.10
@@ -142,8 +142,8 @@ def main():
             top = top_event(close, horizon, TOP_DRAWDOWN)
             bottom = bottom_event(close, horizon, BOTTOM_RALLY, BOTTOM_GIVEBACK)
             for side, flag, label in (
-                    ("top", signal <= TOP_GAP, top),
-                    ("bottom", signal >= BOTTOM_GAP, bottom)):
+                    ("top", signal >= TOP_GAP, top),
+                    ("bottom", signal <= BOTTOM_GAP, bottom)):
                 usable = flag.notna() & label.notna()
                 rows = lift(flag[usable].astype(bool), label[usable].astype(bool))
                 cells.append({
