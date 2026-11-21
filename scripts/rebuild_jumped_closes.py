@@ -18,7 +18,7 @@ import build_universe_laevitas as builder  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STORE = os.path.join(ROOT, "data", "laevitas", "perpetuals")
 SRC = os.path.join(ROOT, "data", "panel_xs_laevitas")
-OUT = os.path.join(ROOT, "data", "panel_xs_laevitas_fixed4")
+OUT = os.path.join(ROOT, "data", "panel_xs_laevitas_fixed5")
 JUMPS = os.path.join(ROOT, "results", "2026-11-21_a7_price_jumps.json")
 
 

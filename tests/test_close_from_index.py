@@ -1,4 +1,4 @@
-"""The panel close comes from the index when the vendor price field jumps."""
+"""A jump day is scaled back onto the contract, not copied from the index."""
 
 import os
 import sys
@@ -16,7 +16,7 @@ def item(n, price, index):
 
 
 class CloseFromIndex(unittest.TestCase):
-    def test_a_jump_day_takes_the_index_not_the_price_field(self):
+    def test_a_jump_day_is_divided_by_that_days_price_index_ratio(self):
         items = [
             item(0, 5.8e-06, 0.0058),
             item(1, 5.73, 0.00573),
@@ -24,8 +24,17 @@ class CloseFromIndex(unittest.TestCase):
         ]
         closes = builder.closes_of(items)
         self.assertEqual(closes[0], 5.8e-06)
-        self.assertAlmostEqual(closes[1], 0.00573)
+        self.assertAlmostEqual(closes[1], 5.73e-06)
+        self.assertNotAlmostEqual(closes[1], 0.00573)
         self.assertEqual(closes[2], 6.6e-06)
+
+    def test_a_downward_jump_uses_the_same_ratio(self):
+        items = [
+            item(0, 0.00573, 0.00573),
+            item(1, 6.6e-06, 0.0066),
+        ]
+        closes = builder.closes_of(items)
+        self.assertAlmostEqual(closes[1], 0.0066)
 
     def test_an_ordinary_move_keeps_the_price_field(self):
         items = [item(0, 100.0, 100.0), item(1, 110.0, 110.2)]
