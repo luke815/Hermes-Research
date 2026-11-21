@@ -33,7 +33,7 @@ def series(asset):
             empty += 1
             continue
         rows = json.load(open(path))
-        items = rows.get("data", rows) if isinstance(rows, dict) else rows
+        items = rows.get("items") if isinstance(rows, dict) else rows
         if not items:
             empty += 1
             continue
