@@ -94,7 +94,7 @@ return was positive). A cell that reaches none of its bars is insufficient, not 
   episodes and the 2026 rows beside 2020-2025.
 - Q4. Put/call pairs, after L9 extends options_oi_pc_ratio past 2025-06: pc_ratio top AND skew_30 top; pc_ratio
   bottom AND dvol bottom; rr_30 bottom AND pc_ratio top; BTC and ETH; parent cells reported beside each pair with
-  the lift. Done when results/<date>_q4_pcratio_pairs.json exists and every pair shows its parent and lift.
+  the lift. Done when results/<date>_q4_pcratio_pairs.json exists and every pair shows its parent and lift. Rechecked 2026-11-21 02:00 UTC: oi_pc_ratio BTC 15 files, 8 empty, last bar 2023-03-23; ETH 13 files, 7 empty, last bar 2023-09-21. L9 is marked done and the files past 2023-03 are empty, so the series does not extend past 2025-06. market_backfill owns the pull and a research run does not pull. Blocked on the series. Unblocks when oi_pc_ratio has a bar after 2025-06 for BTC and ETH.
 - Q5. Crowded shorts as a family, with a drift control: funding (Binance, OI-weighted cross-venue, z30 <= -2) in
   its bottom decile -> long, BTC, ETH and the alt cross-section, horizons 3 and 5, excess over the same-period mean,
   BTC's return subtracted for alts. Done when results/<date>_q5_crowded_shorts.json reports every member of the
