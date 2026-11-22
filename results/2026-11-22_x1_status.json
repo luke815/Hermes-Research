@@ -3,13 +3,13 @@
  "status_line": "cells scored 52064 of 811960 testable since 2026-10-31, from results/sweeps/counter.json, names 234, cells per hour 0",
  "panel_files": 5538,
  "sweep": {
-  "pid": 1308,
-  "version": "a284fbf",
-  "phase": "idle",
-  "cycles": 491,
+  "pid": 649,
+  "version": "55e4f0d",
+  "phase": "working",
+  "cycles": 8,
   "names": 234,
   "remaining": 0,
-  "ts": "2026-11-22T05:11:54Z"
+  "ts": "2026-11-22T06:03:57Z"
  },
  "cells_per_hour_above_5000": false,
  "work_list": 166440,
@@ -28,17 +28,17 @@
   "with_high_low": 919
  },
  "provenance": {
-  "script": "scripts/record_blocks_0500.py",
-  "script_blob": "3210b2eecfe28b9cebf711c95bcce2e75277b7c7",
-  "script_tracked": true,
-  "script_dirty": false,
+  "script": "scripts/record_blocks_0600.py",
+  "script_blob": "13f93141f32b3f44a3e15d07e10e4f61d4714a88",
+  "script_tracked": false,
+  "script_dirty": true,
   "argv": [],
   "orig_argv": [
-   "/opt/hermes/.venv/bin/python3",
-   "scripts/record_blocks_0500.py"
+   "python3",
+   "scripts/record_blocks_0600.py"
   ],
-  "commit": "2dc3c0b04ace322fcceec5d6a5529f6fbbf070cf",
-  "written_at": "2026-11-22T05:12:38Z",
+  "commit": "55e4f0d7a4d154e405323acfa9b59eead621d60f",
+  "written_at": "2026-11-22T06:04:07Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [
@@ -46,15 +46,15 @@
     "path": "ops/sweep_status",
     "kind": "file",
     "bytes": 118,
-    "mtime_ns": 1795324349455413903,
+    "mtime_ns": 1795327444485173943,
     "sha256": "f3d705100574097749e28437463f6944d0bd6be8965d1889dbe2f3e0f477501d"
    },
    {
     "path": "ops/sweep_xs_heartbeat",
     "kind": "file",
-    "bytes": 412,
-    "mtime_ns": 1795324356012166869,
-    "sha256": "b0fd81615f9598af1fd3badacec3e3c7b3727469c827b273dfdea8cb762b1b62"
+    "bytes": 405,
+    "mtime_ns": 1795327445773173913,
+    "sha256": "a171728b2ebddfa64e63f4d02d832d44ea884d7e78bdb6e82b10c8f1e7c676b2"
    },
    {
     "path": "results/sweeps/cross_section_cells.json",
@@ -77,11 +77,11 @@
     "kind": "dir",
     "files": 2568,
     "bytes": 56930687,
-    "listing_sha256": "79697e4918415114499e70e3887c4ce0bfc16c9ae00cd0b59ebd69e3ce144c02",
+    "listing_sha256": "aa3c7cf02781520ef5e3a532f463f3841b5871fd0803f3b1dd0f96e57b9a29a5",
     "content_sha256": "21247f6388ab68bc1eaae84dad14516000af7883278df76d4e94c0da86020810",
     "content_partial": false
    }
   ],
-  "payload_sha256": "53b24ea9d879812d186c707f9faa62f0d23a8abb0b3d6afb3533ff6fdd83cbbc"
+  "payload_sha256": "226675410c2b7f290708323cefc3c8ce1b7e3dcfab50320a0b18ae1f78f84e82"
  }
 }

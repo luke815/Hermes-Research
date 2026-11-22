@@ -17,24 +17,24 @@
   "missing": 11057
  },
  "puller": {
-  "pid": 1339,
+  "pid": 681,
   "phase": "working",
-  "cycles": 272,
-  "remaining": 3793,
-  "ts": "2026-11-22T05:05:27Z"
+  "cycles": 14,
+  "remaining": 4072,
+  "ts": "2026-11-22T06:02:21Z"
  },
  "provenance": {
-  "script": "scripts/l2_status.py",
-  "script_blob": "0d724a478dfadde0c930a91711e6d6ede6499872",
-  "script_tracked": true,
-  "script_dirty": false,
+  "script": "scripts/record_blocks_0600.py",
+  "script_blob": "13f93141f32b3f44a3e15d07e10e4f61d4714a88",
+  "script_tracked": false,
+  "script_dirty": true,
   "argv": [],
   "orig_argv": [
-   "/opt/hermes/.venv/bin/python3",
-   "scripts/l2_status.py"
+   "python3",
+   "scripts/record_blocks_0600.py"
   ],
-  "commit": "ae4516c19919e51c55ed675235b26eef0bb0d371",
-  "written_at": "2026-11-22T05:10:03Z",
+  "commit": "55e4f0d7a4d154e405323acfa9b59eead621d60f",
+  "written_at": "2026-11-22T06:04:01Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [
@@ -76,11 +76,11 @@
    {
     "path": "ops/laevitas_pull_heartbeat",
     "kind": "file",
-    "bytes": 376,
-    "mtime_ns": 1795323927692397707,
-    "sha256": "dc7a9cb674c73a94395fb632bf5c015582935a40123bde6629c852871136ef1f"
+    "bytes": 353,
+    "mtime_ns": 1795327341683533202,
+    "sha256": "830f853445de4899e98e0352973efc62dc30ddcc853abedb75c55b1cb294e351"
    }
   ],
-  "payload_sha256": "c81199a78d2a6ce1a2eb83c1ea7a91e20e721ad6938eb6fb4c94af19cc751d6f"
+  "payload_sha256": "1dd71c4648b301dc92cd5d2cd7846ac521a8ff0a26334eb47d9d3499c87b0cda"
  }
 }

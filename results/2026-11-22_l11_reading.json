@@ -5,20 +5,20 @@
  "remaining": 0,
  "daemon_alive": true,
  "phase": "working",
- "cycles": 1402,
+ "cycles": 25,
  "daemon_remaining": 0,
  "provenance": {
-  "script": "scripts/l11_reading.py",
-  "script_blob": "a803917e908a3899aae9dc436cd7ade23dc130b9",
-  "script_tracked": true,
-  "script_dirty": false,
+  "script": "scripts/record_blocks_0600.py",
+  "script_blob": "13f93141f32b3f44a3e15d07e10e4f61d4714a88",
+  "script_tracked": false,
+  "script_dirty": true,
   "argv": [],
   "orig_argv": [
-   "/opt/hermes/.venv/bin/python3",
-   "scripts/l11_reading.py"
+   "python3",
+   "scripts/record_blocks_0600.py"
   ],
-  "commit": "ae4516c19919e51c55ed675235b26eef0bb0d371",
-  "written_at": "2026-11-22T05:09:40Z",
+  "commit": "55e4f0d7a4d154e405323acfa9b59eead621d60f",
+  "written_at": "2026-11-22T06:03:56Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [
@@ -53,6 +53,6 @@
     "content_partial": false
    }
   ],
-  "payload_sha256": "1924679ab590520cac9aabcd60a0a0c300f61e2ab03673a6bd2378b7f77f7a47"
+  "payload_sha256": "6cc25a91056d79fea183c847f70385efd0dc9bd14589dd5242993c3ad3a41055"
  }
 }
