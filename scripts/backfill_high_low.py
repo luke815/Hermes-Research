@@ -118,4 +118,4 @@ def cycle(ctx):
 
 if __name__ == "__main__":
     from daemon_base import run_loop
-    run_loop("high_low", interval_sec=20, cycle=cycle, align=False)
+    run_loop("high_low", interval_sec=70, cycle=cycle, align=False)
