@@ -37,10 +37,12 @@ PREREG = "c9c0c759f5aff896dab8a0a03bbd366f1525c53d"
 
 
 def load_rows():
-    """One row per name: the lagged rank and the bottom label, read once.
+    """One row per name: the lagged rank and the episode-start days, read once.
 
     A name shorter than the label's horizon cannot have a closed window, so
-    it is left out rather than scored on an empty future.
+    it is left out rather than scored on an empty future. Only the start days
+    are kept, so the cut is applied to a handful of dates rather than the
+    whole series.
     """
     rows = []
     last = None
@@ -57,9 +59,9 @@ def load_rows():
         if close.notna().sum() < LOOKBACK + HORIZON:
             continue
         rank = rolling_percentile(factor_of(close))
-        label = event_label(close, LABELS[3])
-        starts = starts_of(label)
-        rows.append((rank, starts))
+        starts = starts_of(event_label(close, LABELS[3]))
+        taken = starts[starts]
+        rows.append((rank.reindex(taken.index), taken.index))
         end = close.index.max()
         last = end if last is None or end > last else last
     return rows, last
@@ -119,12 +121,11 @@ def score_cut(rows, cut):
     """
     fire_starts = []
     episode_starts = []
-    for rank, starts in rows:
-        fired = (rank.le(cut) & rank.notna()).reindex(starts.index).fillna(False)
-        taken = starts[starts]
-        for stamp in taken.index:
+    for rank, start_index in rows:
+        fired = rank.le(cut) & rank.notna()
+        for stamp in start_index:
             episode_starts.append(stamp)
-        for stamp in taken[fired.reindex(taken.index).fillna(False)].index:
+        for stamp in start_index[fired.fillna(False)]:
             fire_starts.append(stamp)
     by_period = {}
     for period in ("train", "validation", "test"):

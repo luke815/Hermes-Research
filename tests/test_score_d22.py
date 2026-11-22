@@ -26,11 +26,11 @@ class PooledEpisodes(unittest.TestCase):
     def test_a_fire_on_one_name_catches_the_shared_window(self):
         index = pd.date_range("2024-01-01", periods=5, freq="D", tz="UTC")
         rank = pd.Series([0.5, 0.05, 0.5, 0.5, 0.5], index=index)
-        starts = pd.Series([False, True, False, False, False], index=index)
-        other_rank = pd.Series([0.5, 0.5, 0.5, 0.5, 0.5], index=index)
-        other_starts = pd.Series([False, False, True, False, False], index=index)
+        starts = pd.DatetimeIndex([index[1]])
+        other_rank = pd.Series([0.5], index=pd.DatetimeIndex([index[2]]))
+        other_starts = pd.DatetimeIndex([index[2]])
         scored = score.score_cut(
-            [(rank, starts), (other_rank, other_starts)], 0.10)
+            [(rank.reindex(starts), starts), (other_rank, other_starts)], 0.10)
         self.assertEqual(scored["train"]["episodes"], 1)
         self.assertEqual(scored["train"]["fires"], 1)
 
