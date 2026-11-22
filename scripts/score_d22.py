@@ -214,7 +214,7 @@ def main():
         "prereg_commit": PREREG,
         "verdict": verdict,
     }
-    path = write_result("pooled_drawdown_90_bottom", clean(out), inputs=[PANEL])
+    path = write_result("d22_pooled_drawdown_90_bottom", clean(out), inputs=[PANEL])
     print(path)
     print(f"verdict={verdict}")
 
