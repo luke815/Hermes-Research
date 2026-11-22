@@ -46,9 +46,14 @@ def main():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     hourly_last = newest_stamp(HOURLY)
     snapshot = json.load(open(SNAPSHOT))
-    updates = [row.get("update") for row in snapshot.get("rows", [])
+    rows = snapshot.get("rows", []) if isinstance(snapshot, dict) else snapshot
+    updates = [row.get("update") for row in rows
                if isinstance(row, dict) and row.get("update")]
-    snapshot_last = max(updates) if updates else None
+    newest = max(updates) if updates else None
+    if isinstance(newest, (int, float)) and newest > 1e12:
+        newest = newest / 1000
+    snapshot_last = (datetime.fromtimestamp(newest, timezone.utc)
+                     .strftime("%Y-%m-%dT%H:%M:%SZ") if newest else None)
     daily = json.load(open(DAILY))
     daily_rows = daily.get("rows", daily) if isinstance(daily, dict) else daily
     daily_last = None
