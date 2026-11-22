@@ -1,0 +1,105 @@
+{
+ "item": "W25",
+ "cell": "ls_ratio_chg_7|xs_rank|above|90|rel_3|pit_cross_section|none|daily",
+ "candidate": "w25_ls_ratio_chg_7",
+ "transform": "xs_rank",
+ "horizon": 3,
+ "prereg_commit": "14e6cba8e0e0b9ab23050e1cfe19d2d9b1d6507c",
+ "prereg": "research/generated.md items 25 to 27",
+ "names": 234,
+ "panel_end": "2026-11-20",
+ "target_note": "rel_3 equals ret_3 inside a same-day rank: subtracting BTC's return from every name on one date cancels in the spread",
+ "cost_note": "thin-tier round trip of 30 bps, no funding carry, matching scripts/sweep_xs.py net_returns; the panel has no USD open interest",
+ "train_sign": -1,
+ "verdict": "rejected",
+ "reason": "a held-out non-overlapping t-stat does not reach 2",
+ "lookahead_holds": true,
+ "correlation_with_live_factors": {
+  "btc_ret_30": -0.0389,
+  "btc_vol_z90": 0.0206,
+  "btc_trend_stretch": -0.0422,
+  "eth_funding_z30": -0.0167
+ },
+ "largest_abs_correlation": 0.0422,
+ "largest_abs_correlation_with": "btc_trend_stretch",
+ "halves": {
+  "first_half": {
+   "spread": -0.0038621744066054437,
+   "n": 854,
+   "t": -4.483682769303131
+  },
+  "second_half": {
+   "spread": -0.0014145602445872342,
+   "n": 855,
+   "t": -1.6649998614139412
+  }
+ },
+ "same_sign_both_halves": true,
+ "periods": {
+  "train": {
+   "spread_independent": -0.0025474392816950964,
+   "n_independent": 291,
+   "t": -1.8482402500964428,
+   "n_overlap": 872
+  },
+  "validation": {
+   "spread_independent": -0.0006222453543436722,
+   "n_independent": 183,
+   "t": -0.3437778285442342,
+   "n_overlap": 548
+  },
+  "test": {
+   "spread_independent": -0.0009926171927550668,
+   "n_independent": 97,
+   "t": -0.3894901388986817,
+   "n_overlap": 289
+  }
+ },
+ "provenance": {
+  "script": "scripts/score_weekly_round.py",
+  "script_blob": "19d94f20a29a958d9d1f5c427d65eca6f13f57e3",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "/opt/hermes/.venv/bin/python3",
+   "scripts/score_weekly_round.py"
+  ],
+  "commit": "f64a1dbbc6b56d84f0227295066407c5cc288dc9",
+  "written_at": "2026-11-22T16:12:51Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_cache/indicators_91ee884150ff50aa_4953200eab4e_v3.csv",
+    "kind": "file",
+    "bytes": 80624562,
+    "mtime_ns": 1795167733198699920
+   },
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 195559713,
+    "listing_sha256": "6b1e83b42c8ff75671d546aebdf7a3693e1a5c4d91a019d93d805423aa638d0b",
+    "content_sha256": "aed277784735db57653d2d2c79818bd504c25fbe7f08aca0e3b9f24d5f7ca7f0",
+    "content_partial": false
+   },
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413612,
+    "mtime_ns": 1795326223380063867,
+    "sha256": "2979bf9c41095cf334fce4e4c13ca918f3e6fc743a3a28c6c08ac72263e07fd3"
+   },
+   {
+    "path": "research/generated.md",
+    "kind": "file",
+    "bytes": 29265,
+    "mtime_ns": 1795363479917904878,
+    "sha256": "01f9b776aae995aef8cda45bcc5f4120ef78f1722b7c093d512f6b984ba0d993"
+   }
+  ],
+  "payload_sha256": "8bd3f6c2b8ea9a59c6f7f42a75ec5d4719d84f587dc9966074d6146ab1d10273"
+ }
+}
