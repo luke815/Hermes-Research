@@ -1,0 +1,1 @@
+STATUS OK research-run panel_end=2026-11-20 age=2d top=L11 runs=28 files=research/backlog.md,results/2026-11-22_g21_bb_pct.json
