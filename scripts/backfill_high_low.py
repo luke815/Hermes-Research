@@ -24,6 +24,7 @@ import rate_budget
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
 PROGRESS = os.path.join(ROOT, "ops", "high_low_progress.json")
+DEFERRED = os.path.join(ROOT, "ops", "high_low_deferred.json")
 
 
 # One kline call returns the newest 1500 daily bars. A panel that starts
@@ -59,7 +60,22 @@ def pending():
         if name in done and column_complete(path):
             continue
         waiting.append(name)
-    return waiting
+    # A name that just failed sits at the back, so the next cycle takes a
+    # different one. Without this, one 400 is the only name the walk ever sees.
+    order = json.load(open(DEFERRED)) if os.path.exists(DEFERRED) else []
+    front = [name for name in waiting if name not in order]
+    back = [name for name in order if name in waiting]
+    return front + back
+
+
+def defer(name):
+    """Move a failing name to the back of the queue, remembered across cycles."""
+    order = json.load(open(DEFERRED)) if os.path.exists(DEFERRED) else []
+    order = [item for item in order if item != name]
+    order.append(name)
+    os.makedirs(os.path.dirname(DEFERRED), exist_ok=True)
+    json.dump(order, open(DEFERRED, "w"))
+    return order
 
 
 def klines(symbol, getter):
@@ -108,8 +124,11 @@ def cycle(ctx):
     filled = backfill(name)
     path = os.path.join(PANEL, name)
     if not column_complete(path):
+        # A 400, an empty body, or a short write is this name, not the queue.
+        # Leave it pending and take a different name next cycle.
+        defer(name)
         return {"name": name, "filled": filled, "incomplete": 1,
-                "remaining": len(left)}
+                "deferred": 1, "remaining": len(left)}
     done = set(json.load(open(PROGRESS))) if os.path.exists(PROGRESS) else set()
     done.add(name)
     json.dump(sorted(done), open(PROGRESS, "w"))
