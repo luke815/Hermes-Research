@@ -122,6 +122,8 @@ def load_columns(names):
 def measure_of(raw, spec):
     """The library's definition: a 7-day difference, or the 20-day WMA."""
     column = raw[spec["column"]]
+    if isinstance(column, pd.Series):
+        column = column.to_frame()
     if spec["measure"] == "wma_20":
         out = {}
         for name in column.columns:
