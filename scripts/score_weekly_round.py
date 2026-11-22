@@ -211,12 +211,12 @@ def lookahead(raw, spec):
     name = column.columns[0]
     series = column[name].dropna()
     t = len(series) // 2
-    single = raw.loc[series.index, (slice(None), [name])]
+    single = raw.loc[series.index, (slice(None), [name])].copy()
     single.columns = single.columns.droplevel(1)
-    base = feature(single, spec)[name]
+    base = feature(single, spec).iloc[:, 0]
     perturbed = single.copy()
     perturbed.iloc[t + 1:, perturbed.columns.get_loc(spec["column"])] += 1.0
-    other = feature(perturbed, spec)[name]
+    other = feature(perturbed, spec).iloc[:, 0]
     left = base.iloc[:t + 1].to_numpy(dtype=float)
     right = other.iloc[:t + 1].to_numpy(dtype=float)
     return bool(np.allclose(np.nan_to_num(left), np.nan_to_num(right), atol=1e-9, equal_nan=True))
