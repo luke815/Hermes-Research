@@ -28,11 +28,11 @@
   "script_dirty": false,
   "argv": [],
   "orig_argv": [
-   "python3",
+   "/opt/hermes/.venv/bin/python3",
    "scripts/l11_coverage.py"
   ],
-  "commit": "0c899b28351275dae8ed94ed91e2eb364aacb95a",
-  "written_at": "2026-11-22T02:03:15Z",
+  "commit": "ae4516c19919e51c55ed675235b26eef0bb0d371",
+  "written_at": "2026-11-22T05:08:42Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [

@@ -1,0 +1,1 @@
+STATUS OK research-run panel_end=2026-11-20 age=2d top=L11 runs=31 files=research/backlog.md,results/2026-11-22_l11_coverage.json,results/2026-11-22_l2_status.json,results/2026-11-22_x1_status.json,results/2026-11-22_d3_hourly_0500.json,results/2026-11-22_q4_oi_pc_0500.json,results/2026-11-22_b1_inputs_0500.json

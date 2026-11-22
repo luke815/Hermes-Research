@@ -6,10 +6,10 @@
   "pid": 1308,
   "version": "a284fbf",
   "phase": "idle",
-  "cycles": 304,
+  "cycles": 491,
   "names": 234,
   "remaining": 0,
-  "ts": "2026-11-22T02:04:39Z"
+  "ts": "2026-11-22T05:11:54Z"
  },
  "cells_per_hour_above_5000": false,
  "work_list": 166440,
@@ -28,17 +28,17 @@
   "with_high_low": 919
  },
  "provenance": {
-  "script": "scripts/x1_status.py",
-  "script_blob": "ba6915254e5d0ac622e98b954e7560343d26a04a",
+  "script": "scripts/record_blocks_0500.py",
+  "script_blob": "3210b2eecfe28b9cebf711c95bcce2e75277b7c7",
   "script_tracked": true,
   "script_dirty": false,
   "argv": [],
   "orig_argv": [
-   "python3",
-   "scripts/x1_status.py"
+   "/opt/hermes/.venv/bin/python3",
+   "scripts/record_blocks_0500.py"
   ],
-  "commit": "0c899b28351275dae8ed94ed91e2eb364aacb95a",
-  "written_at": "2026-11-22T02:05:43Z",
+  "commit": "2dc3c0b04ace322fcceec5d6a5529f6fbbf070cf",
+  "written_at": "2026-11-22T05:12:38Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [
@@ -46,15 +46,15 @@
     "path": "ops/sweep_status",
     "kind": "file",
     "bytes": 118,
-    "mtime_ns": 1795313143296393422,
+    "mtime_ns": 1795324349455413903,
     "sha256": "f3d705100574097749e28437463f6944d0bd6be8965d1889dbe2f3e0f477501d"
    },
    {
     "path": "ops/sweep_xs_heartbeat",
     "kind": "file",
-    "bytes": 411,
-    "mtime_ns": 1795313133612131742,
-    "sha256": "c0210cb75639ed1635f0ad39f7678241b7218df4658b3ebb31bdd36f8ae09af1"
+    "bytes": 412,
+    "mtime_ns": 1795324356012166869,
+    "sha256": "b0fd81615f9598af1fd3badacec3e3c7b3727469c827b273dfdea8cb762b1b62"
    },
    {
     "path": "results/sweeps/cross_section_cells.json",
@@ -77,11 +77,11 @@
     "kind": "dir",
     "files": 2568,
     "bytes": 56930687,
-    "listing_sha256": "86afce83d918fa58fcbc55b64c752c7f8d6aafc129c502247d8c66e347850d01",
+    "listing_sha256": "79697e4918415114499e70e3887c4ce0bfc16c9ae00cd0b59ebd69e3ce144c02",
     "content_sha256": "21247f6388ab68bc1eaae84dad14516000af7883278df76d4e94c0da86020810",
     "content_partial": false
    }
   ],
-  "payload_sha256": "476ed91e518b12b75b57b1ed6f9f1f4405b7317bd60b7a6eeb1fcaff4bbbbd95"
+  "payload_sha256": "53b24ea9d879812d186c707f9faa62f0d23a8abb0b3d6afb3533ff6fdd83cbbc"
  }
 }
