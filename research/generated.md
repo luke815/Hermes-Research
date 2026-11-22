@@ -128,3 +128,22 @@ Horizon: 3 days, non-overlapping. Pass: the spread keeps its sign in validation 
 Hypothesis: the cross-sectional reading of roc_12 at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.005273.
 Rule: cell roc_12|xs_rank|above|95|rel_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, names below 20,000,000 dollars of prior-bar open interest dropped, net of per-leg costs and carry. A missing carry drops the date. The feature is lagged one bar.
 Horizon: 1 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 1044 on 234 names; the held-out halves are shorter.
+
+## Added for the weekly round
+
+The weekly job tests up to three candidates. The backlog's next scoreable cells were already scored this morning (G21 to G24, all rejected or insufficient). These three are the strongest measures left in results/sweeps/2026-11-19_xs_vec.csv, one cell per measure, after dropping ls_ratio_level, funding persistence, bb_pct, bb_width, td_setup and roc_12, each of which already has a verdict. None is scored in this section.
+
+25. xs_ls_ratio_chg_7_xs_rank_above_90_rel_3. Train t-stat -3.7320 on 289 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of ls_ratio_chg_7 at this extreme precedes a lower forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is -0.005172.
+Rule: cell ls_ratio_chg_7|xs_rank|above|90|rel_3|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, the 234 names the train row was scored on, net of the thin-tier round trip. The feature is the 7-day change in the long/short ratio, ranked across names, lagged one bar. rel_3 equals ret_3 inside a same-day rank, because subtracting BTC's return from every name on one date cancels in the spread, and the spread scored is that one.
+Horizon: 3 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 289 on 234 names; the held-out halves are shorter.
+
+26. xs_basis_chg_7_xs_rank_below_10_rel_1. Train t-stat 3.5086 on 922 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of basis_chg_7 at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.003395.
+Rule: cell basis_chg_7|xs_rank|below|10|rel_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, the 234 names the train row was scored on, net of the thin-tier round trip. The feature is the 7-day change in basis, ranked across names, lagged one bar. rel_1 equals ret_1 inside a same-day rank, and the spread scored is that one.
+Horizon: 1 day, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 922 on 234 names; the held-out halves are shorter.
+
+27. xs_wma_20_chg_3_above_95_ret_1. Train t-stat 3.6222 on 1034 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of wma_20 at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.004991.
+Rule: cell wma_20|chg_3|above|95|ret_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, the 234 names the train row was scored on, net of the thin-tier round trip. The feature is the 3-day change in the 20-day weighted moving average, lagged one bar.
+Horizon: 1 day, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 1034 on 234 names; the held-out halves are shorter.
