@@ -1,0 +1,64 @@
+{
+ "item": "B3",
+ "today": "2026-11-22",
+ "slot": "09:00",
+ "daily_last_bar": "2026-11-05",
+ "daily_age_days": 17,
+ "universe_as_of": "2026-11-05",
+ "universe_rows": 150,
+ "universe_age_days": 17,
+ "betas_mtime": "2026-11-05",
+ "betas_age_days": 17,
+ "hourly_last_bar": "2026-11-22",
+ "hourly_age_days": 0,
+ "hourly_files": 100,
+ "hourly_stale_files": 92,
+ "provenance": {
+  "script": "scripts/record_blocks_0900.py",
+  "script_blob": "d8112c9ace7fb3f742059d3abadf9dd4d7ecd15f",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_blocks_0900.py"
+  ],
+  "commit": "28b693fc93980984b2e7dc8aacc34cf6021b7879",
+  "written_at": "2026-11-22T09:04:05Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/raw/top100_daily.json",
+    "kind": "file",
+    "bytes": 2213940,
+    "mtime_ns": 1793880681734728686,
+    "sha256": "e0d0b695955818b954fcf344e803af7b98014728a30236c66b63024eaad54f4d"
+   },
+   {
+    "path": "data/book_universe.json",
+    "kind": "file",
+    "bytes": 29808,
+    "mtime_ns": 1793876967921888614,
+    "sha256": "49c59b9231ddc0a5a4288c40ae9fa3246595df45c0932d821425a1a68da1251a"
+   },
+   {
+    "path": "data/betas.json",
+    "kind": "file",
+    "bytes": 8151,
+    "mtime_ns": 1793876745798061362,
+    "sha256": "9b7dd9a01c4d5e76a670c13c5f712805baada16957f8db56d7cad54b9accf694"
+   },
+   {
+    "path": "data/intraday",
+    "kind": "dir",
+    "files": 200,
+    "bytes": 22639673,
+    "listing_sha256": "89cb88b617016690763a2ccbea6c2a55657d8854c76c676d0cacde6a81f2f36c",
+    "content_sha256": "63daeca82b080ae1b6e6e3f14334a17b39ebc854f62d7be4b2235e1c39b8a553",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "5722439bf174741e57c3cd66eb4f153201a58535565159c25d4499f3aec0e3fa"
+ }
+}

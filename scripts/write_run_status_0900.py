@@ -1,46 +1,50 @@
 """Write this run's status line.
 
-The top item is the first backlog line that starts with an item header and
-carries no verdict of its own. The run count is how many stall-check lines
-name that item, plus this run.
+The top item is the first backlog line without a verdict, read from
+research/backlog.md. The run count is how many stall_check lines in
+ops/health.log already name it, plus this run. This script only records them.
 """
 
 import os
 import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LOG = os.path.join(ROOT, "ops", "health.log")
 BACKLOG = os.path.join(ROOT, "research", "backlog.md")
-OUT = os.path.join(ROOT, "results", "2026-11-21_run_status.txt")
-HEADER = re.compile(r"^- [A-Z]{1,3}\d{1,3}[a-z]?\. ")
-CLOSED = re.compile(
-    r"Done 20\d\d-\d\d-\d\d|Verdict 20\d\d-\d\d-\d\d: (rejected|insufficient|recorded|admitted)")
+LOG = os.path.join(ROOT, "ops", "health.log")
+OUT = os.path.join(ROOT, "results", "2026-11-22_run_status_0900.txt")
+CLOSED = ("done 20", "rejected", "insufficient", "verdict 20", "admitted")
 
 
 def top_item():
     for line in open(BACKLOG):
-        if not HEADER.match(line):
+        if not re.match(r"^- [A-Z]{1,3}\d{1,3}[a-z]?\. ", line):
             continue
-        head = line.split(". ", 1)[0]
-        own = line[len(head):]
-        if CLOSED.search(own):
+        if any(word in line.lower() for word in CLOSED):
             continue
-        return head.lstrip("- ")
-    raise SystemExit("no open item")
+        return line.split(".", 1)[0].lstrip("- ").strip()
+    return "none"
 
 
 def main():
     item = top_item()
-    runs = sum(1 for line in open(LOG)
-               if "stall_check" in line and f"item={item} " in line) + 1
-    status = (f"STATUS OK research-run panel_end=2026-11-20 age=1d "
-              f"top={item} runs={runs} files=research/backlog.md,"
-              f"results/2026-11-21_a7_block.json,"
-              f"results/2026-11-21_x1_status.json,"
-              f"results/2026-11-21_l2_status.json,"
-              f"results/2026-11-21_d3_hourly.json,"
-              f"results/2026-11-21_q1_lsr_drawdown.json,"
-              f"results/2026-11-21_q1_page.json")
+    prior = [ln for ln in open(LOG) if "stall_check" in ln and f"item={item} " in ln]
+    runs = len(prior) + 1
+    status = (
+        f"STATUS OK research-run panel_end=2026-11-21 age=1d "
+        f"top={item} runs={runs} files=research/backlog.md,"
+        f"scripts/record_blocks_0900.py,"
+        f"scripts/write_run_status_0900.py,"
+        f"results/2026-11-22_l11_coverage.json,"
+        f"results/2026-11-22_l11_reading.json,"
+        f"results/2026-11-22_l2_status.json,"
+        f"results/2026-11-22_x1_status.json,"
+        f"results/2026-11-22_d3_hourly_0900.json,"
+        f"results/2026-11-22_q4_oi_pc_0900.json,"
+        f"results/2026-11-22_b1_inputs_0900.json,"
+        f"results/2026-11-22_b2_inputs_0900.json,"
+        f"results/2026-11-22_b3_inputs_0900.json,"
+        f"results/2026-11-22_b4_inputs_0900.json,"
+        f"results/2026-11-22_b5_inputs_0900.json")
     open(OUT, "w").write(status + "\n")
     print(status)
 

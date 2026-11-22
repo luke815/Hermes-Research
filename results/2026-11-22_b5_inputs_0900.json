@@ -1,0 +1,49 @@
+{
+ "item": "B5",
+ "today": "2026-11-22",
+ "slot": "09:00",
+ "hourly_files": 100,
+ "hourly_newest": "2026-11-22",
+ "hourly_newest_age_days": 0,
+ "hourly_fresh_files": 8,
+ "hourly_stale_files": 92,
+ "hourly_by_day": {
+  "2026-11-05": 1,
+  "2026-11-19": 91,
+  "2026-11-22": 8
+ },
+ "legs_file_exists": true,
+ "legs_rows": 2,
+ "provenance": {
+  "script": "scripts/record_blocks_0900.py",
+  "script_blob": "d8112c9ace7fb3f742059d3abadf9dd4d7ecd15f",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_blocks_0900.py"
+  ],
+  "commit": "28b693fc93980984b2e7dc8aacc34cf6021b7879",
+  "written_at": "2026-11-22T09:04:07Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/intraday/1000PEPEUSDT_PERP.A.csv",
+    "kind": "file",
+    "bytes": 27983,
+    "mtime_ns": 1795054687043848626,
+    "sha256": "a8dac5281d6c908759bd95bb5a2859bdf83cb15a5bfded40ae9da8db6dfce4da"
+   },
+   {
+    "path": "signals/book.csv",
+    "kind": "file",
+    "bytes": 162,
+    "mtime_ns": 1794500036912297148,
+    "sha256": "287c810af9cb5c64a0b60c7e737ff2bd572ba94e42de6681a51b3a6de58beee4"
+   }
+  ],
+  "payload_sha256": "bb0816f3749673d16ba4f802ce1565e9f87b02c43d60e2143db9a42bc3f3dd7c"
+ }
+}

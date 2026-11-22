@@ -22,17 +22,17 @@
  },
  "all_three_from_2021": 81,
  "provenance": {
-  "script": "scripts/record_blocks_0700.py",
-  "script_blob": "153626e6b37399dd31e233364dd3dbd6887d0bab",
+  "script": "scripts/record_blocks_0900.py",
+  "script_blob": "d8112c9ace7fb3f742059d3abadf9dd4d7ecd15f",
   "script_tracked": false,
   "script_dirty": true,
   "argv": [],
   "orig_argv": [
    "python3",
-   "scripts/record_blocks_0700.py"
+   "scripts/record_blocks_0900.py"
   ],
-  "commit": "1eabcb60d2e7860c669af06040030cc6a90fe4c5",
-  "written_at": "2026-11-22T07:01:23Z",
+  "commit": "28b693fc93980984b2e7dc8aacc34cf6021b7879",
+  "written_at": "2026-11-22T09:02:56Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [
