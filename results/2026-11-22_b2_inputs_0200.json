@@ -1,0 +1,42 @@
+{
+ "item": "B2",
+ "today": "2026-11-22",
+ "slot": "02:00",
+ "daily_last_bar": "2026-11-05",
+ "daily_age_days": 17,
+ "universe_as_of": "2026-11-05",
+ "universe_rows": 150,
+ "universe_age_days": 17,
+ "provenance": {
+  "script": "scripts/record_b2_inputs_0200.py",
+  "script_blob": "40f5afbfd5c9d9f7757d9b2b00ee0ae8b9bb17f8",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_b2_inputs_0200.py"
+  ],
+  "commit": "0c899b28351275dae8ed94ed91e2eb364aacb95a",
+  "written_at": "2026-11-22T02:12:58Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/raw/top100_daily.json",
+    "kind": "file",
+    "bytes": 2213940,
+    "mtime_ns": 1793880681734728686,
+    "sha256": "e0d0b695955818b954fcf344e803af7b98014728a30236c66b63024eaad54f4d"
+   },
+   {
+    "path": "data/book_universe.json",
+    "kind": "file",
+    "bytes": 29808,
+    "mtime_ns": 1793876967921888614,
+    "sha256": "49c59b9231ddc0a5a4288c40ae9fa3246595df45c0932d821425a1a68da1251a"
+   }
+  ],
+  "payload_sha256": "c794a31f8e2215668b72429f0a846f9fc95cb9770105a9301c302c351fe2aa65"
+ }
+}

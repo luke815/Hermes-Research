@@ -1,0 +1,73 @@
+{
+ "item": "G21",
+ "cell": "bb_pct|xs_rank|below|20|ret_10|pit_cross_section|none|daily",
+ "prereg": "research/generated.md item 21",
+ "names": 234,
+ "panel_end": "2026-11-20",
+ "horizon": 10,
+ "train_sign": 1,
+ "verdict": "insufficient",
+ "reason": "a held-out period holds fewer than 40 independent dates",
+ "lookahead_holds": true,
+ "lookahead_name": "binance_1000FLOKIUSDT",
+ "periods": {
+  "train": {
+   "spread_independent": 0.9375811886763319,
+   "n_independent": 104,
+   "t": 2.2945958983890082,
+   "n_overlap": 1038
+  },
+  "validation": {
+   "spread_independent": 1.72553714398812,
+   "n_independent": 55,
+   "t": 2.214802566608307,
+   "n_overlap": 548
+  },
+  "test": {
+   "spread_independent": -1.1494477494530269,
+   "n_independent": 31,
+   "t": -1.5065165782793641,
+   "n_overlap": 306
+  }
+ },
+ "provenance": {
+  "script": "scripts/score_g21.py",
+  "script_blob": "5311ae6b5a2d88a8554fc57ab131792123cde6e2",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_g21.py"
+  ],
+  "commit": "0c899b28351275dae8ed94ed91e2eb364aacb95a",
+  "written_at": "2026-11-22T02:43:04Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_cache/indicators_91ee884150ff50aa_4953200eab4e_v3.csv",
+    "kind": "file",
+    "bytes": 80624562,
+    "mtime_ns": 1795167733198699920
+   },
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 195559713,
+    "listing_sha256": "6b1e83b42c8ff75671d546aebdf7a3693e1a5c4d91a019d93d805423aa638d0b",
+    "content_sha256": "aed277784735db57653d2d2c79818bd504c25fbe7f08aca0e3b9f24d5f7ca7f0",
+    "content_partial": false
+   },
+   {
+    "path": "research/generated.md",
+    "kind": "file",
+    "bytes": 23408,
+    "mtime_ns": 1795274109549586283,
+    "sha256": "3ca7ebdf9bd82115535f6f2893053090cadc89aa9bd07bf69f407a2b3f6bd6b1"
+   }
+  ],
+  "payload_sha256": "b1a171db394fdbc9e6ee8751e482b917ffa523dcc5ab0ed45aebf41aa4213851"
+ }
+}

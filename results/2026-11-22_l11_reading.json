@@ -1,0 +1,58 @@
+{
+ "item": "L11",
+ "today": "2026-11-22",
+ "dead_names": 499,
+ "remaining": 0,
+ "daemon_alive": true,
+ "phase": "working",
+ "cycles": 874,
+ "daemon_remaining": 0,
+ "provenance": {
+  "script": "scripts/l11_reading.py",
+  "script_blob": "a803917e908a3899aae9dc436cd7ade23dc130b9",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/l11_reading.py"
+  ],
+  "commit": "0c899b28351275dae8ed94ed91e2eb364aacb95a",
+  "written_at": "2026-11-22T02:03:41Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/binance_span.csv",
+    "kind": "file",
+    "bytes": 33414,
+    "mtime_ns": 1793647339233959668,
+    "sha256": "e0fee92f68f060136b869770b25408220398efbbbdd28dadf48923499bb595eb"
+   },
+   {
+    "path": "data/bybit_span.csv",
+    "kind": "file",
+    "bytes": 43360,
+    "mtime_ns": 1793667702310385708,
+    "sha256": "9bc6e367cc4ebad9801e8148448b43b23915cd26320a9a05ed9ce18303a864b1"
+   },
+   {
+    "path": "data/okx_span.csv",
+    "kind": "file",
+    "bytes": 22783,
+    "mtime_ns": 1793690415827637318,
+    "sha256": "42464e2b570709e15c8f2f66e4fae9a4179dd7ed780c8241359ba29313f4a96a"
+   },
+   {
+    "path": "data/laevitas/delisted",
+    "kind": "dir",
+    "files": 501,
+    "bytes": 95139009,
+    "listing_sha256": "54c06818ef267a95f9a150ae843deab8922fec14bc417bc3fc6b4deb4b2eb284",
+    "content_sha256": "cb44bedb4e326afcfe8e79bf291b9f0eeed3743c4a35cd508b088929fd841a81",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "622666b8d3612a78ff2f2525c539c8e6a4e4297e9a438aa018c86c9a5dea59da"
+ }
+}
