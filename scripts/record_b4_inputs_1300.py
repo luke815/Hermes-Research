@@ -58,18 +58,18 @@ def main():
         "universe_age_days": age(today, universe.get("as_of")),
         "strategy_module_present": strategy,
     }
-    path = write_result("b4_inputs_0200", out, inputs=[
+    path = write_result("b4_inputs_1300", out, inputs=[
         "data/raw/top100_daily.json", "data/book_universe.json"])
     print(path)
     if out["daily_age_days"] <= FRESH_DAYS and out["universe_age_days"] <= FRESH_DAYS:
         raise SystemExit("inputs are current; not marking blocked")
     text = open(BACKLOG).read()
-    marker = f"Rechecked {today} 13:00 UTC: results/{today}_b4_inputs_0200.json"
+    marker = f"Rechecked {today} 13:00 UTC: results/{today}_b4_inputs_1300.json"
     if marker in text:
         raise SystemExit("note already present")
     line = next(ln for ln in text.splitlines() if ln.startswith("- B4. "))
     note = (
-        f" Rechecked {today} 13:00 UTC: results/{today}_b4_inputs_0200.json "
+        f" Rechecked {today} 13:00 UTC: results/{today}_b4_inputs_1300.json "
         f"shows data/raw/top100_daily.json last bar {out['daily_last_bar']} "
         f"({out['daily_age_days']} days behind) and data/book_universe.json "
         f"as_of {out['universe_as_of']} ({out['universe_age_days']} days "
