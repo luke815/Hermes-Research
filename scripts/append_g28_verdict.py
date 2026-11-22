@@ -42,6 +42,9 @@ def main():
         f"against a bar of 40, and the test spread flips the train sign. "
         f"Verdict 2026-11-22: {result['verdict']}."
     )
+    # The score note starts a new sentence, so done_check still reads the
+    # clause that was committed before the claim.
+    note = "\n" + note.lstrip()
     updated = "- G28. " + line[len("2. "):].rstrip("\n") + note + "\n"
     open(PATH, "w").write(text.replace(line, updated, 1))
     print("appended")
