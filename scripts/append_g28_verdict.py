@@ -19,8 +19,7 @@ def main():
     marker = "Scored 2026-11-22: results/2026-11-22_g28_obv.json"
     if marker in text:
         raise SystemExit("note already present")
-    line = next(ln for ln in text.splitlines()
-                if ln.startswith("2. xs_obv_xs_rank_below_10_ret_10. "))
+    line = next(ln for ln in text.splitlines() if ln.startswith("- G28. "))
     if ANCHOR not in line:
         raise SystemExit("anchor missing from the G28 line")
     periods = result["periods"]
@@ -45,7 +44,7 @@ def main():
     # The score note starts a new sentence, so done_check still reads the
     # clause that was committed before the claim.
     note = "\n" + note.lstrip()
-    updated = "- G28. " + line[len("2. "):].rstrip("\n") + note + "\n"
+    updated = line.rstrip("\n") + note + "\n"
     open(PATH, "w").write(text.replace(line, updated, 1))
     print("appended")
 
