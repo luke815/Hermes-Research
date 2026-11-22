@@ -89,7 +89,13 @@ def cluster(starts, horizon):
 
 
 def period_of(stamp):
-    return assign_period(pd.DatetimeIndex([stamp])).iloc[0]
+    """The period a start falls in, from the three fixed cuts."""
+    day = str(pd.Timestamp(stamp).date())
+    if day <= "2024-06-30":
+        return "train"
+    if day <= "2025-12-31":
+        return "validation"
+    return "test"
 
 
 def score_cut(rows, cut):
