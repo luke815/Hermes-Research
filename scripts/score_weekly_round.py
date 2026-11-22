@@ -198,10 +198,13 @@ def feature(raw, spec):
     if spec["transform"] == "xs_rank":
         transformed = transform_matrix(built, "xs_rank")
     else:
-        transformed = pd.DataFrame(
+        # A percent change has no natural level, so the registered threshold is
+        # that date's cross-sectional percentile, the same cut the sweep uses.
+        changed = pd.DataFrame(
             {col: transform_column(built[col].to_numpy(dtype=float), spec["transform"])
              for col in built.columns},
             index=built.index)
+        transformed = changed.rank(axis=1, pct=True) * 100
     return transformed.shift(1)
 
 
