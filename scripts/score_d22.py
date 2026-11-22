@@ -36,20 +36,33 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PREREG = "c9c0c759f5aff896dab8a0a03bbd366f1525c53d"
 
 
-def load_closes():
-    """One close series per file. A name is in on a date only if it has a close."""
-    out = {}
+def load_rows():
+    """One row per name: the lagged rank and the bottom label, read once.
+
+    A name shorter than the label's horizon cannot have a closed window, so
+    it is left out rather than scored on an empty future.
+    """
+    rows = []
+    last = None
     panel = os.path.join(ROOT, PANEL)
     for name in sorted(os.listdir(panel)):
         if not name.endswith(".csv"):
             continue
         frame = pd.read_csv(os.path.join(panel, name), usecols=["date", "close"])
+        if len(frame) < LOOKBACK + HORIZON:
+            continue
         frame["date"] = pd.to_datetime(frame["date"], utc=True)
-        series = frame.set_index("date")["close"].astype(float).sort_index()
-        series = series[~series.index.duplicated(keep="last")]
-        if series.notna().sum() >= LOOKBACK:
-            out[name[:-4]] = series
-    return out
+        close = frame.set_index("date")["close"].astype(float).sort_index()
+        close = close[~close.index.duplicated(keep="last")]
+        if close.notna().sum() < LOOKBACK + HORIZON:
+            continue
+        rank = rolling_percentile(factor_of(close))
+        label = event_label(close, LABELS[3])
+        starts = starts_of(label)
+        rows.append((rank, starts))
+        end = close.index.max()
+        last = end if last is None or end > last else last
+    return rows, last
 
 
 def factor_of(close):
@@ -99,16 +112,20 @@ def period_of(stamp):
 
 
 def score_cut(rows, cut):
-    """Lift of clustered fires against clustered episode starts, per period."""
+    """Lift of clustered fires against clustered episode starts, per period.
+
+    A fire is the rank at or below the cut on a day the label is defined,
+    which is a bottom candidate day. The label is computed once per name.
+    """
     fire_starts = []
     episode_starts = []
-    for _name, rank, close in rows:
-        fired, label = fires_of(rank, close, cut)
-        starts = starts_of(label)
-        for stamp in starts[starts].index:
+    for rank, starts in rows:
+        fired = (rank.le(cut) & rank.notna()).reindex(starts.index).fillna(False)
+        taken = starts[starts]
+        for stamp in taken.index:
             episode_starts.append(stamp)
-            if bool(fired.reindex([stamp]).fillna(False).iloc[0]):
-                fire_starts.append(stamp)
+        for stamp in taken[fired.reindex(taken.index).fillna(False)].index:
+            fire_starts.append(stamp)
     by_period = {}
     for period in ("train", "validation", "test"):
         episodes = cluster(
@@ -161,15 +178,13 @@ def lookahead_holds(close):
 def main():
     from datetime import datetime, timezone
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    closes = load_closes()
-    last = max(series.index.max() for series in closes.values())
-    rows = []
-    for name, close in closes.items():
-        factor = factor_of(close)
-        rows.append((name, rolling_percentile(factor), close))
+    rows, last = load_rows()
     print(f"names={len(rows)} panel_end={last.date()}", flush=True)
-    probe = next(iter(closes.values()))
-    holds_probe = lookahead_holds(probe)
+    probe = pd.read_csv(
+        os.path.join(ROOT, PANEL, "binance_BTCUSDT.csv"), usecols=["date", "close"])
+    probe["date"] = pd.to_datetime(probe["date"], utc=True)
+    probe_close = probe.set_index("date")["close"].astype(float).sort_index()
+    holds_probe = lookahead_holds(probe_close)
     cuts = {}
     for cut in (PRIMARY["bottom"],) + NEIGHBOURS["bottom"]:
         cuts[str(cut)] = score_cut(rows, cut)
