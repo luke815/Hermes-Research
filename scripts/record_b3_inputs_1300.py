@@ -91,7 +91,7 @@ def main():
         "hourly_files": hourly_files,
         "hourly_stale_files": hourly_stale,
     }
-    path = write_result("b3_inputs_0200", out, inputs=[
+    path = write_result("b3_inputs_1300", out, inputs=[
         "data/raw/top100_daily.json", "data/book_universe.json",
         "data/betas.json", "data/intraday"])
     print(path)
@@ -101,12 +101,12 @@ def main():
     if not stale and hourly_stale == 0:
         raise SystemExit("inputs are current; not marking blocked")
     text = open(BACKLOG).read()
-    marker = f"Rechecked {today} 13:00 UTC: results/{today}_b3_inputs_0200.json"
+    marker = f"Rechecked {today} 13:00 UTC: results/{today}_b3_inputs_1300.json"
     if marker in text:
         raise SystemExit("note already present")
     line = next(ln for ln in text.splitlines() if ln.startswith("- B3. "))
     note = (
-        f" Rechecked {today} 13:00 UTC: results/{today}_b3_inputs_0200.json "
+        f" Rechecked {today} 13:00 UTC: results/{today}_b3_inputs_1300.json "
         f"shows data/raw/top100_daily.json last bar {out['daily_last_bar']} "
         f"({out['daily_age_days']} days behind), data/book_universe.json "
         f"as_of {out['universe_as_of']} ({out['universe_age_days']} days "
