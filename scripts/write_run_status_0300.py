@@ -13,6 +13,8 @@ BACKLOG = os.path.join(ROOT, "research", "backlog.md")
 LOG = os.path.join(ROOT, "ops", "health.log")
 OUT = os.path.join(ROOT, "results", "2026-11-22_run_status_0300.txt")
 CLOSED = ("done 20", "rejected", "insufficient", "verdict 20", "admitted")
+# A blocked item has no verdict, so it stays the top item. Same list as
+# hourly_health.stall_check.
 
 
 def top_item():
