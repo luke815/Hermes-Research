@@ -87,6 +87,11 @@ def daemons():
                 "age_s": round(age),
                 "stale": stale,
             })
+    pid_file = os.path.join(ROOT, "ops", "pids", "panel_append.pid")
+    if os.path.exists(pid_file):
+        pid = open(pid_file).read().strip().split()[0]
+        if pid_alive(pid) and "panel_append" not in alive:
+            alive.append("panel_append")
     return {
         "alive": len(alive),
         "configured": len(configured),
