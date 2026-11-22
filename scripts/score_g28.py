@@ -140,15 +140,19 @@ def verdict(periods, train_sign):
     return "kept", "the spread keeps its sign and the t-stat reaches 2 in both held-out periods"
 
 
-def lookahead(close, volume):
-    """Perturb every price and volume after the midpoint and check the signal there is unchanged."""
+def lookahead(close, volume, builder=on_balance):
+    """Perturb every price and volume after the midpoint and check the signal there is unchanged.
+
+    A builder that reads past the midpoint, a centred window, fails this check.
+    The scorer calls it with the default builder.
+    """
     t = len(close) // 2
-    base = on_balance(close.to_frame("x"), volume.to_frame("x"))["x"]
+    base = builder(close.to_frame("x"), volume.to_frame("x"))["x"]
     other_close = close.copy()
     other_volume = volume.copy()
     other_close.iloc[t + 1:] = other_close.iloc[t + 1:] + 1.0
     other_volume.iloc[t + 1:] = other_volume.iloc[t + 1:] + 1.0
-    other = on_balance(other_close.to_frame("x"), other_volume.to_frame("x"))["x"]
+    other = builder(other_close.to_frame("x"), other_volume.to_frame("x"))["x"]
     left = base.iloc[:t + 1].to_numpy(dtype=float)
     right = other.iloc[:t + 1].to_numpy(dtype=float)
     return bool(np.allclose(np.nan_to_num(left), np.nan_to_num(right), atol=1e-9))
