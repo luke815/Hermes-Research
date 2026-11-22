@@ -54,7 +54,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def names_from_cache():
     """The 234 names the train row was scored on, taken from the cache header."""
     wide = pd.read_csv(os.path.join(ROOT, CACHE), header=[0, 1], index_col=0, nrows=0)
-    return list(wide["close"].columns)
+    return list(wide["ema_21"].columns)
 
 
 def load_panel(names):
