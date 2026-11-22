@@ -209,7 +209,7 @@ def lookahead(raw, spec):
     name = column.columns[0]
     series = column[name].dropna()
     t = len(series) // 2
-    single = raw.loc[series.index, (slice(None), name)]
+    single = raw.loc[series.index, (slice(None), [name])]
     single.columns = single.columns.droplevel(1)
     base = feature(single, spec)[name]
     perturbed = single.copy()
