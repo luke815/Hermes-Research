@@ -99,8 +99,15 @@ return was positive). A cell that reaches none of its bars is insufficient, not 
 Refilled 2026-11-15 after the weekly round rejected all three TA conditioning gates. Ordered by what unblocks the most, not by the old scores.
 
 1. BTC 1-day and 3-day horizons for the four live factors. Rescored 2026-11-16 and rejected: no cell keeps a usable size in both held-out periods, largest held-out t-stat 1.2704 on 26 independent dates against a bar of 3. results/2026-11-16_btc_short_horizon.json.
-3. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Needs a DefiLlama pull first. A pull is forbidden in a research run, so this waits.
-4. btc_funding_level_pct_bottom. Verdict 2026-11-17: insufficient. The BTC funding close at its trailing one-year 10th percentile, against the amended bottom event. 4 fires across train and validation on BTC, 7 on ETH, both below 30, and validation has zero fires on BTC. results/2026-11-17_btc_funding_level_pct_bottom.json.
+2. xs_obv_xs_rank_below_10_ret_10. Pre-registered 2026-11-22 in research/generated.md, item 28. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+3. xs_ema_21_chg_3_above_95_ret_1. Pre-registered 2026-11-22 in research/generated.md, item 29. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+4. xs_mayer_multiple_z_30_above_90_rel_1. Pre-registered 2026-11-22 in research/generated.md, item 30. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+5. xs_sma_20_chg_3_above_95_rel_1. Pre-registered 2026-11-22 in research/generated.md, item 31. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+6. xs_force_13_z_30_below_20_rel_1. Pre-registered 2026-11-22 in research/generated.md, item 32. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+7. xs_ema_50_raw_below_10_ret_1. Pre-registered 2026-11-22 in research/generated.md, item 33. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+8. xs_sma_50_raw_below_10_ret_1. Pre-registered 2026-11-22 in research/generated.md, item 34. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+9. xs_oi_on_down_days_pct_252_below_10_rel_1. Pre-registered 2026-11-22 in research/generated.md, item 35. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+10. stablecoin_supply_30d_bottom. Stablecoin supply 30-day change at its trailing 90th percentile, against the amended bottom event. Needs a DefiLlama pull first. A pull is forbidden in a research run, so this waits.
 
 ## Queue
 

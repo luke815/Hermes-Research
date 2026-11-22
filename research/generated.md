@@ -147,3 +147,31 @@ Horizon: 1 day, non-overlapping. Pass: the spread keeps its sign in validation a
 Hypothesis: the cross-sectional reading of wma_20 at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.004991.
 Rule: cell wma_20|chg_3|above|95|ret_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, the 234 names the train row was scored on, net of the thin-tier round trip. The feature is the 3-day change in the 20-day weighted moving average, lagged one bar.
 Horizon: 1 day, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 1034 on 234 names; the held-out halves are shorter.
+
+## Next ten, drafted for the queue
+
+The weekly round scored items 25 to 27 and rejected all three. These eight are the strongest measures left in results/sweeps/2026-11-19_xs_vec.csv, one cell per measure, after dropping every measure that already has a verdict. None is scored here. The train figures are read from that file and are the reason the cell was queued, not a result.
+
+28. xs_obv_xs_rank_below_10_ret_10. Train t-stat -3.5093 on 54 independent dates.
+Rule: cell obv|xs_rank|below|10|ret_10|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, the 234 names the train row was scored on, net of the thin-tier round trip, feature lagged one bar. Horizon 10 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected.
+
+29. xs_ema_21_chg_3_above_95_ret_1. Train t-stat 3.3735 on 1033 independent dates.
+Rule: cell ema_21|chg_3|above|95|ret_1|pit_cross_section|none|daily. A percent change is cut at that date's cross-sectional percentile, as the sweep cuts it. Otherwise the same panel, cost and lag as item 28. Horizon 1 day. Same pass rule.
+
+30. xs_mayer_multiple_z_30_above_90_rel_1. Train t-stat 3.3296 on 698 independent dates.
+Rule: cell mayer_multiple|z_30|above|90|rel_1|pit_cross_section|none|daily. A z-score is cut at the normal quantile of the percentile, as the sweep cuts it. rel_1 equals ret_1 inside a same-day rank. Horizon 1 day. Same pass rule.
+
+31. xs_sma_20_chg_3_above_95_rel_1. Train t-stat 3.2467 on 1034 independent dates.
+Rule: cell sma_20|chg_3|above|95|rel_1|pit_cross_section|none|daily. Same cut, panel, cost and lag as item 29. Horizon 1 day. Same pass rule.
+
+32. xs_force_13_z_30_below_20_rel_1. Train t-stat -3.2076 on 825 independent dates.
+Rule: cell force_13|z_30|below|20|rel_1|pit_cross_section|none|daily. Same cut as item 30. Horizon 1 day. Same pass rule.
+
+33. xs_ema_50_raw_below_10_ret_1. Train t-stat 3.0356 on 1007 independent dates.
+Rule: cell ema_50|raw|below|10|ret_1|pit_cross_section|none|daily. A raw level is cut at that date's cross-sectional percentile. Horizon 1 day. Same pass rule.
+
+34. xs_sma_50_raw_below_10_ret_1. Train t-stat 3.0187 on 1007 independent dates.
+Rule: cell sma_50|raw|below|10|ret_1|pit_cross_section|none|daily. Same cut, panel, cost and lag as item 33. Horizon 1 day. Same pass rule.
+
+35. xs_oi_on_down_days_pct_252_below_10_rel_1. Train t-stat 3.0129 on 893 independent dates.
+Rule: cell oi_on_down_days|pct_252|below|10|rel_1|pit_cross_section|none|daily. The percentile is the measure's own trailing rank, lagged one bar. Horizon 1 day. Same pass rule.

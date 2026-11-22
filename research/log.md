@@ -1252,3 +1252,40 @@ A7(2): results/2026-11-22_a7_derivatives.json, written by scripts/score_a7_parts
 A7(3): results/2026-11-22_a7_crowding.json, written by scripts/score_a7_parts.py, panel data/laevitas/market for ADA, SOL, LINK, XRP and AVAX, date-clustered, survivor-biased. Pooled: oi_over_volume insufficient, oi_change_30d insufficient.
 
 A7(4): results/2026-11-22_a7_funding.json, written by scripts/score_a7_parts.py, panel data/panel.csv, two names, carry charged. horizon 1 insufficient, horizon 3 rejected. This is the market-level reading the pre-registration specifies and does not close a cross-sectional clause.
+
+## 2026-11-22, verdict: weekly round
+
+Pre-registered as research/generated.md items 25 to 27, commit 14e6cba, before any number was computed. Scored by scripts/score_weekly_round.py, which was committed before it ran. Three candidates, no more. No pull. get_market_positioning_history was not called. The panel read is data/panel_xs_laevitas, 234 names, ending 2026-11-20. Net of the thin-tier round trip, 30 bps, with no funding carry, because the panel has no USD open interest. Lookahead holds on all three. All figures from results/2026-11-22_regime-weekly-research.json.
+
+Candidate: w25_ls_ratio_chg_7. Transform: xs_rank. Horizon: 3 days.
+Cell: ls_ratio_chg_7|xs_rank|above|90|rel_3|pit_cross_section|none|daily.
+Correlation with live factors: {'btc_ret_30': -0.0389, 'btc_vol_z90': 0.0206, 'btc_trend_stretch': -0.0422, 'eth_funding_z30': -0.0167}. Largest absolute correlation 0.0422 with btc_trend_stretch.
+Halves, not a searched cut: first -0.3862% (n=854), second -0.1415% (n=855), same sign True.
+train: spread -0.2547% on 291 independent dates, t -1.8482.
+validation: spread -0.0622% on 183 independent dates, t -0.3438.
+test: spread -0.0993% on 97 independent dates, t -0.3895.
+Decision: rejected. a held-out non-overlapping t-stat does not reach 2.
+
+Candidate: w26_basis_chg_7. Transform: xs_rank. Horizon: 1 days.
+Cell: basis_chg_7|xs_rank|below|10|rel_1|pit_cross_section|none|daily.
+Correlation with live factors: {'btc_ret_30': -0.2214, 'btc_vol_z90': 0.0054, 'btc_trend_stretch': -0.2475, 'eth_funding_z30': -0.0289}. Largest absolute correlation 0.2475 with btc_trend_stretch.
+Halves, not a searched cut: first 0.3290% (n=867), second 0.0332% (n=867), same sign True.
+train: spread 0.3350% on 923 independent dates, t 3.4565.
+validation: spread -0.0174% on 521 independent dates, t -0.2119.
+test: spread 0.0477% on 290 independent dates, t 0.4649.
+Decision: rejected. a held-out period flips the train sign.
+
+Candidate: w27_wma_20. Transform: chg_3. Horizon: 1 days.
+Cell: wma_20|chg_3|above|95|ret_1|pit_cross_section|none|daily.
+Correlation with live factors: {'btc_ret_30': -0.1761, 'btc_vol_z90': 0.0234, 'btc_trend_stretch': -0.2063, 'eth_funding_z30': -0.0391}. Largest absolute correlation 0.2063 with btc_trend_stretch.
+Halves, not a searched cut: first 0.4829% (n=931), second 0.0019% (n=932), same sign True.
+train: spread 0.4778% on 1035 independent dates, t 3.6288.
+validation: spread 0.0508% on 535 independent dates, t 0.3721.
+test: spread -0.2401% on 293 independent dates, t -1.4471.
+Decision: rejected. a held-out period flips the train sign.
+
+Decision: all three rejected, none admitted. The score is unchanged. None restates a live factor: the largest absolute correlation is 0.2475, W26 with btc_trend_stretch, below 0.6.
+W25 keeps its sign in both halves and in all three periods, but no period's t-stat reaches 2, so the agreement is noise.
+W26 keeps its sign across the two halves and flips it in validation, -0.0174% on 521 independent dates against a train spread of 0.3350%.
+W27 keeps its sign across the two halves and flips it in test, -0.2401% on 293 independent dates against a train spread of 0.4778%.
+
