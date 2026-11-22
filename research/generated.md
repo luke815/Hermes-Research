@@ -115,3 +115,16 @@ Horizon: 10 days, non-overlapping. Pass: the spread keeps its sign in validation
 Hypothesis: the cross-sectional reading of bb_width at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.005603.
 Rule: cell bb_width|xs_rank|above|95|rel_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, names below 20,000,000 dollars of prior-bar open interest dropped, net of per-leg costs and carry. A missing carry drops the date. The feature is lagged one bar.
 Horizon: 1 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 1033 on 234 names; the held-out halves are shorter.
+
+## Added 2026-11-22
+Every backlog item without a verdict is blocked, and no build item is pending. These two are the strongest measures left in results/sweeps/2026-11-19_xs_vec.csv, one cell per measure, after dropping the long/short ratio, the funding persistence family, and bb_pct and bb_width, which were scored on 2026-11-22. Neither is scored in this run.
+
+23. xs_td_setup_chg_3_above_80_ret_3. Train t-stat -4.0625 on 321 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of td_setup at this extreme precedes a lower forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is -0.004827.
+Rule: cell td_setup|chg_3|above|80|ret_3|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, names below 20,000,000 dollars of prior-bar open interest dropped, net of per-leg costs and carry. A missing carry drops the date. The feature is lagged one bar.
+Horizon: 3 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 321 on 234 names; the held-out halves are shorter.
+
+24. xs_roc_12_xs_rank_above_95_rel_1. Train t-stat 3.9351 on 1044 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of roc_12 at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.005273.
+Rule: cell roc_12|xs_rank|above|95|rel_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, names below 20,000,000 dollars of prior-bar open interest dropped, net of per-leg costs and carry. A missing carry drops the date. The feature is lagged one bar.
+Horizon: 1 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 1044 on 234 names; the held-out halves are shorter.
