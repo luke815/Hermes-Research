@@ -231,7 +231,7 @@ Then the cross-sectional items resume.
 
 
 
-- G23. xs_td_setup_chg_3_above_80_ret_3. Pre-registered 2026-11-22 in research/generated.md, item 23. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+- G23. xs_td_setup_chg_3_above_80_ret_3. Pre-registered 2026-11-22 in research/generated.md, item 23. Not yet scored. Cross-sectional, on data/panel_xs_laevitas. Scored 2026-11-22: results/2026-11-22_g23_td_setup.json, written by scripts/score_g23.py. 234 names, panel end 2026-11-20, lookahead passed. Train spread 0.0017779895867651792 on 346 independent dates, t 1.3899082989762022. Validation spread -0.001082677718492347 on 180 independent dates, t -0.5632500617365542. Test spread 0.0032078778163392866 on 99 independent dates, t 1.5782394878819117. The validation spread flips the train sign. Verdict 2026-11-22: rejected.
 
 - G24. xs_roc_12_xs_rank_above_95_rel_1. Pre-registered 2026-11-22 in research/generated.md, item 24. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
 - G21. xs_bb_pct_xs_rank_below_20_ret_10. Pre-registered 2026-11-21 in research/generated.md, item 21. Not yet scored. Cross-sectional, on data/panel_xs_laevitas. Scored 2026-11-22: results/2026-11-22_g21_bb_pct.json, written by scripts/score_g21.py. 234 names, panel end 2026-11-20, lookahead passed. Train spread 0.9375811886763319 on 104 independent dates. Validation spread 1.72553714398812 on 55 independent dates, t 2.214802566608307. Test spread -1.1494477494530269 on 31 independent dates, t -1.5065165782793641. The test period holds 31 independent dates against a bar of 40, and the test spread flips the train sign. Verdict 2026-11-22: insufficient.
