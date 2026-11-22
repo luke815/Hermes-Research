@@ -33,6 +33,13 @@ SERIES = (
     ("oi_weighted_basis", "ETH", "/historical/futures/oi_weighted_basis/ETH", "2021-03-26"),
     ("derivs_summary", "BTC", "/historical/derivs/summary/BTC", "2021-03-26"),
     ("derivs_summary", "ETH", "/historical/derivs/summary/ETH", "2021-03-26"),
+    # A7(3) scores crowding on these five. The walk listed only BTC and ETH,
+    # so remaining 0 never meant the alt windows had been asked for.
+    ("derivs_summary", "ADA", "/historical/derivs/summary/ADA", "2021-03-26"),
+    ("derivs_summary", "SOL", "/historical/derivs/summary/SOL", "2021-03-26"),
+    ("derivs_summary", "LINK", "/historical/derivs/summary/LINK", "2021-03-26"),
+    ("derivs_summary", "XRP", "/historical/derivs/summary/XRP", "2021-03-26"),
+    ("derivs_summary", "AVAX", "/historical/derivs/summary/AVAX", "2021-03-26"),
     ("atm_iv", "BTC", "/historical/options/atm_iv/deribit/BTC", "2019-03-31"),
     ("atm_iv", "ETH", "/historical/options/atm_iv/deribit/ETH", "2019-03-31"),
     ("dvol", "BTC", "/historical/options/dvol/deribit/BTC", "2021-03-25"),
