@@ -1238,3 +1238,17 @@ Verdict: insufficient for A7(2), 36 cells rejected and 44 insufficient of 80, no
 Pre-registered in research/generated.md item 19, commit df7329347c99, before this scoring. The earlier file carried no stamp, so the rule was scored again by scripts/score_c8_cascade.py and written through write_result.
 
 Verdict: rejected. On the pooled names at 1 day the spread is -0.000182 in train (261 dates), 0.003137 in validation (243 dates, t 1.354054) and -0.001343 in test (125 dates, t -0.420076). The validation t did not reach 2, and the test is a null, not a flip. At 3 days the pooled spread is 0.004511, 0.010486 and -0.002631. At 5 days it is 0.006830, 0.016318 and -0.002069. BTC at 1 day is 0.006935, 0.005255 and -0.000352, with 48, 32 and 23 flagged days. The one cell that keeps its sign is BTC at 5 days, and its test rests on 2 independent flagged days, below 30, so it is not quoted. Lookahead passed. results/2026-11-20_c8_cascade.json.
+
+## 2026-11-21 daily refresh row count
+
+Panel rows before the rebuild: 2495, ending 2026-11-19. After: 2496, ending 2026-11-20. Change +1. Date added: 2026-11-20. Dates removed: none. The loader drops a day missing price or funding; 2026-11-20 had both. The 05:30 scheduler pull of 151 symbols stopped on a second 429 after saving ohlcv; the 20-name basket pull then saved the missing day. No Laevitas source failed. verify_panel.py PASS, panel_end 2026-11-20, age 1d. results/2026-11-21_regime-daily-refresh.json.
+
+## 2026-11-22, A7 scored
+
+A7(1): results/2026-11-21_a7_reversal.json, written by scripts/score_a7_reversal.py, panel data/panel_xs_laevitas, 3781 names, lookahead passed, verdict rejected. Windows: w1_h1 insufficient, w1_h3 insufficient, w3_h1 rejected, w3_h3 insufficient.
+
+A7(2): results/2026-11-22_a7_derivatives.json, written by scripts/score_a7_parts.py, panel data/laevitas/market, lookahead passed. 92 cells: 44 insufficient, 12 neighbour, 36 rejected. None kept on both assets. The filter on A7(1) was not scored, because A7(1) was rejected and a filter on a rejected score is not a second verdict.
+
+A7(3): results/2026-11-22_a7_crowding.json, written by scripts/score_a7_parts.py, panel data/laevitas/market for ADA, SOL, LINK, XRP and AVAX, date-clustered, survivor-biased. Pooled: oi_over_volume insufficient, oi_change_30d insufficient.
+
+A7(4): results/2026-11-22_a7_funding.json, written by scripts/score_a7_parts.py, panel data/panel.csv, two names, carry charged. horizon 1 insufficient, horizon 3 rejected. This is the market-level reading the pre-registration specifies and does not close a cross-sectional clause.
