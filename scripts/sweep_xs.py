@@ -61,14 +61,48 @@ THRESHOLDS = (80, 90, 95, 20, 10, 5)
 COST_BPS = 15  # the thin tier: 5 bps fee plus 10 bps slippage, each way
 
 
-def scorable_measures():
+RANGE_INPUTS = {"high", "low"}
+BASE_INPUTS = {"close", "volume", "funding", "oi", "basis", "long_short_ratio"}
+
+
+def panel_inputs(panel):
+    """Inputs present on at least one name the sweep is about to score.
+
+    A column that exists as a header with no values is not an input. High and
+    low are admitted only when a name carries both, so a range measure is
+    scored once the backfill has reached the panel and skipped before that.
+    """
+    found = set()
+    for frame in panel.values():
+        columns = set(frame.columns)
+        if "volume_usd" in columns or "volume_base" in columns:
+            found.add("volume")
+        if "funding_rate" in columns:
+            found.add("funding")
+        if "oi_usd" in columns:
+            found.add("oi")
+        if "basis" in columns:
+            found.add("basis")
+        if "long_short_ratio" in columns:
+            found.add("long_short_ratio")
+        if "close" in columns and frame["close"].notna().any():
+            found.add("close")
+        if {"high", "low"} <= columns and frame["high"].notna().any() and frame["low"].notna().any():
+            found.update(RANGE_INPUTS)
+    return found
+
+
+def scorable_measures(available=None):
     """Measures whose inputs the panel carries for at least one name.
 
-    High and low are not stored, so the measures that need them are skipped and
-    counted, not filled with a proxy.
+    High and low used to be treated as absent, so every range measure was
+    skipped even after the files carried them. They are admitted when the
+    panel being scored has a value, and skipped when it does not. A missing
+    input is never filled with a proxy.
     """
-    available = {"close", "volume", "funding", "oi", "basis", "long_short_ratio"}
-    return [name for name, meta in META.items() if set(meta[1]) <= available]
+    if available is None:
+        available = set(BASE_INPUTS)
+    return [name for name, meta in META.items() if set(meta[1]) <= set(available)]
 
 
 def load_train():
@@ -273,12 +307,16 @@ def indicator_cache(panel, index, digest):
     so a universe change recomputes instead of loading the wider one.
     """
     names = hashlib.sha256("\n".join(sorted(panel)).encode()).hexdigest()[:12]
-    path = os.path.join(CACHE, f"indicators_{digest}_{names}_v3.csv")
+    available = panel_inputs(panel)
+    # The suffix changes when the admitted inputs change, so a cache written
+    # before high and low existed is not reused once they do.
+    tag = "r" if RANGE_INPUTS <= available else "b"
+    path = os.path.join(CACHE, f"indicators_{digest}_{names}_v4{tag}.csv")
     if os.path.exists(path):
         wide = pd.read_csv(path, header=[0, 1], index_col=0)
         return {m: wide[m].set_axis(index) for m in wide.columns.get_level_values(0).unique()}
     from regime_tester.indicators import indicators
-    wanted = scorable_measures()
+    wanted = scorable_measures(available)
     per_measure = {name: {} for name in wanted}
     for token, frame in panel.items():
         built = frame.rename(columns={"volume_usd": "volume", "funding_rate": "funding",

@@ -47,6 +47,37 @@ class LoadPanelRange(unittest.TestCase):
         self.assertIn("close", frame.columns)
 
 
+class RangeAdmission(unittest.TestCase):
+    def test_a_range_measure_is_scored_when_a_name_has_high_and_low(self):
+        panel = {"binance_AAAUSDT": _frame(with_range=True, filled=True)}
+        admitted = sweep_xs.scorable_measures(sweep_xs.panel_inputs(panel))
+        self.assertIn("atr_14", admitted)
+        self.assertIn("stoch_k", admitted)
+
+    def test_a_range_measure_is_skipped_when_high_and_low_are_empty(self):
+        panel = {"binance_AAAUSDT": _frame(with_range=True, filled=False)}
+        admitted = sweep_xs.scorable_measures(sweep_xs.panel_inputs(panel))
+        self.assertNotIn("atr_14", admitted)
+        self.assertIn("rsi_14", admitted)
+
+    def test_a_range_measure_is_skipped_when_the_file_has_no_range(self):
+        panel = {"binance_AAAUSDT": _frame(with_range=False, filled=False)}
+        admitted = sweep_xs.scorable_measures(sweep_xs.panel_inputs(panel))
+        self.assertNotIn("atr_14", admitted)
+        self.assertNotIn("high", sweep_xs.panel_inputs(panel))
+
+
+def _frame(with_range, filled):
+    import pandas as pd
+    row = {"date": ["2024-01-01"], "close": [10.0], "volume_usd": [1000.0],
+           "funding_rate": [0.01], "oi_usd": [3e7], "basis": [0.002],
+           "long_short_ratio": [1.1]}
+    if with_range:
+        row["high"] = [11.0 if filled else float("nan")]
+        row["low"] = [9.0 if filled else float("nan")]
+    return pd.DataFrame(row).set_index("date")
+
+
 def _write(directory, name, with_range):
     header = "date,close,volume_usd,funding_rate,oi_usd,basis,long_short_ratio"
     row = "2024-01-01,10,1000,0.01,30000000,0.002,1.1"
