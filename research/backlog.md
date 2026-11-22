@@ -100,7 +100,6 @@ Refilled 2026-11-15 after the weekly round rejected all three TA conditioning ga
 
 1. BTC 1-day and 3-day horizons for the four live factors. Rescored 2026-11-16 and rejected: no cell keeps a usable size in both held-out periods, largest held-out t-stat 1.2704 on 26 independent dates against a bar of 3. results/2026-11-16_btc_short_horizon.json.
 - G28. xs_obv_xs_rank_below_10_ret_10. Pre-registered 2026-11-22 in research/generated.md, item 28. Not yet scored. Cross-sectional, on data/panel_xs_laevitas. Done when a committed script scores the pre-registered cell on data/panel_xs_laevitas for the cache's names, three periods, non-overlapping t-stat, net of the thin-tier round trip; the results file is written by that script through write_result and carries a verdict; a price change after day t leaves the signal at t unchanged.
-Scored 2026-11-22: results/2026-11-22_g28_obv.json, written by scripts/score_g28.py. 234 names, panel end 2026-11-20, lookahead passed. Train spread 0.005346243449220947 on 106 independent dates, t 0.8266168881668075. Validation spread 0.0010968833830860944 on 55 independent dates, t 0.1600215147881038. Test spread -0.00559514912819562 on 30 independent dates, t -1.1896479333915575. The test period holds 30 independent dates against a bar of 40, and the test spread flips the train sign. Verdict 2026-11-22: insufficient.
 
 
 
