@@ -228,7 +228,10 @@ def correlations(raw, spec):
     factors = build_factors(panel)
     lagged = feature(raw, spec)
     summary = lagged.mean(axis=1)
-    summary.index = summary.index.tz_localize(None)
+    summary.index = pd.to_datetime(summary.index, utc=True).tz_localize(None)
+    factor_index = pd.to_datetime(factors.index, utc=True).tz_localize(None)
+    factors = factors.copy()
+    factors.index = factor_index
     out = {}
     for column in COMPONENTS:
         joined = pd.concat(
