@@ -259,12 +259,15 @@ def halves(spread):
 
 
 def main():
+    only = sys.argv[1:]
     names = names_from_cache()
     raw = load_columns(names)
     spans = spans_for(raw["close"].columns)
     close = raw["close"]
     scored = []
     for spec in CELLS:
+        if only and spec["item"] not in only:
+            continue
         lagged = feature(raw, spec)
         net = close.shift(-spec["horizon"]) / close - 1 - COST
         spread = daily_spread(lagged, net, spans, spec)
