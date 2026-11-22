@@ -232,7 +232,7 @@ Then the cross-sectional items resume.
 
 - G21. xs_bb_pct_xs_rank_below_20_ret_10. Pre-registered 2026-11-21 in research/generated.md, item 21. Not yet scored. Cross-sectional, on data/panel_xs_laevitas. Scored 2026-11-22: results/2026-11-22_g21_bb_pct.json, written by scripts/score_g21.py. 234 names, panel end 2026-11-20, lookahead passed. Train spread 0.9375811886763319 on 104 independent dates. Validation spread 1.72553714398812 on 55 independent dates, t 2.214802566608307. Test spread -1.1494477494530269 on 31 independent dates, t -1.5065165782793641. The test period holds 31 independent dates against a bar of 40, and the test spread flips the train sign. Verdict 2026-11-22: insufficient.
 
-- G22. xs_bb_width_xs_rank_above_95_rel_1. Pre-registered 2026-11-21 in research/generated.md, item 22. Not yet scored. Cross-sectional, on data/panel_xs_laevitas.
+- G22. xs_bb_width_xs_rank_above_95_rel_1. Pre-registered 2026-11-21 in research/generated.md, item 22. Not yet scored. Cross-sectional, on data/panel_xs_laevitas. Scored 2026-11-22: results/2026-11-22_g22_bb_width.json, written by scripts/score_g22.py. 234 names, panel end 2026-11-20, lookahead passed. Train spread 0.2551981982114077 on 1038 independent dates, t 1.99041246924538. Validation spread -0.028391311784066293 on 548 independent dates, t -0.16743537352907192. Test spread -0.06098236085369397 on 315 independent dates, t -0.4141959258978767. Both held-out periods flip the train sign. rel_1 equals ret_1 inside a same-day rank, and the spread is that one. Verdict 2026-11-22: rejected.
 
 ## A7(1) pre-registration
 
