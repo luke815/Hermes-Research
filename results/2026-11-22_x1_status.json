@@ -3,13 +3,13 @@
  "status_line": "cells scored 52064 of 811960 testable since 2026-10-31, from results/sweeps/counter.json, names 234, cells per hour 0",
  "panel_files": 5538,
  "sweep": {
-  "pid": 649,
-  "version": "55e4f0d",
-  "phase": "working",
-  "cycles": 8,
+  "pid": 599,
+  "version": "1eabcb6",
+  "phase": "idle",
+  "cycles": 3,
   "names": 234,
   "remaining": 0,
-  "ts": "2026-11-22T06:03:57Z"
+  "ts": "2026-11-22T07:01:24Z"
  },
  "cells_per_hour_above_5000": false,
  "work_list": 166440,
@@ -28,17 +28,17 @@
   "with_high_low": 919
  },
  "provenance": {
-  "script": "scripts/record_blocks_0600.py",
-  "script_blob": "13f93141f32b3f44a3e15d07e10e4f61d4714a88",
+  "script": "scripts/record_blocks_0700.py",
+  "script_blob": "153626e6b37399dd31e233364dd3dbd6887d0bab",
   "script_tracked": false,
   "script_dirty": true,
   "argv": [],
   "orig_argv": [
    "python3",
-   "scripts/record_blocks_0600.py"
+   "scripts/record_blocks_0700.py"
   ],
-  "commit": "55e4f0d7a4d154e405323acfa9b59eead621d60f",
-  "written_at": "2026-11-22T06:04:07Z",
+  "commit": "1eabcb60d2e7860c669af06040030cc6a90fe4c5",
+  "written_at": "2026-11-22T07:01:25Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [
@@ -46,15 +46,15 @@
     "path": "ops/sweep_status",
     "kind": "file",
     "bytes": 118,
-    "mtime_ns": 1795327444485173943,
+    "mtime_ns": 1795330884021423108,
     "sha256": "f3d705100574097749e28437463f6944d0bd6be8965d1889dbe2f3e0f477501d"
    },
    {
     "path": "ops/sweep_xs_heartbeat",
     "kind": "file",
     "bytes": 405,
-    "mtime_ns": 1795327445773173913,
-    "sha256": "a171728b2ebddfa64e63f4d02d832d44ea884d7e78bdb6e82b10c8f1e7c676b2"
+    "mtime_ns": 1795330884133423105,
+    "sha256": "cadca1ab7ae4a4eb59f66dc5e17be202dc3d5ac0e7abe386ea024694f9109646"
    },
    {
     "path": "results/sweeps/cross_section_cells.json",
@@ -76,12 +76,12 @@
     "path": "data/panel_xs",
     "kind": "dir",
     "files": 2568,
-    "bytes": 56930687,
-    "listing_sha256": "aa3c7cf02781520ef5e3a532f463f3841b5871fd0803f3b1dd0f96e57b9a29a5",
-    "content_sha256": "21247f6388ab68bc1eaae84dad14516000af7883278df76d4e94c0da86020810",
+    "bytes": 56930686,
+    "listing_sha256": "a7cfde93ad950c8c845983166932f47c230607d192d4c55bf0db8d6a66b95837",
+    "content_sha256": "c7df33035ebf4e42e1e90bd62dc7fccb9f37e81c66fbd22ece5083243a267c96",
     "content_partial": false
    }
   ],
-  "payload_sha256": "226675410c2b7f290708323cefc3c8ce1b7e3dcfab50320a0b18ae1f78f84e82"
+  "payload_sha256": "04336d68026de2ce576aad9fd1b0a462f524d634a98cb024a5fc0cc196e7229c"
  }
 }

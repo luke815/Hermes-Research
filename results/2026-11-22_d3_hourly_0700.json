@@ -1,0 +1,35 @@
+{
+ "item": "D3",
+ "today": "2026-11-22",
+ "slot": "07:00",
+ "hourly_pkl": false,
+ "laevitas_dir": false,
+ "hourly_csvs": 0,
+ "provenance": {
+  "script": "scripts/record_blocks_0700.py",
+  "script_blob": "153626e6b37399dd31e233364dd3dbd6887d0bab",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_blocks_0700.py"
+  ],
+  "commit": "1eabcb60d2e7860c669af06040030cc6a90fe4c5",
+  "written_at": "2026-11-22T07:01:25Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "research/outside",
+    "kind": "dir",
+    "files": 21,
+    "bytes": 203059,
+    "listing_sha256": "82f870c80275a26ce18b36a9ed1e99fb76f940e5e82d9ddda11479d1cc2d8fce",
+    "content_sha256": "c30a07d199f089669ced20e83d6cc9ec1fbe9f04ba27c5700935e49d33d742a1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "63e2a67c83f7dc5ec2f9604b2740f0266020b39f8f7d70082d1cceb831e78c5c"
+ }
+}

@@ -4,21 +4,21 @@
  "dead_names": 499,
  "remaining": 0,
  "daemon_alive": true,
- "phase": "working",
- "cycles": 25,
+ "phase": "idle",
+ "cycles": 6,
  "daemon_remaining": 0,
  "provenance": {
-  "script": "scripts/record_blocks_0600.py",
-  "script_blob": "13f93141f32b3f44a3e15d07e10e4f61d4714a88",
+  "script": "scripts/record_blocks_0700.py",
+  "script_blob": "153626e6b37399dd31e233364dd3dbd6887d0bab",
   "script_tracked": false,
   "script_dirty": true,
   "argv": [],
   "orig_argv": [
    "python3",
-   "scripts/record_blocks_0600.py"
+   "scripts/record_blocks_0700.py"
   ],
-  "commit": "55e4f0d7a4d154e405323acfa9b59eead621d60f",
-  "written_at": "2026-11-22T06:03:56Z",
+  "commit": "1eabcb60d2e7860c669af06040030cc6a90fe4c5",
+  "written_at": "2026-11-22T07:01:24Z",
   "host": "83d1e6df706928",
   "python": "3.14.9",
   "inputs": [
@@ -53,6 +53,6 @@
     "content_partial": false
    }
   ],
-  "payload_sha256": "6cc25a91056d79fea183c847f70385efd0dc9bd14589dd5242993c3ad3a41055"
+  "payload_sha256": "6390dd0488e5e7c8b8430394ce7fa16a59e4ef2490d13f8af10a0ccf97b3932b"
  }
 }
