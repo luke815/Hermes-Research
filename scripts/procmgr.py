@@ -193,7 +193,6 @@ def start(n, cmd):
     r = _reg(); r[n] = {"cmd": cmd}; _save_reg(r)
     if is_running(n):
         print(f"{n}: already running (pid {_pid(n)})"); return 0
-    log = open(_logfile(n), "ab", buffering=0)
     pid = os.fork()
     if pid == 0:  # child
         os.setsid()
@@ -201,6 +200,11 @@ def start(n, cmd):
             os._exit(0)  # first child exits; grandchild is orphaned to init
         os.chdir(ROOT)
         os.umask(0o022)
+        # Opened here, not before the fork. A log opened in the parent is
+        # shared with the child, and a seek in one moves the other's offset,
+        # so the next write lands past the end and the kernel pads the gap
+        # with NUL bytes. Those NULs have crashed readers of this log.
+        log = open(_logfile(n), "ab", buffering=0)
         devnull = os.open(os.devnull, os.O_RDONLY)
         os.dup2(devnull, 0); os.dup2(log.fileno(), 1); os.dup2(log.fileno(), 2)
         with open(_pidfile(n), "w") as f:
