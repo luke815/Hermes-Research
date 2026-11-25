@@ -26,7 +26,7 @@ def main():
         name = rest.rsplit("/", 1)[-1][:-5]
     else:
         raise SystemExit(f"unknown kind {kind}")
-    path = write_result(name, payload, inputs=[])
+    path = write_result(name, payload, inputs=["scripts/record_note.py"])
     print(path)
 
 
