@@ -37,17 +37,11 @@ def keys(prefix: str) -> list[str]:
 
 
 def days_of(name: str) -> set[str]:
-    import time
-    last = None
-    for attempt in range(4):
-        try:
-            blob = urllib.request.urlopen(f"{BUCKET}/{name}", timeout=90).read()
-            break
-        except Exception as exc:  # noqa: BLE001
-            last = exc
-            time.sleep(2 * (attempt + 1))
-    else:
-        raise last
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from http_get import fetch
+    blob = fetch(f"{BUCKET}/{name}", timeout=90)
     lines = zipfile.ZipFile(io.BytesIO(blob)).read(
         zipfile.ZipFile(io.BytesIO(blob)).namelist()[0]).decode().strip().splitlines()
     return {datetime.strptime(line.split(",")[0], "%Y-%m-%d %H:%M:%S").date().isoformat()

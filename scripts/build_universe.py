@@ -6,11 +6,14 @@ data/universe.json incrementally so a timeout does not lose progress.
 """
 
 import json
-import time
-import urllib.error
+import sys
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_get import fetch  # noqa: E402
+from rate_budget import BudgetStop  # noqa: E402
 
 ROOT = Path("/opt/data/workspace/regime-tester")
 OUT = ROOT / "data" / "universe.json"
@@ -25,17 +28,11 @@ def key() -> str:
 
 
 def get(url: str) -> list:
-    for _ in range(4):
-        req = urllib.request.Request(url, headers={"api_key": key()})
-        try:
-            with urllib.request.urlopen(req, timeout=120) as response:
-                return json.loads(response.read())
-        except urllib.error.HTTPError as error:
-            if error.code == 429:
-                time.sleep(float(error.headers.get("Retry-After", 5)) + 1)
-                continue
-            raise
-    return []
+    try:
+        return json.loads(fetch(url, timeout=120, headers={"api_key": key()}))
+    except BudgetStop as exc:
+        print(f"stopped: {exc}", flush=True)
+        return []
 
 
 def main() -> None:
@@ -51,13 +48,18 @@ def main() -> None:
         batch = remaining[start:start + 20]
         params = urllib.parse.urlencode({"symbols": ",".join(batch), "interval": "daily",
                                           "from": 1577836800, "to": 1794000000})
-        for series in get("https://api.coinalyze.net/v1/ohlcv-history?" + params):
+        got = get("https://api.coinalyze.net/v1/ohlcv-history?" + params)
+        if not got:
+            print("pull stopped; resume will continue from the names saved", flush=True)
+            break
+        for series in got:
             hist = series.get("history", [])
             if hist:
                 inventory.append({"symbol": series["symbol"], "first": hist[0]["t"],
                                   "last": hist[-1]["t"], "bars": len(hist)})
-        OUT.write_text(json.dumps(inventory))
-        time.sleep(1.2)
+        tmp = OUT.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(inventory))
+        tmp.replace(OUT)
     print(f"done: {len(inventory)} names with history", flush=True)
 
 

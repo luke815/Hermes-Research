@@ -13,7 +13,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG = os.path.join(ROOT, "ops", "health.log")
 BACKLOG = os.path.join(ROOT, "research", "backlog.md")
 PANEL = os.path.join(ROOT, "data", "panel.csv")
-OUT = os.path.join(ROOT, "results", "2026-11-22_run_status_0000.txt")
+OUT = os.path.join(ROOT, "results", "2026-11-23_run_status_0000.txt")
 HEADER = re.compile(r"^- [A-Z]{1,3}\d{1,3}[a-z]?\. ")
 CLOSED = re.compile(
     r"Done 20\d\d-\d\d-\d\d|Verdict 20\d\d-\d\d-\d\d: "
@@ -50,8 +50,9 @@ def main():
     status = (
         f"STATUS OK research-run panel_end={end} age={age}d "
         f"top={item} runs={runs} files=research/backlog.md,"
-        f"scripts/market_backfill.py,scripts/a7_block_0000.py,"
-        f"results/2026-11-22_a7_block_0000.json")
+        f"scripts/score_g31.py,scripts/append_g31_verdict.py,"
+        f"scripts/mark_g31_done.py,tests/test_score_g31.py,"
+        f"results/2026-11-23_g31_sma20.json")
     open(OUT, "w").write(status + "\n")
     print(status)
 

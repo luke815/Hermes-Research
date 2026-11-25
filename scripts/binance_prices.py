@@ -8,14 +8,16 @@ symbol whose saved file already matches the listing is skipped.
 import csv
 import hashlib
 import io
-import time
+import sys
 import urllib.parse
-import urllib.request
 import xml.etree.ElementTree as ET
 import zipfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timezone
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_get import fetch  # noqa: E402
 
 ROOT = Path("/opt/data/workspace/regime-tester")
 SPAN = ROOT / "data" / "binance_span.csv"
@@ -33,8 +35,7 @@ def keys(prefix: str) -> list[str]:
         query = "prefix=" + urllib.parse.quote(prefix, safe="/") + "&max-keys=1000"
         if marker:
             query += "&marker=" + urllib.parse.quote(marker, safe="")
-        with urllib.request.urlopen(f"{BUCKET}?{query}", timeout=90) as resp:
-            root = ET.fromstring(resp.read())
+        root = ET.fromstring(fetch(f"{BUCKET}?{query}", timeout=90))
         page = [k.text or "" for k in root.findall("s3:Contents/s3:Key", NS)]
         found.extend(k for k in page if k.endswith(".zip"))
         if root.findtext("s3:IsTruncated", default="false", namespaces=NS) != "true":
@@ -43,19 +44,6 @@ def keys(prefix: str) -> list[str]:
             page[-1] if page else "")
         if not marker:
             raise SystemExit(f"truncated page without a marker under {prefix}")
-
-
-def fetch(url: str) -> bytes:
-    for attempt in range(4):
-        try:
-            with urllib.request.urlopen(url, timeout=120) as resp:
-                return resp.read()
-        except Exception as exc:  # noqa: BLE001
-            if attempt == 3:
-                raise
-            print(f"  retry {url.rsplit('/', 1)[-1]}: {exc}", flush=True)
-            time.sleep(2 * (attempt + 1))
-    raise SystemExit("unreachable")
 
 
 def rows_of(name: str) -> list[dict]:

@@ -18,18 +18,24 @@ HORIZON = 10
 WINDOW = 730
 MIN_FIT = 400
 BAND = 0.4
+# a forward return at bar j uses prices through j+HORIZON, so the training
+# window for bar i must end at i-HORIZON or it trains on data not yet known
+PURGE = HORIZON
 
 
 def clean_overlap() -> None:
-    """basis_*_d starts on the date already stored in the prior window."""
+    """Drop a date that appears in both a window file and its continuation."""
     raw = ROOT / "data" / "raw"
     for stem in ("basis_btc_d", "basis_eth_d"):
         path = raw / f"{stem}.json"
         rows = json.loads(path.read_text())
-        kept = [r for r in rows if r["date"] > 1761004800000]
-        if len(kept) != len(rows):
-            path.write_text(json.dumps(kept))
-            print(f"trimmed {stem}: {len(rows)} -> {len(kept)}")
+        dates = [r["date"] for r in rows]
+        duplicated = {d for d in dates if dates.count(d) > 1}
+        if not duplicated:
+            continue
+        kept = [r for r in rows if r["date"] not in duplicated]
+        path.write_text(json.dumps(kept))
+        print(f"trimmed {stem}: removed {len(rows) - len(kept)} duplicate dates")
 
 
 def rolling_pricing(scored: pd.DataFrame, factors: pd.DataFrame) -> dict:
@@ -39,10 +45,10 @@ def rolling_pricing(scored: pd.DataFrame, factors: pd.DataFrame) -> dict:
     predicted = pd.Series(index=scored.index, dtype=float)
     weights = None
     for i, ts in enumerate(scored.index):
-        if i < WINDOW:
+        if i < WINDOW + PURGE:
             continue
-        train_x = x.iloc[i - WINDOW:i]
-        train_y = fwd.iloc[i - WINDOW:i]
+        train_x = x.iloc[i - WINDOW - PURGE:i - PURGE]
+        train_y = fwd.iloc[i - WINDOW - PURGE:i - PURGE]
         both = pd.concat([train_x, train_y.rename("y")], axis=1).dropna()
         if len(both) < MIN_FIT:
             continue
@@ -60,7 +66,7 @@ def rolling_pricing(scored: pd.DataFrame, factors: pd.DataFrame) -> dict:
     # same trailing window, so the readout matches the learned model at the
     # current heat level
     heat = scored["heat"]
-    tail = pd.concat([heat.rename("h"), fwd.rename("y")], axis=1).dropna().iloc[-WINDOW:]
+    tail = pd.concat([heat.rename("h"), fwd.rename("y")], axis=1).dropna().iloc[-(WINDOW + PURGE):-PURGE]
     h = np.column_stack([np.ones(len(tail)), tail["h"].to_numpy()])
     line, *_ = np.linalg.lstsq(h, tail["y"].to_numpy(), rcond=None)
     return {
@@ -69,7 +75,7 @@ def rolling_pricing(scored: pd.DataFrame, factors: pd.DataFrame) -> dict:
         "forecast": {
             "intercept": round(float(line[0]), 5),
             "slope": round(float(line[1]), 5),
-            "note": "Expected BTC return over the next 10 days. Reliable only when heat is elevated; the cold end has not held up out of sample.",
+            "note": "Expected BTC return over the next 10 days, from a model purged of look-ahead. The ranking does not hold by year: the top-versus-bottom spread was negative in 2022, 2023 and 2026. Treat the number as context, not a forecast.",
         },
         "rank": ranking(predicted, fwd),
     }
@@ -102,7 +108,9 @@ def main() -> None:
     # still forming and basis has not printed for it yet
     complete = panel["btc_price"].notna() & panel["basis_btc"].notna() & panel["eth_funding"].notna()
     panel = panel.loc[: complete[complete].index[-1]]
-    panel.to_csv(OUT)
+    tmp = OUT.with_suffix(".csv.tmp")
+    panel.to_csv(tmp)
+    tmp.replace(OUT)
     print(f"panel {len(panel)} rows, last {panel.index[-1].date()}")
 
     scored = heat_score(panel)

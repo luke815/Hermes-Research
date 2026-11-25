@@ -11,13 +11,15 @@ A part that does not end with the OK marker is incomplete and is re-read.
 import csv
 import io
 import json
-import time
+import sys
 import urllib.error
-import urllib.request
 import zipfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_get import fetch as get  # noqa: E402
 
 ROOT = Path("/opt/data/workspace/regime-tester/data")
 PARTS = ROOT / "okx_span_parts"
@@ -28,19 +30,6 @@ WINDOW_DAYS = 10
 STOP_DAYS = 14
 SUFFIX = "-USDT-SWAP"
 INDEX_URL = "https://www.okx.com/api/v5/public/market-data-history"
-
-
-def get(url: str) -> bytes:
-    last = None
-    for attempt in range(4):
-        request = urllib.request.Request(url, headers={"User-Agent": "regime-tester"})
-        try:
-            with urllib.request.urlopen(request, timeout=120) as response:
-                return response.read()
-        except (urllib.error.URLError, TimeoutError) as exc:
-            last = exc
-            time.sleep(2 * (attempt + 1))
-    raise RuntimeError(f"fetch failed: {url} {last}")
 
 
 def ms(moment: datetime) -> str:
@@ -74,7 +63,6 @@ def index_all(today: datetime) -> list[tuple[str, str]]:
             found[day] = url
         print(f"  index {cursor.date().isoformat()} files={len(found)}", flush=True)
         cursor = end + timedelta(days=1)
-        time.sleep(0.2)
     return sorted(found.items())
 
 

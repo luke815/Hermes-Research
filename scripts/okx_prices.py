@@ -11,6 +11,7 @@ incomplete and is re-read.
 """
 
 import csv
+import sys
 import io
 import time
 import urllib.error
@@ -47,16 +48,9 @@ def window() -> list[tuple[str, str]]:
 
 
 def fetch(url: str) -> bytes:
-    last = None
-    for attempt in range(4):
-        request = urllib.request.Request(url, headers={"User-Agent": "regime-tester"})
-        try:
-            with urllib.request.urlopen(request, timeout=180) as response:
-                return response.read()
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
-            last = exc
-            time.sleep(2 * (attempt + 1))
-    raise RuntimeError(f"fetch failed: {url} {last}")
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from http_get import fetch as shared
+    return shared(url, timeout=180)
 
 
 def number(value: str) -> float:

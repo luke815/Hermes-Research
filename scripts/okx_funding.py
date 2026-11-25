@@ -9,6 +9,7 @@ marker is incomplete and is re-read.
 """
 
 import csv
+import sys
 import io
 import json
 import time
@@ -39,16 +40,9 @@ def stopped_symbols() -> set[str]:
 
 
 def get(url: str) -> bytes:
-    last = None
-    for attempt in range(4):
-        request = urllib.request.Request(url, headers={"User-Agent": "regime-tester"})
-        try:
-            with urllib.request.urlopen(request, timeout=120) as response:
-                return response.read()
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
-            last = exc
-            time.sleep(2 * (attempt + 1))
-    raise RuntimeError(f"fetch failed: {url} {last}")
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from http_get import fetch
+    return fetch(url, timeout=120)
 
 
 def index_window(begin: datetime, end: datetime) -> list[tuple[str, str]]:
