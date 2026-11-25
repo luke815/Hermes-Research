@@ -59,6 +59,67 @@ def base_of(symbol):
     return stem
 
 
+JUMP = 20
+
+
+def drop_jumps(close):
+    """A close more than 20x or less than 1/20 of both neighbours is a print.
+
+    One bad day between two real ones is set to missing. Two bad days in a row
+    are both set to missing: each is extreme against the real close on its
+    other side and against the other bad day, so the rule has to look past the
+    neighbour that is itself a print. The count is the days changed.
+    """
+    values = close.to_numpy(dtype=float).copy()
+    changed = 0
+    for col in range(values.shape[1]):
+        series = values[:, col]
+        bad = _jump_days(series)
+        changed += int(bad.sum())
+        series[bad] = np.nan
+    out = pd.DataFrame(values, index=close.index, columns=close.columns)
+    return out, changed
+
+
+def _jump_days(series):
+    bad = np.zeros(len(series), dtype=bool)
+    changed = True
+    while changed:
+        changed = False
+        for i in range(1, len(series) - 1):
+            if np.isnan(series[i]) or bad[i]:
+                continue
+            left = _neighbour(series, i, -1, bad)
+            right = _neighbour(series, i, 1, bad)
+            if left is None or right is None:
+                continue
+            if _extreme(series[i], left) and _extreme(series[i], right):
+                for j in range(len(series)):
+                    if np.isnan(series[j]) or bad[j]:
+                        continue
+                    if not _extreme(series[j], series[i]):
+                        bad[j] = True
+                changed = True
+    return bad
+
+
+def _neighbour(series, i, step, bad):
+    j = i + step
+    while 0 <= j < len(series):
+        if np.isnan(series[j]) or bad[j]:
+            j += step
+            continue
+        if abs(series[j] - series[i]) / series[i] < 0.5:
+            j += step
+            continue
+        return series[j]
+    return None
+
+
+def _extreme(value, other):
+    return value > JUMP * other or value * JUMP < other
+
+
 def load_matrices():
     """Close, prior-bar open interest and funding, one column per base coin.
 
@@ -111,6 +172,8 @@ def load_matrices():
         if "funding_rate" in frame.columns:
             fund_a[rows, j] = frame["funding_rate"].to_numpy(dtype=float)
     close = pd.DataFrame(close_a, index=dates, columns=names)
+    close, changed = drop_jumps(close)
+    print(f"jumps dropped {changed}", flush=True)
     oi = pd.DataFrame(oi_a, index=dates, columns=names).shift(1)
     funding = pd.DataFrame(fund_a, index=dates, columns=names)
     print(f"aligned {close.shape} {round(time.time() - started, 1)}s", flush=True)
