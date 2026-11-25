@@ -1,0 +1,54 @@
+
+[ret20 top]
+h=10: tra ex +1.22% t=1.0 n=27 net=+0.45% | val ex +0.16% t=0.1 n=8 net=-0.19% | tes ex -0.54% t=-0.5 n=7 net=+0.53% -> rejected: excess sign differs across periods
+h=30: tra ex +3.35% t=1.5 n=15 net=+1.29% | val ex +2.20% t=0.9 n=6 net=+1.40% | tes ex -2.61% t=-1.2 n=3 net=+2.82% -> rejected: excess sign differs across periods
+h=60: tra ex +7.10% t=1.0 n=11 net=+3.22% | val ex +4.52% t=1.0 n=3 net=+3.19% | tes ex -6.98% t=-3.8 n=2 net=+7.46% -> insufficient: 14 independent episodes in train+validation (bar 20)
+W=30: tra mdd +2.8% t=2.6 crash x0.67 (96/362) fa=0.65 n=15 | val mdd +2.2% t=1.5 crash x0.39 (6/68) fa=0.68 n=6 | tes mdd -0.7% t=-0.5 crash x0.98 (21/77) fa=0.44 n=3 -> rejected: drawdown effect changes sign across periods
+
+[ret20 bottom]
+h=10: tra ex -0.29% t=-0.3 n=27 net=+0.42% | val ex -0.11% t=-0.1 n=10 net=+0.11% | tes ex -2.74% t=-1.8 n=3 net=+2.65% -> rejected: validation t -0.09 below 2.5
+h=30: tra ex -3.07% t=-1.2 n=16 net=+3.57% | val ex -5.32% t=-2.1 n=5 net=+5.56% | tes ex -0.07% t=-0.0 n=3 net=+0.08% -> rejected: validation t -2.11 below 2.5
+h=60: tra ex -2.30% t=-0.4 n=9 net=+3.40% | val ex -3.10% t=-0.8 n=3 net=+3.64% | tes ex -1.00% t=-0.2 n=1 net=+1.22% -> insufficient: 12 independent episodes in train+validation (bar 20)
+W=30: tra mdd -2.3% t=-1.8 crash x1.19 (193/411) fa=0.52 n=16 | val mdd -2.2% t=-1.6 crash x1.48 (41/122) fa=0.42 n=5 | tes mdd -0.3% t=-0.2 crash x1.04 (17/59) fa=0.31 n=3 -> rejected: validation t -1.65 on mdd below 2.5
+
+[ret60 top]
+h=10: tra ex +3.12% t=2.1 n=9 net=+2.22% | val ex -0.21% t=-0.2 n=2 net=+0.41% | tes ex +0.69% t=0.6 n=3 net=+0.49% -> insufficient: 11 independent episodes in train+validation (bar 20)
+h=30: tra ex +9.18% t=2.0 n=7 net=+6.74% | val ex -1.09% t=-0.4 n=2 net=+1.74% | tes ex -2.85% t=-0.8 n=2 net=+3.14% -> insufficient: 9 independent episodes in train+validation (bar 20)
+h=60: tra ex +19.86% t=1.9 n=6 net=+15.03% | val ex +0.72% t=0.1 n=2 net=-0.74% | tes ex -11.63% t=-2.5 n=2 net=+12.26% -> insufficient: 8 independent episodes in train+validation (bar 20)
+W=30: tra mdd +3.4% t=2.6 crash x0.70 (99/363) fa=0.70 n=7 | val mdd +1.9% t=1.4 crash x0.21 (3/63) fa=0.48 n=2 | tes mdd +0.7% t=0.3 crash x0.94 (23/88) fa=0.42 n=2 -> insufficient: 9 independent episodes in train+validation (bar 20)
+
+[ret60 bottom]
+h=10: tra ex -0.92% t=-0.7 n=9 net=+0.89% | val ex +0.40% t=0.4 n=8 net=+0.20% | tes ex +1.57% t=1.2 n=3 net=+1.44% -> insufficient: 17 independent episodes in train+validation (bar 20)
+h=30: tra ex -2.59% t=-0.7 n=8 net=+2.75% | val ex -1.08% t=-0.4 n=3 net=+1.28% | tes ex +4.29% t=1.3 n=2 net=+4.12% -> insufficient: 11 independent episodes in train+validation (bar 20)
+h=60: tra ex -3.29% t=-0.5 n=7 net=+3.79% | val ex -0.72% t=-0.1 n=3 net=+1.23% | tes ex +11.47% t=2.6 n=2 net=+11.25% -> insufficient: 10 independent episodes in train+validation (bar 20)
+W=30: tra mdd -2.8% t=-1.7 crash x1.30 (184/362) fa=0.52 n=8 | val mdd -0.4% t=-0.5 crash x1.10 (44/176) fa=0.48 n=3 | tes mdd +4.1% t=1.9 crash x0.29 (6/74) fa=0.65 n=2 -> insufficient: 11 independent episodes in train+validation (bar 20)
+
+[above 200d]
+h=10: tra ex +0.25% t=0.5 n=9 net=-0.43% | val ex -0.60% t=-1.2 n=5 net=+0.69% | tes ex -0.67% t=-0.4 n=1 net=+0.73% -> insufficient: 14 independent episodes in train+validation (bar 20)
+h=30: tra ex +0.35% t=0.2 n=7 net=-1.40% | val ex -1.32% t=-1.2 n=1 net=+1.78% | tes ex -0.07% t=-0.0 n=1 net=+0.41% -> insufficient: 8 independent episodes in train+validation (bar 20)
+h=60: tra ex +2.30% t=0.6 n=4 net=-0.92% | val ex -3.58% t=-1.2 n=1 net=+4.52% | tes ex -4.27% t=-0.7 n=1 net=+5.04% -> insufficient: 5 independent episodes in train+validation (bar 20)
+W=30: tra mdd +0.2% t=0.3 crash x0.99 (427/1099) fa=0.54 n=7 | val mdd -0.5% t=-1.1 crash x1.14 (98/379) fa=0.47 n=1 | tes mdd +2.6% t=0.9 crash x0.60 (10/60) fa=0.42 n=1 -> insufficient: 8 independent episodes in train+validation (bar 20)
+
+[below 200d]
+h=10: tra ex -0.39% t=-0.5 n=7 net=+0.39% | val ex +1.33% t=1.2 n=4 net=+1.14% | tes ex +0.23% t=0.4 n=1 net=+0.07% -> insufficient: 11 independent episodes in train+validation (bar 20)
+h=30: tra ex -0.54% t=-0.2 n=4 net=+0.82% | val ex +2.94% t=1.2 n=3 net=+2.51% | tes ex +0.02% t=0.0 n=1 net=-0.28% -> insufficient: 7 independent episodes in train+validation (bar 20)
+h=60: tra ex -3.57% t=-0.6 n=4 net=+4.35% | val ex +7.99% t=1.2 n=3 net=+7.07% | tes ex +0.55% t=0.7 n=1 net=+0.01% -> insufficient: 7 independent episodes in train+validation (bar 20)
+W=30: tra mdd -0.3% t=-0.3 crash x1.02 (284/709) fa=0.57 n=4 | val mdd +1.2% t=1.1 crash x0.70 (27/170) fa=0.61 n=3 | tes mdd -0.7% t=-0.9 crash x1.10 (71/231) fa=0.48 n=1 -> insufficient: 7 independent episodes in train+validation (bar 20)
+
+[above 50d]
+h=10: tra ex +1.23% t=2.2 n=24 net=+0.59% | val ex +0.11% t=0.2 n=6 net=-0.20% | tes ex +0.92% t=1.2 n=4 net=+0.72% -> rejected: validation t 0.16 below 2.5
+h=30: tra ex +2.05% t=1.3 n=12 net=+0.40% | val ex +2.02% t=1.1 n=2 net=+1.31% | tes ex -0.81% t=-0.5 n=3 net=+1.04% -> insufficient: 14 independent episodes in train+validation (bar 20)
+h=60: tra ex +3.88% t=1.1 n=4 net=+0.90% | val ex +3.33% t=1.1 n=2 net=+2.00% | tes ex -5.39% t=-1.9 n=1 net=+5.90% -> insufficient: 6 independent episodes in train+validation (bar 20)
+W=30: tra mdd +0.9% t=1.3 crash x0.98 (409/1103) fa=0.58 n=12 | val mdd +0.9% t=1.1 crash x0.71 (48/295) fa=0.53 n=2 | tes mdd -0.9% t=-0.8 crash x1.15 (53/166) fa=0.46 n=3 -> insufficient: 14 independent episodes in train+validation (bar 20)
+
+[below 50d]
+h=10: tra ex -1.59% t=-2.2 n=18 net=+1.61% | val ex -0.13% t=-0.2 n=9 net=+0.14% | tes ex -1.11% t=-1.2 n=6 net=+1.08% -> rejected: validation t -0.16 below 2.5
+h=30: tra ex -2.65% t=-1.3 n=13 net=+2.98% | val ex -2.35% t=-1.1 n=4 net=+2.59% | tes ex +1.08% t=0.5 n=2 net=+0.83% -> insufficient: 17 independent episodes in train+validation (bar 20)
+h=60: tra ex -5.01% t=-1.1 n=4 net=+5.94% | val ex -3.86% t=-1.1 n=3 net=+4.44% | tes ex +5.86% t=1.9 n=1 net=+5.41% -> insufficient: 7 independent episodes in train+validation (bar 20)
+W=30: tra mdd -1.1% t=-1.3 crash x1.03 (334/855) fa=0.56 n=13 | val mdd -1.1% t=-1.1 crash x1.33 (77/254) fa=0.50 n=4 | tes mdd +1.1% t=0.8 crash x0.80 (28/125) fa=0.47 n=2 -> insufficient: 17 independent episodes in train+validation (bar 20)
+
+== calibration by decile (30d), train | val | test ==
+  btc_ret20  +1 +1 +6 +7 +10 +6 +7 +2 +11 +14 ρ+0.67 | -1 -3 +0 +3 +6 +5 +4 +1 +7 +5 ρ+0.70 | +1 -4 +2 +0 +5 +2 -4 -7 -9 +5 ρ-0.20
+  btc_ret60  +5 +2 +5 +8 +2 +8 +0 +4 +9 +22 ρ+0.37 | +3 +6 -2 -2 -3 +5 +0 +11 +7 +4 ρ+0.38 | +4 +3 +4 +4 -2 -1 -8 -9 -0 -5 ρ-0.77
+  btc_vs200  -1 +7 +6 +5 +2 +6 +5 +1 +4 +14 ρ+0.18 | +2 +7 +9 -2 +12 +7 -1 -2 -4 +0 ρ-0.47 | +3 +7 +5 -4 -10 +3 +6 -15 +2 -4 ρ-0.53
+  btc_vs50   +1 +2 +4 +7 +5 +6 +2 +11 +12 +14 ρ+0.78 | -1 +3 +2 -2 +2 +2 +3 +3 +13 +3 ρ+0.61 | +3 +1 -3 -2 +5 -2 -0 -7 -8 +4 ρ-0.25

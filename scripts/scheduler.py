@@ -47,6 +47,7 @@ JOBS = [
     {"name": "derivatives_key", "at": "06:40", "script": "scripts/build_derivatives_key.py"},
     {"name": "heat_stats", "at": "06:45", "script": "scripts/build_heat_stats.py"},
     {"name": "risk_state", "at": "06:50", "script": "scripts/score_r2.py"},
+    {"name": "macro_pull", "at": "06:51", "script": "scripts/macro_pull.py", "timeout": 600},
     {"name": "intraday_backfill", "at": ":15", "script": "scripts/backfill_intraday.py", "timeout": 900},
     {"name": "health", "at": ":05", "script": None},
 ]

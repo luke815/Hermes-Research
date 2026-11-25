@@ -37,6 +37,9 @@ CAVEATS = {
     "lsr": "The dashboard long/short series stepped up in level in 2021, so its 2021 'top fifth' days are partly an artefact; since mid-2024 a top reading mostly means the price already fell over the past month. A plain 'price down over 30 days' rule reproduces the weaker returns after high readings.",
     "oi_usd": "USD notional open interest is price times coin open interest: four in five top-fifth days are also price-at-a-1-year-high days, and the price row reproduces what follows. It carries no 30-90 day information beyond price.",
     "oi_coins": "Coin open interest at its highs was followed by weak 1-3 month returns only in the 2021-22 bear; nothing since.",
+    "stable_chg30": "Stablecoin growth was followed by strong BTC returns in 2020-24H1 and by weak ones in 2024H2-25 (decile calibration +0.76 then -0.90): the sign did not hold.",
+    "spx_ret20": "Equity washouts (bottom fifth) were followed by above-average BTC returns in all three periods, but equity rallies were not followed by continuation; a 20-episode base rate, not a signal.",
+    "vix": "A high VIX was followed by above-average BTC 30-day returns in 2024-26 and not in 2020-24H1.",
     "alt_oi": "20-coin dashboard universe (BTC, ETH, 18 alts), from 2022-09; alts alone never exceed BTC open interest here, alts plus ETH do on a third of days. A broader all-venue universe may differ.",
     "bigalt_funding": "A quarter of large-alt funding days sit exactly at the 0.01% exchange default, so the fifths are coarse; the level against the default is the clearer reading.",
     "funding": "Crowded funding was followed by shallower drawdowns in 2021-25 and by deeper ones in 2026 for ETH; the sign is not stable.",
@@ -48,7 +51,9 @@ NOTES = [
     {"title": "TD Sequential", "text": "TD9 and TD13 completions on daily closes are about as frequent as on a random walk (roughly one per 70 bars). No completion carried the textbook bounce or fade across periods on any timeframe; the daily buy-countdown-13 was followed by further weakness in 18 of 24 episodes in 2019-25, which is too few, too count-specific and already contradicted in 2026 to use. The counts are shown as structure."},
     {"title": "How to read this tab", "text": "A row says what happened after past days in the same fifth, with the number of independent episodes. An 'across periods' badge of consistent means the 30-day direction agreed in 2019-24H1, 2024H2-25 and 2026; it does not mean the reading caused it, and the caveats say where a simpler explanation exists. Rows with fewer than 10 episodes describe a few events."},
 ]
-SOURCES = {"alt_oi": "dashboard open interest: (ETH + 18 alts) / BTC", "bigalt_funding": "dashboard funding, median of BNB SOL XRP ADA DOGE LINK AVAX DOT",
+SOURCES = {"stable_chg30": "DefiLlama USDT + USDC circulating, 30-day change", "dxy_chg20": "FRED broad dollar index, 20-day change",
+           "real10_chg20": "FRED 10y real yield, 20-day change", "spx_ret20": "FRED S&P 500, 20-day return", "vix": "FRED VIX close",
+           "alt_oi": "dashboard open interest: (ETH + 18 alts) / BTC", "bigalt_funding": "dashboard funding, median of BNB SOL XRP ADA DOGE LINK AVAX DOT",
            "funding": "dashboard Binance perp funding", "oi_usd": "dashboard Binance open interest, USD",
            "oi_coins": "dashboard open interest / price", "basis": "dashboard basis", "lsr": "dashboard long/short ratio",
            "dvol": "dashboard DVOL", "skew30": "dashboard 25-delta skew", "ivrv30": "dashboard ATM IV / realized vol", "price": "spot close"}
@@ -74,7 +79,41 @@ def readings(d, a):
         # median funding of the eight largest alts. Both from the dashboard columns the page has.
         "alt_oi": (d["oi_ETH"] + d[[f"oi_{x}" for x in ALTS18]].sum(axis=1, min_count=10)) / d["oi_BTC"],
         "bigalt_funding": d[[f"funding_{x}" for x in BIG_ALTS]].median(axis=1),
+        # flows and macro (PREREG5), from data/macro/* written by scripts/macro_pull.py; absent when not pulled
+        **macro_readings(d),
     }
+
+
+def macro_readings(d):
+    """Derived macro readings on the panel calendar, or {} when data/macro is absent."""
+    M = os.path.join(HERE, "data", "macro")
+    if not os.path.isdir(M):
+        return {}
+    import json as _json, time as _time
+    def fred(fid):
+        p = os.path.join(M, fid + ".csv")
+        if not os.path.exists(p):
+            return None
+        f = pd.read_csv(p); f.columns = ["date", "v"]; f["v"] = pd.to_numeric(f["v"], errors="coerce")
+        s = pd.Series(f["v"].values, index=pd.to_datetime(f["date"])).dropna()
+        return s.reindex(d.index.union(s.index)).ffill().reindex(d.index)
+    def llama(name):
+        p = os.path.join(M, name + ".json")
+        if not os.path.exists(p):
+            return None
+        j = _json.load(open(p))
+        s = pd.Series({pd.Timestamp(_time.strftime("%Y-%m-%d", _time.gmtime(int(r["date"])))): r["totalCirculating"]["peggedUSD"] for r in j})
+        return s[~s.index.duplicated(keep="last")].sort_index().reindex(d.index)
+    out = {}
+    u, c = llama("usdt"), llama("usdc")
+    if u is not None and c is not None:
+        out["stable_chg30"] = (u + c).pct_change(30) * 100
+    for fid, key, fn in (("DTWEXBGS", "dxy_chg20", lambda s: s.pct_change(20) * 100), ("DFII10", "real10_chg20", lambda s: s.diff(20)),
+                         ("SP500", "spx_ret20", lambda s: s.pct_change(20) * 100), ("VIXCLS", "vix", lambda s: s)):
+        s = fred(fid)
+        if s is not None:
+            out[key] = fn(s)
+    return out
 
 
 ALTS18 = ["BNB", "SOL", "XRP", "ADA", "AVAX", "DOGE", "DOT", "LINK", "APT", "BCH", "LTC", "NEAR", "SUI", "ARB", "ATOM", "FIL", "OP", "UNI"]
