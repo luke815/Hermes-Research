@@ -24,6 +24,9 @@ def main():
         payload = json.load(open(rest))
         payload.pop("provenance", None)
         name = rest.rsplit("/", 1)[-1][:-5]
+        path = write_result(name, payload, inputs=["scripts/record_note.py"], path=rest)
+        print(path)
+        return
     else:
         raise SystemExit(f"unknown kind {kind}")
     path = write_result(name, payload, inputs=["scripts/record_note.py"])
