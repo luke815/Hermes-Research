@@ -14,17 +14,31 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG = os.path.join(ROOT, "ops", "rs_stale_log.jsonl")
 
 
+def _rows(path):
+    """Readings from the log. A blank line or one that is not JSON is skipped:
+    the file has been padded with NUL bytes, and one of those must not stop
+    the live daemon."""
+    rows = []
+    if not os.path.exists(path):
+        return rows
+    with open(path) as handle:
+        for line in handle:
+            line = line.strip("\x00 \t\r\n")
+            if not line:
+                continue
+            try:
+                rows.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+    return rows
+
+
 def append(path, ts, rs_stale, rs_age_sec):
     """Append one reading. A repeat of the last timestamp is ignored, so a
     re-read of the same payload does not count as a second observation."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    last = None
-    if os.path.exists(path):
-        with open(path) as handle:
-            for line in handle:
-                if line.strip():
-                    last = line
-    if last and json.loads(last)["ts"] == ts:
+    last = _rows(path)[-1]["ts"] if _rows(path) else None
+    if last == ts:
         return False
     with open(path, "a") as handle:
         handle.write(json.dumps({"ts": ts, "rs_stale": bool(rs_stale),
@@ -33,14 +47,7 @@ def append(path, ts, rs_stale, rs_age_sec):
 
 
 def read(path):
-    rows = []
-    if not os.path.exists(path):
-        return rows
-    with open(path) as handle:
-        for line in handle:
-            if line.strip():
-                rows.append(json.loads(line))
-    return rows
+    return _rows(path)
 
 
 def false_span_hours(rows):
