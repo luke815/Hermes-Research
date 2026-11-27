@@ -59,8 +59,17 @@ def clean(value):
     return value
 
 
-def write_atomic(path: str, data: dict) -> None:
+def write_csv_atomic(path: str, frame) -> None:
+    """Replace a CSV under the same lock the dashboard writer uses."""
     path = str(path)
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    tmp = f"{path}.{os.getpid()}.tmp"
+    with locked(path):
+        frame.to_csv(tmp)
+        os.replace(tmp, path)
+
+
+def write_atomic(path: str, data: dict) -> None:
     tmp = f"{path}.{os.getpid()}.tmp"
     with open(tmp, "w") as handle:
         json.dump(clean(data), handle, separators=(",", ":"), allow_nan=False)

@@ -37,6 +37,15 @@ class RsStaleLogTests(unittest.TestCase):
             self.assertEqual(len(read(path)), 1)
             self.assertEqual(json.loads(open(path).read().strip())["rs_stale"], False)
 
+    def test_nul_padding_does_not_crash_the_reader(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "log.jsonl")
+            append(path, "2026-11-19T00:00:00Z", False, 1000)
+            with open(path, "ab") as handle:
+                handle.write(b"\x00" * 70)
+            self.assertEqual(len(read(path)), 1)
+            self.assertTrue(append(path, "2026-11-19T01:00:00Z", False, 1000))
+
     def test_no_reading_is_not_a_span(self):
         self.assertIsNone(false_span_hours([]))
         self.assertIsNone(false_span_hours([_row(5, True)]))

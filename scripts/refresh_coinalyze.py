@@ -1,12 +1,15 @@
 """Append missing Coinalyze daily bars. Key stays in the env file, never printed."""
 
 import json
-import os
+import sys
 import time
-import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_get import fetch  # noqa: E402
+from rate_budget import BudgetStop  # noqa: E402
 
 RAW = Path("/opt/data/workspace/regime-tester/data/raw")
 ENV = Path("/opt/data/.env")
@@ -34,21 +37,11 @@ def load_key() -> str:
 
 def get(path: str, params: dict, key: str):
     url = f"{BASE}/{path}?{urllib.parse.urlencode(params)}"
-    req = urllib.request.Request(url, headers={"api_key": key})
-    for attempt in range(6):
-        try:
-            with urllib.request.urlopen(req, timeout=90) as resp:
-                return json.loads(resp.read())
-        except urllib.error.HTTPError as exc:
-            if exc.code == 429 and attempt < 5:
-                wait = float(exc.headers.get("Retry-After", "2") or 2) + 0.3
-                print(f"429, sleeping {wait:.1f}s", flush=True)
-                time.sleep(wait)
-                continue
-            body = exc.read()[:200]
-            print(f"http {exc.code} {path} {body!r}", flush=True)
-            raise
-    raise SystemExit("retries exhausted")
+    try:
+        return json.loads(fetch(url, timeout=90, headers={"api_key": key}))
+    except BudgetStop as exc:
+        print(f"stopped: {exc}", flush=True)
+        return None
 
 
 def main() -> None:
@@ -77,6 +70,9 @@ def main() -> None:
             params["convert_to_usd"] = USD[endpoint]
         print(f"{endpoint}: {start} -> {end} ({len(symbols)} symbols)", flush=True)
         fresh = get(endpoint, params, key)
+        if fresh is None:
+            print("stopped; rerun resumes from the files already current", flush=True)
+            return
         by_symbol = {row["symbol"]: row.get("history", []) for row in fresh}
         added = 0
         for series in payload["data"]:
@@ -85,10 +81,11 @@ def main() -> None:
             rows = [r for r in rows if r["t"] <= end]
             series["history"].extend(rows)
             added += len(rows)
-        path.write_text(json.dumps(payload))
+        tmp = path.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(payload))
+        tmp.replace(path)
         newest = max(s["history"][-1]["t"] for s in payload["data"])
         print(f"  saved {added} bars, newest {newest}", flush=True)
-        time.sleep(1.6)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,42 @@
+{
+ "reading_ts": "2026-11-20T13:00:23Z",
+ "appended": false,
+ "rs_stale": false,
+ "rs_age_sec": 7220,
+ "board_as_of": "2026-11-20T11:00:00Z",
+ "readings": 236,
+ "false_span_hours": 23.93,
+ "full_day": false,
+ "provenance": {
+  "script": "scripts/a5_span.py",
+  "script_blob": "8f15d69e64cfc6e5f913931db4f1878b00659308",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/a5_span.py"
+  ],
+  "commit": "1a68833ea5f2049a0986c3437d44e841868766db",
+  "written_at": "2026-11-20T13:01:00Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "dashboard/live.json",
+    "kind": "file",
+    "bytes": 58343,
+    "mtime_ns": 1795179623575009600,
+    "sha256": "dc20de86c2e1fd4ea460ad476d0726a86052aa0818f5d51da40596d33a32a61d"
+   },
+   {
+    "path": "ops/rs_stale_log.jsonl",
+    "kind": "file",
+    "bytes": 16520,
+    "mtime_ns": 1795179623571009600,
+    "sha256": "558b0b1cc5b1974ef996489e789dbefcd4838981a1052a3733399ed334f5f35c"
+   }
+  ],
+  "payload_sha256": "c90f51a41efdf939f1e3273ee8928670c5e9b20f23931bc394c22a660541bdc5"
+ }
+}

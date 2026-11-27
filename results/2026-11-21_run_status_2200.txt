@@ -1,0 +1,1 @@
+STATUS OK research-run panel_end=2026-11-20 age=1d top=A7 runs=15 files=research/backlog.md,scripts/build_universe_laevitas.py,scripts/rebuild_jumped_closes.py,scripts/record_a7_block_2200.py,tests/test_close_from_index.py,results/2026-11-21_a7_block_2200.json,results/2026-11-21_swap_data__panel_xs_laevitas.json

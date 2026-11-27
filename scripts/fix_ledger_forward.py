@@ -45,7 +45,7 @@ def rewrite():
             row["direction_right"] = ""
             continue
         row["realized_10d"] = f"{realized:.5f}"
-        forecast = row["prior_forecast"]
+        forecast = row["forecast_10d"]
         row["direction_right"] = (
             "yes" if (float(forecast) >= 0) == (realized >= 0) else "no") if forecast else ""
         matured += 1

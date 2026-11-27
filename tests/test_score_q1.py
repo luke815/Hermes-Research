@@ -1,0 +1,102 @@
+"""The pooled Q1 rank uses only bars before the one it ranks."""
+
+import os
+import sys
+import unittest
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, "/opt/data/.local/lib/python3.14/site-packages")
+
+import numpy as np
+import pandas as pd
+
+from scripts.score_q1 import (
+    EPISODE_BAR, forward_drawdown, pooled_mean, trailing_percentile, verdict_of,
+)
+
+
+class PooledRank(unittest.TestCase):
+    def test_a_later_value_does_not_move_the_rank(self):
+        index = pd.date_range("2024-01-01", periods=400, freq="D", tz="UTC")
+        values = pd.Series(np.linspace(2, 1, 400), index=index)
+        rank = trailing_percentile(values)
+        later = values.copy()
+        later.iloc[300:] = 100
+        after = trailing_percentile(later)
+        self.assertTrue(np.allclose(rank.iloc[:300], after.iloc[:300], equal_nan=True))
+        self.assertFalse(np.allclose(rank.iloc[301:], after.iloc[301:], equal_nan=True))
+
+    def test_a_short_history_stays_empty(self):
+        index = pd.date_range("2024-01-01", periods=300, freq="D", tz="UTC")
+        values = pd.Series(np.arange(300, dtype=float), index=index)
+        rank = trailing_percentile(values)
+        self.assertTrue(rank.iloc[:252].isna().all())
+        self.assertTrue(rank.iloc[252:].notna().all())
+
+    def test_a_panel_ranks_each_name_on_its_own_history(self):
+        index = pd.date_range("2024-01-01", periods=400, freq="D", tz="UTC")
+        frame = pd.DataFrame({
+            "a": np.linspace(1, 2, 400),
+            "b": np.linspace(5, 1, 400),
+        }, index=index)
+        rank = trailing_percentile(frame)
+        alone = trailing_percentile(frame["a"])
+        self.assertTrue(np.allclose(rank["a"], alone, equal_nan=True))
+        self.assertGreater(rank["a"].iloc[-1], rank["b"].iloc[-1])
+
+    def test_the_breadth_counts_only_names_whose_signal_is_defined(self):
+        defined = pd.DataFrame({"a": [True, True], "b": [False, False]})
+        flagged = pd.DataFrame({"a": [True, False], "b": [False, False]})
+        breadth = (flagged.sum(axis=1) / defined.sum(axis=1)).where(defined.any(axis=1))
+        self.assertAlmostEqual(breadth.iloc[0], 1.0)
+        wrong = flagged.astype(bool).mean(axis=1)
+        self.assertLess(wrong.iloc[0], breadth.iloc[0])
+        index = pd.date_range("2024-01-01", periods=3, freq="D", tz="UTC")
+        frame = pd.DataFrame({"a": [1.0, 2.0, 3.0], "b": [9.0, 9.0, 9.0]}, index=index)
+        defined = pd.DataFrame({"a": [True, True, True], "b": [False, False, False]},
+                               index=index)
+        pooled = pooled_mean(frame, defined)
+        self.assertTrue(np.allclose(pooled.to_numpy(), [1.0, 2.0, 3.0]))
+
+    def test_a_sign_flip_below_the_episode_bar_is_insufficient(self):
+        # A window that never reaches 20 episodes across train and validation
+        # is insufficient, even when both held-out effects have a sign. The
+        # pooled panel clears that bar and flips, so the same effects are
+        # rejected once the count is large enough.
+        rows = {
+            "validation": {"drawdown_effect": 0.001852},
+            "test": {"drawdown_effect": 0.435412},
+        }
+        short = {"train": 10, "validation": 1, "test": 7}
+        self.assertLess(short["train"] + short["validation"], EPISODE_BAR)
+        self.assertEqual(verdict_of(rows, short), "insufficient")
+        long = {"train": 47, "validation": 1, "test": 7}
+        self.assertGreaterEqual(long["train"] + long["validation"], EPISODE_BAR)
+        self.assertEqual(verdict_of(rows, long), "rejected")
+        deeper = {
+            "validation": {"drawdown_effect": -0.003853},
+            "test": {"drawdown_effect": -0.034315},
+        }
+        self.assertEqual(verdict_of(deeper, long), "kept")
+
+    def test_the_watch_card_reads_the_q1_key(self):
+        page = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            "dashboard", "index.html")
+        text = open(page).read()
+        # The card used to print the two-asset base rate in its own words.
+        # It now reads d.q1, which the assembler copies from the results file.
+        self.assertIn("d.q1", text)
+        self.assertIn("Q.windows", text)
+        self.assertIn("w.drawdown_effect", text)
+        self.assertNotIn("weaker returns that followed high readings", text)
+
+    def test_the_drawdown_ignores_a_bar_after_the_window(self):
+        index = pd.date_range("2024-01-01", periods=6, freq="D", tz="UTC")
+        price = pd.Series([10, 9, 8, 7, 1, 1], index=index, dtype=float)
+        drawdown = forward_drawdown(price, 2)
+        self.assertAlmostEqual(drawdown.iloc[0], 8 / 10 - 1)
+        self.assertTrue(np.isnan(drawdown.iloc[-2]))
+
+
+if __name__ == "__main__":
+    unittest.main()

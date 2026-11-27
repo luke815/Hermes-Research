@@ -9,14 +9,16 @@ already equal the dates inside its archive files is skipped.
 import csv
 import hashlib
 import io
-import time
+import sys
 import urllib.parse
-import urllib.request
 import xml.etree.ElementTree as ET
 import zipfile
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from http_get import fetch  # noqa: E402
 
 ROOT = Path("/opt/data/workspace/regime-tester")
 LISTING = ROOT / "data" / "binance_metrics_listing.csv"
@@ -52,19 +54,6 @@ def keys(prefix: str) -> list[str]:
         if not marker:
             raise SystemExit(f"truncated page without a marker under {prefix}")
     return sorted(found)
-
-
-def fetch(url: str) -> bytes:
-    for attempt in range(4):
-        try:
-            with urllib.request.urlopen(url, timeout=120) as resp:
-                return resp.read()
-        except Exception as exc:  # noqa: BLE001
-            if attempt == 3:
-                raise
-            print(f"  retry {url.rsplit('/', 1)[-1]}: {exc}", flush=True)
-            time.sleep(2 * (attempt + 1))
-    raise SystemExit("unreachable")
 
 
 def read_zip(name: str) -> list[str]:

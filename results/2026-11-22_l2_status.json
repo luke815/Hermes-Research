@@ -1,0 +1,86 @@
+{
+ "item": "L2",
+ "today": "2026-11-22",
+ "perpetual_closed": false,
+ "future_closed": false,
+ "maturities_listed": 240,
+ "maturities_walked": 240,
+ "maturities_unwalked": 0,
+ "options": {
+  "listed": 16602,
+  "files": 3709,
+  "missing": 12893
+ },
+ "liquidations": {
+  "listed": 11061,
+  "files": 4,
+  "missing": 11057
+ },
+ "puller": {
+  "pid": 625,
+  "phase": "working",
+  "cycles": 52,
+  "remaining": 4029,
+  "ts": "2026-11-22T09:02:49Z"
+ },
+ "provenance": {
+  "script": "scripts/record_blocks_0900.py",
+  "script_blob": "d8112c9ace7fb3f742059d3abadf9dd4d7ecd15f",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_blocks_0900.py"
+  ],
+  "commit": "28b693fc93980984b2e7dc8aacc34cf6021b7879",
+  "written_at": "2026-11-22T09:03:12Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/laevitas/family_closed.json",
+    "kind": "file",
+    "bytes": 153,
+    "mtime_ns": 1795226745093653681,
+    "sha256": "ac23c3c9eeb12d53f88be0012e60a146e1e3999803c8aff0226a058d9903999e"
+   },
+   {
+    "path": "data/laevitas/catalog_v1.json",
+    "kind": "file",
+    "bytes": 260568,
+    "mtime_ns": 1794827672432500801,
+    "sha256": "d00eb632b51daefd31806d0ac0a93d267aa027afe7ba825a165b81db1d279f0b"
+   },
+   {
+    "path": "data/laevitas/option_maturities.json",
+    "kind": "file",
+    "bytes": 7132,
+    "mtime_ns": 1794885448914113337,
+    "sha256": "1c9141a3f5c1d6e63c9a0fca322e208ea9a5ab5e9434a4f32f6e5c50f42e4f0a"
+   },
+   {
+    "path": "data/laevitas/option_contracts.json",
+    "kind": "file",
+    "bytes": 1970787,
+    "mtime_ns": 1794885448914113337,
+    "sha256": "cda3ce0df0d8ec7bbc5f1afecbf2c24f3325a6b62914e38be585c61b47749ea9"
+   },
+   {
+    "path": "data/laevitas/instruments.json",
+    "kind": "file",
+    "bytes": 638181,
+    "mtime_ns": 1794841455561721216,
+    "sha256": "a7c79ef95f84b625944465c1fec71bf0572d12efb3246ecb14632bb73ca5af35"
+   },
+   {
+    "path": "ops/laevitas_pull_heartbeat",
+    "kind": "file",
+    "bytes": 351,
+    "mtime_ns": 1795338169949331986,
+    "sha256": "8f319c38ddefeb14466b2b195e166c405573a7115a146b55cd22ac212ec46635"
+   }
+  ],
+  "payload_sha256": "39d393d5b49c66e539cea61f3cd572341ed6fd76ecfef78933ae66b3da432edb"
+ }
+}

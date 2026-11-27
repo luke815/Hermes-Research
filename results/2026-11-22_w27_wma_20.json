@@ -1,0 +1,108 @@
+{
+ "item": "W27",
+ "cell": "wma_20|chg_3|above|95|ret_1|pit_cross_section|none|daily",
+ "candidate": "w27_wma_20",
+ "transform": "chg_3",
+ "horizon": 1,
+ "prereg_commit": "14e6cba8e0e0b9ab23050e1cfe19d2d9b1d6507c",
+ "prereg": "research/generated.md items 25 to 27",
+ "names": 234,
+ "panel_end": "2026-11-20",
+ "target_note": "ret_1 is the absolute forward return, as registered",
+ "cost_note": "thin-tier round trip of 30 bps, no funding carry, matching scripts/sweep_xs.py net_returns; the panel has no USD open interest",
+ "train_sign": 1,
+ "verdict": "rejected",
+ "reason": "a held-out period flips the train sign",
+ "lookahead_holds": true,
+ "correlation_with_live_factors": {
+  "btc_ret_30": -0.1761,
+  "btc_vol_z90": 0.0234,
+  "btc_trend_stretch": -0.2063,
+  "eth_funding_z30": -0.0391
+ },
+ "largest_abs_correlation": 0.2063,
+ "largest_abs_correlation_with": "btc_trend_stretch",
+ "halves": {
+  "first_half": {
+   "spread": 0.00482944469045271,
+   "n": 931,
+   "t": 3.393831903183509
+  },
+  "second_half": {
+   "spread": 1.8923367947993215e-05,
+   "n": 932,
+   "t": 0.01885841213093795
+  }
+ },
+ "same_sign_both_halves": true,
+ "periods": {
+  "train": {
+   "spread_independent": 0.004778366123050841,
+   "n_independent": 1035,
+   "t": 3.628841173603934,
+   "n_overlap": 1035
+  },
+  "validation": {
+   "spread_independent": 0.0005078124023527053,
+   "n_independent": 535,
+   "t": 0.372090562772515,
+   "n_overlap": 535
+  },
+  "test": {
+   "spread_independent": -0.0024008156548713812,
+   "n_independent": 293,
+   "t": -1.4471147148052146,
+   "n_overlap": 293
+  }
+ },
+ "provenance": {
+  "script": "scripts/score_weekly_round.py",
+  "script_blob": "a273e199ef8bad381040241b5e45c6bf54b009bd",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [
+   "W27"
+  ],
+  "orig_argv": [
+   "/opt/hermes/.venv/bin/python3",
+   "scripts/score_weekly_round.py",
+   "W27"
+  ],
+  "commit": "20fffde12925ce22b030314ae83ab60aab681a74",
+  "written_at": "2026-11-22T16:41:26Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_cache/indicators_91ee884150ff50aa_4953200eab4e_v3.csv",
+    "kind": "file",
+    "bytes": 80624562,
+    "mtime_ns": 1795167733198699920
+   },
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 195559713,
+    "listing_sha256": "6b1e83b42c8ff75671d546aebdf7a3693e1a5c4d91a019d93d805423aa638d0b",
+    "content_sha256": "aed277784735db57653d2d2c79818bd504c25fbe7f08aca0e3b9f24d5f7ca7f0",
+    "content_partial": false
+   },
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413612,
+    "mtime_ns": 1795326223380063867,
+    "sha256": "2979bf9c41095cf334fce4e4c13ca918f3e6fc743a3a28c6c08ac72263e07fd3"
+   },
+   {
+    "path": "research/generated.md",
+    "kind": "file",
+    "bytes": 29265,
+    "mtime_ns": 1795363479917904878,
+    "sha256": "01f9b776aae995aef8cda45bcc5f4120ef78f1722b7c093d512f6b984ba0d993"
+   }
+  ],
+  "payload_sha256": "11990a5783604a175976343d9dad529ef4c961bd47de36f79025f6e15546dbcd"
+ }
+}

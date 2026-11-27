@@ -1,0 +1,1 @@
+STATUS OK research-run panel_end=2026-11-20 age=1d top=A7 runs=12 files=research/backlog.md,scripts/score_r2.py,scripts/score_r3.py,scripts/score_r4.py,scripts/score_r5.py,scripts/write_r6_weekly.py,regime_tester/strategy.py,results/2026-11-21_r2_state.json,results/2026-11-21_r4_variants.json,results/2026-11-21_r6_weekly.json

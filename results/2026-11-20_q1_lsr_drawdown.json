@@ -1,0 +1,348 @@
+{
+ "prereg_commit": "e32d7d7a1ed0cb356e6c1b68a15368b62b1884f0",
+ "pooled_names": 3781,
+ "lookahead_passed": {
+  "BTC": true,
+  "ETH": true,
+  "pooled": true
+ },
+ "cells": [
+  {
+   "asset": "BTC",
+   "window": 10,
+   "episodes": {
+    "train": 37,
+    "validation": 37,
+    "test": 18
+   },
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 107,
+     "drawdown_effect": -0.0014,
+     "crash_lift": 0.0,
+     "false_alarm": 0.654206
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 123,
+     "drawdown_effect": -0.003853,
+     "crash_lift": 1.182014,
+     "false_alarm": 0.487805
+    },
+    "test": {
+     "n": 301,
+     "flagged": 49,
+     "drawdown_effect": -0.034315,
+     "crash_lift": 3.389163,
+     "false_alarm": 0.367347
+    }
+   },
+   "verdict": "kept"
+  },
+  {
+   "asset": "BTC",
+   "window": 20,
+   "episodes": {
+    "train": 37,
+    "validation": 37,
+    "test": 18
+   },
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 107,
+     "drawdown_effect": -0.004942,
+     "crash_lift": 0.984424,
+     "false_alarm": 0.654206
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 123,
+     "drawdown_effect": -0.009765,
+     "crash_lift": 1.438686,
+     "false_alarm": 0.487805
+    },
+    "test": {
+     "n": 291,
+     "flagged": 42,
+     "drawdown_effect": -0.041127,
+     "crash_lift": 2.103316,
+     "false_alarm": 0.428571
+    }
+   },
+   "verdict": "kept"
+  },
+  {
+   "asset": "BTC",
+   "window": 30,
+   "episodes": {
+    "train": 37,
+    "validation": 37,
+    "test": 18
+   },
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 107,
+     "drawdown_effect": -0.007418,
+     "crash_lift": 1.057344,
+     "false_alarm": 0.654206
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 123,
+     "drawdown_effect": -0.013706,
+     "crash_lift": 1.461333,
+     "false_alarm": 0.487805
+    },
+    "test": {
+     "n": 281,
+     "flagged": 41,
+     "drawdown_effect": -0.053973,
+     "crash_lift": 1.845216,
+     "false_alarm": 0.439024
+    }
+   },
+   "verdict": "kept"
+  },
+  {
+   "asset": "ETH",
+   "window": 10,
+   "episodes": {
+    "train": 56,
+    "validation": 40,
+    "test": 25
+   },
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 237,
+     "drawdown_effect": -0.001373,
+     "crash_lift": 1.176471,
+     "false_alarm": 0.472574
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 123,
+     "drawdown_effect": -0.015254,
+     "crash_lift": 1.209713,
+     "false_alarm": 0.341463
+    },
+    "test": {
+     "n": 301,
+     "flagged": 70,
+     "drawdown_effect": -0.023104,
+     "crash_lift": 1.37234,
+     "false_alarm": 0.228571
+    }
+   },
+   "verdict": "kept"
+  },
+  {
+   "asset": "ETH",
+   "window": 20,
+   "episodes": {
+    "train": 56,
+    "validation": 40,
+    "test": 25
+   },
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 237,
+     "drawdown_effect": -0.002642,
+     "crash_lift": 1.222222,
+     "false_alarm": 0.472574
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 123,
+     "drawdown_effect": -0.013894,
+     "crash_lift": 1.113821,
+     "false_alarm": 0.341463
+    },
+    "test": {
+     "n": 291,
+     "flagged": 64,
+     "drawdown_effect": -0.04519,
+     "crash_lift": 1.894531,
+     "false_alarm": 0.25
+    }
+   },
+   "verdict": "kept"
+  },
+  {
+   "asset": "ETH",
+   "window": 30,
+   "episodes": {
+    "train": 56,
+    "validation": 40,
+    "test": 25
+   },
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 237,
+     "drawdown_effect": -0.006661,
+     "crash_lift": 1.237113,
+     "false_alarm": 0.472574
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 123,
+     "drawdown_effect": -0.03005,
+     "crash_lift": 1.234234,
+     "false_alarm": 0.341463
+    },
+    "test": {
+     "n": 281,
+     "flagged": 56,
+     "drawdown_effect": -0.04289,
+     "crash_lift": 1.687421,
+     "false_alarm": 0.285714
+    }
+   },
+   "verdict": "kept"
+  },
+  {
+   "asset": "pooled",
+   "window": 10,
+   "episodes": {
+    "train": 47,
+    "validation": 1,
+    "test": 7
+   },
+   "names": 3781,
+   "breadth": "share of defined names flagged, flagged when at least half are",
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 267,
+     "drawdown_effect": -0.016865,
+     "crash_lift": 1.481216,
+     "false_alarm": 0.389513
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 206,
+     "drawdown_effect": 0.001852,
+     "crash_lift": 0.961247,
+     "false_alarm": 0.320388
+    },
+    "test": {
+     "n": 306,
+     "flagged": 300,
+     "drawdown_effect": 0.435412,
+     "crash_lift": 1.005,
+     "false_alarm": 0.593333
+    }
+   },
+   "verdict": "kept"
+  },
+  {
+   "asset": "pooled",
+   "window": 20,
+   "episodes": {
+    "train": 47,
+    "validation": 1,
+    "test": 7
+   },
+   "names": 3781,
+   "breadth": "share of defined names flagged, flagged when at least half are",
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 267,
+     "drawdown_effect": -0.024898,
+     "crash_lift": 1.330381,
+     "false_alarm": 0.389513
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 206,
+     "drawdown_effect": 0.004063,
+     "crash_lift": 1.024328,
+     "false_alarm": 0.320388
+    },
+    "test": {
+     "n": 296,
+     "flagged": 290,
+     "drawdown_effect": 0.339069,
+     "crash_lift": 1.004987,
+     "false_alarm": 0.613793
+    }
+   },
+   "verdict": "kept"
+  },
+  {
+   "asset": "pooled",
+   "window": 30,
+   "episodes": {
+    "train": 47,
+    "validation": 1,
+    "test": 7
+   },
+   "names": 3781,
+   "breadth": "share of defined names flagged, flagged when at least half are",
+   "periods": {
+    "train": {
+     "n": 632,
+     "flagged": 267,
+     "drawdown_effect": -0.032517,
+     "crash_lift": 1.34688,
+     "false_alarm": 0.389513
+    },
+    "validation": {
+     "n": 548,
+     "flagged": 206,
+     "drawdown_effect": 0.006348,
+     "crash_lift": 0.994344,
+     "false_alarm": 0.320388
+    },
+    "test": {
+     "n": 286,
+     "flagged": 280,
+     "drawdown_effect": 0.365185,
+     "crash_lift": 0.997812,
+     "false_alarm": 0.621429
+    }
+   },
+   "verdict": "kept"
+  }
+ ],
+ "provenance": {
+  "script": "scripts/score_q1.py",
+  "script_blob": "ab78b4f749c43819f4471cbee0b0f134de5e8d7a",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_q1.py"
+  ],
+  "commit": "0a6929770857722317b094d2bc181e78e01cec1e",
+  "written_at": "2026-11-20T14:11:56Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 194597289,
+    "listing_sha256": "ad863b60cf8342ce8211eb497a980863426b0d7b4ab9b7e58817cc31657d210c",
+    "content_sha256": "d7f465f79fb6ff41426bf084d43121ac558489957758aad97599733609612f17",
+    "content_partial": false
+   },
+   {
+    "path": "research/outside/PREREG_Q1.md",
+    "kind": "file",
+    "bytes": 1840,
+    "mtime_ns": 1795173684796333922,
+    "sha256": "175a00021ac35ff06c54baebbe1e2412db38627f91c54b22394e79cf1ff02609"
+   }
+  ],
+  "payload_sha256": "2bcfd3492d0663217be567719f87ee6ce9a08b59724b346a82c3ef9371b9f96f"
+ }
+}

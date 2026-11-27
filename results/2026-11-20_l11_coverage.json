@@ -1,0 +1,72 @@
+{
+ "item": "L11",
+ "today": "2026-11-20",
+ "dead_names": 499,
+ "panel_files": 484,
+ "missing_file": 15,
+ "earliest_first_bar": "2021-08-07",
+ "funding_rate": {
+  "names_with_values": 484,
+  "names_from_2021": 81,
+  "earliest": "2021-08-07"
+ },
+ "oi_usd": {
+  "names_with_values": 484,
+  "names_from_2021": 81,
+  "earliest": "2021-08-07"
+ },
+ "basis": {
+  "names_with_values": 484,
+  "names_from_2021": 81,
+  "earliest": "2021-08-07"
+ },
+ "all_three_from_2021": 81,
+ "provenance": {
+  "script": "scripts/l11_coverage.py",
+  "script_blob": "26322023180e77fa0d46ddf2078e4a51ddd38ac0",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/l11_coverage.py"
+  ],
+  "commit": "f757640f939b90bc12fc8db490738f26cd8fb5d6",
+  "written_at": "2026-11-20T23:01:09Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 194597289,
+    "listing_sha256": "ad863b60cf8342ce8211eb497a980863426b0d7b4ab9b7e58817cc31657d210c",
+    "content_sha256": "d7f465f79fb6ff41426bf084d43121ac558489957758aad97599733609612f17",
+    "content_partial": false
+   },
+   {
+    "path": "data/binance_span.csv",
+    "kind": "file",
+    "bytes": 33414,
+    "mtime_ns": 1793647339233959668,
+    "sha256": "e0fee92f68f060136b869770b25408220398efbbbdd28dadf48923499bb595eb"
+   },
+   {
+    "path": "data/bybit_span.csv",
+    "kind": "file",
+    "bytes": 43360,
+    "mtime_ns": 1793667702310385708,
+    "sha256": "9bc6e367cc4ebad9801e8148448b43b23915cd26320a9a05ed9ce18303a864b1"
+   },
+   {
+    "path": "data/okx_span.csv",
+    "kind": "file",
+    "bytes": 22783,
+    "mtime_ns": 1793690415827637318,
+    "sha256": "42464e2b570709e15c8f2f66e4fae9a4179dd7ed780c8241359ba29313f4a96a"
+   }
+  ],
+  "payload_sha256": "b2e0b558b90fda0144a53a769534e8e5e6a7f05b9dfc3eee96c5e417ce6b199e"
+ }
+}

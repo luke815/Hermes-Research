@@ -29,6 +29,7 @@ data/panel_xs_laevitas, whose catalogue drops the delisted names.
 
 import json
 import os
+import subprocess
 import sys
 from datetime import datetime, timezone
 
@@ -41,6 +42,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from regime_tester.costs import round_trip
 from regime_tester.periods import PERIODS, assign_period
 from regime_tester.pit import span_rows
+from regime_tester.results_io import write_result
+
+PREREG = "research/generated.md"
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
@@ -92,15 +96,18 @@ def book(frames):
         coin: frame["funding_rate"] if "funding_rate" in frame else np.nan
         for coin, frame in frames.items()
     }).reindex(close.index)
+    # The funding close is a percent per 8-hour settlement. Dividing by 100
+    # puts one settlement into return units. Dividing by 10,000 understates
+    # the carry by 100, which is the bug the re-run exists to remove.
+    funding = funding / 100.0
     out = {"close": close, "funding": funding}
     for lookback in LOOKBACKS:
         out[f"mom_{lookback}"] = close.shift(1) / close.shift(1 + lookback) - 1
     for horizon in HORIZONS:
         gross = close.shift(-horizon) / close - 1
-        daily = funding / 100.0
         carry = pd.DataFrame({
-            coin: daily[coin].rolling(horizon).sum().shift(-(horizon - 1))
-            for coin in daily
+            coin: funding[coin].rolling(horizon).sum().shift(-(horizon - 1))
+            for coin in funding
         })
         out[f"gross_{horizon}"] = gross
         out[f"carry_{horizon}"] = carry
@@ -192,6 +199,13 @@ def verdict_for(cells):
     return "rejected"
 
 
+def prereg_commit():
+    out = subprocess.run(
+        ["git", "log", "-1", "--format=%H", "--", PREREG],
+        cwd=ROOT, capture_output=True, text=True, check=True)
+    return out.stdout.strip()
+
+
 def main():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     frames, universe_rows = load_panel()
@@ -209,6 +223,7 @@ def main():
     payload = {
         "date": today,
         "item": "C9",
+        "prereg_commit": prereg_commit(),
         "panel": "data/panel_xs",
         "universe_rows": universe_rows,
         "coins_with_a_file": len(frames),
@@ -217,8 +232,7 @@ def main():
         "cells": cells,
         "verdict": verdict_for(cells),
     }
-    out = os.path.join(ROOT, "results", f"{today}_c9_momentum.json")
-    json.dump(payload, open(out, "w"), indent=1)
+    out = write_result("c9_momentum", payload, inputs=["data/panel_xs"])
     print(out)
     print(json.dumps({"coins": len(frames), "verdict": payload["verdict"],
                       "cells": [(c["lookback"], c["horizon"], c["dates_scored"],

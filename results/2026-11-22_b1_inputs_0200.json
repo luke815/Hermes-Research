@@ -1,0 +1,69 @@
+{
+ "item": "B1",
+ "today": "2026-11-22",
+ "slot": "02:00",
+ "fresh_limit_days": 2,
+ "hourly": {
+  "path": "data/raw/coinalyze_ohlcv_1h.json",
+  "mtime": "2026-11-03T16:18:41Z",
+  "bytes": 191760097,
+  "last_bar": "2026-11-03",
+  "age_days": 19,
+  "stale": true
+ },
+ "snapshot": {
+  "path": "data/raw/oi_snapshot.json",
+  "mtime": "2026-11-03T17:50:51Z",
+  "bytes": 154141,
+  "newest_update": "2026-11-03T17:50:50Z",
+  "age_days": 19,
+  "stale": true
+ },
+ "daily": {
+  "path": "data/raw/top100_daily.json",
+  "mtime": "2026-11-05T12:11:21Z",
+  "bytes": 2213940,
+  "last_bar": "2026-11-04",
+  "age_days": 18,
+  "stale": true
+ },
+ "refreshing_daemons": [],
+ "provenance": {
+  "script": "scripts/record_b1_inputs_0200.py",
+  "script_blob": "a458a7da0915e90294639051b8c517dab33315bf",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_b1_inputs_0200.py"
+  ],
+  "commit": "0c899b28351275dae8ed94ed91e2eb364aacb95a",
+  "written_at": "2026-11-22T02:12:23Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/raw/coinalyze_ohlcv_1h.json",
+    "kind": "file",
+    "bytes": 191760097,
+    "mtime_ns": 1793722721299042396
+   },
+   {
+    "path": "data/raw/oi_snapshot.json",
+    "kind": "file",
+    "bytes": 154141,
+    "mtime_ns": 1793728251398711641,
+    "sha256": "371119be905e0f87819edf7f9240013e7adbc7a7f9b3ea072bce71c7f5568e9d"
+   },
+   {
+    "path": "data/raw/top100_daily.json",
+    "kind": "file",
+    "bytes": 2213940,
+    "mtime_ns": 1793880681734728686,
+    "sha256": "e0d0b695955818b954fcf344e803af7b98014728a30236c66b63024eaad54f4d"
+   }
+  ],
+  "payload_sha256": "9fc1cc5e914ba3eaf891e33ea4aca16d3ca322625485f0647e1992c847ed6646"
+ }
+}

@@ -1,0 +1,63 @@
+{
+ "item": "A7",
+ "today": "2026-11-21",
+ "read_at": "2026-11-21T21:05:34Z",
+ "slot": "21:00",
+ "close_file": "data/panel_xs_laevitas/binance_1000PEPEUSDT.csv",
+ "close_mtime": "2026-11-21T21:04:26Z",
+ "closes": {
+  "2026-01-12": 5.798e-06,
+  "2026-01-13": 0.0057309,
+  "2026-01-14": 6.57e-06
+ },
+ "price_field_jump_corrected": true,
+ "derivs_currencies": [
+  "BTC",
+  "ETH"
+ ],
+ "alts_missing": [
+  "ADA",
+  "SOL",
+  "LINK",
+  "XRP",
+  "AVAX"
+ ],
+ "market_backfill_remaining": 0,
+ "market_backfill_cycles": 9,
+ "market_backfill_phase": "idle",
+ "previous_panel": "data/panel_xs_laevitas.prev-20261121T210441Z",
+ "provenance": {
+  "script": "scripts/record_a7_block_2100.py",
+  "script_blob": "f47a0442ef6b7702f556370b46f4fb370296bfb4",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_a7_block_2100.py"
+  ],
+  "commit": "a284fbf6184b4cd88b092edf7ea5e63c357db40d",
+  "written_at": "2026-11-21T21:05:34Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_laevitas/binance_1000PEPEUSDT.csv",
+    "kind": "file",
+    "bytes": 101924,
+    "mtime_ns": 1795295066787990012,
+    "sha256": "6e3e5089dd1805c54026c78f7e1d4d0d0bee28214b1282a2e3526347e3f36617"
+   },
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "4ad196a55b15b7fb42535c30190c9b8752edf93b54003e681a2a09c56ae97c1a"
+ }
+}

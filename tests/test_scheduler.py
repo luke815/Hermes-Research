@@ -75,6 +75,24 @@ class FailedJob(unittest.TestCase):
         self.assertIn("ran", called)
         self.assertTrue(any(c and "A1" in c for c in called))
 
+    def test_counter_refresh_keeps_the_sweep_suffix(self):
+        # The sweep writes its name count and rate onto the shared line. The
+        # scheduler refreshes the counter part every cycle, and replacing the
+        # whole line drops both, so the rate the clause reads never survives.
+        with tempfile.TemporaryDirectory() as tmp:
+            scheduler.STATUS = os.path.join(tmp, "sweep_status")
+            scheduler.COUNTER = os.path.join(tmp, "counter.json")
+            json.dump({"scored": 7, "testable": 9, "since": "2026-10-31",
+                       "file": "results/sweeps/counter.json"},
+                      open(scheduler.COUNTER, "w"))
+            open(scheduler.STATUS, "w").write(
+                "cells scored 7 of 9 testable since 2026-10-31, "
+                "from results/sweeps/counter.json, names 234, cells per hour 0\n")
+            written = scheduler.sweep_status()["line"]
+            self.assertIn("names 234", written)
+            self.assertIn("cells per hour 0", written)
+            self.assertTrue(written.index("names 234") < written.index("cells per hour"))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,2417 @@
+{
+ "item": "C5",
+ "today": "2026-11-20",
+ "panel_end": "2026-11-19",
+ "candidate": "c5_options",
+ "label": "amended T(30, 20) and B(30, 20, 7) on candidate days",
+ "horizon_days": 30,
+ "base_rates": {
+  "top_30_20": {
+   "BTC": {
+    "episodes": 15,
+    "worst_year": 2021,
+    "worst_share": 0.466667,
+    "caveat": false
+   },
+   "ETH": {
+    "episodes": 20,
+    "worst_year": 2021,
+    "worst_share": 0.3,
+    "caveat": false
+   }
+  },
+  "top_20_15": {
+   "BTC": {
+    "episodes": 25,
+    "worst_year": 2021,
+    "worst_share": 0.36,
+    "caveat": false
+   },
+   "ETH": {
+    "episodes": 26,
+    "worst_year": 2021,
+    "worst_share": 0.461538,
+    "caveat": false
+   }
+  },
+  "top_60_30": {
+   "BTC": {
+    "episodes": 9,
+    "worst_year": 2021,
+    "worst_share": 0.666667,
+    "caveat": true
+   },
+   "ETH": {
+    "episodes": 22,
+    "worst_year": 2026,
+    "worst_share": 0.318182,
+    "caveat": false
+   }
+  },
+  "bottom_30_20_7": {
+   "BTC": {
+    "episodes": 22,
+    "worst_year": 2022,
+    "worst_share": 0.318182,
+    "caveat": false
+   },
+   "ETH": {
+    "episodes": 26,
+    "worst_year": 2022,
+    "worst_share": 0.307692,
+    "caveat": false
+   }
+  },
+  "bottom_60_30_10": {
+   "BTC": {
+    "episodes": 23,
+    "worst_year": 2022,
+    "worst_share": 0.217391,
+    "caveat": false
+   },
+   "ETH": {
+    "episodes": 27,
+    "worst_year": 2022,
+    "worst_share": 0.222222,
+    "caveat": false
+   }
+  }
+ },
+ "skipped": [],
+ "rows": [
+  {
+   "name": "dvol",
+   "side": "top",
+   "cut": 0.9,
+   "score": {
+    "all": {
+     "fires": 0,
+     "hits": 0,
+     "rate": null,
+     "base_fires": 15,
+     "base_hits": 0,
+     "base_rate": 0.0,
+     "lift": null
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "train": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 10,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 7,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 10
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 2
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 3
+    }
+   },
+   "lead_days_median": null,
+   "lead_days_n": 0,
+   "false_alarm_share": 1.0,
+   "false_alarm_return_gross": -0.0341,
+   "false_alarm_return_net": 0.033288,
+   "episodes_total": 15,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "BTC",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.85": null,
+    "0.95": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "vol_premium",
+   "side": "top",
+   "cut": 0.9,
+   "score": {
+    "all": {
+     "fires": 1,
+     "hits": 0,
+     "rate": 0.0,
+     "base_fires": 15,
+     "base_hits": 1,
+     "base_rate": 0.066667,
+     "lift": 0.0
+    },
+    "by_period": {
+     "test": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "train": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 10,
+      "base_hits": 1,
+      "base_rate": 0.1,
+      "lift": null
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 7,
+      "base_hits": 1,
+      "base_rate": 0.142857,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2026": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 10
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 2
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 3
+    }
+   },
+   "lead_days_median": 31.0,
+   "lead_days_n": 1,
+   "false_alarm_share": 0.82716,
+   "false_alarm_return_gross": 0.136309,
+   "false_alarm_return_net": -0.13668,
+   "episodes_total": 15,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "BTC",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.85": null,
+    "0.95": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "skew_30",
+   "side": "top",
+   "cut": 0.9,
+   "score": {
+    "all": {
+     "fires": 0,
+     "hits": 0,
+     "rate": null,
+     "base_fires": 15,
+     "base_hits": 1,
+     "base_rate": 0.066667,
+     "lift": null
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": null
+     },
+     "train": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 10,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 7,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 10
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 2
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 3
+    }
+   },
+   "lead_days_median": 28.0,
+   "lead_days_n": 1,
+   "false_alarm_share": 0.866667,
+   "false_alarm_return_gross": -0.012465,
+   "false_alarm_return_net": 0.008525,
+   "episodes_total": 15,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "BTC",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.85": null,
+    "0.95": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "rr_30",
+   "side": "top",
+   "cut": 0.9,
+   "score": {
+    "all": {
+     "fires": 0,
+     "hits": 0,
+     "rate": null,
+     "base_fires": 15,
+     "base_hits": 1,
+     "base_rate": 0.066667,
+     "lift": null
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": null
+     },
+     "train": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 10,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 7,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 10
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 2
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 3
+    }
+   },
+   "lead_days_median": 32.0,
+   "lead_days_n": 1,
+   "false_alarm_share": 0.897727,
+   "false_alarm_return_gross": 0.05089,
+   "false_alarm_return_net": -0.054152,
+   "episodes_total": 15,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "BTC",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.85": null,
+    "0.95": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "dvol",
+   "side": "bottom",
+   "cut": 0.1,
+   "score": {
+    "all": {
+     "fires": 6,
+     "hits": 5,
+     "rate": 0.833333,
+     "base_fires": 22,
+     "base_hits": 6,
+     "base_rate": 0.272727,
+     "lift": 3.055556
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "train": {
+      "fires": 6,
+      "hits": 5,
+      "rate": 0.833333,
+      "base_fires": 17,
+      "base_hits": 6,
+      "base_rate": 0.352941,
+      "lift": 2.361111
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 5,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 3,
+      "hits": 2,
+      "rate": 0.666667,
+      "base_fires": 7,
+      "base_hits": 3,
+      "base_rate": 0.428571,
+      "lift": 1.555556
+     },
+     "2023": {
+      "fires": 3,
+      "hits": 3,
+      "rate": 1.0,
+      "base_fires": 3,
+      "base_hits": 3,
+      "base_rate": 1.0,
+      "lift": 1.0
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 17
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 5
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 0
+    }
+   },
+   "lead_days_median": 16.5,
+   "lead_days_n": 6,
+   "false_alarm_share": 0.5,
+   "false_alarm_return_gross": -0.007117,
+   "false_alarm_return_net": -0.014357,
+   "episodes_total": 22,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "BTC",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.05": null,
+    "0.15": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "vol_premium",
+   "side": "bottom",
+   "cut": 0.1,
+   "score": {
+    "all": {
+     "fires": 2,
+     "hits": 1,
+     "rate": 0.5,
+     "base_fires": 22,
+     "base_hits": 7,
+     "base_rate": 0.318182,
+     "lift": 1.571429
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "train": {
+      "fires": 2,
+      "hits": 1,
+      "rate": 0.5,
+      "base_fires": 17,
+      "base_hits": 5,
+      "base_rate": 0.294118,
+      "lift": 1.7
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 5,
+      "base_hits": 2,
+      "base_rate": 0.4,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 2,
+      "base_hits": 1,
+      "base_rate": 0.5,
+      "lift": 2.0
+     },
+     "2022": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 7,
+      "base_hits": 3,
+      "base_rate": 0.428571,
+      "lift": 0.0
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 2,
+      "base_rate": 1.0,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 17
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 5
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 0
+    }
+   },
+   "lead_days_median": 27.0,
+   "lead_days_n": 5,
+   "false_alarm_share": 0.366667,
+   "false_alarm_return_gross": 0.049442,
+   "false_alarm_return_net": 0.042854,
+   "episodes_total": 22,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "BTC",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.05": null,
+    "0.15": 1.666667
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "skew_30",
+   "side": "bottom",
+   "cut": 0.1,
+   "score": {
+    "all": {
+     "fires": 0,
+     "hits": 0,
+     "rate": null,
+     "base_fires": 22,
+     "base_hits": 3,
+     "base_rate": 0.136364,
+     "lift": null
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "train": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 17,
+      "base_hits": 3,
+      "base_rate": 0.176471,
+      "lift": null
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 5,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 7,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 3,
+      "base_rate": 1.0,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 17
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 5
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 0
+    }
+   },
+   "lead_days_median": 2.0,
+   "lead_days_n": 3,
+   "false_alarm_share": 0.333333,
+   "false_alarm_return_gross": 0.0115,
+   "false_alarm_return_net": 0.005003,
+   "episodes_total": 22,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "BTC",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.05": null,
+    "0.15": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "rr_30",
+   "side": "bottom",
+   "cut": 0.1,
+   "score": {
+    "all": {
+     "fires": 4,
+     "hits": 4,
+     "rate": 1.0,
+     "base_fires": 22,
+     "base_hits": 9,
+     "base_rate": 0.409091,
+     "lift": 2.444444
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "train": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 17,
+      "base_hits": 5,
+      "base_rate": 0.294118,
+      "lift": 3.4
+     },
+     "validation": {
+      "fires": 3,
+      "hits": 3,
+      "rate": 1.0,
+      "base_fires": 5,
+      "base_hits": 4,
+      "base_rate": 0.8,
+      "lift": 1.25
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 1,
+      "base_rate": 0.5,
+      "lift": null
+     },
+     "2022": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 7,
+      "base_hits": 4,
+      "base_rate": 0.571429,
+      "lift": 1.75
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2024": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 4,
+      "base_hits": 2,
+      "base_rate": 0.5,
+      "lift": 2.0
+     },
+     "2025": {
+      "fires": 2,
+      "hits": 2,
+      "rate": 1.0,
+      "base_fires": 2,
+      "base_hits": 2,
+      "base_rate": 1.0,
+      "lift": 1.0
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 17
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 5
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 0
+    }
+   },
+   "lead_days_median": 11.0,
+   "lead_days_n": 9,
+   "false_alarm_share": 0.727273,
+   "false_alarm_return_gross": -0.042174,
+   "false_alarm_return_net": -0.049382,
+   "episodes_total": 22,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "BTC",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.05": 2.5,
+    "0.15": 0.9375
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "dvol",
+   "side": "top",
+   "cut": 0.9,
+   "score": {
+    "all": {
+     "fires": 1,
+     "hits": 1,
+     "rate": 1.0,
+     "base_fires": 20,
+     "base_hits": 5,
+     "base_rate": 0.25,
+     "lift": 4.0
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "train": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 13,
+      "base_hits": 3,
+      "base_rate": 0.230769,
+      "lift": 4.333333
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 2,
+      "base_rate": 0.5,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 6,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2024": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 4,
+      "base_hits": 4,
+      "base_rate": 1.0,
+      "lift": 1.0
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 13
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 4
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 3
+    }
+   },
+   "lead_days_median": 17.0,
+   "lead_days_n": 4,
+   "false_alarm_share": 0.451613,
+   "false_alarm_return_gross": -0.052803,
+   "false_alarm_return_net": 0.051191,
+   "episodes_total": 20,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "ETH",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.85": null,
+    "0.95": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "vol_premium",
+   "side": "top",
+   "cut": 0.9,
+   "score": {
+    "all": {
+     "fires": 2,
+     "hits": 1,
+     "rate": 0.5,
+     "base_fires": 20,
+     "base_hits": 4,
+     "base_rate": 0.2,
+     "lift": 2.5
+    },
+    "by_period": {
+     "test": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": 0.0
+     },
+     "train": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 13,
+      "base_hits": 3,
+      "base_rate": 0.230769,
+      "lift": 4.333333
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 6,
+      "base_hits": 2,
+      "base_rate": 0.333333,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2024": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 4,
+      "base_hits": 1,
+      "base_rate": 0.25,
+      "lift": 4.0
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2026": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": 0.0
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 13
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 4
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 3
+    }
+   },
+   "lead_days_median": 27.5,
+   "lead_days_n": 4,
+   "false_alarm_share": 0.466019,
+   "false_alarm_return_gross": 0.037415,
+   "false_alarm_return_net": -0.040069,
+   "episodes_total": 20,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "ETH",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.85": null,
+    "0.95": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "skew_30",
+   "side": "top",
+   "cut": 0.9,
+   "score": {
+    "all": {
+     "fires": 1,
+     "hits": 0,
+     "rate": 0.0,
+     "base_fires": 20,
+     "base_hits": 1,
+     "base_rate": 0.05,
+     "lift": 0.0
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "train": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 13,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "validation": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 4,
+      "base_hits": 1,
+      "base_rate": 0.25,
+      "lift": 0.0
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 6,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": 0.0
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 13
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 4
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 3
+    }
+   },
+   "lead_days_median": 24.0,
+   "lead_days_n": 1,
+   "false_alarm_share": 0.666667,
+   "false_alarm_return_gross": 0.170545,
+   "false_alarm_return_net": -0.174679,
+   "episodes_total": 20,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "ETH",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.85": 2.0,
+    "0.95": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "rr_30",
+   "side": "top",
+   "cut": 0.9,
+   "score": {
+    "all": {
+     "fires": 0,
+     "hits": 0,
+     "rate": null,
+     "base_fires": 20,
+     "base_hits": 5,
+     "base_rate": 0.25,
+     "lift": null
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "train": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 13,
+      "base_hits": 3,
+      "base_rate": 0.230769,
+      "lift": null
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 2,
+      "base_rate": 0.5,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 6,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 0,
+      "base_hits": 0,
+      "base_rate": null,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 4,
+      "base_rate": 1.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 1,
+      "base_rate": 0.333333,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 13
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 4
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 3
+    }
+   },
+   "lead_days_median": 17.0,
+   "lead_days_n": 4,
+   "false_alarm_share": 0.875776,
+   "false_alarm_return_gross": 0.041286,
+   "false_alarm_return_net": -0.044868,
+   "episodes_total": 20,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "ETH",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.85": 2.0,
+    "0.95": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "dvol",
+   "side": "bottom",
+   "cut": 0.1,
+   "score": {
+    "all": {
+     "fires": 3,
+     "hits": 3,
+     "rate": 1.0,
+     "base_fires": 26,
+     "base_hits": 8,
+     "base_rate": 0.307692,
+     "lift": 3.25
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 2,
+      "base_rate": 1.0,
+      "lift": null
+     },
+     "train": {
+      "fires": 3,
+      "hits": 3,
+      "rate": 1.0,
+      "base_fires": 20,
+      "base_hits": 4,
+      "base_rate": 0.2,
+      "lift": 5.0
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 2,
+      "base_rate": 0.5,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 8,
+      "base_hits": 2,
+      "base_rate": 0.25,
+      "lift": 4.0
+     },
+     "2023": {
+      "fires": 2,
+      "hits": 2,
+      "rate": 1.0,
+      "base_fires": 2,
+      "base_hits": 2,
+      "base_rate": 1.0,
+      "lift": 1.0
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 2,
+      "base_rate": 0.666667,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 2,
+      "base_rate": 1.0,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 20
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 4
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 2
+    }
+   },
+   "lead_days_median": 27.0,
+   "lead_days_n": 7,
+   "false_alarm_share": 0.329545,
+   "false_alarm_return_gross": 0.019171,
+   "false_alarm_return_net": 0.012027,
+   "episodes_total": 26,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "ETH",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.05": null,
+    "0.15": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "vol_premium",
+   "side": "bottom",
+   "cut": 0.1,
+   "score": {
+    "all": {
+     "fires": 2,
+     "hits": 0,
+     "rate": 0.0,
+     "base_fires": 26,
+     "base_hits": 5,
+     "base_rate": 0.192308,
+     "lift": 0.0
+    },
+    "by_period": {
+     "test": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "train": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 20,
+      "base_hits": 2,
+      "base_rate": 0.1,
+      "lift": 0.0
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 3,
+      "base_rate": 0.75,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 8,
+      "base_hits": 2,
+      "base_rate": 0.25,
+      "lift": 0.0
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 1,
+      "base_rate": 0.25,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 2,
+      "base_rate": 0.666667,
+      "lift": null
+     },
+     "2026": {
+      "fires": 1,
+      "hits": 0,
+      "rate": 0.0,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 20
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 4
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 2
+    }
+   },
+   "lead_days_median": 11.0,
+   "lead_days_n": 3,
+   "false_alarm_share": 0.363636,
+   "false_alarm_return_gross": 0.005593,
+   "false_alarm_return_net": -0.000993,
+   "episodes_total": 26,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "ETH",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.05": null,
+    "0.15": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "skew_30",
+   "side": "bottom",
+   "cut": 0.1,
+   "score": {
+    "all": {
+     "fires": 0,
+     "hits": 0,
+     "rate": null,
+     "base_fires": 26,
+     "base_hits": 1,
+     "base_rate": 0.038462,
+     "lift": null
+    },
+    "by_period": {
+     "test": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "train": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 20,
+      "base_hits": 1,
+      "base_rate": 0.05,
+      "lift": null
+     },
+     "validation": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 8,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 1,
+      "base_rate": 0.5,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2025": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2026": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 20
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 4
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 2
+    }
+   },
+   "lead_days_median": 17.0,
+   "lead_days_n": 1,
+   "false_alarm_share": 0.5,
+   "false_alarm_return_gross": 0.01514,
+   "false_alarm_return_net": 0.008435,
+   "episodes_total": 26,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "ETH",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.05": null,
+    "0.15": null
+   },
+   "verdict": "insufficient"
+  },
+  {
+   "name": "rr_30",
+   "side": "bottom",
+   "cut": 0.1,
+   "score": {
+    "all": {
+     "fires": 6,
+     "hits": 6,
+     "rate": 1.0,
+     "base_fires": 26,
+     "base_hits": 11,
+     "base_rate": 0.423077,
+     "lift": 2.363636
+    },
+    "by_period": {
+     "test": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 2,
+      "base_hits": 2,
+      "base_rate": 1.0,
+      "lift": 1.0
+     },
+     "train": {
+      "fires": 2,
+      "hits": 2,
+      "rate": 1.0,
+      "base_fires": 20,
+      "base_hits": 6,
+      "base_rate": 0.3,
+      "lift": 3.333333
+     },
+     "validation": {
+      "fires": 3,
+      "hits": 3,
+      "rate": 1.0,
+      "base_fires": 4,
+      "base_hits": 3,
+      "base_rate": 0.75,
+      "lift": 1.333333
+     }
+    },
+    "by_year": {
+     "2020": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 3,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2021": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2022": {
+      "fires": 2,
+      "hits": 2,
+      "rate": 1.0,
+      "base_fires": 8,
+      "base_hits": 3,
+      "base_rate": 0.375,
+      "lift": 2.666667
+     },
+     "2023": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 2,
+      "base_hits": 0,
+      "base_rate": 0.0,
+      "lift": null
+     },
+     "2024": {
+      "fires": 0,
+      "hits": 0,
+      "rate": null,
+      "base_fires": 4,
+      "base_hits": 3,
+      "base_rate": 0.75,
+      "lift": null
+     },
+     "2025": {
+      "fires": 3,
+      "hits": 3,
+      "rate": 1.0,
+      "base_fires": 3,
+      "base_hits": 3,
+      "base_rate": 1.0,
+      "lift": 1.0
+     },
+     "2026": {
+      "fires": 1,
+      "hits": 1,
+      "rate": 1.0,
+      "base_fires": 2,
+      "base_hits": 2,
+      "base_rate": 1.0,
+      "lift": 1.0
+     }
+    }
+   },
+   "bootstrap": {
+    "train": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 20
+    },
+    "validation": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 4
+    },
+    "test": {
+     "lo": null,
+     "hi": null,
+     "draws": 0,
+     "n": 2
+    }
+   },
+   "lead_days_median": 21.0,
+   "lead_days_n": 10,
+   "false_alarm_share": 0.263158,
+   "false_alarm_return_gross": 0.062776,
+   "false_alarm_return_net": 0.05586,
+   "episodes_total": 26,
+   "denominator": "episode starts preceded by a fire within the horizon",
+   "asset": "ETH",
+   "neighbours_hold": false,
+   "neighbour_lifts": {
+    "0.05": 1.333333,
+    "0.15": 1.0
+   },
+   "verdict": "insufficient"
+  }
+ ],
+ "n_rows": 16,
+ "verdict": "insufficient",
+ "reason": "no row reaches the episode bar",
+ "provenance": {
+  "script": "scripts/score_l6_c5.py",
+  "script_blob": "9bb5d53905284da7f668eef4122ffb92c6cc28bf",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_l6_c5.py"
+  ],
+  "commit": "10b67c00dcb0098f2c37c7379eaa6e31d8016254",
+  "written_at": "2026-11-20T23:04:55Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/raw",
+    "kind": "dir",
+    "files": 441,
+    "bytes": 242501936,
+    "listing_sha256": "1ee66cb83ca492c48b8f017e89b19788fa1acb3edab398faaa27ba6acb1f8364",
+    "content_sha256": "b0b0a32bbf6c06fcb3bddb4aa004a3ef2e1cbca093c384b5031d01aa651d631f",
+    "content_partial": true
+   }
+  ],
+  "payload_sha256": "595c9c5d470bf0464e37e2ee9fac71cb180b2b22203aa16598ce68fa28636e18"
+ }
+}

@@ -24,25 +24,90 @@ import rate_budget
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANEL = os.path.join(ROOT, "data", "panel_xs")
 PROGRESS = os.path.join(ROOT, "ops", "high_low_progress.json")
+DEFERRED = os.path.join(ROOT, "ops", "high_low_deferred.json")
+
+
+# One kline call returns the newest 1500 daily bars. A panel that starts
+# before that window needs the earlier pages, or high and low exist only on
+# the last few days and a range measure still has nothing to score.
+PAGE = 1500
+
+
+def column_complete(path):
+    """True when high and low are present on every row that has a close.
+
+    A header with a handful of recent values is the one-page write. That
+    file stays pending, so a progress mark cannot hide a short column.
+    """
+    frame = pd.read_csv(path)
+    if "high" not in frame.columns or "low" not in frame.columns:
+        return False
+    if "close" not in frame.columns or frame.empty:
+        return False
+    have_close = frame["close"].notna()
+    return bool(have_close.any()) and bool(
+        frame.loc[have_close, "high"].notna().all()
+        and frame.loc[have_close, "low"].notna().all())
 
 
 def pending():
     done = set(json.load(open(PROGRESS))) if os.path.exists(PROGRESS) else set()
-    return [f for f in sorted(os.listdir(PANEL))
-            if f.startswith("binance_") and f.endswith(".csv") and f not in done]
+    waiting = []
+    for name in sorted(os.listdir(PANEL)):
+        if not (name.startswith("binance_") and name.endswith(".csv")):
+            continue
+        path = os.path.join(PANEL, name)
+        if name in done and column_complete(path):
+            continue
+        waiting.append(name)
+    # A name that just failed sits at the back, so the next cycle takes a
+    # different one. Without this, one 400 is the only name the walk ever sees.
+    order = json.load(open(DEFERRED)) if os.path.exists(DEFERRED) else []
+    front = [name for name in waiting if name not in order]
+    back = [name for name in order if name in waiting]
+    return front + back
 
 
-def backfill(name):
+def defer(name):
+    """Move a failing name to the back of the queue, remembered across cycles."""
+    order = json.load(open(DEFERRED)) if os.path.exists(DEFERRED) else []
+    order = [item for item in order if item != name]
+    order.append(name)
+    os.makedirs(os.path.dirname(DEFERRED), exist_ok=True)
+    json.dump(order, open(DEFERRED, "w"))
+    return order
+
+
+def klines(symbol, getter):
+    """Every daily bar, walking back a page at a time from the newest window."""
+    bars = {}
+    end = None
+    for _page in range(20):
+        url = ("https://fapi.binance.com/fapi/v1/klines?symbol="
+               + quote(symbol, safe="") + f"&interval=1d&limit={PAGE}")
+        if end is not None:
+            url += f"&endTime={end - 1}"
+        got = json.loads(getter(url, timeout=30))
+        if not isinstance(got, list) or not got:
+            break
+        for row in got:
+            bars[datetime.fromtimestamp(row[0] / 1000, timezone.utc).strftime("%Y-%m-%d")] = (
+                float(row[2]), float(row[3]))
+        oldest = min(row[0] for row in got)
+        if len(got) < PAGE or end == oldest:
+            break
+        end = oldest
+    return bars
+
+
+def backfill(name, getter=None):
     symbol = name.replace("binance_", "").replace(".csv", "")
-    url = ("https://fapi.binance.com/fapi/v1/klines?symbol=" + quote(symbol, safe="")
-           + "&interval=1d&limit=1500")
+    getter = getter or (lambda url, timeout=30: rate_budget.get(url, timeout=timeout))
     try:
-        got = json.loads(rate_budget.get(url, timeout=30))
+        bars = klines(symbol, getter)
     except Exception as exc:  # noqa: BLE001
         print(f"skip {symbol}: {exc}", flush=True)
         return 0
-    bars = {datetime.fromtimestamp(row[0] / 1000, timezone.utc).strftime("%Y-%m-%d"):
-            (float(row[2]), float(row[3])) for row in got}
     path = os.path.join(PANEL, name)
     frame = pd.read_csv(path)
     frame["high"] = frame["date"].map(lambda d: bars.get(d, (None, None))[0])
@@ -57,6 +122,13 @@ def cycle(ctx):
         return {"remaining": 0}
     name = left[0]
     filled = backfill(name)
+    path = os.path.join(PANEL, name)
+    if not column_complete(path):
+        # A 400, an empty body, or a short write is this name, not the queue.
+        # Leave it pending and take a different name next cycle.
+        defer(name)
+        return {"name": name, "filled": filled, "incomplete": 1,
+                "deferred": 1, "remaining": len(left)}
     done = set(json.load(open(PROGRESS))) if os.path.exists(PROGRESS) else set()
     done.add(name)
     json.dump(sorted(done), open(PROGRESS, "w"))
@@ -65,4 +137,4 @@ def cycle(ctx):
 
 if __name__ == "__main__":
     from daemon_base import run_loop
-    run_loop("high_low", interval_sec=2, cycle=cycle, align=False)
+    run_loop("high_low", interval_sec=120, cycle=cycle, align=False)

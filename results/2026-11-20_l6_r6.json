@@ -1,0 +1,50 @@
+{
+ "item": "R6",
+ "as_of": "2026-11-19",
+ "week_start": "2026-11-12",
+ "state": "risk_off_trend_down",
+ "state_changes": [
+  {
+   "date": "2026-11-12",
+   "from": "neutral",
+   "to": "risk_off_trend_down"
+  }
+ ],
+ "n_changes": 1,
+ "verdict": "recorded",
+ "reason": "the weekly note lists the state changes in the last seven days",
+ "provenance": {
+  "script": "scripts/score_l6_r5.py",
+  "script_blob": "af4a6582201cdaaef46b3c1ddb4cdaa891af6b7e",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_l6_r5.py"
+  ],
+  "commit": "10b67c00dcb0098f2c37c7379eaa6e31d8016254",
+  "written_at": "2026-11-20T23:04:49Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel.csv",
+    "kind": "file",
+    "bytes": 413218,
+    "mtime_ns": 1795153394081037963,
+    "sha256": "6fce531712aa74309690b8e84d3a187cf3c9c3a34c914246813a6a3e656d4e9b"
+   },
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "0ed23056d193da02d19d9e0c7f1b66f3fffc21c725415cbcb16564de6d09799f"
+ }
+}

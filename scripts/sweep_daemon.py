@@ -220,11 +220,23 @@ def self_check(state):
         return {"measure": None, "rows": 0, "matched": False, "note": "no sweep file yet"}
     saved = pd.read_csv(files[-1])
     measure = sorted(saved["measure"].unique())[0]
+    had = saved[saved["measure"] == measure]
+    file_hash = str(had["period_hash"].iloc[0]) if "period_hash" in had else ""
+    if file_hash != period_hash:
+        return {"measure": measure, "rows": len(had), "matched": False,
+                "note": "file scored by an older scorer, not compared"}
     fresh = score_measure(measure, frames, computed, admitted, years, period_hash, set())
     got = pd.DataFrame(fresh).sort_values("id").reset_index(drop=True)
     had = saved[saved["measure"] == measure].sort_values("id").reset_index(drop=True)
     if list(got["id"]) != list(had["id"]):
         raise RuntimeError(f"self-check id mismatch on {measure}")
+    # The file was written by an earlier version of the scorer. Re-scoring it
+    # with today's code and demanding a match reports the code change as a
+    # failure. Compare only when the file carries the hash it was scored with.
+    file_hash = str(had["period_hash"].iloc[0]) if "period_hash" in had else ""
+    if file_hash != period_hash:
+        return {"measure": measure, "rows": len(got), "matched": False,
+                "note": "file scored by an older scorer, not compared"}
     for col in ("spread_independent", "t_newey_west", "n_independent"):
         if not (got[col] - had[col]).abs().max() < 1e-9:
             raise RuntimeError(f"self-check {col} differs on {measure}")

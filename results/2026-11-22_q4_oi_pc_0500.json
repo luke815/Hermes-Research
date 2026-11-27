@@ -1,0 +1,48 @@
+{
+ "item": "Q4",
+ "today": "2026-11-22",
+ "slot": "05:00",
+ "read_at": "2026-11-22T05:13:00Z",
+ "oi_pc_ratio": {
+  "BTC": {
+   "files": 15,
+   "empty": 8,
+   "last_bar": "2023-03-23"
+  },
+  "ETH": {
+   "files": 13,
+   "empty": 7,
+   "last_bar": "2023-09-21"
+  }
+ },
+ "market_backfill_remaining": 1,
+ "market_backfill_cycles": 615,
+ "market_backfill_phase": "working",
+ "provenance": {
+  "script": "scripts/record_blocks_0500.py",
+  "script_blob": "3210b2eecfe28b9cebf711c95bcce2e75277b7c7",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "/opt/hermes/.venv/bin/python3",
+   "scripts/record_blocks_0500.py"
+  ],
+  "commit": "2dc3c0b04ace322fcceec5d6a5529f6fbbf070cf",
+  "written_at": "2026-11-22T05:13:00Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 320,
+    "bytes": 11570327,
+    "listing_sha256": "f25955605c2176b3a40de4a1e25854abf6d190f760a7adfa59fd245374851a55",
+    "content_sha256": "664aebb2183f711c40df36ccf6c822c99654838bc366b5ad54bf8ed189c85fea",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "a8f964190074b4a1cb6ce6bf97fc5714f2a9ad83d8b3bbfb50d1991b7bb073c0"
+ }
+}

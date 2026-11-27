@@ -1,0 +1,44 @@
+{
+ "item": "Q1",
+ "page_reads_q1": true,
+ "page_has_old_phrase": false,
+ "hosted_generated_at": "2026-11-21T05:41:02Z",
+ "local_generated_at": "2026-11-21T05:41:02Z",
+ "panel_end": "2026-11-20",
+ "q1_equal": true,
+ "q1_source": "2026-11-21_q1_lsr_drawdown.json",
+ "q1_windows": 9,
+ "q1_names": 3781,
+ "provenance": {
+  "script": "scripts/record_q1_page.py",
+  "script_blob": "776a4fc207724801f79e1f42956c9d41e93e6c8c",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/record_q1_page.py"
+  ],
+  "commit": "bdecc68da7815fd8d7fd886b9333c83bfc723a47",
+  "written_at": "2026-11-21T09:26:35Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "dashboard/data.json",
+    "kind": "file",
+    "bytes": 3100142,
+    "mtime_ns": 1795253021946947023,
+    "sha256": "5fd43f6410888de37ca762b8bc2503da9989b210d4add116cc4c7df8e53353b2"
+   },
+   {
+    "path": "results/2026-11-21_q1_lsr_drawdown.json",
+    "kind": "file",
+    "bytes": 6858,
+    "mtime_ns": 1795223696432928163,
+    "sha256": "03ccf93827106eadb94e47ed80a47a38dfddab05ac8ec063cf4b8f84387c8ec2"
+   }
+  ],
+  "payload_sha256": "b8bd4f156def275267f9a4c56cc5b402cb5b485a3f97f7988b28ad273809e47c"
+ }
+}

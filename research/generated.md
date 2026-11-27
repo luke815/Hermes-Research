@@ -95,3 +95,83 @@ The queue's next scoreable item is C8. Liquidations were rejected as a level aga
 
 19. c8_liquidation_cascade. Score 13 (prior 3, data 5, novelty 3, reach 2, cost 0).
 Hypothesis: a day whose liquidations are extreme relative to their own history is a forced unwind, and the days after it should differ from ordinary days at 1 to 5 days. The level of liquidations was rejected against the 10-day return, so this uses a flag and a shorter horizon. Rule: for each name in data/raw/coinalyze_liquidation-history.json, liquidations are the sum of the long and short fields, and the 3-day sum at day t uses only bars up to and including the prior bar. The flag fires when that sum exceeds the 95th percentile of its own trailing 90-day history, the window ending at the prior bar, with at least 30 days of history. Neighbours are the 90th and the 99th percentile. A missing side leaves the day out rather than treating it as zero. Assets: BTC alone, and the 20 names pooled, one row per name per day. Horizon: 1, 3 and 5 days. The forward return is the close at t+h over the close at t, minus one, net of the round trip. The panel has no USD open interest, so every row takes the thin tier, and the funding carry is subtracted where funding exists and left missing where it does not. Pass: the flagged-minus-unflagged spread keeps its sign in validation and in test, on BTC and on the pooled names, with a non-overlapping t-stat of at least 2 on the independent sample, and both neighbours keep the sign. Expected independent n: about 150 non-overlapping 5-day windows per period on BTC, fewer flagged. A cell under 30 independent observations is reported and not quoted.
+
+## Added 2026-11-20
+
+The queue's next scoreable item is C9, reopened because the prior file was written by hand and the carry was understated. Not scored in the line that writes it.
+
+20. c9_cross_sectional_momentum. Score 13 (prior 4, data 5, novelty 2, reach 2, cost 0).
+Hypothesis: 2 to 4 week cross-sectional momentum, long the winners and short the losers with a weekly rebalance, earns a positive spread net of per-leg costs and carry on the point-in-time universe, and that spread keeps its sign in validation and in test. The prior run filtered the ranking on the forward return and divided funding by 10,000, which understated the carry by about 100 times, so this run ranks on the lagged return only and divides funding by 100. Rule: the signal at day t is close[t-1] / close[t-1-lookback] - 1, lookbacks 14 and 28, so the bar being scored never enters the signal. The book rebalances every 7th date, long the top decile and short the bottom decile, equal weight, one row per coin, the file with the longer history when a coin is listed on more than one exchange, and only on names whose span covers that date. A name whose span has ended is absent. Horizons are 7, 14 and 28 days, and the forward return is close[t+horizon] / close[t] - 1. The stride equals the shortest horizon, so the reported sample does not overlap. Costs are the thin-tier round trip on each leg, because this panel has no USD open interest for the live names, and the result says so. Carry is the funding inside the holding window, the close divided by 100, signed by the side: a long pays positive funding and a short receives it. A name with no funding value is left out of both deciles, and a date whose known-carry decile falls below ten names is dropped and counted, never scored as a zero carry. Periods are train through 2024-06-30, validation from 2024-07-01 through 2025-12-31, and test from 2026-01-01. The t-stat is the mean spread over its standard error on the non-overlapping dates. Pass: every cell keeps its sign in validation and in test with at least 40 independent dates in each, and the non-overlapping t-stat reaches 2 in validation. A cell under 40 dates is insufficient, not rejected. Panel: data/panel_xs, which holds the stopped names. Expected independent n: about 70 weekly dates in validation and about 40 in test.
+
+## Added 2026-11-21
+The backlog had no item left without a verdict and no build item pending. These two are the strongest measures in results/sweeps/2026-11-19_xs_vec.csv, one cell per measure, after dropping the long/short ratio and the funding persistence family, both of which already have verdicts. Neither is scored in this run.
+
+21. xs_bb_pct_xs_rank_below_20_ret_10. Train t-stat -4.5369 on 102 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of bb_pct at this extreme precedes a lower forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is -0.016486.
+Rule: cell bb_pct|xs_rank|below|20|ret_10|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, names below 20,000,000 dollars of prior-bar open interest dropped, net of per-leg costs and carry. A missing carry drops the date. The feature is lagged one bar.
+Horizon: 10 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 102 on 234 names; the held-out halves are shorter.
+
+22. xs_bb_width_xs_rank_above_95_rel_1. Train t-stat 4.3692 on 1033 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of bb_width at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.005603.
+Rule: cell bb_width|xs_rank|above|95|rel_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, names below 20,000,000 dollars of prior-bar open interest dropped, net of per-leg costs and carry. A missing carry drops the date. The feature is lagged one bar.
+Horizon: 1 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 1033 on 234 names; the held-out halves are shorter.
+
+## Added 2026-11-22
+Every backlog item without a verdict is blocked, and no build item is pending. These two are the strongest measures left in results/sweeps/2026-11-19_xs_vec.csv, one cell per measure, after dropping the long/short ratio, the funding persistence family, and bb_pct and bb_width, which were scored on 2026-11-22. Neither is scored in this run.
+
+23. xs_td_setup_chg_3_above_80_ret_3. Train t-stat -4.0625 on 321 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of td_setup at this extreme precedes a lower forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is -0.004827.
+Rule: cell td_setup|chg_3|above|80|ret_3|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, names below 20,000,000 dollars of prior-bar open interest dropped, net of per-leg costs and carry. A missing carry drops the date. The feature is lagged one bar.
+Horizon: 3 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 321 on 234 names; the held-out halves are shorter.
+
+24. xs_roc_12_xs_rank_above_95_rel_1. Train t-stat 3.9351 on 1044 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of roc_12 at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.005273.
+Rule: cell roc_12|xs_rank|above|95|rel_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, names below 20,000,000 dollars of prior-bar open interest dropped, net of per-leg costs and carry. A missing carry drops the date. The feature is lagged one bar.
+Horizon: 1 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 1044 on 234 names; the held-out halves are shorter.
+
+## Added for the weekly round
+
+The weekly job tests up to three candidates. The backlog's next scoreable cells were already scored this morning (G21 to G24, all rejected or insufficient). These three are the strongest measures left in results/sweeps/2026-11-19_xs_vec.csv, one cell per measure, after dropping ls_ratio_level, funding persistence, bb_pct, bb_width, td_setup and roc_12, each of which already has a verdict. None is scored in this section.
+
+25. xs_ls_ratio_chg_7_xs_rank_above_90_rel_3. Train t-stat -3.7320 on 289 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of ls_ratio_chg_7 at this extreme precedes a lower forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is -0.005172.
+Rule: cell ls_ratio_chg_7|xs_rank|above|90|rel_3|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, the 234 names the train row was scored on, net of the thin-tier round trip. The feature is the 7-day change in the long/short ratio, ranked across names, lagged one bar. rel_3 equals ret_3 inside a same-day rank, because subtracting BTC's return from every name on one date cancels in the spread, and the spread scored is that one.
+Horizon: 3 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 289 on 234 names; the held-out halves are shorter.
+
+26. xs_basis_chg_7_xs_rank_below_10_rel_1. Train t-stat 3.5086 on 922 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of basis_chg_7 at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.003395.
+Rule: cell basis_chg_7|xs_rank|below|10|rel_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, the 234 names the train row was scored on, net of the thin-tier round trip. The feature is the 7-day change in basis, ranked across names, lagged one bar. rel_1 equals ret_1 inside a same-day rank, and the spread scored is that one.
+Horizon: 1 day, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 922 on 234 names; the held-out halves are shorter.
+
+27. xs_wma_20_chg_3_above_95_ret_1. Train t-stat 3.6222 on 1034 independent dates, read from results/sweeps/2026-11-19_xs_vec.csv.
+Hypothesis: the cross-sectional reading of wma_20 at this extreme precedes a higher forward return on the point-in-time universe, and the edge keeps its sign out of sample. The train spread is 0.004991.
+Rule: cell wma_20|chg_3|above|95|ret_1|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, one row per coin, the 234 names the train row was scored on, net of the thin-tier round trip. The feature is the 3-day change in the 20-day weighted moving average, lagged one bar.
+Horizon: 1 day, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected. Expected independent n: the train count is 1034 on 234 names; the held-out halves are shorter.
+
+## Next ten, drafted for the queue
+
+The weekly round scored items 25 to 27 and rejected all three. These eight are the strongest measures left in results/sweeps/2026-11-19_xs_vec.csv, one cell per measure, after dropping every measure that already has a verdict. None is scored here. The train figures are read from that file and are the reason the cell was queued, not a result.
+
+28. xs_obv_xs_rank_below_10_ret_10. Train t-stat -3.5093 on 54 independent dates.
+Rule: cell obv|xs_rank|below|10|ret_10|pit_cross_section|none|daily, scored on data/panel_xs_laevitas, the 234 names the train row was scored on, net of the thin-tier round trip, feature lagged one bar. Horizon 10 days, non-overlapping. Pass: the spread keeps its sign in validation and in test, the non-overlapping t-stat reaches 2 in both, and each holds at least 40 independent dates. Below 40 is insufficient. A sign flip is rejected.
+
+29. xs_ema_21_chg_3_above_95_ret_1. Train t-stat 3.3735 on 1033 independent dates.
+Rule: cell ema_21|chg_3|above|95|ret_1|pit_cross_section|none|daily. A percent change is cut at that date's cross-sectional percentile, as the sweep cuts it. Otherwise the same panel, cost and lag as item 28. Horizon 1 day. Same pass rule.
+
+30. xs_mayer_multiple_z_30_above_90_rel_1. Train t-stat 3.3296 on 698 independent dates.
+Rule: cell mayer_multiple|z_30|above|90|rel_1|pit_cross_section|none|daily. A z-score is cut at the normal quantile of the percentile, as the sweep cuts it. rel_1 equals ret_1 inside a same-day rank. Horizon 1 day. Same pass rule.
+
+31. xs_sma_20_chg_3_above_95_rel_1. Train t-stat 3.2467 on 1034 independent dates.
+Rule: cell sma_20|chg_3|above|95|rel_1|pit_cross_section|none|daily. Same cut, panel, cost and lag as item 29. Horizon 1 day. Same pass rule.
+
+32. xs_force_13_z_30_below_20_rel_1. Train t-stat -3.2076 on 825 independent dates.
+Rule: cell force_13|z_30|below|20|rel_1|pit_cross_section|none|daily. Same cut as item 30. Horizon 1 day. Same pass rule.
+
+33. xs_ema_50_raw_below_10_ret_1. Train t-stat 3.0356 on 1007 independent dates.
+Rule: cell ema_50|raw|below|10|ret_1|pit_cross_section|none|daily. A raw level is cut at that date's cross-sectional percentile. Horizon 1 day. Same pass rule.
+
+34. xs_sma_50_raw_below_10_ret_1. Train t-stat 3.0187 on 1007 independent dates.
+Rule: cell sma_50|raw|below|10|ret_1|pit_cross_section|none|daily. Same cut, panel, cost and lag as item 33. Horizon 1 day. Same pass rule.
+
+35. xs_oi_on_down_days_pct_252_below_10_rel_1. Train t-stat 3.0129 on 893 independent dates.
+Rule: cell oi_on_down_days|pct_252|below|10|rel_1|pit_cross_section|none|daily. The percentile is the measure's own trailing rank, lagged one bar. Horizon 1 day. Same pass rule.

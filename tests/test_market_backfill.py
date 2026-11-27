@@ -67,6 +67,18 @@ class Resume(unittest.TestCase):
         again = backfill.pending_page("2020-09-26")
         self.assertNotEqual((again[0], again[1]), ("oi_pc_ratio", "BTC"))
 
+    def test_derivs_summary_walks_the_five_alts(self):
+        listed = {(name, currency) for name, currency, _route, _first in backfill.SERIES}
+        for currency in ("ADA", "SOL", "LINK", "XRP", "AVAX"):
+            self.assertIn(("derivs_summary", currency), listed)
+        today = "2021-03-27"
+        pending = [
+            (name, currency)
+            for name, currency, _route, start, _end in backfill.jobs(today)
+            if not os.path.exists(backfill.path_for(name, currency, start))
+        ]
+        self.assertIn(("derivs_summary", "ADA"), pending)
+
 
 if __name__ == "__main__":
     unittest.main()

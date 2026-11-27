@@ -1,0 +1,43 @@
+{
+ "item": "Q4",
+ "btc": {
+  "files": 15,
+  "nonempty": 7,
+  "empty": 8,
+  "last_bar": "2023-03-23"
+ },
+ "eth": {
+  "files": 13,
+  "nonempty": 6,
+  "empty": 7,
+  "last_bar": "2023-09-21"
+ },
+ "after_2025_06": false,
+ "provenance": {
+  "script": "scripts/q4_oi_pc.py",
+  "script_blob": "b9525e92e1abfd5baa49f140ed43781203a1b4f6",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/q4_oi_pc.py"
+  ],
+  "commit": "d11b440f140f718b660c3e36bb9670d994ea382b",
+  "written_at": "2026-11-21T04:42:51Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/laevitas/market",
+    "kind": "dir",
+    "files": 260,
+    "bytes": 7502955,
+    "listing_sha256": "356a0c645439dbf0ddf8072dbdf6548593f169e1b10d8e7f97d106e4385f887e",
+    "content_sha256": "e6be70b95634bb3c376ae724389ecb6c97d83a125dfa161f16697da081a84cc1",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "0dd7ae9e1d82b9385f92da7f4d45aef11b7f22583c8ed3b3627781f740e4a6d7"
+ }
+}

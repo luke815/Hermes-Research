@@ -1,0 +1,87 @@
+{
+ "item": "X1",
+ "status_line": "cells scored 52064 of 811960 testable since 2026-10-31, from results/sweeps/counter.json, names 234, cells per hour 0",
+ "panel_files": 5538,
+ "sweep": {
+  "pid": 607,
+  "version": "f757640",
+  "phase": "idle",
+  "cycles": 6,
+  "names": 234,
+  "remaining": 0,
+  "ts": "2026-11-20T23:01:47Z"
+ },
+ "cells_per_hour_above_5000": false,
+ "work_list": 166440,
+ "scored_on_234": 13392,
+ "open_emittable": 19872,
+ "open_market_level": 4752,
+ "open_needs_range": 15120,
+ "laevitas_range": {
+  "files": 5538,
+  "checked": 400,
+  "with_high_low": 0
+ },
+ "old_panel_range": {
+  "files": 2568,
+  "checked": 2568,
+  "with_high_low": 919
+ },
+ "provenance": {
+  "script": "scripts/x1_status.py",
+  "script_blob": "ba6915254e5d0ac622e98b954e7560343d26a04a",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/x1_status.py"
+  ],
+  "commit": "74829a77c7782612832b1c3b50685b97d9a41f19",
+  "written_at": "2026-11-20T23:01:50Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "ops/sweep_status",
+    "kind": "file",
+    "bytes": 118,
+    "mtime_ns": 1795215707136779982,
+    "sha256": "f3d705100574097749e28437463f6944d0bd6be8965d1889dbe2f3e0f477501d"
+   },
+   {
+    "path": "ops/sweep_xs_heartbeat",
+    "kind": "file",
+    "bytes": 405,
+    "mtime_ns": 1795215707248779979,
+    "sha256": "941b40009cb439aa5fd97c9060664d3c5906d064140803f633c6c980b43e9b5c"
+   },
+   {
+    "path": "results/sweeps/cross_section_cells.json",
+    "kind": "file",
+    "bytes": 12176530,
+    "mtime_ns": 1794931524539415249,
+    "sha256": "a2f8997883abf49ba7395606819e488c3ab1a8bab182896f8e054913d52a8a1c"
+   },
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 194597289,
+    "listing_sha256": "ad863b60cf8342ce8211eb497a980863426b0d7b4ab9b7e58817cc31657d210c",
+    "content_sha256": "d7f465f79fb6ff41426bf084d43121ac558489957758aad97599733609612f17",
+    "content_partial": false
+   },
+   {
+    "path": "data/panel_xs",
+    "kind": "dir",
+    "files": 2568,
+    "bytes": 56826776,
+    "listing_sha256": "a70596a82812a3aac4048f58dcbd3f501a246a03585c1a16541434811985c468",
+    "content_sha256": "add0caf97696768e386cd969b74e32417af8600c4ff310eff52e0a04c48b23b7",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "3de75b2a348186dcc229011b519c1610d339c7e2dfd9000e378ffb43f84ff900"
+ }
+}

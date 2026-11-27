@@ -35,11 +35,12 @@ class PullOrder(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def test_a_fully_paged_file_from_yesterday_is_pending_today(self):
-        """Every page fetched does not make a file current once its last bar ages."""
+    def test_a_fully_paged_file_older_than_the_lag_is_pending_today(self):
+        """Every page fetched does not make a file current once its last bar ages past the vendor lag."""
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        yesterday = datetime.fromordinal(datetime.now(timezone.utc).date().toordinal() - 1)
-        older = datetime.fromordinal(yesterday.toordinal() - 1).strftime("%Y-%m-%d")
+        older = datetime.fromordinal(
+            datetime.now(timezone.utc).date().toordinal() - (pull.VENDOR_LAG_DAYS + 1)
+        ).strftime("%Y-%m-%d")
         json.dump({
             "meta": {"total_pages": 1, "total": 1},
             "pages_fetched": 1,
@@ -49,6 +50,37 @@ class PullOrder(unittest.TestCase):
             os.path.join(self.perp, "BINANCE_BTCUSDT.json"))), today))
         left = pull.pending()
         self.assertEqual(left[0]["instrument"], "BTCUSDT")
+
+    def test_a_bar_two_days_behind_is_current_and_an_older_one_is_not(self):
+        """The vendor's newest bar lags the calendar by two days.
+
+        Demanding yesterday refetches that name every cycle and the family
+        behind it never starts. A bar older than the lag is still pending.
+        """
+        today = datetime.now(timezone.utc).date()
+        lagged = datetime.fromordinal(today.toordinal() - pull.VENDOR_LAG_DAYS)
+        older = datetime.fromordinal(lagged.toordinal() - 1)
+        body = {"meta": {"total_pages": 1, "total": 1}, "pages_fetched": 1,
+                "items": [{"date": _day_ms(lagged.strftime("%Y-%m-%d"))}]}
+        self.assertTrue(pull.body_complete(body, today.strftime("%Y-%m-%d")))
+        body["items"] = [{"date": _day_ms(older.strftime("%Y-%m-%d"))}]
+        self.assertFalse(pull.body_complete(body, today.strftime("%Y-%m-%d")))
+
+    def test_a_refetch_that_reaches_no_later_bar_closes_the_name(self):
+        """A dead name refetched to the same last bar is done for the day.
+
+        Refetching it again keeps the family behind it from ever starting.
+        A refetch that returns no bars does not close a file that had some.
+        """
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        saved = {"items": [{"date": _day_ms("2026-11-17")}]}
+        self.assertTrue(pull.same_end(saved, {"items": [{"date": _day_ms("2026-11-17")}]}))
+        self.assertFalse(pull.same_end(saved, {"items": [{"date": _day_ms("2026-11-18")}]}))
+        self.assertFalse(pull.same_end(saved, {"items": []}))
+        marked = {"items": [{"date": _day_ms("2026-11-17")}], "checked_on": today}
+        self.assertTrue(pull.body_complete(marked, today))
+        self.assertFalse(pull.body_complete(
+            {"items": [{"date": _day_ms("2026-11-17")}], "checked_on": "2026-11-20"}, today))
 
     def test_a_400_recorded_8_days_ago_is_pending_again(self):
         """A 400 is done for 7 days, then the name is fetched again."""

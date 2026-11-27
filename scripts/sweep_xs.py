@@ -20,6 +20,7 @@ Usage: python3 scripts/sweep_xs.py
 
 import hashlib
 import json
+import csv
 import os
 import sys
 import time
@@ -60,14 +61,48 @@ THRESHOLDS = (80, 90, 95, 20, 10, 5)
 COST_BPS = 15  # the thin tier: 5 bps fee plus 10 bps slippage, each way
 
 
-def scorable_measures():
+RANGE_INPUTS = {"high", "low"}
+BASE_INPUTS = {"close", "volume", "funding", "oi", "basis", "long_short_ratio"}
+
+
+def panel_inputs(panel):
+    """Inputs present on at least one name the sweep is about to score.
+
+    A column that exists as a header with no values is not an input. High and
+    low are admitted only when a name carries both, so a range measure is
+    scored once the backfill has reached the panel and skipped before that.
+    """
+    found = set()
+    for frame in panel.values():
+        columns = set(frame.columns)
+        if "volume_usd" in columns or "volume_base" in columns:
+            found.add("volume")
+        if "funding_rate" in columns:
+            found.add("funding")
+        if "oi_usd" in columns:
+            found.add("oi")
+        if "basis" in columns:
+            found.add("basis")
+        if "long_short_ratio" in columns:
+            found.add("long_short_ratio")
+        if "close" in columns and frame["close"].notna().any():
+            found.add("close")
+        if {"high", "low"} <= columns and frame["high"].notna().any() and frame["low"].notna().any():
+            found.update(RANGE_INPUTS)
+    return found
+
+
+def scorable_measures(available=None):
     """Measures whose inputs the panel carries for at least one name.
 
-    High and low are not stored, so the measures that need them are skipped and
-    counted, not filled with a proxy.
+    High and low used to be treated as absent, so every range measure was
+    skipped even after the files carried them. They are admitted when the
+    panel being scored has a value, and skipped when it does not. A missing
+    input is never filled with a proxy.
     """
-    available = {"close", "volume", "funding", "oi", "basis", "long_short_ratio"}
-    return [name for name, meta in META.items() if set(meta[1]) <= available]
+    if available is None:
+        available = set(BASE_INPUTS)
+    return [name for name, meta in META.items() if set(meta[1]) <= set(available)]
 
 
 def load_train():
@@ -211,13 +246,14 @@ def pending_measures(work, done, known):
 def load_panel(names_kept):
     """Every column the panel has, for the names that pass the history bar.
 
-    High and low are not stored, so a measure that needs them is absent rather
-    than filled. A name is absent on a date it has no value. Volume is stored
-    as quote units for most names and as base units for the stopped Binance
-    names; either one is volume, and a name that has both keeps the quote one.
+    A measure that needs a column the file does not have is absent rather than
+    filled. High and low are read when the file carries them and absent when it
+    does not. A name is absent on a date it has no value. Volume is stored as
+    quote units for most names and as base units for the stopped Binance names;
+    either one is volume, and a name that has both keeps the quote one.
     """
     wanted = ["date", "close", "volume_usd", "volume_base", "funding_rate", "oi_usd",
-              "basis", "long_short_ratio"]
+              "basis", "long_short_ratio", "high", "low"]
     frames = {}
     for name in names_kept:
         path = os.path.join(PANEL, name + ".csv")
@@ -271,12 +307,16 @@ def indicator_cache(panel, index, digest):
     so a universe change recomputes instead of loading the wider one.
     """
     names = hashlib.sha256("\n".join(sorted(panel)).encode()).hexdigest()[:12]
-    path = os.path.join(CACHE, f"indicators_{digest}_{names}_v3.csv")
+    available = panel_inputs(panel)
+    # The suffix changes when the admitted inputs change, so a cache written
+    # before high and low existed is not reused once they do.
+    tag = "r" if RANGE_INPUTS <= available else "b"
+    path = os.path.join(CACHE, f"indicators_{digest}_{names}_v4{tag}.csv")
     if os.path.exists(path):
         wide = pd.read_csv(path, header=[0, 1], index_col=0)
         return {m: wide[m].set_axis(index) for m in wide.columns.get_level_values(0).unique()}
     from regime_tester.indicators import indicators
-    wanted = scorable_measures()
+    wanted = scorable_measures(available)
     per_measure = {name: {} for name in wanted}
     for token, frame in panel.items():
         built = frame.rename(columns={"volume_usd": "volume", "funding_rate": "funding",
@@ -450,6 +490,14 @@ def append_rows(rows, already=None):
         other = set(prior.loc[prior["id"].isin(known - set(already or [])), "id"])
         kept = prior[~prior["id"].isin(other)]
         fresh = pd.concat([kept, fresh[~fresh["id"].isin(set(kept["id"]))]], ignore_index=True)
+    # Stamp the rows this call is adding. Rows already on disk keep the stamp
+    # they were written with, so a rewrite of the file does not make yesterday's
+    # cells look like this hour's work.
+    fresh = fresh.copy()
+    if "written_at" not in fresh.columns:
+        fresh["written_at"] = pd.NA
+    added = ~fresh["id"].isin(set(already or []))
+    fresh.loc[added, "written_at"] = time.time()
     tmp = path + ".tmp"
     fresh.to_csv(tmp, index=False)
     os.replace(tmp, path)
@@ -486,22 +534,32 @@ def panel_spans(columns):
     return {column: spans[column] for column in columns if column in spans}
 
 
-def cells_this_hour():
-    """Cells written to this sweep's files in the last hour, from file mtimes.
+def cells_this_hour(now=None):
+    """Cells written to this sweep's files in the last hour, from row stamps.
 
     Counting from the process's own memory reads zero after every restart, so
-    the rate is read from the files instead.
+    the rate is read from the files instead. The file's own mtime is the wrong
+    clock: a file last touched yesterday still holds rows written in the last
+    hour, and counting every row of a file touched today counts yesterday's
+    work as this hour's. Each row is stamped when it is written, and only rows
+    whose stamp is inside the window count.
     """
-    cutoff = time.time() - 3600
+    cutoff = (now if now is not None else time.time()) - 3600
     total = 0
     for name in os.listdir(OUT):
         if not name.endswith("_xs_vec.csv"):
             continue
-        path = os.path.join(OUT, name)
-        if os.path.getmtime(path) < cutoff:
-            continue
-        with open(path) as handle:
-            total += max(sum(1 for _ in handle) - 1, 0)
+        with open(os.path.join(OUT, name)) as handle:
+            reader = csv.DictReader(handle)
+            if "written_at" not in (reader.fieldnames or []):
+                continue
+            for row in reader:
+                try:
+                    stamped = float(row["written_at"])
+                except (TypeError, ValueError):
+                    continue
+                if stamped >= cutoff:
+                    total += 1
     return total
 
 

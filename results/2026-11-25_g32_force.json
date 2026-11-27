@@ -1,0 +1,75 @@
+{
+ "item": "G32",
+ "cell": "force_13|z_30|below|20|rel_1|pit_cross_section|none|daily",
+ "prereg_commit": "c555753269f8b63a0059eb6c49ccd4182c2e46b4",
+ "prereg": "research/generated.md item 32",
+ "names": 234,
+ "panel_end": "2026-11-20",
+ "horizon": 1,
+ "cost_note": "thin-tier round trip of 30 bps, no funding carry, matching scripts/sweep_xs.py net_returns; the panel has no USD open interest",
+ "train_sign": -1,
+ "verdict": "rejected",
+ "reason": "a held-out non-overlapping t-stat does not reach 2",
+ "lookahead_holds": true,
+ "lookahead_name": "binance_1000FLOKIUSDT",
+ "periods": {
+  "train": {
+   "spread_independent": -0.0021731317077237785,
+   "n_independent": 826,
+   "t": -3.2405489608677,
+   "n_overlap": 826
+  },
+  "validation": {
+   "spread_independent": -0.0020893426815859623,
+   "n_independent": 462,
+   "t": -2.0500994911024386,
+   "n_overlap": 462
+  },
+  "test": {
+   "spread_independent": -0.0020371259446768466,
+   "n_independent": 271,
+   "t": -1.7977156523035225,
+   "n_overlap": 271
+  }
+ },
+ "provenance": {
+  "script": "scripts/score_g32.py",
+  "script_blob": "442f139ff668256b3b29fed0b99c092ba429f539",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [],
+  "orig_argv": [
+   "python3",
+   "scripts/score_g32.py"
+  ],
+  "commit": "2086086a720d9c28001c495d21bdd7f7eea5b8df",
+  "written_at": "2026-11-25T09:17:09Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_cache/indicators_91ee884150ff50aa_4953200eab4e_v3.csv",
+    "kind": "file",
+    "bytes": 80624562,
+    "mtime_ns": 1795167733198699920
+   },
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 195559713,
+    "listing_sha256": "6b1e83b42c8ff75671d546aebdf7a3693e1a5c4d91a019d93d805423aa638d0b",
+    "content_sha256": "aed277784735db57653d2d2c79818bd504c25fbe7f08aca0e3b9f24d5f7ca7f0",
+    "content_partial": false
+   },
+   {
+    "path": "research/generated.md",
+    "kind": "file",
+    "bytes": 31982,
+    "mtime_ns": 1795365837361823083,
+    "sha256": "c000649ad09cc09e9f9caaed0393bc8a5d2d1e836f64226b9afd93899144855d"
+   }
+  ],
+  "payload_sha256": "0a8b3a35f264a3fc9fe17b2f40d012e0ebdbaa123a58be25455e37b1905e9b76"
+ }
+}

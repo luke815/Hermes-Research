@@ -1,0 +1,89 @@
+{
+ "swap": {
+  "src": "data/panel_xs_laevitas_fixed4",
+  "dst": "data/panel_xs_laevitas",
+  "kept_previous_as": "data/panel_xs_laevitas.prev-20261121T210441Z",
+  "reason": "A7: 51 files rebuilt; a price field that jumps 50x while the index holds takes the index, 4 files shrink by dropped blank fields"
+ },
+ "diff": {
+  "removed": [],
+  "added": [],
+  "shrunk": [
+   "dydx_VVV-USD.csv",
+   "hyperliquid_kBONK-USD.csv",
+   "hyperliquid_kFLOKI-USD.csv",
+   "hyperliquid_kLUNC-USD.csv"
+  ],
+  "rewritten": [
+   "bitfinex_tAPEF0:USTF0.csv",
+   "dydx_VVV-USD.csv",
+   "hyperliquid_kBONK-USD.csv",
+   "hyperliquid_kFLOKI-USD.csv",
+   "hyperliquid_kLUNC-USD.csv",
+   "hyperliquid_kSHIB-USD.csv"
+  ],
+  "before_files": 5538,
+  "after_files": 5538
+ },
+ "diff_counts": {
+  "removed": 0,
+  "added": 0,
+  "shrunk": 4,
+  "rewritten": 6
+ },
+ "provenance": {
+  "script": "scripts/data_guard.py",
+  "script_blob": "768f1ae488251c42173f988f592edce1ca2f5a57",
+  "script_tracked": true,
+  "script_dirty": false,
+  "argv": [
+   "swap",
+   "--src",
+   "data/panel_xs_laevitas_fixed4",
+   "--dst",
+   "data/panel_xs_laevitas",
+   "--allow-shrunk",
+   "4",
+   "--reason",
+   "A7: 51 files rebuilt; a price field that jumps 50x while the index holds takes the index, 4 files shrink by dropped blank fields"
+  ],
+  "orig_argv": [
+   "python3",
+   "scripts/data_guard.py",
+   "swap",
+   "--src",
+   "data/panel_xs_laevitas_fixed4",
+   "--dst",
+   "data/panel_xs_laevitas",
+   "--allow-shrunk",
+   "4",
+   "--reason",
+   "A7: 51 files rebuilt; a price field that jumps 50x while the index holds takes the index, 4 files shrink by dropped blank fields"
+  ],
+  "commit": "a284fbf6184b4cd88b092edf7ea5e63c357db40d",
+  "written_at": "2026-11-21T21:04:41Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/panel_xs_laevitas",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 195441301,
+    "listing_sha256": "e20546bede5d8ed9f847d2c5ccbb9499c79895700e9861d8ef1c98cea866fdeb",
+    "content_sha256": "74157a5eb03c2bbfc63d0dc6fe069d3d53601064660edb989f437053ba5565a7",
+    "content_partial": false
+   },
+   {
+    "path": "data/panel_xs_laevitas.prev-20261121T210441Z",
+    "kind": "dir",
+    "files": 5538,
+    "bytes": 195417443,
+    "listing_sha256": "f83a1d6c064e02f657ada3f1863334a0f14f377670c764b0a7c3451995227dfd",
+    "content_sha256": "0e3394f878846f5153dc221f78060b4dc55d66d7fe2ff5a8ee6b5fc2006280a7",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "e388943c4bb5ad02450b309581a5142585de1e0dfeee3d02bd46adc6308d39f2"
+ }
+}

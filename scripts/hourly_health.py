@@ -133,9 +133,7 @@ def stall_check() -> str:
     for line in backlog.splitlines():
         if not re.match(r"^- [A-Z]{1,3}\d{1,3}[a-z]?\. ", line):
             continue
-        lowered = line.lower()
-        closed = any(word in lowered for word in
-                     ("done 20", "rejected", "insufficient", "verdict 20", "admitted"))
+        closed = bool(re.search(r"\b(Done|Rejected|Insufficient|Admitted|Archived) \d{4}-\d{2}-\d{2}\b", line))
         if closed:
             continue
         top = line

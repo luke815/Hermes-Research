@@ -1,0 +1,294 @@
+{
+ "item": "A7",
+ "today": "2026-11-21",
+ "store": "data/laevitas/perpetuals",
+ "files": 5185,
+ "files_without_index": 126,
+ "files_with_price_jump": 51,
+ "jump_days": 255,
+ "jump": 50,
+ "affected": [
+  {
+   "file": "BINANCE_1000000MOGUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000BONKUSDC.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000BONKUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000CATUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000CHEEMSUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000FLOKIUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000LUNCUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000PEPEUSDC.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000PEPEUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000RATSUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000SATSUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000SHIBUSDC.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000SHIBUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1000XECUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BINANCE_1MBABYDOGEUSDT.json",
+   "jumps": 7,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BITFINEX_tAPEF0:USTF0.json",
+   "jumps": 2,
+   "first": "2026-06-30"
+  },
+  {
+   "file": "BITFINEX_tENAF0:USTF0.json",
+   "jumps": 4,
+   "first": "2026-05-30"
+  },
+  {
+   "file": "BITFINEX_tGALAF0:USTF0.json",
+   "jumps": 6,
+   "first": "2026-05-24"
+  },
+  {
+   "file": "BITFINEX_tHBARF0:USTF0.json",
+   "jumps": 4,
+   "first": "2026-05-30"
+  },
+  {
+   "file": "BITFINEX_tJASMYF0:USTF0.json",
+   "jumps": 4,
+   "first": "2026-05-30"
+  },
+  {
+   "file": "BITFINEX_tSANDF0:USTF0.json",
+   "jumps": 4,
+   "first": "2026-05-30"
+  },
+  {
+   "file": "BITFINEX_tSEIF0:USTF0.json",
+   "jumps": 4,
+   "first": "2026-05-30"
+  },
+  {
+   "file": "BYBIT_1000000BABYDOGEUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000000MOGUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_10000SATSUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000BONKPERP.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000BONKUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000BTTUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000CATUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000FLOKIUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000LUNCUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000NEIROCTOPERP.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000NEIROCTOUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000PEPEPERP.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000PEPEUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000RATSUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000TAGUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000TOSHIUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000TURBOUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_1000XECUSDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_SHIB1000PERP.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "BYBIT_SHIB1000USDT.json",
+   "jumps": 5,
+   "first": "2026-01-13"
+  },
+  {
+   "file": "DERIBIT_1000PEPE_USDC-PERPETUAL.json",
+   "jumps": 1,
+   "first": "2026-09-12"
+  },
+  {
+   "file": "DERIBIT_1000SHIB_USDC-PERPETUAL.json",
+   "jumps": 1,
+   "first": "2026-09-12"
+  },
+  {
+   "file": "DYDX_VVV-USD.json",
+   "jumps": 2,
+   "first": "2025-11-15"
+  },
+  {
+   "file": "HYPERLIQUID_kBONK-USD.json",
+   "jumps": 3,
+   "first": "2026-03-25"
+  },
+  {
+   "file": "HYPERLIQUID_kFLOKI-USD.json",
+   "jumps": 3,
+   "first": "2026-03-25"
+  },
+  {
+   "file": "HYPERLIQUID_kLUNC-USD.json",
+   "jumps": 3,
+   "first": "2026-03-25"
+  },
+  {
+   "file": "HYPERLIQUID_kNEIRO-USD.json",
+   "jumps": 3,
+   "first": "2026-03-25"
+  },
+  {
+   "file": "HYPERLIQUID_kPEPE-USD.json",
+   "jumps": 3,
+   "first": "2026-03-25"
+  },
+  {
+   "file": "HYPERLIQUID_kSHIB-USD.json",
+   "jumps": 3,
+   "first": "2026-03-25"
+  }
+ ],
+ "provenance": {
+  "script": "scripts/count_price_jumps.py",
+  "script_blob": "ba7f466fcc51aa3c4ce59a1e4c9af06db3a71c13",
+  "script_tracked": false,
+  "script_dirty": true,
+  "argv": [],
+  "orig_argv": [
+   "/opt/hermes/.venv/bin/python3",
+   "scripts/count_price_jumps.py"
+  ],
+  "commit": "a284fbf6184b4cd88b092edf7ea5e63c357db40d",
+  "written_at": "2026-11-21T21:03:09Z",
+  "host": "83d1e6df706928",
+  "python": "3.14.9",
+  "inputs": [
+   {
+    "path": "data/laevitas/perpetuals",
+    "kind": "dir",
+    "files": 5185,
+    "bytes": 976102796,
+    "listing_sha256": "50cb36165609f9333c6b8695bd9291e45579ff6903d96b5fa47bc263c1bd4d9f",
+    "content_sha256": "4c86f3566373a5b03ab4deec155db1a23ca6682a279c931f3617c3cce02c2e4b",
+    "content_partial": false
+   }
+  ],
+  "payload_sha256": "d684af918e7a29c66b3e314539453ff1dfaa9b3cd903bd7eaed0175e76485c43"
+ }
+}

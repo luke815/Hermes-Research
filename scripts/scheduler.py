@@ -46,7 +46,8 @@ JOBS = [
     {"name": "laevitas_snapshot", "at": "06:30", "script": "scripts/laevitas_snapshot.py", "timeout": 2400},
     {"name": "derivatives_key", "at": "06:40", "script": "scripts/build_derivatives_key.py"},
     {"name": "heat_stats", "at": "06:45", "script": "scripts/build_heat_stats.py"},
-    {"name": "macro_pull", "at": "06:50", "script": "scripts/macro_pull.py", "timeout": 600},  # free flow/macro series into series.macro_* (OBJECTIVE P1)
+    {"name": "risk_state", "at": "06:50", "script": "scripts/score_r2.py"},
+    {"name": "macro_pull", "at": "06:51", "script": "scripts/macro_pull.py", "timeout": 600},
     {"name": "intraday_backfill", "at": ":15", "script": "scripts/backfill_intraday.py", "timeout": 900},
     {"name": "health", "at": ":05", "script": None},
 ]
@@ -141,11 +142,24 @@ def failed_jobs(now):
 
 
 def sweep_status():
-    """Mirror the shared counter into the status line, so both cite one file."""
+    """Mirror the shared counter into the status line, so both cite one file.
+
+    The sweep appends its name count and hourly rate to the same line. Replacing
+    the whole line drops both, and the rate the clause reads then disappears
+    between sweep cycles. Keep the suffix the sweep wrote.
+    """
     if not os.path.exists(COUNTER):
         return {"wrote": False}
     payload = json.load(open(COUNTER))
-    line = status_text(payload) + "\n"
+    base = status_text(payload)
+    suffix = ""
+    if os.path.exists(STATUS):
+        current = open(STATUS).read().strip()
+        cuts = [current.find(marker) for marker in (", names ", ", cells per hour ")]
+        cuts = [at for at in cuts if at != -1]
+        if cuts:
+            suffix = current[min(cuts):]
+    line = base + suffix + "\n"
     tmp = STATUS + ".tmp"
     open(tmp, "w").write(line)
     os.replace(tmp, STATUS)

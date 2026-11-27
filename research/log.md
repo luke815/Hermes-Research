@@ -1218,3 +1218,74 @@ Panel rows before the rebuild: 2492, ending 2026-11-16. After: 2493, ending 2026
 Pre-registered in research/generated.md before scoring. The 3-day sum of long plus short liquidations, lagged one bar, above its own trailing 90-day 95th percentile, also lagged, with at least 30 days of history. Neighbours at the 90th and the 99th. Scored on the 20 names in data/raw/coinalyze_liquidation-history.json, joined to Binance prices and to Laevitas funding, which covers 1,495 of 1,504 BTC days. A missing carry leaves the net missing. Every name clears the liquid open-interest tier on the days it has one.
 
 Verdict: rejected. On the pooled names at 1 day the spread is 0.000007 in train (245 dates), 0.002381 in validation (251 dates, t 1.0077) and -0.000159 in test (125 dates, t -0.0461). At 3 days it is 0.003137, 0.010129 and -0.003323. At 5 days it is 0.007444, 0.016070 and -0.006493, and the validation t of 2.4086 on 50 independent dates does not survive the test period. BTC at 1 day is 0.004941, 0.004817 and -0.000493, with 51, 33 and 24 flagged days. The one cell that keeps its sign is BTC at 5 days, and its test rests on 2 independent flagged days, below 30, so it is not quoted. The 90th percentile neighbour flips the same way. The year split shows 2024 carrying the positive years and 2026 negative. The score is unchanged. results/2026-11-18_c8_cascade.json.
+
+## 2026-11-19 daily refresh row count
+
+Panel rows before the rebuild: 2493, ending 2026-11-17. After: 2494, ending 2026-11-18. Change +1. Date added: 2026-11-18. Dates removed: none. The loader drops a day missing price or funding; 2026-11-18 had both. No source failed this run. verify_panel.py PASS, panel_end 2026-11-18, age 1d. results/2026-11-19_regime-daily-refresh.json.
+
+## 2026-11-20 daily refresh row count
+
+Panel rows before the rebuild: 2494, ending 2026-11-18. After: 2495, ending 2026-11-19. Change +1. Date added: 2026-11-19. Dates removed: none. The loader drops a day missing price or funding; 2026-11-19 had both. No source failed this run. verify_panel.py PASS, panel_end 2026-11-19, age 1d. results/2026-11-20_regime-daily-refresh.json.
+
+## 2026-11-20, pre-registered before any computation: A7(2) and A7(4)
+
+Candidate: a7_rest. Hypothesis and rule: research/outside/PREREG_A7.md, committed as 2e19fd4914e122b23e733c3cc2122481bff0166a before this scoring. A7(1) was not scored: its panel has a bad close and a research run does not rewrite it. A7(3) was not scored: data/laevitas/market has no derivs_summary for ADA, SOL, LINK, XRP or AVAX.
+
+Verdict: insufficient for A7(2), 36 cells rejected and 44 insufficient of 80, none kept on both assets. The closest was the ETH basis 30-day tenor at its trailing 365-day bottom quintile, 1-day horizon, which cleared the bar on ETH and not on BTC: basis percentile bottom eth 1d insufficient: validation 0.008547 (t=2.387341, n=175); test 0.008098 (t=2.250513, n=152). A7(4) is insufficient at 1 day, t-stat 1.354197 in validation and 2.39817 in test on 2 names, and rejected at 3 days, where the sign flips in validation. Lookahead passed. results/2026-11-20_a7_rest.json.
+
+## 2026-11-20, verdict: C8 liquidation cascade
+
+Pre-registered in research/generated.md item 19, commit df7329347c99, before this scoring. The earlier file carried no stamp, so the rule was scored again by scripts/score_c8_cascade.py and written through write_result.
+
+Verdict: rejected. On the pooled names at 1 day the spread is -0.000182 in train (261 dates), 0.003137 in validation (243 dates, t 1.354054) and -0.001343 in test (125 dates, t -0.420076). The validation t did not reach 2, and the test is a null, not a flip. At 3 days the pooled spread is 0.004511, 0.010486 and -0.002631. At 5 days it is 0.006830, 0.016318 and -0.002069. BTC at 1 day is 0.006935, 0.005255 and -0.000352, with 48, 32 and 23 flagged days. The one cell that keeps its sign is BTC at 5 days, and its test rests on 2 independent flagged days, below 30, so it is not quoted. Lookahead passed. results/2026-11-20_c8_cascade.json.
+
+## 2026-11-21 daily refresh row count
+
+Panel rows before the rebuild: 2495, ending 2026-11-19. After: 2496, ending 2026-11-20. Change +1. Date added: 2026-11-20. Dates removed: none. The loader drops a day missing price or funding; 2026-11-20 had both. The 05:30 scheduler pull of 151 symbols stopped on a second 429 after saving ohlcv; the 20-name basket pull then saved the missing day. No Laevitas source failed. verify_panel.py PASS, panel_end 2026-11-20, age 1d. results/2026-11-21_regime-daily-refresh.json.
+
+## 2026-11-22, A7 scored
+
+A7(1): results/2026-11-21_a7_reversal.json, written by scripts/score_a7_reversal.py, panel data/panel_xs_laevitas, 3781 names, lookahead passed, verdict rejected. Windows: w1_h1 insufficient, w1_h3 insufficient, w3_h1 rejected, w3_h3 insufficient.
+
+A7(2): results/2026-11-22_a7_derivatives.json, written by scripts/score_a7_parts.py, panel data/laevitas/market, lookahead passed. 92 cells: 44 insufficient, 12 neighbour, 36 rejected. None kept on both assets. The filter on A7(1) was not scored, because A7(1) was rejected and a filter on a rejected score is not a second verdict.
+
+A7(3): results/2026-11-22_a7_crowding.json, written by scripts/score_a7_parts.py, panel data/laevitas/market for ADA, SOL, LINK, XRP and AVAX, date-clustered, survivor-biased. Pooled: oi_over_volume insufficient, oi_change_30d insufficient.
+
+A7(4): results/2026-11-22_a7_funding.json, written by scripts/score_a7_parts.py, panel data/panel.csv, two names, carry charged. horizon 1 insufficient, horizon 3 rejected. This is the market-level reading the pre-registration specifies and does not close a cross-sectional clause.
+
+## 2026-11-22, verdict: weekly round
+
+Pre-registered as research/generated.md items 25 to 27, commit 14e6cba, before any number was computed. Scored by scripts/score_weekly_round.py, which was committed before it ran. Three candidates, no more. No pull. get_market_positioning_history was not called. The panel read is data/panel_xs_laevitas, 234 names, ending 2026-11-20. Net of the thin-tier round trip, 30 bps, with no funding carry, because the panel has no USD open interest. Lookahead holds on all three. All figures from results/2026-11-22_regime-weekly-research.json.
+
+Candidate: w25_ls_ratio_chg_7. Transform: xs_rank. Horizon: 3 days.
+Cell: ls_ratio_chg_7|xs_rank|above|90|rel_3|pit_cross_section|none|daily.
+Correlation with live factors: {'btc_ret_30': -0.0389, 'btc_vol_z90': 0.0206, 'btc_trend_stretch': -0.0422, 'eth_funding_z30': -0.0167}. Largest absolute correlation 0.0422 with btc_trend_stretch.
+Halves, not a searched cut: first -0.3862% (n=854), second -0.1415% (n=855), same sign True.
+train: spread -0.2547% on 291 independent dates, t -1.8482.
+validation: spread -0.0622% on 183 independent dates, t -0.3438.
+test: spread -0.0993% on 97 independent dates, t -0.3895.
+Decision: rejected. a held-out non-overlapping t-stat does not reach 2.
+
+Candidate: w26_basis_chg_7. Transform: xs_rank. Horizon: 1 days.
+Cell: basis_chg_7|xs_rank|below|10|rel_1|pit_cross_section|none|daily.
+Correlation with live factors: {'btc_ret_30': -0.2214, 'btc_vol_z90': 0.0054, 'btc_trend_stretch': -0.2475, 'eth_funding_z30': -0.0289}. Largest absolute correlation 0.2475 with btc_trend_stretch.
+Halves, not a searched cut: first 0.3290% (n=867), second 0.0332% (n=867), same sign True.
+train: spread 0.3350% on 923 independent dates, t 3.4565.
+validation: spread -0.0174% on 521 independent dates, t -0.2119.
+test: spread 0.0477% on 290 independent dates, t 0.4649.
+Decision: rejected. a held-out period flips the train sign.
+
+Candidate: w27_wma_20. Transform: chg_3. Horizon: 1 days.
+Cell: wma_20|chg_3|above|95|ret_1|pit_cross_section|none|daily.
+Correlation with live factors: {'btc_ret_30': -0.1761, 'btc_vol_z90': 0.0234, 'btc_trend_stretch': -0.2063, 'eth_funding_z30': -0.0391}. Largest absolute correlation 0.2063 with btc_trend_stretch.
+Halves, not a searched cut: first 0.4829% (n=931), second 0.0019% (n=932), same sign True.
+train: spread 0.4778% on 1035 independent dates, t 3.6288.
+validation: spread 0.0508% on 535 independent dates, t 0.3721.
+test: spread -0.2401% on 293 independent dates, t -1.4471.
+Decision: rejected. a held-out period flips the train sign.
+
+Decision: all three rejected, none admitted. The score is unchanged. None restates a live factor: the largest absolute correlation is 0.2475, W26 with btc_trend_stretch, below 0.6.
+W25 keeps its sign in both halves and in all three periods, but no period's t-stat reaches 2, so the agreement is noise.
+W26 keeps its sign across the two halves and flips it in validation, -0.0174% on 521 independent dates against a train spread of 0.3350%.
+W27 keeps its sign across the two halves and flips it in test, -0.2401% on 293 independent dates against a train spread of 0.4778%.
+
