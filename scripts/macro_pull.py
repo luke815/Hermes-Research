@@ -37,15 +37,28 @@ UNITS = {"macro_stable_supply": "USDT + USDC circulating, USD (DefiLlama)", "mac
          "macro_us10y": "FRED DGS10, percent"}
 
 
-def fetch(url, path, timeout=60):
-    req = urllib.request.Request(url, headers={"User-Agent": "hermes-macro-pull/1.0"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        data = r.read()
-    if len(data) < 200:
-        raise RuntimeError(f"{url}: {len(data)} bytes")
-    with open(path, "wb") as fh:
-        fh.write(data)
-    return path
+def fetch(url, path, timeout=120, tries=3):
+    """Download to path with retries; on repeated failure keep yesterday's file and report it, so one slow source
+    (FRED timed out on the first scheduled run) does not fail the whole pull."""
+    last = None
+    for attempt in range(tries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "hermes-macro-pull/1.0"})
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                data = r.read()
+            if len(data) < 200:
+                raise RuntimeError(f"{len(data)} bytes")
+            with open(path, "wb") as fh:
+                fh.write(data)
+            return True
+        except Exception as exc:  # noqa: BLE001 - any network failure is retried, then reported
+            last = exc
+            time.sleep(5 * (attempt + 1))
+    FAILED.append(f"{os.path.basename(path)}: {type(last).__name__}: {str(last)[:120]}")
+    return os.path.exists(path)  # stale file still usable
+
+
+FAILED = []
 
 
 def fred_series(fid):
@@ -63,17 +76,23 @@ def llama_series(name):
 
 def main():
     os.makedirs(OUT, exist_ok=True)
+    have = {}
     for fid in FRED:
-        fetch(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={fid}", os.path.join(OUT, fid + ".csv"))
+        have[fid] = fetch(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={fid}", os.path.join(OUT, fid + ".csv"))
     for name, sid in (("usdt", 1), ("usdc", 2)):
-        fetch(f"https://stablecoins.llama.fi/stablecoincharts/all?stablecoin={sid}", os.path.join(OUT, name + ".json"))
+        have[name] = fetch(f"https://stablecoins.llama.fi/stablecoincharts/all?stablecoin={sid}", os.path.join(OUT, name + ".json"))
     dash = json.load(open(DASH))
     dates = pd.to_datetime(dash["series"]["date"])
     out = {}
     for fid, key in FRED.items():
+        if not have.get(fid):
+            continue
         s = fred_series(fid)
         out[key] = s.reindex(dates.union(s.index)).ffill().reindex(dates)
-    out["macro_stable_supply"] = (llama_series("usdt") + llama_series("usdc")).reindex(dates)
+    if have.get("usdt") and have.get("usdc"):
+        out["macro_stable_supply"] = (llama_series("usdt") + llama_series("usdc")).reindex(dates)
+    if not out:
+        raise SystemExit("macro_pull: no source could be read; " + "; ".join(FAILED))
     series = {k: [None if pd.isna(x) else float(x) for x in v.values] for k, v in out.items()}
     try:
         from dashboard_io import locked, read, write_atomic
@@ -93,7 +112,9 @@ def main():
     except Exception:
         pass
     last = {k: (v.dropna().index[-1].date().isoformat(), float(v.dropna().iloc[-1])) for k, v in out.items()}
-    print(json.dumps({"written": list(series), "last": last}, default=str))
+    print(json.dumps({"written": list(series), "last": last, "failed_sources": FAILED, "stale_files_used": [f for f in FAILED]}, default=str))
+    if FAILED:
+        sys.exit(2)  # partial: the health line shows which source failed; files on disk are the previous day's
 
 
 if __name__ == "__main__":
