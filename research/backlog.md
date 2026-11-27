@@ -2,6 +2,22 @@
 
 Ordered by the research program, section 9. One item at a time, pre-registered before any number is computed, verdict before the next item starts.
 
+## Direction 2026-11-25 (research/DIRECTION_2026-11-25.md). Taken before everything below, one item per run, in order.
+
+The signal hunt is retired as the objective: six weeks, ~300,000 swept cells, 38 rejected confirmations, ~1,800
+pre-registered outside cells and a paper book down 37% say daily-close timing of BTC from this data does not exist.
+Hermes's job is data, operations and description, plus the two bounded questions N7 and N8.
+
+- N1. Stop the sweep. procmgr disable sweep with the reason "sweep closed 2026-11-25: A2-A4 open, no admission in 38 confirmations". Every open G item is marked "closed, not evidence: A2-A4 open". No new daily-close BTC timing cell is pre-registered. Done when procmgr status shows sweep disabled with that reason and no G line is open.
+- N2. Dashboard corrections. (a) The Overview Positioning card shows the Q1 long/short test as "kept"; the cited results/2026-11-21_q1_lsr_drawdown.json is not committed, the train effect is zero and no recent-return control was run: the card reads "scored, not a watch level" with the PASS3 caveat (the dashboard PR carries the wording). (b) The paper book is withdrawn from the dashboard until its construction is re-examined; its ledger stays on disk. (c) Heat stays "trend composite, context only". Done when the hosted page shows (a) and (b) and the commit is named.
+- N3. Merge Hermes-Research PR #6, #7, #8 and this one as branch merges, pull, run scripts/macro_pull.py once and confirm series.macro_* in dashboard/data.json with the panel's row count; confirm the scheduler runs it at 06:50. Done when the hosted data.json carries the five macro series.
+- N4. Cadence. Research runs at 08:00 and 20:00 only; the hourly job is health only; no note or status scripts (one line in research/log.md, no committed script per note). Done when the cron list shows two research runs and the last ten commits contain no append_*_note script.
+- N5. A2, A3, A4, A6: each closed with a test this week, or marked "not done, sweep closed" with the date. Done when every one of the four lines carries one of those two marks.
+- N6. Alt long/short board, live. scripts/alt_ls_board.py (rule in research/outside/ALT_LS_PREREG.md) runs daily after the panel append in xs mode: writes dashboard/keys/ls_board.json, appends results/ls_ledger.csv, writes the stamped results file. First run by hand: post the universe size, the two lists and the three-period history line. Then the scheduler runs it daily. Done when the hosted data.json carries ls_board with mode "xs", the ledger has its first filled week, and the results file passes verify_result.
+- N7. R-A regime-conditional momentum and reversal: research/outside/PREREG_RA.md is the pre-registration. Write scripts/score_ra.py to its Done-when and post the regime occupancy table first; score only after the owner has read the occupancy. Done per PREREG_RA.md.
+- N8. Alt board track record. After four filled weeks of results/ls_ledger.csv, add the ledger summary (weeks, hit rate and mean by side, cumulative spread) to the ls_board key and the dashboard card. Done when the card shows the live record beside the history.
+- N9. Spot ETF flows: say whether a CoinGlass or similar key exists on the box. If yes, a daily puller with units in COVERAGE and a PREREG6 cell; if no, record "no key" and stop. No scraping.
+
 ## Audit fixes, from the 2026-11-17 review
 
 Taken before everything below. Each finding, with the lines and the reasoning, is in research/AUDIT_2026-11-17.md. Until A1 to A4 are done, no sweep or confirmation result is evidence, admitted or not.
